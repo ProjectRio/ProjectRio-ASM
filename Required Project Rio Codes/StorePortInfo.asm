@@ -3,8 +3,8 @@
 ###########################################################
 # Author: LittleCoaks
 
-# 0x802EBF94 --> initialized port P1
-# 0x802EBF95 --> initialized port Px
+# 0x802EBF91 --> initialized port P1
+# 0x802EBF92 --> initialized port Px
 # 0x802EBF94 --> fielding port
 # 0x802EBF95 --> batting port
 
