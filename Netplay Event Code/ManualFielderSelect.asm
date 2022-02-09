@@ -1,5 +1,5 @@
 ###########################################################
-# Manual Fielder Select v 3.2
+# Manual Fielder Select v3.2
 ###########################################################
 # Authors: PeacockSlayer, LittleCoaks
 
@@ -21,8 +21,8 @@
 # our fielder if we hold it down
 # 
 # Mem address 0x80892897 (set breakpoint to find instr, I nopped it early)
-# 
 ###################################################################################
+
 
 
 ###########################################################
@@ -299,6 +299,7 @@ loc_END:
   mtlr r0
 
 
+
 #############################################################################################
 #############################################################################################
 # Release Locks AND ctrl status
@@ -308,6 +309,9 @@ loc_END:
 loc_START:
   stb r6, 0xE1(r29)
   stb r6, 0x1D3(r29)            # restore original instruction
+
+END:
+
 
 
 #############################################################################################
@@ -324,6 +328,7 @@ loc_START:
   stb	r8, 0x01D3 (r10)          # restore original instruction
 
 loc_END:
+
 
 
 #############################################################################################
@@ -347,6 +352,7 @@ loc_STARTLOOP:
   cmpwi r14, 0x9
   blt+ loc_STARTLOOP
   stb	r0, 0x01D3 (r28)          # restore original instruction
+
 
 
 #############################################################################################
@@ -397,6 +403,7 @@ loc_END:
   blr
 
 
+
 ########################################
 # Injections branch to the write above #
 ########################################
@@ -419,6 +426,9 @@ loc_START:
   mtlr r0
   mr r0, r21
 
+END:
+
+
 # Inject: 0x80672b88
 loc_START:
   mr r20, r0                # move arg so stack can be backed up
@@ -434,6 +444,9 @@ loc_START:
   lwz r0, 0x104(r1)
   addi r1,r1,0x100
   mtlr r0
+
+END:
+
 
 # Inject: 0x8067a684
 loc_START:
@@ -451,6 +464,9 @@ loc_START:
   addi r1,r1,0x100
   mtlr r0
 
+END:
+
+
 # Inject: 0x8067aecc
 loc_START:
   mr r20, r0                # move arg so stack can be backed up
@@ -466,6 +482,9 @@ loc_START:
   lwz r0, 0x104(r1)
   addi r1,r1,0x100
   mtlr r0
+
+END:
+
 
 
 #############################################################################################
@@ -550,3 +569,4 @@ loc_START:
   stb r8, 0x1D3(r6)
 
 loc_END:
+
