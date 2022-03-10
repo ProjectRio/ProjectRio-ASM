@@ -5,7 +5,7 @@
     "0x802EBF93" : "(b) -- which port returned to main menu",
     "0x802EBF94" : "(b) -- fielder port",
     "0x802EBF95" : "(b) -- batter port",
-    "0x802EBF96" : "(b) -- minigame/toy field ports (bit vector)",
+    "0x802EBF96" : "(b) -- netplay event code active",
 
     "0x802EBF9C" : "(w) -- reset float to 0 (Positional Correction)",
     "0x802EBFA0" : "(w) -- batter previous X change",
@@ -13,5 +13,7 @@
     "0x802EBFAC" : "(w) -- batter previous X position",
     "0x802EBFB0" : "(w) -- batter previous Y position",
 
-    "0x802EC000" : "(w) -- Manual Select Hand Lock ASM"
+    "0x802EC000" : "(w) -- Manual Select Hand Lock ASM",
+
+    "0x802ED200" : "(-) -- Start of Hard-Written ASM"
 }
