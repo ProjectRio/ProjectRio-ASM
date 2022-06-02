@@ -26,5 +26,5 @@ START:
 
 END:
   rlwinm.	r0, r0, 0, 23, 23
-c
+
 
