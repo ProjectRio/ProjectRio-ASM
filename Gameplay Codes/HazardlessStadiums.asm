@@ -9,7 +9,7 @@
 ###########################################################
 # Requires: 20699508 88a40009
 
-# Inject: 80699508 88a40009
+# Inject: 80699508
 START:
     lbz	r5, 0x0009 (r4)
     cmpwi r5, 0             # mario's
@@ -59,13 +59,13 @@ YOSHI:
 
 PEACH:
     lis r14, 0x807c         # remove blocks
-    ori r14, r14, 0xd09c
-    lis r15, 0x4120
+    ori r14, r14, 0xd098
+    li r15, 0x0
     li r16, 0
 
 
 PEACH_FOR_LOOP:
-    stw r15, 0(r14)
+    stb r15, 0x11(r14)
     addi r16, r16, 1
     addi r14, r14, 0x14
     cmpwi r16, 0x10
