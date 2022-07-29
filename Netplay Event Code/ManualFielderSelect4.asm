@@ -114,7 +114,8 @@ IncrementLoop_Closest:
 
   b AssignFielder
 
-# Finally set desired player to 0xF. Reset vars. Return
+# Finally set desired player to 0xF
+# r4 is the fielder id that we want to select
 AssignFielder:
   lis r6, 0x8088
   ori r6, r6, 0xF53B            # base addr for fielder control status
