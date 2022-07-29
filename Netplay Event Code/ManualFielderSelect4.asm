@@ -137,7 +137,7 @@ IncrementLoop_Fielder:
   mulli r5, r4, 0x268           # compute offset for fielder addr
   li r7, 0xF                    # set to 0xF (selected)
   stbx r7, r5, r6
-  lis r6, 0x8089                # Finally set the hand indicator + lock
+  lis r6, 0x8089                # Finally set the hand indicator
   ori r6, r6, 0x2800
   stb r4, 0x1(r6)
   stb r4, 0x7(r6)
