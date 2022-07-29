@@ -27,6 +27,8 @@
 
 ###########################################################
 ###########################################################
+
+# Requires: 2067AC00 b0050148
 # Inject: 0x8067ac00
 loc_START:
   sth r0, 0x148(r5)             # Perform op where we inject
@@ -302,6 +304,8 @@ loc_END:
 
 #############################################################################################
 #############################################################################################
+
+# Requires: 2069797c 98dd01d3
 # Release Locks AND ctrl status
 # (0x00) r14-r24 (RESET)
 
@@ -316,9 +320,11 @@ END:
 
 #############################################################################################
 #############################################################################################
+
 # Prevents any character control status from turning to 0xF unless player is selected (lock==2)
 # (0x0F) r14-r24, r26
 
+# Requires: 20677950 990a01d3
 # Inject: 0x80677950
 loc_START:
   lbz r14, 0x00E1 (r10)
@@ -333,9 +339,11 @@ loc_END:
 
 #############################################################################################
 #############################################################################################
+
 # Releases all locks once ball is picked up or collected 0xA
 # (0x0A) r14-r24, r26
 
+# Requires: 206663c8 981c01d3
 # Inject: 0x806663c8
 loc_START:
   li r14, 0x0
@@ -361,7 +369,7 @@ loc_STARTLOOP:
 # Run through all chars and set hand to char that has lock == 2 (selected)
 # r14-r24
 
-# Write: 0x802EC000
+# Inject: 0x802EC000
 loc_START:
   mflr r0                   # backup stack
   stw r0, 0x4(r1)
@@ -408,6 +416,7 @@ loc_END:
 # Injections branch to the write above #
 ########################################
 
+# Requires: 20677920 b06600b0
 # Inject: 0x80677920
 loc_START:
   mr r20, r3                # move arg so stack can be backed up
@@ -429,6 +438,7 @@ loc_START:
 END:
 
 
+# Requires: 20672B88 b00300b0
 # Inject: 0x80672b88
 loc_START:
   mr r20, r0                # move arg so stack can be backed up
@@ -448,6 +458,7 @@ loc_START:
 END:
 
 
+# Requires: 2067A684 b00300b0
 # Inject: 0x8067a684
 loc_START:
   mr r20, r0                # move arg so stack can be backed up
@@ -467,6 +478,7 @@ loc_START:
 END:
 
 
+# Requires: 2067AECC b01f00b0
 # Inject: 0x8067aecc
 loc_START:
   mr r20, r0                # move arg so stack can be backed up
@@ -508,6 +520,7 @@ END:
 # stb load_reg, ORIGINAL OFFSET + dest_REG
 
 
+# Requires: 2069628c 881c01d3
 # Inject: 0x8069628c
 loc_START:
   lbz r0, 0x1D3(r28)
@@ -529,6 +542,7 @@ loc_START:
 loc_END:
 
 
+# Requires: 20692224 889f01d3
 # Inject: 0x80692224
 loc_START:
   lbz r4, 0x01D3(r31)
@@ -550,6 +564,7 @@ loc_START:
 loc_END:
 
 
+# Requires: 20685060 890601d3
 # Inject: 0x80685060
 loc_START:
   lbz r8, 0x01D3(r6)
