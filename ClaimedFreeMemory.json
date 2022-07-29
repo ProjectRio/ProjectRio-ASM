@@ -6,6 +6,7 @@
     "0x802EBF94" : "(b) -- fielder port",
     "0x802EBF95" : "(b) -- batter port",
     "0x802EBF96" : "(b) -- netplay event code active",
+    "0x802EBF97" : "(b) -- manual select arg",
 
     "0x802EBF9C" : "(w) -- reset float to 0 (Positional Correction)",
     "0x802EBFA0" : "(w) -- batter previous X change",
