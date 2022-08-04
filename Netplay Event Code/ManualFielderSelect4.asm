@@ -22,12 +22,30 @@ GetOldSelect:
   lis r9, 0x802E
   ori r9, r9, 0xBF97
 
-CheckUnfielded:
+# Here's the flow of things here:
+# - if it's only the 34th frame after contact, deselect; we do this to prevent manual selects from the previous AB from carrying over
+# - else if it's 30 frames since inning ended, allow a manual select to permit moonwalking
+# - else if the ball is not in the unfielded state, deselect so that the code doesn't run after fielding the ball
+# - else, run the rest of the function
+CheckGameState:
+  lis r4, 0x8089              # num frames after contact
+  ori r4, r4, 0x269e
+  lhz r4, 0(r4)
+  cmpwi r4, 4
+  beq Deselect                # deselect if 4th frame; this would be the first frame that this code runs
+  lis r4, 0x8088
+  ori r4, r4, 0xF771          # number of frames since 3rd out
+  lbz r4, 0(r4)
+  cmpwi r4, 30                # allow manual select after 30 frames since inning end to allow for moonwalking
+  bge GetFielderInputs        # they pay me to make these mods so i gotta deliver i guess
   lis r4, 0x8089
   ori r4, r4, 0x2701
   lbz r4, 0(r4)
   cmpwi r4, 0                 # make sure BallState is unfielded
-  bne Deselect                # if the ball has been fielded already, set the previous manual select value to 0 (no selection) and end function; no manual selects after fielding ball
+  beq GetFielderInputs        # if the ball has been fielded already, set the previous manual select value to 0 (no selection) and end function; no manual selects after fielding ball
+  cmpwi r4, 3                 # make sure BallState is unfielded
+  beq GetFielderInputs        # if the ball has been fielded already, set the previous manual select value to 0 (no selection) and end function; no manual selects after fielding ball
+  b Deselect
 
 # store raw button inputs to r8
 GetFielderInputs:
@@ -39,9 +57,17 @@ GetFielderInputs:
 # 0x0: Nothing
 # 0x1: Pitcher
 # 0x2: Catcher
-# 0x3: Closest fielder
+# 0x3: Closest fielder to ball
+# 0x4: Closest fielder to drop spot
 GetSelectState:
   lbz r4, 0(r9)               # get the previous state
+
+CheckButton_Z:
+  andi. r5, r8, 0x10
+  cmpwi r5, 0x10
+  bne CheckButton_Y
+  li r4, 0x0
+  stb r4, 0(r9)               # store our current state to previous state addr
 
 CheckButton_Y:
   andi. r5, r8, 0x800
@@ -60,29 +86,52 @@ CheckButton_X:
 CheckButton_R:
   andi. r5, r8, 0x20
   cmpwi r5, 0x20
-  bne CheckValidArgs
+  bne CheckButton_L
   li r4, 0x3
   stb r4, 0(r9)               # store our current state to previous state addr
 
+CheckButton_L:
+  andi. r5, r8, 0x40
+  cmpwi r5, 0x40
+  bne CheckValidArgs
+  li r4, 0x4
+  stb r4, 0(r9)               # store our current state to previous state addr
+
 CheckValidArgs:
-  cmpwi r4, 0x4               # invalid manual select state; set previous state to 0 and return to avoid issues
+  cmpwi r4, 0x5               # invalid manual select state; set previous state to 0 and return to avoid issues
   bge Deselect
   cmpwi r4, 0x0               # no manual select input selected; set previous state to 0 and return
   beq Deselect
 
 ArgLogic:
-  cmpwi r4, 3                 # for a manual select state of 3, we select closest fielder
-  beq SelectClosest
+  cmpwi r4, 3                 # for a manual select state of 3, we select closest fielder to ball
+  beq SelectClosest_Ball
+  cmpwi r4, 4                 # for a manual select state of 4 we select closest fielder to drop spot
+  beq SelectClosest_DropSpot
   subi r4, r4, 1              # this is a clever way to save space; the pitcher and catcher states are just +1 of their fielder position
   b AssignFielder             # r4 is the fielder position to be selected; pitcher & catcher arg are already set
 
+SelectClosest_DropSpot:
+  lis r7, 0x8089
+  ori r7, r7, 0x26B2          # BallHitState
+  lbz r7, 0(r7)
+  cmpwi r7, 0x1               # landed state
+  beq SelectClosest_Ball      # select closest to ball if L is pressed but ball has landed
+  lis r7, 0x8089              # r7 = Drop spot position addr (ba = 0x80890E80)
+  ori r7, r7, 0x0E80
+  li r8, 0x4                  # offset distance to Z position; we use this in the ComputeClosest algorithm
+
+
+SelectClosest_Ball:
+  lis r7, 0x8089              # r7 = Ball position addr (ba = 0x80890B38)
+  ori r7, r7, 0x0B38
+  li r8, 0x8                  # offset distance to Z position; we use this in the ComputeClosest algorithm
+
 SelectClosest:
-  li r5, 0x0                   # r5 = for loop increment
-  li r4, 0x0                   # r4 = min distance fielder
-  lis r6, 0x8088               # r6 = P position addr (ba = 0x8088F368)
+  li r5, 0x0                  # r5 = for loop increment
+  li r4, 0x0                  # r4 = min distance fielder
+  lis r6, 0x8088              # r6 = P position addr (ba = 0x8088F368)
   ori r6, r6, 0xF368
-  lis r7, 0x8089               # r7 = Ball position addr (ba = 0x80890B38)
-  ori r7, r7, 0xB38
 
 # magic
 ComputeClosest:
@@ -91,8 +140,8 @@ ComputeClosest:
   fsub f30, f28, f29
   fadd f30, f30, f30
   fabs f30, f30
-  lfs f28, 8(r7)
-  lfs f29, 8(r6)
+  lfsx f28, r8, r7
+  lfsx f29, r8, r6
   fsub f28, f28, f29
   fadd f28, f28, f28
   fabs f28, f28
@@ -112,8 +161,6 @@ IncrementLoop_Closest:
   cmpwi r5, 0x9
   bne+ ComputeClosest
 
-  b AssignFielder
-
 # Finally set desired player to 0xF
 # r4 is the fielder id that we want to select
 AssignFielder:
@@ -124,9 +171,9 @@ AssignFielder:
 Fielder_Loop:
   mulli r9, r8, 0x268
   lbzx r5, r9, r6
-  cmpwi r5, 0xF                 # first we check if any fielders are selected (0xF) and set them to 0xC
+  cmpwi r5, 0xF                 # first we check if any fielders are selected (0xF) and set them to 0x0
   bne IncrementLoop_Fielder
-  li r5, 0xC                    # a control status of 0xC tells the game to find the correct status of the fielder; very convienent for us
+  li r5, 0x0                    # a control status of 0x0 tells the game to find the correct status of the fielder; very convienent for us
   stbx r5, r9, r6
 
 IncrementLoop_Fielder:
