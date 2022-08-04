@@ -120,7 +120,7 @@ SelectClosest_DropSpot:
   lis r7, 0x8089              # r7 = Drop spot position addr (ba = 0x80890E80)
   ori r7, r7, 0x0E80
   li r8, 0x4                  # offset distance to Z position; we use this in the ComputeClosest algorithm
-
+  b SelectClosest
 
 SelectClosest_Ball:
   lis r7, 0x8089              # r7 = Ball position addr (ba = 0x80890B38)
