@@ -141,7 +141,7 @@ ComputeClosest:
   fadd f30, f30, f30
   fabs f30, f30
   lfsx f28, r8, r7
-  lfsx f29, r8, r6
+  lfs f29, 0x8(r6)
   fsub f28, f28, f29
   fadd f28, f28, f28
   fabs f28, f28
