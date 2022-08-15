@@ -24,17 +24,13 @@ Get_Input:
   ori r8, r8, 0x2899
   lbz r8, 0(r8)
 
-Check_Left:
-  andi. r9, r8, 0x1
-  cmpwi r9, 0
-  beq Check_Right
-  li r5, 0x1
+ Check_Left:
+  andi. r5, r8, 0x1
+  cmpwi r5, 0x1
+  beq Move_Previous_Inputs
 
 Check_Right:
-  andi. r9, r8, 0x2
-  cmpwi r9, 0
-  beq Move_Previous_Inputs
-  li r5, 0x2
+  andi. r5, r8, 0x2
 
 Move_Previous_Inputs:
   lis r7, 0x802E
