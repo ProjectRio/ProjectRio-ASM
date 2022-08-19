@@ -16,5 +16,9 @@
 
     "0x802EC000" : "(w) -- Manual Select Hand Lock ASM",
 
+    "0x802EC010" : "(h) -- Batting Random Int 1",
+    "0x802EC012" : "(h) -- Batting Random Int 2",
+    "0x802EC014" : "(h) -- Batting Random Int 3",
+    
     "0x802ED200" : "(-) -- Start of Hard-Written ASM"
 }
