@@ -23,8 +23,8 @@ GetOldSelect:
   ori r9, r9, 0xBF97
 
 # Here's the flow of things here:
-# - if it's only the 34th frame after contact, deselect; we do this to prevent manual selects from the previous AB from carrying over
-# - else if it's 30 frames since inning ended, allow a manual select to permit moonwalking
+# - if it's only the 4th frame after contact, deselect; we do this to prevent manual selects from the previous AB from carrying over
+# - else if it's after the 3rd out, allow a manual select to permit moonwalking
 # - else if the ball is not in the unfielded state, deselect so that the code doesn't run after fielding the ball
 # - else, run the rest of the function
 CheckGameState:
@@ -33,10 +33,10 @@ CheckGameState:
   lhz r4, 0(r4)
   cmpwi r4, 4
   beq Deselect                # deselect if 4th frame; this would be the first frame that this code runs
-  lis r4, 0x8088
-  ori r4, r4, 0xF771          # number of frames since 3rd out
+  lis r4, 0x8089
+  ori r4, r4, 0x2973
   lbz r4, 0(r4)
-  cmpwi r4, 30                # allow manual select after 30 frames since inning end to allow for moonwalking
+  cmpwi r4, 3                 # allow manual select after 3 outs to allow for moonwalking
   bge GetFielderInputs        # they pay me to make these mods so i gotta deliver i guess
   lis r4, 0x8089
   ori r4, r4, 0x2701
@@ -173,7 +173,7 @@ Fielder_Loop:
   lbzx r5, r9, r6
   cmpwi r5, 0xF                 # first we check if any fielders are selected (0xF) and set them to 0x0
   bne IncrementLoop_Fielder
-  li r5, 0x0                    # a control status of 0x0 tells the game to find the correct status of the fielder; very convienent for us
+  li r5, 0x2                    # a control status of 0x2 tells the game to find the correct status of the fielder; very convienent for us
   stbx r5, r9, r6
 
 IncrementLoop_Fielder:
