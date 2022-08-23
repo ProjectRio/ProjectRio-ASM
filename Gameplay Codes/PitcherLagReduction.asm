@@ -96,64 +96,39 @@ Get_Previous_Inputs:
 # recalling the function
 P1_and_C:
   cmpw r5, r6
-  beq P1_and_P2
-  mflr r0                   # backup registers
-  stw r0, 0x4(r1)
-  stwu r1, -0x100(r1)
-  stmw r3, 0x8(r1)
-
-  lis r8, 0x806a
-  ori r8, r8, 0xff88
-  mtctr r8
-  bctrl
-
-  lmw r3,0x8(r1)            # restore registers
-  lwz r0, 0x104(r1)
-  addi r1,r1, 0x100
-  mtlr r0
-
-  lis r8, 0x8089
-  ori r8, r8, 0x0A1C
-  lfs r8, 0x0(r8)
-  lfs r9, 0x0(r10)
-  fadd r8, r8, r9
-  stfs r8, 0x0(r10)
-
-  mflr r0                   # backup registers
-  stw r0, 0x4(r1)
-  stwu r1, -0x100(r1)
-  stmw r3, 0x8(r1)
-
-  lis r8, 0x806a
-  ori r8, r8, 0xff88
-  mtctr r8
-  bctrl
-
-  lmw r3,0x8(r1)            # restore registers
-  lwz r0, 0x104(r1)
-  addi r1,r1, 0x100
-  mtlr r0
-
-  lis r8, 0x8089
-  ori r8, r8, 0x0A1C
-  lfs r8, 0x0(r8)
-  lfs r9, 0x0(r10)
-  fadd r8, r8, r9
-  stfs r8, 0x0(r10)
-  b End
-
-P1_and_P2:
-  cmpw r6, r7
   beq End
+  mflr r0                   # backup registers
+  stw r0, 0x4(r1)
+  stwu r1, -0x100(r1)
+  stmw r3, 0x8(r1)
+
+  lis r8, 0x806a
+  ori r8, r8, 0xff88
+  mtctr r8
+  bctrl
+
+  lmw r3,0x8(r1)            # restore registers
+  lwz r0, 0x104(r1)
+  addi r1,r1, 0x100
+  mtlr r0
+
+  lis r8, 0x8089
+  ori r8, r8, 0x0A1C
+  lfs r8, 0x0(r8)
+  lfs r9, 0x0(r10)
+  fadd r8, r8, r9
+  stfs r8, 0x0(r10)
 
   mflr r0                   # backup registers
   stw r0, 0x4(r1)
   stwu r1, -0x100(r1)
   stmw r3, 0x8(r1)
+
   lis r8, 0x806a
   ori r8, r8, 0xff88
   mtctr r8
   bctrl
+
   lmw r3,0x8(r1)            # restore registers
   lwz r0, 0x104(r1)
   addi r1,r1, 0x100
