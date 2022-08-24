@@ -27,16 +27,14 @@ Get_Input:
  Check_Left:
   andi. r5, r8, 0x1
   cmpwi r5, 0x1
-  beq Move_Previous_Inputs
+  beq Store_Input
 
 Check_Right:
   andi. r5, r8, 0x2
 
-Move_Previous_Inputs:
+Store_Input:
   lis r7, 0x802E
   ori r7, r7, 0xBF98
-  lbz r6, 0x0(r7)
-  stb r6, 0x1(r7)
   stb r5, 0x0(r7)
 
 End:
@@ -67,8 +65,7 @@ Start:
   stfs r8, 0x0(r10)
 
 # r5 = current left or right
-# r6 = -1 left or right
-# r7 = -2 left or right
+# r6 = last frame left or right
 Get_Input:
   lis r8, 0x8089
   ori r8, r8, 0x3928
