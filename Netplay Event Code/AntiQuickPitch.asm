@@ -18,12 +18,12 @@ START:
   bne- GET_INPUT_NORMALLY           # 0 == exhibition/toy field; else == minigames
 
 SHOULD_SKIP_INPUT:
-  li r0, 0x0                        # Check if batter is in lag
-  lis r14, 0x8089
-  ori r14, r14, 0x99D
-  lbz r14, 0(r14)
-  cmpwi r14, 0x1
-  beq- END
+  li r0, 0x0                        
+  lis r14, 0x8089                   # pitch clock
+  ori r14, r14, 0x0AE0
+  lhz r14, 0(r14)
+  cmpwi r14, 0x20                   # check if less than or equal to 0x20 (2 seconds)
+  ble- END
 
 GET_INPUT_NORMALLY:
   lhz r0, 6(r30)
