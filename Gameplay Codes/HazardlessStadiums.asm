@@ -10,78 +10,99 @@
 # Requires: 20699508 88a40009
 
 # Inject: 80699508
-START:
-    lbz	r5, 0x0009 (r4)
+Start:
+    lbz	r5, 0x0009 (r4)         # stadium id, this line is required
+    stwu r1, -0x50 (r1)         # Backup stack, make r1ace for 18 registers
+    stmw r14, 0x8 (r1)
+
+    lis r19, 0x8035             # r19 stores starred icon addr
+    ori r19, r19, 0x323B
+    li r21, 0                   # r21 is for loop index
+
+Start_Loop:
+    lbzx r20, r19, r21          # r20 is value at ba + for loop i
+    cmpwi r20, 1
+    beq End
+    addi r21, r21, 0x1
+    cmpwi r21, 0x12
+    bne Start_Loop
+
+Check_Stadiums:
     cmpwi r5, 0             # mario's
-    beq END
+    beq End
     cmpwi r5, 6             # toy field
-    bge END
+    bge End
     cmpwi r5, 1             # bowser's
-    beq BOWSER
+    beq Bowser
     cmpwi r5, 2             # wario's
-    beq WARIO
+    beq Wario
     cmpwi r5, 3             # yoshi's
-    beq YOSHI
+    beq Yoshi
     cmpwi r5, 4             # peach's
-    beq PEACH
+    beq Peach
     cmpwi r5, 5             # dk's
     beq DK
-    b END
+    b End
     
+Bowser:
+    lis r19, 0x8070         # disable fireballs
+    ori r19, r19, 0x56c8
+    lis r20, 0x3860
+    stw r20, 0(r19)
+    lis r20, 0x3800         # lock thwomps
+    stw r20, 0x1638(r19)
+    b End
 
-BOWSER:
-    lis r14, 0x8070         # disable fireballs
-    ori r14, r14, 0x56c8
-    lis r15, 0x3860
-    stw r15, 0(r14)
-    lis r15, 0x3800         # lock thwomps
-    stw r15, 0x1638(r14)
-    b END
+Wario:
+    lis r19, 0x8070         # disable tornadoes
+    ori r19, r19, 0xfc30
+    lis r20, 0x6000
+    stw r20, 0(r19)
+    lis r20, 0x3800         # freeze chain chomps
+    stw r20, 0x376C(r19)
+    b End
 
+Yoshi:
+    lis r19, 0x8069         # disable plants
+    ori r19, r19, 0x9e54
+    lis r20, 0x3800
+    stw r20, 0(r19)
+    b End
 
-WARIO:
-    lis r14, 0x8070         # disable tornadoes
-    ori r14, r14, 0xfc30
-    lis r15, 0x6000
-    stw r15, 0(r14)
-    lis r15, 0x3800         # freeze chain chomps
-    stw r15, 0x376C(r14)
-    b END
+Peach:
+    lis r19, 0x807c         # remove blocks
+    ori r19, r19, 0xd098
+    li r20, 0x0
+    li r21, 0
 
-
-YOSHI:
-    lis r14, 0x8069         # disable plants
-    ori r14, r14, 0x9e54
-    lis r15, 0x3800
-    stw r15, 0(r14)
-    b END
-
-
-PEACH:
-    lis r14, 0x807c         # remove blocks
-    ori r14, r14, 0xd098
-    li r15, 0x0
-    li r16, 0
-
-
-PEACH_FOR_LOOP:
-    stb r15, 0x11(r14)
-    addi r16, r16, 1
-    addi r14, r14, 0x14
-    cmpwi r16, 0x10
-    blt PEACH_FOR_LOOP
-    b END
-
+Peach_For_Loop:
+    stb r20, 0x11(r19)
+    addi r21, r21, 1
+    addi r19, r19, 0x14
+    cmpwi r21, 0x10
+    blt Peach_For_Loop
+    b End
 
 DK:
-    lis r14, 0x8072
-    ori r14, r14, 0xf950
-    lis r15, 0x6000
-    stw r15, 0(r14)         # disable klaptraps
-    stw r15, 0x4A54(r14)    # disable barrels
-    stw r15, 0x4A60(r14)
+    lis r19, 0x8072
+    ori r19, r19, 0xf950
+    lis r20, 0x6000
+    stw r20, 0(r19)         # disable klaptraps
+    stw r20, 0x4A54(r19)    # disable barrels
+    stw r20, 0x4A60(r19)
+
+End:
+    lmw r14, 0x8 (r1)
+    addi r1, r1, 0x50       # restore stack
 
 
-END:
+# Remove Klaptraps
+# Inject: 0x8072FDC8
+Start:
+  lis r17, 0x4348
+  stw r17, 68(r1)
+  lfs f0, 68(r1)
+
+End:
 
 
