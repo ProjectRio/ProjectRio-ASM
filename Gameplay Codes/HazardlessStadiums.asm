@@ -15,6 +15,14 @@ Start:
     stwu r1, -0x50 (r1)         # Backup stack, make r1ace for 18 registers
     stmw r14, 0x8 (r1)
 
+Check_Star_Skills:              # Big Balla now uses hazardless
+    lis r19, 0x803C
+    ori r19, r19, 0x5F41
+    lbz r19, 0(r19)
+    cmpwi r19, 0
+    beq Check_Stadiums
+
+Check_Superstar_Characters:     # if star skills on, check if star characters
     lis r19, 0x8035             # r19 stores starred icon addr
     ori r19, r19, 0x323B
     li r21, 0                   # r21 is for loop index
@@ -97,12 +105,33 @@ End:
 
 
 # Remove Klaptraps
+
+# Requires: 2072FDC8 C0010044
 # Inject: 0x8072FDC8
 Start:
-  lis r17, 0x4348
-  stw r17, 68(r1)
-  lfs f0, 68(r1)
+    lis r19, 0x803C             # check for star skills enabled
+    ori r19, r19, 0x5F41
+    lbz r19, 0(r19)
+    cmpwi r19, 0
+    beq Disable_Klaptraps
+
+Check_Superstar_Characters:
+    lis r19, 0x8035             # r19 stores starred icon addr
+    ori r19, r19, 0x323B
+    li r21, 0                   # r21 is for loop index
+
+Start_Loop:
+    lbzx r20, r19, r21          # r20 is value at ba + for loop i
+    cmpwi r20, 1
+    beq End
+    addi r21, r21, 0x1
+    cmpwi r21, 0x12
+    bne Start_Loop
+
+Disable_Klaptraps:              # this just makes them spawn in offscreen
+    lis r17, 0x4348
+    stw r17, 0x44(r1)
 
 End:
-
+    lfs f0, 0x44(r1)
 
