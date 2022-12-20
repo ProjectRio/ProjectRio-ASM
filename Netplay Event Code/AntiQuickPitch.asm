@@ -19,11 +19,6 @@ START:
 
 SHOULD_SKIP_INPUT:
   li r0, 0x0                        
-  lis r14, 0x8089                   # pitch clock
-  ori r14, r14, 0x0AE0
-  lhz r14, 0(r14)
-  cmpwi r14, 0x30                   # check if less than or equal to 0x30
-  ble- END
   lis r14, 0x8089                   # Check if batter is in lag
   ori r14, r14, 0x99D
   lbz r14, 0(r14)
@@ -34,3 +29,4 @@ GET_INPUT_NORMALLY:
   lhz r0, 6(r30)
 
 END:
+
