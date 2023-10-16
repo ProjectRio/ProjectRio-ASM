@@ -43,7 +43,7 @@ SET_P2:
 END:
   lmw r14, 0x8 (r1)
   addi r1, r1, 0x50              # restore stack
-  li r5, 0x7f                    # Replace overwritten instruction
+  li r5, 0x3f                    # Replace overwritten instruction
 
 
 
