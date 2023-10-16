@@ -1,5 +1,5 @@
 ###########################################################
-# Manual Fielder Select v4.0
+# Manual Fielder Select v4.1
 ###########################################################
 # Authors: PeacockSlayer, LittleCoaks
 
@@ -23,7 +23,7 @@ GetOldSelect:
   ori r9, r9, 0xBF97
 
 # Here's the flow of things here:
-# - if it's only the 4th frame after contact, deselect; we do this to prevent manual selects from the previous AB from carrying over
+# - if it's 15 or less frames after contact, deselect; we do this to prevent manual selects from the previous AB from carrying over
 # - else if it's after the 3rd out, allow a manual select to permit moonwalking
 # - else if the ball is not in the unfielded state, deselect so that the code doesn't run after fielding the ball
 # - else, run the rest of the function
@@ -31,8 +31,8 @@ CheckGameState:
   lis r4, 0x8089              # num frames after contact
   ori r4, r4, 0x269e
   lhz r4, 0(r4)
-  cmpwi r4, 4
-  beq Deselect                # deselect if 4th frame; this would be the first frame that this code runs
+  cmpwi r4, 15
+  ble Deselect                # deselect if 4th frame; this would be the first frame that this code runs
   lis r4, 0x8089
   ori r4, r4, 0x2973
   lbz r4, 0(r4)
@@ -58,7 +58,6 @@ GetFielderInputs:
 # 0x1: Pitcher
 # 0x2: Catcher
 # 0x3: Closest fielder to ball
-# 0x4: Closest fielder to drop spot
 GetSelectState:
   lbz r4, 0(r9)               # get the previous state
 
@@ -86,19 +85,12 @@ CheckButton_X:
 CheckButton_R:
   andi. r5, r8, 0x20
   cmpwi r5, 0x20
-  bne CheckButton_L
+  bne CheckValidArgs
   li r4, 0x3
   stb r4, 0(r9)               # store our current state to previous state addr
 
-CheckButton_L:
-  andi. r5, r8, 0x40
-  cmpwi r5, 0x40
-  bne CheckValidArgs
-  li r4, 0x4
-  stb r4, 0(r9)               # store our current state to previous state addr
-
 CheckValidArgs:
-  cmpwi r4, 0x5               # invalid manual select state; set previous state to 0 and return to avoid issues
+  cmpwi r4, 0x4               # invalid manual select state; set previous state to 0 and return to avoid issues
   bge Deselect
   cmpwi r4, 0x0               # no manual select input selected; set previous state to 0 and return
   beq Deselect
@@ -106,21 +98,8 @@ CheckValidArgs:
 ArgLogic:
   cmpwi r4, 3                 # for a manual select state of 3, we select closest fielder to ball
   beq SelectClosest_Ball
-  cmpwi r4, 4                 # for a manual select state of 4 we select closest fielder to drop spot
-  beq SelectClosest_DropSpot
   subi r4, r4, 1              # this is a clever way to save space; the pitcher and catcher states are just +1 of their fielder position
   b AssignFielder             # r4 is the fielder position to be selected; pitcher & catcher arg are already set
-
-SelectClosest_DropSpot:
-  lis r7, 0x8089
-  ori r7, r7, 0x26B2          # BallHitState
-  lbz r7, 0(r7)
-  cmpwi r7, 0x1               # landed state
-  beq SelectClosest_Ball      # select closest to ball if L is pressed but ball has landed
-  lis r7, 0x8089              # r7 = Drop spot position addr (ba = 0x80890E80)
-  ori r7, r7, 0x0E80
-  li r8, 0x4                  # offset distance to Z position; we use this in the ComputeClosest algorithm
-  b SelectClosest
 
 SelectClosest_Ball:
   lis r7, 0x8089              # r7 = Ball position addr (ba = 0x80890B38)
@@ -216,7 +195,4 @@ EndFake:
   li r0, 1
 
 End:
-
-
-
 
