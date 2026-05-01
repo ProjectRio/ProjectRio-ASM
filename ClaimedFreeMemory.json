@@ -8,6 +8,8 @@
     "0x802EBF96" : "(b) -- netplay event code active",
     "0x802EBF97" : "(b) -- manual select arg",
     "0x802EBF98" : "(b) -- fielder stick left/right -1",
+    "0x802EBF99" : "(b) -- superstar character code current index, P1 team",
+    "0x802EBF9A" : "(b) -- superstar character code current index, P2 team",
 
     "0x802EBF9C" : "(w) -- reset float to 0 (Positional Correction)",
     "0x802EBFA0" : "(w) -- batter previous X change",
@@ -23,5 +25,25 @@
     "0x802EC012" : "(h) -- Batting Random Int 2",
     "0x802EC014" : "(h) -- Batting Random Int 3",
     
-    "0x802ED200" : "(-) -- Start of Hard-Written ASM"
+    "0x802ED200" : "(-) -- Start of Hard-Written ASM",
+    
+    // Superstar character indicators - stored in the first unused byte within InMemRoster for each character
+    "0x80353BE5" : "(b) -- indicator to superstar character P1 character 0",
+    "0x80353C85" : "(b) -- indicator to superstar character P1 character 1",
+    "0x80353D25" : "(b) -- indicator to superstar character P1 character 2",
+    "0x80353DC5" : "(b) -- indicator to superstar character P1 character 3",
+    "0x80353E65" : "(b) -- indicator to superstar character P1 character 4",
+    "0x80353F05" : "(b) -- indicator to superstar character P1 character 5",
+    "0x80353FA5" : "(b) -- indicator to superstar character P1 character 6",
+    "0x80354045" : "(b) -- indicator to superstar character P1 character 7",
+    "0x803540E5" : "(b) -- indicator to superstar character P1 character 8",
+    "0x80354185" : "(b) -- indicator to superstar character P2 character 0",
+    "0x80354225" : "(b) -- indicator to superstar character P2 character 1",
+    "0x803542C5" : "(b) -- indicator to superstar character P2 character 2",
+    "0x80354365" : "(b) -- indicator to superstar character P2 character 3",
+    "0x80354405" : "(b) -- indicator to superstar character P2 character 4",
+    "0x803544A5" : "(b) -- indicator to superstar character P2 character 5",
+    "0x80354545" : "(b) -- indicator to superstar character P2 character 6",
+    "0x803545E5" : "(b) -- indicator to superstar character P2 character 7",
+    "0x80354685" : "(b) -- indicator to superstar character P2 character 8"
 }
