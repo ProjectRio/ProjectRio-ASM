@@ -14,6 +14,9 @@
    # 08353be5 00000001
    # 001100a0 00000000
 # 2. Two free bytes of memory to store index values to track the progress of the superstarring. Currently using 0x802EBF99 and 0x802EBF9A.
+# 3. Conditional gecko for when the game starts, and a code to replace the injection instruction.
+   # 28892AB4 FF000001
+   # 0405A4F4 3C608033
 
 # Inject: 8005a4f4
 cmpwi r27, 0x2 #compare register that is supposed to have the team number
