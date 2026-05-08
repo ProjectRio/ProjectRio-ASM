@@ -86,18 +86,20 @@ If provided in `config.json`, the script will also automatically launch Dolphin 
 
 ---
 
-## Source File Comments
+## Source File Comment System
 
-Both `.c` and `.asm` files use the same comment syntax. C files use `//`, ASM files use `#`.
+To specify features of gecko codes (author, injection address, etc) we use comment lines. Both `.c` and `.asm` files use the same comment syntax. C files use `//`, ASM files use `#`.
 
 | Comment | Required | Description |
 |---|---|---|
 | `// Address: 0x80XXXXXX` | Yes | Injection address |
 | `// Author: YourName` | No | Author for gecko header |
-| `// Instruction: <asm>` | No | PPC instruction at inject site — enables conditional wrapper |
+| `// Instruction: <asm>` | No | PPC instruction at inject site — enables conditional wrapper* |
 | `// *Note text` | No | Note line appended after code block. Repeatable. |
 
 The code name is derived automatically from the source filename (e.g. `myCode.c` → `myCode`).
+
+*Some games dynamically change the RAM during runtime, meaning a gecko code that works in one game state would break in another. In this case, we use a conditional wrapper which only writes the gecko code when that address is equal to a specific instruction.
 
 ### Gecko Output Format
 
