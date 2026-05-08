@@ -103,17 +103,16 @@ E2000001 00000000   <- conditional close
 ## ASM vs C — When to Use Which
 
 **Use ASM when:**
-- The mod is simple — a small number of instructions with no complex logic.
-- You need precise control over which registers are used and when.
-- The injection site is sensitive and register state must be carefully managed.
-- You want the smallest possible code size.
+- The mod is simple.
+- You need precise control over registers.
+- You're want the smallest possible code size.
 
 **Use C when:**
-- The mod involves complex logic, conditionals, loops, or multiple functions.
-- Register management at the injection site is not the primary concern — you just want the game state preserved while your logic runs.
-- You want to call game functions, work with structs, or write readable maintainable code.
+- The mod is complex.
+- You do not need precise control over registers.
+- You want code that is readbale & easy to write/debug.
 
-The script handles BACKUP/RESTORE automatically for C codes, making it easy to write injection code without worrying about clobbering game state. ASM codes give you full manual control.
+*Note on registers: in C, the tool will automatically backup and restore all registers. This means that you cannot overwrite any registers after running your code, making the code safe. The `REG` macro allows you to read previous registers but you cannot write to them. Some mods may require changing specific registers, and in this case you would need to use ASM instead of C.*
 
 ---
 
@@ -135,7 +134,7 @@ Use `.set` to give a register a meaningful name for the duration of a file. Defi
 .set temp,    r12
 ```
 
-From that point, `pPlayer`, `score`, and `temp` can be used anywhere a register is expected. Aliases are file-scoped and permanent — there is no way to undefine one.
+From that point, `pPlayer`, `score`, and `temp` can be used anywhere a register is expected. Aliases are per-file. You can rename an alias at any point.
 
 ### Common.s Macros
 
@@ -200,27 +199,35 @@ restoreall
 
 ### Entry Function
 
+The entry function is whatever function the gecko handler will branch to at the memory address specified in teh `Address` comment line.
+
 The entry function must match the filename — for `myCode.c`, define `void myCode()`. The script:
 - Moves the entry function to the top of the compiled output so it runs first.
 - Injects BACKUP (saves r3–r31, LR, and any used FPRs) before it runs.
 - Injects RESTORE (reloads all saved registers) after it returns.
 - Replaces all `blr` instructions with forward branches to the terminator.
 
+The entry function can't return a value since the automatic stack frame manageament will overwrite the returned value. Therefore just make all entry functions `void`.
+
 Helper functions (any name other than the entry function) are normal C.
 
-### Stack Management
+### Register Management
 
-GCC is configured with `-ffixed-r14` through `-ffixed-r31` to prevent it from using callee-saved registers, eliminating redundant sub-frames and keeping the output clean.
+The script will automatically save all registers in codes written in C. This allows you to freely write code without worrying about preserving the game state. However, this also adds the limitation that you cannot modify registers in your code if you'd like to. In that case, you would need to write your mod in ASM.
 
-Frame layout:
+Use `REG()` to set an alias to a register value at the injection point. Read-only: Writes to REG variables will work within the gecko code, but will not persist afterwards since RESTORE reloads the original saved register state.
+
+```c
+void myCode() {
+    REG(int, strikes, 3);    // at the injection point, r3 is the strike count
+    if (strikes == 3) {
+        strikes = 0          // r3 set to 0 in the gecko code
+    }
+}
+                             // after gecko code completes, r3 returns to original value
 ```
-new SP + 0x000   back-chain
-new SP + 0x008   r3   (stmw saves r3–r31)
-...
-new SP + 0x080   r31
-new SP + 0x088   f0   (stfd fN at frame+0x88+N*8, if FPU used)
-old SP + 0x004   LR   = new SP + frame_size + 0x4
-```
+
+> VSCode may show a squiggle on `REG()` syntax — ignore it, GCC compiles it correctly.
 
 ### Memory Access
 
@@ -249,28 +256,9 @@ PlaySound(soundID, 127, 0x3f, 0x0);
 function_atAddr(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
 ```
 
-### Register Access
-
-Use `REG()` to read a game register value at the injection point:
-
-```c
-void myCode() {
-    REG(int, currentHP, 3);   // currentHP = r3 at injection point
-    REG(int, currentMP, 4);   // currentMP = r4 at injection point
-
-    if (currentHP < 10) {
-        value_atAddr(int, 0x80100000) = 100;  // heal via memory write
-    }
-}
-```
-
-> `REG()` is for reading registers at the injection site. Writes to REG variables are not guaranteed to persist after RESTORE reloads the saved register state. To modify a register the game sees, write directly to memory via `value_atAddr`.
-
-> VSCode may show a squiggle on `REG()` syntax — ignore it, GCC compiles it correctly.
-
 ### Floats and Arrays — Important Limitation
 
-The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead.
+The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead. Here are the workarounds:
 
 **Floats:**
 
@@ -372,10 +360,12 @@ void myCode() {
 
 ---
 
-## Dolphin ini Integration
+## Dolphin Integration
 
 The script reads and writes the Dolphin GameSettings ini directly:
 - New codes are appended to `[Gecko]` and added to `[Gecko_Enabled]`.
 - Existing codes (matched by name) are updated in place.
 - All other ini content is preserved exactly.
 - A blank or missing ini is initialized with the correct structure automatically.
+
+If provided in `config.json`, the script will also automatically launch Dolphin upon successfully writing the code.
