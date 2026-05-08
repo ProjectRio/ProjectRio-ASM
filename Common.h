@@ -77,6 +77,51 @@ typedef unsigned int   word;
  */
 #define REG(type, name, num) register type name __asm__(#num)
 
+/* ── Stack data helpers ─────────────────────────────────────────────────────── */
+/*
+ * FLOAT_BITS(hex)
+ *
+ * Create a float from its IEEE 754 hex bit pattern, stored on the stack.
+ * Avoids .rodata entirely — no absolute address relocations generated.
+ * Use this instead of float literals like 1.5f which would require static storage.
+ *
+ * Common values:
+ *   0x3F800000  =  1.0f       0x40000000  =  2.0f
+ *   0x3FC00000  =  1.5f       0xBF800000  = -1.0f
+ *   0x41200000  = 10.0f       0x42C80000  = 100.0f
+ *
+ * Examples:
+ *   float speed   = FLOAT_BITS(0x3FC00000);  // 1.5f
+ *   float gravity = FLOAT_BITS(0x40000000);  // 2.0f
+ */
+#define FLOAT_BITS(hex) (*(float*)&(unsigned int){hex})
+
+/*
+ * FLOAT(num, den)
+ *
+ * Create a float from a rational number (numerator / denominator).
+ * Computed at runtime from integers — no .rodata, no relocations.
+ * Preferred over FLOAT_BITS when the value can be expressed as a fraction.
+ *
+ * Examples:
+ *   float speed   = FLOAT(3, 2);    // 1.5f
+ *   float quarter = FLOAT(1, 4);    // 0.25f
+ *   float ten     = FLOAT(10, 1);   // 10.0f
+ *   float pi      = FLOAT(355, 113); // ~3.14159f
+ */
+#define FLOAT(num, den) ((float)(num) / (float)(den))
+
+/*
+ * Stack arrays — declare and initialize normally:
+ *   int  arr[4] = {10, 20, 30, 40};   // fine — lives on the stack
+ *   arr[2] = arr[0] + arr[1];         // fine
+ *
+ * Do NOT use static or global arrays — those go into .rodata/.data and
+ * generate absolute address relocations that break in a gecko payload.
+ * The BACKUP frame provides 0x90 bytes of stack space (minus what GCC uses),
+ * sufficient for small arrays.
+ */
+
 /* ── Utilities ───────────────────────────────────────────────────────────── */
 
 #define LEN(a)          (sizeof(a) / sizeof(*a))    // number of elements in array
