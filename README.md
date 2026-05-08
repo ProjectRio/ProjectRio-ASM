@@ -38,50 +38,39 @@ The installer sets a `DEVKITPPC` environment variable automatically. The script 
 ## Usage
 
 ```
-python3 cgecko.py [input.c|input.asm] [-t] [-d]
+python3 cgecko.py [input.c|input.asm] [-d]
 ```
 
 | Argument | Description |
 |---|---|
 | `input` | `.c` or `.asm` source file. Optional if `build_file` is set in `config.json`. |
-| `-t` | Write output to `codes.txt` instead of the Dolphin ini. |
-| `-d` | Debug mode: verbose output, save build artifacts (`.o`, `.elf`, `.ld`, `.disasm.txt`, `.rewritten.c`). |
+| `-d` | Debug mode: verbose output, save build artifacts. |
+
+Output goes to the Dolphin ini if `ini_path` is set in `config.json`, otherwise falls back to `codes.txt` in the script directory.
 
 ---
 
 ## config.json
 
-Place `config.json` alongside `cgecko.py`. All fields are optional.
+Copy `config.template.json` to `config.json` alongside `cgecko.py` and fill in the fields.
 
 ```json
 {
-    "ini_path":     "C:/Users/You/Documents/Dolphin Emulator/GameSettings/GALE01.ini",
-    "build_file":   "C:/ProjectRio-ASM/Codes/MyMod/myCode.c",
-    "dolphin_path": "C:/Users/You/AppData/Local/Dolphin/Dolphin.exe",
-    "iso_path":     "C:/Games/GALE01.iso"
+    "build_file": "",
+    "ini_path": "",
+    "dolphin_path": "",
+    "iso_path": ""
 }
 ```
 
 | Key | Description |
 |---|---|
-| `ini_path` | Dolphin GameSettings ini file. Gecko code is deployed here automatically. |
 | `build_file` | Default input file. Allows double-clicking `cgecko.py` to rebuild without arguments. |
+| `ini_path` | Dolphin GameSettings ini file. Gecko code is deployed here automatically. |
 | `dolphin_path` | Path to Dolphin executable. |
 | `iso_path` | Path to game ISO. |
 
-If `ini_path`, `dolphin_path`, and `iso_path` are all set, Dolphin launches automatically after deploying the code.
-
-If no `ini_path` is set, the script warns and falls back to writing `codes.txt` in the script directory.
-
----
-
-## Dolphin ini Integration
-
-The script reads and writes the Dolphin GameSettings ini directly:
-- If the code name already exists in `[Gecko]`, its contents are updated in place.
-- If the code is new, it is appended to `[Gecko]` and added to `[Gecko_Enabled]`.
-- All other ini content is preserved exactly.
-- A blank or missing ini file is initialized with the correct `[Gecko]` / `[Gecko_Enabled]` structure.
+If `ini_path`, `dolphin_path`, and `iso_path` are all set, Dolphin launches automatically after deploying. If `ini_path` is not set, the output falls back to `codes.txt`.
 
 ---
 
@@ -111,173 +100,88 @@ E2000001 00000000   <- conditional close
 
 ---
 
-## C Files
+## ASM vs C — When to Use Which
 
-### Entry Function
+**Use ASM when:**
+- The mod is simple — a small number of instructions with no complex logic.
+- You need precise control over which registers are used and when.
+- The injection site is sensitive and register state must be carefully managed.
+- You want the smallest possible code size.
 
-The entry function must match the filename. For `myCode.c`, define `void myCode()`. The script:
-- Moves the entry function to the top of the compiled output
-- Adds `BACKUP` (saves r3–r31, LR, and any used FPRs) before it runs
-- Adds `RESTORE` (reloads all saved registers) after it returns
-- Replaces all `blr` instructions with forward branches to the terminator
+**Use C when:**
+- The mod involves complex logic, conditionals, loops, or multiple functions.
+- Register management at the injection site is not the primary concern — you just want the game state preserved while your logic runs.
+- You want to call game functions, work with structs, or write readable maintainable code.
 
-Helper functions (any name other than the entry function) are normal C — define them freely.
-
-### Stack Management
-
-The script injects BACKUP/RESTORE as raw instruction bytes around the compiled payload. GCC is configured with `-ffixed-r14` through `-ffixed-r31` to prevent it from using callee-saved registers — this eliminates GCC's own sub-frame entirely, keeping the output clean and minimal.
-
-Frame layout:
-
-```
-new SP + 0x000   back-chain
-new SP + 0x008   r3   (stmw saves r3–r31)
-...
-new SP + 0x080   r31
-new SP + 0x088   f0   (stfd fN at frame+0x88+N*8, if FPU used)
-...
-old SP + 0x004   LR   = new SP + frame_size + 0x4
-```
-
-### Register Access
-
-To read or write a game register at the injection point, use the `REG()` macro from `Common.h`:
-
-```c
-void myCode() {
-    REG(int, score, 20);   // score reads from r20 at injection point
-    REG(int, lives, 21);   // lives reads from r21 at injection point
-
-    score = score + 1;     // modifies r20 (note: writes not guaranteed to persist — see below)
-}
-```
-
-> **Note:** `REG()` writes are not guaranteed to be seen by the game after RESTORE reloads the saved register state. Use `REG()` primarily for reading game register values. To modify a register the game will see, write directly to its memory address via `value_atAddr`.
-
-> VSCode may show a squiggle on `REG()` syntax — ignore it, GCC compiles it correctly.
-
-### Memory Access
-
-```c
-// Single value at address
-value_atAddr(int,   0x80123456) = 10;
-int x = value_atAddr(int, 0x80123456);
-
-// 1D array
-value_atAddr(byte, 4, 0x80AABBCC)[2] = 0xFF;
-
-// Named pointer (requires * to dereference)
-DECLARE_VARIABLE(int, score, 0x80123456);
-*score = 10;
-int x = *score;
-```
-
-### Game Function Calls
-
-```c
-// Inline — best for one-off calls
-function_atAddr(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
-```
-
-### Floats and Arrays
-
-Float literals and static arrays in `.rodata`/`.data` require position-independent addressing since the payload address is unknown at load time. Direct `float x = 1.5f` style declarations generate absolute address relocations that the script will reject.
-
-**Workarounds:**
-
-Use an integer bit-cast (zero overhead, no memory):
-```c
-union { unsigned int i; float f; } u = {0x3FC00000};  // 1.5f
-float x = u.f;
-```
-
-Use `value_atAddr` to read from a known static address in game memory:
-```c
-float x = value_atAddr(float, 0x80SOMEADDR);
-```
-
-### Global / Static Data and the PIC Stub
-
-When `.rodata` or `.data` sections are non-empty, the script prepends a 4-instruction PC-relative self-location stub. After the stub, `r11` holds the runtime address of the stub itself. Use `r11 + offset` to reach data symbols. Build with `-d` and inspect `.disasm.txt` for exact offsets.
+The script handles BACKUP/RESTORE automatically for C codes, making it easy to write injection code without worrying about clobbering game state. ASM codes give you full manual control.
 
 ---
 
 ## ASM Files
 
-- Include `Common.s` at the top of every `.asm` file.
+Include `Common.s` at the top of every `.asm` file for access to the standard macros.
+
 - Assembled with `powerpc-eabi-as` (`-mregnames -mbig`).
-- Always raw — no BACKUP/RESTORE injection.
-- Same linker, relocation check, C2/C3 selection, conditional wrapper, and output format as C files.
+- Always raw — no automatic BACKUP/RESTORE injection. Manage the stack yourself using the macros in `Common.s`.
 - Comment character is `#`.
 
 ### Register Aliases
 
-Use `.set` to give a register a meaningful name:
+Use `.set` to give a register a meaningful name for the duration of a file. Define aliases near the top of each `.asm` file after `.include "Common.s"`.
 
 ```asm
 .set pPlayer, r3
 .set score,   r4
 .set temp,    r12
-
-lwz  score, 0x44(pPlayer)
-addi score, score, 1
-stw  score, 0x44(pPlayer)
 ```
 
----
+From that point, `pPlayer`, `score`, and `temp` can be used anywhere a register is expected. Aliases are file-scoped and permanent — there is no way to undefine one.
 
-## Debug Artifacts (`-d`)
+### Common.s Macros
 
-| File | Description |
-|---|---|
-| `.rewritten.c` | C source after entry function reordering (C only) |
-| `.o` | Compiled object file |
-| `.elf` | Linked ELF at base address 0x0 |
-| `.ld` | Linker script used |
-| `.disasm.txt` | objdump disassembly |
-
----
-
-## Full C Template
-
-```c
-#include "Common.h"
-
-// Author:      YourName
-// Address:     0x80XXXXXX
-// Instruction: li r3, 0          (optional — enables conditional wrapper)
-// *This is a note                (optional — repeatable)
-
-// Game memory
-DECLARE_VARIABLE(int, score, 0x80123456);
-DECLARE_VARIABLE(int, lives, 0x8012ABCD);
-
-// Game functions (types only in parameter list — no parameter names)
-#define PlaySound function_atAddr(void, 0x800c836C, int, int, int, int)
-
-// Optional helpers
-static int clamp(int val, int max) {
-    return val > max ? max : val;
-}
-
-// Entry function — name must match filename (e.g. myCode.c -> myCode())
-void myCode() {
-    REG(int, currentScore, 20);   // read r20 at injection point
-
-    *score = clamp(currentScore + 1, 9999);
-    *lives = *lives - 1;
-    PlaySound(0x1, 127, 0x3f, 0x0);
-}
+**`load reg, address`** — load a 32-bit address into a register (lis + ori):
+```asm
+load r3, 0x80123456    # r3 = 0x80123456
 ```
 
-## Full ASM Template
+**`loadwz reg, address`** — load a 32-bit word from a memory address:
+```asm
+loadwz r3, 0x80123456  # r3 = *(int*)0x80123456
+```
+
+**`loadbz reg, address`** — load a byte from a memory address:
+```asm
+loadbz r3, 0x80123456  # r3 = *(byte*)0x80123456
+```
+
+**`branch reg, address`** — jump to an absolute address (no link):
+```asm
+branch r12, 0x80012345
+```
+
+**`branchl reg, address`** — call a function at an absolute address (with link):
+```asm
+branchl r12, 0x800F9BDC
+```
+
+**`backupall`** — save r3–r31 and LR to the stack (0x100 byte frame):
+```asm
+backupall
+```
+
+**`restoreall`** — restore r3–r31 and LR from the stack:
+```asm
+restoreall
+```
+
+### ASM Template
 
 ```asm
 .include "Common.s"
 
 # Author:      YourName
 # Address:     0x80XXXXXX
-# Instruction: li r3, 0
+# Instruction: nop
 # *This is a note
 
 .set pPlayer, r3
@@ -289,3 +193,189 @@ void myCode() {
     stw  score, 0x44(pPlayer)
     restoreall
 ```
+
+---
+
+## C Files
+
+### Entry Function
+
+The entry function must match the filename — for `myCode.c`, define `void myCode()`. The script:
+- Moves the entry function to the top of the compiled output so it runs first.
+- Injects BACKUP (saves r3–r31, LR, and any used FPRs) before it runs.
+- Injects RESTORE (reloads all saved registers) after it returns.
+- Replaces all `blr` instructions with forward branches to the terminator.
+
+Helper functions (any name other than the entry function) are normal C.
+
+### Stack Management
+
+GCC is configured with `-ffixed-r14` through `-ffixed-r31` to prevent it from using callee-saved registers, eliminating redundant sub-frames and keeping the output clean.
+
+Frame layout:
+```
+new SP + 0x000   back-chain
+new SP + 0x008   r3   (stmw saves r3–r31)
+...
+new SP + 0x080   r31
+new SP + 0x088   f0   (stfd fN at frame+0x88+N*8, if FPU used)
+old SP + 0x004   LR   = new SP + frame_size + 0x4
+```
+
+### Memory Access
+
+```c
+// Read/write a single value
+value_atAddr(int,   0x80123456) = 10;
+int x = value_atAddr(int, 0x80123456);
+value_atAddr(float, 0x8012ABCD) = FLOAT(3, 2);
+
+// Read/write an array element in game memory
+value_atAddr(int, 4, 0x80AABBCC)[2] = 0xFF;
+
+// Named pointer (use * to dereference)
+DECLARE_VARIABLE(int, score, 0x80123456);
+*score = 10;
+```
+
+### Game Function Calls
+
+```c
+// Named macro (preferred for readability)
+#define PlaySound function_atAddr(void, 0x800c836C, int, int, int, int)
+PlaySound(soundID, 127, 0x3f, 0x0);
+
+// Inline one-off call
+function_atAddr(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
+```
+
+### Register Access
+
+Use `REG()` to read a game register value at the injection point:
+
+```c
+void myCode() {
+    REG(int, currentHP, 3);   // currentHP = r3 at injection point
+    REG(int, currentMP, 4);   // currentMP = r4 at injection point
+
+    if (currentHP < 10) {
+        value_atAddr(int, 0x80100000) = 100;  // heal via memory write
+    }
+}
+```
+
+> `REG()` is for reading registers at the injection site. Writes to REG variables are not guaranteed to persist after RESTORE reloads the saved register state. To modify a register the game sees, write directly to memory via `value_atAddr`.
+
+> VSCode may show a squiggle on `REG()` syntax — ignore it, GCC compiles it correctly.
+
+### Floats and Arrays — Important Limitation
+
+The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead.
+
+**Floats:**
+
+Do not use float literals directly — they go into `.rodata`:
+```c
+float x = 1.5f;           // ❌ generates .rodata — will error
+static float x = 1.5f;   // ❌ generates .rodata — will error
+```
+
+Use `FLOAT(num, den)` for rational values (computed at runtime from integers):
+```c
+float speed   = FLOAT(3, 2);     // ✅ 1.5f
+float quarter = FLOAT(1, 4);     // ✅ 0.25f
+float ten     = FLOAT(10, 1);    // ✅ 10.0f
+float pi      = FLOAT(355, 113); // ✅ ~3.14159f
+```
+
+Use `FLOAT_BITS(hex)` for arbitrary values (stores bit pattern as int on stack):
+```c
+float x = FLOAT_BITS(0x3FC00000);  // ✅ 1.5f
+float y = FLOAT_BITS(0xBF800000);  // ✅ -1.0f
+```
+
+Use an [IEEE 754 converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html) to find the hex for any value.
+
+To read a float from game memory, use `value_atAddr`:
+```c
+float gameSpeed = value_atAddr(float, 0x80123456);  // ✅ read from game memory
+```
+
+**Arrays:**
+
+Do not use static or global arrays — they go into `.rodata`/`.data`:
+```c
+static int arr[] = {1, 2, 3};   // ❌ generates .rodata — will error
+```
+
+Declare arrays on the stack instead:
+```c
+int arr[3] = {1, 2, 3};         // ✅ lives on the stack
+int len = LEN(arr);              // ✅ = 3
+int val = arr[1];                // ✅ = 2
+```
+
+To access an array in game memory, use `value_atAddr`:
+```c
+int gameArr = value_atAddr(int, 3, 0x80ABCDEF)[1];  // ✅ read from game memory
+```
+
+### C Template
+
+```c
+#include "Common.h"
+
+// Author:      YourName
+// Address:     0x80XXXXXX
+// Instruction: nop
+// *This is a note
+
+// Game memory
+#define gScore  value_atAddr(int,   0x80100000)
+#define gLives  value_atAddr(int,   0x80100004)
+#define gFlags  value_atAddr(byte,  0x8010000C)
+
+// Game functions (types only — no parameter names)
+#define PlaySound function_atAddr(void, 0x800c836C, int, int, int, int)
+
+// Helpers
+static int clamp(int val, int min, int max) {
+    if (val < min) return min;
+    if (val > max) return max;
+    return val;
+}
+
+// Entry function — name matches filename
+void myCode() {
+    REG(int, currentScore, 20);     // r20 at injection point
+
+    float mult  = FLOAT(3, 2);      // 1.5f — stack float
+    int bonus[] = {10, 25, 50};     // stack array
+
+    gScore = clamp(currentScore + bonus[1], 0, 99999);
+    gFlags = 1;
+    PlaySound(0x1, 127, 0x3f, 0x0);
+}
+```
+
+---
+
+## Debug Artifacts (`-d`)
+
+| File | Description |
+|---|---|
+| `.rewritten.c` | C source after entry function reordering |
+| `.o` | Compiled object file |
+| `.elf` | Linked ELF at base address 0x0 |
+| `.ld` | Linker script used |
+| `.disasm.txt` | objdump disassembly |
+
+---
+
+## Dolphin ini Integration
+
+The script reads and writes the Dolphin GameSettings ini directly:
+- New codes are appended to `[Gecko]` and added to `[Gecko_Enabled]`.
+- Existing codes (matched by name) are updated in place.
+- All other ini content is preserved exactly.
+- A blank or missing ini is initialized with the correct structure automatically.
