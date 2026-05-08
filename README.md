@@ -74,6 +74,18 @@ If `ini_path`, `dolphin_path`, and `iso_path` are all set, Dolphin launches auto
 
 ---
 
+## Dolphin Integration
+
+The script reads and writes the Dolphin GameSettings ini directly:
+- New codes are appended to `[Gecko]` and added to `[Gecko_Enabled]`.
+- Existing codes (matched by name) are updated in place.
+- All other ini content is preserved exactly.
+- A blank or missing ini is initialized with the correct structure automatically.
+
+If provided in `config.json`, the script will also automatically launch Dolphin upon successfully writing the code.
+
+---
+
 ## Source File Comments
 
 Both `.c` and `.asm` files use the same comment syntax. C files use `//`, ASM files use `#`.
@@ -357,15 +369,3 @@ void myCode() {
 | `.elf` | Linked ELF at base address 0x0 |
 | `.ld` | Linker script used |
 | `.disasm.txt` | objdump disassembly |
-
----
-
-## Dolphin Integration
-
-The script reads and writes the Dolphin GameSettings ini directly:
-- New codes are appended to `[Gecko]` and added to `[Gecko_Enabled]`.
-- Existing codes (matched by name) are updated in place.
-- All other ini content is preserved exactly.
-- A blank or missing ini is initialized with the correct structure automatically.
-
-If provided in `config.json`, the script will also automatically launch Dolphin upon successfully writing the code.
