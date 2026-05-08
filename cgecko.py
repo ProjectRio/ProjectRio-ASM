@@ -434,22 +434,26 @@ def pic_stub_bytes() -> bytes:
 # BLR REPLACEMENT
 # ==============================================================================
 
-def replace_blr(text: bytes, debug: bool) -> bytes:
-    """Replace every blr in .text with a forward branch to end of .text."""
+def replace_blr(text: bytes, data_after: int, debug: bool) -> bytes:
+    """
+    Replace every blr in .text with a forward branch that jumps past
+    all data sections (rodata + data) to land at RESTORE.
+    delta = (end of .text - blr position) + bytes of data after .text
+    """
     text_len = len(text)
     words    = list(struct.unpack(f">{text_len // 4}I", text))
     count    = 0
     for i, word in enumerate(words):
         if word == BLR_INSTR:
             instr_offset = i * 4
-            delta  = text_len - instr_offset
+            delta  = (text_len - instr_offset) + data_after
             branch = B_BASE | (delta & 0x03FFFFFC)
             if debug:
-                print(f"[DEBUG] blr at .text+{instr_offset:#05x} -> b +{delta}")
+                print(f"[DEBUG] blr at .text+{instr_offset:#05x} -> b +{delta} (skips {data_after} data bytes)")
             words[i] = branch
             count += 1
     if count:
-        print(f"[INFO] Replaced {count} blr(s) with forward branch(es) to end of payload.")
+        print(f"[INFO] Replaced {count} blr(s) with forward branch(es) past data to RESTORE.")
     return struct.pack(f">{len(words)}I", *words)
 
 # ==============================================================================
@@ -499,7 +503,7 @@ def prepare_source(source: str, func_name: str) -> str:
         fwd_name = fm.group(2)
         fwd_args = fm.group(3)
         if fwd_name != func_name:
-            fwd_decls += f"{fwd_ret} {fwd_name}({fwd_args});\n"
+            fwd_decls += f"static {fwd_ret} {fwd_name}({fwd_args});\n"
 
     return (source_without[:insert_pos]
             + fwd_decls
@@ -519,12 +523,21 @@ def build_payload(elf_path: str, raw_mode: bool, extra_fprs: set[int],
     if not text:
         die("No .text section in compiled output. Is the source file empty?")
 
+    if rodata or data:
+        die(
+            ".rodata or .data section detected in compiled output.\n"
+            "  This means a static/global variable or float literal was used\n"
+            "  which generates absolute address relocations — invalid in a gecko payload.\n"
+            "  Use stack arrays (int arr[] = {...}) and FLOAT()/FLOAT_BITS() instead."
+        )
+
     if debug:
         print(f"[DEBUG] .text   : {len(text)//4} instructions ({len(text)} bytes)")
         print(f"[DEBUG] .rodata : {len(rodata)} bytes")
         print(f"[DEBUG] .data   : {len(data)} bytes")
 
-    text = replace_blr(text, debug)
+    data_after = len(rodata) + len(data)
+    text = replace_blr(text, data_after, debug)
 
     has_data = len(rodata) > 0 or len(data) > 0
     pic = b""
@@ -693,14 +706,11 @@ def main():
     )
     parser.add_argument("input", nargs="?",
                         help="Input .c or .asm file. If omitted, uses build_file from config.json.")
-    parser.add_argument("-t", action="store_true",
-                        help="Output to codes.txt instead of the Dolphin ini")
     parser.add_argument("-d", action="store_true",
                         help="Debug mode: verbose output, save build artifacts")
     args = parser.parse_args()
 
-    debug    = args.d
-    txt_mode = args.t
+    debug = args.d
 
     input_arg = args.input
     if input_arg is None:
@@ -788,26 +798,19 @@ def main():
         gecko_code = build_gecko_output(c2_lines, name, author, notes,
                                         cond_value, inject_addr)
 
-        if txt_mode:
+        ini_path = get_ini_path()
+        if ini_path:
+            deploy_to_ini(ini_path, name, gecko_code)
+            print(f"[INFO] Successfully generated '{name}'")
+            dolphin_path = get_dolphin_path()
+            iso_path     = get_iso_path()
+            if dolphin_path and iso_path:
+                launch_dolphin(dolphin_path, iso_path)
+        else:
+            warn("No ini_path in config.json — writing to codes.txt.")
             with open(TXT_PATH, "w", encoding="utf-8") as f:
                 f.write(gecko_code + "\n")
             print(f"[INFO] Successfully generated '{name}' -> {TXT_PATH}")
-        else:
-            ini_path = get_ini_path()
-            if ini_path:
-                deploy_to_ini(ini_path, name, gecko_code)
-                print(f"[INFO] Successfully generated '{name}'")
-
-                # Launch Dolphin if configured
-                dolphin_path = get_dolphin_path()
-                iso_path     = get_iso_path()
-                if dolphin_path and iso_path:
-                    launch_dolphin(dolphin_path, iso_path)
-            else:
-                warn("No ini_path set in config.json. Falling back to codes.txt.")
-                with open(TXT_PATH, "w", encoding="utf-8") as f:
-                    f.write(gecko_code + "\n")
-                print(f"[INFO] Successfully generated '{name}' -> {TXT_PATH}")
 
         if debug:
             base = os.path.splitext(TXT_PATH)[0]
