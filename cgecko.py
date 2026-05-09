@@ -204,7 +204,7 @@ def get_iso_path()     -> str | None: return load_config().get("iso_path")
 # GECKO OUTPUT FORMATTING
 # ==============================================================================
 
-def build_gecko_output(c2_lines: list[str],
+def build_gecko_output(code_lines: list[str],
                        name:        str,
                        author:      str | None,
                        notes:       list[str],
@@ -220,7 +220,7 @@ def build_gecko_output(c2_lines: list[str],
     if cond_value is not None and cond_addr is not None:
         out_lines.append(f"{cond_addr:08X} {cond_value:08X}")
 
-    out_lines.extend(c2_lines)
+    out_lines.extend(code_lines)
 
     if cond_value is not None:
         out_lines.append("E2000001 00000000")
@@ -242,6 +242,11 @@ def format_c2(inject_addr: int, payload: bytes) -> list[str]:
         w1, w2 = struct.unpack(">II", payload[i:i+8])
         lines.append(f"{w1:08X} {w2:08X}")
     return lines
+
+
+def format_04(inject_addr: int, instr: int) -> list[str]:
+    header = (0x04 << 24) | (inject_addr & 0x00FFFFFF)
+    return [f"{header:08X} {instr:08X}"]
 
 # ==============================================================================
 # TOOL VERIFICATION
@@ -837,10 +842,16 @@ def main():
 
         print("[INFO] Building payload...")
         payload = build_payload(elf_path, raw_mode, extra_fprs, debug)
-        payload = pad_and_terminate(payload, appended_instr, debug)
 
-        c2_lines   = format_c2(inject_addr, payload)
-        gecko_code = build_gecko_output(c2_lines, name, author, notes,
+        if is_asm and len(payload) == 4 and appended_instr is None:
+            instr_word = struct.unpack(">I", payload)[0]
+            code_lines = format_04(inject_addr, instr_word)
+            print("[INFO] Single-instruction ASM — using 04 write code.")
+        else:
+            payload    = pad_and_terminate(payload, appended_instr, debug)
+            code_lines = format_c2(inject_addr, payload)
+
+        gecko_code = build_gecko_output(code_lines, name, author, notes,
                                         cond_value, cond_addr)
 
         ini_path = get_ini_path()
