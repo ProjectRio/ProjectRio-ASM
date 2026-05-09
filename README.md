@@ -95,9 +95,9 @@ To specify features of gecko codes (author, injection address, etc) we use comme
 |---|---|---|
 | `// Address: 0x80XXXXXX` | Yes | Injection address |
 | `// Author: YourName` | No | Author for gecko header |
-| `// State: menu\|game\|4\|5` | No | Enables conditional wrapper for MSSB game state* |
 | `// Instruction: <asm>` | No | PPC instruction appended after RESTORE (re-executes the overwritten instruction) |
 | `// *Note text` | No | Note line appended after code block. Repeatable. |
+| `// State: menu\|game\|4\|5` | No | Enables conditional wrapper for MSSB game state* |
 
 The code name is derived automatically from the source filename (e.g. `myCode.c` → `myCode`). The C entry function name replaces spaces with underscores (e.g. `My Code.c` -> `my_code()`).
 
@@ -278,6 +278,8 @@ FUNCTION_ADDRESS(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
 ### Floats and Arrays — Important Limitation
  
 The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead.
+
+*NOTE: A future solution would involve the user specifying the memory address to palce `.rodata`. This feature does not yet exist and the limitations currently have to be dealt with. This may come in the future.*
  
 **Floats:**
  
