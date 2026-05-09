@@ -53,63 +53,60 @@ typedef unsigned int   word;
  */
 #define FUNCTION_ADDRESS(returnType, addr, ...) ((returnType (*)(__VA_ARGS__))(addr))
 
-/* ── Register aliases ───────────────────────────────────────────────────────── */
+/* ── Register access ────────────────────────────────────────────────────────── */
 /*
- * REG(type, name, num)
+ * READ_GAME_REG(type, name, reg_num)
+ *   Read the game's GPR value at the injection point. r3–r31 only.
+ *   BACKUP saves r3–r31 to the stack but leaves the live registers unchanged,
+ *   so the live value equals the saved value. Binds 'name' directly to r<reg_num>.
  *
- * Bind a C variable directly to a hardware register for the life of the function.
- * Reads and writes to 'name' go directly to that register.
- * Use with cgecko.py's naked entry function to access game registers at the
- * injection point. BACKUP saves them, your code modifies them, RESTORE reloads
- * them — the game sees the changes.
+ * WRITE_GAME_REG(reg_num, val)
+ *   Write a value to the BACKUP stack slot for a GPR. r3–r31 only.
+ *   RESTORE (lmw r3) reloads from the stack, so the game sees the new value
+ *   in that register after the gecko code returns.
+ *
+ * READ_REG(type, name, num)
+ *   Bind a variable to a live hardware register. Use only for r0–r2,
+ *   which are not in the BACKUP frame. Use cautiously.
  *
  * Examples:
- *   REG(int,   score, 20);    // score IS r20
- *   REG(int,   lives, 21);    // lives IS r21
- *   REG(float, speed, 1);     // speed IS f1
+ *   READ_GAME_REG(int, score, 3);    // score = r3 at injection point
+ *   WRITE_GAME_REG(3, score + 1);    // game sees r3+1 after gecko code returns
+ *   READ_REG(int, raw, 0);           // r0 (scratch, not in BACKUP frame)
  *
- * REG() is intended for reading game register values at the injection point.
- * Writes to REG() variables are NOT guaranteed to persist after RESTORE
- * reloads the saved register state. To modify game registers, write
- * directly to memory via VAR_ADDRESS or use inline asm.
- *
- * Note: VSCode may show a squiggle on this syntax — ignore it, GCC handles it correctly.
+ * Note: these macros are only valid in the entry function, not in helper functions.
+ * Note: VSCode may show a squiggle on the register variable syntax — ignore it.
  */
+#define READ_GAME_REG(type, name, num)  register type name __asm__("r" #num)
+
+/* GCC calls GAS without -mregnames, so bare names like "r11" in an asm template
+ * are parsed as symbols and generate unsupported relocations. All register
+ * references must be %N substitutions. r1 is referenced as numeric 1 (always
+ * valid in register fields). r11 and r12 are used as scratch — do not use
+ * READ_GAME_REG for r11 or r12 if you also call WRITE_GAME_REG. */
+#define WRITE_GAME_REG(num, val) \
+    do { register int _wgr __asm__("r11") = (int)(val); \
+         register int *_bfp __asm__("r12"); \
+         __asm__ volatile ("mr %0, 1\n\t" "stw %1, %c2(%0)" \
+             : "=&r"(_bfp) \
+             : "r"(_wgr), "i"(0x8 + ((num) - 3) * 4) \
+             : "memory"); } while(0)
+
 #define READ_REG(type, name, num) register type name __asm__(#num)
 
 /* ── Stack data helpers ─────────────────────────────────────────────────────── */
 /*
- * FLOAT_BITS(hex)
+ * FLOATS — do not declare float constants of any kind.
  *
- * Create a float from its IEEE 754 hex bit pattern, stored on the stack.
- * Avoids .rodata entirely — no absolute address relocations generated.
- * Use this instead of float literals like 1.5f which would require static storage.
+ * Float literals produce .rodata, which uses absolute addresses invalid at an
+ * unknown payload address. The build will error on any .rodata/.data output.
  *
- * Common values:
- *   0x3F800000  =  1.0f       0x40000000  =  2.0f
- *   0x3FC00000  =  1.5f       0xBF800000  = -1.0f
- *   0x41200000  = 10.0f       0x42C80000  = 100.0f
+ * To use float values, read them from game memory:
+ *   float speed = VAR_ADDRESS(float, 0x80123456);
  *
- * Examples:
- *   float speed   = FLOAT_BITS(0x3FC00000);  // 1.5f
- *   float gravity = FLOAT_BITS(0x40000000);  // 2.0f
+ * Float arithmetic between game-memory values is fine:
+ *   gSpeed = gSpeed * gSpeed2;   // both loaded via lfs, result stored via stfs
  */
-#define FLOAT_BITS(hex) (*(float*)&(unsigned int){hex})
-
-/*
- * FLOAT(num, den)
- *
- * Create a float from a rational number (numerator / denominator).
- * Computed at runtime from integers — no .rodata, no relocations.
- * Preferred over FLOAT_BITS when the value can be expressed as a fraction.
- *
- * Examples:
- *   float speed   = FLOAT(3, 2);    // 1.5f
- *   float quarter = FLOAT(1, 4);    // 0.25f
- *   float ten     = FLOAT(10, 1);   // 10.0f
- *   float pi      = FLOAT(355, 113); // ~3.14159f
- */
-#define FLOAT(num, den) ((float)(num) / (float)(den))
 
 /*
  * Stack arrays — declare and initialize normally:
@@ -159,18 +156,14 @@ typedef unsigned int   word;
  *   Avoid injecting mid-calculation or mid-loop.
  *
  * REGISTER VARIABLES:
- *   To read a game register value at the injection point, use REG:
- *     REG(int, score, 30);  // score reads from r30
- *     int newScore = score + 1;
- *   Note: writes to REG() variables do not persist after RESTORE.
- *   To modify a register the game will see, write to its memory address
- *   via VAR_ADDRESS, or use __asm__ directly.
+ *   Use READ_GAME_REG to read the game's register state at the injection point:
+ *     READ_GAME_REG(int, score, 30);   // reads saved r30
+ *     WRITE_GAME_REG(30, score + 1);  // game sees r30+1 after gecko code returns
+ *   Only valid in the entry function, not in helpers.
  *
  * FLOATS:
- *   Declare float constants as static to ensure correct PC-relative addressing:
- *     static const float MY_CONST = 1.5f;  // safe
- *   For zero memory overhead, use an integer bit-cast:
- *     union { unsigned int i; float f; } u = {0x3FC00000};  // 1.5f
+ *   Do not declare float constants — use VAR_ADDRESS to read floats from game memory.
+ *   Float arithmetic between game-memory floats is fine.
  */
 
 #endif /* COMMON_H */
