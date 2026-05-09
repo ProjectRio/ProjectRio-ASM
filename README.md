@@ -53,7 +53,7 @@ Output goes to the Dolphin ini if `ini_path` is set in `config.json`, otherwise 
 
 ## config.json
 
-Copy `config.template.json` to `config.json` alongside `cgecko.py` and fill in the fields.
+To configure the repo for your environment, copy `config.template.json` to `config.json` and fill in the fields.
 
 ```json
 {
