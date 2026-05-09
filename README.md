@@ -25,13 +25,14 @@ devkitPPC is part of the devkitPro toolchain suite. Download and run the install
 | Windows | `devkitProUpdater-x.x.x.exe` |
 | macOS / Linux | `devkitpro-pacman` |
 
-After installation, install the PowerPC toolchain:
+On **Windows**, the graphical installer handles everything including devkitPPC — no further steps needed.
 
+On **macOS/Linux**, install the PowerPC toolchain after installing devkitpro-pacman:
 ```
 dkp-pacman -S devkitPPC
 ```
 
-The installer sets a `DEVKITPPC` environment variable automatically. The script reads this to locate the tools — no manual path configuration needed. If the variable is missing, the script falls back to `C:\devkitpro\devkitPPC\bin`.
+The installer sets a `DEVKITPPC` environment variable automatically. The script reads this to locate the tools — no manual path configuration needed. If the variable is missing or incorrect, set it manually to your devkitPPC install path.
 
 ---
 
