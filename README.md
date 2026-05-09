@@ -258,7 +258,7 @@ void myCode() {
 // Read/write a single value
 VAR_ADDRESS(int,   0x80123456) = 10;
 int x = VAR_ADDRESS(int, 0x80123456);
-VAR_ADDRESS(float, 0x8012ABCD) = FLOAT(3, 2);
+float f = VAR_ADDRESS(float, 0x8012ABCD);
 
 // Read/write an array element in game memory
 VAR_ADDRESS(int, 4, 0x80AABBCC)[2] = 0xFF;
@@ -281,33 +281,21 @@ The gecko payload is loaded at an unknown address at runtime. Any data that woul
  
 **Floats:**
  
-Do not use float literals directly — they go into `.rodata`:
+Do not declare float constants of any kind. Float literals generate `.rodata`, which uses absolute addresses invalid at an unknown payload address. The build will error.
+ 
 ```c
-float x = 1.5f;           // ❌ generates .rodata — will error
-static float x = 1.5f;   // ❌ generates .rodata — will error
+float x = 1.5f;         // ❌ generates .rodata — will error
+static float x = 1.5f; // ❌ generates .rodata — will error
 ```
  
-Use `FLOAT(num, den)` for rational values (computed at runtime from integers):
+Read floats directly from game memory instead:
 ```c
-float speed   = FLOAT(3, 2);     // ✅ 1.5f
-float quarter = FLOAT(1, 4);     // ✅ 0.25f
-float ten     = FLOAT(10, 1);    // ✅ 10.0f
-float pi      = FLOAT(355, 113); // ✅ ~3.14159f
+float gameSpeed = VAR_ADDRESS(float, 0x80123456);   // ✅ read float from game memory
 ```
  
- OR
-
-Use `FLOAT_BITS(hex)` for arbitrary values (stores bit pattern as int on stack):
+Float arithmetic between game-memory values works correctly — both values load via `lfs` into FPRs and the result stores via `stfs`:
 ```c
-float x = FLOAT_BITS(0x3FC00000);  // ✅ 1.5f
-float y = FLOAT_BITS(0xBF800000);  // ✅ -1.0f
-```
- 
-Use an [IEEE 754 converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html) to find the hex for any value.
- 
-To read a float from game memory, use `VAR_ADDRESS`:
-```c
-float gameSpeed = VAR_ADDRESS(float, 0x80123456);  // ✅ read from game memory
+gSpeed = gSpeed * gSpeed2;   // ✅ game memory floats only
 ```
  
 **Arrays:**
@@ -378,12 +366,13 @@ static int clamp(int val, int min, int max) {
 
 // Entry function — name matches filename
 void myCode() {
-    REG(int, currentScore, 20);     // r20 at injection point
+    READ_GAME_REG(int, currentScore, 20);   // r20 at injection point
 
-    float mult  = FLOAT(3, 2);      // 1.5f — stack float
-    int bonus[] = {10, 25, 50};     // stack array
+    int bonus[] = {10, 25, 50};             // stack array
 
-    gScore = clamp(currentScore + bonus[1], 0, 99999);
+    int newScore = clamp(currentScore + bonus[1], 0, 99999);
+    gScore = newScore;
+    WRITE_GAME_REG(20, newScore);           // game sees updated r20 after gecko code returns
     gFlags = 1;
     PlaySound(0x1, 127, 0x3f, 0x0);
 }

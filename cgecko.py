@@ -552,11 +552,17 @@ def build_payload(elf_path: str, raw_mode: bool, extra_fprs: set[int],
         die("No .text section in compiled output. Is the source file empty?")
 
     if rodata or data:
+        rodata_hex = " ".join(f"{b:02X}" for b in rodata) if rodata else "(empty)"
+        data_hex   = " ".join(f"{b:02X}" for b in data)   if data   else "(empty)"
         die(
             ".rodata or .data section detected in compiled output.\n"
-            "  This means a static/global variable or float literal was used\n"
-            "  which generates absolute address relocations — invalid in a gecko payload.\n"
-            "  Use stack arrays (int arr[] = {...}) and FLOAT()/FLOAT_BITS() instead."
+            f"  .rodata: {len(rodata)} bytes  [{rodata_hex}]\n"
+            f"  .data:   {len(data)} bytes  [{data_hex}]\n"
+            "  Common causes:\n"
+            "    - Constant array initializer: int arr[] = {1,2,3}  →  init each element separately\n"
+            "    - Float literal or FLOAT()/FLOAT_BITS() with constant args under -Oz\n"
+            "    - static/global variable\n"
+            "  Run with -d to inspect the disassembly."
         )
 
     if debug:
