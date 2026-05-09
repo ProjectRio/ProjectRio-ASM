@@ -95,6 +95,7 @@ def _note_pat() -> re.Pattern:
 ADDRESS_PATTERN     = _pat("Address",     r"(0x[0-9A-Fa-f]{8})")
 AUTHOR_PATTERN      = _pat("Author",      r"(.+?)(?:\n|$)")
 INSTRUCTION_PATTERN = _pat("Instruction", r"(.+?)(?:\n|$)")
+STATE_PATTERN       = _pat("State",       r"(.+?)(?:\n|$)")
 NOTE_PATTERN        = _note_pat()
 
 def make_func_pattern(func_name: str) -> re.Pattern:
@@ -126,6 +127,23 @@ def parse_author(source: str) -> str | None:
 def parse_instruction(source: str) -> str | None:
     m = INSTRUCTION_PATTERN.search(source)
     return m.group(1).strip() if m else None
+
+# State values map to Project Rio scene IDs
+STATE_MAP = {
+    "menu": (0x280E877C, 0x00000004),
+    "4":    (0x280E877C, 0x00000004),
+    "game": (0x280E877C, 0x00000005),
+    "5":    (0x280E877C, 0x00000005),
+}
+
+def parse_state(source: str) -> tuple[int, int] | None:
+    m = STATE_PATTERN.search(source)
+    if not m:
+        return None
+    key = m.group(1).strip().lower()
+    if key not in STATE_MAP:
+        die(f"Unknown State value '{key}'. Expected: menu, game, 4, or 5.")
+    return STATE_MAP[key]
 
 def parse_notes(source: str) -> list[str]:
     return [m.group(1).strip() for m in NOTE_PATTERN.finditer(source)]
@@ -191,7 +209,7 @@ def build_gecko_output(c2_lines: list[str],
                        author:      str | None,
                        notes:       list[str],
                        cond_value:  int | None,
-                       inject_addr: int) -> str:
+                       cond_addr:   int | None) -> str:
     out_lines = []
 
     header = f"${name}"
@@ -199,9 +217,8 @@ def build_gecko_output(c2_lines: list[str],
         header += f" [{author}]"
     out_lines.append(header)
 
-    if cond_value is not None:
-        open_word = (0x20 << 24) | (inject_addr & 0x00FFFFFF)
-        out_lines.append(f"{open_word:08X} {cond_value:08X}")
+    if cond_value is not None and cond_addr is not None:
+        out_lines.append(f"{cond_addr:08X} {cond_value:08X}")
 
     out_lines.extend(c2_lines)
 
@@ -456,6 +473,7 @@ def replace_blr(text: bytes, data_after: int, debug: bool) -> bytes:
         print(f"[INFO] Replaced {count} blr(s) with forward branch(es) past data to RESTORE.")
     return struct.pack(f">{len(words)}I", *words)
 
+
 # ==============================================================================
 # SOURCE REWRITING  (C only)
 # ==============================================================================
@@ -484,7 +502,11 @@ def prepare_source(source: str, func_name: str) -> str:
     else:
         die("Could not find closing brace of entry function.")
 
-    func_text      = source[m.start() : brace_end + 1]
+    ret_type  = m.group(2).strip()
+    args      = m.group(3)
+    body      = source[brace_start : brace_end + 1]
+    func_text = (f"{m.group(1)}__attribute__((naked)) "
+                 f"{ret_type} {func_name}({args}) {body}")
     source_without = source[:m.start()] + source[brace_end + 1:]
 
     # Insertion point: after all leading #include/#define/comment lines
@@ -505,10 +527,11 @@ def prepare_source(source: str, func_name: str) -> str:
         if fwd_name != func_name:
             fwd_decls += f"static {fwd_ret} {fwd_name}({fwd_args});\n"
 
-    return (source_without[:insert_pos]
-            + fwd_decls
-            + "\n" + func_text + "\n\n"
-            + source_without[insert_pos:])
+    rewritten = (source_without[:insert_pos]
+                 + fwd_decls
+                 + "\n" + func_text + "\n\n"
+                 + source_without[insert_pos:])
+    return rewritten
 
 # ==============================================================================
 # PAYLOAD ASSEMBLY
@@ -563,7 +586,19 @@ def build_payload(elf_path: str, raw_mode: bool, extra_fprs: set[int],
     return payload
 
 
-def pad_and_terminate(payload: bytes, debug: bool) -> bytes:
+def pad_and_terminate(payload: bytes,
+                       appended_instr: int | None,
+                       debug: bool) -> bytes:
+    """
+    Append the optional overwritten instruction, then pad to C2 alignment.
+    Layout: [...payload...] [instr?] [last_instr|nop] [00000000]
+    The final 00000000 is overwritten at runtime by the gecko handler
+    with a branch back to the instruction AFTER the injection site.
+    If // Instruction is given, it is placed just before the terminator
+    so it executes as the last thing before the handler branches back.
+    """
+    if appended_instr is not None:
+        payload += struct.pack(">I", appended_instr)
     n = len(payload) // 4
     if n % 2 == 1:
         payload += struct.pack(">I", TERMINATOR)
@@ -733,20 +768,23 @@ def main():
     with open(c_path, "r") as f:
         source = f.read()
 
-    func_name = os.path.splitext(os.path.basename(c_path))[0]
-    name      = func_name
+    base_name = os.path.splitext(os.path.basename(c_path))[0]
+    name      = base_name                          # gecko code name (preserves spaces)
+    func_name = re.sub(r'[^a-zA-Z0-9_]', '_', base_name)  # C identifier (spaces -> _)
 
     inject_addr = parse_address(source)
     author      = parse_author(source)
     notes       = parse_notes(source)
     instr_text  = parse_instruction(source)
+    state       = parse_state(source)
 
     print(f"[INFO] Mode           : {'ASM' if is_asm else 'C'}")
     print(f"[INFO] Name           : {name}")
     print(f"[INFO] Inject address : {inject_addr:#010x}")
     if author:     print(f"[INFO] Author         : {author}")
     if notes:      print(f"[INFO] Notes          : {len(notes)} line(s)")
-    if instr_text: print(f"[INFO] Instruction    : {instr_text}")
+    if instr_text: print(f"[INFO] Instruction    : {instr_text} (appended to payload)")
+    if state:      print(f"[INFO] State          : {state[1]:#010x} (conditional wrapper {state[0]:#010x} {state[1]:#010x})")
 
     check_tools(need_gcc=not is_asm)
 
@@ -759,10 +797,17 @@ def main():
     ld_path  = os.path.join(tmpdir, "payload.ld")
 
     try:
+        # State — derive conditional wrapper from state
         cond_value: int | None = None
+        cond_addr:  int | None = None
+        if state:
+            cond_addr, cond_value = state
+
+        # Instruction — assemble and store for appending to payload
+        appended_instr: int | None = None
         if instr_text:
-            cond_value = assemble_instruction(instr_text, tmpdir)
-            print(f"[INFO] Instruction hex : {cond_value:#010x}")
+            appended_instr = assemble_instruction(instr_text, tmpdir)
+            print(f"[INFO] Instruction hex : {appended_instr:#010x} (will be appended)")
 
         if is_asm:
             shutil.copy(c_path, src_path)
@@ -792,11 +837,11 @@ def main():
 
         print("[INFO] Building payload...")
         payload = build_payload(elf_path, raw_mode, extra_fprs, debug)
-        payload = pad_and_terminate(payload, debug)
+        payload = pad_and_terminate(payload, appended_instr, debug)
 
         c2_lines   = format_c2(inject_addr, payload)
         gecko_code = build_gecko_output(c2_lines, name, author, notes,
-                                        cond_value, inject_addr)
+                                        cond_value, cond_addr)
 
         ini_path = get_ini_path()
         if ini_path:

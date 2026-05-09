@@ -95,20 +95,31 @@ To specify features of gecko codes (author, injection address, etc) we use comme
 |---|---|---|
 | `// Address: 0x80XXXXXX` | Yes | Injection address |
 | `// Author: YourName` | No | Author for gecko header |
-| `// Instruction: <asm>` | No | PPC instruction at inject site — enables conditional wrapper* |
+| `// State: menu\|game\|4\|5` | No | Enables conditional wrapper for MSSB game state* |
+| `// Instruction: <asm>` | No | PPC instruction appended after RESTORE (re-executes the overwritten instruction) |
 | `// *Note text` | No | Note line appended after code block. Repeatable. |
 
-The code name is derived automatically from the source filename (e.g. `myCode.c` → `myCode`).
+The code name is derived automatically from the source filename (e.g. `myCode.c` → `myCode`). The C entry function name replaces spaces with underscores (e.g. `My Code.c` -> `my_code()`).
 
-*Some games dynamically change the RAM during runtime, meaning a gecko code that works in one game state would break in another. In this case, we use a conditional wrapper which only writes the gecko code when that address is equal to a specific instruction.
+**`// Instruction`** takes a PPC assembly instruction (e.g. `li r3, 0`) and appends it to the very end of the payload, just before the terminator. Use this when the gecko code's branch overwrites an instruction that still needs to execute.
+
+*MSSB dynamically changes the RAM during runtime by loading `rel` files. We use conditional wrappers to only inject codes at certain game states. For non-MSSB games, this can be ignored.
+
+| State | Executes when... |
+|---|---|
+| `menu` or `4` | In the menu (`280E877C 00000004`) |
+| `game` or `5` | In-game (`280E877C 00000005`) |
 
 ### Gecko Output Format
 
 ```
 $Name [Author]
-20XXXXXX IIIIIIII   <- conditional wrapper (only if // Instruction present)
+280E877C 00000004   <- conditional wrapper (only if // State present)
 C2XXXXXX LLLLLLLL   <- C3 if address >= 0x81000000
-...payload lines...
+...BACKUP...
+...code...
+...RESTORE...
+IIIIIIII XXXXXXXX   <- overwritten instruction (only if // Instruction present)
 E2000001 00000000   <- conditional close
 *Note text
 ```
@@ -126,8 +137,6 @@ E2000001 00000000   <- conditional close
 - The mod is complex.
 - You do not need precise control over registers.
 - You want code that is readbale & easy to write/debug.
-
-*Note on registers: in C, the tool will automatically backup and restore all registers. This means that you cannot overwrite any registers after running your code, making the code safe. The `REG` macro allows you to read previous registers but you cannot write to them. Some mods may require changing specific registers, and in this case you would need to use ASM instead of C.*
 
 ---
 
@@ -214,10 +223,9 @@ restoreall
 
 ### Entry Function
 
-The entry function is whatever function the gecko handler will branch to at the memory address specified in teh `Address` comment line.
+The entry function is whatever function the gecko handler will branch to at the memory address specified in the `Address` comment line.
 
 The entry function must match the filename — for `myCode.c`, define `void myCode()`. The script:
-- Moves the entry function to the top of the compiled output so it runs first.
 - Injects BACKUP (saves r3–r31, LR, and any used FPRs) before it runs.
 - Injects RESTORE (reloads all saved registers) after it returns.
 - Replaces all `blr` instructions with forward branches to the terminator.
@@ -226,23 +234,23 @@ The entry function can't return a value since the automatic stack frame manageam
 
 Helper functions (any name other than the entry function) are normal C.
 
-### Register Management
+### Register Access
+ 
+Some mods rely on specific registers from the game state of the injection point. Since C codes automatically backup/restore r3-r31, we access them through the saved stack.
+*Note: these macros will only work as intended in the entry function, not any helpers
 
-The script will automatically save all registers in codes written in C. This allows you to freely write code without worrying about preserving the game state. However, this also adds the limitation that you cannot modify registers in your code if you'd like to. In that case, you would need to write your mod in ASM.
-
-Use `REG()` to set an alias to a register value at the injection point. Read-only: Writes to REG variables will work within the gecko code, but will not persist afterwards since RESTORE reloads the original saved register state.
-
+- READ_GAME_REG(type, name, reg_num) — reads a register value from the stack slot. r3–r31 only.
+- WRITE_GAME_REG(reg_num, val) — writes a register value to the stack slot. r3–r31 only.
+- READ_REG(type, name, num) — live register read. Primarily for r0–r2 which have no stack slot. Use only if needed at beginning of entry functions. Use cautiously.
+ 
 ```c
 void myCode() {
-    REG(int, strikes, 3);    // at the injection point, r3 is the strike count
-    if (strikes == 3) {
-        strikes = 0          // r3 set to 0 in the gecko code
+    READ_GAME_REG(int, score, 3);   // r3 = score at injection point
+    if (score < 10) {
+        WRITE_GAME_REG(3, 10);      // sets r3 to 10 after gecko code completes and stack is restored
     }
 }
-                             // after gecko code completes, r3 returns to original value
 ```
-
-> VSCode may show a squiggle on `REG()` syntax — ignore it, GCC compiles it correctly.
 
 ### Memory Access
 
@@ -272,17 +280,17 @@ function_atAddr(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
 ```
 
 ### Floats and Arrays — Important Limitation
-
-The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead. Here are the workarounds:
-
+ 
+The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead.
+ 
 **Floats:**
-
+ 
 Do not use float literals directly — they go into `.rodata`:
 ```c
 float x = 1.5f;           // ❌ generates .rodata — will error
 static float x = 1.5f;   // ❌ generates .rodata — will error
 ```
-
+ 
 Use `FLOAT(num, den)` for rational values (computed at runtime from integers):
 ```c
 float speed   = FLOAT(3, 2);     // ✅ 1.5f
@@ -290,38 +298,62 @@ float quarter = FLOAT(1, 4);     // ✅ 0.25f
 float ten     = FLOAT(10, 1);    // ✅ 10.0f
 float pi      = FLOAT(355, 113); // ✅ ~3.14159f
 ```
+ 
+ OR
 
 Use `FLOAT_BITS(hex)` for arbitrary values (stores bit pattern as int on stack):
 ```c
 float x = FLOAT_BITS(0x3FC00000);  // ✅ 1.5f
 float y = FLOAT_BITS(0xBF800000);  // ✅ -1.0f
 ```
-
+ 
 Use an [IEEE 754 converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html) to find the hex for any value.
-
+ 
 To read a float from game memory, use `value_atAddr`:
 ```c
 float gameSpeed = value_atAddr(float, 0x80123456);  // ✅ read from game memory
 ```
-
+ 
 **Arrays:**
-
+ 
 Do not use static or global arrays — they go into `.rodata`/`.data`:
 ```c
 static int arr[] = {1, 2, 3};   // ❌ generates .rodata — will error
 ```
-
+ 
 Declare arrays on the stack instead:
 ```c
 int arr[3] = {1, 2, 3};         // ✅ lives on the stack
 int len = LEN(arr);              // ✅ = 3
 int val = arr[1];                // ✅ = 2
 ```
-
+ 
 To access an array in game memory, use `value_atAddr`:
 ```c
 int gameArr = value_atAddr(int, 3, 0x80ABCDEF)[1];  // ✅ read from game memory
 ```
+ 
+ 
+### Strings
+ 
+String literals (`"Hello"` or `const char*`) go into `.rodata` and will cause a build error. Use a char array initializer list instead — each element is an integer constant that stays on the stack:
+ 
+```c
+char msg[] = {'H','e','l','l','o','!','\0'};   // ✅ stack only
+OSReport(msg);
+```
+ 
+For longer strings, `STR4`/`STR2`/`STR1` pack multiple characters into a single store each:
+ 
+```c
+char buf[8];
+STR4(buf+0, 'H','e','l','l');   // 4 chars in one store
+STR2(buf+4, 'o','!');           // 2 chars in one store
+STR1(buf+6, '\0');              // null terminator
+OSReport(buf);
+```
+ 
+The buffer must be large enough for the string plus a null terminator.
 
 ### C Template
 

@@ -75,7 +75,7 @@ typedef unsigned int   word;
  *
  * Note: VSCode may show a squiggle on this syntax — ignore it, GCC handles it correctly.
  */
-#define REG(type, name, num) register type name __asm__(#num)
+#define READ_REG(type, name, num) register type name __asm__(#num)
 
 /* ── Stack data helpers ─────────────────────────────────────────────────────── */
 /*
@@ -121,6 +121,30 @@ typedef unsigned int   word;
  * The BACKUP frame provides 0x90 bytes of stack space (minus what GCC uses),
  * sufficient for small arrays.
  */
+
+/* ── String helpers ─────────────────────────────────────────────────────────── */
+/*
+ * Strings cannot be declared as literals (const char* or char[] = "...") in
+ * gecko injection code — they generate .rodata which uses absolute addresses
+ * invalid at an unknown payload address.
+ *
+ * Use a char array initializer list instead — each element is an integer
+ * constant and stays on the stack:
+ *
+ *   char msg[] = {'H','e','l','l','o','!','\0'};   // ✅ stack only
+ *   OSReport(msg);
+ *
+ * For longer strings, STR4/STR2/STR1 pack multiple chars per store:
+ *
+ *   char buf[8];
+ *   STR4(buf+0, 'H','e','l','l');  // stores 4 chars at buf+0
+ *   STR2(buf+4, 'o','!');          // stores 2 chars at buf+4
+ *   STR1(buf+6, '\0');             // stores null terminator
+ *   OSReport(buf);
+ */
+#define STR4(buf, a, b, c, d) (*(int  *)(buf) = ((a)<<24)|((b)<<16)|((c)<<8)|(d))
+#define STR2(buf, a, b)       (*(short*)(buf) = ((a)<< 8)|(b))
+#define STR1(buf, a)          (*(char *)(buf) = (a))
 
 /* ── Utilities ───────────────────────────────────────────────────────────── */
 
