@@ -114,6 +114,50 @@ CapFound:
   add r10, r11, r7 			# get address for where to store old cap ID
   stb r12, 0 (r10) 			# store old captain at old roster spot of new captain
 
+UpdateCaptainBackground:
+  lis r11, 0x803A
+  ori r11, r11, 0x488E
+  li r12, 0x3b # blank
+  cmpwi r9, 0x0 # Mario 
+  bne 0x8
+  li r12, 0x4A
+  cmpwi r9, 0x1 # Luigi 
+  bne 0x8
+  li r12, 0x5B
+  cmpwi r9, 0x4 # Peach 
+  bne 0x8
+  li r12, 0x56
+  cmpwi r9, 0x6 # Yoshi 
+  bne 0x8
+  li r12, 0x58
+  cmpwi r9, 0x2 # DK 
+  bne 0x8
+  li r12, 0x59
+  cmpwi r9, 0x9 # Bowser 
+  bne 0x8
+  li r12, 0x5A
+  cmpwi r9, 0x5 # Daisy 
+  bne 0x8
+  li r12, 0x5C
+  cmpwi r9, 0x11 # Birdo 
+  bne 0x8
+  li r12, 0x5E
+  cmpwi r9, 0xb # Walu 
+  bne 0x8
+  li r12, 0x5D
+  cmpwi r9, 0x3 # Diddy 
+  bne 0x8
+  li r12, 0x5F
+  cmpwi r9, 0xa # Wario 
+  bne 0x8
+  li r12, 0x57
+  cmpwi r9, 0x13 # BJ 
+  bne 0x8
+  li r12, 0x60
+  mulli r10, r27, 0xc0
+  add r11, r11, r10 			# add team offset
+  sth r12, 0x0(r11)
+
 # Swap the position mappings
   lis r11, 0x803c 			# Address of position mappings
   addi r12, r11, 0x6738
