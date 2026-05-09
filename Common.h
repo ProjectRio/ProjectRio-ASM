@@ -21,17 +21,17 @@ typedef unsigned int   word;
 
 /* ── Memory access ───────────────────────────────────────────────────────── */
 /*
- * value_atAddr(type, addr)                  — single value
- * value_atAddr(type, count, addr)           — 1D array
- * value_atAddr(type, rows, cols, addr)      — 2D array
+ * VAR_ADDRESS(type, addr)                  — single value
+ * VAR_ADDRESS(type, count, addr)           — 1D array
+ * VAR_ADDRESS(type, rows, cols, addr)      — 2D array
  *
  * Examples:
- *   value_atAddr(int,  0x80123456) = 10;
- *   int x = value_atAddr(int, 0x80123456);
- *   value_atAddr(byte, 4, 0x80AABBCC)[2] = 0xFF;
+ *   VAR_ADDRESS(int,  0x80123456) = 10;
+ *   int x = VAR_ADDRESS(int, 0x80123456);
+ *   VAR_ADDRESS(byte, 4, 0x80AABBCC)[2] = 0xFF;
  */
 #define GET_MACRO(_1,_2,_3,_4,NAME,...) NAME
-#define value_atAddr(...) GET_MACRO(__VA_ARGS__, arrayValue2D_atAddr, arrayValue_atAddr, singleValue_atAddr)(__VA_ARGS__)
+#define VAR_ADDRESS(...) GET_MACRO(__VA_ARGS__, arrayValue2D_atAddr, arrayValue_atAddr, singleValue_atAddr)(__VA_ARGS__)
 
 #define singleValue_atAddr(type, addr)                    (*(type *)(addr))
 #define arrayValue_atAddr(type, count, addr)              (*(type (*)[count])(addr))
@@ -43,15 +43,15 @@ typedef unsigned int   word;
  * Expands to an inline cast — no declaration, no scope issues, works anywhere.
  *
  * Examples:
- *   function_atAddr(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
- *   function_atAddr(int,  0x80123456, float)(1.5f);
+ *   FUNCTION_ADDRESS(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
+ *   FUNCTION_ADDRESS(int,  0x80123456, float)(1.5f);
  *
  * For repeated calls, assign to a local function pointer:
  *   void (*PlaySound)(int, int, int, int) = (void(*)(int,int,int,int))(0x800c836C);
  *   PlaySound(soundID, 127, 0x3f, 0x0);
  *   PlaySound(soundID2, 64, 0x3f, 0x0);
  */
-#define function_atAddr(returnType, addr, ...) ((returnType (*)(__VA_ARGS__))(addr))
+#define FUNCTION_ADDRESS(returnType, addr, ...) ((returnType (*)(__VA_ARGS__))(addr))
 
 /* ── Register aliases ───────────────────────────────────────────────────────── */
 /*
@@ -71,7 +71,7 @@ typedef unsigned int   word;
  * REG() is intended for reading game register values at the injection point.
  * Writes to REG() variables are NOT guaranteed to persist after RESTORE
  * reloads the saved register state. To modify game registers, write
- * directly to memory via value_atAddr or use inline asm.
+ * directly to memory via VAR_ADDRESS or use inline asm.
  *
  * Note: VSCode may show a squiggle on this syntax — ignore it, GCC handles it correctly.
  */
@@ -164,7 +164,7 @@ typedef unsigned int   word;
  *     int newScore = score + 1;
  *   Note: writes to REG() variables do not persist after RESTORE.
  *   To modify a register the game will see, write to its memory address
- *   via value_atAddr, or use __asm__ directly.
+ *   via VAR_ADDRESS, or use __asm__ directly.
  *
  * FLOATS:
  *   Declare float constants as static to ensure correct PC-relative addressing:

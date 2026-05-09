@@ -145,7 +145,7 @@ E2000001 00000000   <- conditional close
 Include `Common.s` at the top of every `.asm` file for access to the standard macros.
 
 - Assembled with `powerpc-eabi-as` (`-mregnames -mbig`).
-- Always raw — no automatic BACKUP/RESTORE injection. Manage the stack yourself using the macros in `Common.s`.
+- No automatic BACKUP/RESTORE injection. Manage the stack yourself using the macros in `Common.s`.
 - Comment character is `#`.
 
 ### Register Aliases
@@ -237,11 +237,11 @@ Helper functions (any name other than the entry function) are normal C.
 ### Register Access
  
 Some mods rely on specific registers from the game state of the injection point. Since C codes automatically backup/restore r3-r31, we access them through the saved stack.
-*Note: these macros will only work as intended in the entry function, not any helpers
+*Note: these macros will only work as intended in the entry function, not any helpers*
 
-- READ_GAME_REG(type, name, reg_num) — reads a register value from the stack slot. r3–r31 only.
-- WRITE_GAME_REG(reg_num, val) — writes a register value to the stack slot. r3–r31 only.
-- READ_REG(type, name, num) — live register read. Primarily for r0–r2 which have no stack slot. Use only if needed at beginning of entry functions. Use cautiously.
+- `READ_GAME_REG(type, name, reg_num)` — reads a register value from the stack slot. r3–r31 only.
+- `WRITE_GAME_REG(reg_num, val)` — writes a register value to the stack slot. r3–r31 only.
+- `READ_REG(type, name, num)` — live register read. Primarily for r0–r2 which have no stack slot. Use only if needed at beginning of entry functions. Use cautiously.
  
 ```c
 void myCode() {
@@ -256,27 +256,23 @@ void myCode() {
 
 ```c
 // Read/write a single value
-value_atAddr(int,   0x80123456) = 10;
-int x = value_atAddr(int, 0x80123456);
-value_atAddr(float, 0x8012ABCD) = FLOAT(3, 2);
+VAR_ADDRESS(int,   0x80123456) = 10;
+int x = VAR_ADDRESS(int, 0x80123456);
+VAR_ADDRESS(float, 0x8012ABCD) = FLOAT(3, 2);
 
 // Read/write an array element in game memory
-value_atAddr(int, 4, 0x80AABBCC)[2] = 0xFF;
-
-// Named pointer (use * to dereference)
-DECLARE_VARIABLE(int, score, 0x80123456);
-*score = 10;
+VAR_ADDRESS(int, 4, 0x80AABBCC)[2] = 0xFF;
 ```
 
 ### Game Function Calls
 
 ```c
 // Named macro (preferred for readability)
-#define PlaySound function_atAddr(void, 0x800c836C, int, int, int, int)
+#define PlaySound FUNCTION_ADDRESS(void, 0x800c836C, int, int, int, int)
 PlaySound(soundID, 127, 0x3f, 0x0);
 
 // Inline one-off call
-function_atAddr(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
+FUNCTION_ADDRESS(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
 ```
 
 ### Floats and Arrays — Important Limitation
@@ -309,9 +305,9 @@ float y = FLOAT_BITS(0xBF800000);  // ✅ -1.0f
  
 Use an [IEEE 754 converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html) to find the hex for any value.
  
-To read a float from game memory, use `value_atAddr`:
+To read a float from game memory, use `VAR_ADDRESS`:
 ```c
-float gameSpeed = value_atAddr(float, 0x80123456);  // ✅ read from game memory
+float gameSpeed = VAR_ADDRESS(float, 0x80123456);  // ✅ read from game memory
 ```
  
 **Arrays:**
@@ -328,9 +324,9 @@ int len = LEN(arr);              // ✅ = 3
 int val = arr[1];                // ✅ = 2
 ```
  
-To access an array in game memory, use `value_atAddr`:
+To access an array in game memory, use `VAR_ADDRESS`:
 ```c
-int gameArr = value_atAddr(int, 3, 0x80ABCDEF)[1];  // ✅ read from game memory
+int gameArr = VAR_ADDRESS(int, 3, 0x80ABCDEF)[1];  // ✅ read from game memory
 ```
  
  
@@ -366,12 +362,12 @@ The buffer must be large enough for the string plus a null terminator.
 // *This is a note
 
 // Game memory
-#define gScore  value_atAddr(int,   0x80100000)
-#define gLives  value_atAddr(int,   0x80100004)
-#define gFlags  value_atAddr(byte,  0x8010000C)
+#define gScore  VAR_ADDRESS(int,   0x80100000)
+#define gLives  VAR_ADDRESS(int,   0x80100004)
+#define gFlags  VAR_ADDRESS(byte,  0x8010000C)
 
 // Game functions (types only — no parameter names)
-#define PlaySound function_atAddr(void, 0x800c836C, int, int, int, int)
+#define PlaySound FUNCTION_ADDRESS(void, 0x800c836C, int, int, int, int)
 
 // Helpers
 static int clamp(int val, int min, int max) {
