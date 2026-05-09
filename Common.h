@@ -75,22 +75,18 @@ typedef unsigned int   word;
  *   READ_REG(int, raw, 0);           // r0 (scratch, not in BACKUP frame)
  *
  * Note: these macros are only valid in the entry function, not in helper functions.
- * Note: VSCode may show a squiggle on the register variable syntax — ignore it.
+ * Note: VSCode may show squiggles on register variable syntax — ignore them.
  */
 #define READ_GAME_REG(type, name, num)  register type name __asm__("r" #num)
 
-/* GCC calls GAS without -mregnames, so bare names like "r11" in an asm template
- * are parsed as symbols and generate unsupported relocations. All register
- * references must be %N substitutions. r1 is referenced as numeric 1 (always
- * valid in register fields). r11 and r12 are used as scratch — do not use
- * READ_GAME_REG for r11 or r12 if you also call WRITE_GAME_REG. */
+/* Local register variable reads r1 (backup frame base) without an asm template,
+ * avoiding the -mregnames issue entirely. GCC optimizes to a direct stw with
+ * r1 as the base register. Do not declare this at file scope — that reserves
+ * r1 globally and breaks normal helper functions. */
 #define WRITE_GAME_REG(num, val) \
-    do { register int _wgr __asm__("r11") = (int)(val); \
-         register int *_bfp __asm__("r12"); \
-         __asm__ volatile ("mr %0, 1\n\t" "stw %1, %c2(%0)" \
-             : "=&r"(_bfp) \
-             : "r"(_wgr), "i"(0x8 + ((num) - 3) * 4) \
-             : "memory"); } while(0)
+    do { register unsigned int _sp __asm__("r1"); \
+         *(volatile unsigned int*)(_sp + 0x8 + (((num) - 3) << 2)) = (unsigned int)(val); \
+    } while(0)
 
 #define READ_REG(type, name, num) register type name __asm__(#num)
 
