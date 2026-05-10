@@ -83,6 +83,50 @@ MFLR_R0 = (31 << 26) | (0 << 21) | (8 << 16) | (339 << 1)
 MTLR_R0 = (31 << 26) | (0 << 21) | (8 << 16) | (467 << 1)
 
 # ==============================================================================
+# RAW GECKO INI PARSING
+# ==============================================================================
+
+_HEX_PAIR = re.compile(r'^[0-9A-Fa-f]{8} [0-9A-Fa-f]{8}$')
+
+def parse_gecko_blocks(source: str) -> list[tuple[str, str]]:
+    """Parse raw gecko code blocks from a .ini source file.
+    Each block starts with a $Name header line. Hex lines are validated;
+    unrecognized lines trigger a warning and are skipped.
+    Returns a list of (name, gecko_code_string) pairs."""
+    blocks: list[tuple[str, str]] = []
+    header: str | None = None
+    lines:  list[str]  = []
+
+    def _flush():
+        if header is None:
+            return
+        if not any(_HEX_PAIR.match(l) for l in lines if not l.startswith("*")):
+            warn(f"Block '{header}' has no valid hex lines — skipping.")
+            return
+        h     = header.lstrip("$")
+        bracket = h.find("[")
+        name  = (h[:bracket] if bracket != -1 else h).strip()
+        blocks.append((name, "\n".join([header] + lines)))
+
+    for lineno, raw in enumerate(source.splitlines(), 1):
+        stripped = raw.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("$"):
+            _flush()
+            header = stripped
+            lines  = []
+        elif header is None:
+            warn(f"Line {lineno}: data before any $header — skipped.")
+        elif stripped.startswith("*") or _HEX_PAIR.match(stripped):
+            lines.append(stripped)
+        else:
+            warn(f"Line {lineno}: unrecognized '{stripped}' — skipped.")
+
+    _flush()
+    return blocks
+
+# ==============================================================================
 # COMMENT PARSING
 # ==============================================================================
 
@@ -131,6 +175,8 @@ def parse_instruction(source: str) -> str | None:
 
 # State values map to Project Rio scene IDs
 STATE_MAP = {
+    "boot": (0x280E877C, 0x00000000),
+    "0":    (0x280E877C, 0x00000000),
     "menu": (0x280E877C, 0x00000004),
     "4":    (0x280E877C, 0x00000004),
     "game": (0x280E877C, 0x00000005),
@@ -143,7 +189,7 @@ def parse_state(source: str) -> tuple[int, int] | None:
         return None
     key = m.group(1).strip().lower()
     if key not in STATE_MAP:
-        die(f"Unknown State value '{key}'. Expected: menu, game, 4, or 5.")
+        die(f"Unknown State value '{key}'. Expected: boot, menu, game, 0, 4, or 5.")
     return STATE_MAP[key]
 
 def parse_data_address(source: str) -> int | None:
@@ -211,6 +257,7 @@ def get_ini_path()     -> str | None: return load_config().get("ini_path")
 def get_build_file()   -> str | None: return load_config().get("build_file")
 def get_dolphin_path() -> str | None: return load_config().get("dolphin_path")
 def get_iso_path()     -> str | None: return load_config().get("iso_path")
+def get_launch()       -> bool:       return bool(load_config().get("launch dolphin", False))
 
 # ==============================================================================
 # GECKO OUTPUT FORMATTING
@@ -658,7 +705,8 @@ def disassemble(obj_path: str) -> str:
 
 def die(msg: str) -> NoReturn:
     print(f"[ERROR] {msg}", file=sys.stderr)
-    input("\nPress Enter to close...")
+    if sys.stdin.isatty():
+        input("\nPress Enter to close...")
     sys.exit(1)
 
 def warn(msg: str):
@@ -668,7 +716,7 @@ def warn(msg: str):
 # DOLPHIN INI DEPLOY
 # ==============================================================================
 
-def deploy_to_ini(ini_path: str, name: str, gecko_code: str):
+def deploy_to_ini(ini_path: str, name: str, gecko_code: str, enable: bool = True):
     code_lines = gecko_code.strip().splitlines()
     new_header = code_lines[0]
     new_body   = code_lines[1:]
@@ -736,7 +784,7 @@ def deploy_to_ini(ini_path: str, name: str, gecko_code: str):
     enabled_body  = lines[enabled_idx + 1:]
     enabled_names = [l.strip() for l in enabled_body if l.strip()]
     enabled_entry = f"${target_name}"
-    if not found and enabled_entry not in enabled_names:
+    if enable and not found and enabled_entry not in enabled_names:
         enabled_names.append(enabled_entry)
 
     new_enabled_lines = ["[Gecko_Enabled]"]
@@ -777,9 +825,15 @@ def main():
                         help="Input .c or .asm file. If omitted, uses build_file from config.json.")
     parser.add_argument("-d", action="store_true",
                         help="Debug mode: verbose output, save build artifacts")
+    parser.add_argument("--no-enable", action="store_true",
+                        help="Do not add the code to [Gecko_Enabled] in the ini")
+    parser.add_argument("--no-launch", action="store_true",
+                        help="Do not launch Dolphin after building, even if config says to")
     args = parser.parse_args()
 
-    debug = args.d
+    debug   = args.d
+    enable  = not args.no_enable
+    do_launch = get_launch() and not args.no_launch
 
     input_arg = args.input
     if input_arg is None:
@@ -793,14 +847,38 @@ def main():
         die(f"Input file not found: {c_path}")
 
     ext = os.path.splitext(c_path)[1].lower()
-    if ext not in (".c", ".asm"):
-        die(f"Unsupported file extension '{ext}'. Expected .c or .asm")
+    if ext not in (".c", ".asm", ".ini"):
+        die(f"Unsupported file extension '{ext}'. Expected .c, .asm, or .ini")
 
     is_asm   = (ext == ".asm")
+    is_ini   = (ext == ".ini")
     raw_mode = is_asm
 
     with open(c_path, "r") as f:
         source = f.read()
+
+    if is_ini:
+        blocks = parse_gecko_blocks(source)
+        if not blocks:
+            die("No gecko code blocks found in .ini file.")
+        print(f"[INFO] Mode           : INI")
+        print(f"[INFO] Codes found    : {len(blocks)}")
+        ini_path = get_ini_path()
+        if ini_path:
+            for blk_name, gecko_code in blocks:
+                deploy_to_ini(ini_path, blk_name, gecko_code, enable)
+            print(f"[INFO] Successfully deployed {len(blocks)} code(s)")
+            if do_launch:
+                dolphin_path = get_dolphin_path()
+                iso_path     = get_iso_path()
+                if dolphin_path and iso_path:
+                    launch_dolphin(dolphin_path, iso_path)
+        else:
+            warn("No ini_path in config.json — writing to codes.txt.")
+            with open(TXT_PATH, "w", encoding="utf-8") as f:
+                f.write("\n\n".join(gc for _, gc in blocks) + "\n")
+            print(f"[INFO] Wrote {len(blocks)} code(s) to {TXT_PATH}")
+        return
 
     base_name = os.path.splitext(os.path.basename(c_path))[0]
     name      = base_name                          # gecko code name (preserves spaces)
@@ -892,12 +970,13 @@ def main():
 
         ini_path = get_ini_path()
         if ini_path:
-            deploy_to_ini(ini_path, name, gecko_code)
+            deploy_to_ini(ini_path, name, gecko_code, enable)
             print(f"[INFO] Successfully generated '{name}'")
-            dolphin_path = get_dolphin_path()
-            iso_path     = get_iso_path()
-            if dolphin_path and iso_path:
-                launch_dolphin(dolphin_path, iso_path)
+            if do_launch:
+                dolphin_path = get_dolphin_path()
+                iso_path     = get_iso_path()
+                if dolphin_path and iso_path:
+                    launch_dolphin(dolphin_path, iso_path)
         else:
             warn("No ini_path in config.json — writing to codes.txt.")
             with open(TXT_PATH, "w", encoding="utf-8") as f:

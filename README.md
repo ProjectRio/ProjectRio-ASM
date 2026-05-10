@@ -60,7 +60,8 @@ To configure the repo for your environment, copy `config.template.json` to `conf
     "build_file": "",
     "ini_path": "",
     "dolphin_path": "",
-    "iso_path": ""
+    "iso_path": "",
+    "launch dolphin": false
 }
 ```
 
@@ -70,8 +71,9 @@ To configure the repo for your environment, copy `config.template.json` to `conf
 | `ini_path` | Dolphin GameSettings ini file. Gecko code is deployed here automatically. |
 | `dolphin_path` | Path to Dolphin executable. |
 | `iso_path` | Path to game ISO. |
+| `launch dolphin` | If `true`, launches Dolphin after deploying (requires `dolphin_path` and `iso_path`). Defaults to `false`. |
 
-If `ini_path`, `dolphin_path`, and `iso_path` are all set, Dolphin launches automatically after deploying. If `ini_path` is not set, the output falls back to `codes.txt`.
+If `ini_path` is not set, the output falls back to `codes.txt`.
 
 ---
 
@@ -108,6 +110,7 @@ The code name is derived automatically from the source filename (e.g. `myCode.c`
 
 | State | Executes when... |
 |---|---|
+| `boot` or `0` | At boot (`280E877C 00000000`) |
 | `menu` or `4` | In the menu (`280E877C 00000004`) |
 | `game` or `5` | In-game (`280E877C 00000005`) |
 
