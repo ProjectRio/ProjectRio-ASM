@@ -94,6 +94,7 @@ To specify features of gecko codes (author, injection address, etc) we use comme
 | Comment | Required | Description |
 |---|---|---|
 | `// Address: 0x80XXXXXX` | Yes | Injection address |
+| `// Data: 0x80XXXXXX` | No | RAM address for `.rodata`/`.data`. Required if the code generates static data. |
 | `// Author: YourName` | No | Author for gecko header |
 | `// State: menu\|game\|4\|5` | No | Enables conditional wrapper for MSSB game state* |
 | `// Instruction: <asm>` | No | PPC instruction appended after RESTORE (re-executes the overwritten instruction) |
@@ -115,6 +116,8 @@ The code name is derived automatically from the source filename (e.g. `myCode.c`
 ```
 $Name [Author]
 280E877C 00000004   <- conditional wrapper (only if // State present)
+06DDDDDD LLLLLLLL   <- RAM write (only if // Data present and .rodata/.data generated)
+...data words...
 C2XXXXXX LLLLLLLL   <- C3 if address >= 0x81000000
 ...BACKUP...
 ...code...
@@ -275,60 +278,71 @@ PlaySound(soundID, 127, 0x3f, 0x0);
 FUNCTION_ADDRESS(void, 0x800c836C, int, int, int, int)(soundID, 127, 0x3f, 0x0);
 ```
 
-### Floats and Arrays — Important Limitation
- 
-The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead.
- 
-**Floats:**
- 
-Do not declare float constants of any kind. Float literals generate `.rodata`, which uses absolute addresses invalid at an unknown payload address. The build will error.
- 
+### Static Data — `.rodata` and `.data`
+
+Data that normally lives in `.rodata` or `.data` (float literals, static arrays, string constants) requires an absolute RAM address. There are two ways to handle this:
+
+**Option A — `// Data: 0x80XXXXXX` (use reserved RAM)**
+
+Add a `// Data:` comment with a RAM address you have reserved in the game's memory map. The script places `.rodata`/`.data` there and emits a `06` RAM-write code before the `C2` code to initialize it at runtime.
+
 ```c
-float x = 1.5f;         // ❌ generates .rodata — will error
-static float x = 1.5f; // ❌ generates .rodata — will error
+// Data: 0x80300100   // must not overlap anything the game uses
 ```
- 
+
+You are responsible for ensuring that address range is free and remains stable. The size of the data blob is printed during the build so you know how much space to reserve.
+
+**Option B — Stack-based alternatives (no reserved RAM)**
+
+Keep data on the stack or read it from existing game memory.
+
+**Floats:**
+
+```c
+float x = 1.5f;         // ❌ generates .rodata
+static float x = 1.5f; // ❌ generates .rodata
+```
+
 Read floats directly from game memory instead:
 ```c
 float gameSpeed = VAR_ADDRESS(float, 0x80123456);   // ✅ read float from game memory
 ```
- 
-Float arithmetic between game-memory values works correctly — both values load via `lfs` into FPRs and the result stores via `stfs`:
+
+Float arithmetic between game-memory values works correctly:
 ```c
-gSpeed = gSpeed * gSpeed2;   // ✅ game memory floats only
+gSpeed = gSpeed * gSpeed2;   // ✅ both via lfs; result via stfs
 ```
- 
+
 **Arrays:**
- 
-Do not use static or global arrays — they go into `.rodata`/`.data`:
+
 ```c
-static int arr[] = {1, 2, 3};   // ❌ generates .rodata — will error
+static int arr[] = {1, 2, 3};   // ❌ generates .rodata
 ```
- 
-Declare arrays on the stack instead:
+
+Declare on the stack instead:
 ```c
 int arr[3] = {1, 2, 3};         // ✅ lives on the stack
 int len = LEN(arr);              // ✅ = 3
 int val = arr[1];                // ✅ = 2
 ```
- 
+
 To access an array in game memory, use `VAR_ADDRESS`:
 ```c
 int gameArr = VAR_ADDRESS(int, 3, 0x80ABCDEF)[1];  // ✅ read from game memory
 ```
- 
- 
+
+
 ### Strings
- 
-String literals (`"Hello"` or `const char*`) go into `.rodata` and will cause a build error. Use a char array initializer list instead — each element is an integer constant that stays on the stack:
- 
+
+String literals (`"Hello"` or `const char*`) go into `.rodata`. Use a char array initializer list instead — each element is an integer constant that stays on the stack:
+
 ```c
 char msg[] = {'H','e','l','l','o','!','\0'};   // ✅ stack only
 OSReport(msg);
 ```
- 
+
 For longer strings, `STR4`/`STR2`/`STR1` pack multiple characters into a single store each:
- 
+
 ```c
 char buf[8];
 STR4(buf+0, 'H','e','l','l');   // 4 chars in one store
@@ -336,8 +350,8 @@ STR2(buf+4, 'o','!');           // 2 chars in one store
 STR1(buf+6, '\0');              // null terminator
 OSReport(buf);
 ```
- 
-The buffer must be large enough for the string plus a null terminator.
+
+Or use `// Data:` to place string constants at a reserved RAM address if you prefer literal strings.
 
 ### C Template
 

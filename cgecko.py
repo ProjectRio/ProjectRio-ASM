@@ -93,6 +93,7 @@ def _note_pat() -> re.Pattern:
     return re.compile(r"(?://|#)\s*(\*[^\n]*)", re.MULTILINE)
 
 ADDRESS_PATTERN     = _pat("Address",     r"(0x[0-9A-Fa-f]{8})")
+DATA_PATTERN        = _pat("Data",        r"(0x[0-9A-Fa-f]{8})")
 AUTHOR_PATTERN      = _pat("Author",      r"(.+?)(?:\n|$)")
 INSTRUCTION_PATTERN = _pat("Instruction", r"(.+?)(?:\n|$)")
 STATE_PATTERN       = _pat("State",       r"(.+?)(?:\n|$)")
@@ -144,6 +145,17 @@ def parse_state(source: str) -> tuple[int, int] | None:
     if key not in STATE_MAP:
         die(f"Unknown State value '{key}'. Expected: menu, game, 4, or 5.")
     return STATE_MAP[key]
+
+def parse_data_address(source: str) -> int | None:
+    m = DATA_PATTERN.search(source)
+    if not m:
+        return None
+    addr = int(m.group(1), 16)
+    if addr % 4 != 0:
+        die(f"Data address {hex(addr)} is not 4-byte aligned.")
+    if not (0x80000000 <= addr <= 0x81FFFFFF):
+        warn(f"Data address {hex(addr)} is outside typical GameCube RAM (0x80000000-0x81FFFFFF).")
+    return addr
 
 def parse_notes(source: str) -> list[str]:
     return [m.group(1).strip() for m in NOTE_PATTERN.finditer(source)]
@@ -248,6 +260,19 @@ def format_04(inject_addr: int, instr: int) -> list[str]:
     header = (0x04 << 24) | (inject_addr & 0x00FFFFFF)
     return [f"{header:08X} {instr:08X}"]
 
+
+def format_06(data_addr: int, data: bytes) -> list[str]:
+    """Format an 06 RAM write gecko code. Pads data to 8-byte boundary."""
+    byte_count = len(data)
+    if len(data) % 8 != 0:
+        data = data + b"\x00" * (8 - len(data) % 8)
+    header = (0x06 << 24) | (data_addr & 0x00FFFFFF)
+    lines  = [f"{header:08X} {byte_count:08X}"]
+    for i in range(0, len(data), 8):
+        w1, w2 = struct.unpack(">II", data[i:i+8])
+        lines.append(f"{w1:08X} {w2:08X}")
+    return lines
+
 # ==============================================================================
 # TOOL VERIFICATION
 # ==============================================================================
@@ -267,8 +292,11 @@ def check_tools(need_gcc: bool):
 # LINKER SCRIPT
 # ==============================================================================
 
-def make_linker_script(func_name: str) -> str:
-    """Entry function section placed first, then all other text sections."""
+def make_linker_script(func_name: str, data_addr: int | None = None) -> str:
+    """Entry function section placed first, then all other text sections.
+    If data_addr is given, .rodata/.data are placed at that fixed address so
+    absolute references in .text resolve correctly."""
+    data_origin = f"    . = {data_addr:#010x};\n" if data_addr is not None else ""
     return (
         "SECTIONS {\n"
         "    . = 0x00000000;\n"
@@ -278,6 +306,7 @@ def make_linker_script(func_name: str) -> str:
         "        *(.init*)\n"
         "    }\n"
         "    . = ALIGN(4);\n"
+        + data_origin +
         "    .rodata : { *(.rodata*) }\n"
         "    . = ALIGN(4);\n"
         "    .data : { *(.data*) *(.sdata*) }\n"
@@ -391,8 +420,7 @@ def check_relocations(obj_path: str, debug: bool):
 
 FP_OPCODES = {48, 49, 50, 51, 52, 53, 54, 55, 59, 63}
 
-def detect_used_fprs(text: bytes, extra_fprs: set[int],
-                     debug: bool) -> tuple[int, int] | None:
+def detect_used_fprs(text: bytes, extra_fprs: set[int], debug: bool) -> set[int]:
     used = set(extra_fprs)
     for i in range(len(text) // 4):
         word   = struct.unpack_from(">I", text, i * 4)[0]
@@ -400,21 +428,19 @@ def detect_used_fprs(text: bytes, extra_fprs: set[int],
         fpr    = (word >> 21) & 0x1F
         if opcode in FP_OPCODES:
             used.add(fpr)
-    if not used:
-        return None
-    mn, mx = min(used), max(used)
-    print(f"[INFO] FPU registers: f{mn}–f{mx}")
-    return mn, mx
+    if used:
+        names = ", ".join(f"f{n}" for n in sorted(used))
+        print(f"[INFO] FPU registers: {names}")
+    return used
 
 # ==============================================================================
 # BACKUP / RESTORE
 # ==============================================================================
 
-def compute_frame_size(fpr_range: tuple[int, int] | None) -> int:
-    if fpr_range is None:
+def compute_frame_size(used_fprs: set[int]) -> int:
+    if not used_fprs:
         return FRAME_MIN
-    _, mx = fpr_range
-    raw = FPR_BASE_OFFSET + (mx + 1) * FPR_SLOT_SIZE
+    raw = FPR_BASE_OFFSET + (max(used_fprs) + 1) * FPR_SLOT_SIZE
     return max((raw + 15) & ~15, FRAME_MIN)
 
 def _stfd(f, o): return (54 << 26) | (f << 21) | (1 << 16) | (o & 0xFFFF)
@@ -427,18 +453,14 @@ def _stmw(r, o): return (47 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
 def _lmw (r, o): return (46 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
 def _pack(*ii): return b"".join(struct.pack(">I", i) for i in ii)
 
-def build_backup(frame_size: int, fpr_range: tuple[int, int] | None) -> bytes:
+def build_backup(frame_size: int, used_fprs: set[int]) -> bytes:
     instrs = [MFLR_R0, _stw(0, 0x4), _stwu(1, -frame_size), _stmw(3, GPR_SAVE_OFFSET)]
-    if fpr_range is not None:
-        for n in range(fpr_range[0], fpr_range[1] + 1):
-            instrs.append(_stfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE))
+    for n in sorted(used_fprs):
+        instrs.append(_stfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE))
     return _pack(*instrs)
 
-def build_restore(frame_size: int, fpr_range: tuple[int, int] | None) -> bytes:
-    instrs = []
-    if fpr_range is not None:
-        for n in range(fpr_range[0], fpr_range[1] + 1):
-            instrs.append(_lfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE))
+def build_restore(frame_size: int, used_fprs: set[int]) -> bytes:
+    instrs = [_lfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE) for n in sorted(used_fprs)]
     instrs += [_lmw(3, GPR_SAVE_OFFSET), _lwz(0, frame_size + 0x4),
                _addi(1, 1, frame_size), MTLR_R0]
     return _pack(*instrs)
@@ -514,11 +536,9 @@ def prepare_source(source: str, func_name: str) -> str:
                  f"{ret_type} {func_name}({args}) {body}")
     source_without = source[:m.start()] + source[brace_end + 1:]
 
-    # Insertion point: after all leading #include/#define/comment lines
-    insert_pos = 0
-    for lm in re.finditer(r'^[ \t]*(?:#[^\n]*|//[^\n]*)\n', source_without, re.MULTILINE):
-        if source_without[insert_pos:lm.start()].strip() == '':
-            insert_pos = lm.end()
+    # Insertion point: where the entry function was in the original source.
+    # Everything before it (includes, defines, static vars) stays in place.
+    insert_pos = m.start()
 
     # Forward declare all helper functions so the entry function can call them
     fwd_decls = ""
@@ -543,58 +563,61 @@ def prepare_source(source: str, func_name: str) -> str:
 # ==============================================================================
 
 def build_payload(elf_path: str, raw_mode: bool, extra_fprs: set[int],
-                  debug: bool) -> bytes:
-    text   = extract_section(elf_path, ".text")
-    rodata = extract_section(elf_path, ".rodata")
-    data   = extract_section(elf_path, ".data")
+                  data_addr: int | None, debug: bool) -> tuple[bytes, bytes]:
+    text     = extract_section(elf_path, ".text")
+    rodata   = extract_section(elf_path, ".rodata")
+    data_sec = extract_section(elf_path, ".data")
 
     if not text:
         die("No .text section in compiled output. Is the source file empty?")
 
-    if rodata or data:
+    # Build the data blob: rodata padded to 4-byte alignment, then data.
+    # The padding mirrors the linker's ALIGN(4) between sections.
+    pad      = b"\x00" * ((-len(rodata)) % 4)
+    data_blob = rodata + pad + data_sec if (rodata or data_sec) else b""
+
+    if data_blob and data_addr is None:
         rodata_hex = " ".join(f"{b:02X}" for b in rodata) if rodata else "(empty)"
-        data_hex   = " ".join(f"{b:02X}" for b in data)   if data   else "(empty)"
+        data_hex   = " ".join(f"{b:02X}" for b in data_sec) if data_sec else "(empty)"
         die(
-            ".rodata or .data section detected in compiled output.\n"
+            ".rodata or .data section detected. Add '// Data: 0x80XXXXXX' to place "
+            "it at a reserved RAM address, or use stack-based alternatives:\n"
             f"  .rodata: {len(rodata)} bytes  [{rodata_hex}]\n"
-            f"  .data:   {len(data)} bytes  [{data_hex}]\n"
-            "  Common causes:\n"
-            "    - Constant array initializer: int arr[] = {1,2,3}  →  init each element separately\n"
-            "    - Float literal or FLOAT()/FLOAT_BITS() with constant args under -Oz\n"
-            "    - static/global variable\n"
+            f"  .data:   {len(data_sec)} bytes  [{data_hex}]\n"
+            "  Stack alternatives:\n"
+            "    - Float literal → VAR_ADDRESS(float, 0x80XXXXXX)\n"
+            "    - Constant array → init each element separately\n"
+            "    - String literal → char buf[]; STR4/STR2/STR1 macros\n"
+            "    - static/global var → stack-local var\n"
             "  Run with -d to inspect the disassembly."
         )
 
     if debug:
         print(f"[DEBUG] .text   : {len(text)//4} instructions ({len(text)} bytes)")
         print(f"[DEBUG] .rodata : {len(rodata)} bytes")
-        print(f"[DEBUG] .data   : {len(data)} bytes")
+        print(f"[DEBUG] .data   : {len(data_sec)} bytes")
+        if data_blob:
+            print(f"[DEBUG] data blob: {len(data_blob)} bytes → 06 code at {data_addr:#010x}")
 
-    data_after = len(rodata) + len(data)
-    text = replace_blr(text, data_after, debug)
-
-    has_data = len(rodata) > 0 or len(data) > 0
-    pic = b""
-    if has_data:
-        pic = pic_stub_bytes()
-        print("[INFO] PIC stub prepended for .rodata/.data access.")
+    # Data lives at data_addr via the 06 code — not appended to the payload.
+    text = replace_blr(text, 0, debug)
 
     if raw_mode:
-        payload = pic + text + rodata + data
+        payload = text
     else:
-        fpr_range  = detect_used_fprs(text, extra_fprs, debug)
-        frame_size = compute_frame_size(fpr_range)
-        backup     = build_backup(frame_size, fpr_range)
-        restore    = build_restore(frame_size, fpr_range)
+        used_fprs  = detect_used_fprs(text, extra_fprs, debug)
+        frame_size = compute_frame_size(used_fprs)
+        backup     = build_backup(frame_size, used_fprs)
+        restore    = build_restore(frame_size, used_fprs)
         if debug:
-            fpu_desc = (f"GPR+FPU f{fpr_range[0]}–f{fpr_range[1]}"
-                        if fpr_range else "GPR only")
+            fpu_desc = ("GPR only" if not used_fprs else
+                        f"GPR+FPU {', '.join(f'f{n}' for n in sorted(used_fprs))}")
             print(f"[DEBUG] Frame  : {frame_size:#x} ({fpu_desc})")
-        payload = pic + backup + text + rodata + data + restore
+        payload = backup + text + restore
 
     if len(payload) % 4 != 0:
         die(f"Payload size {len(payload)} is not 4-byte aligned.")
-    return payload
+    return payload, data_blob
 
 
 def pad_and_terminate(payload: bytes,
@@ -784,6 +807,7 @@ def main():
     func_name = re.sub(r'[^a-zA-Z0-9_]', '_', base_name)  # C identifier (spaces -> _)
 
     inject_addr = parse_address(source)
+    data_addr   = parse_data_address(source)
     author      = parse_author(source)
     notes       = parse_notes(source)
     instr_text  = parse_instruction(source)
@@ -792,6 +816,7 @@ def main():
     print(f"[INFO] Mode           : {'ASM' if is_asm else 'C'}")
     print(f"[INFO] Name           : {name}")
     print(f"[INFO] Inject address : {inject_addr:#010x}")
+    if data_addr:  print(f"[INFO] Data address   : {data_addr:#010x}")
     if author:     print(f"[INFO] Author         : {author}")
     if notes:      print(f"[INFO] Notes          : {len(notes)} line(s)")
     if instr_text: print(f"[INFO] Instruction    : {instr_text} (appended to payload)")
@@ -836,7 +861,7 @@ def main():
 
         print("[INFO] Linking...")
         with open(ld_path, "w") as f:
-            f.write(make_linker_script(func_name))
+            f.write(make_linker_script(func_name, data_addr))
         link_elf(obj_path, elf_path, ld_path, debug)
 
         print("[INFO] Checking relocations...")
@@ -847,7 +872,7 @@ def main():
             print("[DEBUG] Disassembly:\n" + disasm)
 
         print("[INFO] Building payload...")
-        payload = build_payload(elf_path, raw_mode, extra_fprs, debug)
+        payload, data_blob = build_payload(elf_path, raw_mode, extra_fprs, data_addr, debug)
 
         if is_asm and len(payload) == 4 and appended_instr is None:
             instr_word = struct.unpack(">I", payload)[0]
@@ -855,7 +880,12 @@ def main():
             print("[INFO] Single-instruction ASM — using 04 write code.")
         else:
             payload    = pad_and_terminate(payload, appended_instr, debug)
-            code_lines = format_c2(inject_addr, payload)
+            code_lines = []
+            if data_blob:
+                assert data_addr is not None  # guaranteed: build_payload errors if blob without addr
+                code_lines += format_06(data_addr, data_blob)
+                print(f"[INFO] Data: {len(data_blob)} bytes at {data_addr:#010x} — prepending 06 code.")
+            code_lines += format_c2(inject_addr, payload)
 
         gecko_code = build_gecko_output(code_lines, name, author, notes,
                                         cond_value, cond_addr)
