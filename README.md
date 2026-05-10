@@ -96,9 +96,9 @@ To specify features of gecko codes (author, injection address, etc) we use comme
 | `// Address: 0x80XXXXXX` | Yes | Injection address |
 | `// Data: 0x80XXXXXX` | No | RAM address for `.rodata`/`.data`. Required if the code generates static data. |
 | `// Author: YourName` | No | Author for gecko header |
-| `// State: menu\|game\|4\|5` | No | Enables conditional wrapper for MSSB game state* |
 | `// Instruction: <asm>` | No | PPC instruction appended after RESTORE (re-executes the overwritten instruction) |
 | `// *Note text` | No | Note line appended after code block. Repeatable. |
+| `// State: menu\|game\|4\|5` | No | Enables conditional wrapper for MSSB game state* |
 
 The code name is derived automatically from the source filename (e.g. `myCode.c` → `myCode`). The C entry function name replaces spaces with underscores (e.g. `My Code.c` -> `my_code()`).
 
@@ -286,6 +286,16 @@ Data that normally lives in `.rodata` or `.data` (float literals, static arrays,
 
 Add a `// Data:` comment with a RAM address you have reserved in the game's memory map. The script places `.rodata`/`.data` there and emits a `06` RAM-write code before the `C2` code to initialize it at runtime.
 
+### Floats and Arrays — Important Limitation
+ 
+The gecko payload is loaded at an unknown address at runtime. Any data that would normally live in `.rodata` or `.data` (static arrays, float literals, string constants) requires absolute memory addresses that are invalid in this context. **The script will error if `.rodata` or `.data` sections are generated.** Use stack-based alternatives instead.
+
+*NOTE: A future solution would involve the user specifying the memory address to palce `.rodata`. This feature does not yet exist and the limitations currently have to be dealt with. This may come in the future.*
+ 
+**Floats:**
+ 
+Do not declare float constants of any kind. Float literals generate `.rodata`, which uses absolute addresses invalid at an unknown payload address. The build will error.
+ 
 ```c
 // Data: 0x80300100   // must not overlap anything the game uses
 ```
