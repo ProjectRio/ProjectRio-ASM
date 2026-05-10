@@ -77,7 +77,11 @@ typedef unsigned int   word;
  * Note: these macros are only valid in the entry function, not in helper functions.
  * Note: VSCode may show squiggles on register variable syntax — ignore them.
  */
-#define READ_GAME_REG(type, name, num)  register type name __asm__("r" #num)
+#define READ_GAME_REG(type, name, num)                           \
+    register unsigned int _sp __asm__("r1");                     \
+    type name = *(volatile type*)(                               \
+        _sp + 0x8 + (((num) - 3) << 2)                           \
+    )
 
 /* Local register variable reads r1 (backup frame base) without an asm template,
  * avoiding the -mregnames issue entirely. GCC optimizes to a direct stw with
@@ -143,7 +147,7 @@ typedef unsigned int   word;
 
 #define LEN(a)          (sizeof(a) / sizeof(*a))    // number of elements in array
 #define SQUARE(a)       ((a) * (a))
-#define offsetof(st, m) ((size_t)&(((st *)0)->m))   // byte offset of struct member
+#define OFFSET_OF(st, m) ((size_t)&(((st *)0)->m))   // byte offset of struct member
 
 /* ── Tips ────────────────────────────────────────────────────────────────── */
 /*
