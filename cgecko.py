@@ -51,6 +51,7 @@ GCC_FLAGS = [
     f"-I{SCRIPT_DIR}",
     "-c",
     "-ffixed-r12"    # r12 reserved for original stack pointer since gcc sometimes overwrites r1
+]
 
 AS_FLAGS = [
     "-mregnames",
@@ -477,11 +478,17 @@ def detect_used_fprs(text: bytes, extra_fprs: set[int], debug: bool) -> set[int]
 # BACKUP / RESTORE
 # ==============================================================================
 
+FRAME_GPR = 0x100
+FPR_SLOT_SIZE = 8
+FPR_BASE_OFFSET = 0x100
+
 def compute_frame_size(used_fprs: set[int]) -> int:
     if not used_fprs:
-        return FRAME_MIN
-    raw = FPR_BASE_OFFSET + (max(used_fprs) + 1) * FPR_SLOT_SIZE
-    return max((raw + 15) & ~15, FRAME_MIN)
+        return FRAME_GPR
+
+    raw = FPR_BASE_OFFSET + ((max(used_fprs) + 1) * FPR_SLOT_SIZE)
+
+    return (raw + 15) & ~15
 
 def _stfd(f, o): return (54 << 26) | (f << 21) | (1 << 16) | (o & 0xFFFF)
 def _lfd (f, o): return (50 << 26) | (f << 21) | (1 << 16) | (o & 0xFFFF)
@@ -491,19 +498,45 @@ def _stwu(r, o): return (37 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
 def _addi(d, s, i): return (14 << 26) | (d << 21) | (s << 16) | (i & 0xFFFF)
 def _stmw(r, o): return (47 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
 def _lmw (r, o): return (46 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
-def _mr(d, s): return (31 << 26) | (s << 21) | (d << 16) | (444 << 1)
+def _mr(d, s): return (31 << 26) | (s << 21) | (d << 16) | (s << 11) | (444 << 1)
 def _pack(*ii): return b"".join(struct.pack(">I", i) for i in ii)
 
 def build_backup(frame_size: int, used_fprs: set[int]) -> bytes:
-    instrs = [MFLR_R0, _stw(0, 0x4), _stwu(1, -frame_size), _stmw(3, GPR_SAVE_OFFSET), _mr(12, 1)]
+    instrs = [
+        MFLR_R0,
+        _stw(0, 0x4),
+        _stwu(1, -frame_size),
+
+        _stmw(3, 0x8),
+
+        _mr(12, 1),
+    ]
+
     for n in sorted(used_fprs):
-        instrs.append(_stfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE))
+        instrs.append(
+            _stfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE)
+        )
+
     return _pack(*instrs)
 
 def build_restore(frame_size: int, used_fprs: set[int]) -> bytes:
-    instrs = [_lfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE) for n in sorted(used_fprs)]
-    instrs += [_lmw(3, GPR_SAVE_OFFSET), _lwz(0, frame_size + 0x4),
-               _addi(1, 1, frame_size), MTLR_R0]
+    instrs = []
+
+    for n in sorted(used_fprs):
+        instrs.append(
+            _lfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE)
+        )
+
+    instrs += [
+        _lmw(3, 0x8),
+
+        _lwz(0, frame_size + 0x4),
+
+        _addi(1, 1, frame_size),
+
+        MTLR_R0,
+    ]
+
     return _pack(*instrs)
 
 # ==============================================================================
