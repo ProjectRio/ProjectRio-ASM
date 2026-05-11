@@ -78,7 +78,7 @@ typedef unsigned int   word;
  * Note: VSCode may show squiggles on register variable syntax — ignore them.
  */
 #define READ_GAME_REG(type, name, num)                           \
-    register unsigned int _sp __asm__("r1");                     \
+    register unsigned int _sp __asm__("r12");                     \
     type name = *(volatile type*)(                               \
         _sp + 0x8 + (((num) - 3) << 2)                           \
     )
@@ -88,7 +88,7 @@ typedef unsigned int   word;
  * r1 as the base register. Do not declare this at file scope — that reserves
  * r1 globally and breaks normal helper functions. */
 #define WRITE_GAME_REG(num, val) \
-    do { register unsigned int _sp __asm__("r1"); \
+    do { register unsigned int _sp __asm__("r12"); \
          *(volatile unsigned int*)(_sp + 0x8 + (((num) - 3) << 2)) = (unsigned int)(val); \
     } while(0)
 
