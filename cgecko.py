@@ -811,11 +811,15 @@ def deploy_to_ini(ini_path: str, name: str, gecko_code: str, enable: bool = True
         print(f"[INFO] Added new code '{target_name}' to ini.")
 
     new_gecko_lines = ["[Gecko]"]
-    for hdr, body in blocks:
-        new_gecko_lines.append("")
+
+    for i, (hdr, body) in enumerate(blocks):
+        if i != 0:
+            new_gecko_lines.append("")
+
         new_gecko_lines.append(hdr)
-        new_gecko_lines.extend(body)
-    new_gecko_lines.append("")
+
+        cleaned_body = [line.rstrip("\r\n") for line in body if line.strip()]
+        new_gecko_lines.extend(cleaned_body)
 
     enabled_body  = lines[enabled_idx + 1:]
     enabled_names = [l.strip() for l in enabled_body if l.strip()]
@@ -823,7 +827,7 @@ def deploy_to_ini(ini_path: str, name: str, gecko_code: str, enable: bool = True
     if enable and not found and enabled_entry not in enabled_names:
         enabled_names.append(enabled_entry)
 
-    new_enabled_lines = ["[Gecko_Enabled]"]
+    new_enabled_lines = ["", "[Gecko_Enabled]"]
     new_enabled_lines.extend(enabled_names)
 
     pre_gecko   = lines[:gecko_idx]
