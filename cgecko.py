@@ -526,25 +526,34 @@ def pic_stub_bytes() -> bytes:
 # ==============================================================================
 
 def replace_blr(text: bytes, data_after: int, debug: bool) -> bytes:
-    """
-    Replace every blr in .text with a forward branch that jumps past
-    all data sections (rodata + data) to land at RESTORE.
-    delta = (end of .text - blr position) + bytes of data after .text
-    """
     text_len = len(text)
     words    = list(struct.unpack(f">{text_len // 4}I", text))
     count    = 0
+
+    drop_tail     = bool(words) and words[-1] == BLR_INSTR and data_after == 0
+    effective_len = text_len - (4 if drop_tail else 0)
+
     for i, word in enumerate(words):
         if word == BLR_INSTR:
+            count += 1
+            if drop_tail and i == len(words) - 1:
+                continue  # stripped below; falls through to RESTORE naturally
             instr_offset = i * 4
-            delta  = (text_len - instr_offset) + data_after
+            delta  = (effective_len - instr_offset) + data_after
             branch = B_BASE | (delta & 0x03FFFFFC)
             if debug:
                 print(f"[DEBUG] blr at .text+{instr_offset:#05x} -> b +{delta} (skips {data_after} data bytes)")
             words[i] = branch
-            count += 1
-    if count:
-        print(f"[INFO] Replaced {count} blr(s) with forward branch(es) past data to RESTORE.")
+
+    if drop_tail:
+        words.pop()
+        if debug:
+            print(f"[DEBUG] blr at .text+{effective_len:#05x} — dropped (falls through to RESTORE)")
+
+    replaced = count - (1 if drop_tail else 0)
+    if replaced:
+        print(f"[INFO] Replaced {replaced} blr(s) with forward branch(es) past data to RESTORE.")
+
     return struct.pack(f">{len(words)}I", *words)
 
 
