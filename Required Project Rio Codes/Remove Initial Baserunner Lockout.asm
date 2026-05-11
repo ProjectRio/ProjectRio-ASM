@@ -1,15 +1,21 @@
 ###########################################################
-# Enable Controller Rumble
+# Remove Initial Baserunner Lockout
 ###########################################################
-# Author: LittleCoaks
+# Author: nuche17, LittleCoaks
 
-# 00 code
-
-
+# Address: 0x806c9d78
+# State: Game
 
 ###########################################################
 ###########################################################
 
-# Gecko Writes:
-    00366177 00000001
+Start:
+  lha r0, 0x6 (r29)
+  lis r14, 0x8089
+  ori r14, r14, 0x2701
+  lbz r14, 0(r14)
+  cmpwi r14, 0
+  bne End
+  li r0, 1
 
+End:

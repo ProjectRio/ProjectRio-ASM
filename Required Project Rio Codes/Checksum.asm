@@ -3,7 +3,7 @@
 ###########################################################
 # Author: LittleCoaks
 
-
+# Address: 0x8000928c
 
 ###########################################################
 ###########################################################
@@ -12,45 +12,45 @@
 # if they all are, we can safely assume that the client's game's are in sync
 # 0x802EBFB8 - checksum
 
-# Inject: 0x8000928c
-Start:
-  stwu r1, -0x50(r1)            # backup registers 14-31
-  stmw r14, 0x8(r1)
+.include "Common.s"
 
-# Sum in r14
-# Addr to r15
-# for loop index to r16
+.set checksum, r14
+.set val, r15
+.set i, r16     # loop counter
+.set current_scene, 0x800E877E
+.set previous_scene, 0x800E8782
+.set ports, 0x800E874C
+.set teams, 0x803C6726
+.set superstar_icons, 0x8035323B
+
+.set checksum_addr, 0x802EBFB8
+
+Start:
+  backup_nv
+
 Init_Registers:
-  li r14, 0
-  li r16, 0
+  li checksum, 0
+  li i, 0
 
 Menu_State:
-  lis r15, 0x800E                # current scene
-  ori r15, r15, 0x877E
-  lhz r15, 0(r15)
-  add r14, r15, r14
-  lis r15, 0x800E                # previous scene
-  ori r15, r15, 0x8782
-  lhz r15, 0(r15)
-  add r14, r15, r14
-  lis r15, 0x800E                # ports
-  ori r15, r15, 0x874C
-  lhz r15, 0(r15)
-  add r14, r15, r14
+  loadhz val, current_scene
+  add checksum, val, checksum
+  loadhz val, previous_scene
+  add checksum, val, checksum
+  loadhz val, ports
+  add checksum, val, checksum
 
 Team_Info:
-  lis r15, 0x803C                # teams
-  ori r15, r15, 0x6726
-  lbzx r15, r16, r15
-  add r14, r15, r14
-  add r14, r16, r14
-  lis r15, 0x8035                # superstar icons
-  ori r15, r15, 0x323B
-  lbzx r15, r16, r15
-  add r14, r15, r14
-  add r14, r16, r14
-  addi r16, r16, 1
-  cmpwi r16, 18
+  load val, teams
+  lbzx val, i, val
+  add checksum, val, checksum
+  add checksum, i, checksum
+  load val, superstar_icons
+  lbzx val, i, val
+  add checksum, val, checksum
+  add checksum, i, checksum
+  addi i, i, 1
+  cmpwi i, 18
   blt Team_Info
 
 InGame_State:
@@ -177,14 +177,10 @@ InGame_State:
 
 # 0x802EBFB8 - checksum
 Store_Sum:
-  lis r15, 0x802E
-  ori r15, r15, 0xBFB8
+  load r15, checksum_addr
   stw r14, 0(r15)
 
 
 End:
-  lmw r14, 0x8(r1)              # restore registers 14-31
-  addi r1,r1, 0x50
-  cmplwi r24, 0x0               # replace instruction
-
-
+  restore_nv
+  cmplwi r24, 0x0   # restore original instruction

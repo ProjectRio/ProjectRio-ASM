@@ -3,13 +3,12 @@
 ###########################################################
 # Author: PeacockSlayer
 
-
+# Address: 0x806BBF88
+# State: game
 
 ###########################################################
 ###########################################################
 
-# Requires: "206BBF88 99090037"
-# Inject: 0x806BBF88
 START:
   stb r8, 55(r9)                # Replace overwritten instruction
   lis r21, 0x8089               # Load hit result addr
