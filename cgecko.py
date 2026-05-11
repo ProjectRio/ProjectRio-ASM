@@ -35,13 +35,6 @@ OBJCOPY = tool("powerpc-eabi-objcopy")
 OBJDUMP = tool("powerpc-eabi-objdump")
 READELF = tool("powerpc-eabi-readelf")
 
-# -ffixed-r14 through -ffixed-r31: prevent GCC from using callee-saved registers.
-# Since our BACKUP/RESTORE already saves all GPRs, GCC's own prologue/epilogue
-# for these registers is redundant. Marking them as fixed eliminates the
-# compiler-generated sub-frame entirely — GCC only uses r3-r13 (caller-saved),
-# which it never saves/restores, producing cleaner minimal output.
-FIXED_REGS = [f"-ffixed-r{n}" for n in range(14, 32)]
-
 GCC_FLAGS = [
     "-DGEKKO",
     "-mogc",
@@ -57,7 +50,7 @@ GCC_FLAGS = [
     "-Wno-attributes",
     f"-I{SCRIPT_DIR}",
     "-c",
-] + FIXED_REGS
+    "-ffixed-r12"    # r12 reserved for original stack pointer since gcc sometimes overwrites r1
 
 AS_FLAGS = [
     "-mregnames",
@@ -498,10 +491,11 @@ def _stwu(r, o): return (37 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
 def _addi(d, s, i): return (14 << 26) | (d << 21) | (s << 16) | (i & 0xFFFF)
 def _stmw(r, o): return (47 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
 def _lmw (r, o): return (46 << 26) | (r << 21) | (1 << 16) | (o & 0xFFFF)
+def _mr(d, s): return (31 << 26) | (s << 21) | (d << 16) | (444 << 1)
 def _pack(*ii): return b"".join(struct.pack(">I", i) for i in ii)
 
 def build_backup(frame_size: int, used_fprs: set[int]) -> bytes:
-    instrs = [MFLR_R0, _stw(0, 0x4), _stwu(1, -frame_size), _stmw(3, GPR_SAVE_OFFSET)]
+    instrs = [MFLR_R0, _stw(0, 0x4), _stwu(1, -frame_size), _stmw(3, GPR_SAVE_OFFSET), _mr(12, 1)]
     for n in sorted(used_fprs):
         instrs.append(_stfd(n, FPR_BASE_OFFSET + n * FPR_SLOT_SIZE))
     return _pack(*instrs)
