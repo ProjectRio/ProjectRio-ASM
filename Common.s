@@ -69,6 +69,18 @@
     lbz  \reg, 0(\reg)
 .endm
 
+# loadhz reg, address
+# Load a single half-word value from a memory address into a register (zero-extended).
+# Equivalent to: reg = *(u16*)address
+#
+# Example:
+#   loadhz r3, 0x80123456  # r3 = half-word at 0x80123456
+.macro loadhz reg, address
+    lis  \reg, \address @h
+    ori  \reg, \reg, \address @l
+    lhz  \reg, 0(\reg)
+.endm
+
 # ==============================================================================
 # BRANCHING
 # ==============================================================================
@@ -133,6 +145,22 @@
     lwz   r0,  0x104(r1)
     addi  r1,  r1, 0x100
     mtlr  r0
+.endm
+
+# backup_nv
+# backup non-volatile registers 14-31
+# Only use over backupall if you know you won't need to touch registers 3-13 or LR and you want less instructions
+.macro backup_nv
+    stwu r1, -0x50(r1)
+    stmw r14, 0x8(r1)
+.endm
+
+# backup_nv
+# restore non-volatile registers 14-31
+# Only use over restoreall if you know you won't need to touch registers 3-13 or LR and you want less instructions
+.macro restore_nv
+    lmw r14, 0x8(r1)
+    addi r1,r1, 0x50
 .endm
 
 .endif
