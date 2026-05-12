@@ -1,0 +1,3 @@
+[submodule "CGecko"]
+	path = CGecko
+	url = https://github.com/LittleCoaks/CGecko
