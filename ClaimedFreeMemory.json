@@ -5,7 +5,7 @@
     "0x802EBF93" : "(b) -- which port returned to main menu",
     "0x802EBF94" : "(b) -- fielder port",
     "0x802EBF95" : "(b) -- batter port",
-    "0x802EBF96" : "(b) -- previous fielder input",
+    "0x802EBF96" : "(b) -- netplay event code active",
     "0x802EBF97" : "(b) -- manual select arg",
     "0x802EBF98" : "(b) -- fielder stick left/right -1",
     "0x802EBF99" : "(b) -- superstar character code current index, P1 team",
