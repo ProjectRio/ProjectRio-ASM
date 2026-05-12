@@ -1,8 +1,6 @@
 # Project Rio ASM/C
 
-A repo for all of the gecko codes made by Project Rio. Utilized CGecko to maximize convenience and efficiency for modders.
-
----
+A repo for all of the gecko codes made by Project Rio. Utilizes CGecko to maximize convenience and efficiency for modders.
 
 ## Setup
 1. Clone this repo using `git clone --recurse-submodules <https://github.com/ProjectRio/ProjectRio-ASM>`
