@@ -1,9 +1,10 @@
 ###########################################################
 # Manual Fielder Select v5.0
 ###########################################################
-# Authors: PeacockSlayer, LittleCoaks
+# Author: PeacockSlayer, LittleCoaks
 
-
+# Address: 0x80678F8C
+# State: Game
 
 ###########################################################
 ###########################################################
@@ -32,8 +33,6 @@
 # r25 = Is Star Swing
 # r26 = Hand indicator
 
-# Requires: 20678F8C 88061BD1
-# Inject: 0x80678F8C
 Start:
   mr r14, r3                  # move arg to allow backup without lost info (pointer)
   stwu r1,-0x80(r1)           # backup registers 3-31

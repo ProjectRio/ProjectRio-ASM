@@ -3,13 +3,14 @@
 ###########################################################
 # Author: PeacockSlayer, LittleCoaks
 
-
+# Address: 0x806B406C
+# State: Game
 
 ###########################################################
 ###########################################################
-# Requires: "206B406C a01e0006"
 
-# Inject: 0x806B406C
+.include "Common.s"
+
 START:
   lis r14, 0x8089                   # Check if we're playing a normal game
   ori r14, r14, 0x80DE

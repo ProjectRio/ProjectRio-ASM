@@ -3,12 +3,11 @@
 ###########################################################
 # Author: LittleCoaks
 
-
+# Address: 0x800A5A3C
 
 ###########################################################
 ###########################################################
 
-# Inject: 0x800A5A3C
 START:
   lwz r0, 0x01C0 (r3)               # Get Player Raw Inputs --> 0x <ABXY> <LRZ> <LeftRight> <UpDown>
   lis r15, 0x0100                   # 0x0100 will be anded to r0 later on to force the A input

@@ -3,15 +3,14 @@
 ###########################################################
 # Author: LittleCoaks
 
-
+# Address: 0x806a844c
+# State: Game
 
 ###########################################################
 ###########################################################
-# Requires: 206a844c 41820224
 
-# Inject: 0x806a844c
 Start:
-  bne End                 # previous instruction checked if r4 was 0 (drop spots off)l 
+  bne End                 # previous game instruction checked if r4 was 0 (drop spots off). this looks weird but it works, trust me
   lis r4, 0x806a
   ori r4, r4, 0x85b8      # ba for instructions to overwrite
   lis r12, 0xc01d         # value to change instruction to

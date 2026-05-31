@@ -1,18 +1,19 @@
 ###########################################################
 # Default Competitive Rules
 ###########################################################
-# Authors: LittleCoaks
+# Author: LittleCoaks
+
+# Address: 0x80049d08
 
 # mercy on for both
 # 9-innings for stars off
 # 5-innings drop spot off for stars on
 
 
+###########################################################
+###########################################################
 
-###########################################################
-###########################################################
-# Inject: 0x80049d08
-START_FUNC:
+START:
     lis r14, 0x8035             # r14 stores starred icon addr
     ori r14, r14, 0x323B
     li r16, 0                   # r16 is for loop index

@@ -3,13 +3,13 @@
 ###########################################################
 # Authors: PeacockSlayer, LittleCoaks
 
-
+# Address: 0x80678F8C
+# State: Game
 
 ###########################################################
 ###########################################################
 
-# Requires: 20678F8C 88061BD1
-# Inject: 0x80678F8C
+
 Start:
   mr r14, r3                  # move arg to allow backup without lost info (pointer)
   mflr r0                     # backup stack frame

@@ -10,7 +10,9 @@
 
 # this checksum will check a few variables and make sure that they're the same between clients on netplay
 # if they all are, we can safely assume that the client's game's are in sync
-# 0x802EBFB8 - checksum
+# 0x802EBFB8 - checksum address
+
+# TODO: Finish the transition to using the Common.s macros
 
 .include "Common.s"
 

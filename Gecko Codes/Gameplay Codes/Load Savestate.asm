@@ -1,21 +1,23 @@
 ###########################################################
-# Load Savestate
+# Restart at-bat
 ###########################################################
 # Author: LittleCoaks, bko
 
+# Addreess: 0x806aa1f0
+# State: Game
 
+# *Press L + Z to restart the current at-bat. Only works once the ball is in play
+# *Uses the game's replay system to work. Does not work while pitching is going on
 
 ###########################################################
 ###########################################################
-# Requires: 206aa1f0 889b011e
 
-# Inject: 0x806aa1f0
 START:
   mflr r0                   # backup registers
   stw r0, 0x4(r1)
   stwu r1,-0x100(r1)
   stmw r3,0x8(r1)
-  lbz	r4, 0x011E (r27)    # grab Game State
+  lbz	r4, 0x011E (r27)      # grab Game State
   cmpwi r4, 2               # check if in a play
   bne END
   lis r6, 0x802E            # load p1 input addr to r6

@@ -3,13 +3,12 @@
 ###########################################################
 # Author: LittleCoaks
 
-
+# Inject: 0x80650674
+# State: Menu
 
 ###########################################################
-# Select Toy Field
+###########################################################
 
-# Requires: 20650674 98a40009
-# Inject: 0x80650674
 Start:
   li r15, 0x0                   # init r18 to p1 inputs
   lis r18, 0x802E
@@ -31,27 +30,4 @@ Set_ToyField:
 
 End:
   stb r5, 9(r4)
-  
-
-
-###########################################################
-# Play Sound Effect Queue
-
-# Requires: 20640d54 386001b8
-# Inject: 0x80640d54
-Start:
-  li r3, 0x1b8
-  lis r5, 0x800E
-  ori r5, r5, 0x8705
-  lbz r5, 0(r5)
-  lis r6, 0x800e
-  ori r6, r6, 0x877e
-  lhz r6, 0(r6)
-  add r5, r5, r6
-  cmpwi r5, 0x12
-  bne End
-  li r3, 0x1bc
-
-End:
-  
-
+   

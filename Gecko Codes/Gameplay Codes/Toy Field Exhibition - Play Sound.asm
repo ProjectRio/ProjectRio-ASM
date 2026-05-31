@@ -1,15 +1,27 @@
 ###########################################################
-# Skip Memory Card Check
+# Toy Field Exhibition
 ###########################################################
 # Author: LittleCoaks
 
-# 00 code
-
-
+# Inject: 0x80640d54
+# State: Menu
 
 ###########################################################
 ###########################################################
 
-# Gecko Writes:
-    003C50E8 00000001
+Start:
+  li r3, 0x1b8
+  lis r5, 0x800E
+  ori r5, r5, 0x8705
+  lbz r5, 0(r5)
+  lis r6, 0x800e
+  ori r6, r6, 0x877e
+  lhz r6, 0(r6)
+  add r5, r5, r6
+  cmpwi r5, 0x12
+  bne End
+  li r3, 0x1bc
+
+End:
+  
 

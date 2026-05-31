@@ -3,13 +3,14 @@
 ###########################################################
 # Author: LittleCoaks
 
-
+# Address: 0x806EED5C
+# State: Game
 
 ###########################################################
 ###########################################################
-# Requires: "206EED5C A0040006"
 
-# Inject: 0x806EED5C
+.include "Common.s"
+
 Start:
   lis r6, 0x8089                   # Check if batter is in neutral state
   ori r6, r6, 0x99D

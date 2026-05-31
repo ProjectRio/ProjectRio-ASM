@@ -1,20 +1,18 @@
 ###########################################################
-# Boot to Main Menu
+# Unlimited Extra Innings
 ###########################################################
-# Authors: LittleCoaks
+# Author: LittleCoaks
 
-# 04 code
-
-
+# Address: 0x80699a10
+# State: Game
+# *Games do not end until there is a winner.
 
 ###########################################################
 ###########################################################
-# Requires: "2863f964 38600001"
 
-# Write: 0x8063f964
-START: 
-    li r3, 0x5
+
+START:
+    addi r0, r4, 0xF6
 
 END:
-
 
