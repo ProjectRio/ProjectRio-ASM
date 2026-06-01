@@ -2,18 +2,14 @@
 # Pitch Clock
 ###########################################################
 # Author: LittleCoaks
-
-# Address: 0x806b4070
 # State: Game
-# Also requires the follwing writes:
-# 046b4490 60000000
-# 046b42d0 60000000
-# 046b46b8 60000000
 
 ###########################################################
 ###########################################################
 
 .include "Common.s"
+
+# Address: 0x806b4070
 
 START:
   lis r14, 0x8089               # initialize r14 to pitch clock addr
@@ -26,4 +22,14 @@ START:
 END:
   rlwinm.	r0, r0, 0, 23, 23
 
+
+###########################################################
+# These nops prevent the pitch clock from resetting unless a pitch is thrown.
+
+# Address: 0x806b4490
+  nop
+# Address: 0x806b42d0
+  nop
+# Address: 0x806b46b8
+  nop
 
