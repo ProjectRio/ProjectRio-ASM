@@ -1,10 +1,13 @@
 ###########################################################
-# Pitche Lag Reduction
+# Pitcher Lag Reduction
 ###########################################################
 # Author: LittleCoaks
 
 # Address: 0x806b05c4
 # State: Game
+
+# TODO: fix assembler warnings (lfs/stfs to GPRs instead of FPRs)
+# TODO: Add in the batter lag reduction code (is this code even the correct version?)
 
 ###########################################################
 ###########################################################

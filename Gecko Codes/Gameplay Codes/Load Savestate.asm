@@ -3,7 +3,7 @@
 ###########################################################
 # Author: LittleCoaks, bko
 
-# Addreess: 0x806aa1f0
+# Address: 0x806aa1f0
 # State: Game
 
 # *Press L + Z to restart the current at-bat. Only works once the ball is in play
