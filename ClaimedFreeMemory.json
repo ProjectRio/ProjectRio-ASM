@@ -25,8 +25,6 @@
     "0x802EC012" : "(h) -- Batting Random Int 2",
     "0x802EC014" : "(h) -- Batting Random Int 3",
     
-    "0x802ED200" : "(-) -- Start of Hard-Written ASM",
-    
     // Superstar character indicators - stored in the first unused byte within InMemRoster for each character
     "0x80353BE5" : "(b) -- indicator to superstar character P1 character 0",
     "0x80353C85" : "(b) -- indicator to superstar character P1 character 1",
