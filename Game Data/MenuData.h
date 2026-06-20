@@ -4109,196 +4109,196 @@ struct unkStruct {
 
 // =============================================================================
 
-#define system_reset_exception_handler FUNCTION_ADDRESS(void, 0x80000100)
-#define machine_check_exception_handler FUNCTION_ADDRESS(void, 0x80000200)
-#define dsi_exception_handler FUNCTION_ADDRESS(void, 0x80000300)
-#define isi_exception_handler FUNCTION_ADDRESS(void, 0x80000400)
-#define external_interrupt_exception_handler FUNCTION_ADDRESS(void, 0x80000500)
-#define alignment_exception_handler FUNCTION_ADDRESS(void, 0x80000600)
-#define program_exception_handler FUNCTION_ADDRESS(void, 0x80000700)
-#define floating_point_unavailable_exception_handler FUNCTION_ADDRESS(void, 0x80000800)
-#define decrementer_exception_handler FUNCTION_ADDRESS(void, 0x80000900)
-#define system_call_exception_handler FUNCTION_ADDRESS(void, 0x80000C00)
-#define trace_exception_handler FUNCTION_ADDRESS(void, 0x80000D00)
-#define memset FUNCTION_ADDRESS(void, 0x8000540C)
-#define TRK_fill_mem FUNCTION_ADDRESS(void, 0x8000543C)
-#define memcpy FUNCTION_ADDRESS(void, 0x800054F4)
+static inline void system_reset_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000100)(param_1, param_2, param_3); }
+static inline void machine_check_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000200)(param_1, param_2, param_3); }
+static inline void dsi_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000300)(param_1, param_2, param_3); }
+static inline void isi_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000400)(param_1, param_2, param_3); }
+static inline void external_interrupt_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000500)(param_1, param_2, param_3); }
+static inline void alignment_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000600)(param_1, param_2, param_3); }
+static inline void program_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000700)(param_1, param_2, param_3); }
+static inline void floating_point_unavailable_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000800)(param_1, param_2, param_3); }
+static inline void decrementer_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000900)(param_1, param_2, param_3); }
+static inline void system_call_exception_handler(void) { ((void(*)(void))0x80000C00)(); }
+static inline void trace_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000D00)(param_1, param_2, param_3); }
+#define memset FUNCTION_ADDRESS(undefined4, 0x8000540C, undefined4)
+static inline void TRK_fill_mem(int param_1, byte param_2, uint param_3) { ((void(*)(int, byte, uint))0x8000543C)(param_1, param_2, param_3); }
+#define memcpy FUNCTION_ADDRESS(void, 0x800054F4, uint, uint, int)
 #define main FUNCTION_ADDRESS(void, 0x80009180)
-#define loadMatchRelated FUNCTION_ADDRESS(void, 0x800097A0)
-#define interpolatePointsUnknown FUNCTION_ADDRESS(void, 0x80009E94, undefined4 /*count*/, Vec2f * /*src*/, BOOL, BOOL)
-#define somethingSetTexturePointer FUNCTION_ADDRESS(void, 0x8000F48C)
-#define setText0x2aTo0 FUNCTION_ADDRESS(void, 0x8000FEE8)
-#define QueueCharacterAnimation FUNCTION_ADDRESS(void, 0x8001B918, undefined4 /*character*/, EnumCharacterAnimation_int /*animation*/, byte, byte, short, bool /*flip*/, undefined4)
-#define AnimateCharacter FUNCTION_ADDRESS(void, 0x8001B990, undefined4 /*animNumber*/, EnumCharacterAnimation_int /*animationIndex*/, undefined1 /*loop*/, undefined1, undefined1, undefined2, undefined1, undefined4)
-#define maybeProcessStadiumSelection FUNCTION_ADDRESS(void, 0x8001CBD4)
-#define stadiumSetupRelated FUNCTION_ADDRESS(void, 0x8001CE74)
-#define graphicsRelated FUNCTION_ADDRESS(void, 0x800204CC)
-#define initSound FUNCTION_ADDRESS(void, 0x800219B4)
-#define stadiumLightingRelated FUNCTION_ADDRESS(void, 0x80023B90)
-#define updateGraphicsArray FUNCTION_ADDRESS(void, 0x80034CEC, maybeGraphicsManager * /*gfxM*/)
-#define addGraphicsElementToScene FUNCTION_ADDRESS(void, 0x80034E20)
-#define partialSuperstarIncreases_challenge FUNCTION_ADDRESS(void, 0x8004207C)
-#define adjustStatsForSuperstar FUNCTION_ADDRESS(void, 0x800426DC, undefined4 /*playerNumber*/)
-#define randBetween_ FUNCTION_ADDRESS(void, 0x80042BF0)
-#define sndFXRelated FUNCTION_ADDRESS(void, 0x80042C44)
-#define maybeCheckAndResetGraphicsElement FUNCTION_ADDRESS(bool, 0x80042DA8, maybeGraphicsManager * /*maybeGFXIndex*/, undefined4 /*offset*/, undefined4 /*targetVal*/)
-#define challengeStarMenu FUNCTION_ADDRESS(void, 0x80042DE8)
-#define viewStarMenuOverTeamManagementScreen_unused FUNCTION_ADDRESS(void, 0x8004338C)
-#define changeBattingOrder FUNCTION_ADDRESS(void, 0x80044C98, undefined1, undefined1 /*playerNumber*/)
-#define teamManagement_takeInputs FUNCTION_ADDRESS(void, 0x8004617C, undefined4 /*playerNumber*/)
-#define initTeamManagementScreen FUNCTION_ADDRESS(void, 0x80047CE0)
-#define teamManagementMenuControl FUNCTION_ADDRESS(void, 0x80047FE4)
-#define createTeamManagementScreen_inGame FUNCTION_ADDRESS(void, 0x800486E0)
-#define createTeamManagementScreen_preGame FUNCTION_ADDRESS(void, 0x80048764)
-#define startGameRelated FUNCTION_ADDRESS(void, 0x80048EB8)
-#define controlOptionsScreen FUNCTION_ADDRESS(void, 0x80049220, undefined1 /*playerNum*/)
-#define gameSettingsControllerInputs FUNCTION_ADDRESS(void, 0x800494CC, undefined4 /*playerNum*/)
-#define transitionFromStadiumToGameSettings_ FUNCTION_ADDRESS(void, 0x80049878)
-#define stadiumSelect_80049c80 FUNCTION_ADDRESS(void, 0x80049C80)
-#define gameSettingsLeftRightPressed FUNCTION_ADDRESS(void, 0x80049D8C, undefined1 /*left0Right1*/, undefined1 /*playerNum*/)
-#define gameSettingsRelated FUNCTION_ADDRESS(void, 0x8004A1BC)
-#define gameSettingsScreen FUNCTION_ADDRESS(void, 0x8004A2BC)
-#define stadiumRelatedSwitch FUNCTION_ADDRESS(void, 0x8004AD54, enumStadiumNameWord /*stadium*/, undefined4)
-#define set803c5f77 FUNCTION_ADDRESS(void, 0x8004CC2C)
-#define challengeCaptainSelect_returnsCharID FUNCTION_ADDRESS(void, 0x8004D57C, enumControllerInput /*newInput*/, enumControllerInput /*heldInput*/, enumControllerInput /*processedInput*/)
-#define challengeTransitionRelated FUNCTION_ADDRESS(void, 0x8004D93C)
-#define storeCursorLocOrCharIDs FUNCTION_ADDRESS(void, 0x8004E504, undefined4 /*storeCharID*/, undefined4 /*p0CursorLoc*/, undefined4 /*p1CursorLoc*/, undefined4 /*p2CursorLoc*/, undefined4 /*p3CursorLoc*/)
-#define add_RemoveCharToATeam FUNCTION_ADDRESS(void, 0x8004E5B4, undefined1 /*teamID*/, undefined4 /*captainID*/, undefined4 /*AddToTeamInd*/)
-#define captainSelect_processCursorMovement_getCharID FUNCTION_ADDRESS(void, 0x8004E62C, undefined4 /*playerNumber*/, enumControllerInput /*heldInput*/, enumControllerInput /*newInput*/, enumControllerInput /*processedInput*/)
-#define relatedToTransitions FUNCTION_ADDRESS(void, 0x8004EE84)
-#define cssLoadingRelated_1 FUNCTION_ADDRESS(void, 0x80050138)
-#define addOrRemoveCharacterToTeam FUNCTION_ADDRESS(void, 0x800506E8, undefined1 /*team*/, undefined4 /*selectedCharID*/, undefined4 /*select1Deselect0*/)
-#define cssCursorOnBottomControl_ FUNCTION_ADDRESS(void, 0x80050760, undefined4 /*playerNumber*/, undefined4 /*heldBotton?*/, enumControllerInput, enumControllerInput /*newButton?*/, undefined4 /*processedButton?*/)
-#define cssLoading_SettingSomeValues FUNCTION_ADDRESS(void, 0x80050FE8, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4 /*isExhibition*/)
-#define newMenuRelated FUNCTION_ADDRESS(void, 0x80056120)
-#define updateMenuNumbers FUNCTION_ADDRESS(void, 0x800569C8)
-#define starMissionMenu FUNCTION_ADDRESS(void, 0x80057C08)
-#define scoutFlagMenu FUNCTION_ADDRESS(void, 0x80058050)
-#define zMenuLoadGraphics FUNCTION_ADDRESS(void, 0x80058394)
-#define starMissionRelated FUNCTION_ADDRESS(void, 0x80059B38)
-#define battingOrderProcessInputs FUNCTION_ADDRESS(void, 0x8005A350, maybeGraphicsManager * /*mGfxM*/, undefined4 /*playerNum*/)
-#define teamManagementGraphics_fieldingAlignmentScreen FUNCTION_ADDRESS(void, 0x8005AF68)
-#define teamManagementGraphics_battingOrderScreen FUNCTION_ADDRESS(void, 0x8005B298)
-#define challengeTeamManagementRelated FUNCTION_ADDRESS(void, 0x8005BB5C)
-#define teamManagementGraphics_fieldingAlignmentInfo FUNCTION_ADDRESS(void, 0x8005BF40)
-#define teamManagementGraphics_battingOrderInfo FUNCTION_ADDRESS(void, 0x8005C2B0)
-#define teamManagementGraphics_steadyState FUNCTION_ADDRESS(void, 0x80060184)
-#define teamManagementGraphics_initialLoad FUNCTION_ADDRESS(void, 0x80061B9C)
-#define setMenuNumber FUNCTION_ADDRESS(void, 0x8006236C)
-#define noActiveProcessInd FUNCTION_ADDRESS(void, 0x80062578)
-#define updateCharacterSelectProcessCode FUNCTION_ADDRESS(void, 0x800625A4, undefined4 /*teamNum?*/, undefined1 /*processCode*/)
-#define makeCursorMovable FUNCTION_ADDRESS(void, 0x80062674, undefined4 /*index*/)
-#define makeCursorUnmovable FUNCTION_ADDRESS(void, 0x800626EC, undefined4 /*team*/)
-#define resetCursorFramesTillMovable FUNCTION_ADDRESS(void, 0x80062744)
-#define playPlayerSelectedSound FUNCTION_ADDRESS(void, 0x800628D4)
-#define setPortOfEachPlayer FUNCTION_ADDRESS(void, 0x8006496C)
-#define challengeSetCPURoster2 FUNCTION_ADDRESS(void, 0x80064A04)
-#define setInitialBattingOrder FUNCTION_ADDRESS(void, 0x80065DEC, undefined4 /*teamNumber*/)
-#define selectRandomStadium FUNCTION_ADDRESS(void, 0x800671FC)
-#define teamClassTypeLogos FUNCTION_ADDRESS(void, 0x80067264)
-#define teamCompositionLogos FUNCTION_ADDRESS(void, 0x800675C4, undefined4 /*team*/, undefined4 /*capID*/)
-#define teamLogoDetermination FUNCTION_ADDRESS(void, 0x800678CC, undefined4 /*team*/)
-#define addRemoveCharVariantRelated FUNCTION_ADDRESS(void, 0x80067B40)
-#define unknownSettingTeamValues FUNCTION_ADDRESS(void, 0x80068838)
-#define setCaptainLocInRoster_ FUNCTION_ADDRESS(void, 0x80069854)
-#define challengeIntermediateStarBUffs_CPU_8006ca9c FUNCTION_ADDRESS(void, 0x8006CA9C)
-#define bonusStatsForCompletingMissions FUNCTION_ADDRESS(void, 0x8006CAC8, undefined4 /*charID*/)
-#define OSReport FUNCTION_ADDRESS(void, 0x8006F7E0)
-#define OSPanic FUNCTION_ADDRESS(void, 0x8006F860)
-#define loadMatchMemoryTransfer_ FUNCTION_ADDRESS(void, 0x80071630)
-#define loadMatchMemoryTransfer_2 FUNCTION_ADDRESS(void, 0x80071910)
-#define PSVECNormalize FUNCTION_ADDRESS(void, 0x80076354)
-#define GXInitTexObj FUNCTION_ADDRESS(void, 0x8008DA60)
-#define rand FUNCTION_ADDRESS(void, 0x8009D864)
-#define StartThreadForReadingFromDisk FUNCTION_ADDRESS(void, 0x800A65A0)
-#define initializeDVDSystem FUNCTION_ADDRESS(void, 0x800A76BC)
-#define initRenderMode FUNCTION_ADDRESS(void, 0x800A80E8)
-#define initInputDevices FUNCTION_ADDRESS(void, 0x800A983C)
-#define removeCurrentDrawingItem FUNCTION_ADDRESS(void, 0x800B0A14)
+static inline void loadMatchRelated(void) { ((void(*)(void))0x800097A0)(); }
+static inline void interpolatePointsUnknown(undefined4 count, Vec2f * src, BOOL param_3, BOOL param_4) { ((void(*)(undefined4, Vec2f *, BOOL, BOOL))0x80009E94)(count, src, param_3, param_4); }
+static inline void somethingSetTexturePointer(void) { ((void(*)(void))0x8000F48C)(); }
+static inline void setText0x2aTo0(int param_1) { ((void(*)(int))0x8000FEE8)(param_1); }
+static inline void QueueCharacterAnimation(undefined4 character, EnumCharacterAnimation_int animation, byte param_3, byte param_4, short param_5, bool flip, undefined4 param_7) { ((void(*)(undefined4, EnumCharacterAnimation_int, byte, byte, short, bool, undefined4))0x8001B918)(character, animation, param_3, param_4, param_5, flip, param_7); }
+static inline void AnimateCharacter(undefined4 animNumber, EnumCharacterAnimation_int animationIndex, undefined1 loop, undefined1 param_4, undefined1 param_5, undefined2 param_6, undefined1 param_7, undefined4 param_8) { ((void(*)(undefined4, EnumCharacterAnimation_int, undefined1, undefined1, undefined1, undefined2, undefined1, undefined4))0x8001B990)(animNumber, animationIndex, loop, param_4, param_5, param_6, param_7, param_8); }
+static inline void maybeProcessStadiumSelection(void) { ((void(*)(void))0x8001CBD4)(); }
+static inline void stadiumSetupRelated(void) { ((void(*)(void))0x8001CE74)(); }
+static inline void graphicsRelated(char param_1, undefined2 param_2) { ((void(*)(char, undefined2))0x800204CC)(param_1, param_2); }
+static inline void initSound(void) { ((void(*)(void))0x800219B4)(); }
+static inline void stadiumLightingRelated(ushort * param_1, int * param_2) { ((void(*)(ushort *, int *))0x80023B90)(param_1, param_2); }
+static inline void updateGraphicsArray(maybeGraphicsManager * gfxM) { ((void(*)(maybeGraphicsManager *))0x80034CEC)(gfxM); }
+static inline void addGraphicsElementToScene(undefined * param_1, short * param_2) { ((void(*)(undefined *, short *))0x80034E20)(param_1, param_2); }
+static inline void partialSuperstarIncreases_challenge(void) { ((void(*)(void))0x8004207C)(); }
+static inline void adjustStatsForSuperstar(undefined4 playerNumber) { ((void(*)(undefined4))0x800426DC)(playerNumber); }
+static inline int randBetween_(int param_1, int param_2) { return ((int(*)(int, int))0x80042BF0)(param_1, param_2); }
+static inline void sndFXRelated(ushort param_1) { ((void(*)(ushort))0x80042C44)(param_1); }
+static inline bool maybeCheckAndResetGraphicsElement(maybeGraphicsManager * maybeGFXIndex, undefined4 offset, undefined4 targetVal) { return ((bool(*)(maybeGraphicsManager *, undefined4, undefined4))0x80042DA8)(maybeGFXIndex, offset, targetVal); }
+static inline void challengeStarMenu(void) { ((void(*)(void))0x80042DE8)(); }
+static inline void viewStarMenuOverTeamManagementScreen_unused(void) { ((void(*)(void))0x8004338C)(); }
+static inline void changeBattingOrder(undefined1 param_1, undefined1 playerNumber) { ((void(*)(undefined1, undefined1))0x80044C98)(param_1, playerNumber); }
+static inline void teamManagement_takeInputs(undefined4 playerNumber) { ((void(*)(undefined4))0x8004617C)(playerNumber); }
+static inline void initTeamManagementScreen(void) { ((void(*)(void))0x80047CE0)(); }
+static inline void teamManagementMenuControl(void) { ((void(*)(void))0x80047FE4)(); }
+static inline void createTeamManagementScreen_inGame(ushort param_1, undefined param_2, undefined param_3) { ((void(*)(ushort, undefined, undefined))0x800486E0)(param_1, param_2, param_3); }
+static inline void createTeamManagementScreen_preGame(void) { ((void(*)(void))0x80048764)(); }
+static inline void startGameRelated(void) { ((void(*)(void))0x80048EB8)(); }
+static inline void controlOptionsScreen(undefined1 playerNum) { ((void(*)(undefined1))0x80049220)(playerNum); }
+static inline void gameSettingsControllerInputs(undefined4 playerNum) { ((void(*)(undefined4))0x800494CC)(playerNum); }
+static inline void transitionFromStadiumToGameSettings_(void) { ((void(*)(void))0x80049878)(); }
+static inline void stadiumSelect_80049c80(void) { ((void(*)(void))0x80049C80)(); }
+static inline void gameSettingsLeftRightPressed(undefined1 left0Right1, undefined1 playerNum) { ((void(*)(undefined1, undefined1))0x80049D8C)(left0Right1, playerNum); }
+static inline void gameSettingsRelated(void) { ((void(*)(void))0x8004A1BC)(); }
+static inline void gameSettingsScreen(void) { ((void(*)(void))0x8004A2BC)(); }
+static inline void stadiumRelatedSwitch(enumStadiumNameWord stadium, undefined4 param_2) { ((void(*)(enumStadiumNameWord, undefined4))0x8004AD54)(stadium, param_2); }
+static inline void set803c5f77(void) { ((void(*)(void))0x8004CC2C)(); }
+static inline void challengeCaptainSelect_returnsCharID(enumControllerInput newInput, enumControllerInput heldInput, enumControllerInput processedInput) { ((void(*)(enumControllerInput, enumControllerInput, enumControllerInput))0x8004D57C)(newInput, heldInput, processedInput); }
+static inline undefined4 challengeTransitionRelated(int param_1) { return ((undefined4(*)(int))0x8004D93C)(param_1); }
+static inline void storeCursorLocOrCharIDs(undefined4 storeCharID, undefined4 p0CursorLoc, undefined4 p1CursorLoc, undefined4 p2CursorLoc, undefined4 p3CursorLoc) { ((void(*)(undefined4, undefined4, undefined4, undefined4, undefined4))0x8004E504)(storeCharID, p0CursorLoc, p1CursorLoc, p2CursorLoc, p3CursorLoc); }
+static inline void add_RemoveCharToATeam(undefined1 teamID, undefined4 captainID, undefined4 AddToTeamInd) { ((void(*)(undefined1, undefined4, undefined4))0x8004E5B4)(teamID, captainID, AddToTeamInd); }
+static inline void captainSelect_processCursorMovement_getCharID(undefined4 playerNumber, enumControllerInput heldInput, enumControllerInput newInput, enumControllerInput processedInput) { ((void(*)(undefined4, enumControllerInput, enumControllerInput, enumControllerInput))0x8004E62C)(playerNumber, heldInput, newInput, processedInput); }
+static inline undefined4 relatedToTransitions(int param_1) { return ((undefined4(*)(int))0x8004EE84)(param_1); }
+static inline void cssLoadingRelated_1(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6) { ((void(*)(int, int, int, int, int, int))0x80050138)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline void addOrRemoveCharacterToTeam(undefined1 team, undefined4 selectedCharID, undefined4 select1Deselect0) { ((void(*)(undefined1, undefined4, undefined4))0x800506E8)(team, selectedCharID, select1Deselect0); }
+static inline void cssCursorOnBottomControl_(undefined4 playerNumber, undefined4 heldBotton_, enumControllerInput param_3, enumControllerInput newButton_, undefined4 processedButton_) { ((void(*)(undefined4, undefined4, enumControllerInput, enumControllerInput, undefined4))0x80050760)(playerNumber, heldBotton_, param_3, newButton_, processedButton_); }
+static inline void cssLoading_SettingSomeValues(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 isExhibition) { ((void(*)(undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x80050FE8)(param_1, param_2, param_3, param_4, param_5, isExhibition); }
+static inline void newMenuRelated(void) { ((void(*)(void))0x80056120)(); }
+static inline void updateMenuNumbers(void) { ((void(*)(void))0x800569C8)(); }
+static inline void starMissionMenu(void) { ((void(*)(void))0x80057C08)(); }
+static inline void scoutFlagMenu(void) { ((void(*)(void))0x80058050)(); }
+static inline void zMenuLoadGraphics(int param_1) { ((void(*)(int))0x80058394)(param_1); }
+static inline void starMissionRelated(int param_1) { ((void(*)(int))0x80059B38)(param_1); }
+static inline void battingOrderProcessInputs(maybeGraphicsManager * mGfxM, undefined4 playerNum) { ((void(*)(maybeGraphicsManager *, undefined4))0x8005A350)(mGfxM, playerNum); }
+static inline void teamManagementGraphics_fieldingAlignmentScreen(int param_1) { ((void(*)(int))0x8005AF68)(param_1); }
+static inline void teamManagementGraphics_battingOrderScreen(int param_1) { ((void(*)(int))0x8005B298)(param_1); }
+static inline void challengeTeamManagementRelated(int param_1) { ((void(*)(int))0x8005BB5C)(param_1); }
+static inline void teamManagementGraphics_fieldingAlignmentInfo(int param_1) { ((void(*)(int))0x8005BF40)(param_1); }
+static inline void teamManagementGraphics_battingOrderInfo(int param_1) { ((void(*)(int))0x8005C2B0)(param_1); }
+static inline void teamManagementGraphics_steadyState(void) { ((void(*)(void))0x80060184)(); }
+static inline void teamManagementGraphics_initialLoad(void) { ((void(*)(void))0x80061B9C)(); }
+static inline void setMenuNumber(void) { ((void(*)(void))0x8006236C)(); }
+static inline undefined4 noActiveProcessInd(void) { return ((undefined4(*)(void))0x80062578)(); }
+static inline void updateCharacterSelectProcessCode(undefined4 teamNum_, undefined1 processCode) { ((void(*)(undefined4, undefined1))0x800625A4)(teamNum_, processCode); }
+static inline void makeCursorMovable(undefined4 index) { ((void(*)(undefined4))0x80062674)(index); }
+static inline void makeCursorUnmovable(undefined4 team) { ((void(*)(undefined4))0x800626EC)(team); }
+static inline void resetCursorFramesTillMovable(void) { ((void(*)(void))0x80062744)(); }
+static inline enumSoundEffect_int playPlayerSelectedSound(void) { return ((enumSoundEffect_int(*)(void))0x800628D4)(); }
+static inline void setPortOfEachPlayer(void) { ((void(*)(void))0x8006496C)(); }
+static inline void challengeSetCPURoster2(uint param_1) { ((void(*)(uint))0x80064A04)(param_1); }
+static inline void setInitialBattingOrder(undefined4 teamNumber) { ((void(*)(undefined4))0x80065DEC)(teamNumber); }
+static inline void selectRandomStadium(void) { ((void(*)(void))0x800671FC)(); }
+static inline undefined4 teamClassTypeLogos(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x80067264)(param_1, param_2); }
+static inline void teamCompositionLogos(undefined4 team, undefined4 capID) { ((void(*)(undefined4, undefined4))0x800675C4)(team, capID); }
+static inline void teamLogoDetermination(undefined4 team) { ((void(*)(undefined4))0x800678CC)(team); }
+static inline undefined4 addRemoveCharVariantRelated(undefined4 param_1, uint param_2, byte param_3) { return ((undefined4(*)(undefined4, uint, byte))0x80067B40)(param_1, param_2, param_3); }
+static inline void unknownSettingTeamValues(void) { ((void(*)(void))0x80068838)(); }
+static inline void setCaptainLocInRoster_(void) { ((void(*)(void))0x80069854)(); }
+static inline double challengeIntermediateStarBUffs_CPU_8006ca9c(void) { return ((double(*)(void))0x8006CA9C)(); }
+static inline void bonusStatsForCompletingMissions(undefined4 charID) { ((void(*)(undefined4))0x8006CAC8)(charID); }
+static inline void OSReport(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8, undefined4 param_9, undefined4 param_10, undefined4 param_11, undefined4 param_12, undefined4 param_13, undefined4 param_14, undefined4 param_15, undefined4 param_16) { ((void(*)(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8006F7E0)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
+static inline void OSPanic(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8, undefined4 param_9, undefined4 param_10, undefined4 param_11, undefined4 param_12, undefined4 param_13, undefined4 param_14, undefined4 param_15, undefined4 param_16) { ((void(*)(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8006F860)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
+static inline undefined4 loadMatchMemoryTransfer_(int * param_1, uint param_2, int param_3) { return ((undefined4(*)(int *, uint, int))0x80071630)(param_1, param_2, param_3); }
+static inline void loadMatchMemoryTransfer_2(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80071910)(param_1, param_2); }
+static inline double PSVECNormalize(int param_1, int param_2) { return ((double(*)(int, int))0x80076354)(param_1, param_2); }
+static inline void GXInitTexObj(uint * param_1, uint param_2, uint param_3, uint param_4, uint param_5, uint param_6, uint param_7, char param_8) { ((void(*)(uint *, uint, uint, uint, uint, uint, uint, char))0x8008DA60)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
+static inline uint rand(void) { return ((uint(*)(void))0x8009D864)(); }
+static inline void StartThreadForReadingFromDisk(void) { ((void(*)(void))0x800A65A0)(); }
+static inline void initializeDVDSystem(void) { ((void(*)(void))0x800A76BC)(); }
+static inline void initRenderMode(uint * param_1, int param_2, undefined2 param_3) { ((void(*)(uint *, int, undefined2))0x800A80E8)(param_1, param_2, param_3); }
+static inline void initInputDevices(void) { ((void(*)(void))0x800A983C)(); }
+static inline void removeCurrentDrawingItem(void) { ((void(*)(void))0x800B0A14)(); }
 #define insertGraphicDrawingFunction FUNCTION_ADDRESS(DrawingSceneStruct *, 0x800B0A5C, func *, ushort /*priority*/)
-#define resetAllDrawingStructs_tonop FUNCTION_ADDRESS(void, 0x800B0B2C)
-#define RunDrawScripts_with_stack_variables FUNCTION_ADDRESS(void, 0x800B0CB8)
-#define GetDrawShadows FUNCTION_ADDRESS(void, 0x800BEBB0)
-#define DrawShadows FUNCTION_ADDRESS(void, 0x800BEBC0)
-#define synthFXStar FUNCTION_ADDRESS(void, 0x800C6F18)
-#define sndFXStartEx FUNCTION_ADDRESS(enumSoundEffect_int, 0x800C836C, enumSoundEffect_short /*soundID*/, int /*volume*/, int /*pan*/, int /*studio*/)
-#define hwEnableIrq FUNCTION_ADDRESS(void, 0x800DE740)
-#define hwDisableIrq FUNCTION_ADDRESS(void, 0x800DE778)
-#define bPressOnStadSelectScreen FUNCTION_ADDRESS(void, 0x8063F370)
-#define changeScreenVariables FUNCTION_ADDRESS(void, 0x80640234, undefined2 /*newScreenCode*/)
-#define currentScreenFunctionChooser FUNCTION_ADDRESS(void, 0x8064026C)
-#define stadiumRandomizer FUNCTION_ADDRESS(void, 0x8064058C, undefined4 /*lowerBound*/, undefined4 /*upperBound*/)
-#define cursorSndFx FUNCTION_ADDRESS(void, 0x80640CC8)
-#define mainMenuRelated FUNCTION_ADDRESS(void, 0x80640FC4)
-#define mainMenuScreen FUNCTION_ADDRESS(void, 0x80641874)
-#define prepareToLoadGame_ FUNCTION_ADDRESS(void, 0x80642054)
-#define cssTransitionToNewScreen_ FUNCTION_ADDRESS(void, 0x806422D0)
-#define stopShowingCaptainProfile FUNCTION_ADDRESS(void, 0x80642664)
-#define teamReady1 FUNCTION_ADDRESS(void, 0x806444D8)
-#define cssChangeScreens FUNCTION_ADDRESS(void, 0x80645234)
-#define cssSelectCPUDifficulty FUNCTION_ADDRESS(void, 0x80645518)
-#define characterSelectScreenControlable FUNCTION_ADDRESS(void, 0x8064569C)
-#define cssUnloadScreen FUNCTION_ADDRESS(void, 0x80645DD0)
-#define cssResetRosterStruct FUNCTION_ADDRESS(void, 0x80646598)
-#define unreferenced FUNCTION_ADDRESS(void, 0x80646DD8)
-#define cssLoadingScreenRelated FUNCTION_ADDRESS(void, 0x80646E70)
-#define copyInfoToInMemRoster FUNCTION_ADDRESS(void, 0x806479D4)
-#define challengeSetRoster FUNCTION_ADDRESS(void, 0x8064B024)
-#define cssReturnToCapSelect_ FUNCTION_ADDRESS(void, 0x8064BED8)
-#define characterSelectAPress FUNCTION_ADDRESS(void, 0x8064D040, undefined4 /*team*/)
-#define characterSelectABDirectionInputs FUNCTION_ADDRESS(void, 0x8064DE28, undefined4 /*team*/, enumControllerInput /*heldButton*/, enumControllerInput /*newButton*/, enumControllerInput /*processedButton*/)
-#define randCharBasedOnClass FUNCTION_ADDRESS(void, 0x8064E294, undefined4 /*team*/)
-#define randCharacter1 FUNCTION_ADDRESS(void, 0x8064EB34, undefined4 /*team*/)
-#define randCharAlgo2 FUNCTION_ADDRESS(void, 0x8064ED48)
-#define randomCharacters FUNCTION_ADDRESS(void, 0x8064F35C, undefined4 /*team*/)
-#define characterSelectControls FUNCTION_ADDRESS(void, 0x8064F590, undefined4 /*playerNumber*/)
-#define teamSelectScreenMain FUNCTION_ADDRESS(void, 0x80650144)
-#define stadiumSelectControls FUNCTION_ADDRESS(void, 0x806503D4, undefined1 /*player*/)
-#define selectStadiumScreen FUNCTION_ADDRESS(void, 0x8065072C)
-#define challengeCaptainRelated FUNCTION_ADDRESS(void, 0x806512CC)
-#define captainSelectDefaultProcess FUNCTION_ADDRESS(void, 0x80651460)
-#define captainSelectScreen_manager FUNCTION_ADDRESS(void, 0x8065201C)
-#define checkForNewPlayer FUNCTION_ADDRESS(void, 0x80653824)
-#define captainSelect_handleCursor FUNCTION_ADDRESS(void, 0x80653D34, undefined1 /*somePlayerNum*/, undefined4 /*input*/)
-#define loadNewCaptainModelOnCapSelectScreen FUNCTION_ADDRESS(void, 0x80654198, undefined4, undefined4 /*cursorPos*/, undefined4 /*team?*/, undefined4 /*always1?*/)
-#define captainSelect_BPress FUNCTION_ADDRESS(void, 0x80654250, undefined1 /*cursorNumber*/)
-#define captainSelect_APress FUNCTION_ADDRESS(void, 0x806546A0, undefined1 /*character*/)
-#define captainSelectScreenInputs FUNCTION_ADDRESS(void, 0x80654B90, undefined4 /*playerNum*/, enumControllerInput /*heldInput*/, enumControllerInput /*newInput*/, enumControllerInput /*processedInput*/)
-#define captainSelect_handleInputs FUNCTION_ADDRESS(void, 0x80654F14, undefined4 /*playerNum*/)
-#define onlySetPort1ToActiveOnInitialCapSSLoad FUNCTION_ADDRESS(void, 0x806554B0)
-#define set807518de FUNCTION_ADDRESS(void, 0x80655ADC, undefined4 /*team*/, undefined1 /*always1?*/)
-#define captainSelectLoadScreen FUNCTION_ADDRESS(void, 0x80658050)
-#define optionsScreen_80658d98 FUNCTION_ADDRESS(void, 0x80658D98)
-#define settingValuesTo0 FUNCTION_ADDRESS(void, 0x80658FC0)
-#define challengeFileSelect_80659248 FUNCTION_ADDRESS(void, 0x80659248)
-#define challengeMap_8069249c FUNCTION_ADDRESS(void, 0x8069249C)
-#define recordsScreen_8069d198 FUNCTION_ADDRESS(void, 0x8069D198)
-#define cssCheckSomethingAboutCharacters FUNCTION_ADDRESS(void, 0x806B16F0)
-#define gfx_cssCharStatBars_sthgElse FUNCTION_ADDRESS(void, 0x806B3FD4, undefined4 /*gfxPointer*/, undefined4 /*team*/)
-#define teamSelectionSetChemStars FUNCTION_ADDRESS(void, 0x806B4C78, undefined4, undefined4 /*team*/)
-#define removeAllPlayersFromTeam FUNCTION_ADDRESS(void, 0x806B6734, undefined4 /*gfxPtr*/, undefined4 /*team*/)
-#define cssAction_0x1d FUNCTION_ADDRESS(void, 0x806B70F0)
-#define cssAction_0x1c FUNCTION_ADDRESS(void, 0x806B7400)
-#define cssAction_0x1b FUNCTION_ADDRESS(void, 0x806B7B54)
-#define cssAction_0x1a FUNCTION_ADDRESS(void, 0x806B800C)
-#define cssAction_0x19 FUNCTION_ADDRESS(void, 0x806B81C0)
-#define cssAction_0x18 FUNCTION_ADDRESS(void, 0x806B8428)
-#define randomTeamMemberSelection FUNCTION_ADDRESS(void, 0x806B89C4)
-#define cssAction_case9 FUNCTION_ADDRESS(void, 0x806BB08C)
-#define cssUnready FUNCTION_ADDRESS(void, 0x806BD414)
-#define cssReady FUNCTION_ADDRESS(void, 0x806BDA08, maybeGraphicsManager *, undefined4 /*team*/)
-#define cssRemoveCharacter2 FUNCTION_ADDRESS(void, 0x806BE0C4)
-#define cssRemoveCharacter1 FUNCTION_ADDRESS(void, 0x806BE350, undefined4, undefined4 /*team*/, undefined4, undefined4, undefined4)
-#define cssSelectCharacter FUNCTION_ADDRESS(void, 0x806BE950, int /*gfxPointer*/, int /*team*/, undefined4, undefined4, char /*positionNum*/)
-#define captainSelectUnloadCSSLoadRelated FUNCTION_ADDRESS(void, 0x806BF144, undefined4, undefined4 /*index*/)
-#define maybeBackgroundImagesForCaptain FUNCTION_ADDRESS(void, 0x806BFFF0)
-#define cssActions FUNCTION_ADDRESS(void, 0x806C06BC, void *, void *, undefined4, undefined4, undefined1)
-#define relatedToTeamSelection3 FUNCTION_ADDRESS(void, 0x806C1830)
-#define relatedToTeamSelection4 FUNCTION_ADDRESS(void, 0x806C1EEC)
-#define stadiumRandomRelated FUNCTION_ADDRESS(void, 0x806C2BC8)
-#define unreferenced_806c341c FUNCTION_ADDRESS(void, 0x806C341C)
-#define stadiumScreenAnimations_ FUNCTION_ADDRESS(void, 0x806C403C)
-#define loadStadiumScreen_ FUNCTION_ADDRESS(void, 0x806C419C)
-#define unreferenced_806c423c FUNCTION_ADDRESS(void, 0x806C423C)
-#define titleScreen_806cdf5c FUNCTION_ADDRESS(void, 0x806CDF5C)
+static inline void resetAllDrawingStructs_tonop(void) { ((void(*)(void))0x800B0B2C)(); }
+static inline void RunDrawScripts_with_stack_variables(void) { ((void(*)(void))0x800B0CB8)(); }
+static inline void GetDrawShadows(void) { ((void(*)(void))0x800BEBB0)(); }
+static inline void DrawShadows(undefined param_1) { ((void(*)(undefined))0x800BEBC0)(param_1); }
+static inline void synthFXStar(undefined4 param_1, undefined4 param_2, uint param_3, uint param_4, undefined4 param_5, undefined4 param_6) { ((void(*)(undefined4, undefined4, uint, uint, undefined4, undefined4))0x800C6F18)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline enumSoundEffect_int sndFXStartEx(enumSoundEffect_short soundID, int volume, int pan, int studio) { return ((enumSoundEffect_int(*)(enumSoundEffect_short, int, int, int))0x800C836C)(soundID, volume, pan, studio); }
+static inline void hwEnableIrq(void) { ((void(*)(void))0x800DE740)(); }
+static inline void hwDisableIrq(void) { ((void(*)(void))0x800DE778)(); }
+static inline void bPressOnStadSelectScreen(void) { ((void(*)(void))0x8063F370)(); }
+static inline void changeScreenVariables(undefined2 newScreenCode) { ((void(*)(undefined2))0x80640234)(newScreenCode); }
+static inline void currentScreenFunctionChooser(void) { ((void(*)(void))0x8064026C)(); }
+static inline void stadiumRandomizer(undefined4 lowerBound, undefined4 upperBound) { ((void(*)(undefined4, undefined4))0x8064058C)(lowerBound, upperBound); }
+static inline void cursorSndFx(ushort param_1) { ((void(*)(ushort))0x80640CC8)(param_1); }
+static inline void mainMenuRelated(void) { ((void(*)(void))0x80640FC4)(); }
+static inline void mainMenuScreen(void) { ((void(*)(void))0x80641874)(); }
+static inline void prepareToLoadGame_(byte param_1, int param_2, int param_3) { ((void(*)(byte, int, int))0x80642054)(param_1, param_2, param_3); }
+static inline void cssTransitionToNewScreen_(void) { ((void(*)(void))0x806422D0)(); }
+static inline bool stopShowingCaptainProfile(uint param_1) { return ((bool(*)(uint))0x80642664)(param_1); }
+static inline void teamReady1(byte param_1) { ((void(*)(byte))0x806444D8)(param_1); }
+static inline void cssChangeScreens(void) { ((void(*)(void))0x80645234)(); }
+static inline void cssSelectCPUDifficulty(void) { ((void(*)(void))0x80645518)(); }
+static inline void characterSelectScreenControlable(void) { ((void(*)(void))0x8064569C)(); }
+static inline void cssUnloadScreen(void) { ((void(*)(void))0x80645DD0)(); }
+static inline void cssResetRosterStruct(void) { ((void(*)(void))0x80646598)(); }
+static inline void unreferenced(void) { ((void(*)(void))0x80646DD8)(); }
+static inline void cssLoadingScreenRelated(void) { ((void(*)(void))0x80646E70)(); }
+static inline void copyInfoToInMemRoster(void) { ((void(*)(void))0x806479D4)(); }
+static inline void challengeSetRoster(void) { ((void(*)(void))0x8064B024)(); }
+static inline void cssReturnToCapSelect_(uint param_1) { ((void(*)(uint))0x8064BED8)(param_1); }
+static inline void characterSelectAPress(undefined4 team) { ((void(*)(undefined4))0x8064D040)(team); }
+static inline void characterSelectABDirectionInputs(undefined4 team, enumControllerInput heldButton, enumControllerInput newButton, enumControllerInput processedButton) { ((void(*)(undefined4, enumControllerInput, enumControllerInput, enumControllerInput))0x8064DE28)(team, heldButton, newButton, processedButton); }
+static inline void randCharBasedOnClass(undefined4 team) { ((void(*)(undefined4))0x8064E294)(team); }
+static inline void randCharacter1(undefined4 team) { ((void(*)(undefined4))0x8064EB34)(team); }
+static inline void randCharAlgo2(uint param_1) { ((void(*)(uint))0x8064ED48)(param_1); }
+static inline void randomCharacters(undefined4 team) { ((void(*)(undefined4))0x8064F35C)(team); }
+static inline void characterSelectControls(undefined4 playerNumber) { ((void(*)(undefined4))0x8064F590)(playerNumber); }
+static inline void teamSelectScreenMain(void) { ((void(*)(void))0x80650144)(); }
+static inline void stadiumSelectControls(undefined1 player) { ((void(*)(undefined1))0x806503D4)(player); }
+static inline void selectStadiumScreen(void) { ((void(*)(void))0x8065072C)(); }
+static inline void challengeCaptainRelated(void) { ((void(*)(void))0x806512CC)(); }
+static inline void captainSelectDefaultProcess(void) { ((void(*)(void))0x80651460)(); }
+static inline void captainSelectScreen_manager(void) { ((void(*)(void))0x8065201C)(); }
+static inline void checkForNewPlayer(void) { ((void(*)(void))0x80653824)(); }
+static inline void captainSelect_handleCursor(undefined1 somePlayerNum, undefined4 input) { ((void(*)(undefined1, undefined4))0x80653D34)(somePlayerNum, input); }
+static inline void loadNewCaptainModelOnCapSelectScreen(undefined4 param_1, undefined4 cursorPos, undefined4 team_, undefined4 always1_) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x80654198)(param_1, cursorPos, team_, always1_); }
+static inline void captainSelect_BPress(undefined1 cursorNumber) { ((void(*)(undefined1))0x80654250)(cursorNumber); }
+static inline void captainSelect_APress(undefined1 character) { ((void(*)(undefined1))0x806546A0)(character); }
+static inline void captainSelectScreenInputs(undefined4 playerNum, enumControllerInput heldInput, enumControllerInput newInput, enumControllerInput processedInput) { ((void(*)(undefined4, enumControllerInput, enumControllerInput, enumControllerInput))0x80654B90)(playerNum, heldInput, newInput, processedInput); }
+static inline void captainSelect_handleInputs(undefined4 playerNum) { ((void(*)(undefined4))0x80654F14)(playerNum); }
+static inline void onlySetPort1ToActiveOnInitialCapSSLoad(void) { ((void(*)(void))0x806554B0)(); }
+static inline void set807518de(undefined4 team, undefined1 always1_) { ((void(*)(undefined4, undefined1))0x80655ADC)(team, always1_); }
+static inline void captainSelectLoadScreen(void) { ((void(*)(void))0x80658050)(); }
+static inline void optionsScreen_80658d98(void) { ((void(*)(void))0x80658D98)(); }
+static inline void settingValuesTo0(void) { ((void(*)(void))0x80658FC0)(); }
+static inline void challengeFileSelect_80659248(void) { ((void(*)(void))0x80659248)(); }
+static inline void challengeMap_8069249c(void) { ((void(*)(void))0x8069249C)(); }
+static inline void recordsScreen_8069d198(void) { ((void(*)(void))0x8069D198)(); }
+static inline void cssCheckSomethingAboutCharacters(void) { ((void(*)(void))0x806B16F0)(); }
+static inline void gfx_cssCharStatBars_sthgElse(undefined4 gfxPointer, undefined4 team) { ((void(*)(undefined4, undefined4))0x806B3FD4)(gfxPointer, team); }
+static inline void teamSelectionSetChemStars(undefined4 param_1, undefined4 team) { ((void(*)(undefined4, undefined4))0x806B4C78)(param_1, team); }
+static inline void removeAllPlayersFromTeam(undefined4 gfxPtr, undefined4 team) { ((void(*)(undefined4, undefined4))0x806B6734)(gfxPtr, team); }
+static inline void cssAction_0x1d(maybeGraphicsManager * param_1, int param_2) { ((void(*)(maybeGraphicsManager *, int))0x806B70F0)(param_1, param_2); }
+static inline void cssAction_0x1c(maybeGraphicsManager * param_1, int param_2) { ((void(*)(maybeGraphicsManager *, int))0x806B7400)(param_1, param_2); }
+static inline void cssAction_0x1b(maybeGraphicsManager * param_1, int param_2) { ((void(*)(maybeGraphicsManager *, int))0x806B7B54)(param_1, param_2); }
+static inline void cssAction_0x1a(int param_1, int param_2) { ((void(*)(int, int))0x806B800C)(param_1, param_2); }
+static inline void cssAction_0x19(maybeGraphicsManager * param_1, uint param_2) { ((void(*)(maybeGraphicsManager *, uint))0x806B81C0)(param_1, param_2); }
+static inline void cssAction_0x18(int param_1, int param_2) { ((void(*)(int, int))0x806B8428)(param_1, param_2); }
+static inline void randomTeamMemberSelection(int param_1, int param_2) { ((void(*)(int, int))0x806B89C4)(param_1, param_2); }
+static inline void cssAction_case9(maybeGraphicsManager * param_1, int param_2) { ((void(*)(maybeGraphicsManager *, int))0x806BB08C)(param_1, param_2); }
+static inline void cssUnready(int param_1, int param_2) { ((void(*)(int, int))0x806BD414)(param_1, param_2); }
+static inline void cssReady(maybeGraphicsManager * param_1, undefined4 team) { ((void(*)(maybeGraphicsManager *, undefined4))0x806BDA08)(param_1, team); }
+static inline void cssRemoveCharacter2(maybeGraphicsManager * param_1, int param_2) { ((void(*)(maybeGraphicsManager *, int))0x806BE0C4)(param_1, param_2); }
+static inline void cssRemoveCharacter1(undefined4 param_1, undefined4 team, undefined4 param_3, undefined4 param_4, undefined4 param_5) { ((void(*)(undefined4, undefined4, undefined4, undefined4, undefined4))0x806BE350)(param_1, team, param_3, param_4, param_5); }
+static inline void cssSelectCharacter(int gfxPointer, int team, undefined4 param_3, undefined4 param_4, char positionNum) { ((void(*)(int, int, undefined4, undefined4, char))0x806BE950)(gfxPointer, team, param_3, param_4, positionNum); }
+static inline void captainSelectUnloadCSSLoadRelated(undefined4 param_1, undefined4 index) { ((void(*)(undefined4, undefined4))0x806BF144)(param_1, index); }
+static inline void maybeBackgroundImagesForCaptain(int param_1, uint param_2) { ((void(*)(int, uint))0x806BFFF0)(param_1, param_2); }
+static inline void cssActions(void * param_1, void * param_2, undefined4 param_3, undefined4 param_4, undefined1 param_5) { ((void(*)(void *, void *, undefined4, undefined4, undefined1))0x806C06BC)(param_1, param_2, param_3, param_4, param_5); }
+static inline void relatedToTeamSelection3(void) { ((void(*)(void))0x806C1830)(); }
+static inline void relatedToTeamSelection4(void) { ((void(*)(void))0x806C1EEC)(); }
+static inline void stadiumRandomRelated(maybeGraphicsManager * param_1, int param_2) { ((void(*)(maybeGraphicsManager *, int))0x806C2BC8)(param_1, param_2); }
+static inline void unreferenced_806c341c(maybeGraphicsManager * param_1) { ((void(*)(maybeGraphicsManager *))0x806C341C)(param_1); }
+static inline void stadiumScreenAnimations_(void) { ((void(*)(void))0x806C403C)(); }
+static inline void loadStadiumScreen_(void) { ((void(*)(void))0x806C419C)(); }
+static inline void unreferenced_806c423c(void) { ((void(*)(void))0x806C423C)(); }
+static inline void titleScreen_806cdf5c(void) { ((void(*)(void))0x806CDF5C)(); }
 
