@@ -107,12 +107,12 @@ typedef struct ANIMPipe ANIMPipe, *PANIMPipe;
 typedef struct DSLink_conflict DSLink_conflict, *PDSLink_conflict;
 
 enum {
-    CTRL_NONE=0,
-    CTRL_SCALE=1,
-    CTRL_ROT_EULER=2,
-    CTRL_ROT_QUAT=4,
-    CTRL_TRANS=8,
-    CTRL_MTX=16
+    EnumCTRLControlType_CTRL_NONE=0,
+    EnumCTRLControlType_CTRL_SCALE=1,
+    EnumCTRLControlType_CTRL_ROT_EULER=2,
+    EnumCTRLControlType_CTRL_ROT_QUAT=4,
+    EnumCTRLControlType_CTRL_TRANS=8,
+    EnumCTRLControlType_CTRL_MTX=16
 };
 typedef unsigned char EnumCTRLControlType;
 
@@ -133,10 +133,10 @@ typedef struct DrawingSceneStruct_conflict DrawingSceneStruct_conflict, *PDrawin
 typedef struct CTRLSRTControl CTRLSRTControl, *PCTRLSRTControl;
 
 enum {
-    DISPLAY_STATE_TEXTURE=1,
-    DISPLAY_STATE_VCD=3,
-    DISPLAY_STATE_TEXTURE_COMBINE=4,
-    DISPLAY_STATE_MTXLOAD=5
+    enumDisplayState_DISPLAY_STATE_TEXTURE=1,
+    enumDisplayState_DISPLAY_STATE_VCD=3,
+    enumDisplayState_DISPLAY_STATE_TEXTURE_COMBINE=4,
+    enumDisplayState_DISPLAY_STATE_MTXLOAD=5
 };
 typedef unsigned char enumDisplayState;
 
@@ -605,59 +605,59 @@ typedef unsigned short EnumCharacterAnimation_short;
 
 enum {
     enumCharacterID_byte_mario=0,
-    luigi=1,
+    enumCharacterID_byte_luigi=1,
     enumCharacterID_byte_DK=2,
-    diddy=3,
+    enumCharacterID_byte_diddy=3,
     enumCharacterID_byte_peach=4,
-    daisy=5,
+    enumCharacterID_byte_daisy=5,
     enumCharacterID_byte_yoshi=6,
-    babyMario=7,
-    babyLuigi=8,
+    enumCharacterID_byte_babyMario=7,
+    enumCharacterID_byte_babyLuigi=8,
     enumCharacterID_byte_bowser=9,
     enumCharacterID_byte_Wario=10,
-    waluigi=11,
-    koopa_G_=12,
-    toad_R_=13,
-    boo=14,
-    toadette=15,
-    shyGuy_R_=16,
-    birdo=17,
-    monty=18,
-    bowserJr=19,
-    ParaR=20,
-    PiantaB=21,
-    PiantaR=22,
-    PiantaY=23,
-    NokiB=24,
-    NokiR=25,
-    NokiG=26,
-    BroH=27,
-    toadsworth=28,
-    toadB=29,
-    toadY=30,
-    toadG=31,
-    toadP=32,
-    magB=33,
-    magR=34,
-    magG=35,
-    magY=36,
-    kingBoo=37,
-    petey=38,
-    dixie=39,
-    goomba=40,
-    paragoomba=41,
-    koopaR=42,
-    paraG=43,
-    shyguyB=44,
-    shyguyY=45,
-    shyguyG=46,
-    shyguyBl=47,
-    boneGy=48,
-    bonesG=49,
-    bonesR=50,
-    bonesB=51,
-    broF=52,
-    broB=53
+    enumCharacterID_byte_waluigi=11,
+    enumCharacterID_byte_koopa_G_=12,
+    enumCharacterID_byte_toad_R_=13,
+    enumCharacterID_byte_boo=14,
+    enumCharacterID_byte_toadette=15,
+    enumCharacterID_byte_shyGuy_R_=16,
+    enumCharacterID_byte_birdo=17,
+    enumCharacterID_byte_monty=18,
+    enumCharacterID_byte_bowserJr=19,
+    enumCharacterID_byte_ParaR=20,
+    enumCharacterID_byte_PiantaB=21,
+    enumCharacterID_byte_PiantaR=22,
+    enumCharacterID_byte_PiantaY=23,
+    enumCharacterID_byte_NokiB=24,
+    enumCharacterID_byte_NokiR=25,
+    enumCharacterID_byte_NokiG=26,
+    enumCharacterID_byte_BroH=27,
+    enumCharacterID_byte_toadsworth=28,
+    enumCharacterID_byte_toadB=29,
+    enumCharacterID_byte_toadY=30,
+    enumCharacterID_byte_toadG=31,
+    enumCharacterID_byte_toadP=32,
+    enumCharacterID_byte_magB=33,
+    enumCharacterID_byte_magR=34,
+    enumCharacterID_byte_magG=35,
+    enumCharacterID_byte_magY=36,
+    enumCharacterID_byte_kingBoo=37,
+    enumCharacterID_byte_petey=38,
+    enumCharacterID_byte_dixie=39,
+    enumCharacterID_byte_goomba=40,
+    enumCharacterID_byte_paragoomba=41,
+    enumCharacterID_byte_koopaR=42,
+    enumCharacterID_byte_paraG=43,
+    enumCharacterID_byte_shyguyB=44,
+    enumCharacterID_byte_shyguyY=45,
+    enumCharacterID_byte_shyguyG=46,
+    enumCharacterID_byte_shyguyBl=47,
+    enumCharacterID_byte_boneGy=48,
+    enumCharacterID_byte_bonesG=49,
+    enumCharacterID_byte_bonesR=50,
+    enumCharacterID_byte_bonesB=51,
+    enumCharacterID_byte_broF=52,
+    enumCharacterID_byte_broB=53
 };
 typedef unsigned char enumCharacterID_byte;
 
@@ -736,8 +736,8 @@ struct AnimationStruct {
 } __attribute__((packed));
 
 enum {
-    FALSE=0,
-    TRUE=1
+    BOOL_FALSE=0,
+    BOOL_TRUE=1
 };
 typedef unsigned int BOOL;
 
@@ -751,10 +751,10 @@ struct BoxCorners {
 typedef struct CLUTHeader CLUTHeader, *PCLUTHeader;
 
 enum {
-    GX_TL_IA8=0,
-    GX_TL_RGB565=1,
-    GX_TL_RGB5A3=2,
-    GX_MAX_TLUTFMT=3
+    GXTlutFmt_GX_TL_IA8=0,
+    GXTlutFmt_GX_TL_RGB565=1,
+    GXTlutFmt_GX_TL_RGB5A3=2,
+    GXTlutFmt_GX_MAX_TLUTFMT=3
 };
 typedef unsigned int GXTlutFmt;
 
@@ -773,30 +773,30 @@ typedef struct StatTable StatTable, *PStatTable;
 typedef struct ChemistryTable ChemistryTable, *PChemistryTable;
 
 enum {
-    WallSplat=1,
-    WallJump=2,
-    Clamber=4,
-    SlidingCatch=8,
-    Laser=16,
-    QuickThrow=32,
-    SuperJump=64,
-    MagicalCatch=128,
-    TongueCatch=256,
-    Suction=512,
-    SuperCatch=1024,
-    BallDash=2048,
-    BodyCheck=4096,
-    SuperCurve=8192,
-    Unassigned=16384,
-    Unassigned2=32768
+    EnumFieldingAbilities_WallSplat=1,
+    EnumFieldingAbilities_WallJump=2,
+    EnumFieldingAbilities_Clamber=4,
+    EnumFieldingAbilities_SlidingCatch=8,
+    EnumFieldingAbilities_Laser=16,
+    EnumFieldingAbilities_QuickThrow=32,
+    EnumFieldingAbilities_SuperJump=64,
+    EnumFieldingAbilities_MagicalCatch=128,
+    EnumFieldingAbilities_TongueCatch=256,
+    EnumFieldingAbilities_Suction=512,
+    EnumFieldingAbilities_SuperCatch=1024,
+    EnumFieldingAbilities_BallDash=2048,
+    EnumFieldingAbilities_BodyCheck=4096,
+    EnumFieldingAbilities_SuperCurve=8192,
+    EnumFieldingAbilities_Unassigned=16384,
+    EnumFieldingAbilities_Unassigned2=32768
 };
 typedef unsigned int EnumFieldingAbilities;
 
 enum {
-    Balanced=0,
-    Power=1,
-    Speed=2,
-    Technique=3
+    EnumCharacterClass_Balanced=0,
+    EnumCharacterClass_Power=1,
+    EnumCharacterClass_Speed=2,
+    EnumCharacterClass_Technique=3
 };
 typedef unsigned char EnumCharacterClass;
 
@@ -903,19 +903,19 @@ typedef struct TriangleGroup TriangleGroup, *PTriangleGroup;
 typedef struct CollisionTriangle CollisionTriangle, *PCollisionTriangle;
 
 enum {
-    NO_COLLISION=0,
-    GRASS=1,
-    WALL=2,
-    STRUCTURE=3,
-    FOUL_LINE_MARKER=4,
-    UNCLIMBABLE_WALL=5,
-    DIRT=6,
-    PIT_WALL=7,
-    PIT=8,
-    ROUGH_TERRAIN=9,
-    WATER=10,
-    CHOMP_HAZARD=11,
-    FOUL=128
+    TriangleCollisionTypes_NO_COLLISION=0,
+    TriangleCollisionTypes_GRASS=1,
+    TriangleCollisionTypes_WALL=2,
+    TriangleCollisionTypes_STRUCTURE=3,
+    TriangleCollisionTypes_FOUL_LINE_MARKER=4,
+    TriangleCollisionTypes_UNCLIMBABLE_WALL=5,
+    TriangleCollisionTypes_DIRT=6,
+    TriangleCollisionTypes_PIT_WALL=7,
+    TriangleCollisionTypes_PIT=8,
+    TriangleCollisionTypes_ROUGH_TERRAIN=9,
+    TriangleCollisionTypes_WATER=10,
+    TriangleCollisionTypes_CHOMP_HAZARD=11,
+    TriangleCollisionTypes_FOUL=128
 };
 typedef unsigned short TriangleCollisionTypes;
 
@@ -1037,21 +1037,21 @@ struct EOSPad {
 
 enum {
     EnumAtBatResult_byte_default_=0,
-    StrikeOut=1,
-    WalkBB=2,
-    WalkHBP=3,
-    Out=4,
-    CaughtLineDrive=5,
-    CaughtAnythingElse=6,
-    Single=7,
-    Double=8,
-    Triple=9,
-    HomeRun=10,
-    error__=11,
-    forceRelated=12,
-    BuntSucceeded=13,
-    SacFly=14,
-    SpecialOut_forceDoublePlay=15,
+    EnumAtBatResult_byte_StrikeOut=1,
+    EnumAtBatResult_byte_WalkBB=2,
+    EnumAtBatResult_byte_WalkHBP=3,
+    EnumAtBatResult_byte_Out=4,
+    EnumAtBatResult_byte_CaughtLineDrive=5,
+    EnumAtBatResult_byte_CaughtAnythingElse=6,
+    EnumAtBatResult_byte_Single=7,
+    EnumAtBatResult_byte_Double=8,
+    EnumAtBatResult_byte_Triple=9,
+    EnumAtBatResult_byte_HomeRun=10,
+    EnumAtBatResult_byte_error__=11,
+    EnumAtBatResult_byte_forceRelated=12,
+    EnumAtBatResult_byte_BuntSucceeded=13,
+    EnumAtBatResult_byte_SacFly=14,
+    EnumAtBatResult_byte_SpecialOut_forceDoublePlay=15,
     EnumAtBatResult_byte_Unknown=16
 };
 typedef unsigned char EnumAtBatResult_byte;
@@ -1483,8 +1483,8 @@ struct Static_MSSB_Data {
     byte field29_0x472b;
     struct controllerInputStruct controllerInputs[2];
     byte pad[16];
-    pointer (*ptrPtrFuncArray)[0];
-    pointer (*unkPtr)[0];
+    void * (*ptrPtrFuncArray)[0];
+    void * (*unkPtr)[0];
     byte pad2;
     byte field35_0x4751;
     byte field36_0x4752[2];
@@ -1633,7 +1633,7 @@ struct Vec2f {
 typedef struct astruct astruct, *Pastruct;
 
 enum {
-    neutral=0,
+    enumCharacterSelectActionCode_neutral=0,
     enumCharacterSelectActionCode_captainSelect=1  /* needs to be double checked */,
     enumCharacterSelectActionCode_moveCaptainCursor=3,
     enumCharacterSelectActionCode_loadTeamSelection=7,
@@ -1643,14 +1643,14 @@ enum {
     enumCharacterSelectActionCode_movePositionCursor=14,
     enumCharacterSelectActionCode_selectCharacter=15,
     enumCharacterSelectActionCode_removeCharacter=16,
-    Ready=17,
-    Unready=18,
+    enumCharacterSelectActionCode_Ready=17,
+    enumCharacterSelectActionCode_Unready=18,
     enumCharacterSelectActionCode_goToBattingOrder=19,
     enumCharacterSelectActionCode_randomize=22,
-    initializeBattingOrderCursor=56,
-    swapBatter=59,
-    toggleLineUpsAndPositions=60,
-    moveBattingOrderCursor=61
+    enumCharacterSelectActionCode_initializeBattingOrderCursor=56,
+    enumCharacterSelectActionCode_swapBatter=59,
+    enumCharacterSelectActionCode_toggleLineUpsAndPositions=60,
+    enumCharacterSelectActionCode_moveBattingOrderCursor=61
 };
 typedef unsigned char enumCharacterSelectActionCode;
 
@@ -1897,48 +1897,46 @@ struct astruct_1 {
 
 typedef struct astruct_2 astruct_2, *Pastruct_2;
 
-struct astruct_2 {
-} __attribute__((packed));
 
 enum {
-    grandSlam=1,
-    _3RunHR=2,
-    _2RunHR=3,
-    soloHR=4,
-    insideTheParkHR=5,
-    rBITriple=6,
-    rBIDouble=7,
-    rBISingle=8,
-    rBIInfieldSingle=9,
-    rBIFieldersChoice_=10,
-    tripleNoRBI=11,
-    doubleNoRBI=12,
-    singleNoRBI=13,
-    infieldSingleNoRBI=14,
-    fieldersChoiceNoRBI_=15,
-    sacFlyRBI=17,
-    flyBallCaught=18,
-    lineDriveCaught=19,
-    groundBallOutOnBatter=20,
-    GroundBallOut_ForceOnNonBatter=21,
-    triplePlayGroundBall=22,
-    triplePlay=23,
-    groundBallDoublePlay=24,
-    doublePlay=25,
-    flyOut_InfFly_TagUpOutsOnR1OrR2=26,
-    buntSingle=28,
-    outGoingForBuntSingle=29,
-    sacBunt=30,
-    sacBuntFailed=31,
-    sacBuntPoppedOut=32,
-    oneRunnerAdvancedOnPBunt=33,
-    buntOut=34,
-    swingingStrikeout=36,
-    lookingStrikeout=37,
-    missedBuntStrikeout=38,
-    foulBuntStrikeOut=39,
-    walk=42,
-    hitBatter=43,
+    atBatResult_grandSlam=1,
+    atBatResult__3RunHR=2,
+    atBatResult__2RunHR=3,
+    atBatResult_soloHR=4,
+    atBatResult_insideTheParkHR=5,
+    atBatResult_rBITriple=6,
+    atBatResult_rBIDouble=7,
+    atBatResult_rBISingle=8,
+    atBatResult_rBIInfieldSingle=9,
+    atBatResult_rBIFieldersChoice_=10,
+    atBatResult_tripleNoRBI=11,
+    atBatResult_doubleNoRBI=12,
+    atBatResult_singleNoRBI=13,
+    atBatResult_infieldSingleNoRBI=14,
+    atBatResult_fieldersChoiceNoRBI_=15,
+    atBatResult_sacFlyRBI=17,
+    atBatResult_flyBallCaught=18,
+    atBatResult_lineDriveCaught=19,
+    atBatResult_groundBallOutOnBatter=20,
+    atBatResult_GroundBallOut_ForceOnNonBatter=21,
+    atBatResult_triplePlayGroundBall=22,
+    atBatResult_triplePlay=23,
+    atBatResult_groundBallDoublePlay=24,
+    atBatResult_doublePlay=25,
+    atBatResult_flyOut_InfFly_TagUpOutsOnR1OrR2=26,
+    atBatResult_buntSingle=28,
+    atBatResult_outGoingForBuntSingle=29,
+    atBatResult_sacBunt=30,
+    atBatResult_sacBuntFailed=31,
+    atBatResult_sacBuntPoppedOut=32,
+    atBatResult_oneRunnerAdvancedOnPBunt=33,
+    atBatResult_buntOut=34,
+    atBatResult_swingingStrikeout=36,
+    atBatResult_lookingStrikeout=37,
+    atBatResult_missedBuntStrikeout=38,
+    atBatResult_foulBuntStrikeOut=39,
+    atBatResult_walk=42,
+    atBatResult_hitBatter=43,
     atBatResult_foul=44
 };
 typedef unsigned short atBatResult;
@@ -1971,13 +1969,13 @@ struct battingPriority {
 } __attribute__((packed));
 
 enum {
-    nothing=0,
-    loadCheckStars=1,
-    ExitCheckStars=2,
-    moveInCharList=3,
-    moveInStarList=4,
-    loadCharView=5,
-    exitCharView=6
+    challengeCheckStarsLoadingScreenNum_nothing=0,
+    challengeCheckStarsLoadingScreenNum_loadCheckStars=1,
+    challengeCheckStarsLoadingScreenNum_ExitCheckStars=2,
+    challengeCheckStarsLoadingScreenNum_moveInCharList=3,
+    challengeCheckStarsLoadingScreenNum_moveInStarList=4,
+    challengeCheckStarsLoadingScreenNum_loadCharView=5,
+    challengeCheckStarsLoadingScreenNum_exitCharView=6
 };
 typedef unsigned char challengeCheckStarsLoadingScreenNum;
 
@@ -1988,36 +1986,36 @@ typedef struct structScoutFlagQuantites structScoutFlagQuantites, *PstructScoutF
 enum {
     enumChallengeCaptain_mario=0,
     enumChallengeCaptain_peach=1,
-    wario=2,
-    dk=3,
+    enumChallengeCaptain_wario=2,
+    enumChallengeCaptain_dk=3,
     enumChallengeCaptain_yoshi=4,
     enumChallengeCaptain_bowser=5
 };
 typedef unsigned char enumChallengeCaptain;
 
 enum {
-    primaryCaptain=0,
-    secondaryCaptain=1,
-    uniqueNonCaptain=2,
-    primaryVariant=3,
-    secondaryVariant=4
+    characterVariantClassification_primaryCaptain=0,
+    characterVariantClassification_secondaryCaptain=1,
+    characterVariantClassification_uniqueNonCaptain=2,
+    characterVariantClassification_primaryVariant=3,
+    characterVariantClassification_secondaryVariant=4
 };
 typedef unsigned char characterVariantClassification;
 
 typedef struct starMissionTrackingPair starMissionTrackingPair, *PstarMissionTrackingPair;
 
 enum {
-    notRecruited=0,
-    recruited=1,
-    onBJTeam=2
+    enumChallengeRecruitmentCd_notRecruited=0,
+    enumChallengeRecruitmentCd_recruited=1,
+    enumChallengeRecruitmentCd_onBJTeam=2
 };
 typedef unsigned char enumChallengeRecruitmentCd;
 
 enum {
-    notCompleted=0,
-    track1Completion=1,
-    completedSaved=254,
-    completedConditionally=255  /* Mission requirement fulfilled but game needs to end to save */
+    enumStarMissionTracking_Completed_notCompleted=0,
+    enumStarMissionTracking_Completed_track1Completion=1,
+    enumStarMissionTracking_Completed_completedSaved=254,
+    enumStarMissionTracking_Completed_completedConditionally=255  /* Mission requirement fulfilled but game needs to end to save */
 };
 typedef unsigned char enumStarMissionTracking_Completed;
 
@@ -2078,18 +2076,18 @@ enum {
     enum_movePositionCursor=12,
     enum_selectCharacter=13,
     enum_removeCharacter=14,
-    ready=15,
-    unready=16,
+    enum_ready=15,
+    enum_unready=16,
     enum_goToBattingOrder=19,
     enum_randomize=23
 };
-typedef unsigned char enum;
+typedef unsigned char enum_;
 
 enum {
-    mushroom=0,
-    flower=1,
-    star=2,
-    special=3
+    enumChallengeDifficulty_mushroom=0,
+    enumChallengeDifficulty_flower=1,
+    enumChallengeDifficulty_star=2,
+    enumChallengeDifficulty_special=3
 };
 typedef unsigned char enumChallengeDifficulty;
 
@@ -2148,7 +2146,7 @@ enum {
     enumCharIDByte_DryBones9B_=51,
     enumCharIDByte_Bro_F_=52,
     enumCharIDByte_Bro_B_=53,
-    questionMark=54  /* Shown on the css screen */,
+    enumCharIDByte_questionMark=54  /* Shown on the css screen */,
     enumCharIDByte_none=255
 };
 typedef unsigned char enumCharIDByte;
@@ -2213,119 +2211,119 @@ enum {
 typedef unsigned short enumCharIDShort;
 
 enum {
-    moveCursor=3
+    enumCharacterSelectProcess__moveCursor=3
 };
 typedef unsigned char enumCharacterSelectProcess_;
 
 enum {
-    exhibition=0,
-    practice=2,
-    demo=4,
-    challenge=5,
-    toyField=6,
-    miniGames=7
+    enumGameMode_exhibition=0,
+    enumGameMode_practice=2,
+    enumGameMode_demo=4,
+    enumGameMode_challenge=5,
+    enumGameMode_toyField=6,
+    enumGameMode_miniGames=7
 };
 typedef unsigned char enumGameMode;
 
 enum {
     enumGameSetUpStep_captainSelect=1,
     enumGameSetUpStep_rosterSelect=2,
-    setLineup=3,
-    stadium_matchSettings=4
+    enumGameSetUpStep_setLineup=3,
+    enumGameSetUpStep_stadium_matchSettings=4
 };
 typedef unsigned char enumGameSetUpStep;
 
 enum {
-    notSettingScreen=0,
-    loadGameOptions=1,
-    gameOptions=2,
+    enumGameSettingScreen_notSettingScreen=0,
+    enumGameSettingScreen_loadGameOptions=1,
+    enumGameSettingScreen_gameOptions=2,
     enumGameSettingScreen_controlOptions=3,
-    backoutOfOptions=5
+    enumGameSettingScreen_backoutOfOptions=5
 };
 typedef unsigned short enumGameSettingScreen;
 
 enum {
-    stadiumSelect=0,
-    loadMatchSettings=1,
+    enumGameSettingScreenProcess_stadiumSelect=0,
+    enumGameSettingScreenProcess_loadMatchSettings=1,
     enumGameSettingScreenProcess_matchSettings=2,
     enumGameSettingScreenProcess_controlOptions=3,
-    okOrReturnToStadSelect=5
+    enumGameSettingScreenProcess_okOrReturnToStadSelect=5
 };
 typedef unsigned short enumGameSettingScreenProcess;
 
 enum {
-    changePlayerProfilePage=439,
-    closePlayerProfilePage=441
+    enumLoadScreenElement__changePlayerProfilePage=439,
+    enumLoadScreenElement__closePlayerProfilePage=441
 };
 typedef unsigned int enumLoadScreenElement_;
 
 enum {
-    mainMenu_exhibition_capSelect=0,
-    exhibition_charSelect=2,
-    exhibition_battingLineup=4,
-    exhibition_stadiumSelect=5,
-    exhibition_gameOptions=6,
-    exhibition_controlOptions=7,
-    challenge_saveFileSelect=11,
-    challenge_levelSelect=12,
-    challenge_capSelect=13,
-    challenge_checkStars=14,
-    challenge_itemList=15,
-    challenge_save=16,
-    challengeMatch_charSelect=19,
-    challengeMatch_gameOptions=20,
-    challengeMatch_controlOptions=21,
-    challengeMatch_battingLineups=22,
-    toyField_charSelect=47,
-    toyField_turnSettings=48,
-    toyField_rules=50,
-    minigames_selectGame=51,
-    minigames_charSelect=53,
-    minigames_difficulty=54,
-    minigames_startGame=55,
-    minigames_rules=56,
-    practice_selectType=60,
-    practice_selectSubType=61,
-    practice_charSelect=62,
-    records_mainScreen=83,
-    records_exhibitionMVP=84,
-    records_challengeTrophies=85,
-    records_challengeSuperstars=86,
-    records_toyField=87,
-    records_minigameGrandPrix=88,
-    records_minigameHighScores=89,
-    options=91
+    enumMenuNumber_mainMenu_exhibition_capSelect=0,
+    enumMenuNumber_exhibition_charSelect=2,
+    enumMenuNumber_exhibition_battingLineup=4,
+    enumMenuNumber_exhibition_stadiumSelect=5,
+    enumMenuNumber_exhibition_gameOptions=6,
+    enumMenuNumber_exhibition_controlOptions=7,
+    enumMenuNumber_challenge_saveFileSelect=11,
+    enumMenuNumber_challenge_levelSelect=12,
+    enumMenuNumber_challenge_capSelect=13,
+    enumMenuNumber_challenge_checkStars=14,
+    enumMenuNumber_challenge_itemList=15,
+    enumMenuNumber_challenge_save=16,
+    enumMenuNumber_challengeMatch_charSelect=19,
+    enumMenuNumber_challengeMatch_gameOptions=20,
+    enumMenuNumber_challengeMatch_controlOptions=21,
+    enumMenuNumber_challengeMatch_battingLineups=22,
+    enumMenuNumber_toyField_charSelect=47,
+    enumMenuNumber_toyField_turnSettings=48,
+    enumMenuNumber_toyField_rules=50,
+    enumMenuNumber_minigames_selectGame=51,
+    enumMenuNumber_minigames_charSelect=53,
+    enumMenuNumber_minigames_difficulty=54,
+    enumMenuNumber_minigames_startGame=55,
+    enumMenuNumber_minigames_rules=56,
+    enumMenuNumber_practice_selectType=60,
+    enumMenuNumber_practice_selectSubType=61,
+    enumMenuNumber_practice_charSelect=62,
+    enumMenuNumber_records_mainScreen=83,
+    enumMenuNumber_records_exhibitionMVP=84,
+    enumMenuNumber_records_challengeTrophies=85,
+    enumMenuNumber_records_challengeSuperstars=86,
+    enumMenuNumber_records_toyField=87,
+    enumMenuNumber_records_minigameGrandPrix=88,
+    enumMenuNumber_records_minigameHighScores=89,
+    enumMenuNumber_options=91
 };
 typedef unsigned char enumMenuNumber;
 
 enum {
     enumMenuProcess_default_=0,
-    loadingNewScreen_BattingSelection=1,
-    ableToControlCursor=2,
-    selectExhibition_BothTeamsReady=3,
-    captainPickedAnimation_SelectDifficulty_StadSelected=4,
-    unloadCurrentScreen=5,
-    transitionFromCaptainToTeamScreen=6,
-    changeScreens=8,
-    returnToMainMenu=9,
-    switchScreens=11,
-    switchScreens2=12
+    enumMenuProcess_loadingNewScreen_BattingSelection=1,
+    enumMenuProcess_ableToControlCursor=2,
+    enumMenuProcess_selectExhibition_BothTeamsReady=3,
+    enumMenuProcess_captainPickedAnimation_SelectDifficulty_StadSelected=4,
+    enumMenuProcess_unloadCurrentScreen=5,
+    enumMenuProcess_transitionFromCaptainToTeamScreen=6,
+    enumMenuProcess_changeScreens=8,
+    enumMenuProcess_returnToMainMenu=9,
+    enumMenuProcess_switchScreens=11,
+    enumMenuProcess_switchScreens2=12
 };
 typedef unsigned short enumMenuProcess;
 
 enum {
-    titleScreen=1,
-    nonMenuRel_=4,
-    mainMenu=5,
-    optionsScreen=6,
-    recordsScreen=8,
+    enumMenuScreen_titleScreen=1,
+    enumMenuScreen_nonMenuRel_=4,
+    enumMenuScreen_mainMenu=5,
+    enumMenuScreen_optionsScreen=6,
+    enumMenuScreen_recordsScreen=8,
     enumMenuScreen_captainSelect=9,
     enumMenuScreen_rosterSelect=10,
-    battingLineup=11,
-    stadiumSelect_challengeChooseDifficulty=12,
+    enumMenuScreen_battingLineup=11,
+    enumMenuScreen_stadiumSelect_challengeChooseDifficulty=12,
     enumMenuScreen_matchSettings=13,
-    challengeFileSelect=15,
-    challengeMap=16
+    enumMenuScreen_challengeFileSelect=15,
+    enumMenuScreen_challengeMap=16
 };
 typedef unsigned short enumMenuScreen;
 
@@ -2448,42 +2446,42 @@ enum {
 typedef unsigned int enumStadiumNameWord;
 
 enum {
-    regular_fielderSwapLeft=0,
-    batterSwapLeft=1,
-    scoutFlags=2,
-    starMissions=3
+    enumSwapMenuType_regular_fielderSwapLeft=0,
+    enumSwapMenuType_batterSwapLeft=1,
+    enumSwapMenuType_scoutFlags=2,
+    enumSwapMenuType_starMissions=3
 };
 typedef unsigned char enumSwapMenuType;
 
 enum {
-    mainMenu_ExGame_Chal_Rec_Opt=1,
-    in_game_TF_MG_Prac=2
+    enum_highLevelMenuScene_mainMenu_ExGame_Chal_Rec_Opt=1,
+    enum_highLevelMenuScene_in_game_TF_MG_Prac=2
 };
 typedef unsigned char enum_highLevelMenuScene;
 
 enum {
-    _1PlayerGame=0,
-    _2PlayerGame=1,
-    _2CPUGame=2,
-    _3_unknown=3
+    enum_p2_CPU_code__1PlayerGame=0,
+    enum_p2_CPU_code__2PlayerGame=1,
+    enum_p2_CPU_code__2CPUGame=2,
+    enum_p2_CPU_code__3_unknown=3
 };
 typedef unsigned char enum_p2_CPU_code;
 
 enum {
-    r2=2151498752
+    enum_r2_r2=2151498752
 };
 typedef unsigned int enum_r2;
 
 enum {
-    battingOrder=0,
-    defensiveAlignment=1
+    enum_rosterView_battingOrder=0,
+    enum_rosterView_defensiveAlignment=1
 };
 typedef unsigned char enum_rosterView;
 
 enum {
-    introMovie_titleScreen=1,
-    memoryCardCheck=2,
-    loadDemo=3
+    enum_titleScreenCode_introMovie_titleScreen=1,
+    enum_titleScreenCode_memoryCardCheck=2,
+    enum_titleScreenCode_loadDemo=3
 };
 typedef unsigned short enum_titleScreenCode;
 
@@ -3333,16 +3331,16 @@ struct struct_graphicsRelatedSubStruct {
 } __attribute__((packed));
 
 enum {
-    initialize=0,
-    loadTeamManagement=1,
-    onTeamManagementScreen=2,
-    viewStarMenuOverTeamManagement_unused=3,
-    scoutFlagsMenuOpen=4,
-    challengeStarsMenuOpen=5,
-    unloadMenu2=10,
-    returnToCss1=12,
-    returnToCss2=13,
-    unloadMenu1=14
+    teamManagementMenuProcesses_initialize=0,
+    teamManagementMenuProcesses_loadTeamManagement=1,
+    teamManagementMenuProcesses_onTeamManagementScreen=2,
+    teamManagementMenuProcesses_viewStarMenuOverTeamManagement_unused=3,
+    teamManagementMenuProcesses_scoutFlagsMenuOpen=4,
+    teamManagementMenuProcesses_challengeStarsMenuOpen=5,
+    teamManagementMenuProcesses_unloadMenu2=10,
+    teamManagementMenuProcesses_returnToCss1=12,
+    teamManagementMenuProcesses_returnToCss2=13,
+    teamManagementMenuProcesses_unloadMenu1=14
 };
 typedef unsigned short teamManagementMenuProcesses;
 

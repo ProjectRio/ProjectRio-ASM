@@ -150,10 +150,10 @@ typedef struct DrawingSceneStruct DrawingSceneStruct, *PDrawingSceneStruct;
 typedef struct CTRLSRTControl CTRLSRTControl, *PCTRLSRTControl;
 
 enum {
-    DISPLAY_STATE_TEXTURE=1,
-    DISPLAY_STATE_VCD=3,
-    DISPLAY_STATE_TEXTURE_COMBINE=4,
-    DISPLAY_STATE_MTXLOAD=5
+    enumDisplayState_DISPLAY_STATE_TEXTURE=1,
+    enumDisplayState_DISPLAY_STATE_VCD=3,
+    enumDisplayState_DISPLAY_STATE_TEXTURE_COMBINE=4,
+    enumDisplayState_DISPLAY_STATE_MTXLOAD=5
 };
 typedef unsigned char enumDisplayState;
 
@@ -545,43 +545,43 @@ enum {
 typedef unsigned char enum_AIPitchType;
 
 enum {
-    NotSelected=0,
-    DownMiddle=1,
-    _2_unused=2,
+    enum_pitchCurveType_NotSelected=0,
+    enum_pitchCurveType_DownMiddle=1,
+    enum_pitchCurveType__2_unused=2,
     enum_pitchCurveType_curve=3
 };
 typedef unsigned char enum_pitchCurveType;
 
 enum {
-    slap=0,
+    enumAISwingType_slap=0,
     enumAISwingType_charge=1,
     enumAISwingType_star=2,
-    noSwing=3
+    enumAISwingType_noSwing=3
 };
 typedef unsigned char enumAISwingType;
 
 enum {
-    inside_Ball=0,
-    inside_Strike=1,
-    middle=2,
-    outside_Strike=3,
-    outside_Ball=4,
+    enumPitchLocationZone_inside_Ball=0,
+    enumPitchLocationZone_inside_Strike=1,
+    enumPitchLocationZone_middle=2,
+    enumPitchLocationZone_outside_Strike=3,
+    enumPitchLocationZone_outside_Ball=4,
     enumPitchLocationZone_n_a=255
 };
 typedef unsigned char enumPitchLocationZone;
 
 enum {
-    Curve=0,
-    Charge=1,
-    ChangeUp=2,
+    EnumPitchType_Curve=0,
+    EnumPitchType_Charge=1,
+    EnumPitchType_ChangeUp=2,
     EnumPitchType_default_=255
 };
 typedef unsigned char EnumPitchType;
 
 enum {
     enumBatterAITrackingCode_n_a=0,
-    trackingPoorly=1,
-    trackingPerfectly=2
+    enumBatterAITrackingCode_trackingPoorly=1,
+    enumBatterAITrackingCode_trackingPerfectly=2
 };
 typedef unsigned char enumBatterAITrackingCode;
 
@@ -832,32 +832,32 @@ typedef struct CLUTHeader *CLUTHeaderPtr;
 typedef char *Ptr;
 
 enum {
-    GX_CLAMP=0,
-    GX_REPEAT=1,
-    GX_MIRROR=2,
-    GX_MAX_TEXWRAPMODE=3
+    _GXTexWrapMode_GX_CLAMP=0,
+    _GXTexWrapMode_GX_REPEAT=1,
+    _GXTexWrapMode_GX_MIRROR=2,
+    _GXTexWrapMode_GX_MAX_TEXWRAPMODE=3
 };
 typedef unsigned int _GXTexWrapMode;
 
 typedef _GXTexWrapMode GXTexWrapMode;
 
 enum {
-    GX_NEAR=0,
-    GX_LINEAR=1,
-    GX_NEAR_MIP_NEAR=2,
-    GX_LIN_MIP_NEAR=3,
-    GX_NEAR_MIP_LIN=4,
-    GX_LIN_MIP_LIN=5
+    _GXTexFilter_GX_NEAR=0,
+    _GXTexFilter_GX_LINEAR=1,
+    _GXTexFilter_GX_NEAR_MIP_NEAR=2,
+    _GXTexFilter_GX_LIN_MIP_NEAR=3,
+    _GXTexFilter_GX_NEAR_MIP_LIN=4,
+    _GXTexFilter_GX_LIN_MIP_LIN=5
 };
 typedef unsigned int _GXTexFilter;
 
 typedef _GXTexFilter GXTexFilter;
 
 enum {
-    GX_TL_IA8=0,
-    GX_TL_RGB565=1,
-    GX_TL_RGB5A3=2,
-    GX_MAX_TLUTFMT=3
+    _GXTlutFmt_GX_TL_IA8=0,
+    _GXTlutFmt_GX_TL_RGB565=1,
+    _GXTlutFmt_GX_TL_RGB5A3=2,
+    _GXTlutFmt_GX_MAX_TLUTFMT=3
 };
 typedef unsigned int _GXTlutFmt;
 
@@ -1133,8 +1133,8 @@ struct OSContext {
 } __attribute__((packed));
 
 enum {
-    AMC_EXI_NO_ERROR=0,
-    AMC_EXI_UNSELECTED=1
+    enum_85_AMC_EXI_NO_ERROR=0,
+    enum_85_AMC_EXI_UNSELECTED=1
 };
 typedef unsigned int enum_85;
 
@@ -1442,8 +1442,8 @@ struct BI2Debug {
 } __attribute__((packed));
 
 enum {
-    FALSE=0,
-    TRUE=1
+    BOOL_FALSE=0,
+    BOOL_TRUE=1
 };
 typedef unsigned int BOOL;
 
@@ -1884,15 +1884,15 @@ struct CTRL_DEST {
 } __attribute__((packed));
 
 enum {
-    noCatchAnimation=0,
-    catchBattedBall=1,
-    catchThrow=2,
-    divingCatch=3,
+    CatchAnimationType_noCatchAnimation=0,
+    CatchAnimationType_catchBattedBall=1,
+    CatchAnimationType_catchThrow=2,
+    CatchAnimationType_divingCatch=3,
     CatchAnimationType_WallJump=4,
-    clamberCatch=5,
-    JumpingCatch=6,
-    runningCatch=7,
-    coverBaseLungingCatch=8
+    CatchAnimationType_clamberCatch=5,
+    CatchAnimationType_JumpingCatch=6,
+    CatchAnimationType_runningCatch=7,
+    CatchAnimationType_coverBaseLungingCatch=8
 };
 typedef unsigned char CatchAnimationType;
 
@@ -1923,10 +1923,10 @@ enum {
 typedef unsigned int EnumFieldingAbilities;
 
 enum {
-    Balanced=0,
-    Power=1,
-    Speed=2,
-    Technique=3
+    EnumCharacterClass_Balanced=0,
+    EnumCharacterClass_Power=1,
+    EnumCharacterClass_Speed=2,
+    EnumCharacterClass_Technique=3
 };
 typedef unsigned char EnumCharacterClass;
 
@@ -2196,10 +2196,10 @@ struct DEMODMPad {
 } __attribute__((packed));
 
 enum {
-    DEMOWIN_ITEM_CAP=0,
-    DEMOWIN_ITEM_BKGND=1,
-    DEMOWIN_ITEM_BORDER=2,
-    DEMOWIN_ITEM_DEFAULT=3
+    DEMOWinItem_DEMOWIN_ITEM_CAP=0,
+    DEMOWinItem_DEMOWIN_ITEM_BKGND=1,
+    DEMOWinItem_DEMOWIN_ITEM_BORDER=2,
+    DEMOWinItem_DEMOWIN_ITEM_DEFAULT=3
 };
 typedef unsigned int DEMOWinItem;
 
@@ -2215,83 +2215,83 @@ struct DEMOWinPadInfo {
 } __attribute__((packed));
 
 enum {
-    DEMO_STAT_TL=0,
-    DEMO_STAT_BL=1,
-    DEMO_STAT_TLD=2,
-    DEMO_STAT_BLD=3,
-    DEMO_STAT_IO=4
+    enum_280_DEMO_STAT_TL=0,
+    enum_280_DEMO_STAT_BL=1,
+    enum_280_DEMO_STAT_TLD=2,
+    enum_280_DEMO_STAT_BLD=3,
+    enum_280_DEMO_STAT_IO=4
 };
 typedef unsigned int enum_280;
 
 typedef enum_280 DEMO_STAT_DISP;
 
 enum {
-    DEMO_STAT_GP0=0,
-    DEMO_STAT_GP1=1,
-    DEMO_STAT_MEM=2,
-    DEMO_STAT_PIX=3,
-    DEMO_STAT_VC=4,
-    DEMO_STAT_FR=5,
-    DEMO_STAT_TBW=6,
-    DEMO_STAT_TBP=7,
-    DEMO_STAT_MYC=8,
-    DEMO_STAT_MYR=9
+    DEMO_STAT_TYPE_DEMO_STAT_GP0=0,
+    DEMO_STAT_TYPE_DEMO_STAT_GP1=1,
+    DEMO_STAT_TYPE_DEMO_STAT_MEM=2,
+    DEMO_STAT_TYPE_DEMO_STAT_PIX=3,
+    DEMO_STAT_TYPE_DEMO_STAT_VC=4,
+    DEMO_STAT_TYPE_DEMO_STAT_FR=5,
+    DEMO_STAT_TYPE_DEMO_STAT_TBW=6,
+    DEMO_STAT_TYPE_DEMO_STAT_TBP=7,
+    DEMO_STAT_TYPE_DEMO_STAT_MYC=8,
+    DEMO_STAT_TYPE_DEMO_STAT_MYR=9
 };
 typedef unsigned int DEMO_STAT_TYPE;
 
 enum {
-    DM_FT_OPQ=0,
-    DM_FT_RVS=1,
-    DM_FT_XLU=2
+    enum_277_DM_FT_OPQ=0,
+    enum_277_DM_FT_RVS=1,
+    enum_277_DM_FT_XLU=2
 };
 typedef unsigned int enum_277;
 
 typedef enum_277 DMFontType;
 
 enum {
-    DMTF_POINTSAMPLE=0,
-    DMTF_BILERP=1
+    enum_276_DMTF_POINTSAMPLE=0,
+    enum_276_DMTF_BILERP=1
 };
 typedef unsigned int enum_276;
 
 typedef enum_276 DMTexFlt;
 
 enum {
-    DOTS_USEDEFAULT=-1,
-    DOTS_ANISO_1=0,
-    DOTS_BIAS_CLAMP_OFF=0,
-    DOTS_CLAMP=0,
-    DOTS_EDGE_LOD_OFF=0,
-    DOTS_LOD_SET=0,
-    DOTS_MIPMAP_OFF=0,
-    DOTS_NEAR=0,
-    DOTS_ANISO_2=1,
-    DOTS_BIAS_CLAMP_ON=1,
-    DOTS_EDGE_LOD_ON=1,
-    DOTS_LINEAR=1,
-    DOTS_MIPMAP_ON=1,
-    DOTS_REPEAT=1,
-    DOTS_ANISO_4=2,
-    DOTS_MIRROR=2,
-    DOTS_NEAR_MIP_NEAR=2,
-    DOTS_LIN_MIP_NEAR=3,
-    DOTS_NEAR_MIP_LIN=4,
-    DOTS_LIN_MIP_LIN=5
+    DOTextureSetting_DOTS_USEDEFAULT=-1,
+    DOTextureSetting_DOTS_ANISO_1=0,
+    DOTextureSetting_DOTS_BIAS_CLAMP_OFF=0,
+    DOTextureSetting_DOTS_CLAMP=0,
+    DOTextureSetting_DOTS_EDGE_LOD_OFF=0,
+    DOTextureSetting_DOTS_LOD_SET=0,
+    DOTextureSetting_DOTS_MIPMAP_OFF=0,
+    DOTextureSetting_DOTS_NEAR=0,
+    DOTextureSetting_DOTS_ANISO_2=1,
+    DOTextureSetting_DOTS_BIAS_CLAMP_ON=1,
+    DOTextureSetting_DOTS_EDGE_LOD_ON=1,
+    DOTextureSetting_DOTS_LINEAR=1,
+    DOTextureSetting_DOTS_MIPMAP_ON=1,
+    DOTextureSetting_DOTS_REPEAT=1,
+    DOTextureSetting_DOTS_ANISO_4=2,
+    DOTextureSetting_DOTS_MIRROR=2,
+    DOTextureSetting_DOTS_NEAR_MIP_NEAR=2,
+    DOTextureSetting_DOTS_LIN_MIP_NEAR=3,
+    DOTextureSetting_DOTS_NEAR_MIP_LIN=4,
+    DOTextureSetting_DOTS_LIN_MIP_LIN=5
 };
 typedef int DOTextureSetting;
 
 enum {
-    DOTS_WRAP_S=0,
-    DOTS_WRAP_T=1,
-    DOTS_MIPMAP=2,
-    DOTS_MIN_FILTER=3,
-    DOTS_MAG_FILTER=4,
-    DOTS_MIN_LOD=5,
-    DOTS_MAX_LOD=6,
-    DOTS_LOD_BIAS=7,
-    DOTS_BIAS_CLAMP=8,
-    DOTS_EDGE_LOD=9,
-    DOTS_MAX_ANISO=10
+    DOTextureState_DOTS_WRAP_S=0,
+    DOTextureState_DOTS_WRAP_T=1,
+    DOTextureState_DOTS_MIPMAP=2,
+    DOTextureState_DOTS_MIN_FILTER=3,
+    DOTextureState_DOTS_MAG_FILTER=4,
+    DOTextureState_DOTS_MIN_LOD=5,
+    DOTextureState_DOTS_MAX_LOD=6,
+    DOTextureState_DOTS_LOD_BIAS=7,
+    DOTextureState_DOTS_BIAS_CLAMP=8,
+    DOTextureState_DOTS_EDGE_LOD=9,
+    DOTextureState_DOTS_MAX_ANISO=10
 };
 typedef unsigned int DOTextureState;
 
@@ -2341,10 +2341,10 @@ typedef struct _SPB _SPB, *P_SPB;
 typedef struct DSPvoice DSPvoice, *PDSPvoice;
 
 enum {
-    SND_STUDIO_TYPE_STD=0,
-    SND_STUDIO_TYPE_RESERVED0=1,
-    SND_STUDIO_TYPE_RESERVED1=2,
-    SND_STUDIO_TYPE_RESERVED2=3
+    enum_27_SND_STUDIO_TYPE_STD=0,
+    enum_27_SND_STUDIO_TYPE_RESERVED0=1,
+    enum_27_SND_STUDIO_TYPE_RESERVED1=2,
+    enum_27_SND_STUDIO_TYPE_RESERVED2=3
 };
 typedef unsigned int enum_27;
 
@@ -2903,7 +2903,7 @@ enum {
     EnumAtBatResult_short_BuntSucceeded=13,
     EnumAtBatResult_short_SacFly=14,
     EnumAtBatResult_short_SpecialOut_forceDoublePlay=15,
-    caughtInfieldFly_=16
+    EnumAtBatResult_short_caughtInfieldFly_=16
 };
 typedef unsigned short EnumAtBatResult_short;
 
@@ -2929,27 +2929,27 @@ enum {
 typedef unsigned int EnumAtBatResult_word;
 
 enum {
-    Slap_lineDriveStar_defaultVal_=0,
-    Charge_grounderStar_popStar=1,
-    captainStar_Moonshot=2,
+    EnumBatContactType_Slap_lineDriveStar_defaultVal_=0,
+    EnumBatContactType_Charge_grounderStar_popStar=1,
+    EnumBatContactType_captainStar_Moonshot=2,
     EnumBatContactType_Bunt=3
 };
 typedef unsigned char EnumBatContactType;
 
 enum {
-    n_a___Caught_FumbleCheck=0,
-    Caught_BobbleCheck=1,
-    Fumbled=2,
-    Bobbled=3,
-    Fireball=4
+    EnumBobbleType_n_a___Caught_FumbleCheck=0,
+    EnumBobbleType_Caught_BobbleCheck=1,
+    EnumBobbleType_Fumbled=2,
+    EnumBobbleType_Bobbled=3,
+    EnumBobbleType_Fireball=4
 };
 typedef unsigned char EnumBobbleType;
 
 enum {
-    CTRL_XYZ_NONE=0,
-    CTRL_X=1,
-    CTRL_Y=2,
-    CTRL_Z=4
+    EnumCTRLXYZ_CTRL_XYZ_NONE=0,
+    EnumCTRLXYZ_CTRL_X=1,
+    EnumCTRLXYZ_CTRL_Y=2,
+    EnumCTRLXYZ_CTRL_Z=4
 };
 typedef unsigned char EnumCTRLXYZ;
 
@@ -3065,9 +3065,9 @@ enum {
 typedef unsigned int EnumCharacterAnimation_int;
 
 enum {
-    non_Charge=0,
-    startingCharge_chargedStar=1,
-    Slider=2,
+    EnumChargePitchType_non_Charge=0,
+    EnumChargePitchType_startingCharge_chargedStar=1,
+    EnumChargePitchType_Slider=2,
     EnumChargePitchType_Perfect=3
 };
 typedef unsigned char EnumChargePitchType;
@@ -3092,10 +3092,10 @@ typedef unsigned short EnumContactResult_short;
 
 enum {
     EnumFielderAction_None=0,
-    Bobble_=1,
-    Slide=2,
-    Walljump=3,
-    stopMoving_=19
+    EnumFielderAction_Bobble_=1,
+    EnumFielderAction_Slide=2,
+    EnumFielderAction_Walljump=3,
+    EnumFielderAction_stopMoving_=19
 };
 typedef unsigned char EnumFielderAction;
 
@@ -3121,71 +3121,71 @@ typedef unsigned int EnumFieldingAbilityBitLocation;
 
 enum {
     EnumGameStatus_default_=0,
-    AtBat=1,
-    LiveBall=2,
-    InningTransition=3,
-    loadGame=4,
-    GameStartMovie=5,
-    transitionToMinigameStart=6,
-    transitionPrepareNextPlay=7,
-    transitionMainFunction=8,
-    endOfGame_=9,
-    Paused=11,
-    HowToPlayScreen=13,
-    Mvp_EndGameScreen=14,
-    miniGamePostGameTransition=15,
-    HomeRunEnd=19,
-    HomeRunLap=20,
-    post_ReplayBatterCelebration=21,
-    StarChanceVsScreen=22,
-    ChampionshipScreen=23,
-    minigame_newround_=25,
-    minigameTransitionToBatting1=26,
-    MinigameSelectScreen=28,
-    ToyStadiumLoadScreen=29,
-    CharacterSelectMinigameToyField=30,
-    ReadyMinigameScreen=33,
-    postMinigameMenu=34
+    EnumGameStatus_AtBat=1,
+    EnumGameStatus_LiveBall=2,
+    EnumGameStatus_InningTransition=3,
+    EnumGameStatus_loadGame=4,
+    EnumGameStatus_GameStartMovie=5,
+    EnumGameStatus_transitionToMinigameStart=6,
+    EnumGameStatus_transitionPrepareNextPlay=7,
+    EnumGameStatus_transitionMainFunction=8,
+    EnumGameStatus_endOfGame_=9,
+    EnumGameStatus_Paused=11,
+    EnumGameStatus_HowToPlayScreen=13,
+    EnumGameStatus_Mvp_EndGameScreen=14,
+    EnumGameStatus_miniGamePostGameTransition=15,
+    EnumGameStatus_HomeRunEnd=19,
+    EnumGameStatus_HomeRunLap=20,
+    EnumGameStatus_post_ReplayBatterCelebration=21,
+    EnumGameStatus_StarChanceVsScreen=22,
+    EnumGameStatus_ChampionshipScreen=23,
+    EnumGameStatus_minigame_newround_=25,
+    EnumGameStatus_minigameTransitionToBatting1=26,
+    EnumGameStatus_MinigameSelectScreen=28,
+    EnumGameStatus_ToyStadiumLoadScreen=29,
+    EnumGameStatus_CharacterSelectMinigameToyField=30,
+    EnumGameStatus_ReadyMinigameScreen=33,
+    EnumGameStatus_postMinigameMenu=34
 };
 typedef unsigned char EnumGameStatus;
 
 enum {
-    ExhibitionGame=0,
-    Practice=2,
-    demo=4,
-    Challenge=5,
+    EnumGameType_ExhibitionGame=0,
+    EnumGameType_Practice=2,
+    EnumGameType_demo=4,
+    EnumGameType_Challenge=5,
     EnumGameType_ToyField=6,
-    Minigames=7
+    EnumGameType_Minigames=7
 };
 typedef unsigned char EnumGameType;
 
 enum {
-    SourSlap=0,
-    NiceSlap=1,
-    PerfectSlap=2,
-    SourCharge=3,
-    NiceCharge=4,
-    PerfectCharge=5,
-    SourChangeUpSlap=6,
-    NiceChangeUpSlap=7,
-    PerfectChangeUpSlap=8,
-    SourChangeUpCharge=9,
-    NiceChangeUpCharge=10,
-    PerfectChangeUpCharge=11,
-    PerfectPitchSourSlap=12,
-    PerfectPitchNiceSlap=13,
-    PerfectPitchPerfectSlap=14,
-    PerfectPitchSourCharge=15,
-    PerfectPitchNiceCharge=16,
-    PerfectPitchPerfectCharge=17,
+    EnumHitType_SourSlap=0,
+    EnumHitType_NiceSlap=1,
+    EnumHitType_PerfectSlap=2,
+    EnumHitType_SourCharge=3,
+    EnumHitType_NiceCharge=4,
+    EnumHitType_PerfectCharge=5,
+    EnumHitType_SourChangeUpSlap=6,
+    EnumHitType_NiceChangeUpSlap=7,
+    EnumHitType_PerfectChangeUpSlap=8,
+    EnumHitType_SourChangeUpCharge=9,
+    EnumHitType_NiceChangeUpCharge=10,
+    EnumHitType_PerfectChangeUpCharge=11,
+    EnumHitType_PerfectPitchSourSlap=12,
+    EnumHitType_PerfectPitchNiceSlap=13,
+    EnumHitType_PerfectPitchPerfectSlap=14,
+    EnumHitType_PerfectPitchSourCharge=15,
+    EnumHitType_PerfectPitchNiceCharge=16,
+    EnumHitType_PerfectPitchPerfectCharge=17,
     EnumHitType_None=255
 };
 typedef unsigned char EnumHitType;
 
 enum {
     EnumInputDirection_None=0,
-    PullStickTowardsHitting=1,
-    PushStickAway=2
+    EnumInputDirection_PullStickTowardsHitting=1,
+    EnumInputDirection_PushStickAway=2
 };
 typedef unsigned char EnumInputDirection;
 
@@ -3197,33 +3197,33 @@ enum {
     EnumMinigame_ChainChompSprint=4,
     EnumMinigame_PiranhaPanic=5,
     EnumMinigame_StarDash=6,
-    MarioGrandPrix=7
+    EnumMinigame_MarioGrandPrix=7
 };
 typedef unsigned char EnumMinigame;
 
 enum {
-    NoSwing=0,
-    Swing=1,
+    EnumNoswingSwingBunt_NoSwing=0,
+    EnumNoswingSwingBunt_Swing=1,
     EnumNoswingSwingBunt_Bunt=2
 };
 typedef unsigned char EnumNoswingSwingBunt;
 
 enum {
-    PAD_BUTTON_LEFT=1,
-    PAD_BUTTON_RIGHT=2,
-    PAD_BUTTON_DOWN=4,
-    PAD_BUTTON_UP=8,
-    PAD_BUTTON_Z=16,
-    PAD_BUTTON_R=32,
-    PAD_BUTTON_L=64,
-    PAD_CONNECTED=128,
-    PAD_BUTTON_A=256,
-    PAD_BUTTON_B=512,
-    PAD_BUTTON_Y=1024,
-    PAD_BUTTON_X=2048,
-    PAD_BUTTON_MENU=4096,
-    PAD_BUTTON_START=4096,
-    PAD_DISCONNECTED=32768
+    EnumPADInput_PAD_BUTTON_LEFT=1,
+    EnumPADInput_PAD_BUTTON_RIGHT=2,
+    EnumPADInput_PAD_BUTTON_DOWN=4,
+    EnumPADInput_PAD_BUTTON_UP=8,
+    EnumPADInput_PAD_BUTTON_Z=16,
+    EnumPADInput_PAD_BUTTON_R=32,
+    EnumPADInput_PAD_BUTTON_L=64,
+    EnumPADInput_PAD_CONNECTED=128,
+    EnumPADInput_PAD_BUTTON_A=256,
+    EnumPADInput_PAD_BUTTON_B=512,
+    EnumPADInput_PAD_BUTTON_Y=1024,
+    EnumPADInput_PAD_BUTTON_X=2048,
+    EnumPADInput_PAD_BUTTON_MENU=4096,
+    EnumPADInput_PAD_BUTTON_START=4096,
+    EnumPADInput_PAD_DISCONNECTED=32768
 };
 typedef unsigned short EnumPADInput;
 
@@ -3282,9 +3282,9 @@ enum {
 typedef unsigned int EnumPopupText_word;
 
 enum {
-    BaseballMatch=0,
+    EnumSecondaryGameModes_BaseballMatch=0,
     EnumSecondaryGameModes_ToyField=1,
-    MiniGamesMenu=2,
+    EnumSecondaryGameModes_MiniGamesMenu=2,
     EnumSecondaryGameModes_BobOmbDerby=3,
     EnumSecondaryGameModes_WallBall=4,
     EnumSecondaryGameModes_BarrelBatter=5,
@@ -3292,15 +3292,15 @@ enum {
     EnumSecondaryGameModes_PiranhaPanic=7,
     EnumSecondaryGameModes_StarDash=8,
     EnumSecondaryGameModes_Unknown=9,
-    PracticeMenu=10,
-    PitchingPractice=11,
-    BattingPractice=12,
-    FieldingPractice=13,
-    BaseRunningPractice=14,
-    FreeBattingAndRunningPractice=15,
-    FreeFielding=16,
-    ReturnToMainMenu=17,
-    LoadPracticeScreen=18
+    EnumSecondaryGameModes_PracticeMenu=10,
+    EnumSecondaryGameModes_PitchingPractice=11,
+    EnumSecondaryGameModes_BattingPractice=12,
+    EnumSecondaryGameModes_FieldingPractice=13,
+    EnumSecondaryGameModes_BaseRunningPractice=14,
+    EnumSecondaryGameModes_FreeBattingAndRunningPractice=15,
+    EnumSecondaryGameModes_FreeFielding=16,
+    EnumSecondaryGameModes_ReturnToMainMenu=17,
+    EnumSecondaryGameModes_LoadPracticeScreen=18
 };
 typedef unsigned char EnumSecondaryGameModes;
 
@@ -3327,19 +3327,19 @@ enum {
 typedef unsigned int EnumStadiumIDs4;
 
 enum {
-    RightSour=0,
-    RightNice=1,
+    EnumTypeOfContact_RightSour=0,
+    EnumTypeOfContact_RightNice=1,
     EnumTypeOfContact_Perfect=2,
-    LeftNice=3,
-    LeftSour=4,
+    EnumTypeOfContact_LeftNice=3,
+    EnumTypeOfContact_LeftSour=4,
     EnumTypeOfContact_default_=255
 };
 typedef unsigned char EnumTypeOfContact;
 
 enum {
     EnumUpdateBatterStat_Strikeout=1,
-    _4BallWalk=2,
-    HitWalk=3,
+    EnumUpdateBatterStat__4BallWalk=2,
+    EnumUpdateBatterStat_HitWalk=3,
     EnumUpdateBatterStat_Single=7,
     EnumUpdateBatterStat_Double=8,
     EnumUpdateBatterStat_Triple=9,
@@ -3351,8 +3351,8 @@ enum {
 typedef unsigned int EnumUpdateBatterStat;
 
 enum {
-    BATTING_HAND_RIGHT=0,
-    BATTING_HAND_LEFT=1
+    Enum_batting_hand_BATTING_HAND_RIGHT=0,
+    Enum_batting_hand_BATTING_HAND_LEFT=1
 };
 typedef unsigned char Enum_batting_hand;
 
@@ -3625,536 +3625,536 @@ typedef unsigned int GXAttrType;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttrType - /GX/GXAttrType */
 
 enum {
-    GX_BP_BLENDMODE_LOGICMODE_ST=16,
-    GX_BP_BLENDMODE_LOGICMODE_END=19,
-    GX_BP_BLENDMODE_SUBTRACT_END=20,
-    GX_BP_BLENDMODE_SUBTRACT_ST=20,
-    GX_BP_BLENDMODE_SRCFACTOR_ST=21,
-    GX_BP_BLENDMODE_SRCFACTOR_END=23,
-    GX_BP_BLENDMODE_DSTFACTOR_ST=24,
-    GX_BP_BLENDMODE_DSTFACTOR_END=26,
-    GX_BP_BLENDMODE_ALPHA_UPDATE_END=27,
-    GX_BP_BLENDMODE_ALPHA_UPDATE_ST=27,
-    GX_BP_BLENDMODE_COLOR_UPDATE_END=28,
-    GX_BP_BLENDMODE_COLOR_UPDATE_ST=28,
-    GX_BP_BLENDMODE_DITHER_END=29,
-    GX_BP_BLENDMODE_DITHER_ST=29,
-    GX_BP_BLENDMODE_LOGIC_OP_END=30,
-    GX_BP_BLENDMODE_LOGIC_OP_ST=30,
-    GX_BP_BLENDMODE_ENABLE_END=31,
-    GX_BP_BLENDMODE_ENABLE_ST=31
+    _GXBPBlendMode_GX_BP_BLENDMODE_LOGICMODE_ST=16,
+    _GXBPBlendMode_GX_BP_BLENDMODE_LOGICMODE_END=19,
+    _GXBPBlendMode_GX_BP_BLENDMODE_SUBTRACT_END=20,
+    _GXBPBlendMode_GX_BP_BLENDMODE_SUBTRACT_ST=20,
+    _GXBPBlendMode_GX_BP_BLENDMODE_SRCFACTOR_ST=21,
+    _GXBPBlendMode_GX_BP_BLENDMODE_SRCFACTOR_END=23,
+    _GXBPBlendMode_GX_BP_BLENDMODE_DSTFACTOR_ST=24,
+    _GXBPBlendMode_GX_BP_BLENDMODE_DSTFACTOR_END=26,
+    _GXBPBlendMode_GX_BP_BLENDMODE_ALPHA_UPDATE_END=27,
+    _GXBPBlendMode_GX_BP_BLENDMODE_ALPHA_UPDATE_ST=27,
+    _GXBPBlendMode_GX_BP_BLENDMODE_COLOR_UPDATE_END=28,
+    _GXBPBlendMode_GX_BP_BLENDMODE_COLOR_UPDATE_ST=28,
+    _GXBPBlendMode_GX_BP_BLENDMODE_DITHER_END=29,
+    _GXBPBlendMode_GX_BP_BLENDMODE_DITHER_ST=29,
+    _GXBPBlendMode_GX_BP_BLENDMODE_LOGIC_OP_END=30,
+    _GXBPBlendMode_GX_BP_BLENDMODE_LOGIC_OP_ST=30,
+    _GXBPBlendMode_GX_BP_BLENDMODE_ENABLE_END=31,
+    _GXBPBlendMode_GX_BP_BLENDMODE_ENABLE_ST=31
 };
 typedef unsigned int _GXBPBlendMode;
 
 typedef _GXBPBlendMode GXBPBlendMode;
 
 enum {
-    GX_BP_DSTALPHA_YUV_FMT_ST=21,
-    GX_BP_DSTALPHA_YUV_FMT_END=22,
-    GX_BP_DSTALPHA_ENABLE_END=23,
-    GX_BP_DSTALPHA_ENABLE_ST=23,
-    GX_BP_DSTALPHA_ALPHA_ST=24,
-    GX_BP_DSTALPHA_ALPHA_END=31
+    _GXBPDstAlpha_GX_BP_DSTALPHA_YUV_FMT_ST=21,
+    _GXBPDstAlpha_GX_BP_DSTALPHA_YUV_FMT_END=22,
+    _GXBPDstAlpha_GX_BP_DSTALPHA_ENABLE_END=23,
+    _GXBPDstAlpha_GX_BP_DSTALPHA_ENABLE_ST=23,
+    _GXBPDstAlpha_GX_BP_DSTALPHA_ALPHA_ST=24,
+    _GXBPDstAlpha_GX_BP_DSTALPHA_ALPHA_END=31
 };
 typedef unsigned int _GXBPDstAlpha;
 
 typedef _GXBPDstAlpha GXBPDstAlpha;
 
 enum {
-    GX_BP_FIELDMASK_EVEN_END=30,
-    GX_BP_FIELDMASK_EVEN_ST=30,
-    GX_BP_FIELDMASK_ODD_END=31,
-    GX_BP_FIELDMASK_ODD_ST=31
+    _GXBPFieldMask_GX_BP_FIELDMASK_EVEN_END=30,
+    _GXBPFieldMask_GX_BP_FIELDMASK_EVEN_ST=30,
+    _GXBPFieldMask_GX_BP_FIELDMASK_ODD_END=31,
+    _GXBPFieldMask_GX_BP_FIELDMASK_ODD_ST=31
 };
 typedef unsigned int _GXBPFieldMask;
 
 typedef _GXBPFieldMask GXBPFieldMask;
 
 enum {
-    GX_BP_FIELDMODE_TEX_LOD_END=31,
-    GX_BP_FIELDMODE_TEX_LOD_ST=31
+    _GXBPFieldMode_GX_BP_FIELDMODE_TEX_LOD_END=31,
+    _GXBPFieldMode_GX_BP_FIELDMODE_TEX_LOD_ST=31
 };
 typedef unsigned int _GXBPFieldMode;
 
 typedef _GXBPFieldMode GXBPFieldMode;
 
 enum {
-    GX_BP_FOGCOLOR_RGB_ST=8,
-    GX_BP_FOGCOLOR_RGB_END=31
+    _GXBPFogColor_GX_BP_FOGCOLOR_RGB_ST=8,
+    _GXBPFogColor_GX_BP_FOGCOLOR_RGB_END=31
 };
 typedef unsigned int _GXBPFogColor;
 
 typedef _GXBPFogColor GXBPFogColor;
 
 enum {
-    GX_BP_FOGPARAM0_A_SIGN_END=12,
-    GX_BP_FOGPARAM0_A_SIGN_ST=12,
-    GX_BP_FOGPARAM0_A_EXP_ST=13,
-    GX_BP_FOGPARAM0_A_EXP_END=20,
-    GX_BP_FOGPARAM0_A_MANT_ST=21,
-    GX_BP_FOGPARAM0_A_MANT_END=31
+    _GXBPFogParam0_GX_BP_FOGPARAM0_A_SIGN_END=12,
+    _GXBPFogParam0_GX_BP_FOGPARAM0_A_SIGN_ST=12,
+    _GXBPFogParam0_GX_BP_FOGPARAM0_A_EXP_ST=13,
+    _GXBPFogParam0_GX_BP_FOGPARAM0_A_EXP_END=20,
+    _GXBPFogParam0_GX_BP_FOGPARAM0_A_MANT_ST=21,
+    _GXBPFogParam0_GX_BP_FOGPARAM0_A_MANT_END=31
 };
 typedef unsigned int _GXBPFogParam0;
 
 typedef _GXBPFogParam0 GXBPFogParam0;
 
 enum {
-    GX_BP_FOGPARAM1_B_MAG_ST=8,
-    GX_BP_FOGPARAM1_B_MAG_END=31
+    _GXBPFogParam1_GX_BP_FOGPARAM1_B_MAG_ST=8,
+    _GXBPFogParam1_GX_BP_FOGPARAM1_B_MAG_END=31
 };
 typedef unsigned int _GXBPFogParam1;
 
 typedef _GXBPFogParam1 GXBPFogParam1;
 
 enum {
-    GX_BP_FOGPARAM2_B_SHIFT_ST=27,
-    GX_BP_FOGPARAM2_B_SHIFT_END=31
+    _GXBPFogParam2_GX_BP_FOGPARAM2_B_SHIFT_ST=27,
+    _GXBPFogParam2_GX_BP_FOGPARAM2_B_SHIFT_END=31
 };
 typedef unsigned int _GXBPFogParam2;
 
 typedef _GXBPFogParam2 GXBPFogParam2;
 
 enum {
-    GX_BP_FOGPARAM3_FSEL_ST=8,
-    GX_BP_FOGPARAM3_FSEL_END=10,
-    GX_BP_FOGPARAM3_PROJ_END=11,
-    GX_BP_FOGPARAM3_PROJ_ST=11,
-    GX_BP_FOGPARAM3_C_SIGN_END=12,
-    GX_BP_FOGPARAM3_C_SIGN_ST=12,
-    GX_BP_FOGPARAM3_C_EXP_ST=13,
-    GX_BP_FOGPARAM3_C_EXP_END=20,
-    GX_BP_FOGPARAM3_C_MANT_ST=21,
-    GX_BP_FOGPARAM3_C_MANT_END=31
+    _GXBPFogParam3_GX_BP_FOGPARAM3_FSEL_ST=8,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_FSEL_END=10,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_PROJ_END=11,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_PROJ_ST=11,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_C_SIGN_END=12,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_C_SIGN_ST=12,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_C_EXP_ST=13,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_C_EXP_END=20,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_C_MANT_ST=21,
+    _GXBPFogParam3_GX_BP_FOGPARAM3_C_MANT_END=31
 };
 typedef unsigned int _GXBPFogParam3;
 
 typedef _GXBPFogParam3 GXBPFogParam3;
 
 enum {
-    GX_BP_FOGRANGE_ENABLED_END=21,
-    GX_BP_FOGRANGE_ENABLED_ST=21,
-    GX_BP_FOGRANGE_CENTER_ST=22,
-    GX_BP_FOGRANGE_CENTER_END=31
+    _GXBPFogRange_GX_BP_FOGRANGE_ENABLED_END=21,
+    _GXBPFogRange_GX_BP_FOGRANGE_ENABLED_ST=21,
+    _GXBPFogRange_GX_BP_FOGRANGE_CENTER_ST=22,
+    _GXBPFogRange_GX_BP_FOGRANGE_CENTER_END=31
 };
 typedef unsigned int _GXBPFogRange;
 
 typedef _GXBPFogRange GXBPFogRange;
 
 enum {
-    GX_BP_FOGRANGEK_LO_ST=8,
-    GX_BP_FOGRANGEK_LO_END=19,
-    GX_BP_FOGRANGEK_HI_ST=20,
-    GX_BP_FOGRANGEK_HI_END=31
+    _GXBPFogRangeK_GX_BP_FOGRANGEK_LO_ST=8,
+    _GXBPFogRangeK_GX_BP_FOGRANGEK_LO_END=19,
+    _GXBPFogRangeK_GX_BP_FOGRANGEK_HI_ST=20,
+    _GXBPFogRangeK_GX_BP_FOGRANGEK_HI_END=31
 };
 typedef unsigned int _GXBPFogRangeK;
 
 typedef _GXBPFogRangeK GXBPFogRangeK;
 
 enum {
-    GX_BP_GENMODE_COPLANAR_END=12,
-    GX_BP_GENMODE_COPLANAR_ST=12,
-    GX_BP_GENMODE_NUMINDSTAGES_ST=13,
-    GX_BP_GENMODE_NUMINDSTAGES_END=15,
-    GX_BP_GENMODE_CULLMODE_ST=16,
-    GX_BP_GENMODE_CULLMODE_END=17,
-    GX_BP_GENMODE_MULTISAMPLE_END=22,
-    GX_BP_GENMODE_MULTISAMPLE_ST=22,
-    GX_BP_GENMODE_NUMCOLORS_ST=25,
-    GX_BP_GENMODE_NUMCOLORS_END=27,
-    GX_BP_GENMODE_NUMTEX_ST=28,
-    GX_BP_GENMODE_NUMTEX_END=31
+    _GXBPGenMode_GX_BP_GENMODE_COPLANAR_END=12,
+    _GXBPGenMode_GX_BP_GENMODE_COPLANAR_ST=12,
+    _GXBPGenMode_GX_BP_GENMODE_NUMINDSTAGES_ST=13,
+    _GXBPGenMode_GX_BP_GENMODE_NUMINDSTAGES_END=15,
+    _GXBPGenMode_GX_BP_GENMODE_CULLMODE_ST=16,
+    _GXBPGenMode_GX_BP_GENMODE_CULLMODE_END=17,
+    _GXBPGenMode_GX_BP_GENMODE_MULTISAMPLE_END=22,
+    _GXBPGenMode_GX_BP_GENMODE_MULTISAMPLE_ST=22,
+    _GXBPGenMode_GX_BP_GENMODE_NUMCOLORS_ST=25,
+    _GXBPGenMode_GX_BP_GENMODE_NUMCOLORS_END=27,
+    _GXBPGenMode_GX_BP_GENMODE_NUMTEX_ST=28,
+    _GXBPGenMode_GX_BP_GENMODE_NUMTEX_END=31
 };
 typedef unsigned int _GXBPGenMode;
 
 typedef _GXBPGenMode GXBPGenMode;
 
 enum {
-    GX_BP_INDIMASK_ST=24,
-    GX_BP_INDIMASK_END=31
+    _GXBPIndIMask_GX_BP_INDIMASK_ST=24,
+    _GXBPIndIMask_GX_BP_INDIMASK_END=31
 };
 typedef unsigned int _GXBPIndIMask;
 
 typedef _GXBPIndIMask GXBPIndIMask;
 
 enum {
-    GX_BP_INDMTX_EXP_ST=8,
-    GX_BP_INDMTX_EXP_END=9,
-    GX_BP_INDMTX_M10_ST=10,
-    GX_BP_INDMTX_M10_END=20,
-    GX_BP_INDMTX_M00_ST=21,
-    GX_BP_INDMTX_M00_END=31
+    _GXBPIndMtx_GX_BP_INDMTX_EXP_ST=8,
+    _GXBPIndMtx_GX_BP_INDMTX_EXP_END=9,
+    _GXBPIndMtx_GX_BP_INDMTX_M10_ST=10,
+    _GXBPIndMtx_GX_BP_INDMTX_M10_END=20,
+    _GXBPIndMtx_GX_BP_INDMTX_M00_ST=21,
+    _GXBPIndMtx_GX_BP_INDMTX_M00_END=31
 };
 typedef unsigned int _GXBPIndMtx;
 
 typedef _GXBPIndMtx GXBPIndMtx;
 
 enum {
-    GX_BP_INDTEV_ADDPREV_END=11,
-    GX_BP_INDTEV_ADDPREV_ST=11,
-    GX_BP_INDTEV_UNMODTEXCOORD_END=12,
-    GX_BP_INDTEV_UNMODTEXCOORD_ST=12,
-    GX_BP_INDTEV_WRAPT_ST=13,
-    GX_BP_INDTEV_WRAPT_END=15,
-    GX_BP_INDTEV_WRAPS_ST=16,
-    GX_BP_INDTEV_WRAPS_END=18,
-    GX_BP_INDTEV_MTX_ST=19,
-    GX_BP_INDTEV_MTX_END=22,
-    GX_BP_INDTEV_ALPHA_ST=23,
-    GX_BP_INDTEV_ALPHA_END=24,
-    GX_BP_INDTEV_BIAS_ST=25,
-    GX_BP_INDTEV_BIAS_END=27,
-    GX_BP_INDTEV_FMT_ST=28,
-    GX_BP_INDTEV_FMT_END=29,
-    GX_BP_INDTEV_STAGE_ST=30,
-    GX_BP_INDTEV_STAGE_END=31
+    _GXBPIndTevStage_GX_BP_INDTEV_ADDPREV_END=11,
+    _GXBPIndTevStage_GX_BP_INDTEV_ADDPREV_ST=11,
+    _GXBPIndTevStage_GX_BP_INDTEV_UNMODTEXCOORD_END=12,
+    _GXBPIndTevStage_GX_BP_INDTEV_UNMODTEXCOORD_ST=12,
+    _GXBPIndTevStage_GX_BP_INDTEV_WRAPT_ST=13,
+    _GXBPIndTevStage_GX_BP_INDTEV_WRAPT_END=15,
+    _GXBPIndTevStage_GX_BP_INDTEV_WRAPS_ST=16,
+    _GXBPIndTevStage_GX_BP_INDTEV_WRAPS_END=18,
+    _GXBPIndTevStage_GX_BP_INDTEV_MTX_ST=19,
+    _GXBPIndTevStage_GX_BP_INDTEV_MTX_END=22,
+    _GXBPIndTevStage_GX_BP_INDTEV_ALPHA_ST=23,
+    _GXBPIndTevStage_GX_BP_INDTEV_ALPHA_END=24,
+    _GXBPIndTevStage_GX_BP_INDTEV_BIAS_ST=25,
+    _GXBPIndTevStage_GX_BP_INDTEV_BIAS_END=27,
+    _GXBPIndTevStage_GX_BP_INDTEV_FMT_ST=28,
+    _GXBPIndTevStage_GX_BP_INDTEV_FMT_END=29,
+    _GXBPIndTevStage_GX_BP_INDTEV_STAGE_ST=30,
+    _GXBPIndTevStage_GX_BP_INDTEV_STAGE_END=31
 };
 typedef unsigned int _GXBPIndTevStage;
 
 typedef _GXBPIndTevStage GXBPIndTevStage;
 
 enum {
-    GX_BP_LINEPTWIDTH_ADJUST_END=9,
-    GX_BP_LINEPTWIDTH_ADJUST_ST=9,
-    GX_BP_LINEPTWIDTH_POINTOFS_ST=10,
-    GX_BP_LINEPTWIDTH_POINTOFS_END=12,
-    GX_BP_LINEPTWIDTH_LINEOFS_ST=13,
-    GX_BP_LINEPTWIDTH_LINEOFS_END=15,
-    GX_BP_LINEPTWIDTH_POINTSZ_ST=16,
-    GX_BP_LINEPTWIDTH_POINTSZ_END=23,
-    GX_BP_LINEPTWIDTH_LINESZ_ST=24,
-    GX_BP_LINEPTWIDTH_LINESZ_END=31
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_ADJUST_END=9,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_ADJUST_ST=9,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_POINTOFS_ST=10,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_POINTOFS_END=12,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_LINEOFS_ST=13,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_LINEOFS_END=15,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_POINTSZ_ST=16,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_POINTSZ_END=23,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_LINESZ_ST=24,
+    _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_LINESZ_END=31
 };
 typedef unsigned int _GXBPLinePtWidth;
 
 typedef _GXBPLinePtWidth GXBPLinePtWidth;
 
 enum {
-    GX_BP_RAS1_SS0_T1_ST=16,
-    GX_BP_RAS1_SS0_T1_END=19,
-    GX_BP_RAS1_SS0_S1_ST=20,
-    GX_BP_RAS1_SS0_S1_END=23,
-    GX_BP_RAS1_SS0_T0_ST=24,
-    GX_BP_RAS1_SS0_T0_END=27,
-    GX_BP_RAS1_SS0_S0_ST=28,
-    GX_BP_RAS1_SS0_S0_END=31
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_T1_ST=16,
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_T1_END=19,
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_S1_ST=20,
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_S1_END=23,
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_T0_ST=24,
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_T0_END=27,
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_S0_ST=28,
+    _GXBPRas1SS0_GX_BP_RAS1_SS0_S0_END=31
 };
 typedef unsigned int _GXBPRas1SS0;
 
 typedef _GXBPRas1SS0 GXBPRas1SS0;
 
 enum {
-    GX_BP_RAS1_SS1_T3_ST=16,
-    GX_BP_RAS1_SS1_T3_END=19,
-    GX_BP_RAS1_SS1_S3_ST=20,
-    GX_BP_RAS1_SS1_S3_END=23,
-    GX_BP_RAS1_SS1_T2_ST=24,
-    GX_BP_RAS1_SS1_T2_END=27,
-    GX_BP_RAS1_SS1_S2_ST=28,
-    GX_BP_RAS1_SS1_S2_END=31
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_T3_ST=16,
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_T3_END=19,
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_S3_ST=20,
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_S3_END=23,
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_T2_ST=24,
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_T2_END=27,
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_S2_ST=28,
+    _GXBPRas1SS1_GX_BP_RAS1_SS1_S2_END=31
 };
 typedef unsigned int _GXBPRas1SS1;
 
 typedef _GXBPRas1SS1 GXBPRas1SS1;
 
 enum {
-    GX_BP_RAS1_IREF_TXC3_ST=8,
-    GX_BP_RAS1_IREF_TXC3_END=10,
-    GX_BP_RAS1_IREF_MAP3_ST=11,
-    GX_BP_RAS1_IREF_MAP3_END=13,
-    GX_BP_RAS1_IREF_TXC2_ST=14,
-    GX_BP_RAS1_IREF_TXC2_END=16,
-    GX_BP_RAS1_IREF_MAP2_ST=17,
-    GX_BP_RAS1_IREF_MAP2_END=19,
-    GX_BP_RAS1_IREF_TXC1_ST=20,
-    GX_BP_RAS1_IREF_TXC1_END=22,
-    GX_BP_RAS1_IREF_MAP1_ST=23,
-    GX_BP_RAS1_IREF_MAP1_END=25,
-    GX_BP_RAS1_IREF_TXC0_ST=26,
-    GX_BP_RAS1_IREF_TXC0_END=28,
-    GX_BP_RAS1_IREF_MAP0_ST=29,
-    GX_BP_RAS1_IREF_MAP0_END=31
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC3_ST=8,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC3_END=10,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP3_ST=11,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP3_END=13,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC2_ST=14,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC2_END=16,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP2_ST=17,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP2_END=19,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC1_ST=20,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC1_END=22,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP1_ST=23,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP1_END=25,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC0_ST=26,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_TXC0_END=28,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP0_ST=29,
+    _GXBPRasIRef_GX_BP_RAS1_IREF_MAP0_END=31
 };
 typedef unsigned int _GXBPRasIRef;
 
 typedef _GXBPRasIRef GXBPRasIRef;
 
 enum {
-    GX_BP_REG_GENMODE=0,
-    GX_BP_REG_DISPCOPYFILTER0=1,
-    GX_BP_REG_DISPCOPYFILTER1=2,
-    GX_BP_REG_DISPCOPYFILTER2=3,
-    GX_BP_REG_DISPCOPYFILTER3=4,
-    GX_BP_REG_INDMTX0A=6,
-    GX_BP_REG_INDMTX0B=7,
-    GX_BP_REG_INDMTX0C=8,
-    GX_BP_REG_INDMTX1A=9,
-    GX_BP_REG_INDMTX1B=10,
-    GX_BP_REG_INDMTX1C=11,
-    GX_BP_REG_INDMTX2A=12,
-    GX_BP_REG_INDMTX2B=13,
-    GX_BP_REG_INDMTX2C=14,
-    GX_BP_REG_INDIMASK=15,
-    GX_BP_REG_INDTEVSTAGE0=16,
-    GX_BP_REG_INDTEVSTAGE1=17,
-    GX_BP_REG_INDTEVSTAGE2=18,
-    GX_BP_REG_INDTEVSTAGE3=19,
-    GX_BP_REG_INDTEVSTAGE4=20,
-    GX_BP_REG_INDTEVSTAGE5=21,
-    GX_BP_REG_INDTEVSTAGE6=22,
-    GX_BP_REG_INDTEVSTAGE7=23,
-    GX_BP_REG_INDTEVSTAGE8=24,
-    GX_BP_REG_INDTEVSTAGE9=25,
-    GX_BP_REG_INDTEVSTAGE10=26,
-    GX_BP_REG_INDTEVSTAGE11=27,
-    GX_BP_REG_INDTEVSTAGE12=28,
-    GX_BP_REG_INDTEVSTAGE13=29,
-    GX_BP_REG_INDTEVSTAGE14=30,
-    GX_BP_REG_INDTEVSTAGE15=31,
-    GX_BP_REG_SCISSORTL=32,
-    GX_BP_REG_SCISSORBR=33,
-    GX_BP_REG_LINEPTWIDTH=34,
-    GX_BP_REG_PERF0TRI=35,
-    GX_BP_REG_PERF0QUAD=36,
-    GX_BP_REG_RAS1_SS0=37,
-    GX_BP_REG_RAS1_SS1=38,
-    GX_BP_REG_RAS1_IREF=39,
-    GX_BP_REG_RAS1_TREF0=40,
-    GX_BP_REG_RAS1_TREF1=41,
-    GX_BP_REG_RAS1_TREF2=42,
-    GX_BP_REG_RAS1_TREF3=43,
-    GX_BP_REG_RAS1_TREF4=44,
-    GX_BP_REG_RAS1_TREF5=45,
-    GX_BP_REG_RAS1_TREF6=46,
-    GX_BP_REG_RAS1_TREF7=47,
-    GX_BP_REG_SU_SSIZE0=48,
-    GX_BP_REG_SU_TSIZE0=49,
-    GX_BP_REG_SU_SSIZE1=50,
-    GX_BP_REG_SU_TSIZE1=51,
-    GX_BP_REG_SU_SSIZE2=52,
-    GX_BP_REG_SU_TSIZE2=53,
-    GX_BP_REG_SU_SSIZE3=54,
-    GX_BP_REG_SU_TSIZE3=55,
-    GX_BP_REG_SU_SSIZE4=56,
-    GX_BP_REG_SU_TSIZE4=57,
-    GX_BP_REG_SU_SSIZE5=58,
-    GX_BP_REG_SU_TSIZE5=59,
-    GX_BP_REG_SU_SSIZE6=60,
-    GX_BP_REG_SU_TSIZE6=61,
-    GX_BP_REG_SU_SSIZE7=62,
-    GX_BP_REG_SU_TSIZE7=63,
-    GX_BP_REG_ZMODE=64,
-    GX_BP_REG_BLENDMODE=65,
-    GX_BP_REG_DSTALPHA=66,
-    GX_BP_REG_ZCONTROL=67,
-    GX_BP_REG_FIELDMASK=68,
-    GX_BP_REG_DRAWDONE=69,
-    GX_BP_REG_PETOKEN=71,
-    GX_BP_REG_PETOKENINT=72,
-    GX_BP_REG_TEXCOPYSRCXY=73,
-    GX_BP_REG_TEXCOPYSRCWH=74,
-    GX_BP_REG_TEXCOPYDST=75,
-    GX_BP_REG_DISPCOPYSTRIDE=77,
-    GX_BP_REG_DISPCOPYSCALEY=78,
-    GX_BP_REG_COPYCLEARAR=79,
-    GX_BP_REG_COPYCLEARGB=80,
-    GX_BP_REG_COPYCLEARZ=81,
-    GX_BP_REG_COPYFILTER0=83,
-    GX_BP_REG_COPYFILTER1=84,
-    GX_BP_REG_BOUNDINGBOX0=85,
-    GX_BP_REG_BOUNDINGBOX1=86,
-    GX_BP_REG_SCISSOROFFSET=89,
-    GX_BP_REG_TMEMPRELOADADDR=96,
-    GX_BP_REG_TMEMPRELOADEVEN=97,
-    GX_BP_REG_TMEMPRELOADODD=98,
-    GX_BP_REG_TMEMPRELOADMODE=99,
-    GX_BP_REG_TMEMTLUTSRC=100,
-    GX_BP_REG_TMEMTLUTDST=101,
-    GX_BP_REG_TMEMTEXINVALIDATE=102,
-    GX_BP_REG_PERF1=103,
-    GX_BP_REG_FIELDMODE=104,
-    GX_BP_REG_SETMODE0_TEX0=128,
-    GX_BP_REG_SETMODE0_TEX1=129,
-    GX_BP_REG_SETMODE0_TEX2=130,
-    GX_BP_REG_SETMODE0_TEX3=131,
-    GX_BP_REG_SETMODE1_TEX0=132,
-    GX_BP_REG_SETMODE1_TEX1=133,
-    GX_BP_REG_SETMODE1_TEX2=134,
-    GX_BP_REG_SETMODE1_TEX3=135,
-    GX_BP_REG_SETIMAGE0_TEX0=136,
-    GX_BP_REG_SETIMAGE0_TEX1=137,
-    GX_BP_REG_SETIMAGE0_TEX2=138,
-    GX_BP_REG_SETIMAGE0_TEX3=139,
-    GX_BP_REG_SETIMAGE1_TEX0=140,
-    GX_BP_REG_SETIMAGE1_TEX1=141,
-    GX_BP_REG_SETIMAGE1_TEX2=142,
-    GX_BP_REG_SETIMAGE1_TEX3=143,
-    GX_BP_REG_SETIMAGE2_TEX0=144,
-    GX_BP_REG_SETIMAGE2_TEX1=145,
-    GX_BP_REG_SETIMAGE2_TEX2=146,
-    GX_BP_REG_SETIMAGE2_TEX3=147,
-    GX_BP_REG_SETIMAGE3_TEX0=148,
-    GX_BP_REG_SETIMAGE3_TEX1=149,
-    GX_BP_REG_SETIMAGE3_TEX2=150,
-    GX_BP_REG_SETIMAGE3_TEX3=151,
-    GX_BP_REG_SETTLUT_TEX0=152,
-    GX_BP_REG_SETTLUT_TEX1=153,
-    GX_BP_REG_SETTLUT_TEX2=154,
-    GX_BP_REG_SETTLUT_TEX3=155,
-    GX_BP_REG_SETMODE0_TEX4=160,
-    GX_BP_REG_SETMODE0_TEX5=161,
-    GX_BP_REG_SETMODE0_TEX6=162,
-    GX_BP_REG_SETMODE0_TEX7=163,
-    GX_BP_REG_SETMODE1_TEX4=164,
-    GX_BP_REG_SETMODE1_TEX5=165,
-    GX_BP_REG_SETMODE1_TEX6=166,
-    GX_BP_REG_SETMODE1_TEX7=167,
-    GX_BP_REG_SETIMAGE0_TEX4=168,
-    GX_BP_REG_SETIMAGE0_TEX5=169,
-    GX_BP_REG_SETIMAGE0_TEX6=170,
-    GX_BP_REG_SETIMAGE0_TEX7=171,
-    GX_BP_REG_SETIMAGE1_TEX4=172,
-    GX_BP_REG_SETIMAGE1_TEX5=173,
-    GX_BP_REG_SETIMAGE1_TEX6=174,
-    GX_BP_REG_SETIMAGE1_TEX7=175,
-    GX_BP_REG_SETIMAGE2_TEX4=176,
-    GX_BP_REG_SETIMAGE2_TEX5=177,
-    GX_BP_REG_SETIMAGE2_TEX6=178,
-    GX_BP_REG_SETIMAGE2_TEX7=179,
-    GX_BP_REG_SETIMAGE3_TEX4=180,
-    GX_BP_REG_SETIMAGE3_TEX5=181,
-    GX_BP_REG_SETIMAGE3_TEX6=182,
-    GX_BP_REG_SETIMAGE3_TEX7=183,
-    GX_BP_REG_SETTLUT_TEX4=184,
-    GX_BP_REG_SETTLUT_TEX5=185,
-    GX_BP_REG_SETTLUT_TEX6=186,
-    GX_BP_REG_SETTLUT_TEX7=187,
-    GX_BP_REG_TEVCOLORCOMBINER0=192,
-    GX_BP_REG_TEVALPHACOMBINER0=193,
-    GX_BP_REG_TEVCOLORCOMBINER1=194,
-    GX_BP_REG_TEVALPHACOMBINER1=195,
-    GX_BP_REG_TEVCOLORCOMBINER2=196,
-    GX_BP_REG_TEVALPHACOMBINER2=197,
-    GX_BP_REG_TEVCOLORCOMBINER3=198,
-    GX_BP_REG_TEVALPHACOMBINER3=199,
-    GX_BP_REG_TEVCOLORCOMBINER4=200,
-    GX_BP_REG_TEVALPHACOMBINER4=201,
-    GX_BP_REG_TEVCOLORCOMBINER5=202,
-    GX_BP_REG_TEVALPHACOMBINER5=203,
-    GX_BP_REG_TEVCOLORCOMBINER6=204,
-    GX_BP_REG_TEVALPHACOMBINER6=205,
-    GX_BP_REG_TEVCOLORCOMBINER7=206,
-    GX_BP_REG_TEVALPHACOMBINER7=207,
-    GX_BP_REG_TEVCOLORCOMBINER8=208,
-    GX_BP_REG_TEVALPHACOMBINER8=209,
-    GX_BP_REG_TEVCOLORCOMBINER9=210,
-    GX_BP_REG_TEVALPHACOMBINER9=211,
-    GX_BP_REG_TEVCOLORCOMBINER10=212,
-    GX_BP_REG_TEVALPHACOMBINER10=213,
-    GX_BP_REG_TEVCOLORCOMBINER11=214,
-    GX_BP_REG_TEVALPHACOMBINER11=215,
-    GX_BP_REG_TEVCOLORCOMBINER12=216,
-    GX_BP_REG_TEVALPHACOMBINER12=217,
-    GX_BP_REG_TEVCOLORCOMBINER13=218,
-    GX_BP_REG_TEVALPHACOMBINER13=219,
-    GX_BP_REG_TEVCOLORCOMBINER14=220,
-    GX_BP_REG_TEVALPHACOMBINER14=221,
-    GX_BP_REG_TEVCOLORCOMBINER15=222,
-    GX_BP_REG_TEVALPHACOMBINER15=223,
-    GX_BP_REG_TEVREG0LO=224,
-    GX_BP_REG_TEVREG0HI=225,
-    GX_BP_REG_TEVREG1LO=226,
-    GX_BP_REG_TEVREG1HI=227,
-    GX_BP_REG_TEVREG2LO=228,
-    GX_BP_REG_TEVREG2HI=229,
-    GX_BP_REG_TEVREG3LO=230,
-    GX_BP_REG_TEVREG3HI=231,
-    GX_BP_REG_FOGRANGE=232,
-    GX_BP_REG_FOGRANGEK0=233,
-    GX_BP_REG_FOGRANGEK1=234,
-    GX_BP_REG_FOGRANGEK2=235,
-    GX_BP_REG_FOGRANGEK3=236,
-    GX_BP_REG_FOGRANGEK4=237,
-    GX_BP_REG_FOGPARAM0=238,
-    GX_BP_REG_FOGPARAM1=239,
-    GX_BP_REG_FOGPARAM2=240,
-    GX_BP_REG_FOGPARAM3=241,
-    GX_BP_REG_FOGCOLOR=242,
-    GX_BP_REG_ALPHACOMPARE=243,
-    GX_BP_REG_ZTEXTURE0=244,
-    GX_BP_REG_ZTEXTURE1=245,
-    GX_BP_REG_TEVKSEL0=246,
-    GX_BP_REG_TEVKSEL1=247,
-    GX_BP_REG_TEVKSEL2=248,
-    GX_BP_REG_TEVKSEL3=249,
-    GX_BP_REG_TEVKSEL4=250,
-    GX_BP_REG_TEVKSEL5=251,
-    GX_BP_REG_TEVKSEL6=252,
-    GX_BP_REG_TEVKSEL7=253,
-    GX_BP_REG_SSMASK=254
+    _GXBPRegs_GX_BP_REG_GENMODE=0,
+    _GXBPRegs_GX_BP_REG_DISPCOPYFILTER0=1,
+    _GXBPRegs_GX_BP_REG_DISPCOPYFILTER1=2,
+    _GXBPRegs_GX_BP_REG_DISPCOPYFILTER2=3,
+    _GXBPRegs_GX_BP_REG_DISPCOPYFILTER3=4,
+    _GXBPRegs_GX_BP_REG_INDMTX0A=6,
+    _GXBPRegs_GX_BP_REG_INDMTX0B=7,
+    _GXBPRegs_GX_BP_REG_INDMTX0C=8,
+    _GXBPRegs_GX_BP_REG_INDMTX1A=9,
+    _GXBPRegs_GX_BP_REG_INDMTX1B=10,
+    _GXBPRegs_GX_BP_REG_INDMTX1C=11,
+    _GXBPRegs_GX_BP_REG_INDMTX2A=12,
+    _GXBPRegs_GX_BP_REG_INDMTX2B=13,
+    _GXBPRegs_GX_BP_REG_INDMTX2C=14,
+    _GXBPRegs_GX_BP_REG_INDIMASK=15,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE0=16,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE1=17,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE2=18,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE3=19,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE4=20,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE5=21,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE6=22,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE7=23,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE8=24,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE9=25,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE10=26,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE11=27,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE12=28,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE13=29,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE14=30,
+    _GXBPRegs_GX_BP_REG_INDTEVSTAGE15=31,
+    _GXBPRegs_GX_BP_REG_SCISSORTL=32,
+    _GXBPRegs_GX_BP_REG_SCISSORBR=33,
+    _GXBPRegs_GX_BP_REG_LINEPTWIDTH=34,
+    _GXBPRegs_GX_BP_REG_PERF0TRI=35,
+    _GXBPRegs_GX_BP_REG_PERF0QUAD=36,
+    _GXBPRegs_GX_BP_REG_RAS1_SS0=37,
+    _GXBPRegs_GX_BP_REG_RAS1_SS1=38,
+    _GXBPRegs_GX_BP_REG_RAS1_IREF=39,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF0=40,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF1=41,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF2=42,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF3=43,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF4=44,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF5=45,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF6=46,
+    _GXBPRegs_GX_BP_REG_RAS1_TREF7=47,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE0=48,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE0=49,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE1=50,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE1=51,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE2=52,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE2=53,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE3=54,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE3=55,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE4=56,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE4=57,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE5=58,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE5=59,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE6=60,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE6=61,
+    _GXBPRegs_GX_BP_REG_SU_SSIZE7=62,
+    _GXBPRegs_GX_BP_REG_SU_TSIZE7=63,
+    _GXBPRegs_GX_BP_REG_ZMODE=64,
+    _GXBPRegs_GX_BP_REG_BLENDMODE=65,
+    _GXBPRegs_GX_BP_REG_DSTALPHA=66,
+    _GXBPRegs_GX_BP_REG_ZCONTROL=67,
+    _GXBPRegs_GX_BP_REG_FIELDMASK=68,
+    _GXBPRegs_GX_BP_REG_DRAWDONE=69,
+    _GXBPRegs_GX_BP_REG_PETOKEN=71,
+    _GXBPRegs_GX_BP_REG_PETOKENINT=72,
+    _GXBPRegs_GX_BP_REG_TEXCOPYSRCXY=73,
+    _GXBPRegs_GX_BP_REG_TEXCOPYSRCWH=74,
+    _GXBPRegs_GX_BP_REG_TEXCOPYDST=75,
+    _GXBPRegs_GX_BP_REG_DISPCOPYSTRIDE=77,
+    _GXBPRegs_GX_BP_REG_DISPCOPYSCALEY=78,
+    _GXBPRegs_GX_BP_REG_COPYCLEARAR=79,
+    _GXBPRegs_GX_BP_REG_COPYCLEARGB=80,
+    _GXBPRegs_GX_BP_REG_COPYCLEARZ=81,
+    _GXBPRegs_GX_BP_REG_COPYFILTER0=83,
+    _GXBPRegs_GX_BP_REG_COPYFILTER1=84,
+    _GXBPRegs_GX_BP_REG_BOUNDINGBOX0=85,
+    _GXBPRegs_GX_BP_REG_BOUNDINGBOX1=86,
+    _GXBPRegs_GX_BP_REG_SCISSOROFFSET=89,
+    _GXBPRegs_GX_BP_REG_TMEMPRELOADADDR=96,
+    _GXBPRegs_GX_BP_REG_TMEMPRELOADEVEN=97,
+    _GXBPRegs_GX_BP_REG_TMEMPRELOADODD=98,
+    _GXBPRegs_GX_BP_REG_TMEMPRELOADMODE=99,
+    _GXBPRegs_GX_BP_REG_TMEMTLUTSRC=100,
+    _GXBPRegs_GX_BP_REG_TMEMTLUTDST=101,
+    _GXBPRegs_GX_BP_REG_TMEMTEXINVALIDATE=102,
+    _GXBPRegs_GX_BP_REG_PERF1=103,
+    _GXBPRegs_GX_BP_REG_FIELDMODE=104,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX0=128,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX1=129,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX2=130,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX3=131,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX0=132,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX1=133,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX2=134,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX3=135,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX0=136,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX1=137,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX2=138,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX3=139,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX0=140,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX1=141,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX2=142,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX3=143,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX0=144,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX1=145,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX2=146,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX3=147,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX0=148,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX1=149,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX2=150,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX3=151,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX0=152,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX1=153,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX2=154,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX3=155,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX4=160,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX5=161,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX6=162,
+    _GXBPRegs_GX_BP_REG_SETMODE0_TEX7=163,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX4=164,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX5=165,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX6=166,
+    _GXBPRegs_GX_BP_REG_SETMODE1_TEX7=167,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX4=168,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX5=169,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX6=170,
+    _GXBPRegs_GX_BP_REG_SETIMAGE0_TEX7=171,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX4=172,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX5=173,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX6=174,
+    _GXBPRegs_GX_BP_REG_SETIMAGE1_TEX7=175,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX4=176,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX5=177,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX6=178,
+    _GXBPRegs_GX_BP_REG_SETIMAGE2_TEX7=179,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX4=180,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX5=181,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX6=182,
+    _GXBPRegs_GX_BP_REG_SETIMAGE3_TEX7=183,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX4=184,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX5=185,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX6=186,
+    _GXBPRegs_GX_BP_REG_SETTLUT_TEX7=187,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER0=192,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER0=193,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER1=194,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER1=195,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER2=196,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER2=197,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER3=198,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER3=199,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER4=200,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER4=201,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER5=202,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER5=203,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER6=204,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER6=205,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER7=206,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER7=207,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER8=208,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER8=209,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER9=210,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER9=211,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER10=212,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER10=213,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER11=214,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER11=215,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER12=216,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER12=217,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER13=218,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER13=219,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER14=220,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER14=221,
+    _GXBPRegs_GX_BP_REG_TEVCOLORCOMBINER15=222,
+    _GXBPRegs_GX_BP_REG_TEVALPHACOMBINER15=223,
+    _GXBPRegs_GX_BP_REG_TEVREG0LO=224,
+    _GXBPRegs_GX_BP_REG_TEVREG0HI=225,
+    _GXBPRegs_GX_BP_REG_TEVREG1LO=226,
+    _GXBPRegs_GX_BP_REG_TEVREG1HI=227,
+    _GXBPRegs_GX_BP_REG_TEVREG2LO=228,
+    _GXBPRegs_GX_BP_REG_TEVREG2HI=229,
+    _GXBPRegs_GX_BP_REG_TEVREG3LO=230,
+    _GXBPRegs_GX_BP_REG_TEVREG3HI=231,
+    _GXBPRegs_GX_BP_REG_FOGRANGE=232,
+    _GXBPRegs_GX_BP_REG_FOGRANGEK0=233,
+    _GXBPRegs_GX_BP_REG_FOGRANGEK1=234,
+    _GXBPRegs_GX_BP_REG_FOGRANGEK2=235,
+    _GXBPRegs_GX_BP_REG_FOGRANGEK3=236,
+    _GXBPRegs_GX_BP_REG_FOGRANGEK4=237,
+    _GXBPRegs_GX_BP_REG_FOGPARAM0=238,
+    _GXBPRegs_GX_BP_REG_FOGPARAM1=239,
+    _GXBPRegs_GX_BP_REG_FOGPARAM2=240,
+    _GXBPRegs_GX_BP_REG_FOGPARAM3=241,
+    _GXBPRegs_GX_BP_REG_FOGCOLOR=242,
+    _GXBPRegs_GX_BP_REG_ALPHACOMPARE=243,
+    _GXBPRegs_GX_BP_REG_ZTEXTURE0=244,
+    _GXBPRegs_GX_BP_REG_ZTEXTURE1=245,
+    _GXBPRegs_GX_BP_REG_TEVKSEL0=246,
+    _GXBPRegs_GX_BP_REG_TEVKSEL1=247,
+    _GXBPRegs_GX_BP_REG_TEVKSEL2=248,
+    _GXBPRegs_GX_BP_REG_TEVKSEL3=249,
+    _GXBPRegs_GX_BP_REG_TEVKSEL4=250,
+    _GXBPRegs_GX_BP_REG_TEVKSEL5=251,
+    _GXBPRegs_GX_BP_REG_TEVKSEL6=252,
+    _GXBPRegs_GX_BP_REG_TEVKSEL7=253,
+    _GXBPRegs_GX_BP_REG_SSMASK=254
 };
 typedef unsigned int _GXBPRegs;
 
 typedef _GXBPRegs GXBPRegs;
 
 enum {
-    GX_BP_SU_SSIZE_USEPTOFS_END=12,
-    GX_BP_SU_SSIZE_USEPTOFS_ST=12,
-    GX_BP_SU_SSIZE_USELINEOFS_END=13,
-    GX_BP_SU_SSIZE_USELINEOFS_ST=13
+    _GXBPSUSSize_GX_BP_SU_SSIZE_USEPTOFS_END=12,
+    _GXBPSUSSize_GX_BP_SU_SSIZE_USEPTOFS_ST=12,
+    _GXBPSUSSize_GX_BP_SU_SSIZE_USELINEOFS_END=13,
+    _GXBPSUSSize_GX_BP_SU_SSIZE_USELINEOFS_ST=13
 };
 typedef unsigned int _GXBPSUSSize;
 
 typedef _GXBPSUSSize GXBPSUSSize;
 
 enum {
-    GX_BP_SCISSORBR_RIGHT_ST=9,
-    GX_BP_SCISSORBR_RIGHT_END=19,
-    GX_BP_SCISSORBR_BOT_ST=21,
-    GX_BP_SCISSORBR_BOT_END=31
+    _GXBPScissorBR_GX_BP_SCISSORBR_RIGHT_ST=9,
+    _GXBPScissorBR_GX_BP_SCISSORBR_RIGHT_END=19,
+    _GXBPScissorBR_GX_BP_SCISSORBR_BOT_ST=21,
+    _GXBPScissorBR_GX_BP_SCISSORBR_BOT_END=31
 };
 typedef unsigned int _GXBPScissorBR;
 
 typedef _GXBPScissorBR GXBPScissorBR;
 
 enum {
-    GX_BP_SCISSOROFS_OY_ST=12,
-    GX_BP_SCISSOROFS_OY_END=21,
-    GX_BP_SCISSOROFS_OX_ST=22,
-    GX_BP_SCISSOROFS_OX_END=31
+    _GXBPScissorOffset_GX_BP_SCISSOROFS_OY_ST=12,
+    _GXBPScissorOffset_GX_BP_SCISSOROFS_OY_END=21,
+    _GXBPScissorOffset_GX_BP_SCISSOROFS_OX_ST=22,
+    _GXBPScissorOffset_GX_BP_SCISSOROFS_OX_END=31
 };
 typedef unsigned int _GXBPScissorOffset;
 
 typedef _GXBPScissorOffset GXBPScissorOffset;
 
 enum {
-    GX_BP_SCISSORTL_LEFT_ST=9,
-    GX_BP_SCISSORTL_LEFT_END=19,
-    GX_BP_SCISSORTL_TOP_ST=21,
-    GX_BP_SCISSORTL_TOP_END=31
+    _GXBPScissorTL_GX_BP_SCISSORTL_LEFT_ST=9,
+    _GXBPScissorTL_GX_BP_SCISSORTL_LEFT_END=19,
+    _GXBPScissorTL_GX_BP_SCISSORTL_TOP_ST=21,
+    _GXBPScissorTL_GX_BP_SCISSORTL_TOP_END=31
 };
 typedef unsigned int _GXBPScissorTL;
 
 typedef _GXBPScissorTL GXBPScissorTL;
 
 enum {
-    GX_BP_ZCONTROL_BEFORE_TEX_END=25,
-    GX_BP_ZCONTROL_BEFORE_TEX_ST=25,
-    GX_BP_ZCONTROL_Z_FMT_ST=26,
-    GX_BP_ZCONTROL_Z_FMT_END=28,
-    GX_BP_ZCONTROL_PIXEL_FMT_ST=29,
-    GX_BP_ZCONTROL_PIXEL_FMT_END=31
+    _GXBPZControl_GX_BP_ZCONTROL_BEFORE_TEX_END=25,
+    _GXBPZControl_GX_BP_ZCONTROL_BEFORE_TEX_ST=25,
+    _GXBPZControl_GX_BP_ZCONTROL_Z_FMT_ST=26,
+    _GXBPZControl_GX_BP_ZCONTROL_Z_FMT_END=28,
+    _GXBPZControl_GX_BP_ZCONTROL_PIXEL_FMT_ST=29,
+    _GXBPZControl_GX_BP_ZCONTROL_PIXEL_FMT_END=31
 };
 typedef unsigned int _GXBPZControl;
 
 typedef _GXBPZControl GXBPZControl;
 
 enum {
-    GX_BP_ZMODE_UPDATE_ENABLE_END=27,
-    GX_BP_ZMODE_UPDATE_ENABLE_ST=27,
-    GX_BP_ZMODE_COMPARE_ST=28,
-    GX_BP_ZMODE_COMPARE_END=30,
-    GX_BP_ZMODE_TEST_ENABLE_END=31,
-    GX_BP_ZMODE_TEST_ENABLE_ST=31
+    _GXBPZMode_GX_BP_ZMODE_UPDATE_ENABLE_END=27,
+    _GXBPZMode_GX_BP_ZMODE_UPDATE_ENABLE_ST=27,
+    _GXBPZMode_GX_BP_ZMODE_COMPARE_ST=28,
+    _GXBPZMode_GX_BP_ZMODE_COMPARE_END=30,
+    _GXBPZMode_GX_BP_ZMODE_TEST_ENABLE_END=31,
+    _GXBPZMode_GX_BP_ZMODE_TEST_ENABLE_ST=31
 };
 typedef unsigned int _GXBPZMode;
 
@@ -4163,8 +4163,8 @@ typedef _GXBPZMode GXBPZMode;
 enum {
     GXBlendFactor_GX_BL_ZERO=0,
     GXBlendFactor_GX_BL_ONE=1,
-    GX_BL_SRCCLR=2,
-    GX_BL_INVSRCCLR=3,
+    GXBlendFactor_GX_BL_SRCCLR=2,
+    GXBlendFactor_GX_BL_INVSRCCLR=3,
     GXBlendFactor_GX_BL_SRCALPHA=4,
     GXBlendFactor_GX_BL_INVSRCALPHA=5,
     GXBlendFactor_GX_BL_DSTALPHA=6,
@@ -4194,10 +4194,10 @@ typedef unsigned int GXBlendMode;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
 
 enum {
-    GX_DISABLE=0,
-    GX_FALSE=0,
-    GX_ENABLE=1,
-    GX_TRUE=1
+    GXBool_GX_DISABLE=0,
+    GXBool_GX_FALSE=0,
+    GXBool_GX_ENABLE=1,
+    GXBool_GX_TRUE=1
 };
 typedef unsigned char GXBool;
 
@@ -4223,203 +4223,203 @@ typedef unsigned int GXCITexFmt;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
 
 enum {
-    GX_CP_ARRAYBASE_BASE_ST=6,
-    GX_CP_ARRAYBASE_BASE_END=31
+    _GXCPArrayBase_GX_CP_ARRAYBASE_BASE_ST=6,
+    _GXCPArrayBase_GX_CP_ARRAYBASE_BASE_END=31
 };
 typedef unsigned int _GXCPArrayBase;
 
 typedef _GXCPArrayBase GXCPArrayBase;
 
 enum {
-    GX_CP_ARRAYSTRIDE_STRIDE_ST=24,
-    GX_CP_ARRAYSTRIDE_STRIDE_END=31
+    _GXCPArrayStride_GX_CP_ARRAYSTRIDE_STRIDE_ST=24,
+    _GXCPArrayStride_GX_CP_ARRAYSTRIDE_STRIDE_END=31
 };
 typedef unsigned int _GXCPArrayStride;
 
 typedef _GXCPArrayStride GXCPArrayStride;
 
 enum {
-    GX_CP_MTXIDXA_TEX3_ST=2,
-    GX_CP_MTXIDXA_TEX3_END=7,
-    GX_CP_MTXIDXA_TEX2_ST=8,
-    GX_CP_MTXIDXA_TEX2_END=13,
-    GX_CP_MTXIDXA_TEX1_ST=14,
-    GX_CP_MTXIDXA_TEX1_END=19,
-    GX_CP_MTXIDXA_TEX0_ST=20,
-    GX_CP_MTXIDXA_TEX0_END=25,
-    GX_CP_MTXIDXA_GEOM_ST=26,
-    GX_CP_MTXIDXA_GEOM_END=31
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX3_ST=2,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX3_END=7,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX2_ST=8,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX2_END=13,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX1_ST=14,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX1_END=19,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX0_ST=20,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX0_END=25,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_GEOM_ST=26,
+    _GXCPMtxIdxA_GX_CP_MTXIDXA_GEOM_END=31
 };
 typedef unsigned int _GXCPMtxIdxA;
 
 typedef _GXCPMtxIdxA GXCPMtxIdxA;
 
 enum {
-    GX_CP_MTXIDXB_TEX7_ST=8,
-    GX_CP_MTXIDXB_TEX7_END=13,
-    GX_CP_MTXIDXB_TEX6_ST=14,
-    GX_CP_MTXIDXB_TEX6_END=19,
-    GX_CP_MTXIDXB_TEX5_ST=20,
-    GX_CP_MTXIDXB_TEX5_END=25,
-    GX_CP_MTXIDXB_TEX4_ST=26,
-    GX_CP_MTXIDXB_TEX4_END=31
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX7_ST=8,
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX7_END=13,
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX6_ST=14,
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX6_END=19,
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX5_ST=20,
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX5_END=25,
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX4_ST=26,
+    _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX4_END=31
 };
 typedef unsigned int _GXCPMtxIdxB;
 
 typedef _GXCPMtxIdxB GXCPMtxIdxB;
 
 enum {
-    GX_CP_REG_MTXIDXA=48,
-    GX_CP_REG_MTXIDXB=64,
-    GX_CP_REG_VCD_LO=80,
-    GX_CP_REG_VCD_HI=96,
-    GX_CP_REG_VAT_GRP0=112,
-    GX_CP_REG_VAT_GRP1=128,
-    GX_CP_REG_VAT_GRP2=144,
-    GX_CP_REG_ARRAYBASE=160,
-    GX_CP_REG_ARRAYSTRIDE=176
+    _GXCPRegs_GX_CP_REG_MTXIDXA=48,
+    _GXCPRegs_GX_CP_REG_MTXIDXB=64,
+    _GXCPRegs_GX_CP_REG_VCD_LO=80,
+    _GXCPRegs_GX_CP_REG_VCD_HI=96,
+    _GXCPRegs_GX_CP_REG_VAT_GRP0=112,
+    _GXCPRegs_GX_CP_REG_VAT_GRP1=128,
+    _GXCPRegs_GX_CP_REG_VAT_GRP2=144,
+    _GXCPRegs_GX_CP_REG_ARRAYBASE=160,
+    _GXCPRegs_GX_CP_REG_ARRAYSTRIDE=176
 };
 typedef unsigned int _GXCPRegs;
 
 typedef _GXCPRegs GXCPRegs;
 
 enum {
-    GX_CP_VAT_GRP0_NRMIDX3_END=0,
-    GX_CP_VAT_GRP0_NRMIDX3_ST=0,
-    GX_CP_VAT_GRP0_BYTEDEQ_END=1,
-    GX_CP_VAT_GRP0_BYTEDEQ_ST=1,
-    GX_CP_VAT_GRP0_TXC0_SHIFT_ST=2,
-    GX_CP_VAT_GRP0_TXC0_SHIFT_END=6,
-    GX_CP_VAT_GRP0_TXC0_TYPE_ST=7,
-    GX_CP_VAT_GRP0_TXC0_TYPE_END=9,
-    GX_CP_VAT_GRP0_TXC0_CNT_END=10,
-    GX_CP_VAT_GRP0_TXC0_CNT_ST=10,
-    GX_CP_VAT_GRP0_CLRSPEC_TYPE_ST=11,
-    GX_CP_VAT_GRP0_CLRSPEC_TYPE_END=13,
-    GX_CP_VAT_GRP0_CLRSPEC_CNT_END=14,
-    GX_CP_VAT_GRP0_CLRSPEC_CNT_ST=14,
-    GX_CP_VAT_GRP0_CLRDIFF_TYPE_ST=15,
-    GX_CP_VAT_GRP0_CLRDIFF_TYPE_END=17,
-    GX_CP_VAT_GRP0_CLRDIFF_CNT_END=18,
-    GX_CP_VAT_GRP0_CLRDIFF_CNT_ST=18,
-    GX_CP_VAT_GRP0_NRM_TYPE_ST=19,
-    GX_CP_VAT_GRP0_NRM_TYPE_END=21,
-    GX_CP_VAT_GRP0_NRM_CNT_END=22,
-    GX_CP_VAT_GRP0_NRM_CNT_ST=22,
-    GX_CP_VAT_GRP0_POS_SHIFT_ST=23,
-    GX_CP_VAT_GRP0_POS_SHIFT_END=27,
-    GX_CP_VAT_GRP0_POS_TYPE_ST=28,
-    GX_CP_VAT_GRP0_POS_TYPE_END=30,
-    GX_CP_VAT_GRP0_POS_CNT_END=31,
-    GX_CP_VAT_GRP0_POS_CNT_ST=31
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_NRMIDX3_END=0,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_NRMIDX3_ST=0,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_BYTEDEQ_END=1,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_BYTEDEQ_ST=1,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_TXC0_SHIFT_ST=2,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_TXC0_SHIFT_END=6,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_TXC0_TYPE_ST=7,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_TXC0_TYPE_END=9,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_TXC0_CNT_END=10,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_TXC0_CNT_ST=10,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRSPEC_TYPE_ST=11,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRSPEC_TYPE_END=13,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRSPEC_CNT_END=14,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRSPEC_CNT_ST=14,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRDIFF_TYPE_ST=15,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRDIFF_TYPE_END=17,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRDIFF_CNT_END=18,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_CLRDIFF_CNT_ST=18,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_NRM_TYPE_ST=19,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_NRM_TYPE_END=21,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_NRM_CNT_END=22,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_NRM_CNT_ST=22,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_SHIFT_ST=23,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_SHIFT_END=27,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_TYPE_ST=28,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_TYPE_END=30,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_CNT_END=31,
+    _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_CNT_ST=31
 };
 typedef unsigned int _GXCPVATGrp0;
 
 typedef _GXCPVATGrp0 GXCPVATGrp0;
 
 enum {
-    GX_CP_VAT_GRP1_TXC4_TYPE_ST=1,
-    GX_CP_VAT_GRP1_TXC4_TYPE_END=3,
-    GX_CP_VAT_GRP1_TXC4_CNT_END=4,
-    GX_CP_VAT_GRP1_TXC4_CNT_ST=4,
-    GX_CP_VAT_GRP1_TXC3_SHIFT_ST=5,
-    GX_CP_VAT_GRP1_TXC3_SHIFT_END=9,
-    GX_CP_VAT_GRP1_TXC3_TYPE_ST=10,
-    GX_CP_VAT_GRP1_TXC3_TYPE_END=12,
-    GX_CP_VAT_GRP1_TXC3_CNT_END=13,
-    GX_CP_VAT_GRP1_TXC3_CNT_ST=13,
-    GX_CP_VAT_GRP1_TXC2_SHIFT_ST=14,
-    GX_CP_VAT_GRP1_TXC2_SHIFT_END=18,
-    GX_CP_VAT_GRP1_TXC2_TYPE_ST=19,
-    GX_CP_VAT_GRP1_TXC2_TYPE_END=21,
-    GX_CP_VAT_GRP1_TXC2_CNT_END=22,
-    GX_CP_VAT_GRP1_TXC2_CNT_ST=22,
-    GX_CP_VAT_GRP1_TXC1_SHIFT_ST=23,
-    GX_CP_VAT_GRP1_TXC1_SHIFT_END=27,
-    GX_CP_VAT_GRP1_TXC1_TYPE_ST=28,
-    GX_CP_VAT_GRP1_TXC1_TYPE_END=30,
-    GX_CP_VAT_GRP1_TXC1_CNT_END=31,
-    GX_CP_VAT_GRP1_TXC1_CNT_ST=31
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_TYPE_ST=1,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_TYPE_END=3,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_CNT_END=4,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_CNT_ST=4,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC3_SHIFT_ST=5,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC3_SHIFT_END=9,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC3_TYPE_ST=10,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC3_TYPE_END=12,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC3_CNT_END=13,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC3_CNT_ST=13,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC2_SHIFT_ST=14,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC2_SHIFT_END=18,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC2_TYPE_ST=19,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC2_TYPE_END=21,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC2_CNT_END=22,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC2_CNT_ST=22,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_SHIFT_ST=23,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_SHIFT_END=27,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_TYPE_ST=28,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_TYPE_END=30,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_CNT_END=31,
+    _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_CNT_ST=31
 };
 typedef unsigned int _GXCPVATGrp1;
 
 typedef _GXCPVATGrp1 GXCPVATGrp1;
 
 enum {
-    GX_CP_VAT_GRP2_TXC7_SHIFT_ST=0,
-    GX_CP_VAT_GRP2_TXC7_SHIFT_END=4,
-    GX_CP_VAT_GRP2_TXC7_TYPE_ST=5,
-    GX_CP_VAT_GRP2_TXC7_TYPE_END=7,
-    GX_CP_VAT_GRP2_TXC7_CNT_END=8,
-    GX_CP_VAT_GRP2_TXC7_CNT_ST=8,
-    GX_CP_VAT_GRP2_TXC6_SHIFT_ST=9,
-    GX_CP_VAT_GRP2_TXC6_SHIFT_END=13,
-    GX_CP_VAT_GRP2_TXC6_TYPE_ST=14,
-    GX_CP_VAT_GRP2_TXC6_TYPE_END=16,
-    GX_CP_VAT_GRP2_TXC6_CNT_END=17,
-    GX_CP_VAT_GRP2_TXC6_CNT_ST=17,
-    GX_CP_VAT_GRP2_TXC5_SHIFT_ST=18,
-    GX_CP_VAT_GRP2_TXC5_SHIFT_END=22,
-    GX_CP_VAT_GRP2_TXC5_TYPE_ST=23,
-    GX_CP_VAT_GRP2_TXC5_TYPE_END=25,
-    GX_CP_VAT_GRP2_TXC5_CNT_END=26,
-    GX_CP_VAT_GRP2_TXC5_CNT_ST=26,
-    GX_CP_VAT_GRP2_TXC4_SHIFT_ST=27,
-    GX_CP_VAT_GRP2_TXC4_SHIFT_END=31
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_SHIFT_ST=0,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_SHIFT_END=4,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_TYPE_ST=5,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_TYPE_END=7,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_CNT_END=8,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_CNT_ST=8,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC6_SHIFT_ST=9,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC6_SHIFT_END=13,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC6_TYPE_ST=14,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC6_TYPE_END=16,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC6_CNT_END=17,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC6_CNT_ST=17,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC5_SHIFT_ST=18,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC5_SHIFT_END=22,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC5_TYPE_ST=23,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC5_TYPE_END=25,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC5_CNT_END=26,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC5_CNT_ST=26,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC4_SHIFT_ST=27,
+    _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC4_SHIFT_END=31
 };
 typedef unsigned int _GXCPVATGrp2;
 
 typedef _GXCPVATGrp2 GXCPVATGrp2;
 
 enum {
-    GX_CP_VCD_HI_TEX7COORD_ST=16,
-    GX_CP_VCD_HI_TEX7COORD_END=17,
-    GX_CP_VCD_HI_TEX6COORD_ST=18,
-    GX_CP_VCD_HI_TEX6COORD_END=19,
-    GX_CP_VCD_HI_TEX5COORD_ST=20,
-    GX_CP_VCD_HI_TEX5COORD_END=21,
-    GX_CP_VCD_HI_TEX4COORD_ST=22,
-    GX_CP_VCD_HI_TEX4COORD_END=23,
-    GX_CP_VCD_HI_TEX3COORD_ST=24,
-    GX_CP_VCD_HI_TEX3COORD_END=25,
-    GX_CP_VCD_HI_TEX2COORD_ST=26,
-    GX_CP_VCD_HI_TEX2COORD_END=27,
-    GX_CP_VCD_HI_TEX1COORD_ST=28,
-    GX_CP_VCD_HI_TEX1COORD_END=29,
-    GX_CP_VCD_HI_TEX0COORD_ST=30,
-    GX_CP_VCD_HI_TEX0COORD_END=31
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX7COORD_ST=16,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX7COORD_END=17,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX6COORD_ST=18,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX6COORD_END=19,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX5COORD_ST=20,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX5COORD_END=21,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX4COORD_ST=22,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX4COORD_END=23,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX3COORD_ST=24,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX3COORD_END=25,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX2COORD_ST=26,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX2COORD_END=27,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX1COORD_ST=28,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX1COORD_END=29,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX0COORD_ST=30,
+    _GXCPVCDHi_GX_CP_VCD_HI_TEX0COORD_END=31
 };
 typedef unsigned int _GXCPVCDHi;
 
 typedef _GXCPVCDHi GXCPVCDHi;
 
 enum {
-    GX_CP_VCD_LO_CLRSPEC_ST=15,
-    GX_CP_VCD_LO_CLRSPEC_END=16,
-    GX_CP_VCD_LO_CLRDIF_ST=17,
-    GX_CP_VCD_LO_CLRDIF_END=18,
-    GX_CP_VCD_LO_NRM_ST=19,
-    GX_CP_VCD_LO_NRM_END=20,
-    GX_CP_VCD_LO_POS_ST=21,
-    GX_CP_VCD_LO_POS_END=22,
-    GX_CP_VCD_LO_TEX7MTXIDX_END=23,
-    GX_CP_VCD_LO_TEX7MTXIDX_ST=23,
-    GX_CP_VCD_LO_TEX6MTXIDX_END=24,
-    GX_CP_VCD_LO_TEX6MTXIDX_ST=24,
-    GX_CP_VCD_LO_TEX5MTXIDX_END=25,
-    GX_CP_VCD_LO_TEX5MTXIDX_ST=25,
-    GX_CP_VCD_LO_TEX4MTXIDX_END=26,
-    GX_CP_VCD_LO_TEX4MTXIDX_ST=26,
-    GX_CP_VCD_LO_TEX3MTXIDX_END=27,
-    GX_CP_VCD_LO_TEX3MTXIDX_ST=27,
-    GX_CP_VCD_LO_TEX2MTXIDX_END=28,
-    GX_CP_VCD_LO_TEX2MTXIDX_ST=28,
-    GX_CP_VCD_LO_TEX1MTXIDX_END=29,
-    GX_CP_VCD_LO_TEX1MTXIDX_ST=29,
-    GX_CP_VCD_LO_TEX0MTXIDX_END=30,
-    GX_CP_VCD_LO_TEX0MTXIDX_ST=30,
-    GX_CP_VCD_LO_POSMTXIDX_END=31,
-    GX_CP_VCD_LO_POSMTXIDX_ST=31
+    _GXCPVCDLo_GX_CP_VCD_LO_CLRSPEC_ST=15,
+    _GXCPVCDLo_GX_CP_VCD_LO_CLRSPEC_END=16,
+    _GXCPVCDLo_GX_CP_VCD_LO_CLRDIF_ST=17,
+    _GXCPVCDLo_GX_CP_VCD_LO_CLRDIF_END=18,
+    _GXCPVCDLo_GX_CP_VCD_LO_NRM_ST=19,
+    _GXCPVCDLo_GX_CP_VCD_LO_NRM_END=20,
+    _GXCPVCDLo_GX_CP_VCD_LO_POS_ST=21,
+    _GXCPVCDLo_GX_CP_VCD_LO_POS_END=22,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX7MTXIDX_END=23,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX7MTXIDX_ST=23,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX6MTXIDX_END=24,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX6MTXIDX_ST=24,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX5MTXIDX_END=25,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX5MTXIDX_ST=25,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX4MTXIDX_END=26,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX4MTXIDX_ST=26,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX3MTXIDX_END=27,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX3MTXIDX_ST=27,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX2MTXIDX_END=28,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX2MTXIDX_ST=28,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX1MTXIDX_END=29,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX1MTXIDX_ST=29,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX0MTXIDX_END=30,
+    _GXCPVCDLo_GX_CP_VCD_LO_TEX0MTXIDX_ST=30,
+    _GXCPVCDLo_GX_CP_VCD_LO_POSMTXIDX_END=31,
+    _GXCPVCDLo_GX_CP_VCD_LO_POSMTXIDX_ST=31
 };
 typedef unsigned int _GXCPVCDLo;
 
@@ -4500,23 +4500,23 @@ typedef unsigned int GXColorSrc;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
 
 enum {
-    GX_CMD_NOP=0,
-    GX_CMD_LOAD_CP_REG=8,
-    GX_CMD_LOAD_XF_REG=16,
-    GX_CMD_LOAD_INDX_A=32,
-    GX_CMD_LOAD_INDX_B=40,
-    GX_CMD_LOAD_INDX_C=48,
-    GX_CMD_LOAD_INDX_D=56,
-    GX_CMD_CALL_DL=64,
-    GX_CMD_INVL_VC=72,
-    GX_CMD_LOAD_BP_REG=97,
-    GX_CMD_DRAW_QUADS=128,
-    GX_CMD_DRAW_TRIANGLES=144,
-    GX_CMD_DRAW_TRIANGLE_STRIP=152,
-    GX_CMD_DRAW_TRIANGLE_FAN=160,
-    GX_CMD_DRAW_LINES=168,
-    GX_CMD_DRAW_LINE_STRIP=176,
-    GX_CMD_DRAW_POINTS=184
+    _GXCommand_GX_CMD_NOP=0,
+    _GXCommand_GX_CMD_LOAD_CP_REG=8,
+    _GXCommand_GX_CMD_LOAD_XF_REG=16,
+    _GXCommand_GX_CMD_LOAD_INDX_A=32,
+    _GXCommand_GX_CMD_LOAD_INDX_B=40,
+    _GXCommand_GX_CMD_LOAD_INDX_C=48,
+    _GXCommand_GX_CMD_LOAD_INDX_D=56,
+    _GXCommand_GX_CMD_CALL_DL=64,
+    _GXCommand_GX_CMD_INVL_VC=72,
+    _GXCommand_GX_CMD_LOAD_BP_REG=97,
+    _GXCommand_GX_CMD_DRAW_QUADS=128,
+    _GXCommand_GX_CMD_DRAW_TRIANGLES=144,
+    _GXCommand_GX_CMD_DRAW_TRIANGLE_STRIP=152,
+    _GXCommand_GX_CMD_DRAW_TRIANGLE_FAN=160,
+    _GXCommand_GX_CMD_DRAW_LINES=168,
+    _GXCommand_GX_CMD_DRAW_LINE_STRIP=176,
+    _GXCommand_GX_CMD_DRAW_POINTS=184
 };
 typedef unsigned int _GXCommand;
 
@@ -4621,35 +4621,35 @@ typedef unsigned int GXDiffuseFn;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
 
 enum {
-    GX_DIRTY_SU_TEX=1,
-    GX_DIRTY_BP_MASK=2,
-    GX_DIRTY_GEN_MODE=4,
-    GX_DIRTY_VCD=8,
-    GX_DIRTY_VAT=16,
-    GX_DIRTY_AMB_COLOR0=256,
-    GX_DIRTY_AMB_COLOR1=512,
-    GX_DIRTY_MAT_COLOR0=1024,
-    GX_DIRTY_MAT_COLOR1=2048,
-    GX_DIRTY_CHAN_COLOR0=4096,
-    GX_DIRTY_CHAN_COLOR1=8192,
-    GX_DIRTY_CHAN_ALPHA0=16384,
-    GX_DIRTY_CHAN_ALPHA1=32768,
-    GX_DIRTY_TEX0=65536,
-    GX_DIRTY_TEX1=131072,
-    GX_DIRTY_TEX2=262144,
-    GX_DIRTY_TEX3=524288,
-    GX_DIRTY_TEX4=1048576,
-    GX_DIRTY_TEX5=2097152,
-    GX_DIRTY_TEX6=4194304,
-    GX_DIRTY_TEX7=8388608,
-    GX_DIRTY_NUM_COLORS=16777216,
-    GX_DIRTY_NUM_TEX=33554432,
-    GX_TEX_GEN_MASK=50266112,
-    GX_DIRTY_MTX_IDX=67108864,
-    GX_DIRTY_PROJECTION=134217728,
-    GX_DIRTY_VIEWPORT=268435456,
-    GX_AMB_MAT_MASK=268435457,
-    GX_LIGHT_CHAN_MASK=268435458
+    _GXDirtyFlag_GX_DIRTY_SU_TEX=1,
+    _GXDirtyFlag_GX_DIRTY_BP_MASK=2,
+    _GXDirtyFlag_GX_DIRTY_GEN_MODE=4,
+    _GXDirtyFlag_GX_DIRTY_VCD=8,
+    _GXDirtyFlag_GX_DIRTY_VAT=16,
+    _GXDirtyFlag_GX_DIRTY_AMB_COLOR0=256,
+    _GXDirtyFlag_GX_DIRTY_AMB_COLOR1=512,
+    _GXDirtyFlag_GX_DIRTY_MAT_COLOR0=1024,
+    _GXDirtyFlag_GX_DIRTY_MAT_COLOR1=2048,
+    _GXDirtyFlag_GX_DIRTY_CHAN_COLOR0=4096,
+    _GXDirtyFlag_GX_DIRTY_CHAN_COLOR1=8192,
+    _GXDirtyFlag_GX_DIRTY_CHAN_ALPHA0=16384,
+    _GXDirtyFlag_GX_DIRTY_CHAN_ALPHA1=32768,
+    _GXDirtyFlag_GX_DIRTY_TEX0=65536,
+    _GXDirtyFlag_GX_DIRTY_TEX1=131072,
+    _GXDirtyFlag_GX_DIRTY_TEX2=262144,
+    _GXDirtyFlag_GX_DIRTY_TEX3=524288,
+    _GXDirtyFlag_GX_DIRTY_TEX4=1048576,
+    _GXDirtyFlag_GX_DIRTY_TEX5=2097152,
+    _GXDirtyFlag_GX_DIRTY_TEX6=4194304,
+    _GXDirtyFlag_GX_DIRTY_TEX7=8388608,
+    _GXDirtyFlag_GX_DIRTY_NUM_COLORS=16777216,
+    _GXDirtyFlag_GX_DIRTY_NUM_TEX=33554432,
+    _GXDirtyFlag_GX_TEX_GEN_MASK=50266112,
+    _GXDirtyFlag_GX_DIRTY_MTX_IDX=67108864,
+    _GXDirtyFlag_GX_DIRTY_PROJECTION=134217728,
+    _GXDirtyFlag_GX_DIRTY_VIEWPORT=268435456,
+    _GXDirtyFlag_GX_AMB_MAT_MASK=268435457,
+    _GXDirtyFlag_GX_LIGHT_CHAN_MASK=268435458
 };
 typedef unsigned int _GXDirtyFlag;
 
@@ -4674,9 +4674,9 @@ typedef void (*GXDrawDoneCallback)(void);
 typedef void (*GXDrawSyncCallback)(short);
 
 enum {
-    GX_VCACHE_MISS_ALL=0,
-    GX_VCACHE_MISS_POS=1,
-    GX_VCACHE_MISS_NRM=2
+    GXEvent_GX_VCACHE_MISS_ALL=0,
+    GXEvent_GX_VCACHE_MISS_POS=1,
+    GXEvent_GX_VCACHE_MISS_NRM=2
 };
 typedef unsigned int GXEvent;
 
@@ -4694,16 +4694,16 @@ typedef unsigned int GXFBClamp;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
 
 enum {
-    GX_FIFO_CMD_NOOP=0,
-    GX_FIFO_CMD_LOAD_CP_REG=8,
-    GX_FIFO_CMD_LOAD_XF_REG=16,
-    GX_FIFO_CMD_LOAD_INDX_A=32,
-    GX_FIFO_CMD_LOAD_INDX_B=40,
-    GX_FIFO_CMD_LOAD_INDX_C=48,
-    GX_FIFO_CMD_LOAD_INDX_D=56,
-    GX_FIFO_CMD_CALL_DL=64,
-    GX_FIFO_CMD_INVAL_VTX=72,
-    GX_FIFO_CMD_LOAD_BP_REG=97
+    _GXFifoCmd_GX_FIFO_CMD_NOOP=0,
+    _GXFifoCmd_GX_FIFO_CMD_LOAD_CP_REG=8,
+    _GXFifoCmd_GX_FIFO_CMD_LOAD_XF_REG=16,
+    _GXFifoCmd_GX_FIFO_CMD_LOAD_INDX_A=32,
+    _GXFifoCmd_GX_FIFO_CMD_LOAD_INDX_B=40,
+    _GXFifoCmd_GX_FIFO_CMD_LOAD_INDX_C=48,
+    _GXFifoCmd_GX_FIFO_CMD_LOAD_INDX_D=56,
+    _GXFifoCmd_GX_FIFO_CMD_CALL_DL=64,
+    _GXFifoCmd_GX_FIFO_CMD_INVAL_VTX=72,
+    _GXFifoCmd_GX_FIFO_CMD_LOAD_BP_REG=97
 };
 typedef unsigned int _GXFifoCmd;
 
@@ -4732,16 +4732,16 @@ struct GXFogAdjTable {
 
 enum {
     GXFogType_GX_FOG_NONE=0,
-    GX_FOG_PERSP_LIN=2,
-    GX_FOG_PERSP_EXP=4,
-    GX_FOG_PERSP_EXP2=5,
-    GX_FOG_PERSP_REVEXP=6,
-    GX_FOG_PERSP_REVEXP2=7,
-    GX_FOG_ORTHO_LIN=10,
-    GX_FOG_ORTHO_EXP=12,
-    GX_FOG_ORTHO_EXP2=13,
-    GX_FOG_ORTHO_REVEXP=14,
-    GX_FOG_ORTHO_REVEXP2=15
+    GXFogType_GX_FOG_PERSP_LIN=2,
+    GXFogType_GX_FOG_PERSP_EXP=4,
+    GXFogType_GX_FOG_PERSP_EXP2=5,
+    GXFogType_GX_FOG_PERSP_REVEXP=6,
+    GXFogType_GX_FOG_PERSP_REVEXP2=7,
+    GXFogType_GX_FOG_ORTHO_LIN=10,
+    GXFogType_GX_FOG_ORTHO_EXP=12,
+    GXFogType_GX_FOG_ORTHO_EXP2=13,
+    GXFogType_GX_FOG_ORTHO_REVEXP=14,
+    GXFogType_GX_FOG_ORTHO_REVEXP2=15
 };
 typedef unsigned int GXFogType;
 
@@ -4854,11 +4854,11 @@ typedef unsigned int GXIndTexScale;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
 
 enum {
-    GX_INDTEXSTAGE0=0,
-    GX_INDTEXSTAGE1=1,
-    GX_INDTEXSTAGE2=2,
-    GX_INDTEXSTAGE3=3,
-    GX_MAX_INDTEXSTAGE=4
+    GXIndTexStageID_GX_INDTEXSTAGE0=0,
+    GXIndTexStageID_GX_INDTEXSTAGE1=1,
+    GXIndTexStageID_GX_INDTEXSTAGE2=2,
+    GXIndTexStageID_GX_INDTEXSTAGE3=3,
+    GXIndTexStageID_GX_MAX_INDTEXSTAGE=4
 };
 typedef unsigned int GXIndTexStageID;
 
@@ -5061,7 +5061,7 @@ enum {
     GXPerf1_GX_PERF1_TC_CHECK5_6=6,
     GXPerf1_GX_PERF1_TC_CHECK7_8=7,
     GXPerf1_GX_PERF1_TC_MISS=8,
-    GX_PERF1_VC_ELEMQ_FULLame=9,
+    GXPerf1_GX_PERF1_VC_ELEMQ_FULLame=9,
     GXPerf1_GX_PERF1_VC_MISSQ_FULL=10,
     GXPerf1_GX_PERF1_VC_MEMREQ_FULL=11,
     GXPerf1_GX_PERF1_VC_STATUS7=12,
@@ -5222,7 +5222,7 @@ enum {
     GXTevAlphaArg_GX_CA_TEXA=4,
     GXTevAlphaArg_GX_CA_RASA=5,
     GXTevAlphaArg_GX_CA_KONST=6,
-    GX_CA_ONE=6,
+    GXTevAlphaArg_GX_CA_ONE=6,
     GXTevAlphaArg_GX_CA_ZERO=7
 };
 typedef unsigned int GXTevAlphaArg;
@@ -5278,11 +5278,11 @@ enum {
     GXTevColorArg_GX_CC_ONE=12,
     GXTevColorArg_GX_CC_HALF=13,
     GXTevColorArg_GX_CC_KONST=14,
-    GX_CC_QUARTER=14,
+    GXTevColorArg_GX_CC_QUARTER=14,
     GXTevColorArg_GX_CC_ZERO=15,
-    GX_CC_TEXRRR=16,
-    GX_CC_TEXGGG=17,
-    GX_CC_TEXBBB=18
+    GXTevColorArg_GX_CC_TEXRRR=16,
+    GXTevColorArg_GX_CC_TEXGGG=17,
+    GXTevColorArg_GX_CC_TEXBBB=18
 };
 typedef unsigned int GXTevColorArg;
 
@@ -5307,13 +5307,13 @@ typedef unsigned int GXTevColorChan;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
 
 enum {
-    GX_TEV_KASEL_8_8=0,
+    GXTevKAlphaSel_GX_TEV_KASEL_8_8=0,
     GXTevKAlphaSel_GX_TEV_KASEL_7_8=1,
-    GX_TEV_KASEL_6_8=2,
+    GXTevKAlphaSel_GX_TEV_KASEL_6_8=2,
     GXTevKAlphaSel_GX_TEV_KASEL_5_8=3,
-    GX_TEV_KASEL_4_8=4,
+    GXTevKAlphaSel_GX_TEV_KASEL_4_8=4,
     GXTevKAlphaSel_GX_TEV_KASEL_3_8=5,
-    GX_TEV_KASEL_2_8=6,
+    GXTevKAlphaSel_GX_TEV_KASEL_2_8=6,
     GXTevKAlphaSel_GX_TEV_KASEL_1_8=7,
     GXTevKAlphaSel_GX_TEV_KASEL_K0_R=16,
     GXTevKAlphaSel_GX_TEV_KASEL_K1_R=17,
@@ -5356,13 +5356,13 @@ typedef unsigned int GXTevKColorID;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
 
 enum {
-    GX_TEV_KCSEL_8_8=0,
+    GXTevKColorSel_GX_TEV_KCSEL_8_8=0,
     GXTevKColorSel_GX_TEV_KCSEL_7_8=1,
-    GX_TEV_KCSEL_6_8=2,
+    GXTevKColorSel_GX_TEV_KCSEL_6_8=2,
     GXTevKColorSel_GX_TEV_KCSEL_5_8=3,
-    GX_TEV_KCSEL_4_8=4,
+    GXTevKColorSel_GX_TEV_KCSEL_4_8=4,
     GXTevKColorSel_GX_TEV_KCSEL_3_8=5,
-    GX_TEV_KCSEL_2_8=6,
+    GXTevKColorSel_GX_TEV_KCSEL_2_8=6,
     GXTevKColorSel_GX_TEV_KCSEL_1_8=7,
     GXTevKColorSel_GX_TEV_KCSEL_K0=12,
     GXTevKColorSel_GX_TEV_KCSEL_K1=13,
@@ -5475,7 +5475,7 @@ enum {
     GXTevStageID_GX_TEVSTAGE13=13,
     GXTevStageID_GX_TEVSTAGE14=14,
     GXTevStageID_GX_TEVSTAGE15=15,
-    GX_MAX_TEVSTAGE=16
+    GXTevStageID_GX_MAX_TEVSTAGE=16
 };
 typedef unsigned int GXTevStageID;
 
@@ -5604,8 +5604,8 @@ typedef unsigned int GXTexGenSrc;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
 
 enum {
-    GX_TG_MTX3x4=0,
-    GX_TG_MTX2x4=1,
+    GXTexGenType_GX_TG_MTX3x4=0,
+    GXTexGenType_GX_TG_MTX2x4=1,
     GXTexGenType_GX_TG_BUMP0=2,
     GXTexGenType_GX_TG_BUMP1=3,
     GXTexGenType_GX_TG_BUMP2=4,
@@ -5881,10 +5881,10 @@ typedef unsigned int GXVCachePerf;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
 
 enum {
-    GX_WARN_NONE=0,
-    GX_WARN_SEVERE=1,
-    GX_WARN_MEDIUM=2,
-    GX_WARN_ALL=3
+    enum_216_GX_WARN_NONE=0,
+    enum_216_GX_WARN_SEVERE=1,
+    enum_216_GX_WARN_MEDIUM=2,
+    enum_216_GX_WARN_ALL=3
 };
 typedef unsigned int enum_216;
 
@@ -5940,197 +5940,197 @@ typedef unsigned int GXVtxFmt;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
 
 enum {
-    GX_XF_CLIPDISABLE_ACCEL_END=29,
-    GX_XF_CLIPDISABLE_ACCEL_ST=29,
-    GX_XF_CLIPDISABLE_REJECT_END=30,
-    GX_XF_CLIPDISABLE_REJECT_ST=30,
-    GX_XF_CLIPDISABLE_DETECT_END=31,
-    GX_XF_CLIPDISABLE_DETECT_ST=31
+    _GXXFClipDisable_GX_XF_CLIPDISABLE_ACCEL_END=29,
+    _GXXFClipDisable_GX_XF_CLIPDISABLE_ACCEL_ST=29,
+    _GXXFClipDisable_GX_XF_CLIPDISABLE_REJECT_END=30,
+    _GXXFClipDisable_GX_XF_CLIPDISABLE_REJECT_ST=30,
+    _GXXFClipDisable_GX_XF_CLIPDISABLE_DETECT_END=31,
+    _GXXFClipDisable_GX_XF_CLIPDISABLE_DETECT_ST=31
 };
 typedef unsigned int _GXXFClipDisable;
 
 typedef _GXXFClipDisable GXXFClipDisable;
 
 enum {
-    GX_XF_CLR0CTRL_LMASKLO_ST=17,
-    GX_XF_CLR0CTRL_LMASKLO_END=20,
-    GX_XF_CLR0CTRL_ATTNSEL_END=21,
-    GX_XF_CLR0CTRL_ATTNSEL_ST=21,
-    GX_XF_CLR0CTRL_ATTNENABLE_END=22,
-    GX_XF_CLR0CTRL_ATTNENABLE_ST=22,
-    GX_XF_CLR0CTRL_DIFATTN_ST=23,
-    GX_XF_CLR0CTRL_DIFATTN_END=24,
-    GX_XF_CLR0CTRL_AMBSRC_END=25,
-    GX_XF_CLR0CTRL_AMBSRC_ST=25,
-    GX_XF_CLR0CTRL_LMASKHI_ST=26,
-    GX_XF_CLR0CTRL_LMASKHI_END=29,
-    GX_XF_CLR0CTRL_LIGHT_END=30,
-    GX_XF_CLR0CTRL_LIGHT_ST=30,
-    GX_XF_CLR0CTRL_MTXSRC_END=31,
-    GX_XF_CLR0CTRL_MTXSRC_ST=31
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKLO_ST=17,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKLO_END=20,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_ATTNSEL_END=21,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_ATTNSEL_ST=21,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_ATTNENABLE_END=22,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_ATTNENABLE_ST=22,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_DIFATTN_ST=23,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_DIFATTN_END=24,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_AMBSRC_END=25,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_AMBSRC_ST=25,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKHI_ST=26,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKHI_END=29,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LIGHT_END=30,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LIGHT_ST=30,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_MTXSRC_END=31,
+    _GXXFClr0Ctrl_GX_XF_CLR0CTRL_MTXSRC_ST=31
 };
 typedef unsigned int _GXXFClr0Ctrl;
 
 typedef _GXXFClr0Ctrl GXXFClr0Ctrl;
 
 enum {
-    GX_XF_DUALTEX_NORMALISE_END=23,
-    GX_XF_DUALTEX_NORMALISE_ST=23,
-    GX_XF_DUALTEX_BASEROW_ST=26,
-    GX_XF_DUALTEX_BASEROW_END=31
+    _GXXFDualTex_GX_XF_DUALTEX_NORMALISE_END=23,
+    _GXXFDualTex_GX_XF_DUALTEX_NORMALISE_ST=23,
+    _GXXFDualTex_GX_XF_DUALTEX_BASEROW_ST=26,
+    _GXXFDualTex_GX_XF_DUALTEX_BASEROW_END=31
 };
 typedef unsigned int _GXXFDualTex;
 
 typedef _GXXFDualTex GXXFDualTex;
 
 enum {
-    GX_XF_FLUSH_NONE=0,
-    GX_XF_FLUSH_SAFE=8
+    GXXFFlushVal_GX_XF_FLUSH_NONE=0,
+    GXXFFlushVal_GX_XF_FLUSH_SAFE=8
 };
 typedef unsigned int GXXFFlushVal;
 
 enum {
-    GX_XF_INVERTEXSPEC_TEX_ST=24,
-    GX_XF_INVERTEXSPEC_TEX_END=27,
-    GX_XF_INVERTEXSPEC_NRM_ST=28,
-    GX_XF_INVERTEXSPEC_NRM_END=29,
-    GX_XF_INVERTEXSPEC_CLR_ST=30,
-    GX_XF_INVERTEXSPEC_CLR_END=31
+    _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_TEX_ST=24,
+    _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_TEX_END=27,
+    _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_NRM_ST=28,
+    _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_NRM_END=29,
+    _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_CLR_ST=30,
+    _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_CLR_END=31
 };
 typedef unsigned int _GXXFInVertexSpec;
 
 typedef _GXXFInVertexSpec GXXFInVertexSpec;
 
 enum {
-    GX_XF_MTXIDX0_TEX3_ST=2,
-    GX_XF_MTXIDX0_TEX3_END=7,
-    GX_XF_MTXIDX0_TEX2_ST=8,
-    GX_XF_MTXIDX0_TEX2_END=13,
-    GX_XF_MTXIDX0_TEX1_ST=14,
-    GX_XF_MTXIDX0_TEX1_END=19,
-    GX_XF_MTXIDX0_TEX0_ST=20,
-    GX_XF_MTXIDX0_TEX0_END=25,
-    GX_XF_MTXIDX0_GEOM_ST=26,
-    GX_XF_MTXIDX0_GEOM_END=31
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX3_ST=2,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX3_END=7,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX2_ST=8,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX2_END=13,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX1_ST=14,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX1_END=19,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX0_ST=20,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX0_END=25,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_GEOM_ST=26,
+    _GXXFMtxIdx0_GX_XF_MTXIDX0_GEOM_END=31
 };
 typedef unsigned int _GXXFMtxIdx0;
 
 typedef _GXXFMtxIdx0 GXXFMtxIdx0;
 
 enum {
-    GX_XF_MTXIDX1_TEX7_ST=8,
-    GX_XF_MTXIDX1_TEX7_END=13,
-    GX_XF_MTXIDX1_TEX6_ST=14,
-    GX_XF_MTXIDX1_TEX6_END=19,
-    GX_XF_MTXIDX1_TEX5_ST=20,
-    GX_XF_MTXIDX1_TEX5_END=25,
-    GX_XF_MTXIDX1_TEX4_ST=26,
-    GX_XF_MTXIDX1_TEX4_END=31
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX7_ST=8,
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX7_END=13,
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX6_ST=14,
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX6_END=19,
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX5_ST=20,
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX5_END=25,
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX4_ST=26,
+    _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX4_END=31
 };
 typedef unsigned int _GXXFMtxIdx1;
 
 typedef _GXXFMtxIdx1 GXXFMtxIdx1;
 
 enum {
-    GX_XF_REG_ERROR=4096,
-    GX_XF_REG_DIAGNOSTICS=4097,
-    GX_XF_REG_STATE0=4098,
-    GX_XF_REG_STATE1=4099,
-    GX_XF_REG_CLOCK=4100,
-    GX_XF_REG_CLIPDISABLE=4101,
-    GX_XF_REG_PERF0=4102,
-    GX_XF_REG_PERF1=4103,
-    GX_XF_REG_INVERTEXSPEC=4104,
-    GX_XF_REG_NUMCOLORS=4105,
-    GX_XF_REG_AMBIENT0=4106,
-    GX_XF_REG_AMBIENT1=4107,
-    GX_XF_REG_MATERIAL0=4108,
-    GX_XF_REG_MATERIAL1=4109,
-    GX_XF_REG_COLOR0CNTRL=4110,
-    GX_XF_REG_COLOR1CNTRL=4111,
-    GX_XF_REG_ALPHA0CNTRL=4112,
-    GX_XF_REG_ALPHA1CNTRL=4113,
-    GX_XF_REG_DUALTEXTRAN=4114,
-    GX_XF_REG_MATRIXINDEX0=4120,
-    GX_XF_REG_MATRIXINDEX1=4121,
-    GX_XF_REG_SCALEX=4122,
-    GX_XF_REG_SCALEY=4123,
-    GX_XF_REG_SCALEZ=4124,
-    GX_XF_REG_OFFSETX=4125,
-    GX_XF_REG_OFFSETY=4126,
-    GX_XF_REG_OFFSETZ=4127,
-    GX_XF_REG_PROJECTIONA=4128,
-    GX_XF_REG_PROJECTIONB=4129,
-    GX_XF_REG_PROJECTIONC=4130,
-    GX_XF_REG_PROJECTIOND=4131,
-    GX_XF_REG_PROJECTIONE=4132,
-    GX_XF_REG_PROJECTIONF=4133,
-    GX_XF_REG_PROJECTORTHO=4134,
-    GX_XF_REG_NUMTEX=4159,
-    GX_XF_REG_TEX0=4160,
-    GX_XF_REG_TEX1=4161,
-    GX_XF_REG_TEX2=4162,
-    GX_XF_REG_TEX3=4163,
-    GX_XF_REG_TEX4=4164,
-    GX_XF_REG_TEX5=4165,
-    GX_XF_REG_TEX6=4166,
-    GX_XF_REG_TEX7=4167,
-    GX_XF_REG_DUALTEX0=4176,
-    GX_XF_REG_DUALTEX1=4177,
-    GX_XF_REG_DUALTEX2=4178,
-    GX_XF_REG_DUALTEX3=4179,
-    GX_XF_REG_DUALTEX4=4180,
-    GX_XF_REG_DUALTEX5=4181,
-    GX_XF_REG_DUALTEX6=4182,
-    GX_XF_REG_DUALTEX7=4183
+    _GXXFRegs_GX_XF_REG_ERROR=4096,
+    _GXXFRegs_GX_XF_REG_DIAGNOSTICS=4097,
+    _GXXFRegs_GX_XF_REG_STATE0=4098,
+    _GXXFRegs_GX_XF_REG_STATE1=4099,
+    _GXXFRegs_GX_XF_REG_CLOCK=4100,
+    _GXXFRegs_GX_XF_REG_CLIPDISABLE=4101,
+    _GXXFRegs_GX_XF_REG_PERF0=4102,
+    _GXXFRegs_GX_XF_REG_PERF1=4103,
+    _GXXFRegs_GX_XF_REG_INVERTEXSPEC=4104,
+    _GXXFRegs_GX_XF_REG_NUMCOLORS=4105,
+    _GXXFRegs_GX_XF_REG_AMBIENT0=4106,
+    _GXXFRegs_GX_XF_REG_AMBIENT1=4107,
+    _GXXFRegs_GX_XF_REG_MATERIAL0=4108,
+    _GXXFRegs_GX_XF_REG_MATERIAL1=4109,
+    _GXXFRegs_GX_XF_REG_COLOR0CNTRL=4110,
+    _GXXFRegs_GX_XF_REG_COLOR1CNTRL=4111,
+    _GXXFRegs_GX_XF_REG_ALPHA0CNTRL=4112,
+    _GXXFRegs_GX_XF_REG_ALPHA1CNTRL=4113,
+    _GXXFRegs_GX_XF_REG_DUALTEXTRAN=4114,
+    _GXXFRegs_GX_XF_REG_MATRIXINDEX0=4120,
+    _GXXFRegs_GX_XF_REG_MATRIXINDEX1=4121,
+    _GXXFRegs_GX_XF_REG_SCALEX=4122,
+    _GXXFRegs_GX_XF_REG_SCALEY=4123,
+    _GXXFRegs_GX_XF_REG_SCALEZ=4124,
+    _GXXFRegs_GX_XF_REG_OFFSETX=4125,
+    _GXXFRegs_GX_XF_REG_OFFSETY=4126,
+    _GXXFRegs_GX_XF_REG_OFFSETZ=4127,
+    _GXXFRegs_GX_XF_REG_PROJECTIONA=4128,
+    _GXXFRegs_GX_XF_REG_PROJECTIONB=4129,
+    _GXXFRegs_GX_XF_REG_PROJECTIONC=4130,
+    _GXXFRegs_GX_XF_REG_PROJECTIOND=4131,
+    _GXXFRegs_GX_XF_REG_PROJECTIONE=4132,
+    _GXXFRegs_GX_XF_REG_PROJECTIONF=4133,
+    _GXXFRegs_GX_XF_REG_PROJECTORTHO=4134,
+    _GXXFRegs_GX_XF_REG_NUMTEX=4159,
+    _GXXFRegs_GX_XF_REG_TEX0=4160,
+    _GXXFRegs_GX_XF_REG_TEX1=4161,
+    _GXXFRegs_GX_XF_REG_TEX2=4162,
+    _GXXFRegs_GX_XF_REG_TEX3=4163,
+    _GXXFRegs_GX_XF_REG_TEX4=4164,
+    _GXXFRegs_GX_XF_REG_TEX5=4165,
+    _GXXFRegs_GX_XF_REG_TEX6=4166,
+    _GXXFRegs_GX_XF_REG_TEX7=4167,
+    _GXXFRegs_GX_XF_REG_DUALTEX0=4176,
+    _GXXFRegs_GX_XF_REG_DUALTEX1=4177,
+    _GXXFRegs_GX_XF_REG_DUALTEX2=4178,
+    _GXXFRegs_GX_XF_REG_DUALTEX3=4179,
+    _GXXFRegs_GX_XF_REG_DUALTEX4=4180,
+    _GXXFRegs_GX_XF_REG_DUALTEX5=4181,
+    _GXXFRegs_GX_XF_REG_DUALTEX6=4182,
+    _GXXFRegs_GX_XF_REG_DUALTEX7=4183
 };
 typedef unsigned int _GXXFRegs;
 
 typedef _GXXFRegs GXXFRegs;
 
 enum {
-    GX_XF_TEX_BUMPSRCLIGHT_ST=14,
-    GX_XF_TEX_BUMPSRCLIGHT_END=16,
-    GX_XF_TEX_BUMPSRCTEX_ST=17,
-    GX_XF_TEX_BUMPSRCTEX_END=19,
-    GX_XF_TEX_SRCROW_ST=20,
-    GX_XF_TEX_SRCROW_END=24,
-    GX_XF_TEX_TEXGENTYPE_ST=25,
-    GX_XF_TEX_TEXGENTYPE_END=27,
-    GX_XF_TEX_INPUTFORM_END=29,
-    GX_XF_TEX_INPUTFORM_ST=29,
-    GX_XF_TEX_PROJTYPE_END=30,
-    GX_XF_TEX_PROJTYPE_ST=30
+    _GXXFTex_GX_XF_TEX_BUMPSRCLIGHT_ST=14,
+    _GXXFTex_GX_XF_TEX_BUMPSRCLIGHT_END=16,
+    _GXXFTex_GX_XF_TEX_BUMPSRCTEX_ST=17,
+    _GXXFTex_GX_XF_TEX_BUMPSRCTEX_END=19,
+    _GXXFTex_GX_XF_TEX_SRCROW_ST=20,
+    _GXXFTex_GX_XF_TEX_SRCROW_END=24,
+    _GXXFTex_GX_XF_TEX_TEXGENTYPE_ST=25,
+    _GXXFTex_GX_XF_TEX_TEXGENTYPE_END=27,
+    _GXXFTex_GX_XF_TEX_INPUTFORM_END=29,
+    _GXXFTex_GX_XF_TEX_INPUTFORM_ST=29,
+    _GXXFTex_GX_XF_TEX_PROJTYPE_END=30,
+    _GXXFTex_GX_XF_TEX_PROJTYPE_ST=30
 };
 typedef unsigned int _GXXFTex;
 
 typedef _GXXFTex GXXFTex;
 
 enum {
-    GX_XF_MEM_POSMTX=0,
-    GX_XF_MEM_NRMMTX=1024,
-    GX_XF_MEM_DUALTEXMTX=1280,
-    GX_XF_MEM_LIGHTOBJ=1536
+    _GXXfMem_GX_XF_MEM_POSMTX=0,
+    _GXXfMem_GX_XF_MEM_NRMMTX=1024,
+    _GXXfMem_GX_XF_MEM_DUALTEXMTX=1280,
+    _GXXfMem_GX_XF_MEM_LIGHTOBJ=1536
 };
 typedef unsigned int _GXXfMem;
 
 typedef _GXXfMem GXXfMem;
 
 enum {
-    GX_XF_TG_REGULAR=0,
-    GX_XF_TG_BUMP=1,
-    GX_XF_TG_CLR0=2,
-    GX_XF_TG_CLR1=3
+    _GXXfTexGen_GX_XF_TG_REGULAR=0,
+    _GXXfTexGen_GX_XF_TG_BUMP=1,
+    _GXXfTexGen_GX_XF_TG_CLR0=2,
+    _GXXfTexGen_GX_XF_TG_CLR1=3
 };
 typedef unsigned int _GXXfTexGen;
 
 typedef _GXXfTexGen GXXfTexGen;
 
 enum {
-    GX_XF_TEX_FORM_AB11=0,
-    GX_XF_TEX_PROJ_ST=0,
-    GX_XF_TEX_FORM_ABC1=1,
-    GX_XF_TEX_PROJ_STQ=1
+    _GXXfTexReg_GX_XF_TEX_FORM_AB11=0,
+    _GXXfTexReg_GX_XF_TEX_PROJ_ST=0,
+    _GXXfTexReg_GX_XF_TEX_FORM_ABC1=1,
+    _GXXfTexReg_GX_XF_TEX_PROJ_STQ=1
 };
 typedef unsigned int _GXXfTexReg;
 
@@ -6167,8 +6167,8 @@ typedef unsigned int GXZTexOp;
 typedef struct GameControlsStruct GameControlsStruct, *PGameControlsStruct;
 
 enum {
-    P1=0,
-    P2=1
+    enumP1_P2_int_P1=0,
+    enumP1_P2_int_P2=1
 };
 typedef unsigned int enumP1_P2_int;
 
@@ -6176,43 +6176,43 @@ typedef struct logoInfoStruct logoInfoStruct, *PlogoInfoStruct;
 
 enum {
     enumSceneID_atBat=1,
-    liveball=2,
-    replay_atBat=3,
-    replay_live=4
+    enumSceneID_liveball=2,
+    enumSceneID_replay_atBat=3,
+    enumSceneID_replay_live=4
 };
 typedef unsigned char enumSceneID;
 
 enum {
-    normalState=0,
-    transitionScreen1=1,
-    transitionScreen2=2,
-    transitionScreen3=3,
-    transitionScreen4=4,
-    preGame_Inning1=5,
-    preGame_Inning2=6,
-    preGame_Inning3=7,
-    preGame_Inning4=8,
-    startOfATransition=9,
-    _1stFrameAfterTransitionStarts=10,
-    postGameGoingToMainMenuLoadingScreen=11
+    transitionCalculationType_normalState=0,
+    transitionCalculationType_transitionScreen1=1,
+    transitionCalculationType_transitionScreen2=2,
+    transitionCalculationType_transitionScreen3=3,
+    transitionCalculationType_transitionScreen4=4,
+    transitionCalculationType_preGame_Inning1=5,
+    transitionCalculationType_preGame_Inning2=6,
+    transitionCalculationType_preGame_Inning3=7,
+    transitionCalculationType_preGame_Inning4=8,
+    transitionCalculationType_startOfATransition=9,
+    transitionCalculationType__1stFrameAfterTransitionStarts=10,
+    transitionCalculationType_postGameGoingToMainMenuLoadingScreen=11
 };
 typedef unsigned char transitionCalculationType;
 
 enum {
-    nonWalfoff_away=1,
-    nonWalkoff_home=2,
-    walkoff=3,
+    enum_winTypeCd_nonWalfoff_away=1,
+    enum_winTypeCd_nonWalkoff_home=2,
+    enum_winTypeCd_walkoff=3,
     enum_winTypeCd_tie=4,
-    awayMercy=5,
-    homeMercy=6
+    enum_winTypeCd_awayMercy=5,
+    enum_winTypeCd_homeMercy=6
 };
 typedef unsigned char enum_winTypeCd;
 
 enum {
-    noStarChance=0,
-    isStarChance=1,
-    awardStarToFieldingTeam=2,
-    awardStarToBattingTeam=3
+    enumStarChanceCd_noStarChance=0,
+    enumStarChanceCd_isStarChance=1,
+    enumStarChanceCd_awardStarToFieldingTeam=2,
+    enumStarChanceCd_awardStarToBattingTeam=3
 };
 typedef unsigned char enumStarChanceCd;
 
@@ -6315,12 +6315,12 @@ enum {
 typedef short enumWinningTeam_short;
 
 enum {
-    noUrgency=0,
-    beginningOfGame=1,
-    middleInnings=2,
-    lastFewButNotLast=3,
-    last_andBottomForShortGames_=4,
-    extras=5
+    inningUrgency_noUrgency=0,
+    inningUrgency_beginningOfGame=1,
+    inningUrgency_middleInnings=2,
+    inningUrgency_lastFewButNotLast=3,
+    inningUrgency_last_andBottomForShortGames_=4,
+    inningUrgency_extras=5
 };
 typedef unsigned char inningUrgency;
 
@@ -6445,17 +6445,17 @@ enum {
     TriangleCollisionTypes_word_ROUGH_TERRAIN=9,
     TriangleCollisionTypes_word_WATER=10,
     TriangleCollisionTypes_word_CHOMP_HAZARD=11,
-    NOTE_BLOCK_1=18,
-    NOTE_BLOCK_2=21,
-    toyfield0=112,
-    toyfield1=113,
-    toyfield2=114,
-    toyfield3=115,
-    toyfield4=116,
-    toyfield5=117,
-    toyfield6=118,
-    toyfield7=119,
-    toyfield8=120,
+    TriangleCollisionTypes_word_NOTE_BLOCK_1=18,
+    TriangleCollisionTypes_word_NOTE_BLOCK_2=21,
+    TriangleCollisionTypes_word_toyfield0=112,
+    TriangleCollisionTypes_word_toyfield1=113,
+    TriangleCollisionTypes_word_toyfield2=114,
+    TriangleCollisionTypes_word_toyfield3=115,
+    TriangleCollisionTypes_word_toyfield4=116,
+    TriangleCollisionTypes_word_toyfield5=117,
+    TriangleCollisionTypes_word_toyfield6=118,
+    TriangleCollisionTypes_word_toyfield7=119,
+    TriangleCollisionTypes_word_toyfield8=120,
     TriangleCollisionTypes_word_FOUL=128
 };
 typedef unsigned int TriangleCollisionTypes_word;
@@ -6477,71 +6477,71 @@ typedef short enumFielderShort;
 typedef struct matchShorts matchShorts, *PmatchShorts;
 
 enum {
-    IFGrass=0,
-    IFDirt=1,
-    OFShallow=2,
-    OFMid=3,
-    OFDeep=4,
-    noValueSet=255
+    zoneAwayFromHome_IFGrass=0,
+    zoneAwayFromHome_IFDirt=1,
+    zoneAwayFromHome_OFShallow=2,
+    zoneAwayFromHome_OFMid=3,
+    zoneAwayFromHome_OFDeep=4,
+    zoneAwayFromHome_noValueSet=255
 };
 typedef unsigned char zoneAwayFromHome;
 
 enum {
-    nonFlyBallOrIFHit=0,
-    flyBall=2,
-    veryFoulGroundball=3,
-    veryFoulLineDrive=4,
-    veryFoulPop=5
+    hitCat_nonFlyBallOrIFHit=0,
+    hitCat_flyBall=2,
+    hitCat_veryFoulGroundball=3,
+    hitCat_veryFoulLineDrive=4,
+    hitCat_veryFoulPop=5
 };
 typedef unsigned char hitCat;
 
 enum {
-    softHit_LandingCloseToHome=1,
-    hardHitLineDrive=2,
-    infieldHit=3,
-    infieldPop_=4,
-    shallowOutfield=5,
-    outfield_=6,
-    veryFoulToInfield=7,
-    veryFoulToOutfield=8
+    hitCat2_softHit_LandingCloseToHome=1,
+    hitCat2_hardHitLineDrive=2,
+    hitCat2_infieldHit=3,
+    hitCat2_infieldPop_=4,
+    hitCat2_shallowOutfield=5,
+    hitCat2_outfield_=6,
+    hitCat2_veryFoulToInfield=7,
+    hitCat2_veryFoulToOutfield=8
 };
 typedef unsigned char hitCat2;
 
 enum {
-    within3_5mFromHome=0,
-    within8mFromHome=1,
-    within10mFromHome_RightSide=2,
-    within10mFromHome_Center=3,
-    within10mFromHome_LeftSide=4,
-    _10mButStillInfield=5,
-    outfield=6,
-    RFFoul=7,
-    LFFoul=8
+    hitCat3_within3_5mFromHome=0,
+    hitCat3_within8mFromHome=1,
+    hitCat3_within10mFromHome_RightSide=2,
+    hitCat3_within10mFromHome_Center=3,
+    hitCat3_within10mFromHome_LeftSide=4,
+    hitCat3__10mButStillInfield=5,
+    hitCat3_outfield=6,
+    hitCat3_RFFoul=7,
+    hitCat3_LFFoul=8
 };
 typedef unsigned char hitCat3;
 
 enum {
-    hitBall=0,
-    fielderHolding=1,
-    thrownBall=2,
-    bobble_knockedOut_loose=3
+    ballState_hitBall=0,
+    ballState_fielderHolding=1,
+    ballState_thrownBall=2,
+    ballState_bobble_knockedOut_loose=3
 };
 typedef unsigned char ballState;
 
 enum {
     homeRunClassification_n_a=0,
-    longest=1,
-    _2ndLongest=2,
-    _3rdlongest=3
+    homeRunClassification_longest=1,
+    homeRunClassification__2ndLongest=2,
+    homeRunClassification__3rdlongest=3
 };
 typedef unsigned char homeRunClassification;
 
 enum {
     deadBallReason_n_a=0,
-    homeRun=1,
-    foulBall=2,
+    deadBallReason_homeRun=1,
+    deadBallReason_foulBall=2,
     deadBallReason_groundRuleDouble=3,
-    ballDead=4
+    deadBallReason_ballDead=4
 };
 typedef unsigned char deadBallReason;
 
@@ -6822,46 +6822,46 @@ enum {
 typedef short enumCharIDShort;
 
 enum {
-    popFly=1,
-    grounder=2,
-    lineDrive=3
+    enumNonCapStarSwing_popFly=1,
+    enumNonCapStarSwing_grounder=2,
+    enumNonCapStarSwing_lineDrive=3
 };
 typedef unsigned char enumNonCapStarSwing;
 
 enum {
-    notBunting=0,
-    startingABunt=1,
-    showingBunt=2,
-    buntCountedAsStrike=3,
-    releasedBuntLateInPitch=4,
-    releasingBunt=5,
+    enumBuntStatus_notBunting=0,
+    enumBuntStatus_startingABunt=1,
+    enumBuntStatus_showingBunt=2,
+    enumBuntStatus_buntCountedAsStrike=3,
+    enumBuntStatus_releasedBuntLateInPitch=4,
+    enumBuntStatus_releasingBunt=5,
     enumBuntStatus_unused=6,
-    releasedBuntEarlyInPitch_=7
+    enumBuntStatus_releasedBuntEarlyInPitch_=7
 };
 typedef unsigned char enumBuntStatus;
 
 enum {
-    noHit=0,
-    grounder_=2,
-    lineDrive_=3,
-    flyBall__bOD_notVeryFoul=4,
-    bunt=5,
-    fairBunt__bOD_bunt_bB_bunt=6
+    enumHitTrajectory_noHit=0,
+    enumHitTrajectory_grounder_=2,
+    enumHitTrajectory_lineDrive_=3,
+    enumHitTrajectory_flyBall__bOD_notVeryFoul=4,
+    enumHitTrajectory_bunt=5,
+    enumHitTrajectory_fairBunt__bOD_bunt_bB_bunt=6
 };
 typedef unsigned char enumHitTrajectory;
 
 enum {
-    noCharge=0,
-    charging_charged=1,
-    chargeSwinging=2,
-    noSwingReleaseCharge=3
+    enumChargeStatus_noCharge=0,
+    enumChargeStatus_charging_charged=1,
+    enumChargeStatus_chargeSwinging=2,
+    enumChargeStatus_noSwingReleaseCharge=3
 };
 typedef unsigned char enumChargeStatus;
 
 enum {
-    ballHasntReachedHittableZone=0,
-    hittable=1,
-    pre_post_pitch=2
+    enumHittable_ballHasntReachedHittableZone=0,
+    enumHittable_hittable=1,
+    enumHittable_pre_post_pitch=2
 };
 typedef unsigned char enumHittable;
 
@@ -7014,31 +7014,31 @@ enum {
     fielderLocationEnum__1st=1,
     fielderLocationEnum__2nd=2,
     fielderLocationEnum__3rd=3,
-    mound=5,
+    fielderLocationEnum_mound=5,
     fielderLocationEnum_outfieldCutoff=6,
-    fielderDefaultPosition=7,
-    _6_0_=8  /* The ones above 8 are found at 807b5a84 */,
-    __6_0_=9  /* Between the base coordinates and these, there's other info in between */,
-    _20_27_=10,
-    _8_40_=11,
-    __8_40_=12,
-    __20_27_=13,
-    unknown14=14,
-    unknown15=15,
+    fielderLocationEnum_fielderDefaultPosition=7,
+    fielderLocationEnum__6_0_=8  /* The ones above 8 are found at 807b5a84 */,
+    fielderLocationEnum___6_0_=9  /* Between the base coordinates and these, there's other info in between */,
+    fielderLocationEnum__20_27_=10,
+    fielderLocationEnum__8_40_=11,
+    fielderLocationEnum___8_40_=12,
+    fielderLocationEnum___20_27_=13,
+    fielderLocationEnum_unknown14=14,
+    fielderLocationEnum_unknown15=15,
     fielderLocationEnum_none=65535
 };
 typedef unsigned short fielderLocationEnum;
 
 enum {
-    RFFoulTerritory=1,
-    outfieldChillSpots=2,
-    LFFoulTerritory=3
+    presetLocationCategory_RFFoulTerritory=1,
+    presetLocationCategory_outfieldChillSpots=2,
+    presetLocationCategory_LFFoulTerritory=3
 };
 typedef unsigned short presetLocationCategory;
 
 enum {
-    wallSplat=1,
-    wallJump=2,
+    enumSpecialJump_wallSplat=1,
+    enumSpecialJump_wallJump=2,
     enumSpecialJump_clamber=3
 };
 typedef unsigned char enumSpecialJump;
@@ -7046,31 +7046,31 @@ typedef unsigned char enumSpecialJump;
 enum {
     autoMovementFunctionIndex_nothingSet_StayStill=0,
     autoMovementFunctionIndex_coveringBase=1,
-    trackHitBall_phase2_AITeam=2,
-    trackHitBall_phase1_AITeam=3,
-    cutoffPhase2_=5,
-    outfielderNoCatch_phase2=6,
-    outfielderNoCatch_phase1=7,
-    outfielderNoCatch_phase1_=8,
-    someKindOfDefault=9,
-    catchingball_hasBall=10,
+    autoMovementFunctionIndex_trackHitBall_phase2_AITeam=2,
+    autoMovementFunctionIndex_trackHitBall_phase1_AITeam=3,
+    autoMovementFunctionIndex_cutoffPhase2_=5,
+    autoMovementFunctionIndex_outfielderNoCatch_phase2=6,
+    autoMovementFunctionIndex_outfielderNoCatch_phase1=7,
+    autoMovementFunctionIndex_outfielderNoCatch_phase1_=8,
+    autoMovementFunctionIndex_someKindOfDefault=9,
+    autoMovementFunctionIndex_catchingball_hasBall=10,
     autoMovementFunctionIndex_cutoff=11,
-    stopBetweenInstructions=12,
-    infieldSupport=14,
+    autoMovementFunctionIndex_stopBetweenInstructions=12,
+    autoMovementFunctionIndex_infieldSupport=14,
     autoMovementFunctionIndex_goingToBall=15,
-    trackHitBall_phase2_humanTeam=16,
+    autoMovementFunctionIndex_trackHitBall_phase2_humanTeam=16,
     autoMovementFunctionIndex_runningOffField=17,
-    trackHitBall_primaryFielder_humanTeam=21,
-    trackHitBall_secondaryFielder_humanTeam=22,
-    trackHitBall_tertiaryFielder_humanTeam=23,
-    trackHitBall_phase1_humanTeam_secondaryOutfielderOnDeepFlyBall=24,
-    readyToInterceptThrownBall=25
+    autoMovementFunctionIndex_trackHitBall_primaryFielder_humanTeam=21,
+    autoMovementFunctionIndex_trackHitBall_secondaryFielder_humanTeam=22,
+    autoMovementFunctionIndex_trackHitBall_tertiaryFielder_humanTeam=23,
+    autoMovementFunctionIndex_trackHitBall_phase1_humanTeam_secondaryOutfielderOnDeepFlyBall=24,
+    autoMovementFunctionIndex_readyToInterceptThrownBall=25
 };
 typedef unsigned char autoMovementFunctionIndex;
 
 enum {
-    _0_0_=0,
-    _0_0__v2=1,
+    presetFielderLocations_byte___0_0_=0,
+    presetFielderLocations_byte___0_0__v2=1,
     presetFielderLocations_byte___17_4_=2,
     presetFielderLocations_byte____17_4_=3,
     presetFielderLocations_byte___36_30_=4,
@@ -7084,85 +7084,85 @@ enum {
 typedef unsigned char presetFielderLocations_byte_;
 
 enum {
-    noAdjustment=0,
-    subtact0_0005=1,
-    subtract0_001=2,
-    subtract0_002=3,
-    subtract0_003=4,
-    subtract0_0005_pt2=5,
-    subtract0_001_pt2=6,
-    subtract0_002_pt2=7,
-    subtract0_003_pt2=8,
-    setTo0=9,
-    setTo0_7=10,
-    setTo0_1=11,
-    setTo0_03=12,
-    setTo0_25_runOffFieldAfterInning=13
+    fielderVeloAdjCode_noAdjustment=0,
+    fielderVeloAdjCode_subtact0_0005=1,
+    fielderVeloAdjCode_subtract0_001=2,
+    fielderVeloAdjCode_subtract0_002=3,
+    fielderVeloAdjCode_subtract0_003=4,
+    fielderVeloAdjCode_subtract0_0005_pt2=5,
+    fielderVeloAdjCode_subtract0_001_pt2=6,
+    fielderVeloAdjCode_subtract0_002_pt2=7,
+    fielderVeloAdjCode_subtract0_003_pt2=8,
+    fielderVeloAdjCode_setTo0=9,
+    fielderVeloAdjCode_setTo0_7=10,
+    fielderVeloAdjCode_setTo0_1=11,
+    fielderVeloAdjCode_setTo0_03=12,
+    fielderVeloAdjCode_setTo0_25_runOffFieldAfterInning=13
 };
 typedef unsigned char fielderVeloAdjCode;
 
 enum {
-    catchFlyBall=1,
-    potentialCatchFlyBall=2,
-    potentialDivingCatch_=3,
-    ballOutOfRange_=4
+    catchStrategy_catchFlyBall=1,
+    catchStrategy_potentialCatchFlyBall=2,
+    catchStrategy_potentialDivingCatch_=3,
+    catchStrategy_ballOutOfRange_=4
 };
 typedef unsigned char catchStrategy;
 
 enum {
-    hasntCheckedIfOutfielderIsInitialCharacterSelected=0,
-    checkedIfOutfielderIsInitialCharacterSelected=1,
-    fielderCatchingBall=2
+    fielder0x1ffState_hasntCheckedIfOutfielderIsInitialCharacterSelected=0,
+    fielder0x1ffState_checkedIfOutfielderIsInitialCharacterSelected=1,
+    fielder0x1ffState_fielderCatchingBall=2
 };
 typedef unsigned char fielder0x1ffState;
 
 enum {
     clamberStatus_n_a=0,
     clamberStatus_jumpingOntoWall=1,
-    onwall=2,
-    jumpingOffWall=3,
-    unknown1=4,
-    unknown2=5
+    clamberStatus_onwall=2,
+    clamberStatus_jumpingOffWall=3,
+    clamberStatus_unknown1=4,
+    clamberStatus_unknown2=5
 };
 typedef unsigned char clamberStatus;
 
 enum {
     wallSplatStatus_n_a=0,
-    goingOntoWall=1,
-    onWall=2,
-    slidingDownWall=3,
-    onGroundGroggy=4
+    wallSplatStatus_goingOntoWall=1,
+    wallSplatStatus_onWall=2,
+    wallSplatStatus_slidingDownWall=3,
+    wallSplatStatus_onGroundGroggy=4
 };
 typedef unsigned char wallSplatStatus;
 
 enum {
-    notKnockedOut=0,
-    knockedOut=1,
-    knockOutEnded=2
+    knockOutStatus_notKnockedOut=0,
+    knockOutStatus_knockedOut=1,
+    knockOutStatus_knockOutEnded=2
 };
 typedef unsigned char knockOutStatus;
 
 enum {
     bodyCheckResult_n_a=0,
-    fail=1,
-    success=2
+    bodyCheckResult_fail=1,
+    bodyCheckResult_success=2
 };
 typedef unsigned char bodyCheckResult;
 
 enum {
     bodyCheckStatusFielder_n_a=0,
-    started=1,
-    failedOneEnding=2,
-    successfulOneEnding=3
+    bodyCheckStatusFielder_started=1,
+    bodyCheckStatusFielder_failedOneEnding=2,
+    bodyCheckStatusFielder_successfulOneEnding=3
 };
 typedef unsigned char bodyCheckStatusFielder;
 
 enum {
     wallJumpStatus_n_a=0,
     wallJumpStatus_jumpingOntoWall=1,
-    contactingWall=2,
-    jumpedOffWall=3,
-    landed=4
+    wallJumpStatus_contactingWall=2,
+    wallJumpStatus_jumpedOffWall=3,
+    wallJumpStatus_landed=4
 };
 typedef unsigned char wallJumpStatus;
 
@@ -7397,27 +7397,27 @@ struct InMemFielder {  /* in ram view of a fielder */
 typedef struct InMemPitcher InMemPitcher, *PInMemPitcher;
 
 enum {
-    prePitchTransition=0,
-    prePitch=1,
-    pitcherWindup=2,
-    pitchInAir=3,
-    postPitchNoContact=4,
-    kOrBBOrHBP=5,
-    postKOrBBOrHBPTransition=6,
+    pitchStatus_prePitchTransition=0,
+    pitchStatus_prePitch=1,
+    pitchStatus_pitcherWindup=2,
+    pitchStatus_pitchInAir=3,
+    pitchStatus_postPitchNoContact=4,
+    pitchStatus_kOrBBOrHBP=5,
+    pitchStatus_postKOrBBOrHBPTransition=6,
     pitchStatus_hitBatter=7
 };
 typedef unsigned char pitchStatus;
 
 enum {
-    _0defaut=0,
+    enumNonCapStarPitch__0defaut=0,
     enumNonCapStarPitch_star_curve=1,
     enumNonCapStarPitch_star_fastball=2,
-    star_changeup=3
+    enumNonCapStarPitch_star_changeup=3
 };
 typedef unsigned char enumNonCapStarPitch;
 
 enum {
-    nonKOrBB=0,
+    kOrBB_nonKOrBB=0,
     kOrBB_strikeOut=1,
     kOrBB_walk=2,
     kOrBB_hitBatter=3
@@ -7425,30 +7425,30 @@ enum {
 typedef unsigned char kOrBB;
 
 enum {
-    beforeStrikeZone=0,
-    checkingForStrike=1,
-    afterStrikeZone=2
+    enum_strikeZoneProcess_beforeStrikeZone=0,
+    enum_strikeZoneProcess_checkingForStrike=1,
+    enum_strikeZoneProcess_afterStrikeZone=2
 };
 typedef unsigned char enum_strikeZoneProcess;
 
 enum {
-    curve_charge=1,
+    enum_pitchSpecialType_curve_charge=1,
     enum_pitchSpecialType_changeUp=3,
-    marioFireball=4,
-    luigiFireball=5,
+    enum_pitchSpecialType_marioFireball=4,
+    enum_pitchSpecialType_luigiFireball=5,
     enum_pitchSpecialType_wario=6,
-    walu=7,
-    dkBanana=8,
-    diddyBanana=9,
-    bowserBullet=10,
-    jrBullet=11,
-    yoshiEgg=12,
-    birdoEgg=13,
-    peachFlowers=14,
-    daisyFlowers=15,
+    enum_pitchSpecialType_walu=7,
+    enum_pitchSpecialType_dkBanana=8,
+    enum_pitchSpecialType_diddyBanana=9,
+    enum_pitchSpecialType_bowserBullet=10,
+    enum_pitchSpecialType_jrBullet=11,
+    enum_pitchSpecialType_yoshiEgg=12,
+    enum_pitchSpecialType_birdoEgg=13,
+    enum_pitchSpecialType_peachFlowers=14,
+    enum_pitchSpecialType_daisyFlowers=15,
     enum_pitchSpecialType_star_curve=16,
     enum_pitchSpecialType_star_fastball=17,
-    star_changeUp=18
+    enum_pitchSpecialType_star_changeUp=18
 };
 typedef unsigned char enum_pitchSpecialType;
 
@@ -7583,140 +7583,140 @@ struct InMemPitcher {
 typedef struct InMemRunner InMemRunner, *PInMemRunner;
 
 enum {
-    _1_unknown_notPossible__=-1,
-    notForcedToAdvance=0,
+    forceOutEnum__1_unknown_notPossible__=-1,
+    forceOutEnum_notForcedToAdvance=0,
     forceOutEnum_forcedToAdvance=1,
-    outOnForce=2
+    forceOutEnum_outOnForce=2
 };
 typedef short forceOutEnum;
 
 enum {
-    prevent_forward=1,
-    prevent_backward=2,
-    prevent_crossingPlate=4,
-    tagUpRelated=8
+    preventPassing_prevent_forward=1,
+    preventPassing_prevent_backward=2,
+    preventPassing_prevent_crossingPlate=4,
+    preventPassing_tagUpRelated=8
 };
 typedef unsigned short preventPassing;
 
 enum {
-    didntExistAtStartOfPlay=0,
-    onField=1,
-    outDuringPlay=2,
-    scoredDuringPlay=3,
-    scored_deadBall_walkoff_or_other__batterWhilePickoff=4,
-    walkWhileStealOccuring=5
+    runnerStatus_didntExistAtStartOfPlay=0,
+    runnerStatus_onField=1,
+    runnerStatus_outDuringPlay=2,
+    runnerStatus_scoredDuringPlay=3,
+    runnerStatus_scored_deadBall_walkoff_or_other__batterWhilePickoff=4,
+    runnerStatus_walkWhileStealOccuring=5
 };
 typedef unsigned char runnerStatus;
 
 enum {
-    noTagUpNeeded=0,
-    ballInAir=1,
-    taggingUp=2
+    tagUpInd_noTagUpNeeded=0,
+    tagUpInd_ballInAir=1,
+    tagUpInd_taggingUp=2
 };
 typedef unsigned char tagUpInd;
 
 enum {
     runner_stayInBattersBoxReason_n_a=0,
-    pickoff_steal=1,
-    delayOnHitBall=2,
-    reallyFoul_=3
+    runner_stayInBattersBoxReason_pickoff_steal=1,
+    runner_stayInBattersBoxReason_delayOnHitBall=2,
+    runner_stayInBattersBoxReason_reallyFoul_=3
 };
 typedef unsigned char runner_stayInBattersBoxReason;
 
 enum {
-    noOut=0,
+    enumOutType_noOut=0,
     enumOutType_caught=1,
-    force=2,
-    tag=3,
-    whileTaggingUp=4,
+    enumOutType_force=2,
+    enumOutType_tag=3,
+    enumOutType_whileTaggingUp=4,
     enumOutType_strikeOut=16
 };
 typedef unsigned char enumOutType;
 
 enum {
-    default_noLeadoff=0,
-    startingLeadoff=1,
-    leadingOff=2,
-    returningToBaseOnPickoff_=3
+    enumLeadoffCode_default_noLeadoff=0,
+    enumLeadoffCode_startingLeadoff=1,
+    enumLeadoffCode_leadingOff=2,
+    enumLeadoffCode_returningToBaseOnPickoff_=3
 };
 typedef unsigned char enumLeadoffCode;
 
 enum {
-    none_batting_scored_=0,
-    forwards=1,
-    stopped=2,
-    backwards=3,
-    past1B=4,
-    _5_unknown=5
+    runnerMovementType_none_batting_scored_=0,
+    runnerMovementType_forwards=1,
+    runnerMovementType_stopped=2,
+    runnerMovementType_backwards=3,
+    runnerMovementType_past1B=4,
+    runnerMovementType__5_unknown=5
 };
 typedef unsigned char runnerMovementType;
 
 enum {
-    noAction=0,
-    slide=1,
+    runnerActionEnum_noAction=0,
+    runnerActionEnum_slide=1,
     runnerActionEnum_bodyCheck=2,
-    bodyCheckFailed=3
+    runnerActionEnum_bodyCheckFailed=3
 };
 typedef unsigned char runnerActionEnum;
 
 enum {
     runnerActionStage_n_a=0,
-    sliding_bodyCheck=1,
-    standingUp=2,
-    outOnForce_=3
+    runnerActionStage_sliding_bodyCheck=1,
+    runnerActionStage_standingUp=2,
+    runnerActionStage_outOnForce_=3
 };
 typedef unsigned char runnerActionStage;
 
 enum {
     baseRoundingState_n_a=0,
-    batter_runner_=1,
-    rounding=2
+    baseRoundingState_batter_runner_=1,
+    baseRoundingState_rounding=2
 };
 typedef unsigned char baseRoundingState;
 
 enum {
     overrunning1B_n_a=0,
-    passing1B=1,
-    beyond1B=2,
-    WalkingBackTo1B=3
+    overrunning1B_passing1B=1,
+    overrunning1B_beyond1B=2,
+    overrunning1B_WalkingBackTo1B=3
 };
 typedef unsigned char overrunning1B;
 
 enum {
     overrunBaseStage_n_a=0,
-    startOverrun=1,
-    overrunning=2,
-    returningToBase=3
+    overrunBaseStage_startOverrun=1,
+    overrunBaseStage_overrunning=2,
+    overrunBaseStage_returningToBase=3
 };
 typedef unsigned char overrunBaseStage;
 
 enum {
     runnerGoingToDugoutCode_n_a=0,
-    afterOut_=1,
-    pending_actionOccuring=2,
-    afterScoring_=3
+    runnerGoingToDugoutCode_afterOut_=1,
+    runnerGoingToDugoutCode_pending_actionOccuring=2,
+    runnerGoingToDugoutCode_afterScoring_=3
 };
 typedef unsigned char runnerGoingToDugoutCode;
 
 enum {
-    n_a_or_Start=0,
-    running=2,
-    at_Dugout=3
+    runningToDugoutStage_n_a_or_Start=0,
+    runningToDugoutStage_running=2,
+    runningToDugoutStage_at_Dugout=3
 };
 typedef unsigned char runningToDugoutStage;
 
 enum {
-    notTurning=0,
-    startingFromStop=1,
-    turningAround=2
+    runnerTurnaroundCode_notTurning=0,
+    runnerTurnaroundCode_startingFromStop=1,
+    runnerTurnaroundCode_turningAround=2
 };
 typedef unsigned char runnerTurnaroundCode;
 
 enum {
     enumStealStage_n_a=0,
-    wantsToSteal=1,
-    standardStealStarted=2,
-    perfectStealStarted=3
+    enumStealStage_wantsToSteal=1,
+    enumStealStage_standardStealStarted=2,
+    enumStealStage_perfectStealStarted=3
 };
 typedef unsigned char enumStealStage;
 
@@ -7961,9 +7961,9 @@ struct MAC_MAINTAB {
 } __attribute__((packed));
 
 enum {
-    MAC_STATE_RUNNABLE=0,
-    MAC_STATE_YIELDED=1,
-    MAC_STATE_STOPPED=2
+    enum_88_MAC_STATE_RUNNABLE=0,
+    enum_88_MAC_STATE_YIELDED=1,
+    enum_88_MAC_STATE_STOPPED=2
 };
 typedef unsigned int enum_88;
 
@@ -8194,13 +8194,13 @@ typedef void (*OSErrorHandler)(OSError, struct OSContext *, ...);
 typedef void (*OSErrorHandlerNoVARG)(OSError, struct OSContext *, u32, u32);
 
 enum {
-    OS_FONT_ENCODE_ANSI=0,
-    OS_FONT_ENCODE_SJIS=1,
-    OS_FONT_ENCODE_2=2,
-    OS_FONT_ENCODE_UTF8=3,
-    OS_FONT_ENCODE_UTF16=4,
-    OS_FONT_ENCODE_UTF32=5,
-    OS_FONT_ENCODE_MAX=6
+    enum_57_OS_FONT_ENCODE_ANSI=0,
+    enum_57_OS_FONT_ENCODE_SJIS=1,
+    enum_57_OS_FONT_ENCODE_2=2,
+    enum_57_OS_FONT_ENCODE_UTF8=3,
+    enum_57_OS_FONT_ENCODE_UTF16=4,
+    enum_57_OS_FONT_ENCODE_UTF32=5,
+    enum_57_OS_FONT_ENCODE_MAX=6
 };
 typedef unsigned int enum_57;
 
@@ -8261,7 +8261,7 @@ typedef u32 OSInterruptMask;
 typedef void *OSMessage;
 
 enum {
-    OS_MSG_PERSISTENT=1
+    enum_60_OS_MSG_PERSISTENT=1
 };
 typedef unsigned int enum_60;
 
@@ -8507,11 +8507,11 @@ typedef u32 OSTick;
 /* WARNING! conflicting data type names: /sdk/os.h/OSTick - /decompHeaders/OSUtil.h/OSTick */
 
 enum {
-    OS_THREAD_STATE_NULL=0,
-    OS_THREAD_STATE_READY=1,
-    OS_THREAD_STATE_RUNNING=2,
-    OS_THREAD_STATE_WAITING=4,
-    OS_THREAD_STATE_MORIBUND=8
+    OS_THREAD_STATE_OS_THREAD_STATE_NULL=0,
+    OS_THREAD_STATE_OS_THREAD_STATE_READY=1,
+    OS_THREAD_STATE_OS_THREAD_STATE_RUNNING=2,
+    OS_THREAD_STATE_OS_THREAD_STATE_WAITING=4,
+    OS_THREAD_STATE_OS_THREAD_STATE_MORIBUND=8
 };
 typedef unsigned int OS_THREAD_STATE;
 
@@ -8539,9 +8539,9 @@ struct PAGE {
 } __attribute__((packed));
 
 enum {
-    PARENT_BONE=0,
-    PARENT_DISP_OBJ=1,
-    PARENT_MTX=2
+    PARENT_TYPE_PARENT_BONE=0,
+    PARENT_TYPE_PARENT_DISP_OBJ=1,
+    PARENT_TYPE_PARENT_MTX=2
 };
 typedef unsigned int PARENT_TYPE;
 
@@ -8644,9 +8644,9 @@ typedef f32 PSQuaternion[4];
 typedef struct PerfEvent PerfEvent, *PPerfEvent;
 
 enum {
-    PERF_CPU_EVENT=0,
-    PERF_CPU_GP_EVENT=1,
-    PERF_GP_EVENT=2
+    enum_229_PERF_CPU_EVENT=0,
+    enum_229_PERF_CPU_GP_EVENT=1,
+    enum_229_PERF_GP_EVENT=2
 };
 typedef unsigned int enum_229;
 
@@ -8706,8 +8706,6 @@ typedef float ROMtxPtr[3];
 
 typedef struct RawInputStruct RawInputStruct, *PRawInputStruct;
 
-struct RawInputStruct {
-} __attribute__((packed));
 
 typedef struct RebootParams RebootParams, *PRebootParams;
 
@@ -8890,211 +8888,211 @@ struct SEQ_PATTERN {
 } __attribute__((packed));
 
 enum {
-    SHADER_BIAS_ZERO=0,
-    SHADER_BIAS_ADDHALF=1,
-    SHADER_BIAS_SUBHALF=2
+    SHADER_BIAS_SHADER_BIAS_ZERO=0,
+    SHADER_BIAS_SHADER_BIAS_ADDHALF=1,
+    SHADER_BIAS_SHADER_BIAS_SUBHALF=2
 };
 typedef unsigned int SHADER_BIAS;
 
 enum {
-    SHADER_CHANNEL_RGB=0,
-    SHADER_CHANNEL_RRR=1,
-    SHADER_CHANNEL_GGG=2,
-    SHADER_CHANNEL_BBB=3,
-    SHADER_CHANNEL_A=4,
-    SHADER_CHANNEL_TRIVIAL=5
+    SHADER_CHANNEL_SHADER_CHANNEL_RGB=0,
+    SHADER_CHANNEL_SHADER_CHANNEL_RRR=1,
+    SHADER_CHANNEL_SHADER_CHANNEL_GGG=2,
+    SHADER_CHANNEL_SHADER_CHANNEL_BBB=3,
+    SHADER_CHANNEL_SHADER_CHANNEL_A=4,
+    SHADER_CHANNEL_SHADER_CHANNEL_TRIVIAL=5
 };
 typedef unsigned int SHADER_CHANNEL;
 
 enum {
-    SHADER_CLAMP_LINEAR_1023=0,
-    SHADER_CLAMP_LINEAR_255=1,
-    SHADER_CLAMP_GE_255=2,
-    SHADER_CLAMP_GE_0=3,
-    SHADER_CLAMP_EQ_255=4,
-    SHADER_CLAMP_EQ_0=5,
-    SHADER_CLAMP_LE_255=6,
-    SHADER_CLAMP_LE_0=7
+    SHADER_CLAMP_SHADER_CLAMP_LINEAR_1023=0,
+    SHADER_CLAMP_SHADER_CLAMP_LINEAR_255=1,
+    SHADER_CLAMP_SHADER_CLAMP_GE_255=2,
+    SHADER_CLAMP_SHADER_CLAMP_GE_0=3,
+    SHADER_CLAMP_SHADER_CLAMP_EQ_255=4,
+    SHADER_CLAMP_SHADER_CLAMP_EQ_0=5,
+    SHADER_CLAMP_SHADER_CLAMP_LE_255=6,
+    SHADER_CLAMP_SHADER_CLAMP_LE_0=7
 };
 typedef unsigned int SHADER_CLAMP;
 
 enum {
-    SHADER_COLOR0=0,
-    SHADER_COLOR1=1,
-    SHADER_COLOR2=2,
-    SHADER_COLOR3=3,
-    SHADER_COLOR_NONE=4
+    SHADER_COLOR_SHADER_COLOR0=0,
+    SHADER_COLOR_SHADER_COLOR1=1,
+    SHADER_COLOR_SHADER_COLOR2=2,
+    SHADER_COLOR_SHADER_COLOR3=3,
+    SHADER_COLOR_SHADER_COLOR_NONE=4
 };
 typedef unsigned int SHADER_COLOR;
 
 enum {
-    SHADER_CPREV=0,
-    SHADER_C0=1,
-    SHADER_C1=2,
-    SHADER_C2=3,
-    SHADER_APREV=4,
-    SHADER_A0=5,
-    SHADER_A1=6,
-    SHADER_A2=7,
-    SHADER_TEXC=8,
-    SHADER_TEXA=9,
-    SHADER_RASC=10,
-    SHADER_RASA=11,
-    SHADER_TEXRRR=12,
-    SHADER_TEXGGG=13,
-    SHADER_TEXBBB=14,
-    SHADER_HALF=15,
-    SHADER_QUARTER=16,
-    SHADER_COMPLEXINPUT0_RGB=25,
-    SHADER_COMPLEXINPUT1_RGB=26,
-    SHADER_COMPLEXINPUT2_RGB=27,
-    SHADER_COMPLEXINPUT3_RGB=28,
-    SHADER_COMPLEXINPUT4_RGB=29,
-    SHADER_COMPLEXINPUT5_RGB=30,
-    SHADER_COMPLEXINPUT6_RGB=31,
-    SHADER_COMPLEXINPUT7_RGB=32,
-    SHADER_COMPLEXINPUT0_A=35,
-    SHADER_COMPLEXINPUT1_A=36,
-    SHADER_COMPLEXINPUT2_A=37,
-    SHADER_COMPLEXINPUT3_A=38,
-    SHADER_COMPLEXINPUT4_A=39,
-    SHADER_COMPLEXINPUT5_A=40,
-    SHADER_COMPLEXINPUT6_A=41,
-    SHADER_COMPLEXINPUT7_A=42,
-    SHADER_COLORINPUT0_RGB=50,
-    SHADER_COLORINPUT1_RGB=51,
-    SHADER_COLORINPUT2_RGB=52,
-    SHADER_COLORINPUT3_RGB=53,
-    SHADER_COLORINPUT0_A=60,
-    SHADER_COLORINPUT1_A=61,
-    SHADER_COLORINPUT2_A=62,
-    SHADER_COLORINPUT3_A=63,
-    SHADER_NONTRIVIAL=100,
-    SHADER_ONE=200,
-    SHADER_ZERO=201
+    SHADER_COLOR_TYPE_SHADER_CPREV=0,
+    SHADER_COLOR_TYPE_SHADER_C0=1,
+    SHADER_COLOR_TYPE_SHADER_C1=2,
+    SHADER_COLOR_TYPE_SHADER_C2=3,
+    SHADER_COLOR_TYPE_SHADER_APREV=4,
+    SHADER_COLOR_TYPE_SHADER_A0=5,
+    SHADER_COLOR_TYPE_SHADER_A1=6,
+    SHADER_COLOR_TYPE_SHADER_A2=7,
+    SHADER_COLOR_TYPE_SHADER_TEXC=8,
+    SHADER_COLOR_TYPE_SHADER_TEXA=9,
+    SHADER_COLOR_TYPE_SHADER_RASC=10,
+    SHADER_COLOR_TYPE_SHADER_RASA=11,
+    SHADER_COLOR_TYPE_SHADER_TEXRRR=12,
+    SHADER_COLOR_TYPE_SHADER_TEXGGG=13,
+    SHADER_COLOR_TYPE_SHADER_TEXBBB=14,
+    SHADER_COLOR_TYPE_SHADER_HALF=15,
+    SHADER_COLOR_TYPE_SHADER_QUARTER=16,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT0_RGB=25,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT1_RGB=26,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT2_RGB=27,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT3_RGB=28,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT4_RGB=29,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT5_RGB=30,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT6_RGB=31,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT7_RGB=32,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT0_A=35,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT1_A=36,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT2_A=37,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT3_A=38,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT4_A=39,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT5_A=40,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT6_A=41,
+    SHADER_COLOR_TYPE_SHADER_COMPLEXINPUT7_A=42,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT0_RGB=50,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT1_RGB=51,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT2_RGB=52,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT3_RGB=53,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT0_A=60,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT1_A=61,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT2_A=62,
+    SHADER_COLOR_TYPE_SHADER_COLORINPUT3_A=63,
+    SHADER_COLOR_TYPE_SHADER_NONTRIVIAL=100,
+    SHADER_COLOR_TYPE_SHADER_ONE=200,
+    SHADER_COLOR_TYPE_SHADER_ZERO=201
 };
 typedef unsigned int SHADER_COLOR_TYPE;
 
 enum {
-    SHADER_COMPLEX0=0,
-    SHADER_COMPLEX1=1,
-    SHADER_COMPLEX2=2,
-    SHADER_COMPLEX3=3,
-    SHADER_COMPLEX4=4,
-    SHADER_COMPLEX5=5,
-    SHADER_COMPLEX6=6,
-    SHADER_COMPLEX7=7
+    SHADER_COMPLEX_SHADER_COMPLEX0=0,
+    SHADER_COMPLEX_SHADER_COMPLEX1=1,
+    SHADER_COMPLEX_SHADER_COMPLEX2=2,
+    SHADER_COMPLEX_SHADER_COMPLEX3=3,
+    SHADER_COMPLEX_SHADER_COMPLEX4=4,
+    SHADER_COMPLEX_SHADER_COMPLEX5=5,
+    SHADER_COMPLEX_SHADER_COMPLEX6=6,
+    SHADER_COMPLEX_SHADER_COMPLEX7=7
 };
 typedef unsigned int SHADER_COMPLEX;
 
 enum {
-    SHADER_TRIVIAL=0,
-    SHADER_SIMPLE=1,
-    SHADER_LERP=2
+    SHADER_LERP_TYPE_SHADER_TRIVIAL=0,
+    SHADER_LERP_TYPE_SHADER_SIMPLE=1,
+    SHADER_LERP_TYPE_SHADER_LERP=2
 };
 typedef unsigned int SHADER_LERP_TYPE;
 
 enum {
-    SHADER_MTX0=0,
-    SHADER_MTX1=1,
-    SHADER_MTX2=2,
-    SHADER_MTX3=3,
-    SHADER_MTX4=4,
-    SHADER_MTX5=5,
-    SHADER_MTX6=6,
-    SHADER_MTX7=7,
-    SHADER_IDENTITY=8
+    SHADER_MTX_SHADER_MTX0=0,
+    SHADER_MTX_SHADER_MTX1=1,
+    SHADER_MTX_SHADER_MTX2=2,
+    SHADER_MTX_SHADER_MTX3=3,
+    SHADER_MTX_SHADER_MTX4=4,
+    SHADER_MTX_SHADER_MTX5=5,
+    SHADER_MTX_SHADER_MTX6=6,
+    SHADER_MTX_SHADER_MTX7=7,
+    SHADER_MTX_SHADER_IDENTITY=8
 };
 typedef unsigned int SHADER_MTX;
 
 enum {
-    SHADER_OP_ADD=0,
-    SHADER_OP_SUB=1
+    SHADER_OP_SHADER_OP_ADD=0,
+    SHADER_OP_SHADER_OP_SUB=1
 };
 typedef unsigned int SHADER_OP;
 
 enum {
-    SHADER_RAS0=0,
-    SHADER_RAS1=1,
-    SHADER_RASNONE=2
+    SHADER_RAS_SHADER_RAS0=0,
+    SHADER_RAS_SHADER_RAS1=1,
+    SHADER_RAS_SHADER_RASNONE=2
 };
 typedef unsigned int SHADER_RAS;
 
 enum {
-    SHADER_REG_EMPTY=0,
-    SHADER_REG_CONSTANTCOLOR=1,
-    SHADER_REG_INUSE=2
+    SHADER_REG_SHADER_REG_EMPTY=0,
+    SHADER_REG_SHADER_REG_CONSTANTCOLOR=1,
+    SHADER_REG_SHADER_REG_INUSE=2
 };
 typedef unsigned int SHADER_REG;
 
 enum {
-    SHADER_SCALE_1=0,
-    SHADER_SCALE_2=1,
-    SHADER_SCALE_4=2,
-    SHADER_SCALE_DIVIDE_2=3
+    SHADER_SCALE_SHADER_SCALE_1=0,
+    SHADER_SCALE_SHADER_SCALE_2=1,
+    SHADER_SCALE_SHADER_SCALE_4=2,
+    SHADER_SCALE_SHADER_SCALE_DIVIDE_2=3
 };
 typedef unsigned int SHADER_SCALE;
 
 enum {
-    SHADER_TEV_COLOR=0,
-    SHADER_TEV_ALPHA=1
+    SHADER_TEV_SHADER_TEV_COLOR=0,
+    SHADER_TEV_SHADER_TEV_ALPHA=1
 };
 typedef unsigned int SHADER_TEV;
 
 enum {
-    SHADER_TEX0=0,
-    SHADER_TEX1=1,
-    SHADER_TEX2=2,
-    SHADER_TEX3=3,
-    SHADER_TEX4=4,
-    SHADER_TEX5=5,
-    SHADER_TEX6=6,
-    SHADER_TEX7=7,
-    SHADER_TEXNONE=8
+    SHADER_TEX_SHADER_TEX0=0,
+    SHADER_TEX_SHADER_TEX1=1,
+    SHADER_TEX_SHADER_TEX2=2,
+    SHADER_TEX_SHADER_TEX3=3,
+    SHADER_TEX_SHADER_TEX4=4,
+    SHADER_TEX_SHADER_TEX5=5,
+    SHADER_TEX_SHADER_TEX6=6,
+    SHADER_TEX_SHADER_TEX7=7,
+    SHADER_TEX_SHADER_TEXNONE=8
 };
 typedef unsigned int SHADER_TEX;
 
 enum {
-    SHADER_TG_POS=0,
-    SHADER_TG_NRM=1,
-    SHADER_TG_BINRM=2,
-    SHADER_TG_TANGENT=3,
-    SHADER_TG_TEX0=4,
-    SHADER_TG_TEX1=5,
-    SHADER_TG_TEX2=6,
-    SHADER_TG_TEX3=7,
-    SHADER_TG_TEX4=8,
-    SHADER_TG_TEX5=9,
-    SHADER_TG_TEX6=10,
-    SHADER_TG_TEX7=11,
-    SHADER_TG_COLOR0=19,
-    SHADER_TG_COLOR1=20
+    SHADER_TG_SRC_SHADER_TG_POS=0,
+    SHADER_TG_SRC_SHADER_TG_NRM=1,
+    SHADER_TG_SRC_SHADER_TG_BINRM=2,
+    SHADER_TG_SRC_SHADER_TG_TANGENT=3,
+    SHADER_TG_SRC_SHADER_TG_TEX0=4,
+    SHADER_TG_SRC_SHADER_TG_TEX1=5,
+    SHADER_TG_SRC_SHADER_TG_TEX2=6,
+    SHADER_TG_SRC_SHADER_TG_TEX3=7,
+    SHADER_TG_SRC_SHADER_TG_TEX4=8,
+    SHADER_TG_SRC_SHADER_TG_TEX5=9,
+    SHADER_TG_SRC_SHADER_TG_TEX6=10,
+    SHADER_TG_SRC_SHADER_TG_TEX7=11,
+    SHADER_TG_SRC_SHADER_TG_COLOR0=19,
+    SHADER_TG_SRC_SHADER_TG_COLOR1=20
 };
 typedef unsigned int SHADER_TG_SRC;
 
 enum {
-    SHADER_TG_MTX3x4=0,
-    SHADER_TG_MTX2x4=1,
-    SHADER_TG_BUMP0=2,
-    SHADER_TG_BUMP1=3,
-    SHADER_TG_BUMP2=4,
-    SHADER_TG_BUMP3=5,
-    SHADER_TG_BUMP4=6,
-    SHADER_TG_BUMP5=7,
-    SHADER_TG_BUMP6=8,
-    SHADER_TG_BUMP7=9,
-    SHADER_TG_SRTG=10
+    SHADER_TG_TYPE_SHADER_TG_MTX3x4=0,
+    SHADER_TG_TYPE_SHADER_TG_MTX2x4=1,
+    SHADER_TG_TYPE_SHADER_TG_BUMP0=2,
+    SHADER_TG_TYPE_SHADER_TG_BUMP1=3,
+    SHADER_TG_TYPE_SHADER_TG_BUMP2=4,
+    SHADER_TG_TYPE_SHADER_TG_BUMP3=5,
+    SHADER_TG_TYPE_SHADER_TG_BUMP4=6,
+    SHADER_TG_TYPE_SHADER_TG_BUMP5=7,
+    SHADER_TG_TYPE_SHADER_TG_BUMP6=8,
+    SHADER_TG_TYPE_SHADER_TG_BUMP7=9,
+    SHADER_TG_TYPE_SHADER_TG_SRTG=10
 };
 typedef unsigned int SHADER_TG_TYPE;
 
 enum {
-    SHADER_TYPE_TEXTURE=0,
-    SHADER_TYPE_COLOR=1,
-    SHADER_TYPE_RASTERIZED=2,
-    SHADER_TYPE_CONSTANT=3,
-    SHADER_TYPE_COMPLEXINPUT=4,
-    SHADER_TYPE_COMPLEX=5,
-    SHADER_TYPE_EMPTY=6
+    SHADER_TYPE_SHADER_TYPE_TEXTURE=0,
+    SHADER_TYPE_SHADER_TYPE_COLOR=1,
+    SHADER_TYPE_SHADER_TYPE_RASTERIZED=2,
+    SHADER_TYPE_SHADER_TYPE_CONSTANT=3,
+    SHADER_TYPE_SHADER_TYPE_COMPLEXINPUT=4,
+    SHADER_TYPE_SHADER_TYPE_COMPLEX=5,
+    SHADER_TYPE_SHADER_TYPE_EMPTY=6
 };
 typedef unsigned int SHADER_TYPE;
 
@@ -9638,9 +9636,9 @@ struct SND_LISTENER {
 typedef s32 (*SND_MESSAGE_CALLBACK)(u32, u32);
 
 enum {
-    SND_OUTPUTMODE_MONO=0,
-    SND_OUTPUTMODE_STEREO=1,
-    SND_OUTPUTMODE_SURROUND=2
+    enum_2_SND_OUTPUTMODE_MONO=0,
+    enum_2_SND_OUTPUTMODE_STEREO=1,
+    enum_2_SND_OUTPUTMODE_SURROUND=2
 };
 typedef unsigned int enum_2;
 
@@ -9915,9 +9913,9 @@ struct SYNTH_QUEUE {
 } __attribute__((packed));
 
 enum {
-    SYNTH_JOBTYPE_LOW=0,
-    SYNTH_JOBTYPE_ZERO=1,
-    SYNTH_JOBTYPE_EVENT=2
+    enum_94_SYNTH_JOBTYPE_LOW=0,
+    enum_94_SYNTH_JOBTYPE_ZERO=1,
+    enum_94_SYNTH_JOBTYPE_EVENT=2
 };
 typedef unsigned int enum_94;
 
@@ -10390,8 +10388,8 @@ struct Static_MSSB_Data {
     byte field28_0x472b;
     struct controllerInputStruct controllerInputs[2];
     byte field30_0x4738[16];
-    pointer (*field31_0x4748)[0];
-    pointer (*field32_0x474c)[0];
+    void * (*field31_0x4748)[0];
+    void * (*field32_0x474c)[0];
     byte field33_0x4750;
     byte field34_0x4751;
     byte field35_0x4752[2];
@@ -10838,10 +10836,10 @@ typedef unsigned int _GXAttrType;
 enum {
     _GXBlendFactor_GX_BL_ZERO=0,
     _GXBlendFactor_GX_BL_ONE=1,
-    GX_BL_SRCCOL=2,
-    GX_BL_DSTCOL=3,
-    GX_BL_INVSRCCOL=3,
-    GX_BL_INVDSTCOL=4,
+    _GXBlendFactor_GX_BL_SRCCOL=2,
+    _GXBlendFactor_GX_BL_DSTCOL=3,
+    _GXBlendFactor_GX_BL_INVSRCCOL=3,
+    _GXBlendFactor_GX_BL_INVDSTCOL=4,
     _GXBlendFactor_GX_BL_SRCALPHA=4,
     _GXBlendFactor_GX_BL_INVSRCALPHA=5,
     _GXBlendFactor_GX_BL_DSTALPHA=6,
@@ -10908,7 +10906,7 @@ typedef unsigned int _GXColorSrc;
 
 enum {
     _GXCompCnt_GX_CLR_RGB=0,
-    GX_COMPCNT_NULL=0,
+    _GXCompCnt_GX_COMPCNT_NULL=0,
     _GXCompCnt_GX_NRM_XYZ=0,
     _GXCompCnt_GX_POS_XY=0,
     _GXCompCnt_GX_TEX_S=0,
@@ -10924,7 +10922,7 @@ typedef unsigned int _GXCompCnt;
 /* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompCnt - /decompHeaders/GXEnum.h/_GXCompCnt */
 
 enum {
-    GX_COMP_NULL=0,
+    _GXCompType_GX_COMP_NULL=0,
     _GXCompType_GX_RGB565=0,
     _GXCompType_GX_U8=0,
     _GXCompType_GX_RGB8=1,
@@ -10988,7 +10986,7 @@ enum {
     _GXFBClamp_GX_CLAMP_NONE=0,
     _GXFBClamp_GX_CLAMP_TOP=1,
     _GXFBClamp_GX_CLAMP_BOTTOM=2,
-    GX_CLAMP_BOTH=3
+    _GXFBClamp_GX_CLAMP_BOTH=3
 };
 typedef unsigned int _GXFBClamp;
 
@@ -11006,11 +11004,11 @@ struct _GXFogAdjTable {
 
 enum {
     _GXFogType_GX_FOG_NONE=0,
-    GX_FOG_LINEAR=2,
-    GX_FOG_EXPONENT=4,
-    GX_FOG_EXPONENT2=5,
-    GX_FOG_REVERSEEXP=6,
-    GX_FOG_REVERSEXP2=7
+    _GXFogType_GX_FOG_LINEAR=2,
+    _GXFogType_GX_FOG_EXPONENT=4,
+    _GXFogType_GX_FOG_EXPONENT2=5,
+    _GXFogType_GX_FOG_REVERSEEXP=6,
+    _GXFogType_GX_FOG_REVERSEXP2=7
 };
 typedef unsigned int _GXFogType;
 
@@ -11084,11 +11082,11 @@ enum {
 typedef unsigned int _GXIndTexScale;
 
 enum {
-    GX_IND_TEX_STAGE_0=0,
-    GX_IND_TEX_STAGE_1=1,
-    GX_IND_TEX_STAGE_2=2,
-    GX_IND_TEX_STAGE_3=3,
-    GX_IND_MAX_TEX_STAGE_ID=4
+    _GXIndTexStageID_GX_IND_TEX_STAGE_0=0,
+    _GXIndTexStageID_GX_IND_TEX_STAGE_1=1,
+    _GXIndTexStageID_GX_IND_TEX_STAGE_2=2,
+    _GXIndTexStageID_GX_IND_TEX_STAGE_3=3,
+    _GXIndTexStageID_GX_IND_MAX_TEX_STAGE_ID=4
 };
 typedef unsigned int _GXIndTexStageID;
 
@@ -11230,7 +11228,7 @@ enum {
     _GXPerf1_GX_PERF1_TC_CHECK5_6=6,
     _GXPerf1_GX_PERF1_TC_CHECK7_8=7,
     _GXPerf1_GX_PERF1_TC_MISS=8,
-    GX_PERF1_VC_ELEMQ_FULL=9,
+    _GXPerf1_GX_PERF1_VC_ELEMQ_FULL=9,
     _GXPerf1_GX_PERF1_VC_MISSQ_FULL=10,
     _GXPerf1_GX_PERF1_VC_MEMREQ_FULL=11,
     _GXPerf1_GX_PERF1_VC_STATUS7=12,
@@ -11256,7 +11254,7 @@ enum {
     _GXPixelFmt_GX_PF_U8=5,
     _GXPixelFmt_GX_PF_V8=6,
     _GXPixelFmt_GX_PF_YUV420=7,
-    GX_MAX_PIXELFMT=8
+    _GXPixelFmt_GX_MAX_PIXELFMT=8
 };
 typedef unsigned int _GXPixelFmt;
 
@@ -11390,13 +11388,13 @@ enum {
 typedef unsigned int _GXTevColorChan;
 
 enum {
-    GX_TEV_KASEL_1=0,
+    _GXTevKAlphaSel_GX_TEV_KASEL_1=0,
     _GXTevKAlphaSel_GX_TEV_KASEL_7_8=1,
-    GX_TEV_KASEL_3_4=2,
+    _GXTevKAlphaSel_GX_TEV_KASEL_3_4=2,
     _GXTevKAlphaSel_GX_TEV_KASEL_5_8=3,
-    GX_TEV_KASEL_1_2=4,
+    _GXTevKAlphaSel_GX_TEV_KASEL_1_2=4,
     _GXTevKAlphaSel_GX_TEV_KASEL_3_8=5,
-    GX_TEV_KASEL_1_4=6,
+    _GXTevKAlphaSel_GX_TEV_KASEL_1_4=6,
     _GXTevKAlphaSel_GX_TEV_KASEL_1_8=7,
     _GXTevKAlphaSel_GX_TEV_KASEL_K0_R=16,
     _GXTevKAlphaSel_GX_TEV_KASEL_K1_R=17,
@@ -11427,13 +11425,13 @@ enum {
 typedef unsigned int _GXTevKColorID;
 
 enum {
-    GX_TEV_KCSEL_1=0,
+    _GXTevKColorSel_GX_TEV_KCSEL_1=0,
     _GXTevKColorSel_GX_TEV_KCSEL_7_8=1,
-    GX_TEV_KCSEL_3_4=2,
+    _GXTevKColorSel_GX_TEV_KCSEL_3_4=2,
     _GXTevKColorSel_GX_TEV_KCSEL_5_8=3,
-    GX_TEV_KCSEL_1_2=4,
+    _GXTevKColorSel_GX_TEV_KCSEL_1_2=4,
     _GXTevKColorSel_GX_TEV_KCSEL_3_8=5,
-    GX_TEV_KCSEL_1_4=6,
+    _GXTevKColorSel_GX_TEV_KCSEL_1_4=6,
     _GXTevKColorSel_GX_TEV_KCSEL_1_8=7,
     _GXTevKColorSel_GX_TEV_KCSEL_K0=12,
     _GXTevKColorSel_GX_TEV_KCSEL_K1=13,
@@ -11478,8 +11476,8 @@ enum {
     _GXTevOp_GX_TEV_COMP_BGR24_EQ=13,
     _GXTevOp_GX_TEV_COMP_RGB8_GT=14,
     _GXTevOp_GX_TEV_COMP_RGB8_EQ=15,
-    GX_TEV_COMP_A8_GT=16,
-    GX_TEV_COMP_A8_EQ=17
+    _GXTevOp_GX_TEV_COMP_A8_GT=16,
+    _GXTevOp_GX_TEV_COMP_A8_EQ=17
 };
 typedef unsigned int _GXTevOp;
 
@@ -11518,7 +11516,7 @@ enum {
     _GXTevStageID_GX_TEVSTAGE13=13,
     _GXTevStageID_GX_TEVSTAGE14=14,
     _GXTevStageID_GX_TEVSTAGE15=15,
-    GX_MAXTEVSTAGE=16
+    _GXTevStageID_GX_MAXTEVSTAGE=16
 };
 typedef unsigned int _GXTevStageID;
 
@@ -11614,8 +11612,8 @@ enum {
 typedef unsigned int _GXTexGenSrc;
 
 enum {
-    GX_TG_MTX2X4=0,
-    GX_TG_MTX3X4=1,
+    _GXTexGenType_GX_TG_MTX2X4=0,
+    _GXTexGenType_GX_TG_MTX3X4=1,
     _GXTexGenType_GX_TG_BUMP0=2,
     _GXTexGenType_GX_TG_BUMP1=3,
     _GXTexGenType_GX_TG_BUMP2=4,
@@ -11704,9 +11702,9 @@ enum {
     _GXTlut_GX_TLUT1=1,
     _GXTlut_GX_TLUT2=2,
     _GXTlut_GX_TLUT3=3,
-    GX_MAX_BIGTLUT=4,
+    _GXTlut_GX_MAX_BIGTLUT=4,
     _GXTlut_GX_TLUT4=4,
-    GX_MAX_TLUT_ALL=5,
+    _GXTlut_GX_MAX_TLUT_ALL=5,
     _GXTlut_GX_TLUT5=5,
     _GXTlut_GX_TLUT6=6,
     _GXTlut_GX_TLUT7=7,
@@ -11719,7 +11717,7 @@ enum {
     _GXTlut_GX_TLUT14=14,
     _GXTlut_GX_TLUT15=15,
     _GXTlut_GX_BIGTLUT0=16,
-    GX_MAX_TLUT=16,
+    _GXTlut_GX_MAX_TLUT=16,
     _GXTlut_GX_BIGTLUT1=17,
     _GXTlut_GX_BIGTLUT2=18,
     _GXTlut_GX_BIGTLUT3=19
@@ -11974,13 +11972,13 @@ struct sockaddr {
 } __attribute__((packed));
 
 enum {
-    navigateToPitcher=0,
-    onPitcher=1,
-    selectPitcher=2,
-    pickNextPitcher=3,
-    navigateToNewPitcher=4,
-    swap=5,
-    returnToGameSequence=6
+    aiPositionSwapState_navigateToPitcher=0,
+    aiPositionSwapState_onPitcher=1,
+    aiPositionSwapState_selectPitcher=2,
+    aiPositionSwapState_pickNextPitcher=3,
+    aiPositionSwapState_navigateToNewPitcher=4,
+    aiPositionSwapState_swap=5,
+    aiPositionSwapState_returnToGameSequence=6
 };
 typedef unsigned char aiPositionSwapState;
 
@@ -11993,8 +11991,6 @@ struct angleRange {
 
 typedef struct astruct astruct, *Pastruct;
 
-struct astruct {
-} __attribute__((packed));
 
 typedef struct astruct_1 astruct_1, *Pastruct_1;
 
@@ -14486,46 +14482,44 @@ struct astruct_8 {
 
 typedef struct astruct_9 astruct_9, *Pastruct_9;
 
-struct astruct_9 {
-} __attribute__((packed));
 
 enum {
-    grandSlam=1,
-    _3RunHR=2,
-    _2RunHR=3,
-    soloHR=4,
-    insideTheParkHR=5,
-    rBITriple=6,
-    rBIDouble=7,
-    rBISingle=8,
-    rBIInfieldSingle=9,
-    rBIFieldersChoice_=10,
-    tripleNoRBI=11,
-    doubleNoRBI=12,
-    singleNoRBI=13,
-    infieldSingleNoRBI=14,
-    fieldersChoiceNoRBI_=15,
-    sacFlyRBI=17,
-    flyBallCaught=18,
-    lineDriveCaught=19,
-    groundBallOutOnBatter=20,
-    GroundBallOut_ForceOnNonBatter=21,
-    triplePlayGroundBall=22,
+    atBatResult_grandSlam=1,
+    atBatResult__3RunHR=2,
+    atBatResult__2RunHR=3,
+    atBatResult_soloHR=4,
+    atBatResult_insideTheParkHR=5,
+    atBatResult_rBITriple=6,
+    atBatResult_rBIDouble=7,
+    atBatResult_rBISingle=8,
+    atBatResult_rBIInfieldSingle=9,
+    atBatResult_rBIFieldersChoice_=10,
+    atBatResult_tripleNoRBI=11,
+    atBatResult_doubleNoRBI=12,
+    atBatResult_singleNoRBI=13,
+    atBatResult_infieldSingleNoRBI=14,
+    atBatResult_fieldersChoiceNoRBI_=15,
+    atBatResult_sacFlyRBI=17,
+    atBatResult_flyBallCaught=18,
+    atBatResult_lineDriveCaught=19,
+    atBatResult_groundBallOutOnBatter=20,
+    atBatResult_GroundBallOut_ForceOnNonBatter=21,
+    atBatResult_triplePlayGroundBall=22,
     atBatResult_triplePlay=23,
-    groundBallDoublePlay=24,
+    atBatResult_groundBallDoublePlay=24,
     atBatResult_doublePlay=25,
-    flyOut_InfFly_TagUpOutsOnR1OrR2=26,
-    buntSingle=28,
-    outGoingForBuntSingle=29,
+    atBatResult_flyOut_InfFly_TagUpOutsOnR1OrR2=26,
+    atBatResult_buntSingle=28,
+    atBatResult_outGoingForBuntSingle=29,
     atBatResult_sacBunt=30,
-    sacBuntFailed=31,
-    sacBuntPoppedOut=32,
-    oneRunnerAdvancedOnPBunt=33,
-    buntOut=34,
-    swingingStrikeout=36,
-    lookingStrikeout=37,
-    missedBuntStrikeout=38,
-    foulBuntStrikeOut=39,
+    atBatResult_sacBuntFailed=31,
+    atBatResult_sacBuntPoppedOut=32,
+    atBatResult_oneRunnerAdvancedOnPBunt=33,
+    atBatResult_buntOut=34,
+    atBatResult_swingingStrikeout=36,
+    atBatResult_lookingStrikeout=37,
+    atBatResult_missedBuntStrikeout=38,
+    atBatResult_foulBuntStrikeOut=39,
     atBatResult_walk=42,
     atBatResult_hitBatter=43,
     atBatResult_foul=44
@@ -14543,9 +14537,9 @@ struct atBatResultTracker {
 enum {
     autoMovementCodeEnum_nothingSet_StayStill=0,
     autoMovementCodeEnum_coveringBase=2,
-    infieldCutoff=3,
+    autoMovementCodeEnum_infieldCutoff=3,
     autoMovementCodeEnum_catchingBall_HasBall=7,
-    pitcherOnPickoff=9,
+    autoMovementCodeEnum_pitcherOnPickoff=9,
     autoMovementCodeEnum_goingToBall=10,
     autoMovementCodeEnum_notMoving=11,
     autoMovementCodeEnum_runningOffField=12,
@@ -14555,17 +14549,17 @@ typedef unsigned char autoMovementCodeEnum;
 
 enum {
     autoMovementCodeEnumWord_nothingSet_StayStill=0,
-    goTowardsHitBall_AITeam=1,
+    autoMovementCodeEnumWord_goTowardsHitBall_AITeam=1,
     autoMovementCodeEnumWord_coveringBase=2,
     autoMovementCodeEnumWord_cutoff=3,
-    goTowardsHitBall_HumanTeam=4,
+    autoMovementCodeEnumWord_goTowardsHitBall_HumanTeam=4,
     autoMovementCodeEnumWord_catchingBall_HasBall=7,
-    pitcherOnPickoff_=9,
+    autoMovementCodeEnumWord_pitcherOnPickoff_=9,
     autoMovementCodeEnumWord_goingToBall=10,
     autoMovementCodeEnumWord_notMoving=11,
     autoMovementCodeEnumWord_runningOffField=12,
     autoMovementCodeEnumWord_catchAThrowRelated=15,
-    _1Unknown=4294967295
+    autoMovementCodeEnumWord__1Unknown=4294967295
 };
 typedef unsigned int autoMovementCodeEnumWord;
 
@@ -14579,18 +14573,18 @@ struct autoMovementFunctions {
 typedef struct bB_barrelStruct_ bB_barrelStruct_, *PbB_barrelStruct_;
 
 enum {
-    switchToNewBarrel_=1,
+    enum_bb_barrelState_switchToNewBarrel_=1,
     enum_bb_barrelState_neutral=2,
-    readyToBlowUp=3,
-    blownUp=4
+    enum_bb_barrelState_readyToBlowUp=3,
+    enum_bb_barrelState_blownUp=4
 };
 typedef unsigned char enum_bb_barrelState;
 
 enum {
-    red=0,
-    blue=1,
-    yellow=2,
-    brown=3
+    enum_bb_barrelColour_red=0,
+    enum_bb_barrelColour_blue=1,
+    enum_bb_barrelColour_yellow=2,
+    enum_bb_barrelColour_brown=3
 };
 typedef unsigned char enum_bb_barrelColour;
 
@@ -14693,10 +14687,10 @@ enum {
 typedef unsigned int barrelBatterPitchNum_int;
 
 enum {
-    notFired_=0,
-    launching_=1,
-    waitingTillBallGetsToOF=2,
-    launched_=3
+    barrelState_notFired_=0,
+    barrelState_launching_=1,
+    barrelState_waitingTillBallGetsToOF=2,
+    barrelState_launched_=3
 };
 typedef unsigned char barrelState;
 
@@ -14710,7 +14704,7 @@ struct baseCoordinates {
 } __attribute__((packed));
 
 enum {
-    pitcherCutoff=5,
+    baseThrownToEnum_pitcherCutoff=5,
     baseThrownToEnum_outfieldCutoff=6
 };
 typedef unsigned short baseThrownToEnum;
@@ -14810,7 +14804,7 @@ enum {
     bufferedThrowLoc__2nd=2,
     bufferedThrowLoc__3rd=3,
     bufferedThrowLoc_outfieldCutoff=6,
-    gameAutoPicks=8,
+    bufferedThrowLoc_gameAutoPicks=8,
     bufferedThrowLoc_none=255
 };
 typedef unsigned short bufferedThrowLoc;
@@ -14840,53 +14834,53 @@ struct cameraData2 {
 
 enum {
     cameraScene_atBat=1,
-    liveBall=2,
-    matchStart_marioStadium=8,
-    matchStart_bowserCastle=9,
-    matchStart_warioPalace=10,
-    matchStart_yoshiPark=11,
-    matchStart_peachGarden=12,
-    matchStart_dkJungle=13,
-    inningTransition_marioStadium=15,
-    inningTransition_bowserCastle=16,
-    inningTransition_warioPalace=17,
-    inningTransition_yoshiPark=18,
-    inningTransition_peachGarden=19,
-    inningTransition_dkJungle=20,
-    endOfGame_marioStadium=22,
-    endOfGame_bowserCastle=23,
-    endOfGame_warioPalace=24,
-    endOfGame_yoshiPark=25,
-    endOfGame_peachGarden=26,
-    endOfGame_dkJungle=27,
-    pauseMenus=29,
-    minigame_bOD=36,
-    minigame_starDash=37,
-    minigame_cCS=38,
-    minigame_pP=39,
-    minigame_wB=40,
-    minigame_bB=41,
+    cameraScene_liveBall=2,
+    cameraScene_matchStart_marioStadium=8,
+    cameraScene_matchStart_bowserCastle=9,
+    cameraScene_matchStart_warioPalace=10,
+    cameraScene_matchStart_yoshiPark=11,
+    cameraScene_matchStart_peachGarden=12,
+    cameraScene_matchStart_dkJungle=13,
+    cameraScene_inningTransition_marioStadium=15,
+    cameraScene_inningTransition_bowserCastle=16,
+    cameraScene_inningTransition_warioPalace=17,
+    cameraScene_inningTransition_yoshiPark=18,
+    cameraScene_inningTransition_peachGarden=19,
+    cameraScene_inningTransition_dkJungle=20,
+    cameraScene_endOfGame_marioStadium=22,
+    cameraScene_endOfGame_bowserCastle=23,
+    cameraScene_endOfGame_warioPalace=24,
+    cameraScene_endOfGame_yoshiPark=25,
+    cameraScene_endOfGame_peachGarden=26,
+    cameraScene_endOfGame_dkJungle=27,
+    cameraScene_pauseMenus=29,
+    cameraScene_minigame_bOD=36,
+    cameraScene_minigame_starDash=37,
+    cameraScene_minigame_cCS=38,
+    cameraScene_minigame_pP=39,
+    cameraScene_minigame_wB=40,
+    cameraScene_minigame_bB=41,
     cameraScene_toyField=42,
-    minigameInningTransitions=43,
-    toyfieldTurnChange=49,
-    minigameEndings=50,
-    toyfieldEnd=56,
-    challengeMatch_marioStadium=57,
-    challengeMatch_bowserCastle=58,
-    challengeMatch_warioPalace=59,
-    challengeMatch_yoshiPark=60,
-    challengeMatch_peachGarden=61,
-    challengeMatch_dkJungle=62,
-    homerunTrotAtHome_=76,
-    homeRunTrot_finishingMove=79,
-    rbiPostReplayCelebration=82,
-    vsMatchup=96,
-    challangeChampion=101,
-    challengeChampion2=102,
-    toyfieldHomerun_=103,
-    mvp_=104,
-    someEndGame_Minigame_=105,
-    challenge_versus_scoutflag_=106
+    cameraScene_minigameInningTransitions=43,
+    cameraScene_toyfieldTurnChange=49,
+    cameraScene_minigameEndings=50,
+    cameraScene_toyfieldEnd=56,
+    cameraScene_challengeMatch_marioStadium=57,
+    cameraScene_challengeMatch_bowserCastle=58,
+    cameraScene_challengeMatch_warioPalace=59,
+    cameraScene_challengeMatch_yoshiPark=60,
+    cameraScene_challengeMatch_peachGarden=61,
+    cameraScene_challengeMatch_dkJungle=62,
+    cameraScene_homerunTrotAtHome_=76,
+    cameraScene_homeRunTrot_finishingMove=79,
+    cameraScene_rbiPostReplayCelebration=82,
+    cameraScene_vsMatchup=96,
+    cameraScene_challangeChampion=101,
+    cameraScene_challengeChampion2=102,
+    cameraScene_toyfieldHomerun_=103,
+    cameraScene_mvp_=104,
+    cameraScene_someEndGame_Minigame_=105,
+    cameraScene_challenge_versus_scoutflag_=106
 };
 typedef unsigned int cameraScene;
 
@@ -15188,9 +15182,9 @@ typedef struct castleFireObject castleFireObject, *PcastleFireObject;
 
 enum {
     fireObjectState_default_=0,
-    unk1=1,
-    unk2=2,
-    fireEnded=3
+    fireObjectState_unk1=1,
+    fireObjectState_unk2=2,
+    fireObjectState_fireEnded=3
 };
 typedef unsigned char fireObjectState;
 
@@ -15242,11 +15236,11 @@ struct castleFireObject {
 typedef struct castleThwompObj castleThwompObj, *PcastleThwompObj;
 
 enum {
-    regular=0,
-    startingSlam=1,
-    falling=2,
+    thwompState_regular=0,
+    thwompState_startingSlam=1,
+    thwompState_falling=2,
     thwompState_hitGround=3,
-    rising=4
+    thwompState_rising=4
 };
 typedef unsigned char thwompState;
 
@@ -15293,22 +15287,22 @@ struct castleThwompObj {
 } __attribute__((packed));
 
 enum {
-    sleeping_=0,
-    awake_=1,
-    wakingUp_=2,
-    attackingBall=4,
-    returningHome=5
+    chainChompState_sleeping_=0,
+    chainChompState_awake_=1,
+    chainChompState_wakingUp_=2,
+    chainChompState_attackingBall=4,
+    chainChompState_returningHome=5
 };
 typedef unsigned char chainChompState;
 
 enum {
-    nothing=0,
-    loadCheckStars=1,
-    ExitCheckStars=2,
-    moveInCharList=3,
-    moveInStarList=4,
-    loadCharView=5,
-    exitCharView=6
+    challengeCheckStarsLoadingScreenNum_nothing=0,
+    challengeCheckStarsLoadingScreenNum_loadCheckStars=1,
+    challengeCheckStarsLoadingScreenNum_ExitCheckStars=2,
+    challengeCheckStarsLoadingScreenNum_moveInCharList=3,
+    challengeCheckStarsLoadingScreenNum_moveInStarList=4,
+    challengeCheckStarsLoadingScreenNum_loadCharView=5,
+    challengeCheckStarsLoadingScreenNum_exitCharView=6
 };
 typedef unsigned char challengeCheckStarsLoadingScreenNum;
 
@@ -15320,35 +15314,35 @@ enum {
     enumChallengeCaptain_mario=0,
     enumChallengeCaptain_peach=1,
     enumChallengeCaptain_wario=2,
-    dk=3,
+    enumChallengeCaptain_dk=3,
     enumChallengeCaptain_yoshi=4,
     enumChallengeCaptain_bowser=5
 };
 typedef unsigned char enumChallengeCaptain;
 
 enum {
-    primaryCaptain=0,
-    secondaryCaptain=1,
-    uniqueNonCaptain=2,
-    primaryVariant=3,
-    secondaryVariant=4
+    characterVariantClassification_primaryCaptain=0,
+    characterVariantClassification_secondaryCaptain=1,
+    characterVariantClassification_uniqueNonCaptain=2,
+    characterVariantClassification_primaryVariant=3,
+    characterVariantClassification_secondaryVariant=4
 };
 typedef unsigned char characterVariantClassification;
 
 typedef struct starMissionTrackingPair starMissionTrackingPair, *PstarMissionTrackingPair;
 
 enum {
-    notRecruited=0,
-    recruited=1,
-    onBJTeam=2
+    enumChallengeRecruitmentCd_notRecruited=0,
+    enumChallengeRecruitmentCd_recruited=1,
+    enumChallengeRecruitmentCd_onBJTeam=2
 };
 typedef unsigned char enumChallengeRecruitmentCd;
 
 enum {
-    notCompleted=0,
-    track1Completion=1,
-    completedSaved=254,
-    completedConditionally=255  /* Mission requirement fulfilled but game needs to end to save */
+    enumStarMissionTracking_Completed_notCompleted=0,
+    enumStarMissionTracking_Completed_track1Completion=1,
+    enumStarMissionTracking_Completed_completedSaved=254,
+    enumStarMissionTracking_Completed_completedConditionally=255  /* Mission requirement fulfilled but game needs to end to save */
 };
 typedef unsigned char enumStarMissionTracking_Completed;
 
@@ -15425,8 +15419,8 @@ struct chaseRunnerStruct {
 typedef struct collisionBoxHeader collisionBoxHeader, *PcollisionBoxHeader;
 
 enum {
-    nonStrip=0,
-    triangleStrip=1
+    enumTriangleGroupType_nonStrip=0,
+    enumTriangleGroupType_triangleStrip=1
 };
 typedef unsigned short enumTriangleGroupType;
 
@@ -15490,11 +15484,11 @@ struct dKStadiumObject {
 } __attribute__((packed));
 
 enum {
-    noDash=0,
-    accelerating=1,
-    sprinting=2,
-    decelerating=3,
-    decelerating_noBOrStickInput_=4
+    dashState_noDash=0,
+    dashState_accelerating=1,
+    dashState_sprinting=2,
+    dashState_decelerating=3,
+    dashState_decelerating_noBOrStickInput_=4
 };
 typedef unsigned char dashState;
 
@@ -18162,8 +18156,8 @@ typedef unsigned char dashState;
 
 enum {
     demoStatus_n_a=0,
-    demoPlaying=1,
-    endDemo=2
+    demoStatus_demoPlaying=1,
+    demoStatus_endDemo=2
 };
 typedef unsigned char demoStatus;
 
@@ -18182,25 +18176,25 @@ struct eightVec {
 } __attribute__((packed));
 
 enum {
-    regularReadWithDecompression=0,
-    New_Name=1,
-    directARAMTransfer=2,
-    ARAMtoRAMWithDecompression=3,
-    ARAMtoRAMwithoutDecompression=4
+    enumARAMLoadType_regularReadWithDecompression=0,
+    enumARAMLoadType_New_Name=1,
+    enumARAMLoadType_directARAMTransfer=2,
+    enumARAMLoadType_ARAMtoRAMWithDecompression=3,
+    enumARAMLoadType_ARAMtoRAMwithoutDecompression=4
 };
 typedef unsigned char enumARAMLoadType;
 
 enum {
-    chargeAnimation_=4,
-    heldBall_petey_chem_antiChemGraphics=9,
-    heldBall_inLeftHand=19,
-    spendStars_leftyPitching=20,
-    heldBall_inRightHand=25,
-    spendStars_hitting_RightyPitching=26,
-    feetForDustClouds_=30,
-    heldBall_birdoInMouth=66,
-    heldBall_leftyMag=78,
-    heldBall_rightyMag=79
+    enumAnimationCoordinatesType_chargeAnimation_=4,
+    enumAnimationCoordinatesType_heldBall_petey_chem_antiChemGraphics=9,
+    enumAnimationCoordinatesType_heldBall_inLeftHand=19,
+    enumAnimationCoordinatesType_spendStars_leftyPitching=20,
+    enumAnimationCoordinatesType_heldBall_inRightHand=25,
+    enumAnimationCoordinatesType_spendStars_hitting_RightyPitching=26,
+    enumAnimationCoordinatesType_feetForDustClouds_=30,
+    enumAnimationCoordinatesType_heldBall_birdoInMouth=66,
+    enumAnimationCoordinatesType_heldBall_leftyMag=78,
+    enumAnimationCoordinatesType_heldBall_rightyMag=79
 };
 typedef unsigned int enumAnimationCoordinatesType;
 
@@ -18211,22 +18205,22 @@ enum {
 typedef unsigned int enumAwayHome_int;
 
 enum {
-    fielder=9
+    enumBallCollision_fielder=9
 };
 typedef unsigned char enumBallCollision;
 
 enum {
-    nonChargePitch=1,
-    perfectChargePitch=2,
-    bobOmbDerbyMaybe=3,
-    dkDiddyStar=5,
-    yoshiBirdoStar=6,
+    enumBallTrailTypes_nonChargePitch=1,
+    enumBallTrailTypes_perfectChargePitch=2,
+    enumBallTrailTypes_bobOmbDerbyMaybe=3,
+    enumBallTrailTypes_dkDiddyStar=5,
+    enumBallTrailTypes_yoshiBirdoStar=6,
     enumBallTrailTypes_default_=16
 };
 typedef unsigned int enumBallTrailTypes;
 
 enum {
-    determiningBodyCheck_=1
+    enumBodyCheckCd_determiningBodyCheck_=1
 };
 typedef unsigned char enumBodyCheckCd;
 
@@ -18244,7 +18238,7 @@ enum {
     enumChallengeDifficulty_mushroom=0,
     enumChallengeDifficulty_flower=1,
     enumChallengeDifficulty_star=2,
-    special=3
+    enumChallengeDifficulty_special=3
 };
 typedef unsigned char enumChallengeDifficulty;
 
@@ -18366,9 +18360,9 @@ enum {
 typedef unsigned int enumCharacterID_int;
 
 enum {
-    chemistryThrow=0,
+    enumCharacterSounds_chemistryThrow=0,
     enumCharacterSounds_regularThrow=5,
-    antiChemThrow=10
+    enumCharacterSounds_antiChemThrow=10
 };
 typedef unsigned int enumCharacterSounds;
 
@@ -18378,10 +18372,10 @@ enum {
 typedef unsigned int enumDiskLocations;
 
 enum {
-    noError=0,
-    droppedFlyBall_=1,
-    groundballError_=2,
-    falliedRundown_=3
+    enumErrorType_noError=0,
+    enumErrorType_droppedFlyBall_=1,
+    enumErrorType_groundballError_=2,
+    enumErrorType_falliedRundown_=3
 };
 typedef unsigned char enumErrorType;
 
@@ -18403,13 +18397,13 @@ enum {
     enumFieldingStarMissionCodes_noteBlock=0,
     enumFieldingStarMissionCodes_catches=1,
     enumFieldingStarMissionCodes_bigPlay=2,
-    slidingCatch=3,
+    enumFieldingStarMissionCodes_slidingCatch=3,
     enumFieldingStarMissionCodes_jumpingCatch=4,
     enumFieldingStarMissionCodes_clamber=5,
     enumFieldingStarMissionCodes_tagOut=6,
-    unused_throwToCertainCharacter=7,
-    laser=8,
-    bootedBall=9,
+    enumFieldingStarMissionCodes_unused_throwToCertainCharacter=7,
+    enumFieldingStarMissionCodes_laser=8,
+    enumFieldingStarMissionCodes_bootedBall=9,
     enumFieldingStarMissionCodes_steals=10,
     enumFieldingStarMissionCodes_scoreRun=11,
     enumFieldingStarMissionCodes_bodyCheck=12
@@ -18417,19 +18411,19 @@ enum {
 typedef unsigned int enumFieldingStarMissionCodes;
 
 enum {
-    captainSelect=1,
-    rosterSelect=2,
-    setLineup=3,
-    stadium_matchSettings=4
+    enumGameSetUpStep_captainSelect=1,
+    enumGameSetUpStep_rosterSelect=2,
+    enumGameSetUpStep_setLineup=3,
+    enumGameSetUpStep_stadium_matchSettings=4
 };
 typedef unsigned char enumGameSetUpStep;
 
 enum {
-    stadiumSelect=0,
-    loadMatchSettings=1,
-    matchSettings=2,
+    enumGameSettingScreenProcess_stadiumSelect=0,
+    enumGameSettingScreenProcess_loadMatchSettings=1,
+    enumGameSettingScreenProcess_matchSettings=2,
     enumGameSettingScreenProcess_controlOptions=3,
-    okOrReturnToStadSelect=5
+    enumGameSettingScreenProcess_okOrReturnToStadSelect=5
 };
 typedef unsigned short enumGameSettingScreenProcess;
 
@@ -18440,77 +18434,77 @@ enum {
 typedef unsigned short enumInGameEventID;
 
 enum {
-    mainMenu_exhibition_capSelect=0,
-    exhibition_charSelect=2,
-    exhibition_battingLineup=4,
-    exhibition_stadiumSelect=5,
-    exhibition_gameOptions=6,
-    exhibition_controlOptions=7,
-    challenge_saveFileSelect=11,
-    challenge_levelSelect=12,
-    challenge_capSelect=13,
-    challenge_checkStars=14,
-    challenge_itemList=15,
-    challenge_save=16,
-    challengeMatch_charSelect=19,
-    challengeMatch_gameOptions=20,
-    challengeMatch_controlOptions=21,
-    challengeMatch_battingLineups=22,
-    toyField_charSelect=47,
-    toyField_turnSettings=48,
-    toyField_rules=50,
-    minigames_selectGame=51,
-    minigames_charSelect=53,
-    minigames_difficulty=54,
-    minigames_startGame=55,
-    minigames_rules=56,
-    practice_selectType=60,
-    practice_selectSubType=61,
-    practice_charSelect=62,
-    records_mainScreen=83,
-    records_exhibitionMVP=84,
-    records_challengeTrophies=85,
-    records_challengeSuperstars=86,
-    records_toyField=87,
-    records_minigameGrandPrix=88,
-    records_minigameHighScores=89,
-    options=91
+    enumMenuNumber_mainMenu_exhibition_capSelect=0,
+    enumMenuNumber_exhibition_charSelect=2,
+    enumMenuNumber_exhibition_battingLineup=4,
+    enumMenuNumber_exhibition_stadiumSelect=5,
+    enumMenuNumber_exhibition_gameOptions=6,
+    enumMenuNumber_exhibition_controlOptions=7,
+    enumMenuNumber_challenge_saveFileSelect=11,
+    enumMenuNumber_challenge_levelSelect=12,
+    enumMenuNumber_challenge_capSelect=13,
+    enumMenuNumber_challenge_checkStars=14,
+    enumMenuNumber_challenge_itemList=15,
+    enumMenuNumber_challenge_save=16,
+    enumMenuNumber_challengeMatch_charSelect=19,
+    enumMenuNumber_challengeMatch_gameOptions=20,
+    enumMenuNumber_challengeMatch_controlOptions=21,
+    enumMenuNumber_challengeMatch_battingLineups=22,
+    enumMenuNumber_toyField_charSelect=47,
+    enumMenuNumber_toyField_turnSettings=48,
+    enumMenuNumber_toyField_rules=50,
+    enumMenuNumber_minigames_selectGame=51,
+    enumMenuNumber_minigames_charSelect=53,
+    enumMenuNumber_minigames_difficulty=54,
+    enumMenuNumber_minigames_startGame=55,
+    enumMenuNumber_minigames_rules=56,
+    enumMenuNumber_practice_selectType=60,
+    enumMenuNumber_practice_selectSubType=61,
+    enumMenuNumber_practice_charSelect=62,
+    enumMenuNumber_records_mainScreen=83,
+    enumMenuNumber_records_exhibitionMVP=84,
+    enumMenuNumber_records_challengeTrophies=85,
+    enumMenuNumber_records_challengeSuperstars=86,
+    enumMenuNumber_records_toyField=87,
+    enumMenuNumber_records_minigameGrandPrix=88,
+    enumMenuNumber_records_minigameHighScores=89,
+    enumMenuNumber_options=91
 };
 typedef unsigned char enumMenuNumber;
 
 enum {
     enumObjTypeInFile__none=0,
-    texture=1,
-    act=2,
-    act2=3,
-    act3=4,
-    act4=5,
-    header=6,
-    anim=7,
-    anim2=8,
-    anim3=9
+    enumObjTypeInFile__texture=1,
+    enumObjTypeInFile__act=2,
+    enumObjTypeInFile__act2=3,
+    enumObjTypeInFile__act3=4,
+    enumObjTypeInFile__act4=5,
+    enumObjTypeInFile__header=6,
+    enumObjTypeInFile__anim=7,
+    enumObjTypeInFile__anim2=8,
+    enumObjTypeInFile__anim3=9
 };
 typedef unsigned char enumObjTypeInFile_;
 
 enum {  /* State for all things practice. First is the main menu, second is the sub menu, third is on the field */
-    _0_switchToTopMenu4_switchToSubMenu_loadfield_goTo1_newAB_=0,
-    _1__checkSomething_delay_goTo2=1,
-    _2_changeScene_goTo3_subMenuControl=2,
-    _3_delay30Frames_goTo4_switchToField_goTo4=3,
-    _4_mainMenuControl_loadPracticeOnField=4,
-    _5_checkSomething_goTo6_returnToTopMenu_goTo6=5,
-    _6_setPracticeConsts_goTo0_returnToTopMenu2_goTo7=6,
-    _7_exitToMenuQuestion_returnToTopMenu3_goTo0=7,
-    _8_exitToMainMenu=8
+    enumPracticeState__0_switchToTopMenu4_switchToSubMenu_loadfield_goTo1_newAB_=0,
+    enumPracticeState__1__checkSomething_delay_goTo2=1,
+    enumPracticeState__2_changeScene_goTo3_subMenuControl=2,
+    enumPracticeState__3_delay30Frames_goTo4_switchToField_goTo4=3,
+    enumPracticeState__4_mainMenuControl_loadPracticeOnField=4,
+    enumPracticeState__5_checkSomething_goTo6_returnToTopMenu_goTo6=5,
+    enumPracticeState__6_setPracticeConsts_goTo0_returnToTopMenu2_goTo7=6,
+    enumPracticeState__7_exitToMenuQuestion_returnToTopMenu3_goTo0=7,
+    enumPracticeState__8_exitToMainMenu=8
 };
 typedef unsigned char enumPracticeState;
 
 enum {
-    pitching=0,
-    batting=1,
-    fielding=2,
-    baserunning=3,
-    freePlay=4
+    enumPracticeType_pitching=0,
+    enumPracticeType_batting=1,
+    enumPracticeType_fielding=2,
+    enumPracticeType_baserunning=3,
+    enumPracticeType_freePlay=4
 };
 typedef unsigned char enumPracticeType;
 
@@ -18525,64 +18519,64 @@ enum {
 typedef unsigned char enumQuantTypeColor;
 
 enum {
-    noReplay=0,
-    fieldingRelated_=1,
+    enumReplayID_noReplay=0,
+    enumReplayID_fieldingRelated_=1,
     enumReplayID_homerun=2,
-    rbi_batterOnBase=3,
-    rbi_batterOut=4,
-    sacFly_important=5,
-    k_endGame_basesLoaded_RISP=6,
-    flyOut_=7,
-    goodFieldingPlay_nonFly=8,
-    homerun_goAhead=9,
-    goAheadRBI_=11,
-    homerun_moonshot_=13
+    enumReplayID_rbi_batterOnBase=3,
+    enumReplayID_rbi_batterOut=4,
+    enumReplayID_sacFly_important=5,
+    enumReplayID_k_endGame_basesLoaded_RISP=6,
+    enumReplayID_flyOut_=7,
+    enumReplayID_goodFieldingPlay_nonFly=8,
+    enumReplayID_homerun_goAhead=9,
+    enumReplayID_goAheadRBI_=11,
+    enumReplayID_homerun_moonshot_=13
 };
 typedef unsigned char enumReplayID;
 
 enum {
-    N_A_=0,
-    getPlayerOut=1,
-    getAHit=2,
-    scoreARun=3,
-    mountAComeback=4,
-    dontAllowAnyRuns=5,
+    enumScoutFlagMissions_N_A_=0,
+    enumScoutFlagMissions_getPlayerOut=1,
+    enumScoutFlagMissions_getAHit=2,
+    enumScoutFlagMissions_scoreARun=3,
+    enumScoutFlagMissions_mountAComeback=4,
+    enumScoutFlagMissions_dontAllowAnyRuns=5,
     enumScoutFlagMissions_doublePlay=6,
     enumScoutFlagMissions_strikeOut=7,
-    finishOffIn3Batters=8,
-    hitSacFly=9,
+    enumScoutFlagMissions_finishOffIn3Batters=8,
+    enumScoutFlagMissions_hitSacFly=9,
     enumScoutFlagMissions_squeezeBunt=10,
-    stealABase=11,
-    winTheGame=12
+    enumScoutFlagMissions_stealABase=11,
+    enumScoutFlagMissions_winTheGame=12
 };
 typedef unsigned char enumScoutFlagMissions;
 
 enum {
     enumSituationTracker_none=0,
-    LFTraj1=1,
-    CFTraj1=2,
-    RFTraj1=3,
-    HRTraj1=4,
-    LFTraj2=5,
-    CFTraj2=6,
-    RFTraj2=7,
-    HRTraj2=8,
-    LFTraj3=9,
-    CFTraj3=10,
-    RFTraj3=11,
-    HRTraj3=12,
-    sacFlySuccessful=13,
-    sacFlyAttempt=14
+    enumSituationTracker_LFTraj1=1,
+    enumSituationTracker_CFTraj1=2,
+    enumSituationTracker_RFTraj1=3,
+    enumSituationTracker_HRTraj1=4,
+    enumSituationTracker_LFTraj2=5,
+    enumSituationTracker_CFTraj2=6,
+    enumSituationTracker_RFTraj2=7,
+    enumSituationTracker_HRTraj2=8,
+    enumSituationTracker_LFTraj3=9,
+    enumSituationTracker_CFTraj3=10,
+    enumSituationTracker_RFTraj3=11,
+    enumSituationTracker_HRTraj3=12,
+    enumSituationTracker_sacFlySuccessful=13,
+    enumSituationTracker_sacFlyAttempt=14
 };
 typedef unsigned short enumSituationTracker;
 
 enum {
-    sacFlyScoredARun=1,
-    outfieldCatchForOut=2,
-    allRunnersSafe_=11,
-    playStillOngoing_=12,
-    fieldersChoice_=13,
-    foulBuntWith2Strikes=14
+    enumSomeRunnerResultCd_sacFlyScoredARun=1,
+    enumSomeRunnerResultCd_outfieldCatchForOut=2,
+    enumSomeRunnerResultCd_allRunnersSafe_=11,
+    enumSomeRunnerResultCd_playStillOngoing_=12,
+    enumSomeRunnerResultCd_fieldersChoice_=13,
+    enumSomeRunnerResultCd_foulBuntWith2Strikes=14
 };
 typedef unsigned char enumSomeRunnerResultCd;
 
@@ -18687,118 +18681,118 @@ enum {
 typedef unsigned short enumSoundEffect_short;
 
 enum {
-    dontShowHUDElement=0,
-    initHUDElement=1,
-    hUDElementShowing=2
+    enumStarChanceAnimationControl_dontShowHUDElement=0,
+    enumStarChanceAnimationControl_initHUDElement=1,
+    enumStarChanceAnimationControl_hUDElementShowing=2
 };
 typedef unsigned char enumStarChanceAnimationControl;
 
 enum {
-    winRequirement=1,
-    flowerDifficulty=2,
-    starDifficulty=4,
-    specialDifficulty=8,
-    toyFieldMG=16,
-    BODMG=32,
-    WBMG=64,
-    BBMG=128,
-    CCSMG=256,
-    PPMG=512,
-    LGMVP=2048
+    enumStarMissionBitInfo_winRequirement=1,
+    enumStarMissionBitInfo_flowerDifficulty=2,
+    enumStarMissionBitInfo_starDifficulty=4,
+    enumStarMissionBitInfo_specialDifficulty=8,
+    enumStarMissionBitInfo_toyFieldMG=16,
+    enumStarMissionBitInfo_BODMG=32,
+    enumStarMissionBitInfo_WBMG=64,
+    enumStarMissionBitInfo_BBMG=128,
+    enumStarMissionBitInfo_CCSMG=256,
+    enumStarMissionBitInfo_PPMG=512,
+    enumStarMissionBitInfo_LGMVP=2048
 };
 typedef unsigned short enumStarMissionBitInfo;
 
 enum {
-    MVP=1,
-    teamStar=2,
-    abilityHitPitchAndWin=3,
-    strikeOutCharacter=4,
-    shutoutTeam=6,
+    enumStarMissions_MVP=1,
+    enumStarMissions_teamStar=2,
+    enumStarMissions_abilityHitPitchAndWin=3,
+    enumStarMissions_strikeOutCharacter=4,
+    enumStarMissions_shutoutTeam=6,
     enumStarMissions_perfectGame=7,
-    pitchWholeGameWin=8,
-    shutout=9,
-    strikeOutQuantity=10,
-    homeRunRBIs=14,
-    longHit_BasesOnHit_=15,
-    hitVsCharacter=16,
-    HRVsCharacter=17,
-    RBIVsMario=18,
-    hitQuantity=19,
+    enumStarMissions_pitchWholeGameWin=8,
+    enumStarMissions_shutout=9,
+    enumStarMissions_strikeOutQuantity=10,
+    enumStarMissions_homeRunRBIs=14,
+    enumStarMissions_longHit_BasesOnHit_=15,
+    enumStarMissions_hitVsCharacter=16,
+    enumStarMissions_HRVsCharacter=17,
+    enumStarMissions_RBIVsMario=18,
+    enumStarMissions_hitQuantity=19,
     enumStarMissions_sacBunt=20,
     enumStarMissions_squeezeBunt=21,
-    RBIQuantity=22,
-    homeRunQuantity=23,
-    starhitRBI=24,
-    chargedHit=27,
-    HRWithDiddyDixie=28,
-    emptyBaseBunt=29,
-    HRWithBowser=30,
+    enumStarMissions_RBIQuantity=22,
+    enumStarMissions_homeRunQuantity=23,
+    enumStarMissions_starhitRBI=24,
+    enumStarMissions_chargedHit=27,
+    enumStarMissions_HRWithDiddyDixie=28,
+    enumStarMissions_emptyBaseBunt=29,
+    enumStarMissions_HRWithBowser=30,
     enumStarMissions_noteBlock=31,
     enumStarMissions_catches=32,
     enumStarMissions_bigPlay=33,
-    magicalCatch=34,
+    enumStarMissions_magicalCatch=34,
     enumStarMissions_jumpingCatch=35,
-    tongueCatches=37,
+    enumStarMissions_tongueCatches=37,
     enumStarMissions_clamber=38,
     enumStarMissions_tagOut=39,
     enumStarMissions_unused=40,
-    laserBeam=41,
-    catchBootedBall=42,
-    doublePlayWPeach=43,
+    enumStarMissions_laserBeam=41,
+    enumStarMissions_catchBootedBall=42,
+    enumStarMissions_doublePlayWPeach=43,
     enumStarMissions_steals=44,
     enumStarMissions_scoreRun=45,
     enumStarMissions_bodyCheck=46,
-    winMinigame=47,
-    miniGamePointGoal=48,
-    winWallBall=49,
-    kingBobOmb_notUsed_=51,
-    bonusBarrel=52,
-    redGem=53,
-    winPPNoDamage=54,
-    buyStarAbility=58,
-    buySomething=59,
-    allMiniGames=65,
-    challengeCoins=70,
-    recruitEveryone=71,
-    defeatBJ=72,
-    defeatPeach=73,
+    enumStarMissions_winMinigame=47,
+    enumStarMissions_miniGamePointGoal=48,
+    enumStarMissions_winWallBall=49,
+    enumStarMissions_kingBobOmb_notUsed_=51,
+    enumStarMissions_bonusBarrel=52,
+    enumStarMissions_redGem=53,
+    enumStarMissions_winPPNoDamage=54,
+    enumStarMissions_buyStarAbility=58,
+    enumStarMissions_buySomething=59,
+    enumStarMissions_allMiniGames=65,
+    enumStarMissions_challengeCoins=70,
+    enumStarMissions_recruitEveryone=71,
+    enumStarMissions_defeatBJ=72,
+    enumStarMissions_defeatPeach=73,
     enumStarMissions_none=65535
 };
 typedef unsigned short enumStarMissions;
 
 enum {
     enumStickDirection_neutral=0,
-    right=1,
-    up=2,
-    left=3,
-    down=4
+    enumStickDirection_right=1,
+    enumStickDirection_up=2,
+    enumStickDirection_left=3,
+    enumStickDirection_down=4
 };
 typedef unsigned char enumStickDirection;
 
 enum {
-    regular_fielderSwapLeft=0,
-    batterSwapLeft=1,
-    scoutFlags=2,
-    starMissions=3
+    enumSwapMenuType_regular_fielderSwapLeft=0,
+    enumSwapMenuType_batterSwapLeft=1,
+    enumSwapMenuType_scoutFlags=2,
+    enumSwapMenuType_starMissions=3
 };
 typedef unsigned char enumSwapMenuType;
 
 enum {
-    special_char=16384
+    enumTextObject_special_char=16384
 };
 typedef unsigned short enumTextObject;
 
 enum {
-    menu_na=0,
-    givingInstruction=1,
-    transitionToPlayerControl=2,
-    playerHasControl=3
+    enumTutorialState_menu_na=0,
+    enumTutorialState_givingInstruction=1,
+    enumTutorialState_transitionToPlayerControl=2,
+    enumTutorialState_playerHasControl=3
 };
 typedef unsigned char enumTutorialState;
 
 enum {
-    GPL_VERSION_NUMBER=6012001,
-    ACT_VERSION_NUMBER=8092000
+    enumVersionNumber_GPL_VERSION_NUMBER=6012001,
+    enumVersionNumber_ACT_VERSION_NUMBER=8092000
 };
 typedef unsigned int enumVersionNumber;
 
@@ -18814,7 +18808,7 @@ enum {
     enum_1_VI_TVMODE_NTSC_INT=0,
     enum_1_VI_TVMODE_NTSC_DS=1,
     enum_1_VI_TVMODE_NTSC_PROG=2,
-    VI_TVMODE_NTSC_3D=3,
+    enum_1_VI_TVMODE_NTSC_3D=3,
     enum_1_VI_TVMODE_PAL_INT=4,
     enum_1_VI_TVMODE_PAL_DS=5,
     enum_1_VI_TVMODE_MPAL_INT=8,
@@ -18824,9 +18818,9 @@ enum {
     enum_1_VI_TVMODE_DEBUG_PAL_DS=17,
     enum_1_VI_TVMODE_EURGB60_INT=20,
     enum_1_VI_TVMODE_EURGB60_DS=21,
-    VI_TVMODE_GCA_INT=24,
-    VI_TVMODE_GCA_DS=25,
-    VI_TVMODE_GCA_PROG=26
+    enum_1_VI_TVMODE_GCA_INT=24,
+    enum_1_VI_TVMODE_GCA_DS=25,
+    enum_1_VI_TVMODE_GCA_PROG=26
 };
 typedef unsigned int enum_1;
 
@@ -18856,59 +18850,59 @@ enum {
 typedef unsigned int enum_202;
 
 enum {
-    rbis=7
+    enum_atBatTracker_bitCode_rbis=7
 };
 typedef unsigned char enum_atBatTracker_bitCode;
 
 enum {
-    notStarted_=0,
-    waiting_=1,
-    complete=2
+    enum_baserunnerTrackingState_notStarted_=0,
+    enum_baserunnerTrackingState_waiting_=1,
+    enum_baserunnerTrackingState_complete=2
 };
 typedef unsigned char enum_baserunnerTrackingState;
 
 enum {
-    _0_none=0,
-    _1_potentialBigPlay_SufficientDistance=1,
-    _2_bigPlayConfirmed=2
+    enum_bigPlayCode__0_none=0,
+    enum_bigPlayCode__1_potentialBigPlay_SufficientDistance=1,
+    enum_bigPlayCode__2_bigPlayConfirmed=2
 };
 typedef unsigned char enum_bigPlayCode;
 
 enum {
-    _0_noError=0,
-    _1_droppedFlyBall_=1,
-    _3_R0AllowedToAdvance=3,
-    _4_R1AllowedToAdvance=4,
-    _5_R2AllowedToAdvance=5,
-    _6_R3AllowedToAdvance=6,
-    _9_errorProcessed=9
+    enum_fielding0x113__0_noError=0,
+    enum_fielding0x113__1_droppedFlyBall_=1,
+    enum_fielding0x113__3_R0AllowedToAdvance=3,
+    enum_fielding0x113__4_R1AllowedToAdvance=4,
+    enum_fielding0x113__5_R2AllowedToAdvance=5,
+    enum_fielding0x113__6_R3AllowedToAdvance=6,
+    enum_fielding0x113__9_errorProcessed=9
 };
 typedef unsigned char enum_fielding0x113;
 
 enum {
-    _0_ongoingTargeting_=0,
-    _1_pickedOffRunnerSuccessfullyAdvanced_=1,
-    _2_stealingRunnerSuccessfullyAdvanced_=2,
-    _1_noTargeting=255
+    enum_fielding0x127__0_ongoingTargeting_=0,
+    enum_fielding0x127__1_pickedOffRunnerSuccessfullyAdvanced_=1,
+    enum_fielding0x127__2_stealingRunnerSuccessfullyAdvanced_=2,
+    enum_fielding0x127__1_noTargeting=255
 };
 typedef unsigned char enum_fielding0x127;
 
 enum {
-    noForceThisPlay=0,
-    forceStillPossible=1,
-    forceHappened=2
+    enum_forceOutStatus_noForceThisPlay=0,
+    enum_forceOutStatus_forceStillPossible=1,
+    enum_forceOutStatus_forceHappened=2
 };
 typedef unsigned char enum_forceOutStatus;
 
 enum {
-    mainMenu_ExGame_Chal_Rec_Opt=1,
-    in_game_TF_MG_Prac=2
+    enum_highLevelMenuScene_mainMenu_ExGame_Chal_Rec_Opt=1,
+    enum_highLevelMenuScene_in_game_TF_MG_Prac=2
 };
 typedef unsigned char enum_highLevelMenuScene;
 
 enum {
-    nonForceOutOnPlay=-1,
-    _0_default=0,
+    enum_nRunnersForcedOutCd_nonForceOutOnPlay=-1,
+    enum_nRunnersForcedOutCd__0_default=0,
     enum_nRunnersForcedOutCd_unknown=3
 };
 typedef signed char enum_nRunnersForcedOutCd;
@@ -18916,42 +18910,42 @@ typedef signed char enum_nRunnersForcedOutCd;
 enum {
     enum_noHitter_none=0,
     enum_noHitter_perfectGame=1,
-    noHitter=2
+    enum_noHitter_noHitter=2
 };
 typedef unsigned char enum_noHitter;
 
 enum {
-    _1PlayerGame=0,
-    _2PlayerGame=1,
-    _2CPUGame=2,
-    _3_unknown=3
+    enum_p2_CPU_code__1PlayerGame=0,
+    enum_p2_CPU_code__2PlayerGame=1,
+    enum_p2_CPU_code__2CPUGame=2,
+    enum_p2_CPU_code__3_unknown=3
 };
 typedef unsigned char enum_p2_CPU_code;
 
 enum {
-    noPitch=0,
-    realPitch=1,
-    replayPitch=2
+    enum_pitchCodeForReplays_noPitch=0,
+    enum_pitchCodeForReplays_realPitch=1,
+    enum_pitchCodeForReplays_replayPitch=2
 };
 typedef unsigned char enum_pitchCodeForReplays;
 
 enum {
-    battingOrder=0,
-    defensiveAlignment=1
+    enum_rosterView_battingOrder=0,
+    enum_rosterView_defensiveAlignment=1
 };
 typedef unsigned char enum_rosterView;
 
 enum {
     enum_runnerForceCode_n_a=0,
     enum_runnerForceCode_forcedToAdvance=1,
-    reachedNextBase=2
+    enum_runnerForceCode_reachedNextBase=2
 };
 typedef unsigned char enum_runnerForceCode;
 
 enum {
-    _1_uninitialized=-1,
-    _0_noOtherRunnersBeingTargeted=0,
-    _5_notThrownToABase=5
+    enum_runnersTargettedWThrow__1_uninitialized=-1,
+    enum_runnersTargettedWThrow__0_noOtherRunnersBeingTargeted=0,
+    enum_runnersTargettedWThrow__5_notThrownToABase=5
 };
 typedef short enum_runnersTargettedWThrow;
 
@@ -19104,9 +19098,9 @@ enum {
     fielderTagAnimation_n_a=0,
     fielderTagAnimation_regularTag=1,
     fielderTagAnimation_tagOnRunnerTaggingUp_=2,
-    ragOnRunnerTaggingUpAtDifferentBase_=5,
-    preventedBodycheck=6,
-    gotBodychecked=7
+    fielderTagAnimation_ragOnRunnerTaggingUpAtDifferentBase_=5,
+    fielderTagAnimation_preventedBodycheck=6,
+    fielderTagAnimation_gotBodychecked=7
 };
 typedef unsigned char fielderTagAnimation;
 
@@ -19126,16 +19120,16 @@ struct fieldersAutoMovementEnums {
 
 enum {
     forceOutSubResults_default_=0,
-    forceOutDidNotHappen=1,
-    forceOutHappened=2
+    forceOutSubResults_forceOutDidNotHappen=1,
+    forceOutSubResults_forceOutHappened=2
 };
 typedef unsigned int forceOutSubResults;
 
 enum {
-    x=0,
-    y=1,
-    z=2,
-    groundDist=3
+    futureCoordsAndDist_x=0,
+    futureCoordsAndDist_y=1,
+    futureCoordsAndDist_z=2,
+    futureCoordsAndDist_groundDist=3
 };
 typedef unsigned char futureCoordsAndDist;
 
@@ -19169,30 +19163,30 @@ struct gameSettings {
 typedef struct globalFielding globalFielding, *PglobalFielding;
 
 enum {
-    x1_3=0,
-    x1_2=1,
-    x1_1=2,
-    x1=3,
-    x0_9=4,
-    x0_8=5,
-    x0_7=6,
-    setTo0_3_0_325_0_35=7,
-    setTo0_25=8,
-    setTo0_55=9
+    throwSpeedType_x1_3=0,
+    throwSpeedType_x1_2=1,
+    throwSpeedType_x1_1=2,
+    throwSpeedType_x1=3,
+    throwSpeedType_x0_9=4,
+    throwSpeedType_x0_8=5,
+    throwSpeedType_x0_7=6,
+    throwSpeedType_setTo0_3_0_325_0_35=7,
+    throwSpeedType_setTo0_25=8,
+    throwSpeedType_setTo0_55=9
 };
 typedef unsigned char throwSpeedType;
 
 enum {
-    nonPickOffOrSteal=0,
-    pickOff=1,
-    steal=2,
-    _4_can_tOccur_=4
+    pickOffSteal_nonPickOffOrSteal=0,
+    pickOffSteal_pickOff=1,
+    pickOffSteal_steal=2,
+    pickOffSteal__4_can_tOccur_=4
 };
 typedef unsigned char pickOffSteal;
 
 enum {
-    throwSpeedAlgo=0,
-    setThrowSpeed9=1
+    throwSPeedAlgoInd_throwSpeedAlgo=0,
+    throwSPeedAlgoInd_setThrowSpeed9=1
 };
 typedef unsigned char throwSPeedAlgoInd;
 
@@ -19323,10 +19317,10 @@ struct hitContants_shorts {
 } __attribute__((packed));
 
 enum {
-    withinBasepaths=0,
-    __38_8m=1,
-    __55_2m=2,
-    __61_2m=3,
+    hitDistFromHomeEnum_withinBasepaths=0,
+    hitDistFromHomeEnum___38_8m=1,
+    hitDistFromHomeEnum___55_2m=2,
+    hitDistFromHomeEnum___61_2m=3,
     hitDistFromHomeEnum__= 61.2m=4
 };
 typedef unsigned int hitDistFromHomeEnum;
@@ -19953,10 +19947,10 @@ struct miniGameControlStruct {
 } __attribute__((packed));
 
 enum {
-    multiplayer_ChallengeEasy=0,
-    ChallengeNormal=1,
-    challengeHard=2,
-    soloNonChallenge=3
+    miniGameDifficulty_multiplayer_ChallengeEasy=0,
+    miniGameDifficulty_ChallengeNormal=1,
+    miniGameDifficulty_challengeHard=2,
+    miniGameDifficulty_soloNonChallenge=3
 };
 typedef unsigned char miniGameDifficulty;
 
@@ -19990,31 +19984,31 @@ enum {
 typedef unsigned char toyFieldResult;
 
 enum {
-    calculateNewWalls=0,
-    dropInNewWalls=1,
-    pitchOrWaitingForPitch=2
+    wallBallGameState_calculateNewWalls=0,
+    wallBallGameState_dropInNewWalls=1,
+    wallBallGameState_pitchOrWaitingForPitch=2
 };
 typedef unsigned char wallBallGameState;
 
 enum {
-    perfect=0,
-    overcharge=1,
+    wallBallAIThrowType_perfect=0,
+    wallBallAIThrowType_overcharge=1,
     wallBallAIThrowType_charge=2,
     wallBallAIThrowType_curveBall=3
 };
 typedef unsigned char wallBallAIThrowType;
 
 enum {
-    calculatePitch=0,
-    waitForPitch=1,
-    perfectPitch=2,
-    perfectPitchFillBar=3,
-    overCharge=4,
-    overchargeHoldA=5,
-    chargePitch=6,
-    chargePitchChargeUpBar=7,
+    wallBallAISwitch_calculatePitch=0,
+    wallBallAISwitch_waitForPitch=1,
+    wallBallAISwitch_perfectPitch=2,
+    wallBallAISwitch_perfectPitchFillBar=3,
+    wallBallAISwitch_overCharge=4,
+    wallBallAISwitch_overchargeHoldA=5,
+    wallBallAISwitch_chargePitch=6,
+    wallBallAISwitch_chargePitchChargeUpBar=7,
     wallBallAISwitch_curveBall=8,
-    unknown4=9
+    wallBallAISwitch_unknown4=9
 };
 typedef unsigned char wallBallAISwitch;
 
@@ -21189,27 +21183,27 @@ struct palaceChompObj {
 } __attribute__((packed));
 
 enum {
-    unloadingGame=0,
-    loadingPauseMenuAndSelectionHighlight=1,
-    selectionHighlightLoaded=2,
-    unloadPauseMenu=3
+    pauseMenuButtonTransitionState_unloadingGame=0,
+    pauseMenuButtonTransitionState_loadingPauseMenuAndSelectionHighlight=1,
+    pauseMenuButtonTransitionState_selectionHighlightLoaded=2,
+    pauseMenuButtonTransitionState_unloadPauseMenu=3
 };
 typedef unsigned char pauseMenuButtonTransitionState;
 
 enum {
-    unloadingPlayingField=0,
-    betweenPlayingFieldAndMenu=1,
-    pauseMenu=2,
-    closePauseMenu=3,
-    offencePauseMenu_=9
+    pauseMenuTransitionState_unloadingPlayingField=0,
+    pauseMenuTransitionState_betweenPlayingFieldAndMenu=1,
+    pauseMenuTransitionState_pauseMenu=2,
+    pauseMenuTransitionState_closePauseMenu=3,
+    pauseMenuTransitionState_offencePauseMenu_=9
 };
 typedef unsigned char pauseMenuTransitionState;
 
 enum {
-    defenceExhibition=0,
-    ofenceExhibition=1,
-    defenceChallenge=2,
-    offenceChallenge=3
+    pauseMenuTypes_defenceExhibition=0,
+    pauseMenuTypes_ofenceExhibition=1,
+    pauseMenuTypes_defenceChallenge=2,
+    pauseMenuTypes_offenceChallenge=3
 };
 typedef unsigned char pauseMenuTypes;
 
@@ -21709,8 +21703,8 @@ struct practiceStruct {
 } __attribute__((packed));
 
 enum {
-    goingTowardsBall=0,
-    goingToSupportPosition=1,
+    presetFielderLocations_int__goingTowardsBall=0,
+    presetFielderLocations_int__goingToSupportPosition=1,
     presetFielderLocations_int___17_4_=2,
     presetFielderLocations_int____17_4_=3,
     presetFielderLocations_int___36_30_=4,
@@ -22437,18 +22431,18 @@ struct someScoreStruct {
 } __attribute__((packed));
 
 enum {
-    marioStadium_nonGrass=0,
-    marioStadium_grass=1,
-    peachGarden_other=2,
-    peachGarden_grass=3,
-    peachGarden_water=4,
-    bowserCastle=5,
-    yoshiPark_nonGrass=6,
-    yoshiPark_grass=7,
-    dkJungle_nonWater=8,
-    dkJungle_water=9,
-    warioPalace_nonGrass=10,
-    warioPalace_grass=11,
+    someStadCollisionCode_marioStadium_nonGrass=0,
+    someStadCollisionCode_marioStadium_grass=1,
+    someStadCollisionCode_peachGarden_other=2,
+    someStadCollisionCode_peachGarden_grass=3,
+    someStadCollisionCode_peachGarden_water=4,
+    someStadCollisionCode_bowserCastle=5,
+    someStadCollisionCode_yoshiPark_nonGrass=6,
+    someStadCollisionCode_yoshiPark_grass=7,
+    someStadCollisionCode_dkJungle_nonWater=8,
+    someStadCollisionCode_dkJungle_water=9,
+    someStadCollisionCode_warioPalace_nonGrass=10,
+    someStadCollisionCode_warioPalace_grass=11,
     someStadCollisionCode_toyField=12
 };
 typedef unsigned int someStadCollisionCode;
@@ -23106,11 +23100,11 @@ struct starMissionStruct {
 } __attribute__((packed));
 
 enum {
-    stealNotStarted=0,
-    R2OrR3Stealing_NotAllPriorBasesOccipied=1,
-    R1Stealing2B=2,
-    R2Stealing_R1Exists=3,
-    R3Stealing_R1_R2Exist=4
+    stealing_BasesOccupiedStatus_stealNotStarted=0,
+    stealing_BasesOccupiedStatus_R2OrR3Stealing_NotAllPriorBasesOccipied=1,
+    stealing_BasesOccupiedStatus_R1Stealing2B=2,
+    stealing_BasesOccupiedStatus_R2Stealing_R1Exists=3,
+    stealing_BasesOccupiedStatus_R3Stealing_R1_R2Exist=4
 };
 typedef unsigned char stealing_BasesOccupiedStatus;
 
@@ -23913,30 +23907,30 @@ enum {
     tagAnimSonething_n_a=0,
     tagAnimSonething_regularTag=1,
     tagAnimSonething_tagOnRunnerTaggingUp_=2,
-    tagOnRunnerTaggingUpAtDifferentBase_=5
+    tagAnimSonething_tagOnRunnerTaggingUpAtDifferentBase_=5
 };
 typedef unsigned char tagAnimSonething;
 
 enum {
-    initialize=0,
-    loadTeamManagement=1,
-    onTeamManagementScreen=2,
-    viewStarMenuOverTeamManagement_unused=3,
-    scoutFlagsMenuOpen=4,
-    challengeStarsMenuOpen=5,
-    unloadMenu2=10,
-    returnToCss1=12,
-    returnToCss2=13,
-    unloadMenu1=14
+    teamManagementMenuProcesses_initialize=0,
+    teamManagementMenuProcesses_loadTeamManagement=1,
+    teamManagementMenuProcesses_onTeamManagementScreen=2,
+    teamManagementMenuProcesses_viewStarMenuOverTeamManagement_unused=3,
+    teamManagementMenuProcesses_scoutFlagsMenuOpen=4,
+    teamManagementMenuProcesses_challengeStarsMenuOpen=5,
+    teamManagementMenuProcesses_unloadMenu2=10,
+    teamManagementMenuProcesses_returnToCss1=12,
+    teamManagementMenuProcesses_returnToCss2=13,
+    teamManagementMenuProcesses_unloadMenu1=14
 };
 typedef unsigned short teamManagementMenuProcesses;
 
 enum {
     throwYType_default_=0,
     throwYType_hitGround=1,
-    belowTargetY=2,
-    betweenTargetYAndCharY=3,
-    aboveCharY=4
+    throwYType_belowTargetY=2,
+    throwYType_betweenTargetYAndCharY=3,
+    throwYType_aboveCharY=4
 };
 typedef unsigned int throwYType;
 
@@ -23986,9 +23980,9 @@ struct toyFieldConstants {
 } __attribute__((packed));
 
 enum {
-    firstPlace=0,
-    middlePlace=1,
-    lastPlace=2
+    toyField_batterRank_firstPlace=0,
+    toyField_batterRank_middlePlace=1,
+    toyField_batterRank_lastPlace=2
 };
 typedef unsigned int toyField_batterRank;
 
@@ -25724,8 +25718,6 @@ struct unknownLoadingStruct {
 
 typedef struct unknownStatStruct unknownStatStruct, *PunknownStatStruct;
 
-struct unknownStatStruct {
-} __attribute__((packed));
 
 typedef struct unknownStruct unknownStruct, *PunknownStruct;
 
