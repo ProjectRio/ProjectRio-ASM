@@ -19,10 +19,10 @@ void BootDirectlyToGame()
     m_unk_state_var = 1;
     sndFXStartEx(enumSoundEffect_short_openZMenu, 0x40, 0x3f, 0x0); // 0x1bb = play rio bat sound effect to show game is starting
 
-    p2_CPU_code_ = enum_p2_CPU_code__2PlayerGame;
+    matchInfo.p2_CPU_match_code = enum_p2_CPU_code__2PlayerGame;
     playerPorts[0] = 0; // P1 = port 1
     playerPorts[1] = 1; // P2 = port 2
-    prepareToLoadGame_(9, 1, 1); // 9, 0, 1 successfully loads a P1 vs CPU game
+    loadDemoMatch(9, 1, 1); // 9, 0, 1 successfully loads a P1 vs CPU game
 
     /*
     FUN_80067f70(0);
