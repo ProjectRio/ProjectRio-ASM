@@ -48,8 +48,6 @@ struct astruct_2 { unsigned char _opaque_stub; } __attribute__((packed));
 
 typedef unsigned char undefined;
 
-typedef unsigned char bool;
-typedef unsigned char byte;
 typedef unsigned int dword;
 typedef unsigned long long qword;
 typedef unsigned char uchar;
@@ -960,6 +958,15 @@ struct CollisionFileHeader {
     short wallCount;
     short field1_0x2;
     struct CollisionBox collisionData;
+} __attribute__((packed));
+
+typedef struct CompressedDiskRead CompressedDiskRead, *PCompressedDiskRead;
+
+struct CompressedDiskRead {
+    uint compressionConstant;
+    uint OriginalSize_CompressedFlagInTopBits_;
+    uint DiskLocation;
+    uint CompressedSize;
 } __attribute__((packed));
 
 typedef struct DBInterface DBInterface, *PDBInterface;
@@ -3223,12 +3230,12 @@ struct struct_gameSettingRelated {
     byte field49_0x32;
     byte field50_0x33;
     byte loadTheMatch_;
-    byte startChallengeMatchInd;
+    byte startMatchInd;
     byte controlOptionsIndicator;
     byte lastLeftRightInput_[2];
     undefined field55_0x39;
     undefined field56_0x3a;
-    struct gameSettings field57_0x3b;
+    struct gameSettings gameSettings;
     undefined field58_0x40;
     undefined field59_0x41;
     undefined field60_0x42;
@@ -3328,6 +3335,45 @@ struct struct_graphicsRelatedSubStruct {
     int field45_0xb4;
     int field46_0xb8;
     int field47_0xbc;
+} __attribute__((packed));
+
+typedef struct struct_matchInfo_ struct_matchInfo_, *Pstruct_matchInfo_;
+
+struct struct_matchInfo_ {
+    int field0_0x0;
+    short field1_0x4;
+    enum_highLevelMenuScene highLevelMenuScene;
+    enumGameMode gameModeSelected;
+    undefined field4_0x8;
+    enumStadiumName selectedStadiumID;
+    undefined field6_0xa;
+    undefined field7_0xb;
+    undefined field8_0xc;
+    undefined field9_0xd;
+    byte home_awaySetting;
+    undefined field11_0xf;
+    enum_p2_CPU_code p2_CPU_match_code;
+    undefined field13_0x11;
+    undefined field14_0x12;
+    undefined field15_0x13;
+} __attribute__((packed));
+
+typedef struct struct_matchOptions_ struct_matchOptions_, *Pstruct_matchOptions_;
+
+struct struct_matchOptions_ {
+    byte inningSetting_;
+    byte field1_0x1;
+    byte field2_0x2;
+    byte field3_0x3;
+    byte starSkillsSetting;
+    byte mercyRuns;
+    byte writeOnly_always0;
+    byte field7_0x7;
+    byte field8_0x8;
+    struct struct_controlOptions playerOptions[4];
+    byte field10_0x25;
+    byte field11_0x26;
+    byte field12_0x27;
 } __attribute__((packed));
 
 enum {
@@ -3434,17 +3480,10 @@ struct unkStruct {
 #define const_50_starAdj_cursedBall VAR_ADDRESS(undefined1, 0x800E86F9)
 #define const_50_starAdj_curve VAR_ADDRESS(undefined1, 0x800E86FA)
 #define const_50_starAdj_curveControl VAR_ADDRESS(undefined1, 0x800E86FB)
-#define highLevelMenuScene VAR_ADDRESS(enum_highLevelMenuScene, 0x800E8702)
-#define gameModeSelected VAR_ADDRESS(enumGameMode, 0x800E8703)
-#define selectedStadiumID VAR_ADDRESS(enumStadiumName, 0x800E8705)
-#define home_awaySetting VAR_ADDRESS(undefined1, 0x800E870A)
-#define p2_CPU_code_ VAR_ADDRESS(enum_p2_CPU_code, 0x800E870C)
+#define matchInfo VAR_ADDRESS(struct_matchInfo_, 0x800E86FC)
 #define playerPorts VAR_ADDRESS(byte, 2, 0x800E874C)
 #define enumStadiumName_800e8750 VAR_ADDRESS(enumStadiumName, 0x800E8750)
-#define inningSetting VAR_ADDRESS(undefined1, 0x800E8754)
-#define starSkillsSetting VAR_ADDRESS(undefined1, 0x800E8758)
-#define mercySetting VAR_ADDRESS(undefined1, 0x800E8759)
-#define struct_controlOptions_ARRAY_800e875d VAR_ADDRESS(struct_controlOptions, 4, 0x800E875D)
+#define matchSettings_ VAR_ADDRESS(struct_matchOptions_, 0x800E8754)
 #define teamSelectProcess VAR_ADDRESS(menuControlStruct, 0x800E877C)
 #define switchdataD_800e8f08 VAR_ADDRESS(void *, 0x800E8F08)
 #define switchdataD_800ee6a0 VAR_ADDRESS(void *, 0x800EE6A0)
@@ -3564,6 +3603,7 @@ struct unkStruct {
 #define switchdataD_80115080 VAR_ADDRESS(void *, 0x80115080)
 #define switchdataD_801150a4 VAR_ADDRESS(void *, 0x801150A4)
 #define switchdataD_801150c8 VAR_ADDRESS(void *, 0x801150C8)
+#define SHORT_ARRAY_8023d6c0 VAR_ADDRESS(short, 864, 0x8023D6C0)
 #define InputStruct_ARRAY_803297e0 VAR_ADDRESS(InputStruct, 2, 0x803297E0)
 #define teamManagementProcessID VAR_ADDRESS(teamManagementMenuProcesses, 0x80336718)
 #define playerWhoPaused VAR_ADDRESS(undefined1, 0x8033671B)
@@ -3914,7 +3954,14 @@ struct unkStruct {
 #define switchD_ADDR_800dc120 0x800DC120
 #define switchD_ADDR_800dc1a0 0x800DC1A0
 #define switchD_ADDR_800dc2d4 0x800DC2D4
+#define highLevelMenuScene_ADDR 0x800E8702
+#define gameModeSelected_ADDR 0x800E8703
+#define selectedStadiumID_ADDR 0x800E8705
+#define home_awaySetting_ADDR 0x800E870A
+#define p2_CPU_code__ADDR 0x800E870C
 #define portOfPlayer2_ADDR 0x800E874D
+#define starSkillsSetting_ADDR 0x800E8758
+#define mercySetting_ADDR 0x800E8759
 #define screenCode_ADDR 0x800E877E
 #define teamSelectScreen_ADDR 0x800E8780
 #define challengeRosters_ADDR 0x80352D20
@@ -4133,10 +4180,13 @@ static inline void AnimateCharacter(undefined4 animNumber, EnumCharacterAnimatio
 static inline void maybeProcessStadiumSelection(void) { ((void(*)(void))0x8001CBD4)(); }
 static inline void stadiumSetupRelated(void) { ((void(*)(void))0x8001CE74)(); }
 static inline void graphicsRelated(char param_1, undefined2 param_2) { ((void(*)(char, undefined2))0x800204CC)(param_1, param_2); }
+static inline undefined4 maybeLoadsGameSoundFiles(void) { return ((undefined4(*)(void))0x80021410)(); }
 static inline void initSound(void) { ((void(*)(void))0x800219B4)(); }
 static inline void stadiumLightingRelated(ushort * param_1, int * param_2) { ((void(*)(ushort *, int *))0x80023B90)(param_1, param_2); }
 static inline void updateGraphicsArray(maybeGraphicsManager * gfxM) { ((void(*)(maybeGraphicsManager *))0x80034CEC)(gfxM); }
 static inline void addGraphicsElementToScene(undefined * param_1, short * param_2) { ((void(*)(undefined *, short *))0x80034E20)(param_1, param_2); }
+static inline undefined4 diskReadRelated(CompressedDiskRead * param_1, uint param_2) { return ((undefined4(*)(CompressedDiskRead *, uint))0x80035838)(param_1, param_2); }
+static inline void unregisterObjectByID(undefined4 id) { ((void(*)(undefined4))0x80035CA4)(id); }
 static inline void partialSuperstarIncreases_challenge(void) { ((void(*)(void))0x8004207C)(); }
 static inline void adjustStatsForSuperstar(undefined4 playerNumber) { ((void(*)(undefined4))0x800426DC)(playerNumber); }
 static inline int randBetween_(int param_1, int param_2) { return ((int(*)(int, int))0x80042BF0)(param_1, param_2); }
@@ -4207,10 +4257,15 @@ static inline void OSReport(undefined8 param_1, undefined8 param_2, undefined8 p
 static inline void OSPanic(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8, undefined4 param_9, undefined4 param_10, undefined4 param_11, undefined4 param_12, undefined4 param_13, undefined4 param_14, undefined4 param_15, undefined4 param_16) { ((void(*)(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8006F860)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
 static inline undefined4 loadMatchMemoryTransfer_(int * param_1, uint param_2, int param_3) { return ((undefined4(*)(int *, uint, int))0x80071630)(param_1, param_2, param_3); }
 static inline void loadMatchMemoryTransfer_2(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80071910)(param_1, param_2); }
+static inline void DBPrintf(void) { ((void(*)(void))0x80074FB4)(); }
+static inline void PSMTXIdentity(Mtx * m) { ((void(*)(Mtx *))0x80075004)(m); }
+static inline void PSMTXCopy(Mtx * source, Mtx * dst) { ((void(*)(Mtx *, Mtx *))0x80075030)(source, dst); }
+static inline undefined8 PSMTXConcat(int param_1, int param_2, int param_3) { return ((undefined8(*)(int, int, int))0x80075064)(param_1, param_2, param_3); }
 static inline double PSVECNormalize(int param_1, int param_2) { return ((double(*)(int, int))0x80076354)(param_1, param_2); }
 static inline void GXInitTexObj(uint * param_1, uint param_2, uint param_3, uint param_4, uint param_5, uint param_6, uint param_7, char param_8) { ((void(*)(uint *, uint, uint, uint, uint, uint, uint, char))0x8008DA60)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
 static inline uint rand(void) { return ((uint(*)(void))0x8009D864)(); }
 static inline void StartThreadForReadingFromDisk(void) { ((void(*)(void))0x800A65A0)(); }
+static inline void ARAMTransfer(CompressedDiskRead * compressedStruct, int readDestination, byte loadInfo, int aramAddress) { ((void(*)(CompressedDiskRead *, int, byte, int))0x800A70DC)(compressedStruct, readDestination, loadInfo, aramAddress); }
 static inline void initializeDVDSystem(void) { ((void(*)(void))0x800A76BC)(); }
 static inline void initRenderMode(uint * param_1, int param_2, undefined2 param_3) { ((void(*)(uint *, int, undefined2))0x800A80E8)(param_1, param_2, param_3); }
 static inline void initInputDevices(void) { ((void(*)(void))0x800A983C)(); }
@@ -4220,8 +4275,10 @@ static inline void resetAllDrawingStructs_tonop(void) { ((void(*)(void))0x800B0B
 static inline void RunDrawScripts_with_stack_variables(void) { ((void(*)(void))0x800B0CB8)(); }
 static inline void GetDrawShadows(void) { ((void(*)(void))0x800BEBB0)(); }
 static inline void DrawShadows(undefined param_1) { ((void(*)(undefined))0x800BEBC0)(param_1); }
+static inline void AdjustTextureHeaderPointers(ushort * param_1) { ((void(*)(ushort *))0x800C0770)(param_1); }
 static inline void synthFXStar(undefined4 param_1, undefined4 param_2, uint param_3, uint param_4, undefined4 param_5, undefined4 param_6) { ((void(*)(undefined4, undefined4, uint, uint, undefined4, undefined4))0x800C6F18)(param_1, param_2, param_3, param_4, param_5, param_6); }
 static inline enumSoundEffect_int sndFXStartEx(enumSoundEffect_short soundID, int volume, int pan, int studio) { return ((enumSoundEffect_int(*)(enumSoundEffect_short, int, int, int))0x800C836C)(soundID, volume, pan, studio); }
+static inline void maybeLoadsGameSoundFiles2(void) { ((void(*)(void))0x800D346C)(); }
 static inline void hwEnableIrq(void) { ((void(*)(void))0x800DE740)(); }
 static inline void hwDisableIrq(void) { ((void(*)(void))0x800DE778)(); }
 static inline void bPressOnStadSelectScreen(void) { ((void(*)(void))0x8063F370)(); }
@@ -4231,7 +4288,7 @@ static inline void stadiumRandomizer(undefined4 lowerBound, undefined4 upperBoun
 static inline void cursorSndFx(ushort param_1) { ((void(*)(ushort))0x80640CC8)(param_1); }
 static inline void mainMenuRelated(void) { ((void(*)(void))0x80640FC4)(); }
 static inline void mainMenuScreen(void) { ((void(*)(void))0x80641874)(); }
-static inline void prepareToLoadGame_(byte param_1, int param_2, int param_3) { ((void(*)(byte, int, int))0x80642054)(param_1, param_2, param_3); }
+static inline void loadDemoMatch(undefined1 param_1, undefined4 isHumanGame, undefined4 param_3) { ((void(*)(undefined1, undefined4, undefined4))0x80642054)(param_1, isHumanGame, param_3); }
 static inline void cssTransitionToNewScreen_(void) { ((void(*)(void))0x806422D0)(); }
 static inline bool stopShowingCaptainProfile(uint param_1) { return ((bool(*)(uint))0x80642664)(param_1); }
 static inline void teamReady1(byte param_1) { ((void(*)(byte))0x806444D8)(param_1); }

@@ -51,8 +51,6 @@ struct unknownStatStruct { unsigned char _opaque_stub; } __attribute__((packed))
 
 typedef unsigned char undefined;
 
-typedef unsigned char bool;
-typedef unsigned char byte;
 typedef unsigned int dword;
 typedef long long longlong;
 typedef unsigned long long qword;
