@@ -1,2 +1,3 @@
 *.txt
 config.json
+*.DS_Store
