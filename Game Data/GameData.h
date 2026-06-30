@@ -50,7 +50,10 @@ struct astruct_9 { unsigned char _opaque_stub; } __attribute__((packed));
 struct unknownStatStruct { unsigned char _opaque_stub; } __attribute__((packed));
 
 typedef unsigned char undefined;
-
+
+
+typedef unsigned char bool_;
+typedef unsigned char byte;
 typedef unsigned int dword;
 typedef long long longlong;
 typedef unsigned long long qword;
@@ -68,59 +71,82 @@ typedef unsigned short ushort;
 typedef short wchar_t;
 typedef unsigned short ghidra_word;
 typedef struct _3dAxes _3dAxes, *P3dAxes;
-
+
+
 struct _3dAxes {
     short pitch;
     short yaw;
     short roll;
 } __attribute__((packed));
-
+
+
 typedef struct _3dAxesFloat _3dAxesFloat, *P3dAxesFloat;
-
+
+
 struct _3dAxesFloat {
     float pitch;
     float yaw;
     float roll;
 } __attribute__((packed));
-
+
+
 typedef struct ACTActor ACTActor, *PACTActor;
-
+
+
 typedef struct ActLayout ActLayout, *PActLayout;
-
+
+
 typedef struct DSTree DSTree, *PDSTree;
-
+
+
 typedef struct GEOPalette GEOPalette, *PGEOPalette;
-
+
+
 typedef struct DODisplayObj DODisplayObj, *PDODisplayObj;
-
+
+
 typedef struct ACTBone ACTBone, *PACTBone;
-
+
+
 typedef struct CTRLControl CTRLControl, *PCTRLControl;
-
+
+
 typedef struct Mtx Mtx, *PMtx;
-
+
+
 typedef struct DSList DSList, *PDSList;
-
+
+
 typedef struct SKHeader SKHeader, *PSKHeader;
-
+
+
 typedef struct GEODescriptor GEODescriptor, *PGEODescriptor;
-
+
+
 typedef struct DOPositionHeader DOPositionHeader, *PDOPositionHeader;
-
+
+
 typedef struct DOColorHeader DOColorHeader, *PDOColorHeader;
-
+
+
 typedef struct DOTextureDataHeader DOTextureDataHeader, *PDOTextureDataHeader;
-
+
+
 typedef struct DOLightingHeader DOLightingHeader, *PDOLightingHeader;
-
+
+
 typedef struct DODisplayHeader DODisplayHeader, *PDODisplayHeader;
-
+
+
 typedef struct DSBranch DSBranch, *PDSBranch;
-
+
+
 typedef struct ANIMPipe ANIMPipe, *PANIMPipe;
-
+
+
 typedef struct DSLink DSLink, *PDSLink;
-
+
+
 enum {
     EnumCTRLControlType_CTRL_NONE=0,
     EnumCTRLControlType_CTRL_SCALE=1,
@@ -130,23 +156,32 @@ enum {
     EnumCTRLControlType_CTRL_MTX=16
 };
 typedef unsigned char EnumCTRLControlType;
-
+
+
 typedef uchar u8;
-
+
+
 typedef ushort u16;
-
+
+
 typedef union _ControlParams _ControlParams, *P_ControlParams;
-
+
+
 typedef struct DOLayout DOLayout, *PDOLayout;
-
+
+
 typedef struct DODisplayState DODisplayState, *PDODisplayState;
-
+
+
 typedef struct ANIMTrack ANIMTrack, *PANIMTrack;
-
+
+
 typedef struct DrawingSceneStruct DrawingSceneStruct, *PDrawingSceneStruct;
-
+
+
 typedef struct CTRLSRTControl CTRLSRTControl, *PCTRLSRTControl;
-
+
+
 enum {
     enumDisplayState_DISPLAY_STATE_TEXTURE=1,
     enumDisplayState_DISPLAY_STATE_VCD=3,
@@ -154,27 +189,34 @@ enum {
     enumDisplayState_DISPLAY_STATE_MTXLOAD=5
 };
 typedef unsigned char enumDisplayState;
-
+
+
 typedef struct ANIMKeyFrame ANIMKeyFrame, *PANIMKeyFrame;
-
+
+
 typedef struct animType animType, *PanimType;
-
+
+
 typedef struct Vec3f Vec3f, *PVec3f;
-
+
+
 typedef struct Quaternion Quaternion, *PQuaternion;
-
+
+
 struct GEODescriptor {
     struct DOLayout *layout;
     char *name;
 } __attribute__((packed));
-
+
+
 struct Quaternion {
     float x;
     float y;
     float z;
     float w;
 } __attribute__((packed));
-
+
+
 struct DOLayout {
     struct DOPositionHeader *positionDataHeader;
     struct DOColorHeader *colorDataHeader;
@@ -185,7 +227,8 @@ struct DOLayout {
     byte pad1;
     short pad2;
 } __attribute__((packed));
-
+
+
 struct SKHeader {
     short numSk1List;
     short numSk2List;
@@ -200,28 +243,33 @@ struct SKHeader {
     void *flushIndices;
     int flushCount;
 } __attribute__((packed));
-
+
+
 struct DSTree {
     uint Offset;
     void * Root;
 } __attribute__((packed));
-
+
+
 struct Mtx {
     float data[3][4];
 } __attribute__((packed));
-
+
+
 struct Vec3f {
     float X;
     float Y;
     float Z;
 } __attribute__((packed));
-
+
+
 struct CTRLSRTControl {
     struct Vec3f s;
     struct Quaternion r;
     struct Vec3f t;
 } __attribute__((packed));
-
+
+
 struct DODisplayObj {
     struct DOPositionHeader *positionData;
     struct DOColorHeader *colorData;
@@ -239,19 +287,22 @@ struct DODisplayObj {
     void *shaderFunc;
     void *shaderData;
 } __attribute__((packed));
-
+
+
 struct DSLink {
     struct DrawingSceneStruct *Prev;
     struct DrawingSceneStruct *Next;
 } __attribute__((packed));
-
+
+
 struct DSBranch {
     void * Prev;
     void * Next;
     void * Parent;
     void * Children;
 } __attribute__((packed));
-
+
+
 struct ANIMPipe {
     float time;
     float speed;
@@ -259,25 +310,29 @@ struct ANIMPipe {
     struct CTRLControl *control;
     byte replaceHierarchyCtrl;
 } __attribute__((packed));
-
+
+
 struct ANIMKeyFrame {
     float time;
     void *setting;
     void *interpolation;
 } __attribute__((packed));
-
+
+
 union _ControlParams {
     struct CTRLSRTControl srt;
     struct Mtx mtx;
 } __attribute__((packed));
-
+
+
 struct CTRLControl {
     EnumCTRLControlType ctrlType;
     u8 pad;
     u16 pad2;
     union _ControlParams controlParams;
 } __attribute__((packed));
-
+
+
 struct DODisplayState {
     enumDisplayState DisplayStateID;
     byte pad8;
@@ -286,7 +341,8 @@ struct DODisplayState {
     void * primitiveList;
     int listSize;
 } __attribute__((packed));
-
+
+
 struct ACTBone {
     short boneID;
     byte inheritenceFlag;
@@ -302,13 +358,15 @@ struct ACTBone {
     struct Mtx *orientationInvMtx;
     struct DSLink drawPriorityLink;
 } __attribute__((packed));
-
+
+
 struct DSList {
     uint Offset;
     void * Head;
     void * Tail;
 } __attribute__((packed));
-
+
+
 struct ACTActor {
     struct ActLayout *layout;
     ushort actorID;
@@ -325,7 +383,8 @@ struct ACTActor {
     struct DSList drawPriorityList;
     struct SKHeader *skHeader;
 } __attribute__((packed));
-
+
+
 struct DOLightingHeader {
     void * normalArray;
     short numNormals;
@@ -333,7 +392,8 @@ struct DOLightingHeader {
     byte compCount;
     float ambientPercentage;
 } __attribute__((packed));
-
+
+
 struct animType {
     byte none :3;
     byte matrix :1;
@@ -342,7 +402,8 @@ struct animType {
     byte scale :1;
     byte trans :1;
 } __attribute__((packed));
-
+
+
 struct ANIMTrack {
     float animTime;
     struct ANIMKeyFrame *keyFrames;
@@ -353,7 +414,8 @@ struct ANIMTrack {
     byte interpolationType;
     byte replaceHierarchyCtrl;
 } __attribute__((packed));
-
+
+
 struct DrawingSceneStruct {
     void * aFunctionPointer;
     struct DSLink Link;
@@ -389,7 +451,8 @@ struct DrawingSceneStruct {
     byte field31_0x3d;
     byte field32_0x3e[2];
 } __attribute__((packed));
-
+
+
 struct GEOPalette {
     int versionNumber;
     int userDataSize;
@@ -397,21 +460,24 @@ struct GEOPalette {
     int numDescriptors;
     struct GEODescriptor *descriptorArray;
 } __attribute__((packed));
-
+
+
 struct DOPositionHeader {
     byte *positionArray;
     short numberOfPositions;
     byte quantizeInfo;
     byte numberOfComponents;
 } __attribute__((packed));
-
+
+
 struct DOColorHeader {
     byte *colorArray;
     short numberOfColors;
     byte quantizeInfo;
     byte numberOfComponents;
 } __attribute__((packed));
-
+
+
 struct DOTextureDataHeader {
     byte *textureCoordArray;
     short numTextureCoords;
@@ -420,14 +486,16 @@ struct DOTextureDataHeader {
     char *texturePaletteName;
     byte *texturePalette;
 } __attribute__((packed));
-
+
+
 struct DODisplayHeader {
     void * primitiveBank;
     struct DODisplayState *displayStateList;
     short numStateEntries;
     short pad16;
 } __attribute__((packed));
-
+
+
 struct ActLayout {
     int VersionNumber;
     short actorID;
@@ -439,9 +507,11 @@ struct ActLayout {
     int userDefinedDataSize;
     void * pUserData;
 } __attribute__((packed));
-
+
+
 typedef struct ACTBoneLayout ACTBoneLayout, *PACTBoneLayout;
-
+
+
 struct ACTBoneLayout {
     struct CTRLControl *pOrientationControl;
     struct DSBranch branch;
@@ -451,24 +521,31 @@ struct ACTBoneLayout {
     u8 drawingPriority;
     u16 pad16;
 } __attribute__((packed));
-
+
+
 typedef struct ADSR_INFO ADSR_INFO, *PADSR_INFO;
-
+
+
 typedef union ai_data ai_data, *Pai_data;
-
+
+
 typedef struct _struct_133 _struct_133, *P_struct_133;
-
+
+
 typedef struct _struct_134 _struct_134, *P_struct_134;
-
+
+
 typedef long s32;
-
+
+
 struct _struct_134 {
     u16 atime;
     u16 dtime;
     u16 slevel;
     u16 rtime;
 } __attribute__((packed));
-
+
+
 struct _struct_133 {
     s32 atime;
     s32 dtime;
@@ -477,26 +554,34 @@ struct _struct_133 {
     s32 ascale;
     s32 dscale;
 } __attribute__((packed));
-
+
+
 union ai_data {
     struct _struct_133 dls;
     struct _struct_134 linear;
 } __attribute__((packed));
-
+
+
 struct ADSR_INFO {
     union ai_data data;
 } __attribute__((packed));
-
+
+
 typedef struct ADSR_VARS ADSR_VARS, *PADSR_VARS;
-
+
+
 typedef ulong u32;
-
+
+
 typedef union data data, *Pdata;
-
+
+
 typedef struct _dls _dls, *P_dls;
-
+
+
 typedef struct _linear _linear, *P_linear;
-
+
+
 struct _dls {
     u32 aTime;
     u32 dTime;
@@ -505,19 +590,22 @@ struct _dls {
     u16 cutOff;
     u8 aMode;
 } __attribute__((packed));
-
+
+
 struct _linear {
     u32 aTime;
     u32 dTime;
     u16 sLevel;
     u32 rTime;
 } __attribute__((packed));
-
+
+
 union data {
     struct _dls dls;
     struct _linear linear;
 } __attribute__((packed));
-
+
+
 struct ADSR_VARS {
     u8 mode;
     u8 state;
@@ -527,13 +615,19 @@ struct ADSR_VARS {
     s32 currentDelta;
     union data data;
 } __attribute__((packed));
-
-typedef void (*AIDCallback)(void);
-
-typedef void (*AISCallback)(int);
-
+
+
+typedef void (*AIDCallback)(void);
+
+
+
+typedef void (*AISCallback)(int);
+
+
+
 typedef struct AIStruct AIStruct, *PAIStruct;
-
+
+
 enum {
     enum_AIPitchType_curve=0,
     enum_AIPitchType_charge=1,
@@ -541,7 +635,8 @@ enum {
     enum_AIPitchType_changeUp=3
 };
 typedef unsigned char enum_AIPitchType;
-
+
+
 enum {
     enum_pitchCurveType_NotSelected=0,
     enum_pitchCurveType_DownMiddle=1,
@@ -549,7 +644,8 @@ enum {
     enum_pitchCurveType_curve=3
 };
 typedef unsigned char enum_pitchCurveType;
-
+
+
 enum {
     enumAISwingType_slap=0,
     enumAISwingType_charge=1,
@@ -557,7 +653,8 @@ enum {
     enumAISwingType_noSwing=3
 };
 typedef unsigned char enumAISwingType;
-
+
+
 enum {
     enumPitchLocationZone_inside_Ball=0,
     enumPitchLocationZone_inside_Strike=1,
@@ -567,7 +664,8 @@ enum {
     enumPitchLocationZone_n_a=255
 };
 typedef unsigned char enumPitchLocationZone;
-
+
+
 enum {
     EnumPitchType_Curve=0,
     EnumPitchType_Charge=1,
@@ -575,14 +673,16 @@ enum {
     EnumPitchType_default_=255
 };
 typedef unsigned char EnumPitchType;
-
+
+
 enum {
     enumBatterAITrackingCode_n_a=0,
     enumBatterAITrackingCode_trackingPoorly=1,
     enumBatterAITrackingCode_trackingPerfectly=2
 };
 typedef unsigned char enumBatterAITrackingCode;
-
+
+
 struct AIStruct {
     float aIDifficultyMultiplierArray[2];
     float batterAIBoxPosXVelo;
@@ -667,11 +767,14 @@ struct AIStruct {
     byte field80_0xba;
     byte field81_0xbb;
 } __attribute__((packed));
-
+
+
 typedef struct ANIMAnimTrack ANIMAnimTrack, *PANIMAnimTrack;
-
+
+
 typedef struct KeyFrame KeyFrame, *PKeyFrame;
-
+
+
 struct ANIMAnimTrack {
     float animTime;
     struct KeyFrame *keyFrames;
@@ -682,24 +785,29 @@ struct ANIMAnimTrack {
     byte interpolationType;
     byte replaceHierarchyCtrl;
 } __attribute__((packed));
-
+
+
 struct KeyFrame {
     float time;
     char *setting;
     char *interpolation;
 } __attribute__((packed));
-
+
+
 typedef struct ANIMBank ANIMBank, *PANIMBank;
-
+
+
 typedef struct ANIMSequences ANIMSequences, *PANIMSequences;
-
+
+
 struct ANIMSequences {
     char *sequenceName;
     struct ANIMAnimTrack *trackArray;
     short totalTracks;
     short pad16;
 } __attribute__((packed));
-
+
+
 struct ANIMBank {
     int versionNumber;
     struct ANIMSequences *animSequences;
@@ -710,16 +818,25 @@ struct ANIMBank {
     int userDataSize;
     void *userData;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/anim.h/ANIMPipe - /ANIMPipe */
-
-typedef void * (*ARAMUploadCallback)(u32, u32);
-
-typedef void (*ARQCallback)(int);
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/anim.h/ANIMPipe - /ANIMPipe */
+
+
+
+typedef void * (*ARAMUploadCallback)(u32, u32);
+
+
+
+typedef void (*ARQCallback)(int);
+
+
+
 typedef struct ARQRequest ARQRequest, *PARQRequest;
-
+
+
 struct ARQRequest {
     struct ARQRequest *next;
     int owner;
@@ -730,12 +847,17 @@ struct ARQRequest {
     int length;
     void * callback;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/ar.h/ARQRequest - /ARQRequest */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/ar.h/ARQRequest - /ARQRequest */
+
+
+
 typedef struct ARR ARR, *PARR;
-
+
+
 struct ARR {
     u32 tTab;
     u32 pTab;
@@ -745,90 +867,140 @@ struct ARR {
     u32 loopPoint[16];
     u32 tsTab;
 } __attribute__((packed));
-
+
+
 typedef struct Actor Actor, *PActor;
-
+
+
 typedef struct ActorLayout ActorLayout, *PActorLayout;
-
-
-/* WARNING! conflicting data type names: /sdk/Tree.h/DSTree - /DSTree */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/Tree.h/DSTree - /DSTree */
+
+
+
 typedef struct DODisplayData DODisplayData, *PDODisplayData;
-
+
+
 typedef struct DODisplayData *DODisplayDataPtr;
-
+
+
 typedef struct sBone sBone, *PsBone;
-
+
+
 typedef struct Control Control, *PControl;
-
+
+
 typedef float MtxPtr[4];
-
-
-/* WARNING! conflicting data type names: /sdk/List.h/DSList - /DSList */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/List.h/DSList - /DSList */
+
+
+
 typedef struct sHdr sHdr, *PsHdr;
-
+
+
 typedef struct DODescriptor DODescriptor, *PDODescriptor;
-
+
+
 typedef struct DODescriptor *DODescriptorPtr;
-
-
-/* WARNING! conflicting data type names: /sdk/Tree.h/DSBranch - /DSBranch */
-
-
-/* WARNING! conflicting data type names: /sdk/List.h/DSLink - /DSLink */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/Tree.h/DSBranch - /DSBranch */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/List.h/DSLink - /DSLink */
+
+
+
 typedef union ControlParams ControlParams, *PControlParams;
-
+
+
 typedef struct SK1List SK1List, *PSK1List;
-
+
+
 typedef struct SK2List SK2List, *PSK2List;
-
+
+
 typedef struct SKAccList SKAccList, *PSKAccList;
-
+
+
 typedef struct DODisplayLayout DODisplayLayout, *PDODisplayLayout;
-
+
+
 typedef struct Srt Srt, *PSrt;
-
+
+
 typedef struct _struct_8 _struct_8, *P_struct_8;
-
+
+
 typedef float ROMtx[4][3];
-
+
+
 typedef struct PositionData PositionData, *PPositionData;
-
+
+
 typedef struct ColorData ColorData, *PColorData;
-
+
+
 typedef struct TextureData TextureData, *PTextureData;
-
+
+
 typedef struct LightingData LightingData, *PLightingData;
-
+
+
 typedef struct DisplayData DisplayData, *PDisplayData;
-
+
+
 typedef struct Vec Vec, *PVec;
-
-
-/* WARNING! conflicting data type names: /sdk/mtx.h/Quaternion - /Quaternion */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/mtx.h/Quaternion - /Quaternion */
+
+
+
 typedef struct TEXPalette TEXPalette, *PTEXPalette;
-
+
+
 typedef struct TEXPalette *TEXPalettePtr;
-
+
+
 typedef struct DisplayStateList DisplayStateList, *PDisplayStateList;
-
+
+
 typedef struct TEXDescriptor TEXDescriptor, *PTEXDescriptor;
-
+
+
 typedef struct TEXDescriptor *TEXDescriptorPtr;
-
+
+
 typedef struct TEXHeader TEXHeader, *PTEXHeader;
-
+
+
 typedef struct TEXHeader *TEXHeaderPtr;
-
+
+
 typedef struct CLUTHeader CLUTHeader, *PCLUTHeader;
-
+
+
 typedef struct CLUTHeader *CLUTHeaderPtr;
-
+
+
 typedef char *Ptr;
-
+
+
 enum {
     _GXTexWrapMode_GX_CLAMP=0,
     _GXTexWrapMode_GX_REPEAT=1,
@@ -836,9 +1008,11 @@ enum {
     _GXTexWrapMode_GX_MAX_TEXWRAPMODE=3
 };
 typedef unsigned int _GXTexWrapMode;
-
+
+
 typedef _GXTexWrapMode GXTexWrapMode;
-
+
+
 enum {
     _GXTexFilter_GX_NEAR=0,
     _GXTexFilter_GX_LINEAR=1,
@@ -848,9 +1022,11 @@ enum {
     _GXTexFilter_GX_LIN_MIP_LIN=5
 };
 typedef unsigned int _GXTexFilter;
-
+
+
 typedef _GXTexFilter GXTexFilter;
-
+
+
 enum {
     _GXTlutFmt_GX_TL_IA8=0,
     _GXTlutFmt_GX_TL_RGB565=1,
@@ -858,9 +1034,11 @@ enum {
     _GXTlutFmt_GX_MAX_TLUTFMT=3
 };
 typedef unsigned int _GXTlutFmt;
-
+
+
 typedef _GXTlutFmt GXTlutFmt;
-
+
+
 struct DODisplayLayout {
     struct PositionData *positionData;
     struct ColorData *colorData;
@@ -871,7 +1049,8 @@ struct DODisplayLayout {
     byte pad8;
     short pad16;
 } __attribute__((packed));
-
+
+
 struct CLUTHeader {
     short numEntries;
     byte unpacked;
@@ -879,28 +1058,33 @@ struct CLUTHeader {
     GXTlutFmt format;
     Ptr data;
 } __attribute__((packed));
-
+
+
 struct _struct_8 {
     struct Mtx m;
 } __attribute__((packed));
-
+
+
 struct Vec {
     float x;
     float y;
     float z;
 } __attribute__((packed));
-
+
+
 struct Srt {
     struct Vec s;
     struct Quaternion r;
     struct Vec t;
 } __attribute__((packed));
-
+
+
 union ControlParams {
     struct Srt srt;
     struct _struct_8 mtx;
 } __attribute__((packed));
-
+
+
 struct DisplayStateList {
     byte id;
     byte pad8;
@@ -909,14 +1093,16 @@ struct DisplayStateList {
     char *primitiveList;
     int listSize;
 } __attribute__((packed));
-
+
+
 struct Control {
     byte type;
     byte pad8;
     short pad16;
     union ControlParams controlParams;
 } __attribute__((packed));
-
+
+
 struct TextureData {
     char *textureCoordArray;
     short numTextureCoords;
@@ -925,7 +1111,8 @@ struct TextureData {
     char *texturePaletteName;
     TEXPalettePtr texturePalette;
 } __attribute__((packed));
-
+
+
 struct Actor {
     struct ActorLayout *layout;
     short actorID;
@@ -942,7 +1129,8 @@ struct Actor {
     struct DSList drawPriorityList;
     struct sHdr *skHeader;
 } __attribute__((packed));
-
+
+
 struct TEXHeader {
     short height;
     short width;
@@ -958,14 +1146,16 @@ struct TEXHeader {
     byte maxLOD;
     byte unpacked;
 } __attribute__((packed));
-
+
+
 struct PositionData {
     char *positionArray;
     short numPositions;
     byte quantizeInfo;
     byte compCount;
 } __attribute__((packed));
-
+
+
 struct SK2List {
     ROMtx m0;
     ROMtx m1;
@@ -978,7 +1168,8 @@ struct SK2List {
     byte vertSrcOffset;
     byte pad8;
 } __attribute__((packed));
-
+
+
 struct SK1List {
     ROMtx m;
     void *vertSrc;
@@ -989,7 +1180,8 @@ struct SK1List {
     byte pad8;
     short pad16;
 } __attribute__((packed));
-
+
+
 struct sBone {
     short boneID;
     byte inheritanceFlag;
@@ -1005,12 +1197,14 @@ struct sBone {
     MtxPtr orientationInvMtx;
     struct DSLink drawPriorityLink;
 } __attribute__((packed));
-
+
+
 struct DODescriptor {
     struct DODisplayLayout *layout;
     char *name;
 } __attribute__((packed));
-
+
+
 struct SKAccList {
     ROMtx m;
     void *vertSrc;
@@ -1020,12 +1214,14 @@ struct SKAccList {
     short boneIndex;
     short count;
 } __attribute__((packed));
-
+
+
 struct TEXDescriptor {
     TEXHeaderPtr textureHeader;
     CLUTHeaderPtr CLUTHeader;
 } __attribute__((packed));
-
+
+
 struct LightingData {
     char *normalArray;
     short numNormals;
@@ -1033,14 +1229,16 @@ struct LightingData {
     byte compCount;
     float ambientPercentage;
 } __attribute__((packed));
-
+
+
 struct ColorData {
     char *colorArray;
     short numColors;
     byte quantizeInfo;
     byte compCount;
 } __attribute__((packed));
-
+
+
 struct DODisplayData {
     int versionNumber;
     int userDataSize;
@@ -1048,7 +1246,8 @@ struct DODisplayData {
     int numDescriptors;
     DODescriptorPtr descriptorArray;
 } __attribute__((packed));
-
+
+
 struct sHdr {
     short numSk1List;
     short numSk2List;
@@ -1063,13 +1262,15 @@ struct sHdr {
     void *flushIndices;
     int flushCount;
 } __attribute__((packed));
-
+
+
 struct TEXPalette {
     int versionNumber;
     int numDescriptors;
     TEXDescriptorPtr descriptorArray;
 } __attribute__((packed));
-
+
+
 struct ActorLayout {
     int versionNumber;
     short actorID;
@@ -1081,16 +1282,19 @@ struct ActorLayout {
     int userDataSize;
     char *userData;
 } __attribute__((packed));
-
+
+
 struct DisplayData {
     char *primitiveBank;
     struct DisplayStateList *displayStateList;
     short numStateEntries;
     short pad16;
 } __attribute__((packed));
-
+
+
 typedef struct ActorBone ActorBone, *PActorBone;
-
+
+
 struct ActorBone {
     struct Control *orientationCtrl;
     struct DSBranch branch;
@@ -1100,19 +1304,27 @@ struct ActorBone {
     byte drawingPriority;
     short pad16;
 } __attribute__((packed));
-
+
+
 typedef short s16;
-
+
+
 typedef s16 __OSInterrupt;
-
+
+
 typedef struct OSContext OSContext, *POSContext;
-
-typedef void (*__OSInterruptHandler)(__OSInterrupt, struct OSContext *);
-
+
+
+typedef void (*__OSInterruptHandler)(__OSInterrupt, struct OSContext *);
+
+
+
 typedef __OSInterruptHandler AmcEXICallback;
-
+
+
 typedef double f64;
-
+
+
 struct OSContext {
     u32 gpr[32];
     u32 cr;
@@ -1129,19 +1341,24 @@ struct OSContext {
     u32 gqr[8];
     f64 psf[32];
 } __attribute__((packed));
-
+
+
 enum {
     enum_85_AMC_EXI_NO_ERROR=0,
     enum_85_AMC_EXI_UNSELECTED=1
 };
 typedef unsigned int enum_85;
-
+
+
 typedef enum_85 AmcExiError;
-
+
+
 typedef struct AnimBank AnimBank, *PAnimBank;
-
+
+
 typedef struct AnimSequence AnimSequence, *PAnimSequence;
-
+
+
 struct AnimBank {
     int versionNumber;
     struct AnimSequence *animSequences;
@@ -1152,16 +1369,19 @@ struct AnimBank {
     int userDataSize;
     void *userData;
 } __attribute__((packed));
-
+
+
 struct AnimSequence {
     char *sequenceName;
     struct ANIMTrack *trackArray;
     short totalTracks;
     short pad16;
 } __attribute__((packed));
-
+
+
 typedef struct AnimationStruct AnimationStruct, *PAnimationStruct;
-
+
+
 enum {
     EnumCharacterAnimation_short_FielderStandStill=0,
     EnumCharacterAnimation_short_FielderHoldBallStill=1,
@@ -1272,7 +1492,8 @@ enum {
     EnumCharacterAnimation_short_WinningCelebration=107
 };
 typedef unsigned short EnumCharacterAnimation_short;
-
+
+
 enum {
     enumCharacterID_byte_mario=0,
     enumCharacterID_byte_luigi=1,
@@ -1330,7 +1551,8 @@ enum {
     enumCharacterID_byte_broB=53
 };
 typedef unsigned char enumCharacterID_byte;
-
+
+
 struct AnimationStruct {
     struct ActLayout **ACTPtr;
     int pad;
@@ -1404,9 +1626,11 @@ struct AnimationStruct {
     byte field69_0x279;
     short field70_0x27a;
 } __attribute__((packed));
-
+
+
 typedef struct AnimationStruct2 AnimationStruct2, *PAnimationStruct2;
-
+
+
 struct AnimationStruct2 {
     struct Vec3f field0_0x0;
     undefined field1_0xc;
@@ -1424,9 +1648,11 @@ struct AnimationStruct2 {
     undefined field13_0x1a;
     undefined field14_0x1b;
 } __attribute__((packed));
-
+
+
 typedef struct BI2Debug BI2Debug, *PBI2Debug;
-
+
+
 struct BI2Debug {
     int debugMonSize;
     int simMemSize;
@@ -1438,24 +1664,36 @@ struct BI2Debug {
     u8 _1C[8];
     u32 padSpec;
 } __attribute__((packed));
-
+
+
 enum {
     BOOL_FALSE=0,
     BOOL_TRUE=1
 };
 typedef unsigned int BOOL;
-
-
-/* WARNING! conflicting data type names: /types.h/BOOL - /BOOL */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/types.h/BOOL - /BOOL */
-
-
-/* WARNING! conflicting data type names: /sdk/types.h/BOOL - /BOOL */
-
+
+
+
+
+/* WARNING! conflicting data type names: /types.h/BOOL - /BOOL */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/types.h/BOOL - /BOOL */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/types.h/BOOL - /BOOL */
+
+
+
 typedef struct BaseRunningHexStruct BaseRunningHexStruct, *PBaseRunningHexStruct;
-
+
+
 struct BaseRunningHexStruct {
     short baseRunnerHex;
     short baseRunnerStartingPos;
@@ -1482,9 +1720,11 @@ struct BaseRunningHexStruct {
     undefined field22_0x1e;
     byte field23_0x1f;
 } __attribute__((packed));
-
+
+
 typedef struct BatterReaches BatterReaches, *PBatterReaches;
-
+
+
 struct BatterReaches {
     float HorizontalRangeNear;
     float HorizontalRangeFar;
@@ -1496,11 +1736,14 @@ struct BatterReaches {
     float PitchingHeight;
     float TrimmedBat;
 } __attribute__((packed));
-
+
+
 typedef struct BothTeamInputStruct BothTeamInputStruct, *PBothTeamInputStruct;
-
+
+
 typedef struct ReplayInputStruct ReplayInputStruct, *PReplayInputStruct;
-
+
+
 enum {
     EnumControllerInput_Left=1,
     EnumControllerInput_Right=2,
@@ -1517,7 +1760,8 @@ enum {
     EnumControllerInput_Start=4096
 };
 typedef unsigned short EnumControllerInput;
-
+
+
 struct ReplayInputStruct {
     short ControlStickAngle;
     EnumControllerInput buttoninput;
@@ -1525,80 +1769,114 @@ struct ReplayInputStruct {
     byte right_left;
     byte up_down;
 } __attribute__((packed));
-
+
+
 struct BothTeamInputStruct {
     struct ReplayInputStruct playerA;
     struct ReplayInputStruct playerB;
 } __attribute__((packed));
-
+
+
 typedef struct BoxCorners BoxCorners, *PBoxCorners;
-
+
+
 struct BoxCorners {
     struct Vec3f boxCorner1;
     struct Vec3f boxCorner2;
 } __attribute__((packed));
-
+
+
 typedef struct Branch Branch, *PBranch;
-
+
+
 struct Branch {
     char *Prev;
     char *Next;
     char *Parent;
     char *Children;
 } __attribute__((packed));
-
+
+
 typedef struct CALLSTACK CALLSTACK, *PCALLSTACK;
-
+
+
 typedef struct MSTEP MSTEP, *PMSTEP;
-
+
+
 struct CALLSTACK {
     struct MSTEP *addr;
     struct MSTEP *curAddr;
 } __attribute__((packed));
-
+
+
 struct MSTEP {
     u32 para[2];
 } __attribute__((packed));
-
-typedef void (*CARDCallback)(s32, s32);
-
+
+
+typedef void (*CARDCallback)(s32, s32);
+
+
+
 typedef struct CARDControl CARDControl, *PCARDControl;
-
+
+
 typedef struct STRUCT_DSP_TASK STRUCT_DSP_TASK, *PSTRUCT_DSP_TASK;
-
+
+
 typedef struct STRUCT_DSP_TASK DSPTaskInfo;
-
+
+
 typedef struct CARDDir CARDDir, *PCARDDir;
-
+
+
 typedef struct OSThreadQueue OSThreadQueue, *POSThreadQueue;
-
+
+
 typedef struct CARDFileInfo CARDFileInfo, *PCARDFileInfo;
-
+
+
 typedef struct OSAlarm OSAlarm, *POSAlarm;
-
-typedef void (*DSPCallback)(void *);
-
+
+
+typedef void (*DSPCallback)(void *);
+
+
+
 typedef longlong s64;
-
+
+
 typedef s64 OSTime;
-
+
+
 typedef struct OSThread OSThread, *POSThread;
-
-
-/* WARNING! conflicting data type names: /sdk/OSContext.h/OSContext - /decompHeaders/OSContext.h/OSContext */
-
-typedef void (*OSAlarmHandler)(struct OSAlarm *, struct OSContext *);
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSContext.h/OSContext - /decompHeaders/OSContext.h/OSContext */
+
+
+
+typedef void (*OSAlarmHandler)(struct OSAlarm *, struct OSContext *);
+
+
+
 typedef s32 OSPriority;
-
+
+
 typedef struct OSThreadLink OSThreadLink, *POSThreadLink;
-
+
+
 typedef struct OSMutex OSMutex, *POSMutex;
-
+
+
 typedef struct OSMutexQueue OSMutexQueue, *POSMutexQueue;
-
+
+
 typedef struct OSMutexLink OSMutexLink, *POSMutexLink;
-
+
+
 struct OSAlarm {
     OSAlarmHandler handler;
     int tag;
@@ -1608,12 +1886,14 @@ struct OSAlarm {
     OSTime period;
     OSTime start;
 } __attribute__((packed));
-
+
+
 struct OSThreadQueue {
     struct OSThread *head;
     struct OSThread *tail;
 } __attribute__((packed));
-
+
+
 struct STRUCT_DSP_TASK {
     int state;
     int priority;
@@ -1635,7 +1915,8 @@ struct STRUCT_DSP_TASK {
     OSTime t_context;
     OSTime t_task;
 } __attribute__((packed));
-
+
+
 struct CARDControl {
     BOOL attached;
     s32 result;
@@ -1674,12 +1955,14 @@ struct CARDControl {
     CARDCallback unlockCallback;
     struct OSAlarm alarm;
 } __attribute__((packed));
-
+
+
 struct OSThreadLink {
     struct OSThread *next;
     struct OSThread *prev;
 } __attribute__((packed));
-
+
+
 struct CARDDir {
     byte gameName[4];
     byte company[2];
@@ -1697,24 +1980,28 @@ struct CARDDir {
     byte _padding1[2];
     int commentAddr;
 } __attribute__((packed));
-
+
+
 struct OSMutexLink {
     struct OSMutex *next;
     struct OSMutex *prev;
 } __attribute__((packed));
-
+
+
 struct OSMutex {
     struct OSThreadQueue queue;
     struct OSThread *thread;
     s32 count;
     struct OSMutexLink link;
 } __attribute__((packed));
-
+
+
 struct OSMutexQueue {
     struct OSMutex *head;
     struct OSMutex *tail;
 } __attribute__((packed));
-
+
+
 struct OSThread {
     struct OSContext context;
     short state;
@@ -1732,7 +2019,8 @@ struct OSThread {
     byte *stackBase;
     int *stackEnd;
 } __attribute__((packed));
-
+
+
 struct CARDFileInfo {
     s32 chan;
     s32 fileNo;
@@ -1740,18 +2028,22 @@ struct CARDFileInfo {
     s32 length;
     short iBlock;
 } __attribute__((packed));
-
+
+
 typedef struct CARDDecParam CARDDecParam, *PCARDDecParam;
-
+
+
 struct CARDDecParam {
     byte *inputAddr;
     int inputLength;
     int aramAddr;
     byte *outputAddr;
 } __attribute__((packed));
-
+
+
 typedef struct CARDDirCheck CARDDirCheck, *PCARDDirCheck;
-
+
+
 struct CARDDirCheck {
     byte padding0[56];
     short padding1;
@@ -1759,9 +2051,11 @@ struct CARDDirCheck {
     short checkSum;
     short checkSumInv;
 } __attribute__((packed));
-
+
+
 typedef struct CARDID CARDID, *PCARDID;
-
+
+
 struct CARDID {
     byte serial[32];
     short deviceID;
@@ -1771,9 +2065,11 @@ struct CARDID {
     short checkSum;
     short checkSumInv;
 } __attribute__((packed));
-
+
+
 typedef struct CARDStat CARDStat, *PCARDStat;
-
+
+
 struct CARDStat {
     char fileName[32];
     int length;
@@ -1791,9 +2087,11 @@ struct CARDStat {
     int offsetIconTlut;
     int offsetData;
 } __attribute__((packed));
-
+
+
 typedef struct CDRRelated CDRRelated, *PCDRRelated;
-
+
+
 struct CDRRelated {
     void * field0_0x0;
     int field1_0x4;
@@ -1802,40 +2100,53 @@ struct CDRRelated {
     int field4_0x10;
     int ptr;
 } __attribute__((packed));
-
+
+
 typedef struct CHANNEL_DEFAULTS CHANNEL_DEFAULTS, *PCHANNEL_DEFAULTS;
-
+
+
 struct CHANNEL_DEFAULTS {
     u8 pbRange;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /CLUTHeader - /sdk/texPalette.h/CLUTHeader */
-
+
+
+
+
+/* WARNING! conflicting data type names: /CLUTHeader - /sdk/texPalette.h/CLUTHeader */
+
+
+
 typedef struct CPAT CPAT, *PCPAT;
-
+
+
 typedef struct NOTE_DATA NOTE_DATA, *PNOTE_DATA;
-
+
+
 typedef struct TENTRY TENTRY, *PTENTRY;
-
+
+
 typedef struct SEQ_STREAM SEQ_STREAM, *PSEQ_STREAM;
-
+
+
 typedef char s8;
-
+
+
 struct SEQ_STREAM {
     u8 *nextAddr;
     u16 value;
     s16 nextDelta;
     u32 nextTime;
 } __attribute__((packed));
-
+
+
 struct NOTE_DATA {
     u16 time;
     u8 key;
     u8 velocity;
     u16 length;
 } __attribute__((packed));
-
+
+
 struct TENTRY {
     u32 time;
     u8 prgChange;
@@ -1845,7 +2156,8 @@ struct TENTRY {
     s8 transpose;
     s8 velocityAdd;
 } __attribute__((packed));
-
+
+
 struct CPAT {
     u32 lTime;
     u32 baseTime;
@@ -1855,32 +2167,42 @@ struct CPAT {
     struct SEQ_STREAM modulation;
     u8 midi;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /auto_structs/CTRLControl - /CTRLControl */
-
+
+
+
+
+/* WARNING! conflicting data type names: /auto_structs/CTRLControl - /CTRLControl */
+
+
+
 typedef struct CTRLMTXControl CTRLMTXControl, *PCTRLMTXControl;
-
+
+
 struct CTRLMTXControl {
     struct Mtx m;
 } __attribute__((packed));
-
+
+
 typedef struct CTRL_DEST CTRL_DEST, *PCTRL_DEST;
-
+
+
 typedef struct CTRL_SOURCE CTRL_SOURCE, *PCTRL_SOURCE;
-
+
+
 struct CTRL_SOURCE {
     u8 midiCtrl;
     u8 combine;
     s32 scale;
 } __attribute__((packed));
-
+
+
 struct CTRL_DEST {
     struct CTRL_SOURCE source[4];
     u16 oldValue;
     u8 numSource;
 } __attribute__((packed));
-
+
+
 enum {
     CatchAnimationType_noCatchAnimation=0,
     CatchAnimationType_catchBattedBall=1,
@@ -1893,13 +2215,17 @@ enum {
     CatchAnimationType_coverBaseLungingCatch=8
 };
 typedef unsigned char CatchAnimationType;
-
+
+
 typedef struct CharacterStats CharacterStats, *PCharacterStats;
-
+
+
 typedef struct StatTable StatTable, *PStatTable;
-
+
+
 typedef struct ChemistryTable ChemistryTable, *PChemistryTable;
-
+
+
 enum {
     EnumFieldingAbilities_WallSplat=1,
     EnumFieldingAbilities_WallJump=2,
@@ -1919,7 +2245,8 @@ enum {
     EnumFieldingAbilities_Unassigned2=32768
 };
 typedef unsigned int EnumFieldingAbilities;
-
+
+
 enum {
     EnumCharacterClass_Balanced=0,
     EnumCharacterClass_Power=1,
@@ -1927,7 +2254,8 @@ enum {
     EnumCharacterClass_Technique=3
 };
 typedef unsigned char EnumCharacterClass;
-
+
+
 struct StatTable {
     byte CurveBallSpeed;
     byte FastBallSpeed;
@@ -1959,7 +2287,8 @@ struct StatTable {
     byte RunningStatBar;
     byte FieldingStatBar;
 } __attribute__((packed));
-
+
+
 struct ChemistryTable {
     byte Mario;
     byte Luigi;
@@ -2016,20 +2345,25 @@ struct ChemistryTable {
     byte FireBro;
     byte BoomerangBro;
 } __attribute__((packed));
-
+
+
 struct CharacterStats {
     struct StatTable Stats;
     struct ChemistryTable Chemistry;
     byte BytesAfterChemistry[3];
     short UnusedShorts[22];
 } __attribute__((packed));
-
+
+
 typedef struct CollisionBox CollisionBox, *PCollisionBox;
-
+
+
 typedef struct TriangleGroup TriangleGroup, *PTriangleGroup;
-
+
+
 typedef struct CollisionTriangle CollisionTriangle, *PCollisionTriangle;
-
+
+
 enum {
     TriangleCollisionTypes_NO_COLLISION=0,
     TriangleCollisionTypes_GRASS=1,
@@ -2046,20 +2380,23 @@ enum {
     TriangleCollisionTypes_FOUL=128
 };
 typedef unsigned short TriangleCollisionTypes;
-
+
+
 struct CollisionTriangle {
     struct Vec3f trianglePoint;
     TriangleCollisionTypes collisionFlags;
     short pad;
 } __attribute__((packed));
-
+
+
 struct TriangleGroup {
     byte unk_0;
     bool IsTriangleList;
     short count;
     struct CollisionTriangle walls[1];
 } __attribute__((packed));
-
+
+
 struct CollisionBox {
     struct BoxCorners *boundingBox;
     struct TriangleGroup tris;
@@ -2081,24 +2418,29 @@ struct CollisionBox {
     undefined field17_0x86;
     undefined field18_0x87;
 } __attribute__((packed));
-
+
+
 typedef struct CollisionFileHeader CollisionFileHeader, *PCollisionFileHeader;
-
+
+
 struct CollisionFileHeader {
     short wallCount;
     short field1_0x2;
     struct CollisionBox collisionData;
 } __attribute__((packed));
-
+
+
 typedef struct CompressedDiskRead CompressedDiskRead, *PCompressedDiskRead;
-
+
+
 struct CompressedDiskRead {
     uint compressionConstant;
     uint OriginalSize_CompressedFlagInTopBits_;
     uint DiskLocation;
     uint CompressedSize;
 } __attribute__((packed));
-
+
+
 enum {
     Copy_1_of_EnumFieldingAbilities_WallSplat=1,
     Copy_1_of_EnumFieldingAbilities_WallJump=2,
@@ -2118,18 +2460,22 @@ enum {
     Copy_1_of_EnumFieldingAbilities_Unassigned2=32768
 };
 typedef unsigned int Copy_1_of_EnumFieldingAbilities;
-
+
+
 typedef struct Copy_1_of_vec4f Copy_1_of_vec4f, *PCopy_1_of_vec4f;
-
+
+
 struct Copy_1_of_vec4f {
     float X;
     float Y;
     float Z;
     float W;
 } __attribute__((packed));
-
+
+
 typedef struct CrowdAnimationStruct CrowdAnimationStruct, *PCrowdAnimationStruct;
-
+
+
 struct CrowdAnimationStruct {
     void *field0_0x0;
     void *field1_0x4;
@@ -2141,32 +2487,45 @@ struct CrowdAnimationStruct {
     ushort NumFramesPerLoop;
     ushort field8_0x1a;
 } __attribute__((packed));
-
+
+
 typedef struct DATA_TAB DATA_TAB, *PDATA_TAB;
-
+
+
 struct DATA_TAB {
     void *data;
     u16 id;
     u16 refCount;
 } __attribute__((packed));
-
+
+
 typedef struct DBInterface DBInterface, *PDBInterface;
-
+
+
 struct DBInterface {
     u8 filler0[4];
     u32 unk4;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/DBInterface.h/DBInterface - /decompHeaders/db.h/DBInterface */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/DBInterface - /decompHeaders/db.h/DBInterface */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/DBInterface.h/DBInterface - /decompHeaders/db.h/DBInterface */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/DBInterface - /decompHeaders/db.h/DBInterface */
+
+
+
 typedef struct DEMODMPad DEMODMPad, *PDEMODMPad;
-
+
+
 typedef struct PADStatus PADStatus, *PPADStatus;
-
+
+
 struct PADStatus {
     short button;
     s8 stickX;
@@ -2179,7 +2538,8 @@ struct PADStatus {
     byte analogB;
     s8 err;
 } __attribute__((packed));
-
+
+
 struct DEMODMPad {
     struct PADStatus pst;
     short buttonDown;
@@ -2192,7 +2552,8 @@ struct DEMODMPad {
     s16 substickDeltaX;
     s16 substickDeltaY;
 } __attribute__((packed));
-
+
+
 enum {
     DEMOWinItem_DEMOWIN_ITEM_CAP=0,
     DEMOWinItem_DEMOWIN_ITEM_BKGND=1,
@@ -2200,9 +2561,11 @@ enum {
     DEMOWinItem_DEMOWIN_ITEM_DEFAULT=3
 };
 typedef unsigned int DEMOWinItem;
-
+
+
 typedef struct DEMOWinPadInfo DEMOWinPadInfo, *PDEMOWinPadInfo;
-
+
+
 struct DEMOWinPadInfo {
     struct PADStatus pads[4];
     ulong button[4];
@@ -2211,7 +2574,8 @@ struct DEMOWinPadInfo {
     ulong repeat_button[4];
     ulong repeat_ctr[4];
 } __attribute__((packed));
-
+
+
 enum {
     enum_280_DEMO_STAT_TL=0,
     enum_280_DEMO_STAT_BL=1,
@@ -2220,9 +2584,11 @@ enum {
     enum_280_DEMO_STAT_IO=4
 };
 typedef unsigned int enum_280;
-
+
+
 typedef enum_280 DEMO_STAT_DISP;
-
+
+
 enum {
     DEMO_STAT_TYPE_DEMO_STAT_GP0=0,
     DEMO_STAT_TYPE_DEMO_STAT_GP1=1,
@@ -2236,24 +2602,29 @@ enum {
     DEMO_STAT_TYPE_DEMO_STAT_MYR=9
 };
 typedef unsigned int DEMO_STAT_TYPE;
-
+
+
 enum {
     enum_277_DM_FT_OPQ=0,
     enum_277_DM_FT_RVS=1,
     enum_277_DM_FT_XLU=2
 };
 typedef unsigned int enum_277;
-
+
+
 typedef enum_277 DMFontType;
-
+
+
 enum {
     enum_276_DMTF_POINTSAMPLE=0,
     enum_276_DMTF_BILERP=1
 };
 typedef unsigned int enum_276;
-
+
+
 typedef enum_276 DMTexFlt;
-
+
+
 enum {
     DOTextureSetting_DOTS_USEDEFAULT=-1,
     DOTextureSetting_DOTS_ANISO_1=0,
@@ -2277,7 +2648,8 @@ enum {
     DOTextureSetting_DOTS_LIN_MIP_LIN=5
 };
 typedef int DOTextureSetting;
-
+
+
 enum {
     DOTextureState_DOTS_WRAP_S=0,
     DOTextureState_DOTS_WRAP_T=1,
@@ -2292,15 +2664,20 @@ enum {
     DOTextureState_DOTS_MAX_ANISO=10
 };
 typedef unsigned int DOTextureState;
-
+
+
 typedef struct DSBranch *DSBranchPtr;
-
+
+
 typedef struct DSLink *DSLinkPtr;
-
+
+
 typedef struct DSList *DSListPtr;
-
+
+
 typedef struct DSPhostDPop DSPhostDPop, *PDSPhostDPop;
-
+
+
 struct DSPhostDPop {
     s32 l;
     s32 r;
@@ -2312,18 +2689,22 @@ struct DSPhostDPop {
     s32 rB;
     s32 sB;
 } __attribute__((packed));
-
+
+
 typedef struct DSPinput DSPinput, *PDSPinput;
-
+
+
 typedef struct SND_STUDIO_INPUT SND_STUDIO_INPUT, *PSND_STUDIO_INPUT;
-
+
+
 struct SND_STUDIO_INPUT {
     u8 vol;
     u8 volA;
     u8 volB;
     u8 srcStudio;
 } __attribute__((packed));
-
+
+
 struct DSPinput {
     u8 studio;
     u16 vol;
@@ -2331,13 +2712,17 @@ struct DSPinput {
     u16 volB;
     struct SND_STUDIO_INPUT *desc;
 } __attribute__((packed));
-
+
+
 typedef struct DSPstudioinfo DSPstudioinfo, *PDSPstudioinfo;
-
+
+
 typedef struct _SPB _SPB, *P_SPB;
-
+
+
 typedef struct DSPvoice DSPvoice, *PDSPvoice;
-
+
+
 enum {
     enum_27_SND_STUDIO_TYPE_STD=0,
     enum_27_SND_STUDIO_TYPE_RESERVED0=1,
@@ -2345,76 +2730,104 @@ enum {
     enum_27_SND_STUDIO_TYPE_RESERVED2=3
 };
 typedef unsigned int enum_27;
-
+
+
 typedef enum_27 SND_STUDIO_TYPE;
-
+
+
 typedef struct SND_AUX_INFO SND_AUX_INFO, *PSND_AUX_INFO;
-
-typedef void (*SND_AUX_CALLBACK)(u8, struct SND_AUX_INFO *, void *);
-
+
+
+typedef void (*SND_AUX_CALLBACK)(u8, struct SND_AUX_INFO *, void *);
+
+
+
 typedef struct _PB _PB, *P_PB;
-
+
+
 typedef struct SAMPLE_INFO SAMPLE_INFO, *PSAMPLE_INFO;
-
+
+
 typedef struct VSampleInfo VSampleInfo, *PVSampleInfo;
-
+
+
 typedef struct _struct_83 _struct_83, *P_struct_83;
-
+
+
 typedef struct _struct_84 _struct_84, *P_struct_84;
-
+
+
 typedef union SND_AUX_DATA SND_AUX_DATA, *PSND_AUX_DATA;
-
+
+
 typedef struct _PBMIX _PBMIX, *P_PBMIX;
-
+
+
 typedef struct _PBITD _PBITD, *P_PBITD;
-
+
+
 typedef struct _PBUPDATE _PBUPDATE, *P_PBUPDATE;
-
+
+
 typedef struct _PBDPOP _PBDPOP, *P_PBDPOP;
-
+
+
 typedef struct _PBVE _PBVE, *P_PBVE;
-
+
+
 typedef struct _PBFIR _PBFIR, *P_PBFIR;
-
+
+
 typedef struct _PBADDR _PBADDR, *P_PBADDR;
-
+
+
 typedef struct _PBADPCM _PBADPCM, *P_PBADPCM;
-
+
+
 typedef struct _PBSRC _PBSRC, *P_PBSRC;
-
+
+
 typedef struct _PBADPCMLOOP _PBADPCMLOOP, *P_PBADPCMLOOP;
-
+
+
 typedef struct SND_AUX_BUFFERUPDATE SND_AUX_BUFFERUPDATE, *PSND_AUX_BUFFERUPDATE;
-
+
+
 typedef struct SND_AUX_PARAMETERUPDATE SND_AUX_PARAMETERUPDATE, *PSND_AUX_PARAMETERUPDATE;
-
+
+
 struct _PBADPCMLOOP {
     u16 loop_pred_scale;
     u16 loop_yn1;
     u16 loop_yn2;
 } __attribute__((packed));
-
+
+
 struct VSampleInfo {
     void *loopBufferAddr;
     u32 loopBufferLength;
     u8 inLoopBuffer;
 } __attribute__((packed));
-
+
+
 struct SND_AUX_PARAMETERUPDATE {
     u16 para[4];
 } __attribute__((packed));
-
+
+
 struct SND_AUX_BUFFERUPDATE {
     s32 *left;
     s32 *right;
     s32 *surround;
 } __attribute__((packed));
-
+
+
 union SND_AUX_DATA {
     struct SND_AUX_BUFFERUPDATE bufferUpdate;
     struct SND_AUX_PARAMETERUPDATE parameterUpdate;
 } __attribute__((packed));
-
+
+
 struct _PBDPOP {
     u16 aL;
     u16 aAuxAL;
@@ -2426,18 +2839,21 @@ struct _PBDPOP {
     u16 aAuxAS;
     u16 aAuxBS;
 } __attribute__((packed));
-
+
+
 struct SND_AUX_INFO {
     union SND_AUX_DATA data;
 } __attribute__((packed));
-
+
+
 struct _PBSRC {
     u16 ratioHi;
     u16 ratioLo;
     u16 currentAddressFrac;
     u16 last_samples[4];
 } __attribute__((packed));
-
+
+
 struct _PBITD {
     u16 flag;
     u16 bufferHi;
@@ -2447,7 +2863,8 @@ struct _PBITD {
     u16 targetShiftL;
     u16 targetShiftR;
 } __attribute__((packed));
-
+
+
 struct _PBMIX {
     u16 vL;
     u16 vDeltaL;
@@ -2468,13 +2885,15 @@ struct _PBMIX {
     u16 vAuxAS;
     u16 vDeltaAuxAS;
 } __attribute__((packed));
-
+
+
 struct _PBFIR {
     u16 numCoefs;
     u16 coefsHi;
     u16 coefsLo;
 } __attribute__((packed));
-
+
+
 struct _PBADPCM {
     u16 a[8][2];
     u16 gain;
@@ -2482,18 +2901,21 @@ struct _PBADPCM {
     u16 yn1;
     u16 yn2;
 } __attribute__((packed));
-
+
+
 struct _PBUPDATE {
     u16 updNum[5];
     u16 dataHi;
     u16 dataLo;
 } __attribute__((packed));
-
+
+
 struct _PBVE {
     u16 currentVolume;
     u16 currentDelta;
 } __attribute__((packed));
-
+
+
 struct _PBADDR {
     u16 loopFlag;
     u16 format;
@@ -2504,7 +2926,8 @@ struct _PBADDR {
     u16 currentAddressHi;
     u16 currentAddressLo;
 } __attribute__((packed));
-
+
+
 struct _PB {
     u16 nextHi;
     u16 nextLo;
@@ -2527,7 +2950,8 @@ struct _PB {
     struct _PBADPCMLOOP adpcmLoop;
     u16 streamLoopCnt;
 } __attribute__((packed));
-
+
+
 struct DSPstudioinfo {
     struct _SPB *spb;
     struct DSPhostDPop hostDPopSum;
@@ -2546,7 +2970,8 @@ struct DSPstudioinfo {
     void *auxAUser;
     void *auxBUser;
 } __attribute__((packed));
-
+
+
 struct SAMPLE_INFO {
     u32 info;
     void *addr;
@@ -2557,20 +2982,23 @@ struct SAMPLE_INFO {
     u32 loopLength;
     u8 compType;
 } __attribute__((packed));
-
+
+
 struct _struct_84 {
     u8 pitch;
     u8 vol;
     u8 volA;
     u8 volB;
 } __attribute__((packed));
-
+
+
 struct _struct_83 {
     u32 posHi;
     u32 posLo;
     u32 pitch;
 } __attribute__((packed));
-
+
+
 struct DSPvoice {
     struct _PB *pb;
     void *patchData;
@@ -2622,7 +3050,8 @@ struct DSPvoice {
     u8 studio;
     u32 flags;
 } __attribute__((packed));
-
+
+
 struct _SPB {
     u16 dpopLHi;
     u16 dpopLLo;
@@ -2652,25 +3081,39 @@ struct _SPB {
     u16 dpopBSLo;
     u16 dpopBSDelta;
 } __attribute__((packed));
-
+
+
 typedef struct DSTree *DSTreePtr;
-
-typedef void (*DTKCallback)(int);
-
-typedef void (*DTKFlushCallback)(void);
-
+
+
+typedef void (*DTKCallback)(int);
+
+
+
+typedef void (*DTKFlushCallback)(void);
+
+
+
 typedef struct DTKTrack DTKTrack, *PDTKTrack;
-
+
+
 typedef struct DVDFileInfo DVDFileInfo, *PDVDFileInfo;
-
+
+
 typedef struct DVDCommandBlock DVDCommandBlock, *PDVDCommandBlock;
-
-typedef void (*DVDCallback)(s32, struct DVDFileInfo *);
-
+
+
+typedef void (*DVDCallback)(s32, struct DVDFileInfo *);
+
+
+
 typedef struct DVDDiskID DVDDiskID, *PDVDDiskID;
-
-typedef void (*DVDCBCallback)(s32, struct DVDCommandBlock *);
-
+
+
+typedef void (*DVDCBCallback)(s32, struct DVDCommandBlock *);
+
+
+
 struct DVDCommandBlock {
     struct DVDCommandBlock *next;
     struct DVDCommandBlock *prev;
@@ -2685,14 +3128,16 @@ struct DVDCommandBlock {
     DVDCBCallback callback;
     void *userData;
 } __attribute__((packed));
-
+
+
 struct DVDFileInfo {
     struct DVDCommandBlock cb;
     int startAddr;
     int length;
     DVDCallback callback;
 } __attribute__((packed));
-
+
+
 struct DVDDiskID {
     char gameName[4];
     char company[2];
@@ -2702,7 +3147,8 @@ struct DVDDiskID {
     byte streamingBufSize;
     byte padding[22];
 } __attribute__((packed));
-
+
+
 struct DTKTrack {
     struct DTKTrack *prev;
     struct DTKTrack *next;
@@ -2711,18 +3157,22 @@ struct DTKTrack {
     DTKCallback callback;
     struct DVDFileInfo dvdFileInfo;
 } __attribute__((packed));
-
+
+
 typedef struct DVDBB1 DVDBB1, *PDVDBB1;
-
+
+
 struct DVDBB1 {
     u32 appLoaderLength;
     void *appLoaderFunc1;
     void *appLoaderFunc2;
     void *appLoaderFunc3;
 } __attribute__((packed));
-
+
+
 typedef struct DVDBB2 DVDBB2, *PDVDBB2;
-
+
+
 struct DVDBB2 {
     u32 bootFilePosition;
     u32 FSTPosition;
@@ -2733,12 +3183,17 @@ struct DVDBB2 {
     u32 userLength;
     u32 reserved_1C;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDBB2 - /decompHeaders/dvd.h/DVDBB2 */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDBB2 - /decompHeaders/dvd.h/DVDBB2 */
+
+
+
 typedef struct DVDBanner DVDBanner, *PDVDBanner;
-
+
+
 struct DVDBanner {
     int id;
     int padding[7];
@@ -2749,83 +3204,135 @@ struct DVDBanner {
     byte longMaker[64];
     byte comment[128];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCBCallback - /sdk/dvd.h/DVDCBCallback */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCallback - /sdk/dvd.h/DVDCallback */
-
-
-/* WARNING! conflicting data type names: /DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCBCallback - /sdk/dvd.h/DVDCBCallback */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCallback - /sdk/dvd.h/DVDCallback */
+
+
+
+
+
+/* WARNING! conflicting data type names: /DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
+
+
+
 typedef struct DVDDir DVDDir, *PDVDDir;
-
+
+
 struct DVDDir {
     u32 entryNum;
     u32 location;
     u32 next;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDir - /decompHeaders/dvd.h/DVDDir */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDir - /decompHeaders/dvd.h/DVDDir */
+
+
+
 typedef struct DVDDirEntry DVDDirEntry, *PDVDDirEntry;
-
+
+
 struct DVDDirEntry {
     u32 entryNum;
     BOOL isDir;
     char *name;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDirEntry - /decompHeaders/dvd.h/DVDDirEntry */
-
-
-/* WARNING! conflicting data type names: /DVDDiskID - /sdk/dvd.h/DVDDiskID */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDDiskID - /sdk/dvd.h/DVDDiskID */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/DVDDiskID - /sdk/dvd.h/DVDDiskID */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
-
-typedef void (*DVDDoneReadCallback)(s32, struct DVDFileInfo *);
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDirEntry - /decompHeaders/dvd.h/DVDDirEntry */
+
+
+
+
+
+/* WARNING! conflicting data type names: /DVDDiskID - /sdk/dvd.h/DVDDiskID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDDiskID - /sdk/dvd.h/DVDDiskID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/DVDDiskID - /sdk/dvd.h/DVDDiskID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
+
+
+
+typedef void (*DVDDoneReadCallback)(s32, struct DVDFileInfo *);
+
+
+
 typedef struct DVDDriveInfo DVDDriveInfo, *PDVDDriveInfo;
-
+
+
 struct DVDDriveInfo {
     u16 revisionLevel;
     u16 deviceCode;
     u32 releaseDate;
     u8 padding[24];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDriveInfo - /decompHeaders/dvd.h/DVDDriveInfo */
-
-
-/* WARNING! conflicting data type names: /DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
-
-typedef void (*DVDLowCallback)(u32);
-
-typedef void (*DVDOptionalCommandChecker)(struct DVDCommandBlock *, DVDLowCallback);
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDriveInfo - /decompHeaders/dvd.h/DVDDriveInfo */
+
+
+
+
+
+/* WARNING! conflicting data type names: /DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
+
+
+
+typedef void (*DVDLowCallback)(u32);
+
+
+
+typedef void (*DVDOptionalCommandChecker)(struct DVDCommandBlock *, DVDLowCallback);
+
+
+
 typedef struct DVDQueue DVDQueue, *PDVDQueue;
-
+
+
 struct DVDQueue {
     struct DVDQueue *mHead;
     struct DVDQueue *mTail;
 } __attribute__((packed));
-
+
+
 typedef struct DataDiskReader DataDiskReader, *PDataDiskReader;
-
+
+
 struct DataDiskReader {
     int BytesToRead;
     int SavedBytesToRead;
@@ -2845,24 +3352,31 @@ struct DataDiskReader {
     byte compressedFlag;
     byte maybeIsFinishedReading;
 } __attribute__((packed));
-
+
+
 typedef struct DemoStatData DemoStatData, *PDemoStatData;
-
+
+
 struct DemoStatData {
     char text[50];
     DEMO_STAT_TYPE stat_type;
     ulong stat;
     ulong count;
 } __attribute__((packed));
-
+
+
 typedef struct EOSPad EOSPad, *PEOSPad;
-
+
+
 struct EOSPad {
     byte pad[2];
 } __attribute__((packed));
-
-typedef void (*EXICallback)(s32, struct OSContext *);
-
+
+
+typedef void (*EXICallback)(s32, struct OSContext *);
+
+
+
 enum {
     EnumAtBatResult_byte_default_=0,
     EnumAtBatResult_byte_StrikeOut=1,
@@ -2883,7 +3397,8 @@ enum {
     EnumAtBatResult_byte_Unknown=16
 };
 typedef unsigned char EnumAtBatResult_byte;
-
+
+
 enum {
     EnumAtBatResult_short_default_=0,
     EnumAtBatResult_short_StrikeOut=1,
@@ -2904,7 +3419,8 @@ enum {
     EnumAtBatResult_short_caughtInfieldFly_=16
 };
 typedef unsigned short EnumAtBatResult_short;
-
+
+
 enum {
     EnumAtBatResult_word_default_=0,
     EnumAtBatResult_word_StrikeOut=1,
@@ -2925,7 +3441,8 @@ enum {
     EnumAtBatResult_word_Unknown=16
 };
 typedef unsigned int EnumAtBatResult_word;
-
+
+
 enum {
     EnumBatContactType_Slap_lineDriveStar_defaultVal_=0,
     EnumBatContactType_Charge_grounderStar_popStar=1,
@@ -2933,7 +3450,8 @@ enum {
     EnumBatContactType_Bunt=3
 };
 typedef unsigned char EnumBatContactType;
-
+
+
 enum {
     EnumBobbleType_n_a___Caught_FumbleCheck=0,
     EnumBobbleType_Caught_BobbleCheck=1,
@@ -2942,7 +3460,8 @@ enum {
     EnumBobbleType_Fireball=4
 };
 typedef unsigned char EnumBobbleType;
-
+
+
 enum {
     EnumCTRLXYZ_CTRL_XYZ_NONE=0,
     EnumCTRLXYZ_CTRL_X=1,
@@ -2950,7 +3469,8 @@ enum {
     EnumCTRLXYZ_CTRL_Z=4
 };
 typedef unsigned char EnumCTRLXYZ;
-
+
+
 enum {
     EnumCharacterAnimation_int_FielderStandStill=0,
     EnumCharacterAnimation_int_FielderHoldBallStill=1,
@@ -3061,7 +3581,8 @@ enum {
     EnumCharacterAnimation_int_WinningCelebration=107
 };
 typedef unsigned int EnumCharacterAnimation_int;
-
+
+
 enum {
     EnumChargePitchType_non_Charge=0,
     EnumChargePitchType_startingCharge_chargedStar=1,
@@ -3069,7 +3590,8 @@ enum {
     EnumChargePitchType_Perfect=3
 };
 typedef unsigned char EnumChargePitchType;
-
+
+
 enum {
     EnumContactResult_int_InAir=0,
     EnumContactResult_int_Landed=1,
@@ -3078,7 +3600,8 @@ enum {
     EnumContactResult_int_Foul=65535
 };
 typedef unsigned int EnumContactResult_int;
-
+
+
 enum {
     EnumContactResult_short_InAir=0,
     EnumContactResult_short_Landed=1,
@@ -3087,7 +3610,8 @@ enum {
     EnumContactResult_short_Foul=65535
 };
 typedef unsigned short EnumContactResult_short;
-
+
+
 enum {
     EnumFielderAction_None=0,
     EnumFielderAction_Bobble_=1,
@@ -3096,7 +3620,8 @@ enum {
     EnumFielderAction_stopMoving_=19
 };
 typedef unsigned char EnumFielderAction;
-
+
+
 enum {
     EnumFieldingAbilityBitLocation_WallSplat=0,
     EnumFieldingAbilityBitLocation_WallJump=1,
@@ -3116,7 +3641,8 @@ enum {
     EnumFieldingAbilityBitLocation_Unassigned2=15
 };
 typedef unsigned int EnumFieldingAbilityBitLocation;
-
+
+
 enum {
     EnumGameStatus_default_=0,
     EnumGameStatus_AtBat=1,
@@ -3146,7 +3672,8 @@ enum {
     EnumGameStatus_postMinigameMenu=34
 };
 typedef unsigned char EnumGameStatus;
-
+
+
 enum {
     EnumGameType_ExhibitionGame=0,
     EnumGameType_Practice=2,
@@ -3156,7 +3683,8 @@ enum {
     EnumGameType_Minigames=7
 };
 typedef unsigned char EnumGameType;
-
+
+
 enum {
     EnumHitType_SourSlap=0,
     EnumHitType_NiceSlap=1,
@@ -3179,14 +3707,16 @@ enum {
     EnumHitType_None=255
 };
 typedef unsigned char EnumHitType;
-
+
+
 enum {
     EnumInputDirection_None=0,
     EnumInputDirection_PullStickTowardsHitting=1,
     EnumInputDirection_PushStickAway=2
 };
 typedef unsigned char EnumInputDirection;
-
+
+
 enum {
     EnumMinigame_None=0,
     EnumMinigame_BobOmbDerby=1,
@@ -3198,14 +3728,16 @@ enum {
     EnumMinigame_MarioGrandPrix=7
 };
 typedef unsigned char EnumMinigame;
-
+
+
 enum {
     EnumNoswingSwingBunt_NoSwing=0,
     EnumNoswingSwingBunt_Swing=1,
     EnumNoswingSwingBunt_Bunt=2
 };
 typedef unsigned char EnumNoswingSwingBunt;
-
+
+
 enum {
     EnumPADInput_PAD_BUTTON_LEFT=1,
     EnumPADInput_PAD_BUTTON_RIGHT=2,
@@ -3224,7 +3756,8 @@ enum {
     EnumPADInput_PAD_DISCONNECTED=32768
 };
 typedef unsigned short EnumPADInput;
-
+
+
 enum {
     EnumPopupText_byte_Nothing=0,
     EnumPopupText_byte_Out=1,
@@ -3251,7 +3784,8 @@ enum {
     EnumPopupText_byte_foulBallAndOutOnBunt=22
 };
 typedef unsigned char EnumPopupText_byte;
-
+
+
 enum {
     EnumPopupText_word_Nothing=0,
     EnumPopupText_word_Out=1,
@@ -3278,7 +3812,8 @@ enum {
     EnumPopupText_word_foulBallAndOutOnBunt=22
 };
 typedef unsigned int EnumPopupText_word;
-
+
+
 enum {
     EnumSecondaryGameModes_BaseballMatch=0,
     EnumSecondaryGameModes_ToyField=1,
@@ -3301,7 +3836,8 @@ enum {
     EnumSecondaryGameModes_LoadPracticeScreen=18
 };
 typedef unsigned char EnumSecondaryGameModes;
-
+
+
 enum {
     EnumStadiumIDs_MarioStadium=0,
     EnumStadiumIDs_BowserCastle=1,
@@ -3312,7 +3848,8 @@ enum {
     EnumStadiumIDs_ToyField=6
 };
 typedef unsigned char EnumStadiumIDs;
-
+
+
 enum {
     EnumStadiumIDs4_MarioStadium=0,
     EnumStadiumIDs4_BowserCastle=1,
@@ -3323,7 +3860,8 @@ enum {
     EnumStadiumIDs4_ToyField=6
 };
 typedef unsigned int EnumStadiumIDs4;
-
+
+
 enum {
     EnumTypeOfContact_RightSour=0,
     EnumTypeOfContact_RightNice=1,
@@ -3333,7 +3871,8 @@ enum {
     EnumTypeOfContact_default_=255
 };
 typedef unsigned char EnumTypeOfContact;
-
+
+
 enum {
     EnumUpdateBatterStat_Strikeout=1,
     EnumUpdateBatterStat__4BallWalk=2,
@@ -3347,15 +3886,18 @@ enum {
     EnumUpdateBatterStat_Unknown=15
 };
 typedef unsigned int EnumUpdateBatterStat;
-
+
+
 enum {
     Enum_batting_hand_BATTING_HAND_RIGHT=0,
     Enum_batting_hand_BATTING_HAND_LEFT=1
 };
 typedef unsigned char Enum_batting_hand;
-
+
+
 typedef struct FILE FILE, *PFILE;
-
+
+
 struct FILE {
     int unk0;
     ushort unk4b0 :7;
@@ -3376,19 +3918,24 @@ struct FILE {
     uchar filler40[4];
     int unk44;
 } __attribute__((packed));
-
+
+
 typedef struct FSTEntry FSTEntry, *PFSTEntry;
-
+
+
 struct FSTEntry {
     int isDirAndStringOff;
     int parentOrPosition;
     int nextEntryOrLength;
 } __attribute__((packed));
-
+
+
 typedef struct FX_DATA FX_DATA, *PFX_DATA;
-
+
+
 typedef struct FX_TAB FX_TAB, *PFX_TAB;
-
+
+
 struct FX_TAB {
     u16 id;
     u16 macro;
@@ -3399,32 +3946,39 @@ struct FX_TAB {
     u8 key;
     u8 vGroup;
 } __attribute__((packed));
-
+
+
 struct FX_DATA {
     u16 num;
     u16 reserverd;
     struct FX_TAB fx[1];
 } __attribute__((packed));
-
+
+
 typedef struct FX_GROUP FX_GROUP, *PFX_GROUP;
-
+
+
 struct FX_GROUP {
     u16 gid;
     u16 fxNum;
     struct FX_TAB *fxTab;
 } __attribute__((packed));
-
+
+
 typedef struct Frame Frame, *PFrame;
-
+
+
 typedef struct PerfSample PerfSample, *PPerfSample;
-
+
+
 struct Frame {
     struct PerfSample *samples;
     long lastSample;
     ulong end;
     ulong cachemisscycles;
 } __attribute__((packed));
-
+
+
 struct PerfSample {
     byte id;
     int cpuTimeStampStart;
@@ -3451,30 +4005,38 @@ struct PerfSample {
     int rasBusy[2];
     int rasClocks[2];
 } __attribute__((packed));
-
+
+
 typedef struct GROUP_DATA GROUP_DATA, *PGROUP_DATA;
-
+
+
 typedef union _union_67 _union_67, *P_union_67;
-
+
+
 typedef struct fx fx, *Pfx;
-
+
+
 typedef struct song song, *Psong;
-
+
+
 struct fx {
     u32 tableOff;
 } __attribute__((packed));
-
+
+
 struct song {
     u32 normpageOff;
     u32 drumpageOff;
     u32 midiSetupOff;
 } __attribute__((packed));
-
+
+
 union _union_67 {
     struct fx fx;
     struct song song;
 } __attribute__((packed));
-
+
+
 struct GROUP_DATA {
     u32 nextOff;
     u16 id;
@@ -3486,26 +4048,32 @@ struct GROUP_DATA {
     u32 layerOff;
     union _union_67 data;
 } __attribute__((packed));
-
+
+
 typedef struct GSTACK GSTACK, *PGSTACK;
-
+
+
 typedef struct SDIR_DATA SDIR_DATA, *PSDIR_DATA;
-
+
+
 typedef struct SAMPLE_HEADER SAMPLE_HEADER, *PSAMPLE_HEADER;
-
+
+
 struct SAMPLE_HEADER {
     u32 info;
     u32 length;
     u32 loopOffset;
     u32 loopLength;
 } __attribute__((packed));
-
+
+
 struct GSTACK {
     struct GROUP_DATA *gAddr;
     struct SDIR_DATA *sdirAddr;
     void *prjAddr;
 } __attribute__((packed));
-
+
+
 struct SDIR_DATA {
     u16 id;
     u16 ref_cnt;
@@ -3514,7 +4082,8 @@ struct SDIR_DATA {
     struct SAMPLE_HEADER header;
     u32 extraData;
 } __attribute__((packed));
-
+
+
 enum {
     GXAlphaOp_GX_AOP_AND=0,
     GXAlphaOp_GX_AOP_OR=1,
@@ -3523,26 +4092,40 @@ enum {
     GXAlphaOp_GX_MAX_ALPHAOP=4
 };
 typedef unsigned int GXAlphaOp;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
+
+
+
 enum {
     GXAlphaReadMode_GX_READ_00=0,
     GXAlphaReadMode_GX_READ_FF=1,
     GXAlphaReadMode_GX_READ_NONE=2
 };
 typedef unsigned int GXAlphaReadMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
+
+
+
 enum {
     GXAnisotropy_GX_ANISO_1=0,
     GXAnisotropy_GX_ANISO_2=1,
@@ -3550,26 +4133,40 @@ enum {
     GXAnisotropy_GX_MAX_ANISOTROPY=3
 };
 typedef unsigned int GXAnisotropy;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
+
+
+
 enum {
     GXAttnFn_GX_AF_SPEC=0,
     GXAttnFn_GX_AF_SPOT=1,
     GXAttnFn_GX_AF_NONE=2
 };
 typedef unsigned int GXAttnFn;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
+
+
+
 enum {
     GXAttr_GX_VA_PNMTXIDX=0,
     GXAttr_GX_VA_TEX0MTXIDX=1,
@@ -3601,13 +4198,20 @@ enum {
     GXAttr_GX_VA_NULL=255
 };
 typedef unsigned int GXAttr;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttr - /GX/GXAttr */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttr - /GX/GXAttr */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttr - /GX/GXAttr */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttr - /GX/GXAttr */
+
+
+
 enum {
     GXAttrType_GX_NONE=0,
     GXAttrType_GX_DIRECT=1,
@@ -3615,13 +4219,20 @@ enum {
     GXAttrType_GX_INDEX16=3
 };
 typedef unsigned int GXAttrType;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttrType - /GX/GXAttrType */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttrType - /GX/GXAttrType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttrType - /GX/GXAttrType */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttrType - /GX/GXAttrType */
+
+
+
 enum {
     _GXBPBlendMode_GX_BP_BLENDMODE_LOGICMODE_ST=16,
     _GXBPBlendMode_GX_BP_BLENDMODE_LOGICMODE_END=19,
@@ -3643,9 +4254,11 @@ enum {
     _GXBPBlendMode_GX_BP_BLENDMODE_ENABLE_ST=31
 };
 typedef unsigned int _GXBPBlendMode;
-
+
+
 typedef _GXBPBlendMode GXBPBlendMode;
-
+
+
 enum {
     _GXBPDstAlpha_GX_BP_DSTALPHA_YUV_FMT_ST=21,
     _GXBPDstAlpha_GX_BP_DSTALPHA_YUV_FMT_END=22,
@@ -3655,9 +4268,11 @@ enum {
     _GXBPDstAlpha_GX_BP_DSTALPHA_ALPHA_END=31
 };
 typedef unsigned int _GXBPDstAlpha;
-
+
+
 typedef _GXBPDstAlpha GXBPDstAlpha;
-
+
+
 enum {
     _GXBPFieldMask_GX_BP_FIELDMASK_EVEN_END=30,
     _GXBPFieldMask_GX_BP_FIELDMASK_EVEN_ST=30,
@@ -3665,25 +4280,31 @@ enum {
     _GXBPFieldMask_GX_BP_FIELDMASK_ODD_ST=31
 };
 typedef unsigned int _GXBPFieldMask;
-
+
+
 typedef _GXBPFieldMask GXBPFieldMask;
-
+
+
 enum {
     _GXBPFieldMode_GX_BP_FIELDMODE_TEX_LOD_END=31,
     _GXBPFieldMode_GX_BP_FIELDMODE_TEX_LOD_ST=31
 };
 typedef unsigned int _GXBPFieldMode;
-
+
+
 typedef _GXBPFieldMode GXBPFieldMode;
-
+
+
 enum {
     _GXBPFogColor_GX_BP_FOGCOLOR_RGB_ST=8,
     _GXBPFogColor_GX_BP_FOGCOLOR_RGB_END=31
 };
 typedef unsigned int _GXBPFogColor;
-
+
+
 typedef _GXBPFogColor GXBPFogColor;
-
+
+
 enum {
     _GXBPFogParam0_GX_BP_FOGPARAM0_A_SIGN_END=12,
     _GXBPFogParam0_GX_BP_FOGPARAM0_A_SIGN_ST=12,
@@ -3693,25 +4314,31 @@ enum {
     _GXBPFogParam0_GX_BP_FOGPARAM0_A_MANT_END=31
 };
 typedef unsigned int _GXBPFogParam0;
-
+
+
 typedef _GXBPFogParam0 GXBPFogParam0;
-
+
+
 enum {
     _GXBPFogParam1_GX_BP_FOGPARAM1_B_MAG_ST=8,
     _GXBPFogParam1_GX_BP_FOGPARAM1_B_MAG_END=31
 };
 typedef unsigned int _GXBPFogParam1;
-
+
+
 typedef _GXBPFogParam1 GXBPFogParam1;
-
+
+
 enum {
     _GXBPFogParam2_GX_BP_FOGPARAM2_B_SHIFT_ST=27,
     _GXBPFogParam2_GX_BP_FOGPARAM2_B_SHIFT_END=31
 };
 typedef unsigned int _GXBPFogParam2;
-
+
+
 typedef _GXBPFogParam2 GXBPFogParam2;
-
+
+
 enum {
     _GXBPFogParam3_GX_BP_FOGPARAM3_FSEL_ST=8,
     _GXBPFogParam3_GX_BP_FOGPARAM3_FSEL_END=10,
@@ -3725,9 +4352,11 @@ enum {
     _GXBPFogParam3_GX_BP_FOGPARAM3_C_MANT_END=31
 };
 typedef unsigned int _GXBPFogParam3;
-
+
+
 typedef _GXBPFogParam3 GXBPFogParam3;
-
+
+
 enum {
     _GXBPFogRange_GX_BP_FOGRANGE_ENABLED_END=21,
     _GXBPFogRange_GX_BP_FOGRANGE_ENABLED_ST=21,
@@ -3735,9 +4364,11 @@ enum {
     _GXBPFogRange_GX_BP_FOGRANGE_CENTER_END=31
 };
 typedef unsigned int _GXBPFogRange;
-
+
+
 typedef _GXBPFogRange GXBPFogRange;
-
+
+
 enum {
     _GXBPFogRangeK_GX_BP_FOGRANGEK_LO_ST=8,
     _GXBPFogRangeK_GX_BP_FOGRANGEK_LO_END=19,
@@ -3745,9 +4376,11 @@ enum {
     _GXBPFogRangeK_GX_BP_FOGRANGEK_HI_END=31
 };
 typedef unsigned int _GXBPFogRangeK;
-
+
+
 typedef _GXBPFogRangeK GXBPFogRangeK;
-
+
+
 enum {
     _GXBPGenMode_GX_BP_GENMODE_COPLANAR_END=12,
     _GXBPGenMode_GX_BP_GENMODE_COPLANAR_ST=12,
@@ -3763,17 +4396,21 @@ enum {
     _GXBPGenMode_GX_BP_GENMODE_NUMTEX_END=31
 };
 typedef unsigned int _GXBPGenMode;
-
+
+
 typedef _GXBPGenMode GXBPGenMode;
-
+
+
 enum {
     _GXBPIndIMask_GX_BP_INDIMASK_ST=24,
     _GXBPIndIMask_GX_BP_INDIMASK_END=31
 };
 typedef unsigned int _GXBPIndIMask;
-
+
+
 typedef _GXBPIndIMask GXBPIndIMask;
-
+
+
 enum {
     _GXBPIndMtx_GX_BP_INDMTX_EXP_ST=8,
     _GXBPIndMtx_GX_BP_INDMTX_EXP_END=9,
@@ -3783,9 +4420,11 @@ enum {
     _GXBPIndMtx_GX_BP_INDMTX_M00_END=31
 };
 typedef unsigned int _GXBPIndMtx;
-
+
+
 typedef _GXBPIndMtx GXBPIndMtx;
-
+
+
 enum {
     _GXBPIndTevStage_GX_BP_INDTEV_ADDPREV_END=11,
     _GXBPIndTevStage_GX_BP_INDTEV_ADDPREV_ST=11,
@@ -3807,9 +4446,11 @@ enum {
     _GXBPIndTevStage_GX_BP_INDTEV_STAGE_END=31
 };
 typedef unsigned int _GXBPIndTevStage;
-
+
+
 typedef _GXBPIndTevStage GXBPIndTevStage;
-
+
+
 enum {
     _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_ADJUST_END=9,
     _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_ADJUST_ST=9,
@@ -3823,9 +4464,11 @@ enum {
     _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_LINESZ_END=31
 };
 typedef unsigned int _GXBPLinePtWidth;
-
+
+
 typedef _GXBPLinePtWidth GXBPLinePtWidth;
-
+
+
 enum {
     _GXBPRas1SS0_GX_BP_RAS1_SS0_T1_ST=16,
     _GXBPRas1SS0_GX_BP_RAS1_SS0_T1_END=19,
@@ -3837,9 +4480,11 @@ enum {
     _GXBPRas1SS0_GX_BP_RAS1_SS0_S0_END=31
 };
 typedef unsigned int _GXBPRas1SS0;
-
+
+
 typedef _GXBPRas1SS0 GXBPRas1SS0;
-
+
+
 enum {
     _GXBPRas1SS1_GX_BP_RAS1_SS1_T3_ST=16,
     _GXBPRas1SS1_GX_BP_RAS1_SS1_T3_END=19,
@@ -3851,9 +4496,11 @@ enum {
     _GXBPRas1SS1_GX_BP_RAS1_SS1_S2_END=31
 };
 typedef unsigned int _GXBPRas1SS1;
-
+
+
 typedef _GXBPRas1SS1 GXBPRas1SS1;
-
+
+
 enum {
     _GXBPRasIRef_GX_BP_RAS1_IREF_TXC3_ST=8,
     _GXBPRasIRef_GX_BP_RAS1_IREF_TXC3_END=10,
@@ -3873,9 +4520,11 @@ enum {
     _GXBPRasIRef_GX_BP_RAS1_IREF_MAP0_END=31
 };
 typedef unsigned int _GXBPRasIRef;
-
+
+
 typedef _GXBPRasIRef GXBPRasIRef;
-
+
+
 enum {
     _GXBPRegs_GX_BP_REG_GENMODE=0,
     _GXBPRegs_GX_BP_REG_DISPCOPYFILTER0=1,
@@ -4091,9 +4740,11 @@ enum {
     _GXBPRegs_GX_BP_REG_SSMASK=254
 };
 typedef unsigned int _GXBPRegs;
-
+
+
 typedef _GXBPRegs GXBPRegs;
-
+
+
 enum {
     _GXBPSUSSize_GX_BP_SU_SSIZE_USEPTOFS_END=12,
     _GXBPSUSSize_GX_BP_SU_SSIZE_USEPTOFS_ST=12,
@@ -4101,9 +4752,11 @@ enum {
     _GXBPSUSSize_GX_BP_SU_SSIZE_USELINEOFS_ST=13
 };
 typedef unsigned int _GXBPSUSSize;
-
+
+
 typedef _GXBPSUSSize GXBPSUSSize;
-
+
+
 enum {
     _GXBPScissorBR_GX_BP_SCISSORBR_RIGHT_ST=9,
     _GXBPScissorBR_GX_BP_SCISSORBR_RIGHT_END=19,
@@ -4111,9 +4764,11 @@ enum {
     _GXBPScissorBR_GX_BP_SCISSORBR_BOT_END=31
 };
 typedef unsigned int _GXBPScissorBR;
-
+
+
 typedef _GXBPScissorBR GXBPScissorBR;
-
+
+
 enum {
     _GXBPScissorOffset_GX_BP_SCISSOROFS_OY_ST=12,
     _GXBPScissorOffset_GX_BP_SCISSOROFS_OY_END=21,
@@ -4121,9 +4776,11 @@ enum {
     _GXBPScissorOffset_GX_BP_SCISSOROFS_OX_END=31
 };
 typedef unsigned int _GXBPScissorOffset;
-
+
+
 typedef _GXBPScissorOffset GXBPScissorOffset;
-
+
+
 enum {
     _GXBPScissorTL_GX_BP_SCISSORTL_LEFT_ST=9,
     _GXBPScissorTL_GX_BP_SCISSORTL_LEFT_END=19,
@@ -4131,9 +4788,11 @@ enum {
     _GXBPScissorTL_GX_BP_SCISSORTL_TOP_END=31
 };
 typedef unsigned int _GXBPScissorTL;
-
+
+
 typedef _GXBPScissorTL GXBPScissorTL;
-
+
+
 enum {
     _GXBPZControl_GX_BP_ZCONTROL_BEFORE_TEX_END=25,
     _GXBPZControl_GX_BP_ZCONTROL_BEFORE_TEX_ST=25,
@@ -4143,9 +4802,11 @@ enum {
     _GXBPZControl_GX_BP_ZCONTROL_PIXEL_FMT_END=31
 };
 typedef unsigned int _GXBPZControl;
-
+
+
 typedef _GXBPZControl GXBPZControl;
-
+
+
 enum {
     _GXBPZMode_GX_BP_ZMODE_UPDATE_ENABLE_END=27,
     _GXBPZMode_GX_BP_ZMODE_UPDATE_ENABLE_ST=27,
@@ -4155,9 +4816,11 @@ enum {
     _GXBPZMode_GX_BP_ZMODE_TEST_ENABLE_ST=31
 };
 typedef unsigned int _GXBPZMode;
-
+
+
 typedef _GXBPZMode GXBPZMode;
-
+
+
 enum {
     GXBlendFactor_GX_BL_ZERO=0,
     GXBlendFactor_GX_BL_ONE=1,
@@ -4169,13 +4832,20 @@ enum {
     GXBlendFactor_GX_BL_INVDSTALPHA=7
 };
 typedef unsigned int GXBlendFactor;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
+
+
+
 enum {
     GXBlendMode_GX_BM_NONE=0,
     GXBlendMode_GX_BM_BLEND=1,
@@ -4184,13 +4854,20 @@ enum {
     GXBlendMode_GX_MAX_BLENDMODE=4
 };
 typedef unsigned int GXBlendMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
+
+
+
 enum {
     GXBool_GX_DISABLE=0,
     GXBool_GX_FALSE=0,
@@ -4198,44 +4875,64 @@ enum {
     GXBool_GX_TRUE=1
 };
 typedef unsigned char GXBool;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBool - /GX/GXBool */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBool - /GX/GXBool */
-
-typedef void (*GXBreakPtCallback)(void);
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBool - /GX/GXBool */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBool - /GX/GXBool */
+
+
+
+typedef void (*GXBreakPtCallback)(void);
+
+
+
 enum {
     GXCITexFmt_GX_TF_C4=8,
     GXCITexFmt_GX_TF_C8=9,
     GXCITexFmt_GX_TF_C14X2=10
 };
 typedef unsigned int GXCITexFmt;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
+
+
+
 enum {
     _GXCPArrayBase_GX_CP_ARRAYBASE_BASE_ST=6,
     _GXCPArrayBase_GX_CP_ARRAYBASE_BASE_END=31
 };
 typedef unsigned int _GXCPArrayBase;
-
+
+
 typedef _GXCPArrayBase GXCPArrayBase;
-
+
+
 enum {
     _GXCPArrayStride_GX_CP_ARRAYSTRIDE_STRIDE_ST=24,
     _GXCPArrayStride_GX_CP_ARRAYSTRIDE_STRIDE_END=31
 };
 typedef unsigned int _GXCPArrayStride;
-
+
+
 typedef _GXCPArrayStride GXCPArrayStride;
-
+
+
 enum {
     _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX3_ST=2,
     _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX3_END=7,
@@ -4249,9 +4946,11 @@ enum {
     _GXCPMtxIdxA_GX_CP_MTXIDXA_GEOM_END=31
 };
 typedef unsigned int _GXCPMtxIdxA;
-
+
+
 typedef _GXCPMtxIdxA GXCPMtxIdxA;
-
+
+
 enum {
     _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX7_ST=8,
     _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX7_END=13,
@@ -4263,9 +4962,11 @@ enum {
     _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX4_END=31
 };
 typedef unsigned int _GXCPMtxIdxB;
-
+
+
 typedef _GXCPMtxIdxB GXCPMtxIdxB;
-
+
+
 enum {
     _GXCPRegs_GX_CP_REG_MTXIDXA=48,
     _GXCPRegs_GX_CP_REG_MTXIDXB=64,
@@ -4278,9 +4979,11 @@ enum {
     _GXCPRegs_GX_CP_REG_ARRAYSTRIDE=176
 };
 typedef unsigned int _GXCPRegs;
-
+
+
 typedef _GXCPRegs GXCPRegs;
-
+
+
 enum {
     _GXCPVATGrp0_GX_CP_VAT_GRP0_NRMIDX3_END=0,
     _GXCPVATGrp0_GX_CP_VAT_GRP0_NRMIDX3_ST=0,
@@ -4312,9 +5015,11 @@ enum {
     _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_CNT_ST=31
 };
 typedef unsigned int _GXCPVATGrp0;
-
+
+
 typedef _GXCPVATGrp0 GXCPVATGrp0;
-
+
+
 enum {
     _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_TYPE_ST=1,
     _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_TYPE_END=3,
@@ -4340,9 +5045,11 @@ enum {
     _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_CNT_ST=31
 };
 typedef unsigned int _GXCPVATGrp1;
-
+
+
 typedef _GXCPVATGrp1 GXCPVATGrp1;
-
+
+
 enum {
     _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_SHIFT_ST=0,
     _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_SHIFT_END=4,
@@ -4366,9 +5073,11 @@ enum {
     _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC4_SHIFT_END=31
 };
 typedef unsigned int _GXCPVATGrp2;
-
+
+
 typedef _GXCPVATGrp2 GXCPVATGrp2;
-
+
+
 enum {
     _GXCPVCDHi_GX_CP_VCD_HI_TEX7COORD_ST=16,
     _GXCPVCDHi_GX_CP_VCD_HI_TEX7COORD_END=17,
@@ -4388,9 +5097,11 @@ enum {
     _GXCPVCDHi_GX_CP_VCD_HI_TEX0COORD_END=31
 };
 typedef unsigned int _GXCPVCDHi;
-
+
+
 typedef _GXCPVCDHi GXCPVCDHi;
-
+
+
 enum {
     _GXCPVCDLo_GX_CP_VCD_LO_CLRSPEC_ST=15,
     _GXCPVCDLo_GX_CP_VCD_LO_CLRSPEC_END=16,
@@ -4420,9 +5131,11 @@ enum {
     _GXCPVCDLo_GX_CP_VCD_LO_POSMTXIDX_ST=31
 };
 typedef unsigned int _GXCPVCDLo;
-
+
+
 typedef _GXCPVCDLo GXCPVCDLo;
-
+
+
 enum {
     GXChannelID_GX_COLOR0=0,
     GXChannelID_GX_COLOR1=1,
@@ -4436,67 +5149,104 @@ enum {
     GXChannelID_GX_COLOR_NULL=255
 };
 typedef unsigned int GXChannelID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXChannelID - /GX/GXChannelID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXChannelID - /GX/GXChannelID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXChannelID - /GX/GXChannelID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXChannelID - /GX/GXChannelID */
+
+
+
 enum {
     GXClipMode_GX_CLIP_ENABLE=0,
     GXClipMode_GX_CLIP_DISABLE=1
 };
 typedef unsigned int GXClipMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXClipMode - /GX/GXClipMode */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXClipMode - /GX/GXClipMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXClipMode - /GX/GXClipMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXClipMode - /GX/GXClipMode */
+
+
+
 typedef struct GXColor GXColor, *PGXColor;
-
+
+
 struct GXColor {
     byte r;
     byte g;
     byte b;
     byte a;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColor - /GX/GXColor */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColor - /GX/GXColor */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColor - /GX/GXColor */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColor - /GX/GXColor */
+
+
+
 typedef struct GXColorS10 GXColorS10, *PGXColorS10;
-
+
+
 struct GXColorS10 {
     short r;
     short g;
     short b;
     short a;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColorS10 - /GX/GXColorS10 */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColorS10 - /GX/GXColorS10 */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColorS10 - /GX/GXColorS10 */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColorS10 - /GX/GXColorS10 */
+
+
+
 enum {
     GXColorSrc_GX_SRC_REG=0,
     GXColorSrc_GX_SRC_VTX=1
 };
 typedef unsigned int GXColorSrc;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
+
+
+
 enum {
     _GXCommand_GX_CMD_NOP=0,
     _GXCommand_GX_CMD_LOAD_CP_REG=8,
@@ -4517,9 +5267,11 @@ enum {
     _GXCommand_GX_CMD_DRAW_POINTS=184
 };
 typedef unsigned int _GXCommand;
-
+
+
 typedef _GXCommand GXCommand;
-
+
+
 enum {
     GXCompCnt_GX_CLR_RGB=0,
     GXCompCnt_GX_NRM_XYZ=0,
@@ -4532,13 +5284,20 @@ enum {
     GXCompCnt_GX_NRM_NBT3=2
 };
 typedef unsigned int GXCompCnt;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
+
+
+
 enum {
     GXCompType_GX_RGB565=0,
     GXCompType_GX_U8=0,
@@ -4553,13 +5312,20 @@ enum {
     GXCompType_GX_RGBA8=5
 };
 typedef unsigned int GXCompType;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompType - /GX/GXCompType */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompType - /GX/GXCompType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompType - /GX/GXCompType */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompType - /GX/GXCompType */
+
+
+
 enum {
     GXCompare_GX_NEVER=0,
     GXCompare_GX_LESS=1,
@@ -4571,26 +5337,40 @@ enum {
     GXCompare_GX_ALWAYS=7
 };
 typedef unsigned int GXCompare;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompare - /GX/GXCompare */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompare - /GX/GXCompare */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompare - /GX/GXCompare */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompare - /GX/GXCompare */
+
+
+
 enum {
     GXCopyMode_GX_COPY_PROGRESSIVE=0,
     GXCopyMode_GX_COPY_INTLC_EVEN=2,
     GXCopyMode_GX_COPY_INTLC_ODD=3
 };
 typedef unsigned int GXCopyMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
+
+
+
 enum {
     GXCullMode_GX_CULL_NONE=0,
     GXCullMode_GX_CULL_FRONT=1,
@@ -4598,26 +5378,40 @@ enum {
     GXCullMode_GX_CULL_ALL=3
 };
 typedef unsigned int GXCullMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCullMode - /GX/GXCullMode */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCullMode - /GX/GXCullMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCullMode - /GX/GXCullMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCullMode - /GX/GXCullMode */
+
+
+
 enum {
     GXDiffuseFn_GX_DF_NONE=0,
     GXDiffuseFn_GX_DF_SIGN=1,
     GXDiffuseFn_GX_DF_CLAMP=2
 };
 typedef unsigned int GXDiffuseFn;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
+
+
+
 enum {
     _GXDirtyFlag_GX_DIRTY_SU_TEX=1,
     _GXDirtyFlag_GX_DIRTY_BP_MASK=2,
@@ -4650,9 +5444,11 @@ enum {
     _GXDirtyFlag_GX_LIGHT_CHAN_MASK=268435458
 };
 typedef unsigned int _GXDirtyFlag;
-
+
+
 typedef _GXDirtyFlag GXDirtyFlag;
-
+
+
 enum {
     GXDistAttnFn_GX_DA_OFF=0,
     GXDistAttnFn_GX_DA_GENTLE=1,
@@ -4660,37 +5456,56 @@ enum {
     GXDistAttnFn_GX_DA_STEEP=3
 };
 typedef unsigned int GXDistAttnFn;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
-
-typedef void (*GXDrawDoneCallback)(void);
-
-typedef void (*GXDrawSyncCallback)(short);
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
+
+
+
+typedef void (*GXDrawDoneCallback)(void);
+
+
+
+typedef void (*GXDrawSyncCallback)(short);
+
+
+
 enum {
     GXEvent_GX_VCACHE_MISS_ALL=0,
     GXEvent_GX_VCACHE_MISS_POS=1,
     GXEvent_GX_VCACHE_MISS_NRM=2
 };
 typedef unsigned int GXEvent;
-
+
+
 enum {
     GXFBClamp_GX_CLAMP_NONE=0,
     GXFBClamp_GX_CLAMP_TOP=1,
     GXFBClamp_GX_CLAMP_BOTTOM=2
 };
 typedef unsigned int GXFBClamp;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
+
+
+
 enum {
     _GXFifoCmd_GX_FIFO_CMD_NOOP=0,
     _GXFifoCmd_GX_FIFO_CMD_LOAD_CP_REG=8,
@@ -4704,30 +5519,45 @@ enum {
     _GXFifoCmd_GX_FIFO_CMD_LOAD_BP_REG=97
 };
 typedef unsigned int _GXFifoCmd;
-
+
+
 typedef _GXFifoCmd GXFifoCmd;
-
+
+
 typedef struct GXFifoObj GXFifoObj, *PGXFifoObj;
-
+
+
 struct GXFifoObj {
     byte pad[128];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXFifo.h/GXFifoObj - /GX/GXFifoObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXFifo.h/GXFifoObj - /GX/GXFifoObj */
+
+
+
 typedef struct GXFogAdjTable GXFogAdjTable, *PGXFogAdjTable;
-
+
+
 struct GXFogAdjTable {
     short r[10];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXFogAdjTable - /GX/GXFogAdjTable */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXFogAdjTable - /GX/GXFogAdjTable */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXFogAdjTable - /GX/GXFogAdjTable */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXFogAdjTable - /GX/GXFogAdjTable */
+
+
+
 enum {
     GXFogType_GX_FOG_NONE=0,
     GXFogType_GX_FOG_PERSP_LIN=2,
@@ -4742,26 +5572,40 @@ enum {
     GXFogType_GX_FOG_ORTHO_REVEXP2=15
 };
 typedef unsigned int GXFogType;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFogType - /GX/GXFogType */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFogType - /GX/GXFogType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFogType - /GX/GXFogType */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFogType - /GX/GXFogType */
+
+
+
 enum {
     GXGamma_GX_GM_1_0=0,
     GXGamma_GX_GM_1_7=1,
     GXGamma_GX_GM_2_2=2
 };
 typedef unsigned int GXGamma;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXGamma - /GX/GXGamma */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXGamma - /GX/GXGamma */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXGamma - /GX/GXGamma */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXGamma - /GX/GXGamma */
+
+
+
 enum {
     GXIndTexAlphaSel_GX_ITBA_OFF=0,
     GXIndTexAlphaSel_GX_ITBA_S=1,
@@ -4770,13 +5614,20 @@ enum {
     GXIndTexAlphaSel_GX_MAX_ITBALPHA=4
 };
 typedef unsigned int GXIndTexAlphaSel;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
+
+
+
 enum {
     GXIndTexBiasSel_GX_ITB_NONE=0,
     GXIndTexBiasSel_GX_ITB_S=1,
@@ -4789,13 +5640,20 @@ enum {
     GXIndTexBiasSel_GX_MAX_ITBIAS=8
 };
 typedef unsigned int GXIndTexBiasSel;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
+
+
+
 enum {
     GXIndTexFormat_GX_ITF_8=0,
     GXIndTexFormat_GX_ITF_5=1,
@@ -4804,13 +5662,20 @@ enum {
     GXIndTexFormat_GX_MAX_ITFORMAT=4
 };
 typedef unsigned int GXIndTexFormat;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
+
+
+
 enum {
     GXIndTexMtxID_GX_ITM_OFF=0,
     GXIndTexMtxID_GX_ITM_0=1,
@@ -4824,13 +5689,20 @@ enum {
     GXIndTexMtxID_GX_ITM_T2=11
 };
 typedef unsigned int GXIndTexMtxID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
+
+
+
 enum {
     GXIndTexScale_GX_ITS_1=0,
     GXIndTexScale_GX_ITS_2=1,
@@ -4844,13 +5716,20 @@ enum {
     GXIndTexScale_GX_MAX_ITSCALE=9
 };
 typedef unsigned int GXIndTexScale;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
+
+
+
 enum {
     GXIndTexStageID_GX_INDTEXSTAGE0=0,
     GXIndTexStageID_GX_INDTEXSTAGE1=1,
@@ -4859,13 +5738,20 @@ enum {
     GXIndTexStageID_GX_MAX_INDTEXSTAGE=4
 };
 typedef unsigned int GXIndTexStageID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
+
+
+
 enum {
     GXIndTexWrap_GX_ITW_OFF=0,
     GXIndTexWrap_GX_ITW_256=1,
@@ -4877,13 +5763,20 @@ enum {
     GXIndTexWrap_GX_MAX_ITWRAP=7
 };
 typedef unsigned int GXIndTexWrap;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
+
+
+
 enum {
     GXLightID_GX_LIGHT_NULL=0,
     GXLightID_GX_LIGHT0=1,
@@ -4897,28 +5790,43 @@ enum {
     GXLightID_GX_MAX_LIGHT=256
 };
 typedef unsigned int GXLightID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLightID - /GX/GXLightID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLightID - /GX/GXLightID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLightID - /GX/GXLightID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLightID - /GX/GXLightID */
+
+
+
 typedef struct _GXLightObj _GXLightObj, *P_GXLightObj;
-
+
+
 typedef struct _GXLightObj GXLightObj;
-
+
+
 struct _GXLightObj {
     u8 padding[64];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXLightObj - /decompHeaders/GXTypes.h/GXLightObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXLightObj - /decompHeaders/GXTypes.h/GXLightObj */
+
+
+
 typedef struct __GXLightObjPriv __GXLightObjPriv, *P__GXLightObjPriv;
-
+
+
 typedef struct __GXLightObjPriv GXLightObjPriv;
-
+
+
 struct __GXLightObjPriv {
     u32 reserved[3];
     GXColor color;
@@ -4931,7 +5839,8 @@ struct __GXLightObjPriv {
     struct Vec3f lpos;
     struct Vec3f ldir;
 } __attribute__((packed));
-
+
+
 enum {
     GXLogicOp_GX_LO_CLEAR=0,
     GXLogicOp_GX_LO_AND=1,
@@ -4951,13 +5860,20 @@ enum {
     GXLogicOp_GX_LO_SET=15
 };
 typedef unsigned int GXLogicOp;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
+
+
+
 enum {
     GXMiscToken_GX_MT_NULL=0,
     GXMiscToken_GX_MT_XF_FLUSH=1,
@@ -4965,13 +5881,20 @@ enum {
     GXMiscToken_GX_MT_ABORT_WAIT_COPYOUT=3
 };
 typedef unsigned int GXMiscToken;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
+
+
+
 enum {
     GXPTTexMtx_GX_PTTEXMTX0=64,
     GXPTTexMtx_GX_PTTEXMTX1=67,
@@ -4996,13 +5919,20 @@ enum {
     GXPTTexMtx_GX_PTIDENTITY=125
 };
 typedef unsigned int GXPTTexMtx;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
+
+
+
 enum {
     GXPerf0_GX_PERF0_VERTICES=0,
     GXPerf0_GX_PERF0_CLIP_VTX=1,
@@ -5042,13 +5972,20 @@ enum {
     GXPerf0_GX_PERF0_NONE=35
 };
 typedef unsigned int GXPerf0;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
+
+
+
 enum {
     GXPerf1_GX_PERF1_TEXELS=0,
     GXPerf1_GX_PERF1_TX_IDLE=1,
@@ -5075,13 +6012,20 @@ enum {
     GXPerf1_GX_PERF1_NONE=22
 };
 typedef unsigned int GXPerf1;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
+
+
+
 enum {
     GXPixelFmt_GX_PF_RGB8_Z24=0,
     GXPixelFmt_GX_PF_RGBA6_Z24=1,
@@ -5093,13 +6037,20 @@ enum {
     GXPixelFmt_GX_PF_YUV420=7
 };
 typedef unsigned int GXPixelFmt;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
+
+
+
 enum {
     GXPosNrmMtx_GX_PNMTX0=0,
     GXPosNrmMtx_GX_PNMTX1=3,
@@ -5113,13 +6064,20 @@ enum {
     GXPosNrmMtx_GX_PNMTX9=27
 };
 typedef unsigned int GXPosNrmMtx;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
+
+
+
 enum {
     GXPrimitive_GX_QUADS=128,
     GXPrimitive_GX_TRIANGLES=144,
@@ -5130,27 +6088,42 @@ enum {
     GXPrimitive_GX_POINTS=184
 };
 typedef unsigned int GXPrimitive;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
+
+
+
 enum {
     GXProjectionType_GX_PERSPECTIVE=0,
     GXProjectionType_GX_ORTHOGRAPHIC=1
 };
 typedef unsigned int GXProjectionType;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
+
+
+
 typedef struct GXRenderModeObj GXRenderModeObj, *PGXRenderModeObj;
-
+
+
 enum {
     VITVMode_VI_TVMODE_NTSC_INT=0,
     VITVMode_VI_TVMODE_NTSC_DS=1,
@@ -5166,13 +6139,15 @@ enum {
     VITVMode_VI_TVMODE_EURGB60_DS=21
 };
 typedef unsigned int VITVMode;
-
+
+
 enum {
     VIXFBMode_VI_XFBMODE_SF=0,
     VIXFBMode_VI_XFBMODE_DF=1
 };
 typedef unsigned int VIXFBMode;
-
+
+
 struct GXRenderModeObj {
     VITVMode viTVmode;
     short fbWidth;  /* no xscale from efb to xfb */
@@ -5188,13 +6163,20 @@ struct GXRenderModeObj {
     byte sample_pattern[12][2];  /* aa sample pattern */
     byte vfilter[7];  /* vertical filter coefficients */
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXRenderModeObj - /GX/GXRenderModeObj */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXRenderModeObj - /GX/GXRenderModeObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXRenderModeObj - /GX/GXRenderModeObj */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXRenderModeObj - /GX/GXRenderModeObj */
+
+
+
 enum {
     GXSpotFn_GX_SP_OFF=0,
     GXSpotFn_GX_SP_FLAT=1,
@@ -5205,13 +6187,20 @@ enum {
     GXSpotFn_GX_SP_RING2=6
 };
 typedef unsigned int GXSpotFn;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
+
+
+
 enum {
     GXTevAlphaArg_GX_CA_APREV=0,
     GXTevAlphaArg_GX_CA_A0=1,
@@ -5224,13 +6213,20 @@ enum {
     GXTevAlphaArg_GX_CA_ZERO=7
 };
 typedef unsigned int GXTevAlphaArg;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
+
+
+
 enum {
     GXTevBias_GX_TB_ZERO=0,
     GXTevBias_GX_TB_ADDHALF=1,
@@ -5238,13 +6234,20 @@ enum {
     GXTevBias_GX_MAX_TEVBIAS=3
 };
 typedef unsigned int GXTevBias;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevBias - /GX/GXTevBias */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevBias - /GX/GXTevBias */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevBias - /GX/GXTevBias */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevBias - /GX/GXTevBias */
+
+
+
 enum {
     GXTevClampMode_GX_TC_LINEAR=0,
     GXTevClampMode_GX_TC_GE=1,
@@ -5253,13 +6256,20 @@ enum {
     GXTevClampMode_GX_MAX_TEVCLAMPMODE=4
 };
 typedef unsigned int GXTevClampMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
+
+
+
 enum {
     GXTevColorArg_GX_CC_CPREV=0,
     GXTevColorArg_GX_CC_APREV=1,
@@ -5283,13 +6293,20 @@ enum {
     GXTevColorArg_GX_CC_TEXBBB=18
 };
 typedef unsigned int GXTevColorArg;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
+
+
+
 enum {
     GXTevColorChan_GX_CH_RED=0,
     GXTevColorChan_GX_CH_GREEN=1,
@@ -5297,13 +6314,20 @@ enum {
     GXTevColorChan_GX_CH_ALPHA=3
 };
 typedef unsigned int GXTevColorChan;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
+
+
+
 enum {
     GXTevKAlphaSel_GX_TEV_KASEL_8_8=0,
     GXTevKAlphaSel_GX_TEV_KASEL_7_8=1,
@@ -5331,13 +6355,20 @@ enum {
     GXTevKAlphaSel_GX_TEV_KASEL_K3_A=31
 };
 typedef unsigned int GXTevKAlphaSel;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
+
+
+
 enum {
     GXTevKColorID_GX_KCOLOR0=0,
     GXTevKColorID_GX_KCOLOR1=1,
@@ -5346,13 +6377,20 @@ enum {
     GXTevKColorID_GX_MAX_KCOLOR=4
 };
 typedef unsigned int GXTevKColorID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
+
+
+
 enum {
     GXTevKColorSel_GX_TEV_KCSEL_8_8=0,
     GXTevKColorSel_GX_TEV_KCSEL_7_8=1,
@@ -5384,13 +6422,20 @@ enum {
     GXTevKColorSel_GX_TEV_KCSEL_K3_A=31
 };
 typedef unsigned int GXTevKColorSel;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
+
+
+
 enum {
     GXTevMode_GX_MODULATE=0,
     GXTevMode_GX_DECAL=1,
@@ -5399,13 +6444,20 @@ enum {
     GXTevMode_GX_PASSCLR=4
 };
 typedef unsigned int GXTevMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevMode - /GX/GXTevMode */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevMode - /GX/GXTevMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevMode - /GX/GXTevMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevMode - /GX/GXTevMode */
+
+
+
 enum {
     GXTevOp_GX_TEV_ADD=0,
     GXTevOp_GX_TEV_SUB=1,
@@ -5419,13 +6471,20 @@ enum {
     GXTevOp_GX_TEV_COMP_RGB8_EQ=15
 };
 typedef unsigned int GXTevOp;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevOp - /GX/GXTevOp */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevOp - /GX/GXTevOp */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevOp - /GX/GXTevOp */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevOp - /GX/GXTevOp */
+
+
+
 enum {
     GXTevRegID_GX_TEVPREV=0,
     GXTevRegID_GX_TEVREG0=1,
@@ -5434,13 +6493,20 @@ enum {
     GXTevRegID_GX_MAX_TEVREG=4
 };
 typedef unsigned int GXTevRegID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
+
+
+
 enum {
     GXTevScale_GX_CS_SCALE_1=0,
     GXTevScale_GX_CS_SCALE_2=1,
@@ -5449,13 +6515,20 @@ enum {
     GXTevScale_GX_MAX_TEVSCALE=4
 };
 typedef unsigned int GXTevScale;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevScale - /GX/GXTevScale */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevScale - /GX/GXTevScale */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevScale - /GX/GXTevScale */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevScale - /GX/GXTevScale */
+
+
+
 enum {
     GXTevStageID_GX_TEVSTAGE0=0,
     GXTevStageID_GX_TEVSTAGE1=1,
@@ -5476,13 +6549,20 @@ enum {
     GXTevStageID_GX_MAX_TEVSTAGE=16
 };
 typedef unsigned int GXTevStageID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
+
+
+
 enum {
     GXTevSwapSel_GX_TEV_SWAP0=0,
     GXTevSwapSel_GX_TEV_SWAP1=1,
@@ -5491,13 +6571,20 @@ enum {
     GXTevSwapSel_GX_MAX_TEVSWAP=4
 };
 typedef unsigned int GXTevSwapSel;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
+
+
+
 enum {
     GXTexCacheSize_GX_TEXCACHE_32K=0,
     GXTexCacheSize_GX_TEXCACHE_128K=1,
@@ -5505,13 +6592,20 @@ enum {
     GXTexCacheSize_GX_TEXCACHE_NONE=3
 };
 typedef unsigned int GXTexCacheSize;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
+
+
+
 enum {
     GXTexCoordID_GX_TEXCOORD0=0,
     GXTexCoordID_GX_TEXCOORD1=1,
@@ -5525,16 +6619,26 @@ enum {
     GXTexCoordID_GX_TEXCOORD_NULL=255
 };
 typedef unsigned int GXTexCoordID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
-
-
-/* WARNING! conflicting data type names: /GX/GXTexFilter - /sdk/GXEnum.h/GXTexFilter */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /GX/GXTexFilter - /sdk/GXEnum.h/GXTexFilter */
+
+
+
 enum {
     GXTexFmt_GX_TF_I4=0,
     GXTexFmt_GX_TF_I8=1,
@@ -5563,13 +6667,20 @@ enum {
     GXTexFmt_GX_CTF_Z16L=60
 };
 typedef unsigned int GXTexFmt;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
+
+
+
 enum {
     GXTexGenSrc_GX_TG_POS=0,
     GXTexGenSrc_GX_TG_NRM=1,
@@ -5594,13 +6705,20 @@ enum {
     GXTexGenSrc_GX_TG_COLOR1=20
 };
 typedef unsigned int GXTexGenSrc;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
+
+
+
 enum {
     GXTexGenType_GX_TG_MTX3x4=0,
     GXTexGenType_GX_TG_MTX2x4=1,
@@ -5615,13 +6733,20 @@ enum {
     GXTexGenType_GX_TG_SRTG=10
 };
 typedef unsigned int GXTexGenType;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
+
+
+
 enum {
     GXTexMapID_GX_TEXMAP0=0,
     GXTexMapID_GX_TEXMAP1=1,
@@ -5636,13 +6761,20 @@ enum {
     GXTexMapID_GX_TEX_DISABLE=256
 };
 typedef unsigned int GXTexMapID;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
+
+
+
 enum {
     GXTexMtx_GX_TEXMTX0=30,
     GXTexMtx_GX_TEXMTX1=33,
@@ -5657,41 +6789,65 @@ enum {
     GXTexMtx_GX_IDENTITY=60
 };
 typedef unsigned int GXTexMtx;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
+
+
+
 enum {
     GXTexMtxType_GX_MTX3x4=0,
     GXTexMtxType_GX_MTX2x4=1
 };
 typedef unsigned int GXTexMtxType;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
+
+
+
 typedef struct GXTexObj GXTexObj, *PGXTexObj;
-
+
+
 struct GXTexObj {
     int dummy[8];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexObj - /GX/GXTexObj */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexObj - /GX/GXTexObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexObj - /GX/GXTexObj */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexObj - /GX/GXTexObj */
+
+
+
 typedef struct _GXTexObjPriv _GXTexObjPriv, *P_GXTexObjPriv;
-
+
+
 typedef struct _GXTexObjPriv GXTexObjPriv;
-
+
+
 struct _GXTexObjPriv {
     u32 mode0;
     u32 mode1;
@@ -5704,7 +6860,8 @@ struct _GXTexObjPriv {
     u8 loadFormat;
     u8 flags;
 } __attribute__((packed));
-
+
+
 enum {
     GXTexOffset_GX_TO_ZERO=0,
     GXTexOffset_GX_TO_SIXTEENTH=1,
@@ -5715,31 +6872,50 @@ enum {
     GXTexOffset_GX_MAX_TEXOFFSET=6
 };
 typedef unsigned int GXTexOffset;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
+
+
+
 typedef struct GXTexRegion GXTexRegion, *PGXTexRegion;
-
+
+
 struct GXTexRegion {
     int dummy[4];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexRegion - /GX/GXTexRegion */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexRegion - /GX/GXTexRegion */
-
-typedef GXTexRegion * (*GXTexRegionCallback)(GXTexObj *, GXTexMapID);
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexRegion - /GX/GXTexRegion */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexRegion - /GX/GXTexRegion */
+
+
+
+typedef GXTexRegion * (*GXTexRegionCallback)(GXTexObj *, GXTexMapID);
+
+
+
 typedef struct _GXTexRegionPriv _GXTexRegionPriv, *P_GXTexRegionPriv;
-
+
+
 typedef struct _GXTexRegionPriv GXTexRegionPriv;
-
+
+
 struct _GXTexRegionPriv {
     u32 unk0;
     u32 unk4;
@@ -5748,13 +6924,20 @@ struct _GXTexRegionPriv {
     u8 unkD;
     u8 padding[2];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /GX/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /GX/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
+
+
+
 enum {
     GXTlut_GX_TLUT0=0,
     GXTlut_GX_TLUT1=1,
@@ -5778,62 +6961,96 @@ enum {
     GXTlut_GX_BIGTLUT3=19
 };
 typedef unsigned int GXTlut;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlut - /GX/GXTlut */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlut - /GX/GXTlut */
-
-
-/* WARNING! conflicting data type names: /GX/GXTlutFmt - /sdk/GXEnum.h/GXTlutFmt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlut - /GX/GXTlut */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlut - /GX/GXTlut */
+
+
+
+
+
+/* WARNING! conflicting data type names: /GX/GXTlutFmt - /sdk/GXEnum.h/GXTlutFmt */
+
+
+
 typedef struct GXTlutObj GXTlutObj, *PGXTlutObj;
-
+
+
 struct GXTlutObj {
     int dummy[3];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutObj - /GX/GXTlutObj */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutObj - /GX/GXTlutObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutObj - /GX/GXTlutObj */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutObj - /GX/GXTlutObj */
+
+
+
 typedef struct _GXTlutObjPriv _GXTlutObjPriv, *P_GXTlutObjPriv;
-
+
+
 typedef struct _GXTlutObjPriv GXTlutObjPriv;
-
+
+
 struct _GXTlutObjPriv {
     u32 unk0;
     u32 unk4;
     u16 numEntries;
     u8 padding[2];
 } __attribute__((packed));
-
+
+
 typedef struct GXTlutRegion GXTlutRegion, *PGXTlutRegion;
-
+
+
 struct GXTlutRegion {
     int dummy[4];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutRegion - /GX/GXTlutRegion */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutRegion - /GX/GXTlutRegion */
-
-typedef GXTlutRegion * (*GXTlutRegionCallback)(int);
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutRegion - /GX/GXTlutRegion */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutRegion - /GX/GXTlutRegion */
+
+
+
+typedef GXTlutRegion * (*GXTlutRegionCallback)(int);
+
+
+
 typedef struct _GXTlutRegionPriv _GXTlutRegionPriv, *P_GXTlutRegionPriv;
-
+
+
 typedef struct _GXTlutRegionPriv GXTlutRegionPriv;
-
+
+
 struct _GXTlutRegionPriv {
     u32 unk0;
     GXTlutObjPriv tlutObj;
 } __attribute__((packed));
-
+
+
 enum {
     GXTlutSize_GX_TLUT_16=1,
     GXTlutSize_GX_TLUT_32=2,
@@ -5848,13 +7065,20 @@ enum {
     GXTlutSize_GX_TLUT_16K=1024
 };
 typedef unsigned int GXTlutSize;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
+
+
+
 enum {
     GXVCachePerf_GX_VC_POS=0,
     GXVCachePerf_GX_VC_NRM=1,
@@ -5871,13 +7095,20 @@ enum {
     GXVCachePerf_GX_VC_ALL=15
 };
 typedef unsigned int GXVCachePerf;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
+
+
+
 enum {
     enum_216_GX_WARN_NONE=0,
     enum_216_GX_WARN_SEVERE=1,
@@ -5885,39 +7116,59 @@ enum {
     enum_216_GX_WARN_ALL=3
 };
 typedef unsigned int enum_216;
-
+
+
 typedef enum_216 GXWarningLevel;
-
-typedef void (*GXVerifyCallback)(GXWarningLevel, int, char *);
-
+
+
+typedef void (*GXVerifyCallback)(GXWarningLevel, int, char *);
+
+
+
 typedef struct GXVtxAttrFmtList GXVtxAttrFmtList, *PGXVtxAttrFmtList;
-
+
+
 struct GXVtxAttrFmtList {
     GXAttr attr;
     GXCompCnt cnt;
     GXCompType type;
     byte frac;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
+
+
+
 typedef struct GXVtxDescList GXVtxDescList, *PGXVtxDescList;
-
+
+
 struct GXVtxDescList {
     GXAttr attr;
     GXAttrType type;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxDescList - /GX/GXVtxDescList */
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxDescList - /GX/GXVtxDescList */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxDescList - /GX/GXVtxDescList */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxDescList - /GX/GXVtxDescList */
+
+
+
 enum {
     GXVtxFmt_GX_VTXFMT0=0,
     GXVtxFmt_GX_VTXFMT1=1,
@@ -5930,13 +7181,20 @@ enum {
     GXVtxFmt_GX_MAX_VTXFMT=8
 };
 typedef unsigned int GXVtxFmt;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
+
+
+
 enum {
     _GXXFClipDisable_GX_XF_CLIPDISABLE_ACCEL_END=29,
     _GXXFClipDisable_GX_XF_CLIPDISABLE_ACCEL_ST=29,
@@ -5946,9 +7204,11 @@ enum {
     _GXXFClipDisable_GX_XF_CLIPDISABLE_DETECT_ST=31
 };
 typedef unsigned int _GXXFClipDisable;
-
+
+
 typedef _GXXFClipDisable GXXFClipDisable;
-
+
+
 enum {
     _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKLO_ST=17,
     _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKLO_END=20,
@@ -5968,9 +7228,11 @@ enum {
     _GXXFClr0Ctrl_GX_XF_CLR0CTRL_MTXSRC_ST=31
 };
 typedef unsigned int _GXXFClr0Ctrl;
-
+
+
 typedef _GXXFClr0Ctrl GXXFClr0Ctrl;
-
+
+
 enum {
     _GXXFDualTex_GX_XF_DUALTEX_NORMALISE_END=23,
     _GXXFDualTex_GX_XF_DUALTEX_NORMALISE_ST=23,
@@ -5978,15 +7240,18 @@ enum {
     _GXXFDualTex_GX_XF_DUALTEX_BASEROW_END=31
 };
 typedef unsigned int _GXXFDualTex;
-
+
+
 typedef _GXXFDualTex GXXFDualTex;
-
+
+
 enum {
     GXXFFlushVal_GX_XF_FLUSH_NONE=0,
     GXXFFlushVal_GX_XF_FLUSH_SAFE=8
 };
 typedef unsigned int GXXFFlushVal;
-
+
+
 enum {
     _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_TEX_ST=24,
     _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_TEX_END=27,
@@ -5996,9 +7261,11 @@ enum {
     _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_CLR_END=31
 };
 typedef unsigned int _GXXFInVertexSpec;
-
+
+
 typedef _GXXFInVertexSpec GXXFInVertexSpec;
-
+
+
 enum {
     _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX3_ST=2,
     _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX3_END=7,
@@ -6012,9 +7279,11 @@ enum {
     _GXXFMtxIdx0_GX_XF_MTXIDX0_GEOM_END=31
 };
 typedef unsigned int _GXXFMtxIdx0;
-
+
+
 typedef _GXXFMtxIdx0 GXXFMtxIdx0;
-
+
+
 enum {
     _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX7_ST=8,
     _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX7_END=13,
@@ -6026,9 +7295,11 @@ enum {
     _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX4_END=31
 };
 typedef unsigned int _GXXFMtxIdx1;
-
+
+
 typedef _GXXFMtxIdx1 GXXFMtxIdx1;
-
+
+
 enum {
     _GXXFRegs_GX_XF_REG_ERROR=4096,
     _GXXFRegs_GX_XF_REG_DIAGNOSTICS=4097,
@@ -6083,9 +7354,11 @@ enum {
     _GXXFRegs_GX_XF_REG_DUALTEX7=4183
 };
 typedef unsigned int _GXXFRegs;
-
+
+
 typedef _GXXFRegs GXXFRegs;
-
+
+
 enum {
     _GXXFTex_GX_XF_TEX_BUMPSRCLIGHT_ST=14,
     _GXXFTex_GX_XF_TEX_BUMPSRCLIGHT_END=16,
@@ -6101,9 +7374,11 @@ enum {
     _GXXFTex_GX_XF_TEX_PROJTYPE_ST=30
 };
 typedef unsigned int _GXXFTex;
-
+
+
 typedef _GXXFTex GXXFTex;
-
+
+
 enum {
     _GXXfMem_GX_XF_MEM_POSMTX=0,
     _GXXfMem_GX_XF_MEM_NRMMTX=1024,
@@ -6111,9 +7386,11 @@ enum {
     _GXXfMem_GX_XF_MEM_LIGHTOBJ=1536
 };
 typedef unsigned int _GXXfMem;
-
+
+
 typedef _GXXfMem GXXfMem;
-
+
+
 enum {
     _GXXfTexGen_GX_XF_TG_REGULAR=0,
     _GXXfTexGen_GX_XF_TG_BUMP=1,
@@ -6121,9 +7398,11 @@ enum {
     _GXXfTexGen_GX_XF_TG_CLR1=3
 };
 typedef unsigned int _GXXfTexGen;
-
+
+
 typedef _GXXfTexGen GXXfTexGen;
-
+
+
 enum {
     _GXXfTexReg_GX_XF_TEX_FORM_AB11=0,
     _GXXfTexReg_GX_XF_TEX_PROJ_ST=0,
@@ -6131,9 +7410,11 @@ enum {
     _GXXfTexReg_GX_XF_TEX_PROJ_STQ=1
 };
 typedef unsigned int _GXXfTexReg;
-
+
+
 typedef _GXXfTexReg GXXfTexReg;
-
+
+
 enum {
     GXZFmt16_GX_ZC_LINEAR=0,
     GXZFmt16_GX_ZC_NEAR=1,
@@ -6141,13 +7422,20 @@ enum {
     GXZFmt16_GX_ZC_FAR=3
 };
 typedef unsigned int GXZFmt16;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
+
+
+
 enum {
     GXZTexOp_GX_ZT_DISABLE=0,
     GXZTexOp_GX_ZT_ADD=1,
@@ -6155,23 +7443,33 @@ enum {
     GXZTexOp_GX_MAX_ZTEXOP=3
 };
 typedef unsigned int GXZTexOp;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
+
+
+
 typedef struct GameControlsStruct GameControlsStruct, *PGameControlsStruct;
-
+
+
 enum {
     enumP1_P2_int_P1=0,
     enumP1_P2_int_P2=1
 };
 typedef unsigned int enumP1_P2_int;
-
+
+
 typedef struct logoInfoStruct logoInfoStruct, *PlogoInfoStruct;
-
+
+
 enum {
     enumSceneID_atBat=1,
     enumSceneID_liveball=2,
@@ -6179,7 +7477,8 @@ enum {
     enumSceneID_replay_live=4
 };
 typedef unsigned char enumSceneID;
-
+
+
 enum {
     transitionCalculationType_normalState=0,
     transitionCalculationType_transitionScreen1=1,
@@ -6195,7 +7494,8 @@ enum {
     transitionCalculationType_postGameGoingToMainMenuLoadingScreen=11
 };
 typedef unsigned char transitionCalculationType;
-
+
+
 enum {
     enum_winTypeCd_nonWalfoff_away=1,
     enum_winTypeCd_nonWalkoff_home=2,
@@ -6205,7 +7505,8 @@ enum {
     enum_winTypeCd_homeMercy=6
 };
 typedef unsigned char enum_winTypeCd;
-
+
+
 enum {
     enumStarChanceCd_noStarChance=0,
     enumStarChanceCd_isStarChance=1,
@@ -6213,13 +7514,15 @@ enum {
     enumStarChanceCd_awardStarToBattingTeam=3
 };
 typedef unsigned char enumStarChanceCd;
-
+
+
 struct logoInfoStruct {
     int ID;
     int variationID;
     int captain_;
 } __attribute__((packed));
-
+
+
 struct GameControlsStruct {
     enumP1_P2_int firstBattingTeam_P1_P2_;
     int battingTeam_P1_P2_;
@@ -6299,11 +7602,14 @@ struct GameControlsStruct {
     byte rosterLoc_skippingCap_;
     byte pad5_[2];
 } __attribute__((packed));
-
+
+
 typedef struct GameScoresControlsStruct GameScoresControlsStruct, *PGameScoresControlsStruct;
-
+
+
 typedef struct ScoreStruct ScoreStruct, *PScoreStruct;
-
+
+
 enum {
     enumWinningTeam_short_tbd=-1,
     enumWinningTeam_short_away=0,
@@ -6311,7 +7617,8 @@ enum {
     enumWinningTeam_short_tie=2
 };
 typedef short enumWinningTeam_short;
-
+
+
 enum {
     inningUrgency_noUrgency=0,
     inningUrgency_beginningOfGame=1,
@@ -6321,12 +7628,14 @@ enum {
     inningUrgency_extras=5
 };
 typedef unsigned char inningUrgency;
-
+
+
 struct ScoreStruct {
     short total;
     short byInning[18];
 } __attribute__((packed));
-
+
+
 struct GameScoresControlsStruct {
     int Inning;
     struct ScoreStruct scores[2];
@@ -6360,45 +7669,59 @@ struct GameScoresControlsStruct {
     byte nBattersThisInning;
     byte mercyThreshold;
 } __attribute__((packed));
-
-typedef void (*HIOCallback)(void);
-
-typedef BOOL (*HIOEnumCallback)(s32);
-
+
+
+typedef void (*HIOCallback)(void);
+
+
+
+typedef BOOL (*HIOEnumCallback)(s32);
+
+
+
 typedef struct HeapCell HeapCell, *PHeapCell;
-
+
+
 struct HeapCell {
     struct HeapCell *prev;
     struct HeapCell *next;
     long size;
 } __attribute__((packed));
-
+
+
 typedef struct HeapDesc HeapDesc, *PHeapDesc;
-
+
+
 struct HeapDesc {
     long size;
     struct HeapCell *free;
     struct HeapCell *allocated;
 } __attribute__((packed));
-
+
+
 typedef struct HitQualityThresholdScaling HitQualityThresholdScaling, *PHitQualityThresholdScaling;
-
+
+
 typedef struct HitQualityThresholds HitQualityThresholds, *PHitQualityThresholds;
-
+
+
 struct HitQualityThresholds {
     byte LeftNice;
     byte LeftPerfect;
     byte RightPerfect;
     byte RightNice;
 } __attribute__((packed));
-
+
+
 struct HitQualityThresholdScaling {
     struct HitQualityThresholds UpperBounds;
     struct HitQualityThresholds LowerBounds;
 } __attribute__((packed));
-
+
+
 typedef struct Hitbox Hitbox, *PHitbox;
-
+
+
 struct Hitbox {
     float RadiusAirOrFast;
     float RadiusGround;
@@ -6410,9 +7733,11 @@ struct Hitbox {
     float DiveRange;
     float infieldDiveHeight;
 } __attribute__((packed));
-
+
+
 typedef struct HitboxConsts HitboxConsts, *PHitboxConsts;
-
+
+
 struct HitboxConsts {
     short Air_FastGroundRadius;
     short SlowGroundRadius;
@@ -6423,13 +7748,17 @@ struct HitboxConsts {
     short diveRange;
     short infieldDiveHeight;
 } __attribute__((packed));
-
+
+
 typedef struct InMemBall InMemBall, *PInMemBall;
-
+
+
 typedef struct pastAndFutureCoordsWallJumpRelated pastAndFutureCoordsWallJumpRelated, *PpastAndFutureCoordsWallJumpRelated;
-
+
+
 typedef struct Vec2f Vec2f, *PVec2f;
-
+
+
 enum {
     TriangleCollisionTypes_word_NO_COLLISION=0,
     TriangleCollisionTypes_word_GRASS=1,
@@ -6457,7 +7786,8 @@ enum {
     TriangleCollisionTypes_word_FOUL=128
 };
 typedef unsigned int TriangleCollisionTypes_word;
-
+
+
 enum {
     enumFielderShort_none=-1,
     enumFielderShort_pitcher=0,
@@ -6471,9 +7801,11 @@ enum {
     enumFielderShort_rf=8
 };
 typedef short enumFielderShort;
-
+
+
 typedef struct matchShorts matchShorts, *PmatchShorts;
-
+
+
 enum {
     zoneAwayFromHome_IFGrass=0,
     zoneAwayFromHome_IFDirt=1,
@@ -6483,7 +7815,8 @@ enum {
     zoneAwayFromHome_noValueSet=255
 };
 typedef unsigned char zoneAwayFromHome;
-
+
+
 enum {
     hitCat_nonFlyBallOrIFHit=0,
     hitCat_flyBall=2,
@@ -6492,7 +7825,8 @@ enum {
     hitCat_veryFoulPop=5
 };
 typedef unsigned char hitCat;
-
+
+
 enum {
     hitCat2_softHit_LandingCloseToHome=1,
     hitCat2_hardHitLineDrive=2,
@@ -6504,7 +7838,8 @@ enum {
     hitCat2_veryFoulToOutfield=8
 };
 typedef unsigned char hitCat2;
-
+
+
 enum {
     hitCat3_within3_5mFromHome=0,
     hitCat3_within8mFromHome=1,
@@ -6517,7 +7852,8 @@ enum {
     hitCat3_LFFoul=8
 };
 typedef unsigned char hitCat3;
-
+
+
 enum {
     ballState_hitBall=0,
     ballState_fielderHolding=1,
@@ -6525,7 +7861,8 @@ enum {
     ballState_bobble_knockedOut_loose=3
 };
 typedef unsigned char ballState;
-
+
+
 enum {
     homeRunClassification_n_a=0,
     homeRunClassification_longest=1,
@@ -6533,7 +7870,8 @@ enum {
     homeRunClassification__3rdlongest=3
 };
 typedef unsigned char homeRunClassification;
-
+
+
 enum {
     deadBallReason_n_a=0,
     deadBallReason_homeRun=1,
@@ -6542,7 +7880,8 @@ enum {
     deadBallReason_ballDead=4
 };
 typedef unsigned char deadBallReason;
-
+
+
 enum {
     captainStarType__0Default=0,
     captainStarType_Mario=1,
@@ -6559,14 +7898,17 @@ enum {
     captainStarType_Daisy=12
 };
 typedef unsigned char captainStarType;
-
+
+
 typedef struct coordsAndDist coordsAndDist, *PcoordsAndDist;
-
+
+
 struct Vec2f {
     float X;
     float Z;
 } __attribute__((packed));
-
+
+
 struct matchShorts {
     short framesAfterReceivingThrow_;
     short ballAndFielderOnBaseFrames;
@@ -6582,14 +7924,16 @@ struct matchShorts {
     short garlicHitFramesSinceSplit;
     short framesInsidePlant;
 } __attribute__((packed));
-
+
+
 struct coordsAndDist {
     float x;
     float y;
     float z;
     float groundDist;
 } __attribute__((packed));
-
+
+
 struct pastAndFutureCoordsWallJumpRelated {
     struct Vec3f startOfWallJumpChecksMaybe[33];
     undefined field1_0x18c;
@@ -6615,7 +7959,8 @@ struct pastAndFutureCoordsWallJumpRelated {
     float hitLandingSpotDistFromHome;
     struct coordsAndDist futureCoordsAndDist[360];
 } __attribute__((packed));
-
+
+
 struct InMemBall {
     struct Vec3f AtBat_Contact_BallPos;
     struct Vec3f offSetWhilePickedUpHistory[4];
@@ -6757,9 +8102,11 @@ struct InMemBall {
     byte frameCountdownAfterLeavingPlant;
     short endOfStructPadding;
 } __attribute__((packed));
-
+
+
 typedef struct InMemBatter InMemBatter, *PInMemBatter;
-
+
+
 enum {
     enumCharIDShort_none=-1,
     enumCharIDShort_mario=0,
@@ -6818,14 +8165,16 @@ enum {
     enumCharIDShort_broB=53
 };
 typedef short enumCharIDShort;
-
+
+
 enum {
     enumNonCapStarSwing_popFly=1,
     enumNonCapStarSwing_grounder=2,
     enumNonCapStarSwing_lineDrive=3
 };
 typedef unsigned char enumNonCapStarSwing;
-
+
+
 enum {
     enumBuntStatus_notBunting=0,
     enumBuntStatus_startingABunt=1,
@@ -6837,7 +8186,8 @@ enum {
     enumBuntStatus_releasedBuntEarlyInPitch_=7
 };
 typedef unsigned char enumBuntStatus;
-
+
+
 enum {
     enumHitTrajectory_noHit=0,
     enumHitTrajectory_grounder_=2,
@@ -6847,7 +8197,8 @@ enum {
     enumHitTrajectory_fairBunt__bOD_bunt_bB_bunt=6
 };
 typedef unsigned char enumHitTrajectory;
-
+
+
 enum {
     enumChargeStatus_noCharge=0,
     enumChargeStatus_charging_charged=1,
@@ -6855,14 +8206,16 @@ enum {
     enumChargeStatus_noSwingReleaseCharge=3
 };
 typedef unsigned char enumChargeStatus;
-
+
+
 enum {
     enumHittable_ballHasntReachedHittableZone=0,
     enumHittable_hittable=1,
     enumHittable_pre_post_pitch=2
 };
 typedef unsigned char enumHittable;
-
+
+
 struct InMemBatter {
     struct Vec2f batterPos;
     struct Vec3f batPosition_wXOffset_;
@@ -6946,9 +8299,11 @@ struct InMemBatter {
     byte swingMissThatWasHittable;
     enumNonCapStarSwing nonCaptainStarSwingActivated;
 } __attribute__((packed));
-
+
+
 typedef struct InMemFielder InMemFielder, *PInMemFielder;
-
+
+
 enum {
     enumCharacterID_short_mario=0,
     enumCharacterID_short_luigi=1,
@@ -7006,7 +8361,8 @@ enum {
     enumCharacterID_short_broB=53
 };
 typedef unsigned short enumCharacterID_short;
-
+
+
 enum {
     fielderLocationEnum_home=0,
     fielderLocationEnum__1st=1,
@@ -7026,21 +8382,24 @@ enum {
     fielderLocationEnum_none=65535
 };
 typedef unsigned short fielderLocationEnum;
-
+
+
 enum {
     presetLocationCategory_RFFoulTerritory=1,
     presetLocationCategory_outfieldChillSpots=2,
     presetLocationCategory_LFFoulTerritory=3
 };
 typedef unsigned short presetLocationCategory;
-
+
+
 enum {
     enumSpecialJump_wallSplat=1,
     enumSpecialJump_wallJump=2,
     enumSpecialJump_clamber=3
 };
 typedef unsigned char enumSpecialJump;
-
+
+
 enum {
     autoMovementFunctionIndex_nothingSet_StayStill=0,
     autoMovementFunctionIndex_coveringBase=1,
@@ -7065,7 +8424,8 @@ enum {
     autoMovementFunctionIndex_readyToInterceptThrownBall=25
 };
 typedef unsigned char autoMovementFunctionIndex;
-
+
+
 enum {
     presetFielderLocations_byte___0_0_=0,
     presetFielderLocations_byte___0_0__v2=1,
@@ -7080,7 +8440,8 @@ enum {
     presetFielderLocations_byte___28_53_=10
 };
 typedef unsigned char presetFielderLocations_byte_;
-
+
+
 enum {
     fielderVeloAdjCode_noAdjustment=0,
     fielderVeloAdjCode_subtact0_0005=1,
@@ -7098,7 +8459,8 @@ enum {
     fielderVeloAdjCode_setTo0_25_runOffFieldAfterInning=13
 };
 typedef unsigned char fielderVeloAdjCode;
-
+
+
 enum {
     catchStrategy_catchFlyBall=1,
     catchStrategy_potentialCatchFlyBall=2,
@@ -7106,14 +8468,16 @@ enum {
     catchStrategy_ballOutOfRange_=4
 };
 typedef unsigned char catchStrategy;
-
+
+
 enum {
     fielder0x1ffState_hasntCheckedIfOutfielderIsInitialCharacterSelected=0,
     fielder0x1ffState_checkedIfOutfielderIsInitialCharacterSelected=1,
     fielder0x1ffState_fielderCatchingBall=2
 };
 typedef unsigned char fielder0x1ffState;
-
+
+
 enum {
     clamberStatus_n_a=0,
     clamberStatus_jumpingOntoWall=1,
@@ -7123,7 +8487,8 @@ enum {
     clamberStatus_unknown2=5
 };
 typedef unsigned char clamberStatus;
-
+
+
 enum {
     wallSplatStatus_n_a=0,
     wallSplatStatus_goingOntoWall=1,
@@ -7132,21 +8497,24 @@ enum {
     wallSplatStatus_onGroundGroggy=4
 };
 typedef unsigned char wallSplatStatus;
-
+
+
 enum {
     knockOutStatus_notKnockedOut=0,
     knockOutStatus_knockedOut=1,
     knockOutStatus_knockOutEnded=2
 };
 typedef unsigned char knockOutStatus;
-
+
+
 enum {
     bodyCheckResult_n_a=0,
     bodyCheckResult_fail=1,
     bodyCheckResult_success=2
 };
 typedef unsigned char bodyCheckResult;
-
+
+
 enum {
     bodyCheckStatusFielder_n_a=0,
     bodyCheckStatusFielder_started=1,
@@ -7154,7 +8522,8 @@ enum {
     bodyCheckStatusFielder_successfulOneEnding=3
 };
 typedef unsigned char bodyCheckStatusFielder;
-
+
+
 enum {
     wallJumpStatus_n_a=0,
     wallJumpStatus_jumpingOntoWall=1,
@@ -7163,7 +8532,8 @@ enum {
     wallJumpStatus_landed=4
 };
 typedef unsigned char wallJumpStatus;
-
+
+
 struct InMemFielder {  /* in ram view of a fielder */
     struct Vec3f pos;
     float actionYOffset;
@@ -7391,9 +8761,11 @@ struct InMemFielder {  /* in ram view of a fielder */
     byte field223_0x266;
     byte field224_0x267;
 } __attribute__((packed));
-
+
+
 typedef struct InMemPitcher InMemPitcher, *PInMemPitcher;
-
+
+
 enum {
     pitchStatus_prePitchTransition=0,
     pitchStatus_prePitch=1,
@@ -7405,7 +8777,8 @@ enum {
     pitchStatus_hitBatter=7
 };
 typedef unsigned char pitchStatus;
-
+
+
 enum {
     enumNonCapStarPitch__0defaut=0,
     enumNonCapStarPitch_star_curve=1,
@@ -7413,7 +8786,8 @@ enum {
     enumNonCapStarPitch_star_changeup=3
 };
 typedef unsigned char enumNonCapStarPitch;
-
+
+
 enum {
     kOrBB_nonKOrBB=0,
     kOrBB_strikeOut=1,
@@ -7421,14 +8795,16 @@ enum {
     kOrBB_hitBatter=3
 };
 typedef unsigned char kOrBB;
-
+
+
 enum {
     enum_strikeZoneProcess_beforeStrikeZone=0,
     enum_strikeZoneProcess_checkingForStrike=1,
     enum_strikeZoneProcess_afterStrikeZone=2
 };
 typedef unsigned char enum_strikeZoneProcess;
-
+
+
 enum {
     enum_pitchSpecialType_curve_charge=1,
     enum_pitchSpecialType_changeUp=3,
@@ -7449,7 +8825,8 @@ enum {
     enum_pitchSpecialType_star_changeUp=18
 };
 typedef unsigned char enum_pitchSpecialType;
-
+
+
 struct InMemPitcher {
     struct Vec3f ballCurrentPosition;
     struct Vec3f ballLastPosition;
@@ -7577,9 +8954,11 @@ struct InMemPitcher {
     byte unused_pitcherIsFielder_;
     byte fillSpace;
 } __attribute__((packed));
-
+
+
 typedef struct InMemRunner InMemRunner, *PInMemRunner;
-
+
+
 enum {
     forceOutEnum__1_unknown_notPossible__=-1,
     forceOutEnum_notForcedToAdvance=0,
@@ -7587,7 +8966,8 @@ enum {
     forceOutEnum_outOnForce=2
 };
 typedef short forceOutEnum;
-
+
+
 enum {
     preventPassing_prevent_forward=1,
     preventPassing_prevent_backward=2,
@@ -7595,7 +8975,8 @@ enum {
     preventPassing_tagUpRelated=8
 };
 typedef unsigned short preventPassing;
-
+
+
 enum {
     runnerStatus_didntExistAtStartOfPlay=0,
     runnerStatus_onField=1,
@@ -7605,14 +8986,16 @@ enum {
     runnerStatus_walkWhileStealOccuring=5
 };
 typedef unsigned char runnerStatus;
-
+
+
 enum {
     tagUpInd_noTagUpNeeded=0,
     tagUpInd_ballInAir=1,
     tagUpInd_taggingUp=2
 };
 typedef unsigned char tagUpInd;
-
+
+
 enum {
     runner_stayInBattersBoxReason_n_a=0,
     runner_stayInBattersBoxReason_pickoff_steal=1,
@@ -7620,7 +9003,8 @@ enum {
     runner_stayInBattersBoxReason_reallyFoul_=3
 };
 typedef unsigned char runner_stayInBattersBoxReason;
-
+
+
 enum {
     enumOutType_noOut=0,
     enumOutType_caught=1,
@@ -7630,7 +9014,8 @@ enum {
     enumOutType_strikeOut=16
 };
 typedef unsigned char enumOutType;
-
+
+
 enum {
     enumLeadoffCode_default_noLeadoff=0,
     enumLeadoffCode_startingLeadoff=1,
@@ -7638,7 +9023,8 @@ enum {
     enumLeadoffCode_returningToBaseOnPickoff_=3
 };
 typedef unsigned char enumLeadoffCode;
-
+
+
 enum {
     runnerMovementType_none_batting_scored_=0,
     runnerMovementType_forwards=1,
@@ -7648,7 +9034,8 @@ enum {
     runnerMovementType__5_unknown=5
 };
 typedef unsigned char runnerMovementType;
-
+
+
 enum {
     runnerActionEnum_noAction=0,
     runnerActionEnum_slide=1,
@@ -7656,7 +9043,8 @@ enum {
     runnerActionEnum_bodyCheckFailed=3
 };
 typedef unsigned char runnerActionEnum;
-
+
+
 enum {
     runnerActionStage_n_a=0,
     runnerActionStage_sliding_bodyCheck=1,
@@ -7664,14 +9052,16 @@ enum {
     runnerActionStage_outOnForce_=3
 };
 typedef unsigned char runnerActionStage;
-
+
+
 enum {
     baseRoundingState_n_a=0,
     baseRoundingState_batter_runner_=1,
     baseRoundingState_rounding=2
 };
 typedef unsigned char baseRoundingState;
-
+
+
 enum {
     overrunning1B_n_a=0,
     overrunning1B_passing1B=1,
@@ -7679,7 +9069,8 @@ enum {
     overrunning1B_WalkingBackTo1B=3
 };
 typedef unsigned char overrunning1B;
-
+
+
 enum {
     overrunBaseStage_n_a=0,
     overrunBaseStage_startOverrun=1,
@@ -7687,7 +9078,8 @@ enum {
     overrunBaseStage_returningToBase=3
 };
 typedef unsigned char overrunBaseStage;
-
+
+
 enum {
     runnerGoingToDugoutCode_n_a=0,
     runnerGoingToDugoutCode_afterOut_=1,
@@ -7695,21 +9087,24 @@ enum {
     runnerGoingToDugoutCode_afterScoring_=3
 };
 typedef unsigned char runnerGoingToDugoutCode;
-
+
+
 enum {
     runningToDugoutStage_n_a_or_Start=0,
     runningToDugoutStage_running=2,
     runningToDugoutStage_at_Dugout=3
 };
 typedef unsigned char runningToDugoutStage;
-
+
+
 enum {
     runnerTurnaroundCode_notTurning=0,
     runnerTurnaroundCode_startingFromStop=1,
     runnerTurnaroundCode_turningAround=2
 };
 typedef unsigned char runnerTurnaroundCode;
-
+
+
 enum {
     enumStealStage_n_a=0,
     enumStealStage_wantsToSteal=1,
@@ -7717,7 +9112,8 @@ enum {
     enumStealStage_perfectStealStarted=3
 };
 typedef unsigned char enumStealStage;
-
+
+
 struct InMemRunner {
     struct Vec3f position;
     struct Vec3f position_stored;
@@ -7848,9 +9244,11 @@ struct InMemRunner {
     byte miniGamePlayerNum;
     byte scoredOnGRD_;
 } __attribute__((packed));
-
+
+
 typedef struct InputStruct InputStruct, *PInputStruct;
-
+
+
 struct InputStruct {
     short ControlStickAngle;
     short ControlStickMagnitude;
@@ -7863,9 +9261,11 @@ struct InputStruct {
     byte LeftTriggerHowFarPressed;
     short field9_0xe;
 } __attribute__((packed));
-
+
+
 typedef struct KEYMAP KEYMAP, *PKEYMAP;
-
+
+
 struct KEYMAP {
     u16 id;
     s8 transpose;
@@ -7873,9 +9273,11 @@ struct KEYMAP {
     s16 prioOffset;
     u8 reserved[2];
 } __attribute__((packed));
-
+
+
 typedef struct LAYER LAYER, *PLAYER;
-
+
+
 struct LAYER {
     u16 id;
     u8 keyLow;
@@ -7886,9 +9288,11 @@ struct LAYER {
     u8 panning;
     u8 reserved[3];
 } __attribute__((packed));
-
+
+
 typedef struct LAYER_TAB LAYER_TAB, *PLAYER_TAB;
-
+
+
 struct LAYER_TAB {
     void *data;
     u16 id;
@@ -7896,13 +9300,17 @@ struct LAYER_TAB {
     u16 refCount;
     u16 reserved;
 } __attribute__((packed));
-
+
+
 typedef struct LITLightList LITLightList, *PLITLightList;
-
+
+
 typedef struct LITLightPtr LITLightPtr, *PLITLightPtr;
-
+
+
 typedef float Mtx44Ptr[4];
-
+
+
 struct LITLightList {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -7938,7 +9346,8 @@ struct LITLightList {
     undefined field31_0x1f;
     struct LITLightPtr *LITLightPtr;
 } __attribute__((packed));
-
+
+
 struct LITLightPtr {
     GXLightObj lt_obj;
     struct Vec position;
@@ -7950,60 +9359,75 @@ struct LITLightPtr {
     Mtx44Ptr parent;
     struct ANIMPipe *animPipe;
 } __attribute__((packed));
-
+
+
 typedef struct MAC_MAINTAB MAC_MAINTAB, *PMAC_MAINTAB;
-
+
+
 struct MAC_MAINTAB {
     u16 num;
     u16 subTabIndex;
 } __attribute__((packed));
-
+
+
 enum {
     enum_88_MAC_STATE_RUNNABLE=0,
     enum_88_MAC_STATE_YIELDED=1,
     enum_88_MAC_STATE_STOPPED=2
 };
 typedef unsigned int enum_88;
-
+
+
 typedef enum_88 MAC_STATE;
-
+
+
 typedef struct MAC_SUBTAB MAC_SUBTAB, *PMAC_SUBTAB;
-
+
+
 struct MAC_SUBTAB {
     void *data;
     u16 id;
     u16 refCount;
 } __attribute__((packed));
-
+
+
 typedef struct MEM_DATA MEM_DATA, *PMEM_DATA;
-
+
+
 typedef union _union_115 _union_115, *P_union_115;
-
+
+
 typedef struct _struct_116 _struct_116, *P_struct_116;
-
+
+
 struct _struct_116 {
     u32 num;
     struct LAYER entry[1];
 } __attribute__((packed));
-
+
+
 union _union_115 {
     struct _struct_116 layer;
     struct KEYMAP map[128];
     u8 tab[1];
     struct MSTEP cmd[1][2];
 } __attribute__((packed));
-
+
+
 struct MEM_DATA {
     u32 nextOff;
     u16 id;
     u16 reserved;
     union _union_115 data;
 } __attribute__((packed));
-
+
+
 typedef struct MIDISETUP MIDISETUP, *PMIDISETUP;
-
+
+
 typedef struct MIDI_CHANNEL_SETUP MIDI_CHANNEL_SETUP, *PMIDI_CHANNEL_SETUP;
-
+
+
 struct MIDI_CHANNEL_SETUP {
     u8 program;
     u8 volume;
@@ -8011,68 +9435,93 @@ struct MIDI_CHANNEL_SETUP {
     u8 reverb;
     u8 chorus;
 } __attribute__((packed));
-
+
+
 struct MIDISETUP {
     u16 songId;
     u16 reserved;
     struct MIDI_CHANNEL_SETUP channel[16];
 } __attribute__((packed));
-
+
+
 typedef struct MTRACK MTRACK, *PMTRACK;
-
+
+
 typedef struct MTRACK_DATA MTRACK_DATA, *PMTRACK_DATA;
-
+
+
 struct MTRACK {
     struct MTRACK_DATA *base;
     struct MTRACK_DATA *addr;
 } __attribute__((packed));
-
+
+
 struct MTRACK_DATA {
     u32 time;
     u32 bpm;
 } __attribute__((packed));
-
+
+
 typedef struct MTXStack MTXStack, *PMTXStack;
-
+
+
 struct MTXStack {
     int numMtx;
     struct Mtx *stackBase;
     struct Mtx *stackPtr;
 } __attribute__((packed));
-
+
+
 typedef struct MemoryBlockHeader MemoryBlockHeader, *PMemoryBlockHeader;
-
+
+
 struct MemoryBlockHeader {
     int *previousBlock;
     int blockSize;
 } __attribute__((packed));
-
+
+
 typedef float f32;
-
+
+
 typedef f32 Mtx23[2][3];
-
+
+
 typedef f32 Mtx33[3][3];
-
+
+
 typedef f32 Mtx34[3][4];
-
+
+
 typedef f32 Mtx43[4][3];
-
+
+
 typedef struct Mtx44 Mtx44, *PMtx44;
-
+
+
 struct Mtx44 {
     float data[4][4];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Mtx44 - /Mtx44 */
-
-
-/* WARNING! conflicting data type names: /sdk/mtx.h/Mtx44 - /Mtx44 */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Mtx44 - /Mtx44 */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/mtx.h/Mtx44 - /Mtx44 */
+
+
+
 typedef f32 MtxP[4];
-
+
+
 typedef struct NOTE NOTE, *PNOTE;
-
+
+
 struct NOTE {
     struct NOTE *next;
     struct NOTE *prev;
@@ -8082,38 +9531,54 @@ struct NOTE {
     u8 timeIndex;
     u8 reserved[2];
 } __attribute__((packed));
-
+
+
 typedef struct NonCaptainStarVertRanges NonCaptainStarVertRanges, *PNonCaptainStarVertRanges;
-
+
+
 typedef struct vertRangeSwingTypes vertRangeSwingTypes, *PvertRangeSwingTypes;
-
+
+
 struct vertRangeSwingTypes {
     byte field0_0x0[2][5][2];
 } __attribute__((packed));
-
+
+
 struct NonCaptainStarVertRanges {
     struct vertRangeSwingTypes field0_0x0;
     struct vertRangeSwingTypes field1_0x14;
     struct vertRangeSwingTypes field2_0x28;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarm - /sdk/OSAlarm.h/OSAlarm */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarmHandler - /sdk/OSAlarm.h/OSAlarmHandler */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarm - /sdk/OSAlarm.h/OSAlarm */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarmHandler - /sdk/OSAlarm.h/OSAlarmHandler */
+
+
+
 typedef struct OSAlarmQueue OSAlarmQueue, *POSAlarmQueue;
-
+
+
 struct OSAlarmQueue {
     struct OSAlarm *head;
     struct OSAlarm *tail;
 } __attribute__((packed));
-
-typedef void (*OSAllocVisitor)(void *, u32);
-
+
+
+typedef void (*OSAllocVisitor)(void *, u32);
+
+
+
 typedef struct OSBootInfo OSBootInfo, *POSBootInfo;
-
+
+
 struct OSBootInfo {
     struct DVDDiskID DVDDiskID;
     u32 magic;
@@ -8125,15 +9590,23 @@ struct OSBootInfo {
     void *FSTLocation;
     u32 FSTMaxLength;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
-
-
-/* WARNING! conflicting data type names: /sdk/os.h/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/os.h/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
+
+
+
 typedef struct OSBootInfo_s OSBootInfo_s, *POSBootInfo_s;
-
+
+
 struct OSBootInfo_s {
     struct DVDDiskID DVDDiskID;
     ulong magic;
@@ -8145,9 +9618,11 @@ struct OSBootInfo_s {
     void *FSTLocation;
     ulong FSTMaxLength;
 } __attribute__((packed));
-
+
+
 typedef struct OSCalendarTime OSCalendarTime, *POSCalendarTime;
-
+
+
 struct OSCalendarTime {
     int sec;
     int min;
@@ -8160,37 +9635,63 @@ struct OSCalendarTime {
     int msec;
     int usec;
 } __attribute__((packed));
-
+
+
 typedef struct OSCond OSCond, *POSCond;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
+
+
+
 struct OSCond {
     struct OSThreadQueue queue;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSCond - /decompHeaders/OSMutex.h/OSCond */
-
-
-/* WARNING! conflicting data type names: /sdk/OSMutex.h/OSCond - /decompHeaders/OSMutex.h/OSCond */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSContext - /decompHeaders/OSContext.h/OSContext */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSCond - /decompHeaders/OSMutex.h/OSCond */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSMutex.h/OSCond - /decompHeaders/OSMutex.h/OSCond */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSContext - /decompHeaders/OSContext.h/OSContext */
+
+
+
 typedef u16 OSError;
-
-
-/* WARNING! conflicting data type names: /sdk/OSError.h/OSError - /decompHeaders/OSError.h/OSError */
-
-typedef void (*OSErrorHandler)(OSError, struct OSContext *, ...);
-
-
-/* WARNING! conflicting data type names: /sdk/OSError.h/OSErrorHandler - /decompHeaders/OSError.h/OSErrorHandler */
-
-typedef void (*OSErrorHandlerNoVARG)(OSError, struct OSContext *, u32, u32);
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSError.h/OSError - /decompHeaders/OSError.h/OSError */
+
+
+
+typedef void (*OSErrorHandler)(OSError, struct OSContext *, ...);
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSError.h/OSErrorHandler - /decompHeaders/OSError.h/OSErrorHandler */
+
+
+
+typedef void (*OSErrorHandlerNoVARG)(OSError, struct OSContext *, u32, u32);
+
+
+
 enum {
     enum_57_OS_FONT_ENCODE_ANSI=0,
     enum_57_OS_FONT_ENCODE_SJIS=1,
@@ -8201,11 +9702,14 @@ enum {
     enum_57_OS_FONT_ENCODE_MAX=6
 };
 typedef unsigned int enum_57;
-
+
+
 typedef enum_57 OSFontEncode;
-
+
+
 typedef struct OSFontHeader OSFontHeader, *POSFontHeader;
-
+
+
 struct OSFontHeader {
     u16 fontType;
     u16 firstChar;
@@ -8231,42 +9735,63 @@ struct OSFontHeader {
     u8 c2;
     u8 c3;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSFont.h/OSFontHeader - /decompHeaders/OSFont.h/OSFontHeader */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSFont.h/OSFontHeader - /decompHeaders/OSFont.h/OSFontHeader */
+
+
+
 typedef int OSHeapHandle;
-
-typedef void (*OSIdleFunction)(void *);
-
+
+
+typedef void (*OSIdleFunction)(void *);
+
+
+
 typedef struct OSImportInfo OSImportInfo, *POSImportInfo;
-
+
+
 typedef u32 OSModuleID;
-
+
+
 struct OSImportInfo {
     OSModuleID id;
     u32 offset;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSImportInfo - /decompHeaders/OSModule.h/OSImportInfo */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSImportInfo - /decompHeaders/OSModule.h/OSImportInfo */
+
+
+
 typedef u32 OSInterruptMask;
-
-
-/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/OSInterruptMask - /decompHeaders/OSInterrupt.h/OSInterruptMask */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/OSInterruptMask - /decompHeaders/OSInterrupt.h/OSInterruptMask */
+
+
+
 typedef void *OSMessage;
-
+
+
 enum {
     enum_60_OS_MSG_PERSISTENT=1
 };
 typedef unsigned int enum_60;
-
+
+
 typedef enum_60 OSMessageFlags;
-
+
+
 typedef struct OSMessageQueue OSMessageQueue, *POSMessageQueue;
-
+
+
 struct OSMessageQueue {
     struct OSThreadQueue queueSend;
     struct OSThreadQueue queueReceive;
@@ -8275,21 +9800,29 @@ struct OSMessageQueue {
     s32 firstIndex;
     s32 usedCount;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSMessage.h/OSMessageQueue - /decompHeaders/OSMessage.h/OSMessageQueue */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSMessage.h/OSMessageQueue - /decompHeaders/OSMessage.h/OSMessageQueue */
+
+
+
 typedef struct OSModuleHeader OSModuleHeader, *POSModuleHeader;
-
+
+
 typedef struct OSModuleInfo OSModuleInfo, *POSModuleInfo;
-
+
+
 typedef struct OSModuleLink OSModuleLink, *POSModuleLink;
-
+
+
 struct OSModuleLink {
     struct OSModuleInfo *next;
     struct OSModuleInfo *prev;
 } __attribute__((packed));
-
+
+
 struct OSModuleInfo {
     OSModuleID id;
     struct OSModuleLink link;
@@ -8299,7 +9832,8 @@ struct OSModuleInfo {
     u32 nameSize;
     u32 version;
 } __attribute__((packed));
-
+
+
 struct OSModuleHeader {
     struct OSModuleInfo info;
     u32 bssSize;
@@ -8317,129 +9851,212 @@ struct OSModuleHeader {
     u32 bssAlign;
     u32 fixSize;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleHeader - /decompHeaders/OSModule.h/OSModuleHeader */
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleID - /decompHeaders/OSModule.h/OSModuleID */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleHeader - /decompHeaders/OSModule.h/OSModuleHeader */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleID - /decompHeaders/OSModule.h/OSModuleID */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
+
+
+
 typedef struct OSModuleQueue OSModuleQueue, *POSModuleQueue;
-
+
+
 struct OSModuleQueue {
     struct OSModuleInfo *head;
     struct OSModuleInfo *tail;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleQueue - /decompHeaders/OSModule.h/OSModuleQueue */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutex - /sdk/OSThread.h/OSMutex */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSMutex - /sdk/OSThread.h/OSMutex */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSPriority - /sdk/OSThread.h/OSPriority */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleQueue - /decompHeaders/OSModule.h/OSModuleQueue */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutex - /sdk/OSThread.h/OSMutex */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSMutex - /sdk/OSThread.h/OSMutex */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSPriority - /sdk/OSThread.h/OSPriority */
+
+
+
 typedef struct OSRel OSRel, *POSRel;
-
+
+
 struct OSRel {
     u16 offset;
     u8 type;
     u8 section;
     u32 addend;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSRel - /decompHeaders/OSModule.h/OSRel */
-
-typedef void (*OSResetCallback)(void);
-
-
-/* WARNING! conflicting data type names: /sdk/OSResetSW.h/OSResetCallback - /decompHeaders/OSReset.h/OSResetCallback */
-
-typedef BOOL (*OSResetFunction)(BOOL);
-
-
-/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunction - /decompHeaders/OSReset.h/OSResetFunction */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSRel - /decompHeaders/OSModule.h/OSRel */
+
+
+
+typedef void (*OSResetCallback)(void);
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSResetSW.h/OSResetCallback - /decompHeaders/OSReset.h/OSResetCallback */
+
+
+
+typedef BOOL (*OSResetFunction)(BOOL);
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunction - /decompHeaders/OSReset.h/OSResetFunction */
+
+
+
 typedef struct OSResetFunctionInfo OSResetFunctionInfo, *POSResetFunctionInfo;
-
+
+
 struct OSResetFunctionInfo {
     OSResetFunction func;
     u32 priority;
     struct OSResetFunctionInfo *next;
     struct OSResetFunctionInfo *prev;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunctionInfo - /decompHeaders/OSReset.h/OSResetFunctionInfo */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunctionInfo - /decompHeaders/OSReset.h/OSResetFunctionInfo */
+
+
+
 typedef struct OSResetFunctionQueue OSResetFunctionQueue, *POSResetFunctionQueue;
-
+
+
 struct OSResetFunctionQueue {
     struct OSResetFunctionInfo *head;
     struct OSResetFunctionInfo *tail;
 } __attribute__((packed));
-
+
+
 typedef struct OSResetQueue OSResetQueue, *POSResetQueue;
-
+
+
 struct OSResetQueue {
     struct OSResetFunctionInfo *head;
     struct OSResetFunctionInfo *tail;
 } __attribute__((packed));
-
+
+
 typedef struct OSSectionInfo OSSectionInfo, *POSSectionInfo;
-
+
+
 struct OSSectionInfo {
     u32 offset;
     u32 size;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSSectionInfo - /decompHeaders/OSModule.h/OSSectionInfo */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSSectionInfo - /decompHeaders/OSModule.h/OSSectionInfo */
+
+
+
 typedef struct OSSemaphore OSSemaphore, *POSSemaphore;
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
+
+
+
 struct OSSemaphore {
     int count;
     struct OSThreadQueue queue;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/os.h/OSSemaphore - /OSSemaphore */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/os.h/OSSemaphore - /OSSemaphore */
+
+
+
 typedef struct OSSram OSSram, *POSSram;
-
+
+
 struct OSSram {
     u16 checkSum;
     u16 checkSumInv;
@@ -8451,12 +10068,17 @@ struct OSSram {
     u8 language;
     u8 flags;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSram - /decompHeaders/os.h/OSSram */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSram - /decompHeaders/os.h/OSSram */
+
+
+
 typedef struct OSSramEx OSSramEx, *POSSramEx;
-
+
+
 struct OSSramEx {
     u8 flashID[2][12];
     u32 wirelessKeyboardID;
@@ -8467,12 +10089,17 @@ struct OSSramEx {
     u16 gbs;
     u8 reserved_2A[2];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSramEx - /decompHeaders/os.h/OSSramEx */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSramEx - /decompHeaders/os.h/OSSramEx */
+
+
+
 typedef struct OSStopwatch OSStopwatch, *POSStopwatch;
-
+
+
 struct OSStopwatch {
     char *name;
     longlong total;
@@ -8482,28 +10109,49 @@ struct OSStopwatch {
     longlong last;
     int running;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThread - /sdk/OSThread.h/OSThread */
-
-typedef void (*OSSwitchThreadCallback)(struct OSThread *, struct OSThread *);
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSThread - /sdk/OSThread.h/OSThread */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
-
-typedef void * (*OSThreadStartFunction)(void *);
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThread - /sdk/OSThread.h/OSThread */
+
+
+
+typedef void (*OSSwitchThreadCallback)(struct OSThread *, struct OSThread *);
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSThread - /sdk/OSThread.h/OSThread */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
+
+
+
+typedef void * (*OSThreadStartFunction)(void *);
+
+
+
 typedef u32 OSTick;
-
-
-/* WARNING! conflicting data type names: /sdk/os.h/OSTick - /decompHeaders/OSUtil.h/OSTick */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/os.h/OSTick - /decompHeaders/OSUtil.h/OSTick */
+
+
+
 enum {
     OS_THREAD_STATE_OS_THREAD_STATE_NULL=0,
     OS_THREAD_STATE_OS_THREAD_STATE_READY=1,
@@ -8512,22 +10160,32 @@ enum {
     OS_THREAD_STATE_OS_THREAD_STATE_MORIBUND=8
 };
 typedef unsigned int OS_THREAD_STATE;
-
-
-/* WARNING! conflicting data type names: /sdk/OSThread.h/OS_THREAD_STATE - /decompHeaders/OSThread.h/OS_THREAD_STATE */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSThread.h/OS_THREAD_STATE - /decompHeaders/OSThread.h/OS_THREAD_STATE */
+
+
+
 typedef struct OutCollisionStruct OutCollisionStruct, *POutCollisionStruct;
-
+
+
 struct OutCollisionStruct {
     struct Vec3f Position;
     struct Vec3f Normal;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /PADStatus - /sdk/pad.h/PADStatus */
-
+
+
+
+
+/* WARNING! conflicting data type names: /PADStatus - /sdk/pad.h/PADStatus */
+
+
+
 typedef struct PAGE PAGE, *PPAGE;
-
+
+
 struct PAGE {
     u16 macro;
     u8 prio;
@@ -8535,35 +10193,48 @@ struct PAGE {
     u8 index;
     u8 reserved;
 } __attribute__((packed));
-
+
+
 enum {
     PARENT_TYPE_PARENT_BONE=0,
     PARENT_TYPE_PARENT_DISP_OBJ=1,
     PARENT_TYPE_PARENT_MTX=2
 };
 typedef unsigned int PARENT_TYPE;
-
-typedef void * (*PERFAllocator)(int);
-
-typedef void (*PERFDeallocator)(void *);
-
-typedef void (*PERFDrawCallback)(void);
-
+
+
+typedef void * (*PERFAllocator)(int);
+
+
+
+typedef void (*PERFDeallocator)(void *);
+
+
+
+typedef void (*PERFDrawCallback)(void);
+
+
+
 typedef byte PERFId;
-
+
+
 typedef struct POOL_DATA POOL_DATA, *PPOOL_DATA;
-
+
+
 struct POOL_DATA {
     u32 macroOff;
     u32 curveOff;
     u32 keymapOff;
     u32 layerOff;
 } __attribute__((packed));
-
+
+
 typedef union PPCWGPipe PPCWGPipe, *PPPCWGPipe;
-
+
+
 typedef ulonglong u64;
-
+
+
 union PPCWGPipe {
     byte u8;
     short u16;
@@ -8576,9 +10247,11 @@ union PPCWGPipe {
     float f32;
     f64 f64;
 } __attribute__((packed));
-
+
+
 typedef struct PPC_DMA_L_t PPC_DMA_L_t, *PPPC_DMA_L_t;
-
+
+
 struct PPC_DMA_L_t {
     int lcAddr :27;
     int dmaLd :1;
@@ -8586,30 +10259,38 @@ struct PPC_DMA_L_t {
     int dmaTrigger :1;
     int dmaFlush :1;
 } __attribute__((packed));
-
+
+
 typedef union PPC_DMA_L_u PPC_DMA_L_u, *PPPC_DMA_L_u;
-
+
+
 union PPC_DMA_L_u {
     int val;
     struct PPC_DMA_L_t f;
 } __attribute__((packed));
-
+
+
 typedef struct PPC_DMA_U_t PPC_DMA_U_t, *PPPC_DMA_U_t;
-
+
+
 struct PPC_DMA_U_t {
     int memAddr :27;
     int dmaLenU :5;
 } __attribute__((packed));
-
+
+
 typedef union PPC_DMA_U_u PPC_DMA_U_u, *PPPC_DMA_U_u;
-
+
+
 union PPC_DMA_U_u {
     int val;
     struct PPC_DMA_U_t f;
 } __attribute__((packed));
-
+
+
 typedef struct PPC_GQR_t PPC_GQR_t, *PPPC_GQR_t;
-
+
+
 struct PPC_GQR_t {
     int _pad0 :2;
     int loadScale :6;
@@ -8620,93 +10301,124 @@ struct PPC_GQR_t {
     int _pad3 :5;
     int storeType :3;
 } __attribute__((packed));
-
+
+
 typedef union PPC_GQR_u PPC_GQR_u, *PPPC_GQR_u;
-
+
+
 union PPC_GQR_u {
     int val;
     struct PPC_GQR_t f;
 } __attribute__((packed));
-
+
+
 typedef struct PRG_STATE PRG_STATE, *PPRG_STATE;
-
+
+
 struct PRG_STATE {
     u16 macId;
     u8 priority;
     u8 maxVoices;
     u8 program;
 } __attribute__((packed));
-
+
+
 typedef f32 PSQuaternion[4];
-
+
+
 typedef struct PerfEvent PerfEvent, *PPerfEvent;
-
+
+
 enum {
     enum_229_PERF_CPU_EVENT=0,
     enum_229_PERF_CPU_GP_EVENT=1,
     enum_229_PERF_GP_EVENT=2
 };
 typedef unsigned int enum_229;
-
+
+
 typedef enum_229 PerfType;
-
+
+
 typedef struct _GXColor _GXColor, *P_GXColor;
-
+
+
 struct _GXColor {
     byte r;
     byte g;
     byte b;
     byte a;
 } __attribute__((packed));
-
+
+
 struct PerfEvent {
     char *name;
     PerfType type;
     long currSample;
     struct _GXColor color;
 } __attribute__((packed));
-
+
+
 typedef struct Vec Point3d;
-
+
+
 typedef struct Vec *Point3dPtr;
-
+
+
 typedef struct Quaternion Qtrn;
-
+
+
 typedef struct Quaternion *QtrnPtr;
-
+
+
 typedef struct Quad Quad, *PQuad;
-
+
+
 typedef struct Vec4f Vec4f, *PVec4f;
-
+
+
 struct Vec4f {
     float X;
     float Y;
     float Z;
     float W;
 } __attribute__((packed));
-
+
+
 struct Quad {
     struct Vec4f br;
     struct Vec4f tr;
     struct Vec4f tl;
     struct Vec4f bl;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Quaternion - /Quaternion */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Quaternion - /Quaternion */
+
+
+
 typedef struct Quaternion *QuaternionPtr;
-
-
-/* WARNING! conflicting data type names: /ROMtx - /sdk/mtx.h/ROMtx */
-
+
+
+
+
+/* WARNING! conflicting data type names: /ROMtx - /sdk/mtx.h/ROMtx */
+
+
+
 typedef float ROMtxPtr[3];
-
+
+
 typedef struct RawInputStruct RawInputStruct, *PRawInputStruct;
-
-
+
+
+
+
 typedef struct RebootParams RebootParams, *PRebootParams;
-
+
+
 struct RebootParams {
     s32 _00;
     u32 _04;
@@ -8717,19 +10429,24 @@ struct RebootParams {
     u32 _18;
     u32 _1C;
 } __attribute__((packed));
-
+
+
 typedef struct S16Vec S16Vec, *PS16Vec;
-
+
+
 struct S16Vec {
     s16 x;
     s16 y;
     s16 z;
 } __attribute__((packed));
-
+
+
 typedef struct S16Vec *S16VecPtr;
-
+
+
 typedef struct SAL_PANINFO SAL_PANINFO, *PSAL_PANINFO;
-
+
+
 struct SAL_PANINFO {
     u32 pan_i;
     u32 pan_im;
@@ -8744,9 +10461,11 @@ struct SAL_PANINFO {
     f32 rpan_f;
     f32 rpan_fm;
 } __attribute__((packed));
-
+
+
 typedef struct SAL_VOLINFO SAL_VOLINFO, *PSAL_VOLINFO;
-
+
+
 struct SAL_VOLINFO {
     f32 volL;
     f32 volR;
@@ -8758,32 +10477,40 @@ struct SAL_VOLINFO {
     f32 volAuxBR;
     f32 volAuxBS;
 } __attribute__((packed));
-
+
+
 typedef struct SDIR_TAB SDIR_TAB, *PSDIR_TAB;
-
+
+
 struct SDIR_TAB {
     struct SDIR_DATA *data;
     void *base;
     u16 numSmp;
     u16 res;
 } __attribute__((packed));
-
+
+
 typedef struct SEQ_EVENT SEQ_EVENT, *PSEQ_EVENT;
-
+
+
 typedef union evInfo evInfo, *PevInfo;
-
+
+
 typedef struct _struct_155 _struct_155, *P_struct_155;
-
+
+
 struct _struct_155 {
     struct NOTE_DATA *addr;
     struct CPAT *base;
 } __attribute__((packed));
-
+
+
 union evInfo {
     struct TENTRY *trackAddr;
     struct _struct_155 pattern;
 } __attribute__((packed));
-
+
+
 struct SEQ_EVENT {
     struct SEQ_EVENT *next;
     struct SEQ_EVENT *prev;
@@ -8792,28 +10519,38 @@ struct SEQ_EVENT {
     u8 type;
     u8 trackId;
 } __attribute__((packed));
-
+
+
 typedef struct SEQ_INSTANCE SEQ_INSTANCE, *PSEQ_INSTANCE;
-
+
+
 typedef struct TRACK TRACK, *PTRACK;
-
+
+
 typedef struct SND_CROSSFADE SND_CROSSFADE, *PSND_CROSSFADE;
-
+
+
 typedef struct SEQ_SECTION SEQ_SECTION, *PSEQ_SECTION;
-
+
+
 typedef u32 SND_SEQID;
-
+
+
 typedef u16 SND_GROUPID;
-
+
+
 typedef u16 SND_SONGID;
-
+
+
 typedef struct TICKS TICKS, *PTICKS;
-
+
+
 struct TRACK {
     struct TENTRY *base;
     struct TENTRY *addr;
 } __attribute__((packed));
-
+
+
 struct SND_CROSSFADE {
     SND_SEQID seqId1;
     u16 time1;
@@ -8828,12 +10565,14 @@ struct SND_CROSSFADE {
     u16 speed2;
     u8 flags;
 } __attribute__((packed));
-
+
+
 struct TICKS {
     u32 low;
     s32 high;
 } __attribute__((packed));
-
+
+
 struct SEQ_SECTION {
     struct MTRACK mTrack;
     u32 bpm;
@@ -8845,7 +10584,8 @@ struct SEQ_SECTION {
     u16 loopCnt;
     u8 loopDisable;
 } __attribute__((packed));
-
+
+
 struct SEQ_INSTANCE {
     struct SEQ_INSTANCE *next;
     struct SEQ_INSTANCE *prev;
@@ -8875,23 +10615,27 @@ struct SEQ_INSTANCE {
     u8 *trackSectionTab;
     struct SEQ_SECTION section[16];
 } __attribute__((packed));
-
+
+
 typedef struct SEQ_PATTERN SEQ_PATTERN, *PSEQ_PATTERN;
-
+
+
 struct SEQ_PATTERN {
     u32 headerLen;
     u32 pitchBend;
     u32 modulation;
     u32 noteData;
 } __attribute__((packed));
-
+
+
 enum {
     SHADER_BIAS_SHADER_BIAS_ZERO=0,
     SHADER_BIAS_SHADER_BIAS_ADDHALF=1,
     SHADER_BIAS_SHADER_BIAS_SUBHALF=2
 };
 typedef unsigned int SHADER_BIAS;
-
+
+
 enum {
     SHADER_CHANNEL_SHADER_CHANNEL_RGB=0,
     SHADER_CHANNEL_SHADER_CHANNEL_RRR=1,
@@ -8901,7 +10645,8 @@ enum {
     SHADER_CHANNEL_SHADER_CHANNEL_TRIVIAL=5
 };
 typedef unsigned int SHADER_CHANNEL;
-
+
+
 enum {
     SHADER_CLAMP_SHADER_CLAMP_LINEAR_1023=0,
     SHADER_CLAMP_SHADER_CLAMP_LINEAR_255=1,
@@ -8913,7 +10658,8 @@ enum {
     SHADER_CLAMP_SHADER_CLAMP_LE_0=7
 };
 typedef unsigned int SHADER_CLAMP;
-
+
+
 enum {
     SHADER_COLOR_SHADER_COLOR0=0,
     SHADER_COLOR_SHADER_COLOR1=1,
@@ -8922,7 +10668,8 @@ enum {
     SHADER_COLOR_SHADER_COLOR_NONE=4
 };
 typedef unsigned int SHADER_COLOR;
-
+
+
 enum {
     SHADER_COLOR_TYPE_SHADER_CPREV=0,
     SHADER_COLOR_TYPE_SHADER_C0=1,
@@ -8970,7 +10717,8 @@ enum {
     SHADER_COLOR_TYPE_SHADER_ZERO=201
 };
 typedef unsigned int SHADER_COLOR_TYPE;
-
+
+
 enum {
     SHADER_COMPLEX_SHADER_COMPLEX0=0,
     SHADER_COMPLEX_SHADER_COMPLEX1=1,
@@ -8982,14 +10730,16 @@ enum {
     SHADER_COMPLEX_SHADER_COMPLEX7=7
 };
 typedef unsigned int SHADER_COMPLEX;
-
+
+
 enum {
     SHADER_LERP_TYPE_SHADER_TRIVIAL=0,
     SHADER_LERP_TYPE_SHADER_SIMPLE=1,
     SHADER_LERP_TYPE_SHADER_LERP=2
 };
 typedef unsigned int SHADER_LERP_TYPE;
-
+
+
 enum {
     SHADER_MTX_SHADER_MTX0=0,
     SHADER_MTX_SHADER_MTX1=1,
@@ -9002,27 +10752,31 @@ enum {
     SHADER_MTX_SHADER_IDENTITY=8
 };
 typedef unsigned int SHADER_MTX;
-
+
+
 enum {
     SHADER_OP_SHADER_OP_ADD=0,
     SHADER_OP_SHADER_OP_SUB=1
 };
 typedef unsigned int SHADER_OP;
-
+
+
 enum {
     SHADER_RAS_SHADER_RAS0=0,
     SHADER_RAS_SHADER_RAS1=1,
     SHADER_RAS_SHADER_RASNONE=2
 };
 typedef unsigned int SHADER_RAS;
-
+
+
 enum {
     SHADER_REG_SHADER_REG_EMPTY=0,
     SHADER_REG_SHADER_REG_CONSTANTCOLOR=1,
     SHADER_REG_SHADER_REG_INUSE=2
 };
 typedef unsigned int SHADER_REG;
-
+
+
 enum {
     SHADER_SCALE_SHADER_SCALE_1=0,
     SHADER_SCALE_SHADER_SCALE_2=1,
@@ -9030,13 +10784,15 @@ enum {
     SHADER_SCALE_SHADER_SCALE_DIVIDE_2=3
 };
 typedef unsigned int SHADER_SCALE;
-
+
+
 enum {
     SHADER_TEV_SHADER_TEV_COLOR=0,
     SHADER_TEV_SHADER_TEV_ALPHA=1
 };
 typedef unsigned int SHADER_TEV;
-
+
+
 enum {
     SHADER_TEX_SHADER_TEX0=0,
     SHADER_TEX_SHADER_TEX1=1,
@@ -9049,7 +10805,8 @@ enum {
     SHADER_TEX_SHADER_TEXNONE=8
 };
 typedef unsigned int SHADER_TEX;
-
+
+
 enum {
     SHADER_TG_SRC_SHADER_TG_POS=0,
     SHADER_TG_SRC_SHADER_TG_NRM=1,
@@ -9067,7 +10824,8 @@ enum {
     SHADER_TG_SRC_SHADER_TG_COLOR1=20
 };
 typedef unsigned int SHADER_TG_SRC;
-
+
+
 enum {
     SHADER_TG_TYPE_SHADER_TG_MTX3x4=0,
     SHADER_TG_TYPE_SHADER_TG_MTX2x4=1,
@@ -9082,7 +10840,8 @@ enum {
     SHADER_TG_TYPE_SHADER_TG_SRTG=10
 };
 typedef unsigned int SHADER_TG_TYPE;
-
+
+
 enum {
     SHADER_TYPE_SHADER_TYPE_TEXTURE=0,
     SHADER_TYPE_SHADER_TYPE_COLOR=1,
@@ -9093,27 +10852,33 @@ enum {
     SHADER_TYPE_SHADER_TYPE_EMPTY=6
 };
 typedef unsigned int SHADER_TYPE;
-
+
+
 typedef struct SHDRExp SHDRExp, *PSHDRExp;
-
+
+
 typedef struct TexCoordExp TexCoordExp, *PTexCoordExp;
-
+
+
 struct SHDRExp {
     struct TexCoordExp *expressionArray;
     byte numExpressions;
     void *mtxArray[8];
     byte mtxUsed[8];
 } __attribute__((packed));
-
+
+
 struct TexCoordExp {
     SHADER_TG_SRC genSrc;
     byte srcShaderIdx;
     SHADER_TG_TYPE type;
     SHADER_MTX mtxInput;
 } __attribute__((packed));
-
+
+
 typedef struct SHDRInfo SHDRInfo, *PSHDRInfo;
-
+
+
 struct SHDRInfo {
     void *colorStages;
     void *alphaStages;
@@ -9121,9 +10886,11 @@ struct SHDRInfo {
     void *shaderResources;
     void *texGen;
 } __attribute__((packed));
-
+
+
 typedef struct SHDRRas SHDRRas, *PSHDRRas;
-
+
+
 struct SHDRRas {
     SHADER_COLOR regColor[4];
     SHADER_COLOR regAlpha[4];
@@ -9136,36 +10903,49 @@ struct SHDRRas {
     byte complexUsed[8];
     struct SHDRInfo *complexData[8];
 } __attribute__((packed));
-
+
+
 typedef struct SHDRResources SHDRResources, *PSHDRResources;
-
+
+
 typedef struct SHDRShader SHDRShader, *PSHDRShader;
-
+
+
 typedef union _union_354 _union_354, *P_union_354;
-
+
+
 typedef struct _struct_355 _struct_355, *P_struct_355;
-
+
+
 typedef struct _struct_356 _struct_356, *P_struct_356;
-
+
+
 typedef struct _struct_358 _struct_358, *P_struct_358;
-
+
+
 typedef struct _struct_359 _struct_359, *P_struct_359;
-
+
+
 typedef struct _struct_360 _struct_360, *P_struct_360;
-
+
+
 typedef struct _struct_365 _struct_365, *P_struct_365;
-
+
+
 typedef struct SHDRTexCoord SHDRTexCoord, *PSHDRTexCoord;
-
+
+
 struct _struct_359 {
     SHADER_RAS rasColor;
 } __attribute__((packed));
-
+
+
 struct _struct_356 {
     SHADER_TEX tex;
     struct SHDRTexCoord *texCoordShader;
 } __attribute__((packed));
-
+
+
 struct _struct_360 {
     struct SHDRShader *input1;
     struct SHDRShader *input2;
@@ -9176,19 +10956,23 @@ struct _struct_360 {
     SHADER_BIAS bias;
     SHADER_SCALE scale;
 } __attribute__((packed));
-
+
+
 struct _struct_355 {
     SHADER_COLOR_TYPE arg;
 } __attribute__((packed));
-
+
+
 struct _struct_365 {
     SHADER_COMPLEX input;
 } __attribute__((packed));
-
+
+
 struct _struct_358 {
     SHADER_COLOR color;
 } __attribute__((packed));
-
+
+
 union _union_354 {
     struct _struct_355 constantShader;
     struct _struct_356 textureShader;
@@ -9197,7 +10981,8 @@ union _union_354 {
     struct _struct_360 complexShader;
     struct _struct_365 complexInputShader;
 } __attribute__((packed));
-
+
+
 struct SHDRShader {
     SHADER_TYPE type;
     SHADER_CHANNEL channel;
@@ -9205,7 +10990,8 @@ struct SHDRShader {
     void *TEVStage;
     union _union_354 shaderParams;
 } __attribute__((packed));
-
+
+
 struct SHDRTexCoord {
     s16 referenceCount;
     SHADER_TG_SRC genSrc;
@@ -9214,7 +11000,8 @@ struct SHDRTexCoord {
     SHADER_MTX mtxInput;
     byte texCoordExpIdx;
 } __attribute__((packed));
-
+
+
 struct SHDRResources {
     SHADER_REG regColorState[4];
     SHADER_COLOR regColor[4];
@@ -9229,9 +11016,11 @@ struct SHDRResources {
     GXTexObj *texObj[8];
     GXTexMapID mapIdList[8];
 } __attribute__((packed));
-
+
+
 typedef struct SHDRStage SHDRStage, *PSHDRStage;
-
+
+
 struct SHDRStage {
     SHADER_COLOR_TYPE TEVArg[4];
     GXTevOp op;
@@ -9244,17 +11033,21 @@ struct SHDRStage {
     byte texGenIdx;
     SHADER_TEX texInput;
 } __attribute__((packed));
-
+
+
 typedef struct SHDRTCResources SHDRTCResources, *PSHDRTCResources;
-
+
+
 struct SHDRTCResources {
     GXTexCoordID coord[8];
     struct SHDRTexCoord *tcShader[8];
     struct SHDRShader *textureShader[8];
 } __attribute__((packed));
-
+
+
 typedef struct SIControl SIControl, *PSIControl;
-
+
+
 struct SIControl {
     long chan;
     ulong poll;
@@ -9262,9 +11055,11 @@ struct SIControl {
     void *input;
     void (*callback)(long, ulong, struct OSContext *);
 } __attribute__((packed));
-
+
+
 typedef struct SIPacket SIPacket, *PSIPacket;
-
+
+
 struct SIPacket {
     long chan;
     void *output;
@@ -9274,9 +11069,11 @@ struct SIPacket {
     void (*callback)(long, ulong, struct OSContext *);
     longlong time;
 } __attribute__((packed));
-
+
+
 typedef struct SK1ListHeader SK1ListHeader, *PSK1ListHeader;
-
+
+
 struct SK1ListHeader {
     struct Mtx matrixAtRuntime;
     void * positionNormalArray;
@@ -9286,9 +11083,11 @@ struct SK1ListHeader {
     byte offsetToCorrectStartOfPositionalArray;
     byte pad[3];
 } __attribute__((packed));
-
+
+
 typedef struct SK2ListHeader SK2ListHeader, *PSK2ListHeader;
-
+
+
 struct SK2ListHeader {
     struct Mtx mtx1;
     struct Mtx mtx2;
@@ -9301,17 +11100,21 @@ struct SK2ListHeader {
     byte offsetToCorrectPositionNormalArray;
     byte pad;
 } __attribute__((packed));
-
+
+
 typedef struct SKAccBuffer SKAccBuffer, *PSKAccBuffer;
-
+
+
 struct SKAccBuffer {
     s16 *src;
     short *indices;
     byte *weights;
 } __attribute__((packed));
-
+
+
 typedef struct SKAccListHeader SKAccListHeader, *PSKAccListHeader;
-
+
+
 struct SKAccListHeader {
     struct Mtx mtx;
     void * positionNormalArray;
@@ -9321,9 +11124,11 @@ struct SKAccListHeader {
     ushort boneIndexACT;
     ushort verticesInList;
 } __attribute__((packed));
-
+
+
 typedef struct SKNHeader SKNHeader, *PSKNHeader;
-
+
+
 struct SKNHeader {
     ushort numberOf1MTXLists;
     ushort numberOf2MTXLists;
@@ -9338,9 +11143,11 @@ struct SKNHeader {
     void * offsetToFlushIndexArray;
     uint numberOfFlushIndices;
 } __attribute__((packed));
-
+
+
 typedef struct SNDADPCMinfo SNDADPCMinfo, *PSNDADPCMinfo;
-
+
+
 struct SNDADPCMinfo {
     u16 numCoef;
     u8 initialPS;
@@ -9349,28 +11156,36 @@ struct SNDADPCMinfo {
     s16 loopY1;
     s16 coefTab[8][2];
 } __attribute__((packed));
-
+
+
 typedef struct SND_3DINFO SND_3DINFO, *PSND_3DINFO;
-
+
+
 struct SND_3DINFO {
     u8 vol;
     u8 pan;
     u8 span;
     u16 doppler;
 } __attribute__((packed));
-
+
+
 typedef struct SND_ADPCMSTREAM_INFO SND_ADPCMSTREAM_INFO, *PSND_ADPCMSTREAM_INFO;
-
+
+
 struct SND_ADPCMSTREAM_INFO {
     s16 coefTab[8][2];
 } __attribute__((packed));
-
+
+
 typedef struct SND_AUX_CHORUS SND_AUX_CHORUS, *PSND_AUX_CHORUS;
-
+
+
 typedef struct _SND_CHORUS_WORK _SND_CHORUS_WORK, *P_SND_CHORUS_WORK;
-
+
+
 typedef struct _SND_CHORUS_SRCINFO _SND_CHORUS_SRCINFO, *P_SND_CHORUS_SRCINFO;
-
+
+
 struct _SND_CHORUS_SRCINFO {
     s32 *dest;
     s32 *smpBase;
@@ -9382,7 +11197,8 @@ struct _SND_CHORUS_SRCINFO {
     u32 trigger;
     u32 target;
 } __attribute__((packed));
-
+
+
 struct _SND_CHORUS_WORK {
     s32 *lastLeft[3];
     s32 *lastRight[3];
@@ -9398,16 +11214,19 @@ struct _SND_CHORUS_WORK {
     u32 pitchOffsetPeriod;
     struct _SND_CHORUS_SRCINFO src;
 } __attribute__((packed));
-
+
+
 struct SND_AUX_CHORUS {
     struct _SND_CHORUS_WORK work;
     u32 baseDelay;
     u32 variation;
     u32 period;
 } __attribute__((packed));
-
+
+
 typedef struct SND_AUX_DELAY SND_AUX_DELAY, *PSND_AUX_DELAY;
-
+
+
 struct SND_AUX_DELAY {
     u32 currentSize[3];
     u32 currentPos[3];
@@ -9420,15 +11239,20 @@ struct SND_AUX_DELAY {
     u32 feedback[3];
     u32 output[3];
 } __attribute__((packed));
-
+
+
 typedef struct SND_AUX_REVERBHI SND_AUX_REVERBHI, *PSND_AUX_REVERBHI;
-
+
+
 typedef struct _SND_REVHI_WORK _SND_REVHI_WORK, *P_SND_REVHI_WORK;
-
+
+
 typedef uchar bool8;
-
+
+
 typedef struct _SND_REVHI_DELAYLINE _SND_REVHI_DELAYLINE, *P_SND_REVHI_DELAYLINE;
-
+
+
 struct _SND_REVHI_DELAYLINE {
     s32 inPoint;
     s32 outPoint;
@@ -9436,7 +11260,8 @@ struct _SND_REVHI_DELAYLINE {
     f32 *inputs;
     f32 lastOutput;
 } __attribute__((packed));
-
+
+
 struct _SND_REVHI_WORK {
     struct _SND_REVHI_DELAYLINE AP[9];
     struct _SND_REVHI_DELAYLINE C[9];
@@ -9450,7 +11275,8 @@ struct _SND_REVHI_WORK {
     f32 *preDelayLine[3];
     f32 *preDelayPtr[3];
 } __attribute__((packed));
-
+
+
 struct SND_AUX_REVERBHI {
     struct _SND_REVHI_WORK rv;
     bool8 tempDisableFX;
@@ -9461,13 +11287,17 @@ struct SND_AUX_REVERBHI {
     f32 preDelay;
     f32 crosstalk;
 } __attribute__((packed));
-
+
+
 typedef struct SND_AUX_REVERBSTD SND_AUX_REVERBSTD, *PSND_AUX_REVERBSTD;
-
+
+
 typedef struct _SND_REVSTD_WORK _SND_REVSTD_WORK, *P_SND_REVSTD_WORK;
-
+
+
 typedef struct _SND_REVSTD_DELAYLINE _SND_REVSTD_DELAYLINE, *P_SND_REVSTD_DELAYLINE;
-
+
+
 struct _SND_REVSTD_DELAYLINE {
     s32 inPoint;
     s32 outPoint;
@@ -9475,7 +11305,8 @@ struct _SND_REVSTD_DELAYLINE {
     f32 *inputs;
     f32 lastOutput;
 } __attribute__((packed));
-
+
+
 struct _SND_REVSTD_WORK {
     struct _SND_REVSTD_DELAYLINE AP[6];
     struct _SND_REVSTD_DELAYLINE C[6];
@@ -9488,7 +11319,8 @@ struct _SND_REVSTD_WORK {
     f32 *preDelayLine[3];
     f32 *preDelayPtr[3];
 } __attribute__((packed));
-
+
+
 struct SND_AUX_REVERBSTD {
     struct _SND_REVSTD_WORK rv;
     bool8 tempDisableFX;
@@ -9498,21 +11330,28 @@ struct SND_AUX_REVERBSTD {
     f32 damping;
     f32 preDelay;
 } __attribute__((packed));
-
-typedef s32 (*SND_COMPARE)(void *, void *);
-
+
+
+typedef s32 (*SND_COMPARE)(void *, void *);
+
+
+
 typedef struct SND_DOOR SND_DOOR, *PSND_DOOR;
-
+
+
 typedef struct SND_FVECTOR SND_FVECTOR, *PSND_FVECTOR;
-
+
+
 typedef struct SND_ROOM SND_ROOM, *PSND_ROOM;
-
+
+
 struct SND_FVECTOR {
     float x;
     float y;
     float z;
 } __attribute__((packed));
-
+
+
 struct SND_ROOM {
     struct SND_ROOM *next;
     struct SND_ROOM *prev;
@@ -9525,7 +11364,8 @@ struct SND_ROOM {
     void *user;
     u32 curMVol;
 } __attribute__((packed));
-
+
+
 struct SND_DOOR {
     struct SND_DOOR *next;
     struct SND_DOOR *prev;
@@ -9540,34 +11380,44 @@ struct SND_DOOR {
     s16 filterCoef[4];
     struct SND_STUDIO_INPUT input;
 } __attribute__((packed));
-
+
+
 typedef struct SND_EMITTER SND_EMITTER, *PSND_EMITTER;
-
+
+
 typedef struct SND_PARAMETER_INFO SND_PARAMETER_INFO, *PSND_PARAMETER_INFO;
-
+
+
 typedef u32 SND_VOICEID;
-
+
+
 typedef u16 SND_FXID;
-
+
+
 typedef struct SND_PARAMETER SND_PARAMETER, *PSND_PARAMETER;
-
+
+
 typedef union _union_12 _union_12, *P_union_12;
-
+
+
 union _union_12 {
     u8 value7;
     u16 value14;
 } __attribute__((packed));
-
+
+
 struct SND_PARAMETER_INFO {
     u8 numPara;
     struct SND_PARAMETER *paraArray;
 } __attribute__((packed));
-
+
+
 struct SND_PARAMETER {
     u8 ctrl;
     union _union_12 paraData;
 } __attribute__((packed));
-
+
+
 struct SND_EMITTER {
     struct SND_EMITTER *next;
     struct SND_EMITTER *prev;
@@ -9588,31 +11438,39 @@ struct SND_EMITTER {
     short VolLevelCnt;
     float fade;
 } __attribute__((packed));
-
+
+
 typedef struct SND_FMATRIX SND_FMATRIX, *PSND_FMATRIX;
-
+
+
 struct SND_FMATRIX {
     f32 m[3][3];
     f32 t[3];
 } __attribute__((packed));
-
+
+
 typedef struct SND_HOOKS SND_HOOKS, *PSND_HOOKS;
-
+
+
 struct SND_HOOKS {
     void * (*malloc)(u32);
     void (*free)(void *);
 } __attribute__((packed));
-
+
+
 typedef struct SND_HOOKS2 SND_HOOKS2, *PSND_HOOKS2;
-
+
+
 struct SND_HOOKS2 {
     void * (*malloc)(u32);
     void * (*mallocPhysical)(u32);
     void (*free)(void *);
 } __attribute__((packed));
-
+
+
 typedef struct SND_LISTENER SND_LISTENER, *PSND_LISTENER;
-
+
+
 struct SND_LISTENER {
     struct SND_LISTENER *next;
     struct SND_LISTENER *prev;
@@ -9630,20 +11488,26 @@ struct SND_LISTENER {
     f32 soundSpeed;
     f32 vol;
 } __attribute__((packed));
-
-typedef s32 (*SND_MESSAGE_CALLBACK)(u32, u32);
-
+
+
+typedef s32 (*SND_MESSAGE_CALLBACK)(u32, u32);
+
+
+
 enum {
     enum_2_SND_OUTPUTMODE_MONO=0,
     enum_2_SND_OUTPUTMODE_STEREO=1,
     enum_2_SND_OUTPUTMODE_SURROUND=2
 };
 typedef unsigned int enum_2;
-
+
+
 typedef enum_2 SND_OUTPUTMODE;
-
+
+
 typedef struct SND_PLAYBACKINFO SND_PLAYBACKINFO, *PSND_PLAYBACKINFO;
-
+
+
 struct SND_PLAYBACKINFO {
     u32 frq;
     u8 stereo;
@@ -9651,23 +11515,29 @@ struct SND_PLAYBACKINFO {
     s8 deviceName[256];
     s8 versionText[256];
 } __attribute__((packed));
-
+
+
 typedef struct SND_PLAYPARA SND_PLAYPARA, *PSND_PLAYPARA;
-
+
+
 typedef struct _struct_6 _struct_6, *P_struct_6;
-
+
+
 typedef struct SND_SEQVOLDEF SND_SEQVOLDEF, *PSND_SEQVOLDEF;
-
+
+
 struct SND_SEQVOLDEF {
     u8 track;
     u8 volGroup;
 } __attribute__((packed));
-
+
+
 struct _struct_6 {
     u16 time;
     u8 target;
 } __attribute__((packed));
-
+
+
 struct SND_PLAYPARA {
     u32 flags;
     u32 trackMute[2];
@@ -9678,9 +11548,11 @@ struct SND_PLAYPARA {
     u8 numFaded;
     u8 *faded;
 } __attribute__((packed));
-
+
+
 typedef struct SND_PROFILE_DATA SND_PROFILE_DATA, *PSND_PROFILE_DATA;
-
+
+
 struct SND_PROFILE_DATA {
     ulong loadStores;
     ulong missCycles;
@@ -9709,9 +11581,11 @@ struct SND_PROFILE_DATA {
     ulong cnt;
     ulong paused;
 } __attribute__((packed));
-
+
+
 typedef struct SND_PROFILE_INFO SND_PROFILE_INFO, *PSND_PROFILE_INFO;
-
+
+
 struct SND_PROFILE_INFO {
     struct SND_PROFILE_DATA dspCtrl;
     struct SND_PROFILE_DATA auxProcessing;
@@ -9722,40 +11596,55 @@ struct SND_PROFILE_INFO {
     uchar numMusicVoices;
     uchar numSFXVoices;
 } __attribute__((packed));
-
-typedef void (*SND_PROF_USERCALLBACK)(struct SND_PROFILE_INFO *);
-
-typedef void (*SND_SOME_CALLBACK)(void);
-
+
+
+typedef void (*SND_PROF_USERCALLBACK)(struct SND_PROFILE_INFO *);
+
+
+
+typedef void (*SND_SOME_CALLBACK)(void);
+
+
+
 typedef u32 SND_STREAMID;
-
-typedef s32 (*SND_STREAM_UPDATE_CALLBACK)(void *, u32, void *, u32, void *);
-
+
+
+typedef s32 (*SND_STREAM_UPDATE_CALLBACK)(void *, u32, void *, u32, void *);
+
+
+
 typedef struct SND_VIRTUALSAMPLE_INFO SND_VIRTUALSAMPLE_INFO, *PSND_VIRTUALSAMPLE_INFO;
-
+
+
 typedef union vsData vsData, *PvsData;
-
+
+
 typedef struct vsUpdate vsUpdate, *PvsUpdate;
-
+
+
 struct vsUpdate {
     u32 off1;
     u32 len1;
     u32 off2;
     u32 len2;
 } __attribute__((packed));
-
+
+
 union vsData {
     struct vsUpdate update;
 } __attribute__((packed));
-
+
+
 struct SND_VIRTUALSAMPLE_INFO {
     u16 smpID;
     u16 instID;
     union vsData data;
 } __attribute__((packed));
-
+
+
 typedef struct STREAM_INFO STREAM_INFO, *PSTREAM_INFO;
-
+
+
 struct STREAM_INFO {
     u32 nextStreamHandle;
     u32 stid;
@@ -9783,9 +11672,11 @@ struct STREAM_INFO {
     u8 orgSPan;
     u8 studio;
 } __attribute__((packed));
-
+
+
 typedef struct STRUCT_DEMOWIN STRUCT_DEMOWIN, *PSTRUCT_DEMOWIN;
-
+
+
 struct STRUCT_DEMOWIN {
     long x1;
     long y1;
@@ -9815,16 +11706,20 @@ struct STRUCT_DEMOWIN {
     struct STRUCT_DEMOWIN *prev;
     void *parent;
 } __attribute__((packed));
-
+
+
 typedef struct STRUCT_LISTBOX STRUCT_LISTBOX, *PSTRUCT_LISTBOX;
-
+
+
 typedef struct STRUCT_LISTBOX_ITEM STRUCT_LISTBOX_ITEM, *PSTRUCT_LISTBOX_ITEM;
-
+
+
 struct STRUCT_LISTBOX_ITEM {
     char *name;
     ulong flags;
 } __attribute__((packed));
-
+
+
 struct STRUCT_LISTBOX {
     char *title;
     struct STRUCT_DEMOWIN *handle;
@@ -9838,11 +11733,14 @@ struct STRUCT_LISTBOX {
     long display_pos;
     int cursor_state;
 } __attribute__((packed));
-
+
+
 typedef struct STRUCT_MENU STRUCT_MENU, *PSTRUCT_MENU;
-
+
+
 typedef struct STRUCT_MENU_ITEM STRUCT_MENU_ITEM, *PSTRUCT_MENU_ITEM;
-
+
+
 struct STRUCT_MENU {
     char *title;
     struct STRUCT_DEMOWIN *handle;
@@ -9859,24 +11757,29 @@ struct STRUCT_MENU {
     long curr_pos;
     long display_pos;
 } __attribute__((packed));
-
+
+
 struct STRUCT_MENU_ITEM {
     char *name;
     ulong flags;
     void (*function)(struct STRUCT_MENU *, ulong, ulong *);
     struct STRUCT_MENU *link;
 } __attribute__((packed));
-
+
+
 typedef struct SVec SVec, *PSVec;
-
+
+
 struct SVec {
     s16 x;
     s16 y;
     s16 z;
 } __attribute__((packed));
-
+
+
 typedef struct SYNTHMasterFader SYNTHMasterFader, *PSYNTHMasterFader;
-
+
+
 struct SYNTHMasterFader {
     f32 volume;
     f32 target;
@@ -9892,57 +11795,73 @@ struct SYNTHMasterFader {
     u8 seqMode;
     u8 type;
 } __attribute__((packed));
-
+
+
 typedef struct SYNTH_JOBTAB SYNTH_JOBTAB, *PSYNTH_JOBTAB;
-
+
+
 typedef struct SYNTH_QUEUE SYNTH_QUEUE, *PSYNTH_QUEUE;
-
+
+
 struct SYNTH_JOBTAB {
     struct SYNTH_QUEUE *lowPrecision;
     struct SYNTH_QUEUE *event;
     struct SYNTH_QUEUE *zeroOffset;
 } __attribute__((packed));
-
+
+
 struct SYNTH_QUEUE {
     struct SYNTH_QUEUE *next;
     struct SYNTH_QUEUE *prev;
     u8 voice;
     u8 jobTabIndex;
 } __attribute__((packed));
-
+
+
 enum {
     enum_94_SYNTH_JOBTYPE_LOW=0,
     enum_94_SYNTH_JOBTYPE_ZERO=1,
     enum_94_SYNTH_JOBTYPE_EVENT=2
 };
 typedef unsigned int enum_94;
-
+
+
 typedef enum_94 SYNTH_JOBTYPE;
-
+
+
 typedef struct SYNTH_LFO SYNTH_LFO, *PSYNTH_LFO;
-
+
+
 struct SYNTH_LFO {
     u32 time;
     u32 period;
     s16 value;
     s16 lastValue;
 } __attribute__((packed));
-
-typedef void (*SYNTH_MESSAGE_CALLBACK)(u32, s32);
-
+
+
+typedef void (*SYNTH_MESSAGE_CALLBACK)(u32, s32);
+
+
+
 typedef struct SYNTH_ROOTLIST SYNTH_ROOTLIST, *PSYNTH_ROOTLIST;
-
+
+
 struct SYNTH_ROOTLIST {
     u16 next;
     u16 prev;
 } __attribute__((packed));
-
+
+
 typedef struct SYNTH_VOICE SYNTH_VOICE, *PSYNTH_VOICE;
-
+
+
 typedef struct VID_LIST VID_LIST, *PVID_LIST;
-
+
+
 typedef struct setup setup, *Psetup;
-
+
+
 struct setup {
     u8 vol;
     u8 pan;
@@ -9954,7 +11873,8 @@ struct setup {
     u8 studio;
     u8 itdMode;
 } __attribute__((packed));
-
+
+
 struct SYNTH_VOICE {
     struct SYNTH_QUEUE lowPrecisionJob;
     struct SYNTH_QUEUE zeroOffsetJob;
@@ -10075,31 +11995,38 @@ struct SYNTH_VOICE {
     s32 mesgQueue[4];
     u16 curOutputVolume;
 } __attribute__((packed));
-
+
+
 struct VID_LIST {
     struct VID_LIST *next;
     struct VID_LIST *prev;
     u32 vid;
     u32 root;
 } __attribute__((packed));
-
+
+
 typedef struct SYNTH_VOICELIST SYNTH_VOICELIST, *PSYNTH_VOICELIST;
-
+
+
 struct SYNTH_VOICELIST {
     u8 prev;
     u8 next;
     u16 user;
 } __attribute__((packed));
-
+
+
 typedef struct ScreenText ScreenText, *PScreenText;
-
+
+
 typedef struct TextCharacter TextCharacter, *PTextCharacter;
-
+
+
 struct TextCharacter {
     byte flag_row_;
     byte character_col_;
 } __attribute__((packed));
-
+
+
 struct ScreenText {
     byte *field0_0x0;
     struct TextCharacter *currentCharPtr_;
@@ -10132,9 +12059,11 @@ struct ScreenText {
     byte field28_0x36;
     byte field29_0x37;
 } __attribute__((packed));
-
+
+
 typedef struct ShaderTEVStage ShaderTEVStage, *PShaderTEVStage;
-
+
+
 struct ShaderTEVStage {
     SHADER_TEV channel;
     SHADER_TYPE type;
@@ -10156,9 +12085,11 @@ struct ShaderTEVStage {
     byte outputIndex;
     SHADER_COLOR_TYPE outputArg;
 } __attribute__((packed));
-
+
+
 typedef struct SpritePos SpritePos, *PSpritePos;
-
+
+
 struct SpritePos {
     struct Mtx field0_0x0;
     float field1_0x30[7];
@@ -10180,20 +12111,26 @@ struct SpritePos {
     byte field17_0x8e;
     byte field18_0x8f;
 } __attribute__((packed));
-
+
+
 typedef struct SpritePositionStruct SpritePositionStruct, *PSpritePositionStruct;
-
+
+
 struct SpritePositionStruct {
     struct Vec3f pos;
     int field1_0xc;
     short field2_0x10;
     short field3_0x12;
 } __attribute__((packed));
-
-typedef void (*SramCallback)(void);
-
+
+
+typedef void (*SramCallback)(void);
+
+
+
 typedef struct SramControl SramControl, *PSramControl;
-
+
+
 struct SramControl {
     uchar sram[64];
     ulong offset;
@@ -10202,9 +12139,11 @@ struct SramControl {
     int sync;
     void (*callback)(void);
 } __attribute__((packed));
-
+
+
 typedef struct SramControlBlock SramControlBlock, *PSramControlBlock;
-
+
+
 struct SramControlBlock {
     u8 sram[64];
     u32 offset;
@@ -10213,13 +12152,17 @@ struct SramControlBlock {
     BOOL sync;
     SramCallback callback;
 } __attribute__((packed));
-
+
+
 typedef struct StadiumFileHeader StadiumFileHeader, *PStadiumFileHeader;
-
+
+
 typedef struct TextureArchiveHeader TextureArchiveHeader, *PTextureArchiveHeader;
-
+
+
 typedef struct TextureHeader TextureHeader, *PTextureHeader;
-
+
+
 struct TextureHeader {
     void * data;
     struct CLUTHeader *CLUTHeader;
@@ -10242,7 +12185,8 @@ struct TextureHeader {
     undefined *clutHeaderNumEntries;
     int field19_0x22;
 } __attribute__((packed));
-
+
+
 struct StadiumFileHeader {
     struct ACTActor *actor;
     struct ACTActor *actor2;
@@ -10257,7 +12201,8 @@ struct StadiumFileHeader {
     struct TextureArchiveHeader *textures2;
     struct CollisionFileHeader *collisionFilePointer2;
 } __attribute__((packed));
-
+
+
 struct TextureArchiveHeader {
     short count;
     short pad;
@@ -10265,13 +12210,17 @@ struct TextureArchiveHeader {
     undefined field3_0x2a;
     undefined field4_0x2b;
 } __attribute__((packed));
-
+
+
 typedef struct Static_MSSB_Data Static_MSSB_Data, *PStatic_MSSB_Data;
-
+
+
 typedef struct challengeRostersStruct challengeRostersStruct, *PchallengeRostersStruct;
-
+
+
 typedef struct controllerInputStruct controllerInputStruct, *PcontrollerInputStruct;
-
+
+
 enum {
     enumControllerInput_Left=1,
     enumControllerInput_Right=2,
@@ -10288,13 +12237,15 @@ enum {
     enumControllerInput_Start=4096
 };
 typedef unsigned short enumControllerInput;
-
+
+
 struct controllerInputStruct {
     enumControllerInput currentHeldInput;
     enumControllerInput newInput;
     enumControllerInput processedInput;
 } __attribute__((packed));
-
+
+
 struct challengeRostersStruct {
     byte charID[9];
     undefined field1_0x9;
@@ -10353,7 +12304,8 @@ struct challengeRostersStruct {
     undefined field54_0x46;
     undefined field55_0x47;
 } __attribute__((packed));
-
+
+
 struct Static_MSSB_Data {
     struct CharacterStats CharacterData[54];
     byte field1_0x21c0[8640];
@@ -10457,9 +12409,11 @@ struct Static_MSSB_Data {
     byte field99_0x48b3;
     byte field100_0x48b4[84];
 } __attribute__((packed));
-
+
+
 typedef struct StatisticsBatter StatisticsBatter, *PStatisticsBatter;
-
+
+
 struct StatisticsBatter {
     short field0_0x0;
     byte onFieldForAPitch;
@@ -10491,9 +12445,11 @@ struct StatisticsBatter {
     byte StarHitsActivated;
     byte field28_0x25;
 } __attribute__((packed));
-
+
+
 typedef struct StatisticsPitcher StatisticsPitcher, *PStatisticsPitcher;
-
+
+
 struct StatisticsPitcher {
     short BattersFaced;
     short RunsAllowed;
@@ -10517,11 +12473,14 @@ struct StatisticsPitcher {
     byte Strikeouts;
     byte starPitchesThrown;
 } __attribute__((packed));
-
+
+
 typedef struct synthInfo synthInfo, *PsynthInfo;
-
+
+
 typedef struct synthInfo SynthInfo;
-
+
+
 struct synthInfo {
     u32 mixFrq;
     u32 numSamples;
@@ -10531,18 +12490,29 @@ struct synthInfo {
     u8 maxSFX;
     u8 studioNum;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /TEXDescriptor - /sdk/texPalette.h/TEXDescriptor */
-
-
-/* WARNING! conflicting data type names: /TEXHeader - /sdk/texPalette.h/TEXHeader */
-
-
-/* WARNING! conflicting data type names: /TEXPalette - /sdk/texPalette.h/TEXPalette */
-
+
+
+
+
+/* WARNING! conflicting data type names: /TEXDescriptor - /sdk/texPalette.h/TEXDescriptor */
+
+
+
+
+
+/* WARNING! conflicting data type names: /TEXHeader - /sdk/texPalette.h/TEXHeader */
+
+
+
+
+
+/* WARNING! conflicting data type names: /TEXPalette - /sdk/texPalette.h/TEXPalette */
+
+
+
 typedef struct TEXPaletteData TEXPaletteData, *PTEXPaletteData;
-
+
+
 struct TEXPaletteData {
     int versionNumber;
     int userDataSize;
@@ -10550,11 +12520,14 @@ struct TEXPaletteData {
     int numDescriptors;
     TEXDescriptorPtr descriptorArray;
 } __attribute__((packed));
-
+
+
 typedef struct TEXPaletteData *TEXPaletteDataPtr;
-
+
+
 typedef struct TextureObj TextureObj, *PTextureObj;
-
+
+
 struct TextureObj {
     undefined *data;
     undefined *paletteData_;
@@ -10581,9 +12554,11 @@ struct TextureObj {
     undefined field22_0x1e;
     undefined field23_0x1f;
 } __attribute__((packed));
-
+
+
 typedef struct TriangleCollisionStruct TriangleCollisionStruct, *PTriangleCollisionStruct;
-
+
+
 struct TriangleCollisionStruct {
     struct Mtx mtx1;
     struct Mtx mtx2;
@@ -10592,25 +12567,35 @@ struct TriangleCollisionStruct {
     float maybeClosestCollisionDistance;
     TriangleCollisionTypes collisionType;
 } __attribute__((packed));
-
+
+
 typedef struct UnkPointerSDKFunc UnkPointerSDKFunc, *PUnkPointerSDKFunc;
-
+
+
 struct UnkPointerSDKFunc {
     int field0_0x0;
     int field1_0x4;
     byte *field2_0x8;
     byte *field3_0xc;
 } __attribute__((packed));
-
-typedef void (*VIPositionCallback)(s16, s16);
-
+
+
+typedef void (*VIPositionCallback)(s16, s16);
+
+
+
 typedef struct VIPositionInfo VIPositionInfo, *PVIPositionInfo;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vi.h/VIXFBMode - /GX/VIXFBMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vi.h/VIXFBMode - /GX/VIXFBMode */
+
+
+
 typedef struct VITimingInfo VITimingInfo, *PVITimingInfo;
-
+
+
 struct VITimingInfo {
     u8 equ;
     u16 acv;
@@ -10636,7 +12621,8 @@ struct VITimingInfo {
     u8 hbeCCIR656;
     u16 hbsCCIR656;
 } __attribute__((packed));
-
+
+
 struct VIPositionInfo {
     u16 dispPosX;
     u16 dispPosY;
@@ -10670,27 +12656,45 @@ struct VIPositionInfo {
     u32 rbfbb;
     struct VITimingInfo *timing;
 } __attribute__((packed));
-
-typedef void (*VIRetraceCallback)(u32);
-
-
-/* WARNING! conflicting data type names: /sdk/vitypes.h/VIRetraceCallback - /decompHeaders/vi.h/VIRetraceCallback */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vi.h/VITVMode - /GX/VITVMode */
-
-
-/* WARNING! conflicting data type names: /sdk/vitypes.h/VITVMode - /GX/VITVMode */
-
-
-/* WARNING! conflicting data type names: /sdk/vitypes.h/VIXFBMode - /GX/VIXFBMode */
-
+
+
+typedef void (*VIRetraceCallback)(u32);
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/vitypes.h/VIRetraceCallback - /decompHeaders/vi.h/VIRetraceCallback */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vi.h/VITVMode - /GX/VITVMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/vitypes.h/VITVMode - /GX/VITVMode */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/vitypes.h/VIXFBMode - /GX/VIXFBMode */
+
+
+
 typedef struct _VS _VS, *P_VS;
-
+
+
 typedef struct _VS VS;
-
+
+
 typedef struct VS_BUFFER VS_BUFFER, *PVS_BUFFER;
-
+
+
 struct VS_BUFFER {
     u8 state;
     u8 hwId;
@@ -10701,7 +12705,8 @@ struct VS_BUFFER {
     u32 finalLast;
     struct SND_VIRTUALSAMPLE_INFO info;
 } __attribute__((packed));
-
+
+
 struct _VS {
     u8 numBuffers;
     u32 bufferLength;
@@ -10710,56 +12715,73 @@ struct _VS {
     u16 nextInstID;
     u32 (*callback)(u8, struct SND_VIRTUALSAMPLE_INFO *);
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vec.h/Vec - /sdk/mtx.h/Vec */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vec.h/Vec - /sdk/mtx.h/Vec */
+
+
+
 typedef struct Vec2d Vec2d, *PVec2d;
-
+
+
 struct Vec2d {
     double X;
     double Y;
 } __attribute__((packed));
-
+
+
 typedef struct Vec2i Vec2i, *PVec2i;
-
+
+
 struct Vec2i {
     int X;
     int Y;
 } __attribute__((packed));
-
+
+
 typedef struct Vec2s Vec2s, *PVec2s;
-
+
+
 struct Vec2s {
     short X;
     short Y;
 } __attribute__((packed));
-
+
+
 typedef struct Vec3d Vec3d, *PVec3d;
-
+
+
 struct Vec3d {
     double X;
     double Y;
     double Z;
 } __attribute__((packed));
-
+
+
 typedef struct Vec3i Vec3i, *PVec3i;
-
+
+
 struct Vec3i {
     int X;
     int Y;
     int Z;
 } __attribute__((packed));
-
+
+
 typedef struct Vec *VecPtr;
-
+
+
 typedef struct VecSrcDst VecSrcDst, *PVecSrcDst;
-
+
+
 struct VecSrcDst {
     struct Vec3f src;
     struct Vec3f dst;
 } __attribute__((packed));
-
+
+
 enum {
     _GXAlphaOp_GX_AOP_AND=0,
     _GXAlphaOp_GX_AOP_OR=1,
@@ -10768,14 +12790,16 @@ enum {
     _GXAlphaOp_GX_MAX_ALPHAOP=4
 };
 typedef unsigned int _GXAlphaOp;
-
+
+
 enum {
     _GXAlphaReadMode_GX_READ_00=0,
     _GXAlphaReadMode_GX_READ_FF=1,
     _GXAlphaReadMode_GX_READ_NONE=2
 };
 typedef unsigned int _GXAlphaReadMode;
-
+
+
 enum {
     _GXAnisotropy_GX_ANISO_1=0,
     _GXAnisotropy_GX_ANISO_2=1,
@@ -10783,14 +12807,16 @@ enum {
     _GXAnisotropy_GX_MAX_ANISOTROPY=3
 };
 typedef unsigned int _GXAnisotropy;
-
+
+
 enum {
     _GXAttnFn_GX_AF_SPEC=0,
     _GXAttnFn_GX_AF_SPOT=1,
     _GXAttnFn_GX_AF_NONE=2
 };
 typedef unsigned int _GXAttnFn;
-
+
+
 enum {
     _GXAttr_GX_VA_PNMTXIDX=0,
     _GXAttr_GX_VA_TEX0MTXIDX=1,
@@ -10822,7 +12848,8 @@ enum {
     _GXAttr_GX_VA_NULL=255
 };
 typedef unsigned int _GXAttr;
-
+
+
 enum {
     _GXAttrType_GX_NONE=0,
     _GXAttrType_GX_DIRECT=1,
@@ -10830,7 +12857,8 @@ enum {
     _GXAttrType_GX_INDEX16=3
 };
 typedef unsigned int _GXAttrType;
-
+
+
 enum {
     _GXBlendFactor_GX_BL_ZERO=0,
     _GXBlendFactor_GX_BL_ONE=1,
@@ -10844,10 +12872,14 @@ enum {
     _GXBlendFactor_GX_BL_INVDSTALPHA=7
 };
 typedef unsigned int _GXBlendFactor;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXBlendFactor - /decompHeaders/GXEnum.h/_GXBlendFactor */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXBlendFactor - /decompHeaders/GXEnum.h/_GXBlendFactor */
+
+
+
 enum {
     _GXBlendMode_GX_BM_NONE=0,
     _GXBlendMode_GX_BM_BLEND=1,
@@ -10856,14 +12888,16 @@ enum {
     _GXBlendMode_GX_MAX_BLENDMODE=4
 };
 typedef unsigned int _GXBlendMode;
-
+
+
 enum {
     _GXCITexFmt_GX_TF_C4=8,
     _GXCITexFmt_GX_TF_C8=9,
     _GXCITexFmt_GX_TF_C14X2=10
 };
 typedef unsigned int _GXCITexFmt;
-
+
+
 enum {
     _GXChannelID_GX_COLOR0=0,
     _GXChannelID_GX_COLOR1=1,
@@ -10877,31 +12911,39 @@ enum {
     _GXChannelID_GX_COLOR_NULL=255
 };
 typedef unsigned int _GXChannelID;
-
+
+
 enum {
     _GXClipMode_GX_CLIP_ENABLE=0,
     _GXClipMode_GX_CLIP_DISABLE=1
 };
 typedef unsigned int _GXClipMode;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/_GXColor - /sdk/GXStruct.h/_GXColor */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/_GXColor - /sdk/GXStruct.h/_GXColor */
+
+
+
 typedef struct _GXColorS10 _GXColorS10, *P_GXColorS10;
-
+
+
 struct _GXColorS10 {
     s16 r;
     s16 g;
     s16 b;
     s16 a;
 } __attribute__((packed));
-
+
+
 enum {
     _GXColorSrc_GX_SRC_REG=0,
     _GXColorSrc_GX_SRC_VTX=1
 };
 typedef unsigned int _GXColorSrc;
-
+
+
 enum {
     _GXCompCnt_GX_CLR_RGB=0,
     _GXCompCnt_GX_COMPCNT_NULL=0,
@@ -10915,10 +12957,14 @@ enum {
     _GXCompCnt_GX_NRM_NBT3=2
 };
 typedef unsigned int _GXCompCnt;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompCnt - /decompHeaders/GXEnum.h/_GXCompCnt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompCnt - /decompHeaders/GXEnum.h/_GXCompCnt */
+
+
+
 enum {
     _GXCompType_GX_COMP_NULL=0,
     _GXCompType_GX_RGB565=0,
@@ -10934,10 +12980,14 @@ enum {
     _GXCompType_GX_RGBA8=5
 };
 typedef unsigned int _GXCompType;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompType - /decompHeaders/GXEnum.h/_GXCompType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompType - /decompHeaders/GXEnum.h/_GXCompType */
+
+
+
 enum {
     _GXCompare_GX_NEVER=0,
     _GXCompare_GX_LESS=1,
@@ -10949,14 +12999,16 @@ enum {
     _GXCompare_GX_ALWAYS=7
 };
 typedef unsigned int _GXCompare;
-
+
+
 enum {
     _GXCopyMode_GX_COPY_PROGRESSIVE=0,
     _GXCopyMode_GX_COPY_INTLC_EVEN=2,
     _GXCopyMode_GX_COPY_INTLC_ODD=3
 };
 typedef unsigned int _GXCopyMode;
-
+
+
 enum {
     _GXCullMode_GX_CULL_NONE=0,
     _GXCullMode_GX_CULL_FRONT=1,
@@ -10964,14 +13016,16 @@ enum {
     _GXCullMode_GX_CULL_ALL=3
 };
 typedef unsigned int _GXCullMode;
-
+
+
 enum {
     _GXDiffuseFn_GX_DF_NONE=0,
     _GXDiffuseFn_GX_DF_SIGN=1,
     _GXDiffuseFn_GX_DF_CLAMP=2
 };
 typedef unsigned int _GXDiffuseFn;
-
+
+
 enum {
     _GXDistAttnFn_GX_DA_OFF=0,
     _GXDistAttnFn_GX_DA_GENTLE=1,
@@ -10979,7 +13033,8 @@ enum {
     _GXDistAttnFn_GX_DA_STEEP=3
 };
 typedef unsigned int _GXDistAttnFn;
-
+
+
 enum {
     _GXFBClamp_GX_CLAMP_NONE=0,
     _GXFBClamp_GX_CLAMP_TOP=1,
@@ -10987,19 +13042,28 @@ enum {
     _GXFBClamp_GX_CLAMP_BOTH=3
 };
 typedef unsigned int _GXFBClamp;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFBClamp - /decompHeaders/GXEnum.h/_GXFBClamp */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFBClamp - /decompHeaders/GXEnum.h/_GXFBClamp */
+
+
+
 typedef struct _GXFogAdjTable _GXFogAdjTable, *P_GXFogAdjTable;
-
+
+
 struct _GXFogAdjTable {
     u16 fogVals[10];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXFogAdjTable - /decompHeaders/GXTypes.h/_GXFogAdjTable */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXFogAdjTable - /decompHeaders/GXTypes.h/_GXFogAdjTable */
+
+
+
 enum {
     _GXFogType_GX_FOG_NONE=0,
     _GXFogType_GX_FOG_LINEAR=2,
@@ -11009,17 +13073,22 @@ enum {
     _GXFogType_GX_FOG_REVERSEXP2=7
 };
 typedef unsigned int _GXFogType;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFogType - /decompHeaders/GXEnum.h/_GXFogType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFogType - /decompHeaders/GXEnum.h/_GXFogType */
+
+
+
 enum {
     _GXGamma_GX_GM_1_0=0,
     _GXGamma_GX_GM_1_7=1,
     _GXGamma_GX_GM_2_2=2
 };
 typedef unsigned int _GXGamma;
-
+
+
 enum {
     _GXIndTexAlphaSel_GX_ITBA_OFF=0,
     _GXIndTexAlphaSel_GX_ITBA_S=1,
@@ -11028,7 +13097,8 @@ enum {
     _GXIndTexAlphaSel_GX_MAX_ITBALPHA=4
 };
 typedef unsigned int _GXIndTexAlphaSel;
-
+
+
 enum {
     _GXIndTexBiasSel_GX_ITB_NONE=0,
     _GXIndTexBiasSel_GX_ITB_S=1,
@@ -11041,7 +13111,8 @@ enum {
     _GXIndTexBiasSel_GX_MAX_ITBIAS=8
 };
 typedef unsigned int _GXIndTexBiasSel;
-
+
+
 enum {
     _GXIndTexFormat_GX_ITF_8=0,
     _GXIndTexFormat_GX_ITF_5=1,
@@ -11050,7 +13121,8 @@ enum {
     _GXIndTexFormat_GX_MAX_ITFORMAT=4
 };
 typedef unsigned int _GXIndTexFormat;
-
+
+
 enum {
     _GXIndTexMtxID_GX_ITM_OFF=0,
     _GXIndTexMtxID_GX_ITM_0=1,
@@ -11064,7 +13136,8 @@ enum {
     _GXIndTexMtxID_GX_ITM_T2=11
 };
 typedef unsigned int _GXIndTexMtxID;
-
+
+
 enum {
     _GXIndTexScale_GX_ITS_1=0,
     _GXIndTexScale_GX_ITS_2=1,
@@ -11078,7 +13151,8 @@ enum {
     _GXIndTexScale_GX_MAX_ITSCALE=9
 };
 typedef unsigned int _GXIndTexScale;
-
+
+
 enum {
     _GXIndTexStageID_GX_IND_TEX_STAGE_0=0,
     _GXIndTexStageID_GX_IND_TEX_STAGE_1=1,
@@ -11087,10 +13161,14 @@ enum {
     _GXIndTexStageID_GX_IND_MAX_TEX_STAGE_ID=4
 };
 typedef unsigned int _GXIndTexStageID;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXIndTexStageID - /decompHeaders/GXEnum.h/_GXIndTexStageID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXIndTexStageID - /decompHeaders/GXEnum.h/_GXIndTexStageID */
+
+
+
 enum {
     _GXIndTexWrap_GX_ITW_OFF=0,
     _GXIndTexWrap_GX_ITW_256=1,
@@ -11102,7 +13180,8 @@ enum {
     _GXIndTexWrap_GX_MAX_ITWRAP=7
 };
 typedef unsigned int _GXIndTexWrap;
-
+
+
 enum {
     _GXLightID_GX_LIGHT_NULL=0,
     _GXLightID_GX_LIGHT0=1,
@@ -11116,10 +13195,14 @@ enum {
     _GXLightID_GX_MAX_LIGHT=256
 };
 typedef unsigned int _GXLightID;
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXLightObj - /decompHeaders/GXTypes.h/_GXLightObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXLightObj - /decompHeaders/GXTypes.h/_GXLightObj */
+
+
+
 enum {
     _GXLogicOp_GX_LO_CLEAR=0,
     _GXLogicOp_GX_LO_AND=1,
@@ -11139,7 +13222,8 @@ enum {
     _GXLogicOp_GX_LO_SET=15
 };
 typedef unsigned int _GXLogicOp;
-
+
+
 enum {
     _GXMiscToken_GX_MT_NULL=0,
     _GXMiscToken_GX_MT_XF_FLUSH=1,
@@ -11147,10 +13231,14 @@ enum {
     _GXMiscToken_GX_MT_ABORT_WAIT_COPYOUT=3
 };
 typedef unsigned int _GXMiscToken;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXMiscToken - /decompHeaders/GXEnum.h/_GXMiscToken */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXMiscToken - /decompHeaders/GXEnum.h/_GXMiscToken */
+
+
+
 enum {
     _GXPTTexMtx_GX_PTTEXMTX0=64,
     _GXPTTexMtx_GX_PTTEXMTX1=67,
@@ -11175,7 +13263,8 @@ enum {
     _GXPTTexMtx_GX_PTIDENTITY=125
 };
 typedef unsigned int _GXPTTexMtx;
-
+
+
 enum {
     _GXPerf0_GX_PERF0_VERTICES=0,
     _GXPerf0_GX_PERF0_CLIP_VTX=1,
@@ -11215,7 +13304,8 @@ enum {
     _GXPerf0_GX_PERF0_NONE=35
 };
 typedef unsigned int _GXPerf0;
-
+
+
 enum {
     _GXPerf1_GX_PERF1_TEXELS=0,
     _GXPerf1_GX_PERF1_TX_IDLE=1,
@@ -11242,7 +13332,8 @@ enum {
     _GXPerf1_GX_PERF1_NONE=22
 };
 typedef unsigned int _GXPerf1;
-
+
+
 enum {
     _GXPixelFmt_GX_PF_RGB8_Z24=0,
     _GXPixelFmt_GX_PF_RGBA6_Z24=1,
@@ -11255,10 +13346,14 @@ enum {
     _GXPixelFmt_GX_MAX_PIXELFMT=8
 };
 typedef unsigned int _GXPixelFmt;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXPixelFmt - /decompHeaders/GXEnum.h/_GXPixelFmt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXPixelFmt - /decompHeaders/GXEnum.h/_GXPixelFmt */
+
+
+
 enum {
     _GXPosNrmMtx_GX_PNMTX0=0,
     _GXPosNrmMtx_GX_PNMTX1=3,
@@ -11272,7 +13367,8 @@ enum {
     _GXPosNrmMtx_GX_PNMTX9=27
 };
 typedef unsigned int _GXPosNrmMtx;
-
+
+
 enum {
     _GXPrimitive_GX_QUADS=128,
     _GXPrimitive_GX_TRIANGLES=144,
@@ -11283,15 +13379,18 @@ enum {
     _GXPrimitive_GX_POINTS=184
 };
 typedef unsigned int _GXPrimitive;
-
+
+
 enum {
     _GXProjectionType_GX_PERSPECTIVE=0,
     _GXProjectionType_GX_ORTHOGRAPHIC=1
 };
 typedef unsigned int _GXProjectionType;
-
+
+
 typedef struct _GXRenderModeObj _GXRenderModeObj, *P_GXRenderModeObj;
-
+
+
 struct _GXRenderModeObj {
     VITVMode viTVmode;
     u16 fbWidth;
@@ -11307,10 +13406,14 @@ struct _GXRenderModeObj {
     u8 sample_pattern[12][2];
     u8 vfilter[7];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXRenderModeObj - /decompHeaders/vi.h/_GXRenderModeObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXRenderModeObj - /decompHeaders/vi.h/_GXRenderModeObj */
+
+
+
 enum {
     _GXSpotFn_GX_SP_OFF=0,
     _GXSpotFn_GX_SP_FLAT=1,
@@ -11321,7 +13424,8 @@ enum {
     _GXSpotFn_GX_SP_RING2=6
 };
 typedef unsigned int _GXSpotFn;
-
+
+
 enum {
     _GXTevAlphaArg_GX_CA_APREV=0,
     _GXTevAlphaArg_GX_CA_A0=1,
@@ -11333,10 +13437,14 @@ enum {
     _GXTevAlphaArg_GX_CA_ZERO=7
 };
 typedef unsigned int _GXTevAlphaArg;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevAlphaArg - /decompHeaders/GXEnum.h/_GXTevAlphaArg */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevAlphaArg - /decompHeaders/GXEnum.h/_GXTevAlphaArg */
+
+
+
 enum {
     _GXTevBias_GX_TB_ZERO=0,
     _GXTevBias_GX_TB_ADDHALF=1,
@@ -11344,7 +13452,8 @@ enum {
     _GXTevBias_GX_MAX_TEVBIAS=3
 };
 typedef unsigned int _GXTevBias;
-
+
+
 enum {
     _GXTevClampMode_GX_TC_LINEAR=0,
     _GXTevClampMode_GX_TC_GE=1,
@@ -11353,7 +13462,8 @@ enum {
     _GXTevClampMode_GX_MAX_TEVCLAMPMODE=4
 };
 typedef unsigned int _GXTevClampMode;
-
+
+
 enum {
     _GXTevColorArg_GX_CC_CPREV=0,
     _GXTevColorArg_GX_CC_APREV=1,
@@ -11373,10 +13483,14 @@ enum {
     _GXTevColorArg_GX_CC_ZERO=15
 };
 typedef unsigned int _GXTevColorArg;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevColorArg - /decompHeaders/GXEnum.h/_GXTevColorArg */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevColorArg - /decompHeaders/GXEnum.h/_GXTevColorArg */
+
+
+
 enum {
     _GXTevColorChan_GX_CH_RED=0,
     _GXTevColorChan_GX_CH_GREEN=1,
@@ -11384,7 +13498,8 @@ enum {
     _GXTevColorChan_GX_CH_ALPHA=3
 };
 typedef unsigned int _GXTevColorChan;
-
+
+
 enum {
     _GXTevKAlphaSel_GX_TEV_KASEL_1=0,
     _GXTevKAlphaSel_GX_TEV_KASEL_7_8=1,
@@ -11412,7 +13527,8 @@ enum {
     _GXTevKAlphaSel_GX_TEV_KASEL_K3_A=31
 };
 typedef unsigned int _GXTevKAlphaSel;
-
+
+
 enum {
     _GXTevKColorID_GX_KCOLOR0=0,
     _GXTevKColorID_GX_KCOLOR1=1,
@@ -11421,7 +13537,8 @@ enum {
     _GXTevKColorID_GX_MAX_KCOLOR=4
 };
 typedef unsigned int _GXTevKColorID;
-
+
+
 enum {
     _GXTevKColorSel_GX_TEV_KCSEL_1=0,
     _GXTevKColorSel_GX_TEV_KCSEL_7_8=1,
@@ -11453,7 +13570,8 @@ enum {
     _GXTevKColorSel_GX_TEV_KCSEL_K3_A=31
 };
 typedef unsigned int _GXTevKColorSel;
-
+
+
 enum {
     _GXTevMode_GX_MODULATE=0,
     _GXTevMode_GX_DECAL=1,
@@ -11462,7 +13580,8 @@ enum {
     _GXTevMode_GX_PASSCLR=4
 };
 typedef unsigned int _GXTevMode;
-
+
+
 enum {
     _GXTevOp_GX_TEV_ADD=0,
     _GXTevOp_GX_TEV_SUB=1,
@@ -11478,7 +13597,8 @@ enum {
     _GXTevOp_GX_TEV_COMP_A8_EQ=17
 };
 typedef unsigned int _GXTevOp;
-
+
+
 enum {
     _GXTevRegID_GX_TEVPREV=0,
     _GXTevRegID_GX_TEVREG0=1,
@@ -11487,7 +13607,8 @@ enum {
     _GXTevRegID_GX_MAX_TEVREG=4
 };
 typedef unsigned int _GXTevRegID;
-
+
+
 enum {
     _GXTevScale_GX_CS_SCALE_1=0,
     _GXTevScale_GX_CS_SCALE_2=1,
@@ -11496,7 +13617,8 @@ enum {
     _GXTevScale_GX_MAX_TEVSCALE=4
 };
 typedef unsigned int _GXTevScale;
-
+
+
 enum {
     _GXTevStageID_GX_TEVSTAGE0=0,
     _GXTevStageID_GX_TEVSTAGE1=1,
@@ -11517,10 +13639,14 @@ enum {
     _GXTevStageID_GX_MAXTEVSTAGE=16
 };
 typedef unsigned int _GXTevStageID;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevStageID - /decompHeaders/GXEnum.h/_GXTevStageID */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevStageID - /decompHeaders/GXEnum.h/_GXTevStageID */
+
+
+
 enum {
     _GXTevSwapSel_GX_TEV_SWAP0=0,
     _GXTevSwapSel_GX_TEV_SWAP1=1,
@@ -11529,7 +13655,8 @@ enum {
     _GXTevSwapSel_GX_MAX_TEVSWAP=4
 };
 typedef unsigned int _GXTevSwapSel;
-
+
+
 enum {
     _GXTexCacheSize_GX_TEXCACHE_32K=0,
     _GXTexCacheSize_GX_TEXCACHE_128K=1,
@@ -11537,7 +13664,8 @@ enum {
     _GXTexCacheSize_GX_TEXCACHE_NONE=3
 };
 typedef unsigned int _GXTexCacheSize;
-
+
+
 enum {
     _GXTexCoordID_GX_TEXCOORD0=0,
     _GXTexCoordID_GX_TEXCOORD1=1,
@@ -11551,7 +13679,8 @@ enum {
     _GXTexCoordID_GX_TEXCOORD_NULL=255
 };
 typedef unsigned int _GXTexCoordID;
-
+
+
 enum {
     _GXTexFmt_GX_TF_I4=0,
     _GXTexFmt_GX_TF_I8=1,
@@ -11580,10 +13709,14 @@ enum {
     _GXTexFmt_GX_CTF_Z16L=60
 };
 typedef unsigned int _GXTexFmt;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexFmt - /decompHeaders/GXEnum.h/_GXTexFmt */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexFmt - /decompHeaders/GXEnum.h/_GXTexFmt */
+
+
+
 enum {
     _GXTexGenSrc_GX_TG_POS=0,
     _GXTexGenSrc_GX_TG_NRM=1,
@@ -11608,7 +13741,8 @@ enum {
     _GXTexGenSrc_GX_TG_COLOR1=20
 };
 typedef unsigned int _GXTexGenSrc;
-
+
+
 enum {
     _GXTexGenType_GX_TG_MTX2X4=0,
     _GXTexGenType_GX_TG_MTX3X4=1,
@@ -11623,10 +13757,14 @@ enum {
     _GXTexGenType_GX_TG_SRTG=10
 };
 typedef unsigned int _GXTexGenType;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexGenType - /decompHeaders/GXEnum.h/_GXTexGenType */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexGenType - /decompHeaders/GXEnum.h/_GXTexGenType */
+
+
+
 enum {
     _GXTexMapID_GX_TEXMAP0=0,
     _GXTexMapID_GX_TEXMAP1=1,
@@ -11641,7 +13779,8 @@ enum {
     _GXTexMapID_GX_TEX_DISABLE=256
 };
 typedef unsigned int _GXTexMapID;
-
+
+
 enum {
     _GXTexMtx_GX_TEXMTX0=30,
     _GXTexMtx_GX_TEXMTX1=33,
@@ -11656,22 +13795,29 @@ enum {
     _GXTexMtx_GX_IDENTITY=60
 };
 typedef unsigned int _GXTexMtx;
-
+
+
 enum {
     _GXTexMtxType_GX_MTX3x4=0,
     _GXTexMtxType_GX_MTX2x4=1
 };
 typedef unsigned int _GXTexMtxType;
-
+
+
 typedef struct _GXTexObj _GXTexObj, *P_GXTexObj;
-
+
+
 struct _GXTexObj {
     u8 pad[32];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexObj - /decompHeaders/GXTypes.h/_GXTexObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexObj - /decompHeaders/GXTypes.h/_GXTexObj */
+
+
+
 enum {
     _GXTexOffset_GX_TO_ZERO=0,
     _GXTexOffset_GX_TO_SIXTEENTH=1,
@@ -11682,19 +13828,28 @@ enum {
     _GXTexOffset_GX_MAX_TEXOFFSET=6
 };
 typedef unsigned int _GXTexOffset;
-
+
+
 typedef struct _GXTexRegion _GXTexRegion, *P_GXTexRegion;
-
+
+
 struct _GXTexRegion {
     u8 padding[16];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexRegion - /decompHeaders/GXTypes.h/_GXTexRegion */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/_GXTexWrapMode - /sdk/GXEnum.h/_GXTexWrapMode */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexRegion - /decompHeaders/GXTypes.h/_GXTexRegion */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/_GXTexWrapMode - /sdk/GXEnum.h/_GXTexWrapMode */
+
+
+
 enum {
     _GXTlut_GX_TLUT0=0,
     _GXTlut_GX_TLUT1=1,
@@ -11721,28 +13876,42 @@ enum {
     _GXTlut_GX_BIGTLUT3=19
 };
 typedef unsigned int _GXTlut;
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTlut - /decompHeaders/GXEnum.h/_GXTlut */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTlut - /decompHeaders/GXEnum.h/_GXTlut */
+
+
+
 typedef struct _GXTlutObj _GXTlutObj, *P_GXTlutObj;
-
+
+
 struct _GXTlutObj {
     u8 padding[12];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutObj - /decompHeaders/GXTypes.h/_GXTlutObj */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutObj - /decompHeaders/GXTypes.h/_GXTlutObj */
+
+
+
 typedef struct _GXTlutRegion _GXTlutRegion, *P_GXTlutRegion;
-
+
+
 struct _GXTlutRegion {
     u8 padding[16];
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutRegion - /decompHeaders/GXTypes.h/_GXTlutRegion */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutRegion - /decompHeaders/GXTypes.h/_GXTlutRegion */
+
+
+
 enum {
     _GXTlutSize_GX_TLUT_16=1,
     _GXTlutSize_GX_TLUT_32=2,
@@ -11757,7 +13926,8 @@ enum {
     _GXTlutSize_GX_TLUT_16K=1024
 };
 typedef unsigned int _GXTlutSize;
-
+
+
 enum {
     _GXVCachePerf_GX_VC_POS=0,
     _GXVCachePerf_GX_VC_NRM=1,
@@ -11774,29 +13944,40 @@ enum {
     _GXVCachePerf_GX_VC_ALL=15
 };
 typedef unsigned int _GXVCachePerf;
-
+
+
 typedef struct _GXVtxAttrFmtList _GXVtxAttrFmtList, *P_GXVtxAttrFmtList;
-
+
+
 struct _GXVtxAttrFmtList {
     GXAttr mAttr;
     GXCompCnt mCount;
     GXCompType mType;
     u8 mFrac;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxAttrFmtList - /decompHeaders/GXTypes.h/_GXVtxAttrFmtList */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxAttrFmtList - /decompHeaders/GXTypes.h/_GXVtxAttrFmtList */
+
+
+
 typedef struct _GXVtxDescList _GXVtxDescList, *P_GXVtxDescList;
-
+
+
 struct _GXVtxDescList {
     GXAttr mAttr;
     GXAttrType mType;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxDescList - /decompHeaders/GXTypes.h/_GXVtxDescList */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxDescList - /decompHeaders/GXTypes.h/_GXVtxDescList */
+
+
+
 enum {
     _GXVtxFmt_GX_VTXFMT0=0,
     _GXVtxFmt_GX_VTXFMT1=1,
@@ -11809,7 +13990,8 @@ enum {
     _GXVtxFmt_GX_MAX_VTXFMT=8
 };
 typedef unsigned int _GXVtxFmt;
-
+
+
 enum {
     _GXZFmt16_GX_ZC_LINEAR=0,
     _GXZFmt16_GX_ZC_NEAR=1,
@@ -11817,7 +13999,8 @@ enum {
     _GXZFmt16_GX_ZC_FAR=3
 };
 typedef unsigned int _GXZFmt16;
-
+
+
 enum {
     _GXZTexOp_GX_ZT_DISABLE=0,
     _GXZTexOp_GX_ZT_ADD=1,
@@ -11825,27 +14008,36 @@ enum {
     _GXZTexOp_GX_MAX_ZTEXOP=3
 };
 typedef unsigned int _GXZTexOp;
-
+
+
 typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
-
+
+
 typedef struct _IO_marker _IO_marker, *P_IO_marker;
-
+
+
 typedef long __off_t;
-
+
+
 typedef void _IO_lock_t;
-
+
+
 typedef longlong __quad_t;
-
+
+
 typedef __quad_t __off64_t;
-
+
+
 typedef uint size_t;
-
+
+
 struct _IO_marker {
     struct _IO_marker *_next;
     struct _IO_FILE *_sbuf;
     int _pos;
 } __attribute__((packed));
-
+
+
 struct _IO_FILE {
     int _flags;
     char *_IO_read_ptr;
@@ -11877,42 +14069,66 @@ struct _IO_FILE {
     int _mode;
     char _unused2[56];
 } __attribute__((packed));
-
+
+
 typedef GXBlendFactor _SDK_GXBlendFactor;
-
+
+
 typedef GXBlendMode _SDK_GXBlendMode;
-
+
+
 typedef GXCompare _SDK_GXCompare;
-
+
+
 typedef GXFogType _SDK_GXFogType;
-
+
+
 typedef GXLogicOp _SDK_GXLogicOp;
-
+
+
 typedef GXPixelFmt _SDK_GXPixelFmt;
-
+
+
 typedef GXZFmt16 _SDK_GXZFmt16;
-
+
+
 typedef struct _IO_FILE __FILE;
-
+
+
 typedef u8 __OSException;
-
-
-/* WARNING! conflicting data type names: /sdk/OSException.h/__OSException - /decompHeaders/OSException.h/__OSException */
-
-typedef void (*__OSExceptionHandler)(__OSException, struct OSContext *);
-
-
-/* WARNING! conflicting data type names: /sdk/OSException.h/__OSExceptionHandler - /decompHeaders/OSException.h/__OSExceptionHandler */
-
-
-/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/__OSInterruptHandler - /decompHeaders/OSInterrupt.h/__OSInterruptHandler */
-
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSException.h/__OSException - /decompHeaders/OSException.h/__OSException */
+
+
+
+typedef void (*__OSExceptionHandler)(__OSException, struct OSContext *);
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSException.h/__OSExceptionHandler - /decompHeaders/OSException.h/__OSExceptionHandler */
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/__OSInterruptHandler - /decompHeaders/OSInterrupt.h/__OSInterruptHandler */
+
+
+
 typedef void *__gnuc_va_list;
-
+
+
 typedef uint __socklen_t;
-
+
+
 typedef struct _sStats _sStats, *P_sStats;
-
+
+
 struct _sStats {
     int cycles[2];
     int loadStores[2];
@@ -11924,11 +14140,14 @@ struct _sStats {
     int instructionTotal;
     int hits;
 } __attribute__((packed));
-
+
+
 typedef struct aIPosSwap aIPosSwap, *PaIPosSwap;
-
+
+
 typedef struct aiPosSwap2 aiPosSwap2, *PaiPosSwap2;
-
+
+
 struct aiPosSwap2 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -11940,19 +14159,25 @@ struct aiPosSwap2 {
     undefined field7_0x4e;
     undefined field8_0x4f;
 } __attribute__((packed));
-
+
+
 struct aIPosSwap {
     struct aiPosSwap2 field0_0x0[2];
 } __attribute__((packed));
-
+
+
 typedef struct addrinfo addrinfo, *Paddrinfo;
-
+
+
 typedef __socklen_t socklen_t;
-
+
+
 typedef struct sockaddr sockaddr, *Psockaddr;
-
+
+
 typedef ushort sa_family_t;
-
+
+
 struct addrinfo {
     int ai_flags;
     int ai_family;
@@ -11963,12 +14188,14 @@ struct addrinfo {
     char *ai_canonname;
     struct addrinfo *ai_next;
 } __attribute__((packed));
-
+
+
 struct sockaddr {
     sa_family_t sa_family;
     char sa_data[14];
 } __attribute__((packed));
-
+
+
 enum {
     aiPositionSwapState_navigateToPitcher=0,
     aiPositionSwapState_onPitcher=1,
@@ -11979,19 +14206,25 @@ enum {
     aiPositionSwapState_returnToGameSequence=6
 };
 typedef unsigned char aiPositionSwapState;
-
+
+
 typedef struct angleRange angleRange, *PangleRange;
-
+
+
 struct angleRange {
     byte lower;
     byte upper;
 } __attribute__((packed));
-
+
+
 typedef struct astruct astruct, *Pastruct;
-
-
+
+
+
+
 typedef struct astruct_1 astruct_1, *Pastruct_1;
-
+
+
 struct astruct_1 {
     struct Vec3f field0_0x0;
     struct Vec3f field1_0xc;
@@ -12187,9 +14420,11 @@ struct astruct_1 {
     undefined field191_0x353;
     struct Vec3f field192_0x354;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_10 astruct_10, *Pastruct_10;
-
+
+
 struct astruct_10 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -12314,9 +14549,11 @@ struct astruct_10 {
     short field120_0x7e;
     short field121_0x80;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_10_conflict astruct_10_conflict, *Pastruct_10_conflict;
-
+
+
 struct astruct_10_conflict {
     int *field0_0x0;
     undefined field1_0x4;
@@ -12519,9 +14756,11 @@ struct astruct_10_conflict {
     undefined field198_0xcc;
     char field199_0xcd;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_11 astruct_11, *Pastruct_11;
-
+
+
 struct astruct_11 {
     EnumCTRLControlType field0_0x0;
     undefined field1_0x1;
@@ -12679,9 +14918,11 @@ struct astruct_11 {
     undefined field153_0xa8;
     char field154_0xa9;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_12 astruct_12, *Pastruct_12;
-
+
+
 struct astruct_12 {
     byte field0_0x0;
     byte isTriangleStrip;  /* Created by retype action */
@@ -12692,9 +14933,11 @@ struct astruct_12 {
     short field6_0xa;
     float field7_0xc;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_13 astruct_13, *Pastruct_13;
-
+
+
 struct astruct_13 {
     struct Vec3f field0_0x0;
     struct Vec3f field1_0xc;
@@ -12703,9 +14946,11 @@ struct astruct_13 {
     struct Vec3f field4_0x30;
     struct Vec3f field5_0x3c;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_14 astruct_14, *Pastruct_14;
-
+
+
 struct astruct_14 {
     undefined field0_0x0;
     byte field1_0x1;
@@ -12756,9 +15001,11 @@ struct astruct_14 {
     undefined field46_0x2e;
     undefined field47_0x2f;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_2 astruct_2, *Pastruct_2;
-
+
+
 struct astruct_2 {
     int field0_0x0;
     int field1_0x4;
@@ -12777,9 +15024,11 @@ struct astruct_2 {
     int field14_0x38;
     int field15_0x3c;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_3 astruct_3, *Pastruct_3;
-
+
+
 struct astruct_3 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -13637,9 +15886,11 @@ struct astruct_3 {
     float field853_0x358;
     float field854_0x35c;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_4 astruct_4, *Pastruct_4;
-
+
+
 struct astruct_4 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -13660,9 +15911,11 @@ struct astruct_4 {
     undefined field16_0x13;
     short field17_0x14;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_5 astruct_5, *Pastruct_5;
-
+
+
 struct astruct_5 {
     struct Vec3f field0_0x0[72];
     undefined field1_0x360;
@@ -13670,9 +15923,11 @@ struct astruct_5 {
     undefined field3_0x362;
     undefined field4_0x363;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_6 astruct_6, *Pastruct_6;
-
+
+
 struct astruct_6 {
     undefined **field0_0x0;
     undefined field1_0x4;
@@ -14419,9 +16674,11 @@ struct astruct_6 {
     undefined field742_0x2fe;
     undefined field743_0x2ff;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_7 astruct_7, *Pastruct_7;
-
+
+
 struct astruct_7 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -14457,9 +16714,11 @@ struct astruct_7 {
     undefined field31_0x1f;
     struct LITLightPtr *LITLightPtr;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_8 astruct_8, *Pastruct_8;
-
+
+
 struct astruct_8 {
     void *imagePtr;
     void *CLUT;
@@ -14477,10 +16736,13 @@ struct astruct_8 {
     short field13_0x18;
     byte field14_0x1a;
 } __attribute__((packed));
-
+
+
 typedef struct astruct_9 astruct_9, *Pastruct_9;
-
-
+
+
+
+
 enum {
     atBatResult_grandSlam=1,
     atBatResult__3RunHR=2,
@@ -14523,15 +16785,18 @@ enum {
     atBatResult_foul=44
 };
 typedef unsigned short atBatResult;
-
+
+
 typedef struct atBatResultTracker atBatResultTracker, *PatBatResultTracker;
-
+
+
 struct atBatResultTracker {
     short bitCode;  /* bits1-3: RBIs, 4-7: relevantFielder (or closest outfielder on HRs), 8-11: batter roster ID 12-14: inning,  */
     byte batter;
     EnumAtBatResult_byte atBatResult;
 } __attribute__((packed));
-
+
+
 enum {
     autoMovementCodeEnum_nothingSet_StayStill=0,
     autoMovementCodeEnum_coveringBase=2,
@@ -14544,7 +16809,8 @@ enum {
     autoMovementCodeEnum_catchAThrowRelated=15
 };
 typedef unsigned char autoMovementCodeEnum;
-
+
+
 enum {
     autoMovementCodeEnumWord_nothingSet_StayStill=0,
     autoMovementCodeEnumWord_goTowardsHitBall_AITeam=1,
@@ -14560,16 +16826,20 @@ enum {
     autoMovementCodeEnumWord__1Unknown=4294967295
 };
 typedef unsigned int autoMovementCodeEnumWord;
-
+
+
 typedef struct autoMovementFunctions autoMovementFunctions, *PautoMovementFunctions;
-
+
+
 struct autoMovementFunctions {
     autoMovementCodeEnumWord autoMovementCode;
     void * functionAddr;
 } __attribute__((packed));
-
+
+
 typedef struct bB_barrelStruct_ bB_barrelStruct_, *PbB_barrelStruct_;
-
+
+
 enum {
     enum_bb_barrelState_switchToNewBarrel_=1,
     enum_bb_barrelState_neutral=2,
@@ -14577,7 +16847,8 @@ enum {
     enum_bb_barrelState_blownUp=4
 };
 typedef unsigned char enum_bb_barrelState;
-
+
+
 enum {
     enum_bb_barrelColour_red=0,
     enum_bb_barrelColour_blue=1,
@@ -14585,7 +16856,8 @@ enum {
     enum_bb_barrelColour_brown=3
 };
 typedef unsigned char enum_bb_barrelColour;
-
+
+
 struct bB_barrelStruct_ {
     struct Vec3f currentPos;
     struct Vec3f desiredPos;
@@ -14599,26 +16871,32 @@ struct bB_barrelStruct_ {
     byte replacingBarrelInd_;
     byte pad;
 } __attribute__((packed));
-
+
+
 typedef struct bB_unknownStruct2 bB_unknownStruct2, *PbB_unknownStruct2;
-
+
+
 struct bB_unknownStruct2 {
     short field0_0x0;
     short field1_0x2;
     struct bB_barrelStruct_ field2_0x4[15];
 } __attribute__((packed));
-
+
+
 typedef struct bJScenario bJScenario, *PbJScenario;
-
+
+
 struct bJScenario {
     short scoreDiff;
     short outs;
     short runnerStartingBase;
     short startingBatter;
 } __attribute__((packed));
-
+
+
 typedef struct bailTrailRelatedStruct bailTrailRelatedStruct, *PbailTrailRelatedStruct;
-
+
+
 struct bailTrailRelatedStruct {
     byte field0_0x0;
     byte field1_0x1;
@@ -14630,17 +16908,21 @@ struct bailTrailRelatedStruct {
     byte field7_0x7;
     byte field8_0x8;
 } __attribute__((packed));
-
+
+
 typedef struct ballScaleFactors ballScaleFactors, *PballScaleFactors;
-
+
+
 struct ballScaleFactors {
     float atBat;
     float liveBall;
     float replay;
 } __attribute__((packed));
-
+
+
 typedef struct ballStrikeOutStruct ballStrikeOutStruct, *PballStrikeOutStruct;
-
+
+
 struct ballStrikeOutStruct {
     int Strikes;
     uint Balls;
@@ -14654,9 +16936,11 @@ struct ballStrikeOutStruct {
     byte stateRelated;
     byte pad[2];
 } __attribute__((packed));
-
+
+
 typedef struct ballTrailRelatedStruct2 ballTrailRelatedStruct2, *PballTrailRelatedStruct2;
-
+
+
 struct ballTrailRelatedStruct2 {
     byte field0_0x0;
     byte field1_0x1;
@@ -14665,7 +16949,8 @@ struct ballTrailRelatedStruct2 {
     byte field4_0x4;
     byte field5_0x5;
 } __attribute__((packed));
-
+
+
 enum {
     barrelBatterPitchNum_byte_mushroom=0,
     barrelBatterPitchNum_byte_flower=1,
@@ -14674,7 +16959,8 @@ enum {
     barrelBatterPitchNum_byte_fire=4
 };
 typedef unsigned char barrelBatterPitchNum_byte;
-
+
+
 enum {
     barrelBatterPitchNum_int_mushroom=0,
     barrelBatterPitchNum_int_flower=1,
@@ -14683,7 +16969,8 @@ enum {
     barrelBatterPitchNum_int_fire=4
 };
 typedef unsigned int barrelBatterPitchNum_int;
-
+
+
 enum {
     barrelState_notFired_=0,
     barrelState_launching_=1,
@@ -14691,66 +16978,84 @@ enum {
     barrelState_launched_=3
 };
 typedef unsigned char barrelState;
-
+
+
 typedef struct baseCoordinates baseCoordinates, *PbaseCoordinates;
-
+
+
 struct baseCoordinates {
     float *field0_0x0[2];
     float *field1_0x8[2];
     float *field2_0x10[2];
     float *field3_0x18[2];
 } __attribute__((packed));
-
+
+
 enum {
     baseThrownToEnum_pitcherCutoff=5,
     baseThrownToEnum_outfieldCutoff=6
 };
 typedef unsigned short baseThrownToEnum;
-
+
+
 typedef struct bobbleOdds bobbleOdds, *PbobbleOdds;
-
+
+
 typedef struct bobbleOddsLocation bobbleOddsLocation, *PbobbleOddsLocation;
-
+
+
 struct bobbleOddsLocation {
     byte front;
     byte side;
     byte action;
 } __attribute__((packed));
-
+
+
 struct bobbleOdds {
     struct bobbleOddsLocation normalCatch;
     struct bobbleOddsLocation preBounceCatch;
 } __attribute__((packed));
-
+
+
 typedef struct bobbleStruct bobbleStruct, *PbobbleStruct;
-
+
+
 typedef struct charClassBobbleOdds charClassBobbleOdds, *PcharClassBobbleOdds;
-
+
+
 struct charClassBobbleOdds {
     struct bobbleOdds balanced;
     struct bobbleOdds power;
     struct bobbleOdds speed;
     struct bobbleOdds technique;
 } __attribute__((packed));
-
+
+
 struct bobbleStruct {
     struct charClassBobbleOdds nonToyField;
     struct charClassBobbleOdds toyField;
 } __attribute__((packed));
-
+
+
 typedef struct bodyCheckAngleConstants bodyCheckAngleConstants, *PbodyCheckAngleConstants;
-
+
+
 struct bodyCheckAngleConstants {
     short ballAngleLower;
     short ballAngleUpper;
     short fielderKnockoutAngle;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /musyx/musyx.h/bool - /bool */
-
+
+
+
+
+/* WARNING! conflicting data type names: /musyx/musyx.h/bool - /bool */
+
+
+
 typedef struct bounceConstants bounceConstants, *PbounceConstants;
-
+
+
 struct bounceConstants {
     float y1stBounceSpeedKept;
     float yOtherBouncesSpeedKept;
@@ -14758,16 +17063,20 @@ struct bounceConstants {
     float xOtherBouncesSpeedKept;
     float rollingSpeedKept;
 } __attribute__((packed));
-
+
+
 typedef struct boundingBox boundingBox, *PboundingBox;
-
+
+
 struct boundingBox {
     struct Vec min;
     struct Vec max;
 } __attribute__((packed));
-
+
+
 typedef struct bowserStadiumFireSpawners bowserStadiumFireSpawners, *PbowserStadiumFireSpawners;
-
+
+
 struct bowserStadiumFireSpawners {
     float x;
     float y;
@@ -14782,9 +17091,11 @@ struct bowserStadiumFireSpawners {
     byte directionRandomness;
     byte angleSpread;
 } __attribute__((packed));
-
+
+
 typedef struct bowserStadiumStarPads bowserStadiumStarPads, *PbowserStadiumStarPads;
-
+
+
 struct bowserStadiumStarPads {
     float x;
     float y;
@@ -14795,7 +17106,8 @@ struct bowserStadiumStarPads {
     byte field6_0x12;
     byte field7_0x13;
 } __attribute__((packed));
-
+
+
 enum {
     bufferedThrowLoc_home=0,
     bufferedThrowLoc__1st=1,
@@ -14806,30 +17118,37 @@ enum {
     bufferedThrowLoc_none=255
 };
 typedef unsigned short bufferedThrowLoc;
-
+
+
 typedef struct byteByteShort byteByteShort, *PbyteByteShort;
-
+
+
 struct byteByteShort {
     byte byte;
     byte byte2;
-    short short;
+    short short_;
 } __attribute__((packed));
-
+
+
 typedef struct cameraData cameraData, *PcameraData;
-
+
+
 struct cameraData {
     struct Vec3f position;
     float zoom;
     struct Vec2s rotation;
 } __attribute__((packed));
-
+
+
 typedef struct cameraData2 cameraData2, *PcameraData2;
-
+
+
 struct cameraData2 {
     struct Vec3f field0_0x0;
     struct Vec2s field1_0xc;
 } __attribute__((packed));
-
+
+
 enum {
     cameraScene_atBat=1,
     cameraScene_liveBall=2,
@@ -14881,18 +17200,22 @@ enum {
     cameraScene_challenge_versus_scoutflag_=106
 };
 typedef unsigned int cameraScene;
-
+
+
 typedef struct cameraStruct cameraStruct, *PcameraStruct;
-
+
+
 typedef struct matchCam_targetCoords matchCam_targetCoords, *PmatchCam_targetCoords;
-
+
+
 struct matchCam_targetCoords {
     struct Vec3f field0_0x0;
     struct Vec3f currentMovement;
     struct Vec3f desired;
     struct Vec3f past[9];
 } __attribute__((packed));
-
+
+
 struct cameraStruct {
     byte presetCameraAngle;
     undefined field1_0x1;
@@ -14988,9 +17311,11 @@ struct cameraStruct {
     byte field91_0x11a;
     byte field92_0x11b;
 } __attribute__((packed));
-
+
+
 typedef struct cameraStruct_bOD_ cameraStruct_bOD_, *PcameraStruct_bOD_;
-
+
+
 struct cameraStruct_bOD_ {
     byte presetCameraAngle;
     undefined field1_0x1;
@@ -15135,7 +17460,8 @@ struct cameraStruct_bOD_ {
     byte field140_0x11a;
     byte field141_0x11b;
 } __attribute__((packed));
-
+
+
 enum {
     captainStarType_int__0Default=0,
     captainStarType_int_Mario=1,
@@ -15152,9 +17478,11 @@ enum {
     captainStarType_int_Daisy=12
 };
 typedef unsigned int captainStarType_int;
-
+
+
 typedef struct captainStarVertRanges captainStarVertRanges, *PcaptainStarVertRanges;
-
+
+
 struct captainStarVertRanges {
     struct vertRangeSwingTypes field0_0x0;
     struct vertRangeSwingTypes field1_0x14;
@@ -15169,15 +17497,19 @@ struct captainStarVertRanges {
     struct vertRangeSwingTypes field10_0xc8;
     struct vertRangeSwingTypes field11_0xdc;
 } __attribute__((packed));
-
+
+
 typedef struct captainVertAngleRange captainVertAngleRange, *PcaptainVertAngleRange;
-
+
+
 struct captainVertAngleRange {
     struct captainStarVertRanges field0_0x0;
 } __attribute__((packed));
-
+
+
 typedef struct castleFireObject castleFireObject, *PcastleFireObject;
-
+
+
 enum {
     fireObjectState_default_=0,
     fireObjectState_unk1=1,
@@ -15185,7 +17517,8 @@ enum {
     fireObjectState_fireEnded=3
 };
 typedef unsigned char fireObjectState;
-
+
+
 struct castleFireObject {
     struct CTRLControl control;
     byte pad[16];
@@ -15230,9 +17563,11 @@ struct castleFireObject {
     byte field40_0xcb;
     byte field41_0xcc[28];
 } __attribute__((packed));
-
+
+
 typedef struct castleThwompObj castleThwompObj, *PcastleThwompObj;
-
+
+
 enum {
     thwompState_regular=0,
     thwompState_startingSlam=1,
@@ -15241,7 +17576,8 @@ enum {
     thwompState_rising=4
 };
 typedef unsigned char thwompState;
-
+
+
 struct castleThwompObj {
     struct CTRLControl control;
     byte pad[16];
@@ -15283,7 +17619,8 @@ struct castleThwompObj {
     byte field37_0xcb;
     byte field38_0xcc[28];
 } __attribute__((packed));
-
+
+
 enum {
     chainChompState_sleeping_=0,
     chainChompState_awake_=1,
@@ -15292,7 +17629,8 @@ enum {
     chainChompState_returningHome=5
 };
 typedef unsigned char chainChompState;
-
+
+
 enum {
     challengeCheckStarsLoadingScreenNum_nothing=0,
     challengeCheckStarsLoadingScreenNum_loadCheckStars=1,
@@ -15303,11 +17641,14 @@ enum {
     challengeCheckStarsLoadingScreenNum_exitCharView=6
 };
 typedef unsigned char challengeCheckStarsLoadingScreenNum;
-
+
+
 typedef struct challengeTrackingStruct challengeTrackingStruct, *PchallengeTrackingStruct;
-
+
+
 typedef struct structScoutFlagQuantites structScoutFlagQuantites, *PstructScoutFlagQuantites;
-
+
+
 enum {
     enumChallengeCaptain_mario=0,
     enumChallengeCaptain_peach=1,
@@ -15317,7 +17658,8 @@ enum {
     enumChallengeCaptain_bowser=5
 };
 typedef unsigned char enumChallengeCaptain;
-
+
+
 enum {
     characterVariantClassification_primaryCaptain=0,
     characterVariantClassification_secondaryCaptain=1,
@@ -15326,16 +17668,19 @@ enum {
     characterVariantClassification_secondaryVariant=4
 };
 typedef unsigned char characterVariantClassification;
-
+
+
 typedef struct starMissionTrackingPair starMissionTrackingPair, *PstarMissionTrackingPair;
-
+
+
 enum {
     enumChallengeRecruitmentCd_notRecruited=0,
     enumChallengeRecruitmentCd_recruited=1,
     enumChallengeRecruitmentCd_onBJTeam=2
 };
 typedef unsigned char enumChallengeRecruitmentCd;
-
+
+
 enum {
     enumStarMissionTracking_Completed_notCompleted=0,
     enumStarMissionTracking_Completed_track1Completion=1,
@@ -15343,12 +17688,14 @@ enum {
     enumStarMissionTracking_Completed_completedConditionally=255  /* Mission requirement fulfilled but game needs to end to save */
 };
 typedef unsigned char enumStarMissionTracking_Completed;
-
+
+
 struct starMissionTrackingPair {
     enumStarMissionTracking_Completed completed_quantity;
     byte shownOnPauseMenu;
 } __attribute__((packed));
-
+
+
 struct challengeTrackingStruct {
     struct structScoutFlagQuantites *scoutFlagPointer;
     enumChallengeCaptain challengeCaptain;  /* Created by retype action */
@@ -15362,7 +17709,8 @@ struct challengeTrackingStruct {
     undefined field9_0x32;
     undefined field10_0x33;
 } __attribute__((packed));
-
+
+
 struct structScoutFlagQuantites {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -15370,9 +17718,11 @@ struct structScoutFlagQuantites {
     undefined field3_0x3;
     byte scoutFlagsRequired[4][6];
 } __attribute__((packed));
-
+
+
 typedef struct characterIndexTable characterIndexTable, *PcharacterIndexTable;
-
+
+
 struct characterIndexTable {
     byte multiCharacterGroup;
     enumCharacterID_byte noDupeCharID;
@@ -15381,9 +17731,11 @@ struct characterIndexTable {
     byte captainInd;
     byte variantNumber;
 } __attribute__((packed));
-
+
+
 typedef struct chaseRunnerStruct chaseRunnerStruct, *PchaseRunnerStruct;
-
+
+
 struct chaseRunnerStruct {
     float field0_0x0;
     float field1_0x4;
@@ -15413,46 +17765,57 @@ struct chaseRunnerStruct {
     short field25_0x13a;
     byte field26_0x13c[24];
 } __attribute__((packed));
-
+
+
 typedef struct collisionBoxHeader collisionBoxHeader, *PcollisionBoxHeader;
-
+
+
 enum {
     enumTriangleGroupType_nonStrip=0,
     enumTriangleGroupType_triangleStrip=1
 };
 typedef unsigned short enumTriangleGroupType;
-
+
+
 struct collisionBoxHeader {
     enumTriangleGroupType triangleGroupType;
     ushort triCount;
 } __attribute__((packed));
-
+
+
 typedef struct collisionHeader collisionHeader, *PcollisionHeader;
-
+
+
 struct collisionHeader {
     short count;
     short unk4300;
 } __attribute__((packed));
-
+
+
 typedef struct contactArray contactArray, *PcontactArray;
-
+
+
 struct contactArray {
     short powerLower;
     short powerUpper;
     short addedGravity;
 } __attribute__((packed));
-
+
+
 typedef struct controlOptions controlOptions, *PcontrolOptions;
-
+
+
 struct controlOptions {
     byte easyBatting;
     byte autoFielding;
     byte autoRunning;
     byte dropSpots;
 } __attribute__((packed));
-
+
+
 typedef struct dKStadiumGharials dKStadiumGharials, *PdKStadiumGharials;
-
+
+
 struct dKStadiumGharials {
     float xTrans_;
     float yTrans_;
@@ -15467,9 +17830,11 @@ struct dKStadiumGharials {
     byte field10_0x16;
     byte field11_0x17;
 } __attribute__((packed));
-
+
+
 typedef struct dKStadiumObject dKStadiumObject, *PdKStadiumObject;
-
+
+
 struct dKStadiumObject {
     float x;
     float y;
@@ -15480,7 +17845,8 @@ struct dKStadiumObject {
     byte field6_0x12;
     byte field7_0x13;
 } __attribute__((packed));
-
+
+
 enum {
     dashState_noDash=0,
     dashState_accelerating=1,
@@ -15489,2690 +17855,5358 @@ enum {
     dashState_decelerating_noBOrStickInput_=4
 };
 typedef unsigned char dashState;
-
-#define AI_CONTROL 0
-
-#define AI_CONTROL_DSP_SAMPLE_COUNT 4
-
-#define AI_CONTROL_DSP_SAMPLE_RATE 64
-
-#define AI_CONTROL_PLAY_STATE 1
-
-#define AI_CONTROL_STREAM_SAMPLE_COUNT 32
-
-#define AI_CONTROL_STREAM_SAMPLE_RATE 2
-
-#define AI_CONTROL_UNKNOWN8 8
-
-#define AI_INTRPT_TIMING 3
-
-#define AI_SAMPLERATE_32KHZ 0
-
-#define AI_SAMPLERATE_48KHZ 1
-
-#define AI_SAMPLE_COUNTER 2
-
-#define AI_STREAM_START 1
-
-#define AI_STREAM_STOP 0
-
-#define AI_VOLUME 1
-
-#define ARAM_DIR_ARAM_TO_MRAM 1
-
-#define ARAM_DIR_MRAM_TO_ARAM 0
-
-#define ARENAHI_ADDR 2147483700
-
-#define ARQ_DMA_ALIGNMENT 32
-
-#define ARQ_PRIORITY_HIGH 1
-
-#define ARQ_PRIORITY_LOW 0
-
-#define ARQ_TYPE_ARAM_TO_MRAM 1
-
-#define ARQ_TYPE_MRAM_TO_ARAM 0
-
-#define BIAS 730485
-
-#define BOOTINFO2_ADDR 2147483892
-
-#define BSD 199103
-
-#define CARD_ATTR_COMPANY 64
-
-#define CARD_ATTR_GLOBAL 32
-
-#define CARD_ATTR_NO_COPY 8
-
-#define CARD_ATTR_NO_MOVE 16
-
-#define CARD_ATTR_PUBLIC 4
-
-#define CARD_BANNER_HEIGHT 32
-
-#define CARD_BANNER_WIDTH 96
-
-#define CARD_COMMENT_SIZE 64
-
-#define CARD_ENCODE_ANSI 0
-
-#define CARD_ENCODE_SJIS 1
-
-#define CARD_FAT_AVAIL 0
-
-#define CARD_FAT_CHECKCODE 2
-
-#define CARD_FAT_CHECKSUM 0
-
-#define CARD_FAT_CHECKSUMINV 1
-
-#define CARD_FAT_FREEBLOCKS 3
-
-#define CARD_FAT_LASTSLOT 4
-
-#define CARD_FILENAME_MAX 32
-
-#define CARD_ICON_HEIGHT 32
-
-#define CARD_ICON_MAX 8
-
-#define CARD_ICON_WIDTH 32
-
-#define CARD_MAX_FILE 127
-
-#define CARD_MAX_MOUNT_STEP 7
-
-#define CARD_MAX_SIZE 16777216
-
-#define CARD_MODE_FAST 1
-
-#define CARD_MODE_NORMAL 0
-
-#define CARD_NUM_SYSTEM_BLOCK 5
-
-#define CARD_PAGE_SIZE 128
-
-#define CARD_READ_SIZE 512
-
-#define CARD_RESULT_BROKEN -6
-
-#define CARD_RESULT_BUSY -1
-
-#define CARD_RESULT_CANCELED -14
-
-#define CARD_RESULT_ENCODING -13
-
-#define CARD_RESULT_EXIST -7
-
-#define CARD_RESULT_FATAL_ERROR -128
-
-#define CARD_RESULT_INSSPACE -9
-
-#define CARD_RESULT_IOERROR -5
-
-#define CARD_RESULT_LIMIT -11
-
-#define CARD_RESULT_NAMETOOLONG -12
-
-#define CARD_RESULT_NOCARD -3
-
-#define CARD_RESULT_NOENT -8
-
-#define CARD_RESULT_NOFILE -4
-
-#define CARD_RESULT_NOPERM -10
-
-#define CARD_RESULT_READY 0
-
-#define CARD_RESULT_UNLOCKED 1
-
-#define CARD_RESULT_WRONGDEVICE -2
-
-#define CARD_SEG_SIZE 512
-
-#define CARD_STAT_ANIM_BOUNCE 4
-
-#define CARD_STAT_ANIM_LOOP 0
-
-#define CARD_STAT_ANIM_MASK 4
-
-#define CARD_STAT_BANNER_C8 1
-
-#define CARD_STAT_BANNER_MASK 3
-
-#define CARD_STAT_BANNER_NONE 0
-
-#define CARD_STAT_BANNER_RGB5A3 2
-
-#define CARD_STAT_ICON_C8 1
-
-#define CARD_STAT_ICON_MASK 3
-
-#define CARD_STAT_ICON_NONE 0
-
-#define CARD_STAT_ICON_RGB5A3 2
-
-#define CARD_STAT_SPEED_END 0
-
-#define CARD_STAT_SPEED_FAST 1
-
-#define CARD_STAT_SPEED_MASK 3
-
-#define CARD_STAT_SPEED_MIDDLE 2
-
-#define CARD_STAT_SPEED_SLOW 3
-
-#define CARD_SYSTEM_BLOCK_SIZE 8192
-
-#define CARD_WORKAREA_SIZE 40960
-
-#define CHAN_NONE -1
-
-#define CHAR_BIT 8
-
-#define CHAR_MAX 127
-
-#define CHAR_MIN -128
-
-#define CTR 9
-
-#define CTRL_MTX 16
-
-#define CTRL_ROT_EULER 2
-
-#define CTRL_ROT_QUAT 4
-
-#define CTRL_SCALE 1
-
-#define CTRL_TRANS 8
-
-#define DABR 1013
-
-#define DAR 19
-
-#define DBAT0L 537
-
-#define DBAT0U 536
-
-#define DBAT1L 539
-
-#define DBAT1U 538
-
-#define DBAT2L 541
-
-#define DBAT2U 540
-
-#define DBAT3L 3
-
-
-/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3L - /decompHeaders/PPCArch.h/defines/define_DBAT3L */
-
-#define DBAT3U 3
-
-
-/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3U - /decompHeaders/PPCArch.h/defines/define_DBAT3U */
-
-#define DEBUGFLAG_ADDR 2147496168
-
-#define DEC 22
-
-#define DEMOWIN_FLAGS_INIT 1
-
-#define DEMOWIN_FLAGS_OPENED 2
-
-#define DI_CMD_BUF_0 2
-
-#define DI_CMD_BUF_1 3
-
-#define DI_CMD_BUF_2 4
-
-#define DI_CONFIG 9
-
-#define DI_CONTROL 7
-
-#define DI_COVER_STATUS 1
-
-#define DI_DMA_LENGTH 6
-
-#define DI_DMA_MEM_ADDR 5
-
-#define DI_MM_BUF 8
-
-#define DI_STATUS 0
-
-#define DMA_L 923
-
-#define DMA_L_FLUSH 1
-
-#define DMA_L_LC_ADDR_MASK 4294967264
-
-#define DMA_L_LEN_MASK 12
-
-#define DMA_L_LOAD 16
-
-#define DMA_L_STORE 0
-
-#define DMA_L_TRIGGER 2
-
-#define DMA_U 922
-
-#define DMA_U_ADDR_MASK 4294967264
-
-#define DMA_U_LEN_U_MASK 31
-
-#define DOL_ADDR_LIMIT 2154823680
-
-#define DOMAIN 1
-
-#define DSISR 18
-
-#define DSP_ARAM_DMA_ARAM_HI 18
-
-#define DSP_ARAM_DMA_ARAM_LO 19
-
-#define DSP_ARAM_DMA_MM_HI 16
-
-#define DSP_ARAM_DMA_MM_LO 17
-
-#define DSP_ARAM_DMA_SIZE_HI 20
-
-#define DSP_ARAM_DMA_SIZE_LO 21
-
-#define DSP_ARAM_MODE 11
-
-#define DSP_ARAM_REFRESH 13
-
-#define DSP_ARAM_SIZE 9
-
-#define DSP_CONTROL_STATUS 5
-
-#define DSP_DMA_BYTES_LEFT 29
-
-#define DSP_DMA_CONTROL_LEN 27
-
-#define DSP_DMA_START_FLAG 32768
-
-#define DSP_DMA_START_HI 24
-
-#define DSP_DMA_START_LO 25
-
-#define DSP_MAILBOX_IN_HI 0
-
-#define DSP_MAILBOX_IN_LO 1
-
-#define DSP_MAILBOX_OUT_HI 2
-
-#define DSP_MAILBOX_OUT_LO 3
-
-#define DSP_TASK_FLAG_ATTACHED 1
-
-#define DSP_TASK_FLAG_CANCEL 2
-
-#define DSP_TASK_FLAG_CLEARALL 0
-
-#define DSP_TASK_STATE_DONE 3
-
-#define DSP_TASK_STATE_INIT 0
-
-#define DSP_TASK_STATE_RUN 1
-
-#define DSP_TASK_STATE_YIELD 2
-
-#define DTK_MODE_ALLREPEAT 1
-
-#define DTK_MODE_NOREPEAT 0
-
-#define DTK_MODE_REPEAT1 2
-
-#define DTK_STATE_BUSY 3
-
-#define DTK_STATE_PAUSE 2
-
-#define DTK_STATE_PREPARE 4
-
-#define DTK_STATE_RUN 1
-
-#define DTK_STATE_STOP 0
-
-#define DVD_AIS_SUCCESS 0
-
-#define DVD_COMMAND_AUDIO_BUFFER_CONFIG 13
-
-#define DVD_COMMAND_BSREAD 4
-
-#define DVD_COMMAND_BS_CHANGE_DISK 15
-
-#define DVD_COMMAND_CANCELSTREAM 7
-
-#define DVD_COMMAND_CHANGE_DISK 3
-
-#define DVD_COMMAND_INITSTREAM 6
-
-#define DVD_COMMAND_INQUIRY 14
-
-#define DVD_COMMAND_NONE 0
-
-#define DVD_COMMAND_READ 1
-
-#define DVD_COMMAND_READID 5
-
-#define DVD_COMMAND_REQUEST_AUDIO_ERROR 9
-
-#define DVD_COMMAND_REQUEST_LENGTH 12
-
-#define DVD_COMMAND_REQUEST_PLAY_ADDR 10
-
-#define DVD_COMMAND_REQUEST_START_ADDR 11
-
-#define DVD_COMMAND_SEEK 2
-
-#define DVD_COMMAND_STOP_STREAM_AT_END 8
-
-#define DVD_DEVICECODE_ADDR 2147496166
-
-#define DVD_FILEINFO_BUSY 1
-
-#define DVD_FILEINFO_READY 0
-
-#define DVD_INTTYPE_CVR 4
-
-#define DVD_INTTYPE_DE 2
-
-#define DVD_INTTYPE_TC 1
-
-#define DVD_MIN_TRANSFER_SIZE 32
-
-#define DVD_RESULT_CANCELED -3
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/defines/define_DVD_RESULT_CANCELED - /decompHeaders/dvd.h/defines/define_DVD_RESULT_CANCELED */
-
-#define DVD_RESULT_FATAL_ERROR -1
-
-#define DVD_RESULT_GOOD 0
-
-#define DVD_RESULT_IGNORED -2
-
-#define DVD_STATE_BUSY 1
-
-#define DVD_STATE_CANCELED 10
-
-#define DVD_STATE_COVER_CLOSED 3
-
-#define DVD_STATE_COVER_OPEN 5
-
-#define DVD_STATE_END 0
-
-#define DVD_STATE_FATAL_ERROR -1
-
-#define DVD_STATE_IGNORED 9
-
-#define DVD_STATE_MOTOR_STOPPED 7
-
-#define DVD_STATE_NO_DISK 4
-
-#define DVD_STATE_PAUSING 8
-
-#define DVD_STATE_RETRY 11
-
-#define DVD_STATE_WAITING 2
-
-#define DVD_STATE_WRONG_DISK 6
-
-#define EAR 282
-
-#define EXCEPTIONMASK_ADDR 2147483716
-
-#define EXIT_FAILURE -1
-
-#define EXIT_SUCCESS 0
-
-#define EXI_CHAN_0_CONTROL 3
-
-#define EXI_CHAN_0_DMA_ADDR 1
-
-#define EXI_CHAN_0_IMM 4
-
-#define EXI_CHAN_0_LEN 2
-
-#define EXI_CHAN_0_STAT 0
-
-#define EXI_CHAN_1_CONTROL 8
-
-#define EXI_CHAN_1_DMA_ADDR 6
-
-#define EXI_CHAN_1_IMM 9
-
-#define EXI_CHAN_1_LEN 7
-
-#define EXI_CHAN_1_STAT 5
-
-#define EXI_CHAN_2_CONTROL 13
-
-#define EXI_CHAN_2_DMA_ADDR 11
-
-#define EXI_CHAN_2_IMM 14
-
-#define EXI_CHAN_2_LEN 12
-
-#define EXI_CHAN_2_STAT 10
-
-#define EXI_ETHER 67240448
-
-#define EXI_ETHER_VIEWER 69337089
-
-#define EXI_FREQ_16M 4
-
-#define EXI_FREQ_1M 0
-
-#define EXI_FREQ_2M 1
-
-#define EXI_FREQ_32M 5
-
-#define EXI_FREQ_4M 2
-
-#define EXI_FREQ_8M 3
-
-#define EXI_IS_VIEWER 84344832
-
-#define EXI_MAGIC 2784952410
-
-#define EXI_MARLIN 50397184
-
-#define EXI_MAX_CHAN 3
-
-#define EXI_MAX_DEV 3
-
-#define EXI_MEMORY_CARD_1019 64
-
-#define EXI_MEMORY_CARD_1019A 320
-
-#define EXI_MEMORY_CARD_1019B 576
-
-#define EXI_MEMORY_CARD_1019C 832
-
-#define EXI_MEMORY_CARD_1019D 1088
-
-#define EXI_MEMORY_CARD_1019E 1344
-
-#define EXI_MEMORY_CARD_1019F 1600
-
-#define EXI_MEMORY_CARD_1019G 1856
-
-#define EXI_MEMORY_CARD_123 8
-
-#define EXI_MEMORY_CARD_2043 128
-
-#define EXI_MEMORY_CARD_2043A 384
-
-#define EXI_MEMORY_CARD_2043B 640
-
-#define EXI_MEMORY_CARD_2043C 896
-
-#define EXI_MEMORY_CARD_2043D 1152
-
-#define EXI_MEMORY_CARD_2043E 1408
-
-#define EXI_MEMORY_CARD_2043F 1664
-
-#define EXI_MEMORY_CARD_2043G 1920
-
-#define EXI_MEMORY_CARD_251 16
-
-#define EXI_MEMORY_CARD_507 32
-
-#define EXI_MEMORY_CARD_59 4
-
-#define EXI_MODEM 33685504
-
-#define EXI_NPDP_GDEV 16908288
-
-#define EXI_READ 0
-
-#define EXI_REG_MAX 5
-
-#define EXI_STATE_ATTACHED 8
-
-#define EXI_STATE_BUSY 3
-
-#define EXI_STATE_DMA 1
-
-#define EXI_STATE_IDLE 0
-
-#define EXI_STATE_IMM 2
-
-#define EXI_STATE_LOCKED 16
-
-#define EXI_STATE_SELECTED 4
-
-#define EXI_STREAM_HANGER 68354048
-
-#define EXI_TX 8389632
-
-#define EXI_USB_ADAPTER 16842752
-
-#define EXI_WRITE 1
-
-#define ExceptionHookDestination 2147483720
-
-#define FALSE 0
-
-#define FPSCR_FEX 1073741824
-
-#define FPSCR_FEX_BIT 1
-
-#define FPSCR_FI 131072
-
-#define FPSCR_FI_BIT 14
-
-#define FPSCR_FR 262144
-
-#define FPSCR_FR_BIT 13
-
-#define FPSCR_FX 2147483648
-
-#define FPSCR_FX_BIT 0
-
-#define FPSCR_NI 4
-
-#define FPSCR_NI_BIT 29
-
-#define FPSCR_OE 64
-
-#define FPSCR_OE_BIT 25
-
-#define FPSCR_OX 268435456
-
-#define FPSCR_OX_BIT 3
-
-#define FPSCR_UE 32
-
-#define FPSCR_UE_BIT 26
-
-#define FPSCR_UX 134217728
-
-#define FPSCR_UX_BIT 4
-
-#define FPSCR_VE 128
-
-#define FPSCR_VE_BIT 24
-
-#define FPSCR_VX 536870912
-
-#define FPSCR_VXCVI 256
-
-#define FPSCR_VXCVI_BIT 23
-
-#define FPSCR_VXIDI 4194304
-
-#define FPSCR_VXIDI_BIT 9
-
-#define FPSCR_VXIMZ 1048576
-
-#define FPSCR_VXIMZ_BIT 11
-
-#define FPSCR_VXISI 8388608
-
-#define FPSCR_VXISI_BIT 8
-
-#define FPSCR_VXSNAN 16777216
-
-#define FPSCR_VXSNAN_BIT 7
-
-#define FPSCR_VXSOFT 1024
-
-#define FPSCR_VXSOFT_BIT 21
-
-#define FPSCR_VXSQRT 512
-
-#define FPSCR_VXSQRT_BIT 22
-
-#define FPSCR_VXVC 524288
-
-#define FPSCR_VXVC_BIT 12
-
-#define FPSCR_VXZDZ 2097152
-
-#define FPSCR_VXZDZ_BIT 10
-
-#define FPSCR_VX_BIT 2
-
-#define FPSCR_XE 8
-
-#define FPSCR_XE_BIT 28
-
-#define FPSCR_XX 33554432
-
-#define FPSCR_XX_BIT 6
-
-#define FPSCR_ZE 16
-
-#define FPSCR_ZE_BIT 27
-
-#define FPSCR_ZX 67108864
-
-#define FPSCR_ZX_BIT 5
-
-#define GQR0 912
-
-#define GQR1 913
-
-#define GQR2 914
-
-#define GQR3 915
-
-#define GQR4 916
-
-#define GQR5 917
-
-#define GQR6 918
-
-#define GQR7 919
-
-#define GQR_LOAD_SCALE_MASK 1056964608
-
-#define GQR_LOAD_TYPE_MASK 458752
-
-#define GQR_SCALE_MAX 32
-
-#define GQR_STORE_SCALE_MASK 16128
-
-#define GQR_STORE_TYPE_MASK 7
-
-#define GXFIFO_ADDR 3422584832
-
-#define GX_CP_ADDR 201326592
-
-#define GX_DISABLE 0
-
-#define GX_DRAW_LINES 168
-
-#define GX_DRAW_LINE_STRIP 176
-
-#define GX_DRAW_POINTS 184
-
-#define GX_DRAW_QUADS 128
-
-#define GX_DRAW_TRIANGLES 144
-
-#define GX_DRAW_TRIANGLE_FAN 160
-
-#define GX_DRAW_TRIANGLE_STRIP 152
-
-#define GX_ENABLE 1
-
-#define GX_FALSE 0
-
-#define GX_FIFO_MINSIZE 65536
-
-#define GX_FIFO_OBJ_SIZE 128
-
-#define GX_LOAD_BP_REG 97
-
-#define GX_LOAD_CP_REG 8
-
-#define GX_LOAD_INDX_A 32
-
-#define GX_LOAD_INDX_B 40
-
-#define GX_LOAD_INDX_C 48
-
-#define GX_LOAD_INDX_D 56
-
-#define GX_LOAD_XF_REG 16
-
-#define GX_MAX_VTXARRAY 16
-
-#define GX_MAX_Z24 16777215
-
-#define GX_MEM_ADDR 201342976
-
-#define GX_NOP 0
-
-#define GX_OPCODE_MASK 248
-
-#define GX_PE_ADDR 201330688
-
-#define GX_PI_ADDR 201338880
-
-#define GX_PROJECTION_SZ 7
-
-#define GX_TRUE 1
-
-#define GX_VAT_MASK 7
-
-#define GX_VIEWPORT_SZ 6
-
-#define HID0 1008
-
-#define HID0_ABE 8
-
-#define HID0_BCLK 134217728
-
-#define HID0_BHT 4
-
-#define HID0_BTIC 32
-
-#define HID0_DBP 1073741824
-
-#define HID0_DCE 16384
-
-#define HID0_DCE_BIT 17
-
-#define HID0_DCFA 64
-
-#define HID0_DCFI 1024
-
-#define HID0_DLOCK 4096
-
-#define HID0_DLOCK_BIT 19
-
-#define HID0_DOZE 8388608
-
-#define HID0_DPM 1048576
-
-#define HID0_EBA 536870912
-
-#define HID0_EBD 268435456
-
-#define HID0_ECLK 33554432
-
-#define HID0_EMCP 2147483648
-
-#define HID0_ICE 32768
-
-#define HID0_ICE_BIT 16
-
-#define HID0_ICFI 2048
-
-#define HID0_IFEM 256
-
-#define HID0_ILOCK 8192
-
-#define HID0_ILOCK_BIT 18
-
-#define HID0_NAP 4194304
-
-#define HID0_NHR 65536
-
-#define HID0_NOOPTI 1
-
-#define HID0_PAR 16777216
-
-#define HID0_SGE 128
-
-#define HID0_SLEEP 2097152
-
-#define HID0_SPD 512
-
-#define HID1 1009
-
-#define HID2 920
-
-#define HID2_DCHEE 524288
-
-#define HID2_DCHEE_BIT 12
-
-#define HID2_DCHERR 8388608
-
-#define HID2_DCHERR_BIT 8
-
-#define HID2_DCMEE 131072
-
-#define HID2_DCMEE_BIT 14
-
-#define HID2_DCMERR 2097152
-
-#define HID2_DCMERR_BIT 10
-
-#define HID2_DMAQL_MASK 251658240
-
-#define HID2_DMAQL_SHIFT 24
-
-#define HID2_DNCEE 262144
-
-#define HID2_DNCEE_BIT 13
-
-#define HID2_DNCERR 4194304
-
-#define HID2_DNCERR_BIT 9
-
-#define HID2_DQOEE 65536
-
-#define HID2_DQOEE_BIT 15
-
-#define HID2_DQOERR 1048576
-
-#define HID2_DQOERR_BIT 11
-
-#define HID2_LCE 268435456
-
-#define HID2_LCE_BIT 3
-
-#define HID2_LSQE 2147483648
-
-#define HID2_LSQE_BIT 0
-
-#define HID2_PSE 536870912
-
-#define HID2_PSE_BIT 2
-
-#define HID2_WPE 1073741824
-
-#define HID2_WPE_BIT 1
-
-#define IABR 1010
-
-#define IBAT0L 529
-
-#define IBAT0U 528
-
-#define IBAT1L 531
-
-#define IBAT1U 530
-
-#define IBAT2L 533
-
-#define IBAT2U 532
-
-#define IBAT3L 535
-
-#define IBAT3U 534
-
-#define ICTC 1019
-
-#define INT_MAX 2147483647
-
-
-/* WARNING! conflicting data type names: /sdk/types.h/defines/define_INT_MAX - /decompHeaders/limits.h/defines/define_INT_MAX */
-
-#define INT_MIN -2147483648
-
-#define IsDebuggerPresent 2147483712
-
-#define KILOBYTE_BYTECOUNT 1024
-
-#define L2CR 1017
-
-#define L2CR_L2BYP 8192
-
-#define L2CR_L2CLK_1_0 33554432
-
-#define L2CR_L2CLK_1_5 67108864
-
-#define L2CR_L2CLK_2_0 134217728
-
-#define L2CR_L2CLK_2_5 167772160
-
-#define L2CR_L2CLK_3_0 201326592
-
-#define L2CR_L2CS 512
-
-#define L2CR_L2CTL 1048576
-
-#define L2CR_L2CTR_MASK 254
-
-#define L2CR_L2DF 16384
-
-#define L2CR_L2DO 4194304
-
-#define L2CR_L2DRO 256
-
-#define L2CR_L2E 2147483648
-
-#define L2CR_L2I 2097152
-
-#define L2CR_L2IP 1
-
-#define L2CR_L2OH_0_5 0
-
-#define L2CR_L2OH_1_0 65536
-
-#define L2CR_L2PE 1073741824
-
-#define L2CR_L2SIZ_1M 805306368
-
-#define L2CR_L2SIZ_256K 268435456
-
-#define L2CR_L2SIZ_512K 536870912
-
-#define L2CR_L2SL 32768
-
-#define L2CR_L2TS 262144
-
-#define L2CR_L2WT 524288
-
-#define L2CR_RAM_FLOW_THRU_BURST 0
-
-#define L2CR_RAM_PIPELINE_BURST 16777216
-
-#define L2CR_RAM_PIPELINE_LATE 25165824
-
-#define LC_BASE 3758096384
-
-#define LC_BASE_PREFIX 57344
-
-#define LC_MAX_DMA_BLOCKS 128
-
-#define LC_MAX_DMA_BYTES 4096
-
-#define LLONG_MAX 9223372036854775807
-
-#define LLONG_MIN -9223372036854775808
-
-#define LONG_MAX 2147483647
-
-#define LONG_MIN -2147483648
-
-#define LR 8
-
-#define MEM_INTRPT_ADDR_HI 18
-
-#define MEM_INTRPT_ADDR_LO 17
-
-#define MEM_INTRPT_FLAG 16
-
-#define MEM_INTRPT_MASK 14
-
-#define MEM_INTRPT_SRC 15
-
-#define MEM_PROT_1 0
-
-#define MEM_PROT_2 2
-
-#define MEM_PROT_3 4
-
-#define MEM_PROT_4 6
-
-#define MEM_PROT_TYPE 8
-
-#define MEM_UNK_FLAG 20
-
-#define MMCR0 952
-
-#define MMCR0_DIS 2147483648
-
-#define MMCR0_DISCOUNT 33554432
-
-#define MMCR0_DMR 134217728
-
-#define MMCR0_DMS 268435456
-
-#define MMCR0_DP 1073741824
-
-#define MMCR0_DU 536870912
-
-#define MMCR0_ENINT 67108864
-
-#define MMCR0_INTONBITTRANS 4194304
-
-#define MMCR0_PMC1INTCONTROL 32768
-
-#define MMCR0_PMC1SELECT_MASK 8128
-
-#define MMCR0_PMC1_Bx_STALL_CYCLE 768
-
-#define MMCR0_PMC1_Bx_UNRESOLVED 704
-
-#define MMCR0_PMC1_CYCLE 64
-
-#define MMCR0_PMC1_DISPATCHED 256
-
-#define MMCR0_PMC1_EA 512
-
-#define MMCR0_PMC1_EIEIO 320
-
-#define MMCR0_PMC1_HOLD 0
-
-#define MMCR0_PMC1_IABR 576
-
-#define MMCR0_PMC1_IC_FETCH_MISS 832
-
-#define MMCR0_PMC1_INSTRUCTION 128
-
-#define MMCR0_PMC1_ITLB_CYCLE 384
-
-#define MMCR0_PMC1_L1_MISS 640
-
-#define MMCR0_PMC1_L2_HIT 448
-
-#define MMCR0_PMC1_TRANSITION 192
-
-#define MMCR0_PMC2INTCONTROL 16384
-
-#define MMCR0_PMC2SELECT_MASK 63
-
-#define MMCR0_PMC2_Bx_FALL_TROUGH 8
-
-#define MMCR0_PMC2_Bx_OUT_OF_ORDER 16
-
-#define MMCR0_PMC2_CYCLE 1
-
-#define MMCR0_PMC2_DISPATCHED 4
-
-#define MMCR0_PMC2_HOLD 0
-
-#define MMCR0_PMC2_IC_FETCH_MISS 15
-
-#define MMCR0_PMC2_IC_MISS 5
-
-#define MMCR0_PMC2_INSTRUCTION 2
-
-#define MMCR0_PMC2_ITLB_MISS 6
-
-#define MMCR0_PMC2_L1_CASTOUT 13
-
-#define MMCR0_PMC2_L2_I_MISS 7
-
-#define MMCR0_PMC2_LOAD_STORE 11
-
-#define MMCR0_PMC2_PR_SWITCH 9
-
-#define MMCR0_PMC2_RESERVED_LOAD 10
-
-#define MMCR0_PMC2_SNOOP 12
-
-#define MMCR0_PMC2_SYSTEM 14
-
-#define MMCR0_PMC2_TRANSITION 3
-
-#define MMCR0_PMCTRIGGER 8192
-
-#define MMCR0_RTCSELECT_47 25165824
-
-#define MMCR0_RTCSELECT_51 16777216
-
-#define MMCR0_RTCSELECT_55 8388608
-
-#define MMCR0_RTCSELECT_63 0
-
-#define MMCR0_RTCSELECT_MASK 25165824
-
-#define MMCR0_THRESHOLD_MASK 4128768
-
-#define MMCR1 956
-
-#define MMCR1_PMC3SELECT_MASK 4160749568
-
-#define MMCR1_PMC3_BPU_LR_CR 2281701376
-
-#define MMCR1_PMC3_Bx_SECOND 2147483648
-
-#define MMCR1_PMC3_Bx_TAKEN 1073741824
-
-#define MMCR1_PMC3_COND_STORE 1342177280
-
-#define MMCR1_PMC3_CYCLE 134217728
-
-#define MMCR1_PMC3_DC_MISS 671088640
-
-#define MMCR1_PMC3_DISPATCHED 536870912
-
-#define MMCR1_PMC3_DTLB_MISS 805306368
-
-#define MMCR1_PMC3_FPU 1476395008
-
-#define MMCR1_PMC3_HOLD 0
-
-#define MMCR1_PMC3_INSTRUCTION 268435456
-
-#define MMCR1_PMC3_L1_MISS_CYCLE 2013265920
-
-#define MMCR1_PMC3_L2_D_MISS 939524096
-
-#define MMCR1_PMC3_L2_HIT 1744830464
-
-#define MMCR1_PMC3_L2_SNOOP_CASTOUT 1610612736
-
-#define MMCR1_PMC3_PM_SWITCH 1207959552
-
-#define MMCR1_PMC3_TRANSITION 402653184
-
-#define MMCR1_PMC4SELECT_MASK 130023424
-
-#define MMCR1_PMC4_BPU_THIRD 58720256
-
-#define MMCR1_PMC4_Bx_MISSED 33554432
-
-#define MMCR1_PMC4_COND_STORE_INT 41943040
-
-#define MMCR1_PMC4_CYCLE 4194304
-
-#define MMCR1_PMC4_DC_MISS 130023424
-
-#define MMCR1_PMC4_DISPATCHED 16777216
-
-#define MMCR1_PMC4_DTLB_CYCLE 25165824
-
-#define MMCR1_PMC4_HOLD 0
-
-#define MMCR1_PMC4_INSTRUCTION 8388608
-
-#define MMCR1_PMC4_INTEGER 54525952
-
-#define MMCR1_PMC4_L2_CASTOUT 20971520
-
-#define MMCR1_PMC4_SNOOP_RETRY 50331648
-
-#define MMCR1_PMC4_SYNC 46137344
-
-#define MMCR1_PMC4_TRANSITION 12582912
-
-#define MONTH_MAX 12
-
-#define MSEC_MAX 1000
-
-#define MSR_BE 512
-
-#define MSR_BE_BIT 22
-
-#define MSR_DR 16
-
-#define MSR_DR_BIT 27
-
-#define MSR_EE 32768
-
-#define MSR_EE_BIT 16
-
-#define MSR_FE0 2048
-
-#define MSR_FE0_BIT 20
-
-#define MSR_FE1 256
-
-#define MSR_FE1_BIT 23
-
-#define MSR_FP 8192
-
-#define MSR_FP_BIT 18
-
-#define MSR_ILE 65536
-
-#define MSR_ILE_BIT 15
-
-#define MSR_IP 64
-
-#define MSR_IP_BIT 25
-
-#define MSR_IR 32
-
-#define MSR_IR_BIT 26
-
-#define MSR_LE 1
-
-#define MSR_LE_BIT 31
-
-#define MSR_ME 4096
-
-#define MSR_ME_BIT 19
-
-#define MSR_PM 4
-
-#define MSR_PM_BIT 29
-
-#define MSR_POW 262144
-
-#define MSR_POW_BIT 13
-
-#define MSR_PR 16384
-
-#define MSR_PR_BIT 17
-
-#define MSR_RI 2
-
-#define MSR_RI_BIT 30
-
-#define MSR_SE 1024
-
-#define MSR_SE_BIT 21
-
-#define MUSY_VERSION 131075
-
-#define MUSY_VERSION_MAJOR 2
-
-#define MUSY_VERSION_MINOR 0
-
-#define MUSY_VERSION_PATCH 3
-
-#define NULL 0
-
-#define OS_BASE_CACHED 2147483648
-
-#define OS_BASE_UNCACHED 3221225472
-
-#define OS_BI2_DEBUGFLAG_OFFSET 12
-
-#define OS_BOOTINFO_MAGIC 219540062
-
-#define OS_BOOTINFO_MAGIC_JTAG 3844111394
-
-#define OS_BOOTROM_ADDR 2167406592
-
-#define OS_CACHED_REGION_PREFIX 32768
-
-#define OS_CONSOLE_ARTHUR 268435458
-
-#define OS_CONSOLE_DEVELOPMENT 268435456
-
-#define OS_CONSOLE_DEVHW1 268435460
-
-#define OS_CONSOLE_DEVHW2 268435461
-
-#define OS_CONSOLE_DEVHW3 268435462
-
-#define OS_CONSOLE_DEVHW4 268435463
-
-#define OS_CONSOLE_DEVKIT 268435456
-
-#define OS_CONSOLE_EMULATOR 268435456
-
-#define OS_CONSOLE_MASK 4026531840
-
-#define OS_CONSOLE_MINNOW 268435459
-
-#define OS_CONSOLE_PC_EMULATOR 268435457
-
-#define OS_CONSOLE_RETAIL 0
-
-#define OS_CONSOLE_RETAIL1 1
-
-#define OS_CONSOLE_RETAIL2 2
-
-#define OS_CONSOLE_RETAIL3 3
-
-#define OS_CONSOLE_RETAIL4 4
-
-#define OS_CONSOLE_TDEV 536870912
-
-#define OS_CONSOLE_TDEVHW1 536870916
-
-#define OS_CONSOLE_TDEVHW2 536870917
-
-#define OS_CONSOLE_TDEVHW3 536870918
-
-#define OS_CONSOLE_TDEVHW4 536870919
-
-#define OS_CONSOLE_TDEVKIT 536870912
-
-#define OS_CONTEXT_CR 128
-
-#define OS_CONTEXT_CTR 136
-
-#define OS_CONTEXT_FPR0 144
-
-#define OS_CONTEXT_FPR1 152
-
-#define OS_CONTEXT_FPR10 224
-
-#define OS_CONTEXT_FPR11 232
-
-#define OS_CONTEXT_FPR12 240
-
-#define OS_CONTEXT_FPR13 248
-
-#define OS_CONTEXT_FPR14 256
-
-#define OS_CONTEXT_FPR15 264
-
-#define OS_CONTEXT_FPR16 272
-
-#define OS_CONTEXT_FPR17 280
-
-#define OS_CONTEXT_FPR18 288
-
-#define OS_CONTEXT_FPR19 296
-
-#define OS_CONTEXT_FPR2 160
-
-#define OS_CONTEXT_FPR20 304
-
-#define OS_CONTEXT_FPR21 312
-
-#define OS_CONTEXT_FPR22 320
-
-#define OS_CONTEXT_FPR23 328
-
-#define OS_CONTEXT_FPR24 336
-
-#define OS_CONTEXT_FPR25 344
-
-#define OS_CONTEXT_FPR26 352
-
-#define OS_CONTEXT_FPR27 360
-
-#define OS_CONTEXT_FPR28 368
-
-#define OS_CONTEXT_FPR29 376
-
-#define OS_CONTEXT_FPR3 168
-
-#define OS_CONTEXT_FPR30 384
-
-#define OS_CONTEXT_FPR31 392
-
-#define OS_CONTEXT_FPR4 176
-
-#define OS_CONTEXT_FPR5 184
-
-#define OS_CONTEXT_FPR6 192
-
-#define OS_CONTEXT_FPR7 200
-
-#define OS_CONTEXT_FPR8 208
-
-#define OS_CONTEXT_FPR9 216
-
-#define OS_CONTEXT_FPSCR 400
-
-#define OS_CONTEXT_GQR0 420
-
-#define OS_CONTEXT_GQR1 424
-
-#define OS_CONTEXT_GQR2 428
-
-#define OS_CONTEXT_GQR3 432
-
-#define OS_CONTEXT_GQR4 436
-
-#define OS_CONTEXT_GQR5 440
-
-#define OS_CONTEXT_GQR6 444
-
-#define OS_CONTEXT_GQR7 448
-
-#define OS_CONTEXT_LR 132
-
-#define OS_CONTEXT_MODE 416
-
-#define OS_CONTEXT_MODE_FPU 1
-
-#define OS_CONTEXT_MODE_PSFP 2
-
-#define OS_CONTEXT_PSF0 456
-
-#define OS_CONTEXT_PSF1 464
-
-#define OS_CONTEXT_PSF10 536
-
-#define OS_CONTEXT_PSF11 544
-
-#define OS_CONTEXT_PSF12 552
-
-#define OS_CONTEXT_PSF13 560
-
-#define OS_CONTEXT_PSF14 568
-
-#define OS_CONTEXT_PSF15 576
-
-#define OS_CONTEXT_PSF16 584
-
-#define OS_CONTEXT_PSF17 592
-
-#define OS_CONTEXT_PSF18 600
-
-#define OS_CONTEXT_PSF19 608
-
-#define OS_CONTEXT_PSF2 472
-
-#define OS_CONTEXT_PSF20 616
-
-#define OS_CONTEXT_PSF21 624
-
-#define OS_CONTEXT_PSF22 632
-
-#define OS_CONTEXT_PSF23 640
-
-#define OS_CONTEXT_PSF24 648
-
-#define OS_CONTEXT_PSF25 656
-
-#define OS_CONTEXT_PSF26 664
-
-#define OS_CONTEXT_PSF27 672
-
-#define OS_CONTEXT_PSF28 680
-
-#define OS_CONTEXT_PSF29 688
-
-#define OS_CONTEXT_PSF3 480
-
-#define OS_CONTEXT_PSF30 696
-
-#define OS_CONTEXT_PSF31 704
-
-#define OS_CONTEXT_PSF4 488
-
-#define OS_CONTEXT_PSF5 496
-
-#define OS_CONTEXT_PSF6 504
-
-#define OS_CONTEXT_PSF7 512
-
-#define OS_CONTEXT_PSF8 520
-
-#define OS_CONTEXT_PSF9 528
-
-#define OS_CONTEXT_R0 0
-
-#define OS_CONTEXT_R1 4
-
-#define OS_CONTEXT_R10 40
-
-#define OS_CONTEXT_R11 44
-
-#define OS_CONTEXT_R12 48
-
-#define OS_CONTEXT_R13 52
-
-#define OS_CONTEXT_R14 56
-
-#define OS_CONTEXT_R15 60
-
-#define OS_CONTEXT_R16 64
-
-#define OS_CONTEXT_R17 68
-
-#define OS_CONTEXT_R18 72
-
-#define OS_CONTEXT_R19 76
-
-#define OS_CONTEXT_R2 8
-
-#define OS_CONTEXT_R20 80
-
-#define OS_CONTEXT_R21 84
-
-#define OS_CONTEXT_R22 88
-
-#define OS_CONTEXT_R23 92
-
-#define OS_CONTEXT_R24 96
-
-#define OS_CONTEXT_R25 100
-
-#define OS_CONTEXT_R26 104
-
-#define OS_CONTEXT_R27 108
-
-#define OS_CONTEXT_R28 112
-
-#define OS_CONTEXT_R29 116
-
-#define OS_CONTEXT_R3 12
-
-#define OS_CONTEXT_R30 120
-
-#define OS_CONTEXT_R31 124
-
-#define OS_CONTEXT_R4 16
-
-#define OS_CONTEXT_R5 20
-
-#define OS_CONTEXT_R6 24
-
-#define OS_CONTEXT_R7 28
-
-#define OS_CONTEXT_R8 32
-
-#define OS_CONTEXT_R9 36
-
-#define OS_CONTEXT_SRR0 408
-
-#define OS_CONTEXT_SRR1 412
-
-#define OS_CONTEXT_STATE 418
-
-#define OS_CONTEXT_STATE_EXC 2
-
-#define OS_CONTEXT_STATE_FPSAVED 1
-
-#define OS_CONTEXT_XER 140
-
-#define OS_CURRENTCONTEXT_PADDR 192
-
-#define OS_DBINTERFACE_ADDR 64
-
-#define OS_DVD_MAGIC_NINTENDO 3258163005
-
-#define OS_ERROR_ALIGNMENT 5
-
-#define OS_ERROR_BREAKPOINT 12
-
-#define OS_ERROR_DECREMENTER 8
-
-#define OS_ERROR_DSI 2
-
-#define OS_ERROR_EXTERNAL_INTERRUPT 4
-
-#define OS_ERROR_FLOATING_POINT 7
-
-#define OS_ERROR_ISI 3
-
-#define OS_ERROR_MACHINE_CHECK 1
-
-#define OS_ERROR_MAX 16
-
-
-/* WARNING! conflicting data type names: /sdk/OSError.h/defines/define_OS_ERROR_MAX - /decompHeaders/OSError.h/defines/define_OS_ERROR_MAX */
-
-#define OS_ERROR_PERFORMACE_MONITOR 11
-
-#define OS_ERROR_PROGRAM 6
-
-#define OS_ERROR_PROTECTION 15
-
-#define OS_ERROR_SYSTEM_CALL 9
-
-#define OS_ERROR_SYSTEM_INTERRUPT 13
-
-#define OS_ERROR_SYSTEM_RESET 0
-
-#define OS_ERROR_THERMAL_INTERRUPT 14
-
-#define OS_ERROR_TRACE 10
-
-#define OS_EURGB60_OFF 0
-
-#define OS_EURGB60_ON 1
-
-#define OS_FASTCAST_S16 5
-
-#define OS_FASTCAST_S8 4
-
-#define OS_FASTCAST_U16 3
-
-#define OS_FASTCAST_U8 2
-
-#define OS_FONT_DATA_SIZE_ANSI 65824
-
-#define OS_FONT_DATA_SIZE_SJIS 593636
-
-#define OS_FONT_ENCODE_ANSI 0
-
-#define OS_FONT_ENCODE_NULL -1
-
-#define OS_FONT_ENCODE_SJIS 1
-
-#define OS_FONT_ROM_SIZE_ANSI 12288
-
-#define OS_FONT_ROM_SIZE_SJIS 315392
-
-#define OS_FONT_SIZE_ANSI 131360
-
-#define OS_FONT_SIZE_SJIS 1183488
-
-#define OS_GQR_S16 7
-
-#define OS_GQR_S8 6
-
-#define OS_GQR_U16 5
-
-#define OS_GQR_U8 4
-
-#define OS_HANDLER_SLOT_SIZE 256
-
-#define OS_INTERRUPTMASK_AI 8388608
-
-#define OS_INTERRUPTMASK_AI_AI 8388608
-
-#define OS_INTERRUPTMASK_DSP 117440512
-
-#define OS_INTERRUPTMASK_DSP_AI 67108864
-
-#define OS_INTERRUPTMASK_DSP_ARAM 33554432
-
-#define OS_INTERRUPTMASK_DSP_DSP 16777216
-
-#define OS_INTERRUPTMASK_EXI 8355840
-
-#define OS_INTERRUPTMASK_EXI_0 7340032
-
-#define OS_INTERRUPTMASK_EXI_0_EXI 4194304
-
-#define OS_INTERRUPTMASK_EXI_0_EXT 1048576
-
-#define OS_INTERRUPTMASK_EXI_0_TC 2097152
-
-#define OS_INTERRUPTMASK_EXI_1 917504
-
-#define OS_INTERRUPTMASK_EXI_1_EXI 524288
-
-#define OS_INTERRUPTMASK_EXI_1_EXT 131072
-
-#define OS_INTERRUPTMASK_EXI_1_TC 262144
-
-#define OS_INTERRUPTMASK_EXI_2 98304
-
-#define OS_INTERRUPTMASK_EXI_2_EXI 65536
-
-#define OS_INTERRUPTMASK_EXI_2_TC 32768
-
-#define OS_INTERRUPTMASK_MEM 4160749568
-
-#define OS_INTERRUPTMASK_MEM_0 2147483648
-
-#define OS_INTERRUPTMASK_MEM_1 1073741824
-
-#define OS_INTERRUPTMASK_MEM_2 536870912
-
-#define OS_INTERRUPTMASK_MEM_3 268435456
-
-#define OS_INTERRUPTMASK_MEM_ADDRESS 134217728
-
-#define OS_INTERRUPTMASK_MEM_RESET 4026531840
-
-#define OS_INTERRUPTMASK_PI 32736
-
-#define OS_INTERRUPTMASK_PI_CP 16384
-
-#define OS_INTERRUPTMASK_PI_DEBUG 64
-
-#define OS_INTERRUPTMASK_PI_DI 1024
-
-#define OS_INTERRUPTMASK_PI_ERROR 256
-
-#define OS_INTERRUPTMASK_PI_HSP 32
-
-#define OS_INTERRUPTMASK_PI_PE 12288
-
-#define OS_INTERRUPTMASK_PI_PE_FINISH 4096
-
-#define OS_INTERRUPTMASK_PI_PE_TOKEN 8192
-
-#define OS_INTERRUPTMASK_PI_RSW 512
-
-#define OS_INTERRUPTMASK_PI_SI 2048
-
-#define OS_INTERRUPTMASK_PI_VI 128
-
-#define OS_LANG_DUTCH 5
-
-#define OS_LANG_ENGLISH 0
-
-#define OS_LANG_FRENCH 2
-
-#define OS_LANG_GERMAN 1
-
-#define OS_LANG_ITALIAN 4
-
-#define OS_LANG_SPANISH 3
-
-#define OS_MESSAGE_BLOCK 1
-
-#define OS_MESSAGE_NOBLOCK 0
-
-#define OS_MODULE_VERSION 3
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/defines/define_OS_MODULE_VERSION - /decompHeaders/OSModule.h/defines/define_OS_MODULE_VERSION */
-
-#define OS_PHYSICAL_MASK 16383
-
-#define OS_PRIORITY_IDLE 31
-
-#define OS_PRIORITY_MAX 31
-
-#define OS_PRIORITY_MIN 0
-
-#define OS_PROGRESSIVE_MODE_OFF 0
-
-#define OS_PROGRESSIVE_MODE_ON 1
-
-#define OS_PROTECT0_BIT 1
-
-#define OS_PROTECT1_BIT 2
-
-#define OS_PROTECT2_BIT 4
-
-#define OS_PROTECT3_BIT 8
-
-#define OS_PROTECT_ADDRERR_BIT 16
-
-#define OS_PROTECT_CHAN0 0
-
-#define OS_PROTECT_CHAN1 1
-
-#define OS_PROTECT_CHAN2 2
-
-#define OS_PROTECT_CHAN3 3
-
-#define OS_PROTECT_CONTROL_NONE 0
-
-#define OS_PROTECT_CONTROL_RDWR 3
-
-#define OS_PROTECT_CONTROL_READ 1
-
-#define OS_PROTECT_CONTROL_WRITE 2
-
-#define OS_RESETCODE_EXEC 3221225472
-
-#define OS_RESETCODE_NETCONFIG 3221291008
-
-#define OS_RESETCODE_RESTART 2147483648
-
-#define OS_RESETCODE_SYSTEM 1073741824
-
-#define OS_RESET_HOTRESET 1
-
-#define OS_RESET_PRIO_ALARM 4294967295
-
-#define OS_RESET_PRIO_CARD 127
-
-#define OS_RESET_PRIO_GX 127
-
-#define OS_RESET_PRIO_IP 111
-
-#define OS_RESET_PRIO_MEM 127
-
-#define OS_RESET_PRIO_PAD 127
-
-#define OS_RESET_PRIO_SO 110
-
-#define OS_RESET_RESTART 0
-
-#define OS_RESET_SHUTDOWN 2
-
-#define OS_SECTIONINFO_EXEC 1
-
-#define OS_SOUND_MODE_MONO 0
-
-#define OS_SOUND_MODE_STEREO 1
-
-#define OS_SYS_CALL_HANDLER 2147486720
-
-#define OS_THREAD_ATTR_DETACH 1
-
-#define OS_THREAD_STACK_MAGIC 3735927486
-
-#define OS_UNCACHED_REGION_PREFIX 49152
-
-#define OS_VIDEO_MODE_MPAL 2
-
-#define OS_VIDEO_MODE_NTSC 0
-
-#define OVERFLOW 3
-
-#define PAD3_BUTTON_ADDR 2147496164
-
-#define PAD_BUTTON_A 256
-
-#define PAD_BUTTON_B 512
-
-#define PAD_BUTTON_DOWN 4
-
-#define PAD_BUTTON_LEFT 1
-
-#define PAD_BUTTON_MENU 4096
-
-#define PAD_BUTTON_RIGHT 2
-
-#define PAD_BUTTON_START 4096
-
-#define PAD_BUTTON_UP 8
-
-#define PAD_BUTTON_X 1024
-
-#define PAD_BUTTON_Y 2048
-
-#define PAD_CHAN0 0
-
-#define PAD_CHAN0_BIT 2147483648
-
-#define PAD_CHAN1 1
-
-#define PAD_CHAN1_BIT 1073741824
-
-#define PAD_CHAN2 2
-
-#define PAD_CHAN2_BIT 536870912
-
-#define PAD_CHAN3 3
-
-#define PAD_CHAN3_BIT 268435456
-
-#define PAD_CHANMAX 4
-
-#define PAD_ERR_NONE 0
-
-#define PAD_ERR_NOT_READY -2
-
-#define PAD_ERR_NO_CONTROLLER -1
-
-#define PAD_ERR_TRANSFER -3
-
-#define PAD_MAX_CONTROLLERS 4
-
-#define PAD_MODE_0 0
-
-#define PAD_MODE_1 1
-
-#define PAD_MODE_2 2
-
-#define PAD_MODE_3 3
-
-#define PAD_MODE_4 4
-
-#define PAD_MODE_5 5
-
-#define PAD_MODE_6 6
-
-#define PAD_MODE_7 7
-
-#define PAD_MOTOR_RUMBLE 1
-
-#define PAD_MOTOR_STOP 0
-
-#define PAD_MOTOR_STOP_HARD 2
-
-#define PAD_SPEC_0 0
-
-#define PAD_SPEC_1 1
-
-#define PAD_SPEC_2 2
-
-#define PAD_SPEC_3 3
-
-#define PAD_SPEC_4 4
-
-#define PAD_SPEC_5 5
-
-#define PAD_TRIGGER_L 64
-
-#define PAD_TRIGGER_R 32
-
-#define PAD_TRIGGER_Z 16
-
-#define PI_FIFO_END 4
-
-#define PI_FIFO_PTR 5
-
-#define PI_FIFO_START 3
-
-#define PI_INTRPT_AI 32
-
-#define PI_INTRPT_CP 2048
-
-#define PI_INTRPT_DEBUG 4096
-
-#define PI_INTRPT_DSP 64
-
-#define PI_INTRPT_DVD 4
-
-#define PI_INTRPT_ERR 1
-
-#define PI_INTRPT_EXI 16
-
-#define PI_INTRPT_HSP 8192
-
-#define PI_INTRPT_MASK 1
-
-#define PI_INTRPT_MEM 128
-
-#define PI_INTRPT_PE_FINISH 1024
-
-#define PI_INTRPT_PE_TOKEN 512
-
-#define PI_INTRPT_RSW 2
-
-#define PI_INTRPT_RSWST 65536
-
-#define PI_INTRPT_SI 8
-
-#define PI_INTRPT_SRC 0
-
-#define PI_INTRPT_VI 256
-
-#define PI_RESETCODE 9
-
-#define PLOSS 6
-
-#define PMC1 953
-
-#define PMC1_COUNTER 2147483647
-
-#define PMC1_OV 2147483648
-
-#define PMC2 954
-
-#define PMC2_COUNTER 2147483647
-
-#define PMC2_OV 2147483648
-
-#define PMC3 957
-
-#define PMC3_COUNTER 2147483647
-
-#define PMC3_OV 2147483648
-
-#define PMC4 958
-
-#define PMC4_COUNTER 2147483647
-
-#define PMC4_OV 2147483648
-
-#define PVR 287
-
-#define RES_WIRELESS_LITE 262144
-
-#define RTC_CHAN 0
-
-#define RTC_CMD_READ 536870912
-
-#define RTC_CMD_WRITE 2684354560
-
-#define RTC_DEV 1
-
-#define RTC_FREQ 3
-
-#define RTC_SRAM_ADDR 256
-
-#define RTC_SRAM_SIZE 64
-
-#define R_DOLPHIN_END 203
-
-#define R_DOLPHIN_MRKREF 204
-
-#define R_DOLPHIN_NOP 201
-
-#define R_DOLPHIN_SECTION 202
-
-#define SAL_MAX_STUDIONUM 8
-
-#define SCHAR_MAX 127
-
-#define SCHAR_MIN -128
-
-#define SDR1 25
-
-#define SECS_IN_DAY 86400
-
-#define SECS_IN_HOUR 3600
-
-#define SECS_IN_MIN 60
-
-#define SECS_IN_YEAR 31536000
-
-#define SHRT_MAX 32767
-
-#define SHRT_MIN -32768
-
-#define SIA 955
-
-#define SING 2
-
-#define SI_CC_STAT 13
-
-#define SI_CHAN0 0
-
-#define SI_CHAN0_BIT 2147483648
-
-#define SI_CHAN1 1
-
-#define SI_CHAN1_BIT 1073741824
-
-#define SI_CHAN2 2
-
-#define SI_CHAN2_BIT 536870912
-
-#define SI_CHAN3 3
-
-#define SI_CHAN3_BIT 268435456
-
-#define SI_CHAN_0_BTN_1 1
-
-#define SI_CHAN_0_BTN_2 2
-
-#define SI_CHAN_0_BUF 0
-
-#define SI_CHAN_1_BTN_1 4
-
-#define SI_CHAN_1_BTN_2 5
-
-#define SI_CHAN_1_BUF 3
-
-#define SI_CHAN_2_BTN_1 7
-
-#define SI_CHAN_2_BTN_2 8
-
-#define SI_CHAN_2_BUF 6
-
-#define SI_CHAN_3_BTN_1 10
-
-#define SI_CHAN_3_BTN_2 11
-
-#define SI_CHAN_3_BUF 9
-
-#define SI_COMCSR_CHANNEL_MASK 6
-
-#define SI_COMCSR_COMERR_MASK 536870912
-
-#define SI_COMCSR_IDX 13
-
-#define SI_COMCSR_INLNGTH_MASK 32512
-
-#define SI_COMCSR_OUTLNGTH_MASK 8323072
-
-#define SI_COMCSR_RDSTINTMSK_MASK 134217728
-
-#define SI_COMCSR_RDSTINT_MASK 268435456
-
-#define SI_COMCSR_TCINTMSK_MASK 1073741824
-
-#define SI_COMCSR_TCINT_MASK 2147483648
-
-#define SI_COMCSR_TSTART_MASK 1
-
-#define SI_ERROR_BUSY 128
-
-#define SI_ERROR_COLLISION 4
-
-#define SI_ERROR_NO_RESPONSE 8
-
-#define SI_ERROR_OVER_RUN 2
-
-#define SI_ERROR_RDST 32
-
-#define SI_ERROR_UNDER_RUN 1
-
-#define SI_ERROR_UNKNOWN 64
-
-#define SI_ERROR_WRST 16
-
-#define SI_EXI_LOCK 15
-
-#define SI_GBA 262144
-
-#define SI_GC_CONTROLLER 150994944
-
-#define SI_GC_KEYBOARD 136314880
-
-#define SI_GC_NOMOTOR 536870912
-
-#define SI_GC_RECEIVER 2281701376
-
-#define SI_GC_STANDARD 16777216
-
-#define SI_GC_STEERING 134217728
-
-#define SI_GC_WAVEBIRD 2333081600
-
-#define SI_GC_WIRELESS 2147483648
-
-#define SI_IO_BUFFER 32
-
-#define SI_MAX_CHAN 4
-
-#define SI_MAX_COMCSR_INLNGTH 128
-
-#define SI_MAX_COMCSR_OUTLNGTH 128
-
-#define SI_N64_CONTROLLER 83886080
-
-#define SI_N64_KEYBOARD 131072
-
-#define SI_N64_MIC 65536
-
-#define SI_N64_MOUSE 33554432
-
-#define SI_POLL 12
-
-#define SI_STAT 14
-
-#define SI_STATUS_IDX 14
-
-#define SI_TYPE_DOLPHIN 134217728
-
-#define SI_TYPE_GC 134217728
-
-#define SI_TYPE_MASK 402653184
-
-#define SI_TYPE_N64 0
-
-#define SI_WIRELESS_CONT 0
-
-#define SI_WIRELESS_CONT_MASK 524288
-
-#define SI_WIRELESS_FIX_ID 1048576
-
-#define SI_WIRELESS_ID 12648192
-
-#define SI_WIRELESS_IR 67108864
-
-#define SI_WIRELESS_LITE 262144
-
-#define SI_WIRELESS_LITE_MASK 786432
-
-#define SI_WIRELESS_ORIGIN 2097152
-
-#define SI_WIRELESS_RECEIVED 1073741824
-
-#define SI_WIRELESS_STATE 33554432
-
-#define SI_WIRELESS_TYPE 983040
-
-#define SI_WIRELESS_TYPE_ID 13631232
-
-#define SND_ALL_VOLGROUPS 255
-
-#define SND_AUX_NUMPARAMETERS 4
-
-#define SND_AUX_REASON_BUFFERUPDATE 0
-
-#define SND_AUX_REASON_PARAMETERUPDATE 1
-
-#define SND_CROSSFADE_CONTINUE 2
-
-#define SND_CROSSFADE_DEFAULT 0
-
-#define SND_CROSSFADE_MUTE 64
-
-#define SND_CROSSFADE_MUTENEW 128
-
-#define SND_CROSSFADE_PAUSE 1
-
-#define SND_CROSSFADE_PAUSENEW 8
-
-#define SND_CROSSFADE_SPEED 32
-
-#define SND_CROSSFADE_START 0
-
-#define SND_CROSSFADE_STOP 0
-
-#define SND_CROSSFADE_SYNC 4
-
-#define SND_CROSSFADE_TRACKMUTE 16
-
-#define SND_DOOR_A2B 0
-
-#define SND_DOOR_B2A 1
-
-#define SND_DOOR_DEFAULT 0
-
-#define SND_EMITTER_CONTINOUS 1
-
-#define SND_EMITTER_CONTINUOUS 1
-
-#define SND_EMITTER_DEFAULT 0
-
-#define SND_EMITTER_DEFAULTKEY 255
-
-#define SND_EMITTER_DEFAULTVOL 255
-
-#define SND_EMITTER_DOPPLERFX 8
-
-#define SND_EMITTER_HARDSTART 32
-
-#define SND_EMITTER_ITD 16
-
-#define SND_EMITTER_NOSILENTSTART 64
-
-#define SND_EMITTER_PAUSABLE 4
-
-#define SND_EMITTER_RESTARTABLE 2
-
-#define SND_FX_VOLGROUPS 254
-
-#define SND_ID_ERROR 4294967295
-
-#define SND_LISTENER_DEFAULT 0
-
-#define SND_LISTENER_DOPPLERFX 1
-
-#define SND_MAX_SEQINSTANCES 8
-
-#define SND_MAX_USER_VOLGROUP 20
-
-#define SND_MIDICTRL_CHORUS 93
-
-#define SND_MIDICTRL_DOPPLER 132
-
-#define SND_MIDICTRL_MODULATION 1
-
-#define SND_MIDICTRL_PANNING 10
-
-#define SND_MIDICTRL_PEDAL 64
-
-#define SND_MIDICTRL_PITCHBEND 128
-
-#define SND_MIDICTRL_PORTAMENTO 65
-
-#define SND_MIDICTRL_REVERB 91
-
-#define SND_MIDICTRL_SPANNING 131
-
-#define SND_MIDICTRL_VOLUME 7
-
-#define SND_MUSIC_VOLGROUPS 253
-
-#define SND_PAUSEVOL_NORMAL 127
-
-#define SND_PLAYPARA_DEFAULT 0
-
-#define SND_PLAYPARA_PAUSE 16
-
-#define SND_PLAYPARA_SEQVOLDEF 8
-
-#define SND_PLAYPARA_SPEED 2
-
-#define SND_PLAYPARA_TRACKMUTE 1
-
-#define SND_PLAYPARA_VOLUME 4
-
-#define SND_SEQVOL_CONTINUE 0
-
-#define SND_SEQVOL_MODEMASK 15
-
-#define SND_SEQVOL_MUTE 3
-
-#define SND_SEQVOL_PAUSE 2
-
-#define SND_SEQVOL_STOP 1
-
-#define SND_SEQ_CROSSFADE_ID 2147483648
-
-#define SND_SEQ_ERROR_ID 4294967295
-
-#define SND_STUDIO_DEFAULT 0
-
-#define SND_STUDIO_MAXNUM 8
-
-#define SND_STUDIO_NONE 255
-
-#define SND_USERALL_VOLGROUPS 252
-
-#define SND_USERFX_VOLGROUPS 251
-
-#define SND_USERMUSIC_VOLGROUPS 250
-
-#define SPRG0 272
-
-#define SPRG1 273
-
-#define SPRG2 274
-
-#define SPRG3 275
-
-#define SRR0 26
-
-#define SRR1 27
-
-#define SRR1_DMA_BIT 2097152
-
-#define SRR1_L2DP_BIT 1048576
-
-#define SYNTH_MAX_VOICES 64
-
-#define TBL 284
-
-#define TBU 285
-
-#define THRM1 1020
-
-#define THRM2 1021
-
-#define THRM3 1022
-
-#define TLOSS 5
-
-#define TRUE 1
-
-#define UCHAR_MAX 255
-
-#define UINT_MAX 4294967295
-
-#define ULLONG_MAX -1
-
-#define ULONG_MAX 4294967295
-
-#define UMMCR0 936
-
-#define UMMCR1 940
-
-#define UNDERFLOW 4
-
-#define UPMC1 937
-
-#define UPMC2 938
-
-#define UPMC3 941
-
-#define UPMC4 942
-
-#define USEC_MAX 1000
-
-#define USHRT_MAX 65535
-
-#define USIA 939
-
-#define VI_3D 3
-
-#define VI_BBI_EVEN 12
-
-#define VI_BBI_EVEN_U 13
-
-#define VI_BBI_ODD 10
-
-#define VI_BBI_ODD_U 11
-
-#define VI_BTTM_FIELD_BASE_LEFT 18
-
-#define VI_BTTM_FIELD_BASE_LEFT_U 19
-
-#define VI_BTTM_FIELD_BASE_RIGHT 20
-
-#define VI_BTTM_FIELD_BASE_RIGHT_U 21
-
-#define VI_CLOCK_SEL 54
-
-#define VI_DEBUG 3
-
-#define VI_DEBUG_PAL 4
-
-#define VI_DISPLAY_PIX_SZ 2
-
-#define VI_DISP_CONFIG 1
-
-#define VI_DISP_INT_0 24
-
-#define VI_DISP_INT_0U 25
-
-#define VI_DISP_INT_1 26
-
-#define VI_DISP_INT_1U 27
-
-#define VI_DISP_INT_2 28
-
-#define VI_DISP_INT_2U 29
-
-#define VI_DISP_INT_3 30
-
-#define VI_DISP_INT_3U 31
-
-#define VI_DTV_STAT 55
-
-#define VI_EURGB60 5
-
-#define VI_FCT_0 38
-
-#define VI_FCT_0U 39
-
-#define VI_FCT_1 40
-
-#define VI_FCT_1U 41
-
-#define VI_FCT_2 42
-
-#define VI_FCT_2U 43
-
-#define VI_FCT_3 44
-
-#define VI_FCT_3U 45
-
-#define VI_FCT_4 46
-
-#define VI_FCT_4U 47
-
-#define VI_FCT_5 48
-
-#define VI_FCT_5U 49
-
-#define VI_FCT_6 50
-
-#define VI_FCT_6U 51
-
-#define VI_FIELD_ABOVE 1
-
-#define VI_FIELD_BELOW 0
-
-#define VI_GCA 6
-
-#define VI_HORIZ_COUNT 23
-
-#define VI_HORIZ_TIMING_0L 2
-
-#define VI_HORIZ_TIMING_0U 3
-
-#define VI_HORIZ_TIMING_1L 4
-
-#define VI_HORIZ_TIMING_1U 5
-
-#define VI_HSR 37
-
-#define VI_HSW 36
-
-#define VI_INTERLACE 0
-
-#define VI_MAX_HEIGHT_EURGB60 480
-
-#define VI_MAX_HEIGHT_MPAL 480
-
-#define VI_MAX_HEIGHT_NTSC 480
-
-#define VI_MAX_HEIGHT_PAL 574
-
-#define VI_MAX_WIDTH_EURGB60 720
-
-#define VI_MAX_WIDTH_MPAL 720
-
-#define VI_MAX_WIDTH_NTSC 720
-
-#define VI_MAX_WIDTH_PAL 720
-
-#define VI_MPAL 2
-
-#define VI_NON_INTERLACE 1
-
-#define VI_NTSC 0
-
-#define VI_PAL 1
-
-#define VI_PROGRESSIVE 2
-
-#define VI_TOP_FIELD_BASE_LEFT 14
-
-#define VI_TOP_FIELD_BASE_LEFT_U 15
-
-#define VI_TOP_FIELD_BASE_RIGHT 16
-
-#define VI_TOP_FIELD_BASE_RIGHT_U 17
-
-#define VI_VERT_COUNT 22
-
-#define VI_VERT_TIMING 0
-
-#define VI_VERT_TIMING_EVEN 8
-
-#define VI_VERT_TIMING_EVEN_U 9
-
-#define VI_VERT_TIMING_ODD 6
-
-#define VI_VERT_TIMING_ODD_U 7
-
-#define VI_WIDTH 56
-
-#define WEEK_DAY_MAX 7
-
-#define WPAR 921
-
-#define WPAR_ADDR 4294967264
-
-#define WPAR_BNE 1
-
-#define XER 1
-
-#define YEAR_DAY_MAX 365
-
-#define _GX_TF_CTF 32
-
-#define _GX_TF_ZTF 16
-
-#define _INTEGRAL_MAX_BITS 32
-
-#define _SND_CHORUS_NUM_BLOCKS 3
-
-#define __AIRegs 3422579712
-
-#define __DIRegs 3422576640
-
-#define __DSPRegs 3422572544
-
-#define __EXIRegs 3422578688
-
-#define __MEMRegs 3422568448
-
-#define __OSCONTEXT_PADDING 452
-
-#define __OS_CONTEXT_FRAME 768
-
-#define __OS_EXCEPTION_ALIGNMENT 5
-
-#define __OS_EXCEPTION_BREAKPOINT 12
-
-#define __OS_EXCEPTION_DECREMENTER 8
-
-#define __OS_EXCEPTION_DSI 2
-
-#define __OS_EXCEPTION_EXTERNAL_INTERRUPT 4
-
-#define __OS_EXCEPTION_FLOATING_POINT 7
-
-#define __OS_EXCEPTION_ISI 3
-
-#define __OS_EXCEPTION_MACHINE_CHECK 1
-
-#define __OS_EXCEPTION_MAX 15
-
-#define __OS_EXCEPTION_PERFORMACE_MONITOR 11
-
-#define __OS_EXCEPTION_PROGRAM 6
-
-#define __OS_EXCEPTION_SYSTEM_CALL 9
-
-#define __OS_EXCEPTION_SYSTEM_INTERRUPT 13
-
-#define __OS_EXCEPTION_SYSTEM_RESET 0
-
-#define __OS_EXCEPTION_THERMAL_INTERRUPT 14
-
-#define __OS_EXCEPTION_TRACE 10
-
-#define __OS_INTERRUPT_AI_AI 8
-
-#define __OS_INTERRUPT_DSP_AI 5
-
-#define __OS_INTERRUPT_DSP_ARAM 6
-
-#define __OS_INTERRUPT_DSP_DSP 7
-
-#define __OS_INTERRUPT_EXI_0_EXI 9
-
-#define __OS_INTERRUPT_EXI_0_EXT 11
-
-#define __OS_INTERRUPT_EXI_0_TC 10
-
-#define __OS_INTERRUPT_EXI_1_EXI 12
-
-#define __OS_INTERRUPT_EXI_1_EXT 14
-
-#define __OS_INTERRUPT_EXI_1_TC 13
-
-#define __OS_INTERRUPT_EXI_2_EXI 15
-
-#define __OS_INTERRUPT_EXI_2_TC 16
-
-#define __OS_INTERRUPT_MAX 32
-
-#define __OS_INTERRUPT_MEM_0 0
-
-#define __OS_INTERRUPT_MEM_1 1
-
-#define __OS_INTERRUPT_MEM_2 2
-
-#define __OS_INTERRUPT_MEM_3 3
-
-#define __OS_INTERRUPT_MEM_ADDRESS 4
-
-#define __OS_INTERRUPT_PI_CP 17
-
-#define __OS_INTERRUPT_PI_DEBUG 25
-
-#define __OS_INTERRUPT_PI_DI 21
-
-#define __OS_INTERRUPT_PI_ERROR 23
-
-#define __OS_INTERRUPT_PI_HSP 26
-
-#define __OS_INTERRUPT_PI_PE_FINISH 19
-
-#define __OS_INTERRUPT_PI_PE_TOKEN 18
-
-#define __OS_INTERRUPT_PI_RSW 22
-
-#define __OS_INTERRUPT_PI_SI 20
-
-#define __OS_INTERRUPT_PI_VI 24
-
-#define __PIRegs 3422564352
-
-#define __SIRegs 3422577664
-
-#define __STDC_VERSION__ 199900
-
-#define __VIRegs 3422560256
-
-#define __alphanumeric 208
-
-#define __control 3
-
-#define __control_char 1
-
-#define __digit 16
-
-#define __graphic 216
-
-#define __hex_digit 32
-
-#define __letter 192
-
-#define __lower_case 64
-
-#define __motion_char 2
-
-#define __printable 220
-
-#define __punctuation 8
-
-#define __space_char 4
-
-#define __upper_case 128
-
-#define __whitespace 6
-
-#define nullptr 0
-
+
+
+#define AI_CONTROL 0
+
+
+
+#define AI_CONTROL_DSP_SAMPLE_COUNT 4
+
+
+
+#define AI_CONTROL_DSP_SAMPLE_RATE 64
+
+
+
+#define AI_CONTROL_PLAY_STATE 1
+
+
+
+#define AI_CONTROL_STREAM_SAMPLE_COUNT 32
+
+
+
+#define AI_CONTROL_STREAM_SAMPLE_RATE 2
+
+
+
+#define AI_CONTROL_UNKNOWN8 8
+
+
+
+#define AI_INTRPT_TIMING 3
+
+
+
+#define AI_SAMPLERATE_32KHZ 0
+
+
+
+#define AI_SAMPLERATE_48KHZ 1
+
+
+
+#define AI_SAMPLE_COUNTER 2
+
+
+
+#define AI_STREAM_START 1
+
+
+
+#define AI_STREAM_STOP 0
+
+
+
+#define AI_VOLUME 1
+
+
+
+#define ARAM_DIR_ARAM_TO_MRAM 1
+
+
+
+#define ARAM_DIR_MRAM_TO_ARAM 0
+
+
+
+#define ARENAHI_ADDR 2147483700
+
+
+
+#define ARQ_DMA_ALIGNMENT 32
+
+
+
+#define ARQ_PRIORITY_HIGH 1
+
+
+
+#define ARQ_PRIORITY_LOW 0
+
+
+
+#define ARQ_TYPE_ARAM_TO_MRAM 1
+
+
+
+#define ARQ_TYPE_MRAM_TO_ARAM 0
+
+
+
+#define BIAS 730485
+
+
+
+#define BOOTINFO2_ADDR 2147483892
+
+
+
+#define BSD 199103
+
+
+
+#define CARD_ATTR_COMPANY 64
+
+
+
+#define CARD_ATTR_GLOBAL 32
+
+
+
+#define CARD_ATTR_NO_COPY 8
+
+
+
+#define CARD_ATTR_NO_MOVE 16
+
+
+
+#define CARD_ATTR_PUBLIC 4
+
+
+
+#define CARD_BANNER_HEIGHT 32
+
+
+
+#define CARD_BANNER_WIDTH 96
+
+
+
+#define CARD_COMMENT_SIZE 64
+
+
+
+#define CARD_ENCODE_ANSI 0
+
+
+
+#define CARD_ENCODE_SJIS 1
+
+
+
+#define CARD_FAT_AVAIL 0
+
+
+
+#define CARD_FAT_CHECKCODE 2
+
+
+
+#define CARD_FAT_CHECKSUM 0
+
+
+
+#define CARD_FAT_CHECKSUMINV 1
+
+
+
+#define CARD_FAT_FREEBLOCKS 3
+
+
+
+#define CARD_FAT_LASTSLOT 4
+
+
+
+#define CARD_FILENAME_MAX 32
+
+
+
+#define CARD_ICON_HEIGHT 32
+
+
+
+#define CARD_ICON_MAX 8
+
+
+
+#define CARD_ICON_WIDTH 32
+
+
+
+#define CARD_MAX_FILE 127
+
+
+
+#define CARD_MAX_MOUNT_STEP 7
+
+
+
+#define CARD_MAX_SIZE 16777216
+
+
+
+#define CARD_MODE_FAST 1
+
+
+
+#define CARD_MODE_NORMAL 0
+
+
+
+#define CARD_NUM_SYSTEM_BLOCK 5
+
+
+
+#define CARD_PAGE_SIZE 128
+
+
+
+#define CARD_READ_SIZE 512
+
+
+
+#define CARD_RESULT_BROKEN -6
+
+
+
+#define CARD_RESULT_BUSY -1
+
+
+
+#define CARD_RESULT_CANCELED -14
+
+
+
+#define CARD_RESULT_ENCODING -13
+
+
+
+#define CARD_RESULT_EXIST -7
+
+
+
+#define CARD_RESULT_FATAL_ERROR -128
+
+
+
+#define CARD_RESULT_INSSPACE -9
+
+
+
+#define CARD_RESULT_IOERROR -5
+
+
+
+#define CARD_RESULT_LIMIT -11
+
+
+
+#define CARD_RESULT_NAMETOOLONG -12
+
+
+
+#define CARD_RESULT_NOCARD -3
+
+
+
+#define CARD_RESULT_NOENT -8
+
+
+
+#define CARD_RESULT_NOFILE -4
+
+
+
+#define CARD_RESULT_NOPERM -10
+
+
+
+#define CARD_RESULT_READY 0
+
+
+
+#define CARD_RESULT_UNLOCKED 1
+
+
+
+#define CARD_RESULT_WRONGDEVICE -2
+
+
+
+#define CARD_SEG_SIZE 512
+
+
+
+#define CARD_STAT_ANIM_BOUNCE 4
+
+
+
+#define CARD_STAT_ANIM_LOOP 0
+
+
+
+#define CARD_STAT_ANIM_MASK 4
+
+
+
+#define CARD_STAT_BANNER_C8 1
+
+
+
+#define CARD_STAT_BANNER_MASK 3
+
+
+
+#define CARD_STAT_BANNER_NONE 0
+
+
+
+#define CARD_STAT_BANNER_RGB5A3 2
+
+
+
+#define CARD_STAT_ICON_C8 1
+
+
+
+#define CARD_STAT_ICON_MASK 3
+
+
+
+#define CARD_STAT_ICON_NONE 0
+
+
+
+#define CARD_STAT_ICON_RGB5A3 2
+
+
+
+#define CARD_STAT_SPEED_END 0
+
+
+
+#define CARD_STAT_SPEED_FAST 1
+
+
+
+#define CARD_STAT_SPEED_MASK 3
+
+
+
+#define CARD_STAT_SPEED_MIDDLE 2
+
+
+
+#define CARD_STAT_SPEED_SLOW 3
+
+
+
+#define CARD_SYSTEM_BLOCK_SIZE 8192
+
+
+
+#define CARD_WORKAREA_SIZE 40960
+
+
+
+#define CHAN_NONE -1
+
+
+
+#define CHAR_BIT 8
+
+
+
+#define CHAR_MAX 127
+
+
+
+#define CHAR_MIN -128
+
+
+
+#define CTR 9
+
+
+
+#define CTRL_MTX 16
+
+
+
+#define CTRL_ROT_EULER 2
+
+
+
+#define CTRL_ROT_QUAT 4
+
+
+
+#define CTRL_SCALE 1
+
+
+
+#define CTRL_TRANS 8
+
+
+
+#define DABR 1013
+
+
+
+#define DAR 19
+
+
+
+#define DBAT0L 537
+
+
+
+#define DBAT0U 536
+
+
+
+#define DBAT1L 539
+
+
+
+#define DBAT1U 538
+
+
+
+#define DBAT2L 541
+
+
+
+#define DBAT2U 540
+
+
+
+#define DBAT3L 3
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3L - /decompHeaders/PPCArch.h/defines/define_DBAT3L */
+
+
+
+#define DBAT3U 3
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3U - /decompHeaders/PPCArch.h/defines/define_DBAT3U */
+
+
+
+#define DEBUGFLAG_ADDR 2147496168
+
+
+
+#define DEC 22
+
+
+
+#define DEMOWIN_FLAGS_INIT 1
+
+
+
+#define DEMOWIN_FLAGS_OPENED 2
+
+
+
+#define DI_CMD_BUF_0 2
+
+
+
+#define DI_CMD_BUF_1 3
+
+
+
+#define DI_CMD_BUF_2 4
+
+
+
+#define DI_CONFIG 9
+
+
+
+#define DI_CONTROL 7
+
+
+
+#define DI_COVER_STATUS 1
+
+
+
+#define DI_DMA_LENGTH 6
+
+
+
+#define DI_DMA_MEM_ADDR 5
+
+
+
+#define DI_MM_BUF 8
+
+
+
+#define DI_STATUS 0
+
+
+
+#define DMA_L 923
+
+
+
+#define DMA_L_FLUSH 1
+
+
+
+#define DMA_L_LC_ADDR_MASK 4294967264
+
+
+
+#define DMA_L_LEN_MASK 12
+
+
+
+#define DMA_L_LOAD 16
+
+
+
+#define DMA_L_STORE 0
+
+
+
+#define DMA_L_TRIGGER 2
+
+
+
+#define DMA_U 922
+
+
+
+#define DMA_U_ADDR_MASK 4294967264
+
+
+
+#define DMA_U_LEN_U_MASK 31
+
+
+
+#define DOL_ADDR_LIMIT 2154823680
+
+
+
+#define DOMAIN 1
+
+
+
+#define DSISR 18
+
+
+
+#define DSP_ARAM_DMA_ARAM_HI 18
+
+
+
+#define DSP_ARAM_DMA_ARAM_LO 19
+
+
+
+#define DSP_ARAM_DMA_MM_HI 16
+
+
+
+#define DSP_ARAM_DMA_MM_LO 17
+
+
+
+#define DSP_ARAM_DMA_SIZE_HI 20
+
+
+
+#define DSP_ARAM_DMA_SIZE_LO 21
+
+
+
+#define DSP_ARAM_MODE 11
+
+
+
+#define DSP_ARAM_REFRESH 13
+
+
+
+#define DSP_ARAM_SIZE 9
+
+
+
+#define DSP_CONTROL_STATUS 5
+
+
+
+#define DSP_DMA_BYTES_LEFT 29
+
+
+
+#define DSP_DMA_CONTROL_LEN 27
+
+
+
+#define DSP_DMA_START_FLAG 32768
+
+
+
+#define DSP_DMA_START_HI 24
+
+
+
+#define DSP_DMA_START_LO 25
+
+
+
+#define DSP_MAILBOX_IN_HI 0
+
+
+
+#define DSP_MAILBOX_IN_LO 1
+
+
+
+#define DSP_MAILBOX_OUT_HI 2
+
+
+
+#define DSP_MAILBOX_OUT_LO 3
+
+
+
+#define DSP_TASK_FLAG_ATTACHED 1
+
+
+
+#define DSP_TASK_FLAG_CANCEL 2
+
+
+
+#define DSP_TASK_FLAG_CLEARALL 0
+
+
+
+#define DSP_TASK_STATE_DONE 3
+
+
+
+#define DSP_TASK_STATE_INIT 0
+
+
+
+#define DSP_TASK_STATE_RUN 1
+
+
+
+#define DSP_TASK_STATE_YIELD 2
+
+
+
+#define DTK_MODE_ALLREPEAT 1
+
+
+
+#define DTK_MODE_NOREPEAT 0
+
+
+
+#define DTK_MODE_REPEAT1 2
+
+
+
+#define DTK_STATE_BUSY 3
+
+
+
+#define DTK_STATE_PAUSE 2
+
+
+
+#define DTK_STATE_PREPARE 4
+
+
+
+#define DTK_STATE_RUN 1
+
+
+
+#define DTK_STATE_STOP 0
+
+
+
+#define DVD_AIS_SUCCESS 0
+
+
+
+#define DVD_COMMAND_AUDIO_BUFFER_CONFIG 13
+
+
+
+#define DVD_COMMAND_BSREAD 4
+
+
+
+#define DVD_COMMAND_BS_CHANGE_DISK 15
+
+
+
+#define DVD_COMMAND_CANCELSTREAM 7
+
+
+
+#define DVD_COMMAND_CHANGE_DISK 3
+
+
+
+#define DVD_COMMAND_INITSTREAM 6
+
+
+
+#define DVD_COMMAND_INQUIRY 14
+
+
+
+#define DVD_COMMAND_NONE 0
+
+
+
+#define DVD_COMMAND_READ 1
+
+
+
+#define DVD_COMMAND_READID 5
+
+
+
+#define DVD_COMMAND_REQUEST_AUDIO_ERROR 9
+
+
+
+#define DVD_COMMAND_REQUEST_LENGTH 12
+
+
+
+#define DVD_COMMAND_REQUEST_PLAY_ADDR 10
+
+
+
+#define DVD_COMMAND_REQUEST_START_ADDR 11
+
+
+
+#define DVD_COMMAND_SEEK 2
+
+
+
+#define DVD_COMMAND_STOP_STREAM_AT_END 8
+
+
+
+#define DVD_DEVICECODE_ADDR 2147496166
+
+
+
+#define DVD_FILEINFO_BUSY 1
+
+
+
+#define DVD_FILEINFO_READY 0
+
+
+
+#define DVD_INTTYPE_CVR 4
+
+
+
+#define DVD_INTTYPE_DE 2
+
+
+
+#define DVD_INTTYPE_TC 1
+
+
+
+#define DVD_MIN_TRANSFER_SIZE 32
+
+
+
+#define DVD_RESULT_CANCELED -3
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/defines/define_DVD_RESULT_CANCELED - /decompHeaders/dvd.h/defines/define_DVD_RESULT_CANCELED */
+
+
+
+#define DVD_RESULT_FATAL_ERROR -1
+
+
+
+#define DVD_RESULT_GOOD 0
+
+
+
+#define DVD_RESULT_IGNORED -2
+
+
+
+#define DVD_STATE_BUSY 1
+
+
+
+#define DVD_STATE_CANCELED 10
+
+
+
+#define DVD_STATE_COVER_CLOSED 3
+
+
+
+#define DVD_STATE_COVER_OPEN 5
+
+
+
+#define DVD_STATE_END 0
+
+
+
+#define DVD_STATE_FATAL_ERROR -1
+
+
+
+#define DVD_STATE_IGNORED 9
+
+
+
+#define DVD_STATE_MOTOR_STOPPED 7
+
+
+
+#define DVD_STATE_NO_DISK 4
+
+
+
+#define DVD_STATE_PAUSING 8
+
+
+
+#define DVD_STATE_RETRY 11
+
+
+
+#define DVD_STATE_WAITING 2
+
+
+
+#define DVD_STATE_WRONG_DISK 6
+
+
+
+#define EAR 282
+
+
+
+#define EXCEPTIONMASK_ADDR 2147483716
+
+
+
+#define EXIT_FAILURE -1
+
+
+
+#define EXIT_SUCCESS 0
+
+
+
+#define EXI_CHAN_0_CONTROL 3
+
+
+
+#define EXI_CHAN_0_DMA_ADDR 1
+
+
+
+#define EXI_CHAN_0_IMM 4
+
+
+
+#define EXI_CHAN_0_LEN 2
+
+
+
+#define EXI_CHAN_0_STAT 0
+
+
+
+#define EXI_CHAN_1_CONTROL 8
+
+
+
+#define EXI_CHAN_1_DMA_ADDR 6
+
+
+
+#define EXI_CHAN_1_IMM 9
+
+
+
+#define EXI_CHAN_1_LEN 7
+
+
+
+#define EXI_CHAN_1_STAT 5
+
+
+
+#define EXI_CHAN_2_CONTROL 13
+
+
+
+#define EXI_CHAN_2_DMA_ADDR 11
+
+
+
+#define EXI_CHAN_2_IMM 14
+
+
+
+#define EXI_CHAN_2_LEN 12
+
+
+
+#define EXI_CHAN_2_STAT 10
+
+
+
+#define EXI_ETHER 67240448
+
+
+
+#define EXI_ETHER_VIEWER 69337089
+
+
+
+#define EXI_FREQ_16M 4
+
+
+
+#define EXI_FREQ_1M 0
+
+
+
+#define EXI_FREQ_2M 1
+
+
+
+#define EXI_FREQ_32M 5
+
+
+
+#define EXI_FREQ_4M 2
+
+
+
+#define EXI_FREQ_8M 3
+
+
+
+#define EXI_IS_VIEWER 84344832
+
+
+
+#define EXI_MAGIC 2784952410
+
+
+
+#define EXI_MARLIN 50397184
+
+
+
+#define EXI_MAX_CHAN 3
+
+
+
+#define EXI_MAX_DEV 3
+
+
+
+#define EXI_MEMORY_CARD_1019 64
+
+
+
+#define EXI_MEMORY_CARD_1019A 320
+
+
+
+#define EXI_MEMORY_CARD_1019B 576
+
+
+
+#define EXI_MEMORY_CARD_1019C 832
+
+
+
+#define EXI_MEMORY_CARD_1019D 1088
+
+
+
+#define EXI_MEMORY_CARD_1019E 1344
+
+
+
+#define EXI_MEMORY_CARD_1019F 1600
+
+
+
+#define EXI_MEMORY_CARD_1019G 1856
+
+
+
+#define EXI_MEMORY_CARD_123 8
+
+
+
+#define EXI_MEMORY_CARD_2043 128
+
+
+
+#define EXI_MEMORY_CARD_2043A 384
+
+
+
+#define EXI_MEMORY_CARD_2043B 640
+
+
+
+#define EXI_MEMORY_CARD_2043C 896
+
+
+
+#define EXI_MEMORY_CARD_2043D 1152
+
+
+
+#define EXI_MEMORY_CARD_2043E 1408
+
+
+
+#define EXI_MEMORY_CARD_2043F 1664
+
+
+
+#define EXI_MEMORY_CARD_2043G 1920
+
+
+
+#define EXI_MEMORY_CARD_251 16
+
+
+
+#define EXI_MEMORY_CARD_507 32
+
+
+
+#define EXI_MEMORY_CARD_59 4
+
+
+
+#define EXI_MODEM 33685504
+
+
+
+#define EXI_NPDP_GDEV 16908288
+
+
+
+#define EXI_READ 0
+
+
+
+#define EXI_REG_MAX 5
+
+
+
+#define EXI_STATE_ATTACHED 8
+
+
+
+#define EXI_STATE_BUSY 3
+
+
+
+#define EXI_STATE_DMA 1
+
+
+
+#define EXI_STATE_IDLE 0
+
+
+
+#define EXI_STATE_IMM 2
+
+
+
+#define EXI_STATE_LOCKED 16
+
+
+
+#define EXI_STATE_SELECTED 4
+
+
+
+#define EXI_STREAM_HANGER 68354048
+
+
+
+#define EXI_TX 8389632
+
+
+
+#define EXI_USB_ADAPTER 16842752
+
+
+
+#define EXI_WRITE 1
+
+
+
+#define ExceptionHookDestination 2147483720
+
+
+
+#define FALSE 0
+
+
+
+#define FPSCR_FEX 1073741824
+
+
+
+#define FPSCR_FEX_BIT 1
+
+
+
+#define FPSCR_FI 131072
+
+
+
+#define FPSCR_FI_BIT 14
+
+
+
+#define FPSCR_FR 262144
+
+
+
+#define FPSCR_FR_BIT 13
+
+
+
+#define FPSCR_FX 2147483648
+
+
+
+#define FPSCR_FX_BIT 0
+
+
+
+#define FPSCR_NI 4
+
+
+
+#define FPSCR_NI_BIT 29
+
+
+
+#define FPSCR_OE 64
+
+
+
+#define FPSCR_OE_BIT 25
+
+
+
+#define FPSCR_OX 268435456
+
+
+
+#define FPSCR_OX_BIT 3
+
+
+
+#define FPSCR_UE 32
+
+
+
+#define FPSCR_UE_BIT 26
+
+
+
+#define FPSCR_UX 134217728
+
+
+
+#define FPSCR_UX_BIT 4
+
+
+
+#define FPSCR_VE 128
+
+
+
+#define FPSCR_VE_BIT 24
+
+
+
+#define FPSCR_VX 536870912
+
+
+
+#define FPSCR_VXCVI 256
+
+
+
+#define FPSCR_VXCVI_BIT 23
+
+
+
+#define FPSCR_VXIDI 4194304
+
+
+
+#define FPSCR_VXIDI_BIT 9
+
+
+
+#define FPSCR_VXIMZ 1048576
+
+
+
+#define FPSCR_VXIMZ_BIT 11
+
+
+
+#define FPSCR_VXISI 8388608
+
+
+
+#define FPSCR_VXISI_BIT 8
+
+
+
+#define FPSCR_VXSNAN 16777216
+
+
+
+#define FPSCR_VXSNAN_BIT 7
+
+
+
+#define FPSCR_VXSOFT 1024
+
+
+
+#define FPSCR_VXSOFT_BIT 21
+
+
+
+#define FPSCR_VXSQRT 512
+
+
+
+#define FPSCR_VXSQRT_BIT 22
+
+
+
+#define FPSCR_VXVC 524288
+
+
+
+#define FPSCR_VXVC_BIT 12
+
+
+
+#define FPSCR_VXZDZ 2097152
+
+
+
+#define FPSCR_VXZDZ_BIT 10
+
+
+
+#define FPSCR_VX_BIT 2
+
+
+
+#define FPSCR_XE 8
+
+
+
+#define FPSCR_XE_BIT 28
+
+
+
+#define FPSCR_XX 33554432
+
+
+
+#define FPSCR_XX_BIT 6
+
+
+
+#define FPSCR_ZE 16
+
+
+
+#define FPSCR_ZE_BIT 27
+
+
+
+#define FPSCR_ZX 67108864
+
+
+
+#define FPSCR_ZX_BIT 5
+
+
+
+#define GQR0 912
+
+
+
+#define GQR1 913
+
+
+
+#define GQR2 914
+
+
+
+#define GQR3 915
+
+
+
+#define GQR4 916
+
+
+
+#define GQR5 917
+
+
+
+#define GQR6 918
+
+
+
+#define GQR7 919
+
+
+
+#define GQR_LOAD_SCALE_MASK 1056964608
+
+
+
+#define GQR_LOAD_TYPE_MASK 458752
+
+
+
+#define GQR_SCALE_MAX 32
+
+
+
+#define GQR_STORE_SCALE_MASK 16128
+
+
+
+#define GQR_STORE_TYPE_MASK 7
+
+
+
+#define GXFIFO_ADDR 3422584832
+
+
+
+#define GX_CP_ADDR 201326592
+
+
+
+#define GX_DISABLE 0
+
+
+
+#define GX_DRAW_LINES 168
+
+
+
+#define GX_DRAW_LINE_STRIP 176
+
+
+
+#define GX_DRAW_POINTS 184
+
+
+
+#define GX_DRAW_QUADS 128
+
+
+
+#define GX_DRAW_TRIANGLES 144
+
+
+
+#define GX_DRAW_TRIANGLE_FAN 160
+
+
+
+#define GX_DRAW_TRIANGLE_STRIP 152
+
+
+
+#define GX_ENABLE 1
+
+
+
+#define GX_FALSE 0
+
+
+
+#define GX_FIFO_MINSIZE 65536
+
+
+
+#define GX_FIFO_OBJ_SIZE 128
+
+
+
+#define GX_LOAD_BP_REG 97
+
+
+
+#define GX_LOAD_CP_REG 8
+
+
+
+#define GX_LOAD_INDX_A 32
+
+
+
+#define GX_LOAD_INDX_B 40
+
+
+
+#define GX_LOAD_INDX_C 48
+
+
+
+#define GX_LOAD_INDX_D 56
+
+
+
+#define GX_LOAD_XF_REG 16
+
+
+
+#define GX_MAX_VTXARRAY 16
+
+
+
+#define GX_MAX_Z24 16777215
+
+
+
+#define GX_MEM_ADDR 201342976
+
+
+
+#define GX_NOP 0
+
+
+
+#define GX_OPCODE_MASK 248
+
+
+
+#define GX_PE_ADDR 201330688
+
+
+
+#define GX_PI_ADDR 201338880
+
+
+
+#define GX_PROJECTION_SZ 7
+
+
+
+#define GX_TRUE 1
+
+
+
+#define GX_VAT_MASK 7
+
+
+
+#define GX_VIEWPORT_SZ 6
+
+
+
+#define HID0 1008
+
+
+
+#define HID0_ABE 8
+
+
+
+#define HID0_BCLK 134217728
+
+
+
+#define HID0_BHT 4
+
+
+
+#define HID0_BTIC 32
+
+
+
+#define HID0_DBP 1073741824
+
+
+
+#define HID0_DCE 16384
+
+
+
+#define HID0_DCE_BIT 17
+
+
+
+#define HID0_DCFA 64
+
+
+
+#define HID0_DCFI 1024
+
+
+
+#define HID0_DLOCK 4096
+
+
+
+#define HID0_DLOCK_BIT 19
+
+
+
+#define HID0_DOZE 8388608
+
+
+
+#define HID0_DPM 1048576
+
+
+
+#define HID0_EBA 536870912
+
+
+
+#define HID0_EBD 268435456
+
+
+
+#define HID0_ECLK 33554432
+
+
+
+#define HID0_EMCP 2147483648
+
+
+
+#define HID0_ICE 32768
+
+
+
+#define HID0_ICE_BIT 16
+
+
+
+#define HID0_ICFI 2048
+
+
+
+#define HID0_IFEM 256
+
+
+
+#define HID0_ILOCK 8192
+
+
+
+#define HID0_ILOCK_BIT 18
+
+
+
+#define HID0_NAP 4194304
+
+
+
+#define HID0_NHR 65536
+
+
+
+#define HID0_NOOPTI 1
+
+
+
+#define HID0_PAR 16777216
+
+
+
+#define HID0_SGE 128
+
+
+
+#define HID0_SLEEP 2097152
+
+
+
+#define HID0_SPD 512
+
+
+
+#define HID1 1009
+
+
+
+#define HID2 920
+
+
+
+#define HID2_DCHEE 524288
+
+
+
+#define HID2_DCHEE_BIT 12
+
+
+
+#define HID2_DCHERR 8388608
+
+
+
+#define HID2_DCHERR_BIT 8
+
+
+
+#define HID2_DCMEE 131072
+
+
+
+#define HID2_DCMEE_BIT 14
+
+
+
+#define HID2_DCMERR 2097152
+
+
+
+#define HID2_DCMERR_BIT 10
+
+
+
+#define HID2_DMAQL_MASK 251658240
+
+
+
+#define HID2_DMAQL_SHIFT 24
+
+
+
+#define HID2_DNCEE 262144
+
+
+
+#define HID2_DNCEE_BIT 13
+
+
+
+#define HID2_DNCERR 4194304
+
+
+
+#define HID2_DNCERR_BIT 9
+
+
+
+#define HID2_DQOEE 65536
+
+
+
+#define HID2_DQOEE_BIT 15
+
+
+
+#define HID2_DQOERR 1048576
+
+
+
+#define HID2_DQOERR_BIT 11
+
+
+
+#define HID2_LCE 268435456
+
+
+
+#define HID2_LCE_BIT 3
+
+
+
+#define HID2_LSQE 2147483648
+
+
+
+#define HID2_LSQE_BIT 0
+
+
+
+#define HID2_PSE 536870912
+
+
+
+#define HID2_PSE_BIT 2
+
+
+
+#define HID2_WPE 1073741824
+
+
+
+#define HID2_WPE_BIT 1
+
+
+
+#define IABR 1010
+
+
+
+#define IBAT0L 529
+
+
+
+#define IBAT0U 528
+
+
+
+#define IBAT1L 531
+
+
+
+#define IBAT1U 530
+
+
+
+#define IBAT2L 533
+
+
+
+#define IBAT2U 532
+
+
+
+#define IBAT3L 535
+
+
+
+#define IBAT3U 534
+
+
+
+#define ICTC 1019
+
+
+
+#define INT_MAX 2147483647
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/types.h/defines/define_INT_MAX - /decompHeaders/limits.h/defines/define_INT_MAX */
+
+
+
+#define INT_MIN -2147483648
+
+
+
+#define IsDebuggerPresent 2147483712
+
+
+
+#define KILOBYTE_BYTECOUNT 1024
+
+
+
+#define L2CR 1017
+
+
+
+#define L2CR_L2BYP 8192
+
+
+
+#define L2CR_L2CLK_1_0 33554432
+
+
+
+#define L2CR_L2CLK_1_5 67108864
+
+
+
+#define L2CR_L2CLK_2_0 134217728
+
+
+
+#define L2CR_L2CLK_2_5 167772160
+
+
+
+#define L2CR_L2CLK_3_0 201326592
+
+
+
+#define L2CR_L2CS 512
+
+
+
+#define L2CR_L2CTL 1048576
+
+
+
+#define L2CR_L2CTR_MASK 254
+
+
+
+#define L2CR_L2DF 16384
+
+
+
+#define L2CR_L2DO 4194304
+
+
+
+#define L2CR_L2DRO 256
+
+
+
+#define L2CR_L2E 2147483648
+
+
+
+#define L2CR_L2I 2097152
+
+
+
+#define L2CR_L2IP 1
+
+
+
+#define L2CR_L2OH_0_5 0
+
+
+
+#define L2CR_L2OH_1_0 65536
+
+
+
+#define L2CR_L2PE 1073741824
+
+
+
+#define L2CR_L2SIZ_1M 805306368
+
+
+
+#define L2CR_L2SIZ_256K 268435456
+
+
+
+#define L2CR_L2SIZ_512K 536870912
+
+
+
+#define L2CR_L2SL 32768
+
+
+
+#define L2CR_L2TS 262144
+
+
+
+#define L2CR_L2WT 524288
+
+
+
+#define L2CR_RAM_FLOW_THRU_BURST 0
+
+
+
+#define L2CR_RAM_PIPELINE_BURST 16777216
+
+
+
+#define L2CR_RAM_PIPELINE_LATE 25165824
+
+
+
+#define LC_BASE 3758096384
+
+
+
+#define LC_BASE_PREFIX 57344
+
+
+
+#define LC_MAX_DMA_BLOCKS 128
+
+
+
+#define LC_MAX_DMA_BYTES 4096
+
+
+
+#define LLONG_MAX 9223372036854775807
+
+
+
+#define LLONG_MIN -9223372036854775808
+
+
+
+#define LONG_MAX 2147483647
+
+
+
+#define LONG_MIN -2147483648
+
+
+
+#define LR 8
+
+
+
+#define MEM_INTRPT_ADDR_HI 18
+
+
+
+#define MEM_INTRPT_ADDR_LO 17
+
+
+
+#define MEM_INTRPT_FLAG 16
+
+
+
+#define MEM_INTRPT_MASK 14
+
+
+
+#define MEM_INTRPT_SRC 15
+
+
+
+#define MEM_PROT_1 0
+
+
+
+#define MEM_PROT_2 2
+
+
+
+#define MEM_PROT_3 4
+
+
+
+#define MEM_PROT_4 6
+
+
+
+#define MEM_PROT_TYPE 8
+
+
+
+#define MEM_UNK_FLAG 20
+
+
+
+#define MMCR0 952
+
+
+
+#define MMCR0_DIS 2147483648
+
+
+
+#define MMCR0_DISCOUNT 33554432
+
+
+
+#define MMCR0_DMR 134217728
+
+
+
+#define MMCR0_DMS 268435456
+
+
+
+#define MMCR0_DP 1073741824
+
+
+
+#define MMCR0_DU 536870912
+
+
+
+#define MMCR0_ENINT 67108864
+
+
+
+#define MMCR0_INTONBITTRANS 4194304
+
+
+
+#define MMCR0_PMC1INTCONTROL 32768
+
+
+
+#define MMCR0_PMC1SELECT_MASK 8128
+
+
+
+#define MMCR0_PMC1_Bx_STALL_CYCLE 768
+
+
+
+#define MMCR0_PMC1_Bx_UNRESOLVED 704
+
+
+
+#define MMCR0_PMC1_CYCLE 64
+
+
+
+#define MMCR0_PMC1_DISPATCHED 256
+
+
+
+#define MMCR0_PMC1_EA 512
+
+
+
+#define MMCR0_PMC1_EIEIO 320
+
+
+
+#define MMCR0_PMC1_HOLD 0
+
+
+
+#define MMCR0_PMC1_IABR 576
+
+
+
+#define MMCR0_PMC1_IC_FETCH_MISS 832
+
+
+
+#define MMCR0_PMC1_INSTRUCTION 128
+
+
+
+#define MMCR0_PMC1_ITLB_CYCLE 384
+
+
+
+#define MMCR0_PMC1_L1_MISS 640
+
+
+
+#define MMCR0_PMC1_L2_HIT 448
+
+
+
+#define MMCR0_PMC1_TRANSITION 192
+
+
+
+#define MMCR0_PMC2INTCONTROL 16384
+
+
+
+#define MMCR0_PMC2SELECT_MASK 63
+
+
+
+#define MMCR0_PMC2_Bx_FALL_TROUGH 8
+
+
+
+#define MMCR0_PMC2_Bx_OUT_OF_ORDER 16
+
+
+
+#define MMCR0_PMC2_CYCLE 1
+
+
+
+#define MMCR0_PMC2_DISPATCHED 4
+
+
+
+#define MMCR0_PMC2_HOLD 0
+
+
+
+#define MMCR0_PMC2_IC_FETCH_MISS 15
+
+
+
+#define MMCR0_PMC2_IC_MISS 5
+
+
+
+#define MMCR0_PMC2_INSTRUCTION 2
+
+
+
+#define MMCR0_PMC2_ITLB_MISS 6
+
+
+
+#define MMCR0_PMC2_L1_CASTOUT 13
+
+
+
+#define MMCR0_PMC2_L2_I_MISS 7
+
+
+
+#define MMCR0_PMC2_LOAD_STORE 11
+
+
+
+#define MMCR0_PMC2_PR_SWITCH 9
+
+
+
+#define MMCR0_PMC2_RESERVED_LOAD 10
+
+
+
+#define MMCR0_PMC2_SNOOP 12
+
+
+
+#define MMCR0_PMC2_SYSTEM 14
+
+
+
+#define MMCR0_PMC2_TRANSITION 3
+
+
+
+#define MMCR0_PMCTRIGGER 8192
+
+
+
+#define MMCR0_RTCSELECT_47 25165824
+
+
+
+#define MMCR0_RTCSELECT_51 16777216
+
+
+
+#define MMCR0_RTCSELECT_55 8388608
+
+
+
+#define MMCR0_RTCSELECT_63 0
+
+
+
+#define MMCR0_RTCSELECT_MASK 25165824
+
+
+
+#define MMCR0_THRESHOLD_MASK 4128768
+
+
+
+#define MMCR1 956
+
+
+
+#define MMCR1_PMC3SELECT_MASK 4160749568
+
+
+
+#define MMCR1_PMC3_BPU_LR_CR 2281701376
+
+
+
+#define MMCR1_PMC3_Bx_SECOND 2147483648
+
+
+
+#define MMCR1_PMC3_Bx_TAKEN 1073741824
+
+
+
+#define MMCR1_PMC3_COND_STORE 1342177280
+
+
+
+#define MMCR1_PMC3_CYCLE 134217728
+
+
+
+#define MMCR1_PMC3_DC_MISS 671088640
+
+
+
+#define MMCR1_PMC3_DISPATCHED 536870912
+
+
+
+#define MMCR1_PMC3_DTLB_MISS 805306368
+
+
+
+#define MMCR1_PMC3_FPU 1476395008
+
+
+
+#define MMCR1_PMC3_HOLD 0
+
+
+
+#define MMCR1_PMC3_INSTRUCTION 268435456
+
+
+
+#define MMCR1_PMC3_L1_MISS_CYCLE 2013265920
+
+
+
+#define MMCR1_PMC3_L2_D_MISS 939524096
+
+
+
+#define MMCR1_PMC3_L2_HIT 1744830464
+
+
+
+#define MMCR1_PMC3_L2_SNOOP_CASTOUT 1610612736
+
+
+
+#define MMCR1_PMC3_PM_SWITCH 1207959552
+
+
+
+#define MMCR1_PMC3_TRANSITION 402653184
+
+
+
+#define MMCR1_PMC4SELECT_MASK 130023424
+
+
+
+#define MMCR1_PMC4_BPU_THIRD 58720256
+
+
+
+#define MMCR1_PMC4_Bx_MISSED 33554432
+
+
+
+#define MMCR1_PMC4_COND_STORE_INT 41943040
+
+
+
+#define MMCR1_PMC4_CYCLE 4194304
+
+
+
+#define MMCR1_PMC4_DC_MISS 130023424
+
+
+
+#define MMCR1_PMC4_DISPATCHED 16777216
+
+
+
+#define MMCR1_PMC4_DTLB_CYCLE 25165824
+
+
+
+#define MMCR1_PMC4_HOLD 0
+
+
+
+#define MMCR1_PMC4_INSTRUCTION 8388608
+
+
+
+#define MMCR1_PMC4_INTEGER 54525952
+
+
+
+#define MMCR1_PMC4_L2_CASTOUT 20971520
+
+
+
+#define MMCR1_PMC4_SNOOP_RETRY 50331648
+
+
+
+#define MMCR1_PMC4_SYNC 46137344
+
+
+
+#define MMCR1_PMC4_TRANSITION 12582912
+
+
+
+#define MONTH_MAX 12
+
+
+
+#define MSEC_MAX 1000
+
+
+
+#define MSR_BE 512
+
+
+
+#define MSR_BE_BIT 22
+
+
+
+#define MSR_DR 16
+
+
+
+#define MSR_DR_BIT 27
+
+
+
+#define MSR_EE 32768
+
+
+
+#define MSR_EE_BIT 16
+
+
+
+#define MSR_FE0 2048
+
+
+
+#define MSR_FE0_BIT 20
+
+
+
+#define MSR_FE1 256
+
+
+
+#define MSR_FE1_BIT 23
+
+
+
+#define MSR_FP 8192
+
+
+
+#define MSR_FP_BIT 18
+
+
+
+#define MSR_ILE 65536
+
+
+
+#define MSR_ILE_BIT 15
+
+
+
+#define MSR_IP 64
+
+
+
+#define MSR_IP_BIT 25
+
+
+
+#define MSR_IR 32
+
+
+
+#define MSR_IR_BIT 26
+
+
+
+#define MSR_LE 1
+
+
+
+#define MSR_LE_BIT 31
+
+
+
+#define MSR_ME 4096
+
+
+
+#define MSR_ME_BIT 19
+
+
+
+#define MSR_PM 4
+
+
+
+#define MSR_PM_BIT 29
+
+
+
+#define MSR_POW 262144
+
+
+
+#define MSR_POW_BIT 13
+
+
+
+#define MSR_PR 16384
+
+
+
+#define MSR_PR_BIT 17
+
+
+
+#define MSR_RI 2
+
+
+
+#define MSR_RI_BIT 30
+
+
+
+#define MSR_SE 1024
+
+
+
+#define MSR_SE_BIT 21
+
+
+
+#define MUSY_VERSION 131075
+
+
+
+#define MUSY_VERSION_MAJOR 2
+
+
+
+#define MUSY_VERSION_MINOR 0
+
+
+
+#define MUSY_VERSION_PATCH 3
+
+
+
+#define NULL 0
+
+
+
+#define OS_BASE_CACHED 2147483648
+
+
+
+#define OS_BASE_UNCACHED 3221225472
+
+
+
+#define OS_BI2_DEBUGFLAG_OFFSET 12
+
+
+
+#define OS_BOOTINFO_MAGIC 219540062
+
+
+
+#define OS_BOOTINFO_MAGIC_JTAG 3844111394
+
+
+
+#define OS_BOOTROM_ADDR 2167406592
+
+
+
+#define OS_CACHED_REGION_PREFIX 32768
+
+
+
+#define OS_CONSOLE_ARTHUR 268435458
+
+
+
+#define OS_CONSOLE_DEVELOPMENT 268435456
+
+
+
+#define OS_CONSOLE_DEVHW1 268435460
+
+
+
+#define OS_CONSOLE_DEVHW2 268435461
+
+
+
+#define OS_CONSOLE_DEVHW3 268435462
+
+
+
+#define OS_CONSOLE_DEVHW4 268435463
+
+
+
+#define OS_CONSOLE_DEVKIT 268435456
+
+
+
+#define OS_CONSOLE_EMULATOR 268435456
+
+
+
+#define OS_CONSOLE_MASK 4026531840
+
+
+
+#define OS_CONSOLE_MINNOW 268435459
+
+
+
+#define OS_CONSOLE_PC_EMULATOR 268435457
+
+
+
+#define OS_CONSOLE_RETAIL 0
+
+
+
+#define OS_CONSOLE_RETAIL1 1
+
+
+
+#define OS_CONSOLE_RETAIL2 2
+
+
+
+#define OS_CONSOLE_RETAIL3 3
+
+
+
+#define OS_CONSOLE_RETAIL4 4
+
+
+
+#define OS_CONSOLE_TDEV 536870912
+
+
+
+#define OS_CONSOLE_TDEVHW1 536870916
+
+
+
+#define OS_CONSOLE_TDEVHW2 536870917
+
+
+
+#define OS_CONSOLE_TDEVHW3 536870918
+
+
+
+#define OS_CONSOLE_TDEVHW4 536870919
+
+
+
+#define OS_CONSOLE_TDEVKIT 536870912
+
+
+
+#define OS_CONTEXT_CR 128
+
+
+
+#define OS_CONTEXT_CTR 136
+
+
+
+#define OS_CONTEXT_FPR0 144
+
+
+
+#define OS_CONTEXT_FPR1 152
+
+
+
+#define OS_CONTEXT_FPR10 224
+
+
+
+#define OS_CONTEXT_FPR11 232
+
+
+
+#define OS_CONTEXT_FPR12 240
+
+
+
+#define OS_CONTEXT_FPR13 248
+
+
+
+#define OS_CONTEXT_FPR14 256
+
+
+
+#define OS_CONTEXT_FPR15 264
+
+
+
+#define OS_CONTEXT_FPR16 272
+
+
+
+#define OS_CONTEXT_FPR17 280
+
+
+
+#define OS_CONTEXT_FPR18 288
+
+
+
+#define OS_CONTEXT_FPR19 296
+
+
+
+#define OS_CONTEXT_FPR2 160
+
+
+
+#define OS_CONTEXT_FPR20 304
+
+
+
+#define OS_CONTEXT_FPR21 312
+
+
+
+#define OS_CONTEXT_FPR22 320
+
+
+
+#define OS_CONTEXT_FPR23 328
+
+
+
+#define OS_CONTEXT_FPR24 336
+
+
+
+#define OS_CONTEXT_FPR25 344
+
+
+
+#define OS_CONTEXT_FPR26 352
+
+
+
+#define OS_CONTEXT_FPR27 360
+
+
+
+#define OS_CONTEXT_FPR28 368
+
+
+
+#define OS_CONTEXT_FPR29 376
+
+
+
+#define OS_CONTEXT_FPR3 168
+
+
+
+#define OS_CONTEXT_FPR30 384
+
+
+
+#define OS_CONTEXT_FPR31 392
+
+
+
+#define OS_CONTEXT_FPR4 176
+
+
+
+#define OS_CONTEXT_FPR5 184
+
+
+
+#define OS_CONTEXT_FPR6 192
+
+
+
+#define OS_CONTEXT_FPR7 200
+
+
+
+#define OS_CONTEXT_FPR8 208
+
+
+
+#define OS_CONTEXT_FPR9 216
+
+
+
+#define OS_CONTEXT_FPSCR 400
+
+
+
+#define OS_CONTEXT_GQR0 420
+
+
+
+#define OS_CONTEXT_GQR1 424
+
+
+
+#define OS_CONTEXT_GQR2 428
+
+
+
+#define OS_CONTEXT_GQR3 432
+
+
+
+#define OS_CONTEXT_GQR4 436
+
+
+
+#define OS_CONTEXT_GQR5 440
+
+
+
+#define OS_CONTEXT_GQR6 444
+
+
+
+#define OS_CONTEXT_GQR7 448
+
+
+
+#define OS_CONTEXT_LR 132
+
+
+
+#define OS_CONTEXT_MODE 416
+
+
+
+#define OS_CONTEXT_MODE_FPU 1
+
+
+
+#define OS_CONTEXT_MODE_PSFP 2
+
+
+
+#define OS_CONTEXT_PSF0 456
+
+
+
+#define OS_CONTEXT_PSF1 464
+
+
+
+#define OS_CONTEXT_PSF10 536
+
+
+
+#define OS_CONTEXT_PSF11 544
+
+
+
+#define OS_CONTEXT_PSF12 552
+
+
+
+#define OS_CONTEXT_PSF13 560
+
+
+
+#define OS_CONTEXT_PSF14 568
+
+
+
+#define OS_CONTEXT_PSF15 576
+
+
+
+#define OS_CONTEXT_PSF16 584
+
+
+
+#define OS_CONTEXT_PSF17 592
+
+
+
+#define OS_CONTEXT_PSF18 600
+
+
+
+#define OS_CONTEXT_PSF19 608
+
+
+
+#define OS_CONTEXT_PSF2 472
+
+
+
+#define OS_CONTEXT_PSF20 616
+
+
+
+#define OS_CONTEXT_PSF21 624
+
+
+
+#define OS_CONTEXT_PSF22 632
+
+
+
+#define OS_CONTEXT_PSF23 640
+
+
+
+#define OS_CONTEXT_PSF24 648
+
+
+
+#define OS_CONTEXT_PSF25 656
+
+
+
+#define OS_CONTEXT_PSF26 664
+
+
+
+#define OS_CONTEXT_PSF27 672
+
+
+
+#define OS_CONTEXT_PSF28 680
+
+
+
+#define OS_CONTEXT_PSF29 688
+
+
+
+#define OS_CONTEXT_PSF3 480
+
+
+
+#define OS_CONTEXT_PSF30 696
+
+
+
+#define OS_CONTEXT_PSF31 704
+
+
+
+#define OS_CONTEXT_PSF4 488
+
+
+
+#define OS_CONTEXT_PSF5 496
+
+
+
+#define OS_CONTEXT_PSF6 504
+
+
+
+#define OS_CONTEXT_PSF7 512
+
+
+
+#define OS_CONTEXT_PSF8 520
+
+
+
+#define OS_CONTEXT_PSF9 528
+
+
+
+#define OS_CONTEXT_R0 0
+
+
+
+#define OS_CONTEXT_R1 4
+
+
+
+#define OS_CONTEXT_R10 40
+
+
+
+#define OS_CONTEXT_R11 44
+
+
+
+#define OS_CONTEXT_R12 48
+
+
+
+#define OS_CONTEXT_R13 52
+
+
+
+#define OS_CONTEXT_R14 56
+
+
+
+#define OS_CONTEXT_R15 60
+
+
+
+#define OS_CONTEXT_R16 64
+
+
+
+#define OS_CONTEXT_R17 68
+
+
+
+#define OS_CONTEXT_R18 72
+
+
+
+#define OS_CONTEXT_R19 76
+
+
+
+#define OS_CONTEXT_R2 8
+
+
+
+#define OS_CONTEXT_R20 80
+
+
+
+#define OS_CONTEXT_R21 84
+
+
+
+#define OS_CONTEXT_R22 88
+
+
+
+#define OS_CONTEXT_R23 92
+
+
+
+#define OS_CONTEXT_R24 96
+
+
+
+#define OS_CONTEXT_R25 100
+
+
+
+#define OS_CONTEXT_R26 104
+
+
+
+#define OS_CONTEXT_R27 108
+
+
+
+#define OS_CONTEXT_R28 112
+
+
+
+#define OS_CONTEXT_R29 116
+
+
+
+#define OS_CONTEXT_R3 12
+
+
+
+#define OS_CONTEXT_R30 120
+
+
+
+#define OS_CONTEXT_R31 124
+
+
+
+#define OS_CONTEXT_R4 16
+
+
+
+#define OS_CONTEXT_R5 20
+
+
+
+#define OS_CONTEXT_R6 24
+
+
+
+#define OS_CONTEXT_R7 28
+
+
+
+#define OS_CONTEXT_R8 32
+
+
+
+#define OS_CONTEXT_R9 36
+
+
+
+#define OS_CONTEXT_SRR0 408
+
+
+
+#define OS_CONTEXT_SRR1 412
+
+
+
+#define OS_CONTEXT_STATE 418
+
+
+
+#define OS_CONTEXT_STATE_EXC 2
+
+
+
+#define OS_CONTEXT_STATE_FPSAVED 1
+
+
+
+#define OS_CONTEXT_XER 140
+
+
+
+#define OS_CURRENTCONTEXT_PADDR 192
+
+
+
+#define OS_DBINTERFACE_ADDR 64
+
+
+
+#define OS_DVD_MAGIC_NINTENDO 3258163005
+
+
+
+#define OS_ERROR_ALIGNMENT 5
+
+
+
+#define OS_ERROR_BREAKPOINT 12
+
+
+
+#define OS_ERROR_DECREMENTER 8
+
+
+
+#define OS_ERROR_DSI 2
+
+
+
+#define OS_ERROR_EXTERNAL_INTERRUPT 4
+
+
+
+#define OS_ERROR_FLOATING_POINT 7
+
+
+
+#define OS_ERROR_ISI 3
+
+
+
+#define OS_ERROR_MACHINE_CHECK 1
+
+
+
+#define OS_ERROR_MAX 16
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSError.h/defines/define_OS_ERROR_MAX - /decompHeaders/OSError.h/defines/define_OS_ERROR_MAX */
+
+
+
+#define OS_ERROR_PERFORMACE_MONITOR 11
+
+
+
+#define OS_ERROR_PROGRAM 6
+
+
+
+#define OS_ERROR_PROTECTION 15
+
+
+
+#define OS_ERROR_SYSTEM_CALL 9
+
+
+
+#define OS_ERROR_SYSTEM_INTERRUPT 13
+
+
+
+#define OS_ERROR_SYSTEM_RESET 0
+
+
+
+#define OS_ERROR_THERMAL_INTERRUPT 14
+
+
+
+#define OS_ERROR_TRACE 10
+
+
+
+#define OS_EURGB60_OFF 0
+
+
+
+#define OS_EURGB60_ON 1
+
+
+
+#define OS_FASTCAST_S16 5
+
+
+
+#define OS_FASTCAST_S8 4
+
+
+
+#define OS_FASTCAST_U16 3
+
+
+
+#define OS_FASTCAST_U8 2
+
+
+
+#define OS_FONT_DATA_SIZE_ANSI 65824
+
+
+
+#define OS_FONT_DATA_SIZE_SJIS 593636
+
+
+
+#define OS_FONT_ENCODE_ANSI 0
+
+
+
+#define OS_FONT_ENCODE_NULL -1
+
+
+
+#define OS_FONT_ENCODE_SJIS 1
+
+
+
+#define OS_FONT_ROM_SIZE_ANSI 12288
+
+
+
+#define OS_FONT_ROM_SIZE_SJIS 315392
+
+
+
+#define OS_FONT_SIZE_ANSI 131360
+
+
+
+#define OS_FONT_SIZE_SJIS 1183488
+
+
+
+#define OS_GQR_S16 7
+
+
+
+#define OS_GQR_S8 6
+
+
+
+#define OS_GQR_U16 5
+
+
+
+#define OS_GQR_U8 4
+
+
+
+#define OS_HANDLER_SLOT_SIZE 256
+
+
+
+#define OS_INTERRUPTMASK_AI 8388608
+
+
+
+#define OS_INTERRUPTMASK_AI_AI 8388608
+
+
+
+#define OS_INTERRUPTMASK_DSP 117440512
+
+
+
+#define OS_INTERRUPTMASK_DSP_AI 67108864
+
+
+
+#define OS_INTERRUPTMASK_DSP_ARAM 33554432
+
+
+
+#define OS_INTERRUPTMASK_DSP_DSP 16777216
+
+
+
+#define OS_INTERRUPTMASK_EXI 8355840
+
+
+
+#define OS_INTERRUPTMASK_EXI_0 7340032
+
+
+
+#define OS_INTERRUPTMASK_EXI_0_EXI 4194304
+
+
+
+#define OS_INTERRUPTMASK_EXI_0_EXT 1048576
+
+
+
+#define OS_INTERRUPTMASK_EXI_0_TC 2097152
+
+
+
+#define OS_INTERRUPTMASK_EXI_1 917504
+
+
+
+#define OS_INTERRUPTMASK_EXI_1_EXI 524288
+
+
+
+#define OS_INTERRUPTMASK_EXI_1_EXT 131072
+
+
+
+#define OS_INTERRUPTMASK_EXI_1_TC 262144
+
+
+
+#define OS_INTERRUPTMASK_EXI_2 98304
+
+
+
+#define OS_INTERRUPTMASK_EXI_2_EXI 65536
+
+
+
+#define OS_INTERRUPTMASK_EXI_2_TC 32768
+
+
+
+#define OS_INTERRUPTMASK_MEM 4160749568
+
+
+
+#define OS_INTERRUPTMASK_MEM_0 2147483648
+
+
+
+#define OS_INTERRUPTMASK_MEM_1 1073741824
+
+
+
+#define OS_INTERRUPTMASK_MEM_2 536870912
+
+
+
+#define OS_INTERRUPTMASK_MEM_3 268435456
+
+
+
+#define OS_INTERRUPTMASK_MEM_ADDRESS 134217728
+
+
+
+#define OS_INTERRUPTMASK_MEM_RESET 4026531840
+
+
+
+#define OS_INTERRUPTMASK_PI 32736
+
+
+
+#define OS_INTERRUPTMASK_PI_CP 16384
+
+
+
+#define OS_INTERRUPTMASK_PI_DEBUG 64
+
+
+
+#define OS_INTERRUPTMASK_PI_DI 1024
+
+
+
+#define OS_INTERRUPTMASK_PI_ERROR 256
+
+
+
+#define OS_INTERRUPTMASK_PI_HSP 32
+
+
+
+#define OS_INTERRUPTMASK_PI_PE 12288
+
+
+
+#define OS_INTERRUPTMASK_PI_PE_FINISH 4096
+
+
+
+#define OS_INTERRUPTMASK_PI_PE_TOKEN 8192
+
+
+
+#define OS_INTERRUPTMASK_PI_RSW 512
+
+
+
+#define OS_INTERRUPTMASK_PI_SI 2048
+
+
+
+#define OS_INTERRUPTMASK_PI_VI 128
+
+
+
+#define OS_LANG_DUTCH 5
+
+
+
+#define OS_LANG_ENGLISH 0
+
+
+
+#define OS_LANG_FRENCH 2
+
+
+
+#define OS_LANG_GERMAN 1
+
+
+
+#define OS_LANG_ITALIAN 4
+
+
+
+#define OS_LANG_SPANISH 3
+
+
+
+#define OS_MESSAGE_BLOCK 1
+
+
+
+#define OS_MESSAGE_NOBLOCK 0
+
+
+
+#define OS_MODULE_VERSION 3
+
+
+
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/defines/define_OS_MODULE_VERSION - /decompHeaders/OSModule.h/defines/define_OS_MODULE_VERSION */
+
+
+
+#define OS_PHYSICAL_MASK 16383
+
+
+
+#define OS_PRIORITY_IDLE 31
+
+
+
+#define OS_PRIORITY_MAX 31
+
+
+
+#define OS_PRIORITY_MIN 0
+
+
+
+#define OS_PROGRESSIVE_MODE_OFF 0
+
+
+
+#define OS_PROGRESSIVE_MODE_ON 1
+
+
+
+#define OS_PROTECT0_BIT 1
+
+
+
+#define OS_PROTECT1_BIT 2
+
+
+
+#define OS_PROTECT2_BIT 4
+
+
+
+#define OS_PROTECT3_BIT 8
+
+
+
+#define OS_PROTECT_ADDRERR_BIT 16
+
+
+
+#define OS_PROTECT_CHAN0 0
+
+
+
+#define OS_PROTECT_CHAN1 1
+
+
+
+#define OS_PROTECT_CHAN2 2
+
+
+
+#define OS_PROTECT_CHAN3 3
+
+
+
+#define OS_PROTECT_CONTROL_NONE 0
+
+
+
+#define OS_PROTECT_CONTROL_RDWR 3
+
+
+
+#define OS_PROTECT_CONTROL_READ 1
+
+
+
+#define OS_PROTECT_CONTROL_WRITE 2
+
+
+
+#define OS_RESETCODE_EXEC 3221225472
+
+
+
+#define OS_RESETCODE_NETCONFIG 3221291008
+
+
+
+#define OS_RESETCODE_RESTART 2147483648
+
+
+
+#define OS_RESETCODE_SYSTEM 1073741824
+
+
+
+#define OS_RESET_HOTRESET 1
+
+
+
+#define OS_RESET_PRIO_ALARM 4294967295
+
+
+
+#define OS_RESET_PRIO_CARD 127
+
+
+
+#define OS_RESET_PRIO_GX 127
+
+
+
+#define OS_RESET_PRIO_IP 111
+
+
+
+#define OS_RESET_PRIO_MEM 127
+
+
+
+#define OS_RESET_PRIO_PAD 127
+
+
+
+#define OS_RESET_PRIO_SO 110
+
+
+
+#define OS_RESET_RESTART 0
+
+
+
+#define OS_RESET_SHUTDOWN 2
+
+
+
+#define OS_SECTIONINFO_EXEC 1
+
+
+
+#define OS_SOUND_MODE_MONO 0
+
+
+
+#define OS_SOUND_MODE_STEREO 1
+
+
+
+#define OS_SYS_CALL_HANDLER 2147486720
+
+
+
+#define OS_THREAD_ATTR_DETACH 1
+
+
+
+#define OS_THREAD_STACK_MAGIC 3735927486
+
+
+
+#define OS_UNCACHED_REGION_PREFIX 49152
+
+
+
+#define OS_VIDEO_MODE_MPAL 2
+
+
+
+#define OS_VIDEO_MODE_NTSC 0
+
+
+
+#define OVERFLOW 3
+
+
+
+#define PAD3_BUTTON_ADDR 2147496164
+
+
+
+#define PAD_BUTTON_A 256
+
+
+
+#define PAD_BUTTON_B 512
+
+
+
+#define PAD_BUTTON_DOWN 4
+
+
+
+#define PAD_BUTTON_LEFT 1
+
+
+
+#define PAD_BUTTON_MENU 4096
+
+
+
+#define PAD_BUTTON_RIGHT 2
+
+
+
+#define PAD_BUTTON_START 4096
+
+
+
+#define PAD_BUTTON_UP 8
+
+
+
+#define PAD_BUTTON_X 1024
+
+
+
+#define PAD_BUTTON_Y 2048
+
+
+
+#define PAD_CHAN0 0
+
+
+
+#define PAD_CHAN0_BIT 2147483648
+
+
+
+#define PAD_CHAN1 1
+
+
+
+#define PAD_CHAN1_BIT 1073741824
+
+
+
+#define PAD_CHAN2 2
+
+
+
+#define PAD_CHAN2_BIT 536870912
+
+
+
+#define PAD_CHAN3 3
+
+
+
+#define PAD_CHAN3_BIT 268435456
+
+
+
+#define PAD_CHANMAX 4
+
+
+
+#define PAD_ERR_NONE 0
+
+
+
+#define PAD_ERR_NOT_READY -2
+
+
+
+#define PAD_ERR_NO_CONTROLLER -1
+
+
+
+#define PAD_ERR_TRANSFER -3
+
+
+
+#define PAD_MAX_CONTROLLERS 4
+
+
+
+#define PAD_MODE_0 0
+
+
+
+#define PAD_MODE_1 1
+
+
+
+#define PAD_MODE_2 2
+
+
+
+#define PAD_MODE_3 3
+
+
+
+#define PAD_MODE_4 4
+
+
+
+#define PAD_MODE_5 5
+
+
+
+#define PAD_MODE_6 6
+
+
+
+#define PAD_MODE_7 7
+
+
+
+#define PAD_MOTOR_RUMBLE 1
+
+
+
+#define PAD_MOTOR_STOP 0
+
+
+
+#define PAD_MOTOR_STOP_HARD 2
+
+
+
+#define PAD_SPEC_0 0
+
+
+
+#define PAD_SPEC_1 1
+
+
+
+#define PAD_SPEC_2 2
+
+
+
+#define PAD_SPEC_3 3
+
+
+
+#define PAD_SPEC_4 4
+
+
+
+#define PAD_SPEC_5 5
+
+
+
+#define PAD_TRIGGER_L 64
+
+
+
+#define PAD_TRIGGER_R 32
+
+
+
+#define PAD_TRIGGER_Z 16
+
+
+
+#define PI_FIFO_END 4
+
+
+
+#define PI_FIFO_PTR 5
+
+
+
+#define PI_FIFO_START 3
+
+
+
+#define PI_INTRPT_AI 32
+
+
+
+#define PI_INTRPT_CP 2048
+
+
+
+#define PI_INTRPT_DEBUG 4096
+
+
+
+#define PI_INTRPT_DSP 64
+
+
+
+#define PI_INTRPT_DVD 4
+
+
+
+#define PI_INTRPT_ERR 1
+
+
+
+#define PI_INTRPT_EXI 16
+
+
+
+#define PI_INTRPT_HSP 8192
+
+
+
+#define PI_INTRPT_MASK 1
+
+
+
+#define PI_INTRPT_MEM 128
+
+
+
+#define PI_INTRPT_PE_FINISH 1024
+
+
+
+#define PI_INTRPT_PE_TOKEN 512
+
+
+
+#define PI_INTRPT_RSW 2
+
+
+
+#define PI_INTRPT_RSWST 65536
+
+
+
+#define PI_INTRPT_SI 8
+
+
+
+#define PI_INTRPT_SRC 0
+
+
+
+#define PI_INTRPT_VI 256
+
+
+
+#define PI_RESETCODE 9
+
+
+
+#define PLOSS 6
+
+
+
+#define PMC1 953
+
+
+
+#define PMC1_COUNTER 2147483647
+
+
+
+#define PMC1_OV 2147483648
+
+
+
+#define PMC2 954
+
+
+
+#define PMC2_COUNTER 2147483647
+
+
+
+#define PMC2_OV 2147483648
+
+
+
+#define PMC3 957
+
+
+
+#define PMC3_COUNTER 2147483647
+
+
+
+#define PMC3_OV 2147483648
+
+
+
+#define PMC4 958
+
+
+
+#define PMC4_COUNTER 2147483647
+
+
+
+#define PMC4_OV 2147483648
+
+
+
+#define PVR 287
+
+
+
+#define RES_WIRELESS_LITE 262144
+
+
+
+#define RTC_CHAN 0
+
+
+
+#define RTC_CMD_READ 536870912
+
+
+
+#define RTC_CMD_WRITE 2684354560
+
+
+
+#define RTC_DEV 1
+
+
+
+#define RTC_FREQ 3
+
+
+
+#define RTC_SRAM_ADDR 256
+
+
+
+#define RTC_SRAM_SIZE 64
+
+
+
+#define R_DOLPHIN_END 203
+
+
+
+#define R_DOLPHIN_MRKREF 204
+
+
+
+#define R_DOLPHIN_NOP 201
+
+
+
+#define R_DOLPHIN_SECTION 202
+
+
+
+#define SAL_MAX_STUDIONUM 8
+
+
+
+#define SCHAR_MAX 127
+
+
+
+#define SCHAR_MIN -128
+
+
+
+#define SDR1 25
+
+
+
+#define SECS_IN_DAY 86400
+
+
+
+#define SECS_IN_HOUR 3600
+
+
+
+#define SECS_IN_MIN 60
+
+
+
+#define SECS_IN_YEAR 31536000
+
+
+
+#define SHRT_MAX 32767
+
+
+
+#define SHRT_MIN -32768
+
+
+
+#define SIA 955
+
+
+
+#define SING 2
+
+
+
+#define SI_CC_STAT 13
+
+
+
+#define SI_CHAN0 0
+
+
+
+#define SI_CHAN0_BIT 2147483648
+
+
+
+#define SI_CHAN1 1
+
+
+
+#define SI_CHAN1_BIT 1073741824
+
+
+
+#define SI_CHAN2 2
+
+
+
+#define SI_CHAN2_BIT 536870912
+
+
+
+#define SI_CHAN3 3
+
+
+
+#define SI_CHAN3_BIT 268435456
+
+
+
+#define SI_CHAN_0_BTN_1 1
+
+
+
+#define SI_CHAN_0_BTN_2 2
+
+
+
+#define SI_CHAN_0_BUF 0
+
+
+
+#define SI_CHAN_1_BTN_1 4
+
+
+
+#define SI_CHAN_1_BTN_2 5
+
+
+
+#define SI_CHAN_1_BUF 3
+
+
+
+#define SI_CHAN_2_BTN_1 7
+
+
+
+#define SI_CHAN_2_BTN_2 8
+
+
+
+#define SI_CHAN_2_BUF 6
+
+
+
+#define SI_CHAN_3_BTN_1 10
+
+
+
+#define SI_CHAN_3_BTN_2 11
+
+
+
+#define SI_CHAN_3_BUF 9
+
+
+
+#define SI_COMCSR_CHANNEL_MASK 6
+
+
+
+#define SI_COMCSR_COMERR_MASK 536870912
+
+
+
+#define SI_COMCSR_IDX 13
+
+
+
+#define SI_COMCSR_INLNGTH_MASK 32512
+
+
+
+#define SI_COMCSR_OUTLNGTH_MASK 8323072
+
+
+
+#define SI_COMCSR_RDSTINTMSK_MASK 134217728
+
+
+
+#define SI_COMCSR_RDSTINT_MASK 268435456
+
+
+
+#define SI_COMCSR_TCINTMSK_MASK 1073741824
+
+
+
+#define SI_COMCSR_TCINT_MASK 2147483648
+
+
+
+#define SI_COMCSR_TSTART_MASK 1
+
+
+
+#define SI_ERROR_BUSY 128
+
+
+
+#define SI_ERROR_COLLISION 4
+
+
+
+#define SI_ERROR_NO_RESPONSE 8
+
+
+
+#define SI_ERROR_OVER_RUN 2
+
+
+
+#define SI_ERROR_RDST 32
+
+
+
+#define SI_ERROR_UNDER_RUN 1
+
+
+
+#define SI_ERROR_UNKNOWN 64
+
+
+
+#define SI_ERROR_WRST 16
+
+
+
+#define SI_EXI_LOCK 15
+
+
+
+#define SI_GBA 262144
+
+
+
+#define SI_GC_CONTROLLER 150994944
+
+
+
+#define SI_GC_KEYBOARD 136314880
+
+
+
+#define SI_GC_NOMOTOR 536870912
+
+
+
+#define SI_GC_RECEIVER 2281701376
+
+
+
+#define SI_GC_STANDARD 16777216
+
+
+
+#define SI_GC_STEERING 134217728
+
+
+
+#define SI_GC_WAVEBIRD 2333081600
+
+
+
+#define SI_GC_WIRELESS 2147483648
+
+
+
+#define SI_IO_BUFFER 32
+
+
+
+#define SI_MAX_CHAN 4
+
+
+
+#define SI_MAX_COMCSR_INLNGTH 128
+
+
+
+#define SI_MAX_COMCSR_OUTLNGTH 128
+
+
+
+#define SI_N64_CONTROLLER 83886080
+
+
+
+#define SI_N64_KEYBOARD 131072
+
+
+
+#define SI_N64_MIC 65536
+
+
+
+#define SI_N64_MOUSE 33554432
+
+
+
+#define SI_POLL 12
+
+
+
+#define SI_STAT 14
+
+
+
+#define SI_STATUS_IDX 14
+
+
+
+#define SI_TYPE_DOLPHIN 134217728
+
+
+
+#define SI_TYPE_GC 134217728
+
+
+
+#define SI_TYPE_MASK 402653184
+
+
+
+#define SI_TYPE_N64 0
+
+
+
+#define SI_WIRELESS_CONT 0
+
+
+
+#define SI_WIRELESS_CONT_MASK 524288
+
+
+
+#define SI_WIRELESS_FIX_ID 1048576
+
+
+
+#define SI_WIRELESS_ID 12648192
+
+
+
+#define SI_WIRELESS_IR 67108864
+
+
+
+#define SI_WIRELESS_LITE 262144
+
+
+
+#define SI_WIRELESS_LITE_MASK 786432
+
+
+
+#define SI_WIRELESS_ORIGIN 2097152
+
+
+
+#define SI_WIRELESS_RECEIVED 1073741824
+
+
+
+#define SI_WIRELESS_STATE 33554432
+
+
+
+#define SI_WIRELESS_TYPE 983040
+
+
+
+#define SI_WIRELESS_TYPE_ID 13631232
+
+
+
+#define SND_ALL_VOLGROUPS 255
+
+
+
+#define SND_AUX_NUMPARAMETERS 4
+
+
+
+#define SND_AUX_REASON_BUFFERUPDATE 0
+
+
+
+#define SND_AUX_REASON_PARAMETERUPDATE 1
+
+
+
+#define SND_CROSSFADE_CONTINUE 2
+
+
+
+#define SND_CROSSFADE_DEFAULT 0
+
+
+
+#define SND_CROSSFADE_MUTE 64
+
+
+
+#define SND_CROSSFADE_MUTENEW 128
+
+
+
+#define SND_CROSSFADE_PAUSE 1
+
+
+
+#define SND_CROSSFADE_PAUSENEW 8
+
+
+
+#define SND_CROSSFADE_SPEED 32
+
+
+
+#define SND_CROSSFADE_START 0
+
+
+
+#define SND_CROSSFADE_STOP 0
+
+
+
+#define SND_CROSSFADE_SYNC 4
+
+
+
+#define SND_CROSSFADE_TRACKMUTE 16
+
+
+
+#define SND_DOOR_A2B 0
+
+
+
+#define SND_DOOR_B2A 1
+
+
+
+#define SND_DOOR_DEFAULT 0
+
+
+
+#define SND_EMITTER_CONTINOUS 1
+
+
+
+#define SND_EMITTER_CONTINUOUS 1
+
+
+
+#define SND_EMITTER_DEFAULT 0
+
+
+
+#define SND_EMITTER_DEFAULTKEY 255
+
+
+
+#define SND_EMITTER_DEFAULTVOL 255
+
+
+
+#define SND_EMITTER_DOPPLERFX 8
+
+
+
+#define SND_EMITTER_HARDSTART 32
+
+
+
+#define SND_EMITTER_ITD 16
+
+
+
+#define SND_EMITTER_NOSILENTSTART 64
+
+
+
+#define SND_EMITTER_PAUSABLE 4
+
+
+
+#define SND_EMITTER_RESTARTABLE 2
+
+
+
+#define SND_FX_VOLGROUPS 254
+
+
+
+#define SND_ID_ERROR 4294967295
+
+
+
+#define SND_LISTENER_DEFAULT 0
+
+
+
+#define SND_LISTENER_DOPPLERFX 1
+
+
+
+#define SND_MAX_SEQINSTANCES 8
+
+
+
+#define SND_MAX_USER_VOLGROUP 20
+
+
+
+#define SND_MIDICTRL_CHORUS 93
+
+
+
+#define SND_MIDICTRL_DOPPLER 132
+
+
+
+#define SND_MIDICTRL_MODULATION 1
+
+
+
+#define SND_MIDICTRL_PANNING 10
+
+
+
+#define SND_MIDICTRL_PEDAL 64
+
+
+
+#define SND_MIDICTRL_PITCHBEND 128
+
+
+
+#define SND_MIDICTRL_PORTAMENTO 65
+
+
+
+#define SND_MIDICTRL_REVERB 91
+
+
+
+#define SND_MIDICTRL_SPANNING 131
+
+
+
+#define SND_MIDICTRL_VOLUME 7
+
+
+
+#define SND_MUSIC_VOLGROUPS 253
+
+
+
+#define SND_PAUSEVOL_NORMAL 127
+
+
+
+#define SND_PLAYPARA_DEFAULT 0
+
+
+
+#define SND_PLAYPARA_PAUSE 16
+
+
+
+#define SND_PLAYPARA_SEQVOLDEF 8
+
+
+
+#define SND_PLAYPARA_SPEED 2
+
+
+
+#define SND_PLAYPARA_TRACKMUTE 1
+
+
+
+#define SND_PLAYPARA_VOLUME 4
+
+
+
+#define SND_SEQVOL_CONTINUE 0
+
+
+
+#define SND_SEQVOL_MODEMASK 15
+
+
+
+#define SND_SEQVOL_MUTE 3
+
+
+
+#define SND_SEQVOL_PAUSE 2
+
+
+
+#define SND_SEQVOL_STOP 1
+
+
+
+#define SND_SEQ_CROSSFADE_ID 2147483648
+
+
+
+#define SND_SEQ_ERROR_ID 4294967295
+
+
+
+#define SND_STUDIO_DEFAULT 0
+
+
+
+#define SND_STUDIO_MAXNUM 8
+
+
+
+#define SND_STUDIO_NONE 255
+
+
+
+#define SND_USERALL_VOLGROUPS 252
+
+
+
+#define SND_USERFX_VOLGROUPS 251
+
+
+
+#define SND_USERMUSIC_VOLGROUPS 250
+
+
+
+#define SPRG0 272
+
+
+
+#define SPRG1 273
+
+
+
+#define SPRG2 274
+
+
+
+#define SPRG3 275
+
+
+
+#define SRR0 26
+
+
+
+#define SRR1 27
+
+
+
+#define SRR1_DMA_BIT 2097152
+
+
+
+#define SRR1_L2DP_BIT 1048576
+
+
+
+#define SYNTH_MAX_VOICES 64
+
+
+
+#define TBL 284
+
+
+
+#define TBU 285
+
+
+
+#define THRM1 1020
+
+
+
+#define THRM2 1021
+
+
+
+#define THRM3 1022
+
+
+
+#define TLOSS 5
+
+
+
+#define TRUE 1
+
+
+
+#define UCHAR_MAX 255
+
+
+
+#define UINT_MAX 4294967295
+
+
+
+#define ULLONG_MAX -1
+
+
+
+#define ULONG_MAX 4294967295
+
+
+
+#define UMMCR0 936
+
+
+
+#define UMMCR1 940
+
+
+
+#define UNDERFLOW 4
+
+
+
+#define UPMC1 937
+
+
+
+#define UPMC2 938
+
+
+
+#define UPMC3 941
+
+
+
+#define UPMC4 942
+
+
+
+#define USEC_MAX 1000
+
+
+
+#define USHRT_MAX 65535
+
+
+
+#define USIA 939
+
+
+
+#define VI_3D 3
+
+
+
+#define VI_BBI_EVEN 12
+
+
+
+#define VI_BBI_EVEN_U 13
+
+
+
+#define VI_BBI_ODD 10
+
+
+
+#define VI_BBI_ODD_U 11
+
+
+
+#define VI_BTTM_FIELD_BASE_LEFT 18
+
+
+
+#define VI_BTTM_FIELD_BASE_LEFT_U 19
+
+
+
+#define VI_BTTM_FIELD_BASE_RIGHT 20
+
+
+
+#define VI_BTTM_FIELD_BASE_RIGHT_U 21
+
+
+
+#define VI_CLOCK_SEL 54
+
+
+
+#define VI_DEBUG 3
+
+
+
+#define VI_DEBUG_PAL 4
+
+
+
+#define VI_DISPLAY_PIX_SZ 2
+
+
+
+#define VI_DISP_CONFIG 1
+
+
+
+#define VI_DISP_INT_0 24
+
+
+
+#define VI_DISP_INT_0U 25
+
+
+
+#define VI_DISP_INT_1 26
+
+
+
+#define VI_DISP_INT_1U 27
+
+
+
+#define VI_DISP_INT_2 28
+
+
+
+#define VI_DISP_INT_2U 29
+
+
+
+#define VI_DISP_INT_3 30
+
+
+
+#define VI_DISP_INT_3U 31
+
+
+
+#define VI_DTV_STAT 55
+
+
+
+#define VI_EURGB60 5
+
+
+
+#define VI_FCT_0 38
+
+
+
+#define VI_FCT_0U 39
+
+
+
+#define VI_FCT_1 40
+
+
+
+#define VI_FCT_1U 41
+
+
+
+#define VI_FCT_2 42
+
+
+
+#define VI_FCT_2U 43
+
+
+
+#define VI_FCT_3 44
+
+
+
+#define VI_FCT_3U 45
+
+
+
+#define VI_FCT_4 46
+
+
+
+#define VI_FCT_4U 47
+
+
+
+#define VI_FCT_5 48
+
+
+
+#define VI_FCT_5U 49
+
+
+
+#define VI_FCT_6 50
+
+
+
+#define VI_FCT_6U 51
+
+
+
+#define VI_FIELD_ABOVE 1
+
+
+
+#define VI_FIELD_BELOW 0
+
+
+
+#define VI_GCA 6
+
+
+
+#define VI_HORIZ_COUNT 23
+
+
+
+#define VI_HORIZ_TIMING_0L 2
+
+
+
+#define VI_HORIZ_TIMING_0U 3
+
+
+
+#define VI_HORIZ_TIMING_1L 4
+
+
+
+#define VI_HORIZ_TIMING_1U 5
+
+
+
+#define VI_HSR 37
+
+
+
+#define VI_HSW 36
+
+
+
+#define VI_INTERLACE 0
+
+
+
+#define VI_MAX_HEIGHT_EURGB60 480
+
+
+
+#define VI_MAX_HEIGHT_MPAL 480
+
+
+
+#define VI_MAX_HEIGHT_NTSC 480
+
+
+
+#define VI_MAX_HEIGHT_PAL 574
+
+
+
+#define VI_MAX_WIDTH_EURGB60 720
+
+
+
+#define VI_MAX_WIDTH_MPAL 720
+
+
+
+#define VI_MAX_WIDTH_NTSC 720
+
+
+
+#define VI_MAX_WIDTH_PAL 720
+
+
+
+#define VI_MPAL 2
+
+
+
+#define VI_NON_INTERLACE 1
+
+
+
+#define VI_NTSC 0
+
+
+
+#define VI_PAL 1
+
+
+
+#define VI_PROGRESSIVE 2
+
+
+
+#define VI_TOP_FIELD_BASE_LEFT 14
+
+
+
+#define VI_TOP_FIELD_BASE_LEFT_U 15
+
+
+
+#define VI_TOP_FIELD_BASE_RIGHT 16
+
+
+
+#define VI_TOP_FIELD_BASE_RIGHT_U 17
+
+
+
+#define VI_VERT_COUNT 22
+
+
+
+#define VI_VERT_TIMING 0
+
+
+
+#define VI_VERT_TIMING_EVEN 8
+
+
+
+#define VI_VERT_TIMING_EVEN_U 9
+
+
+
+#define VI_VERT_TIMING_ODD 6
+
+
+
+#define VI_VERT_TIMING_ODD_U 7
+
+
+
+#define VI_WIDTH 56
+
+
+
+#define WEEK_DAY_MAX 7
+
+
+
+#define WPAR 921
+
+
+
+#define WPAR_ADDR 4294967264
+
+
+
+#define WPAR_BNE 1
+
+
+
+#define XER 1
+
+
+
+#define YEAR_DAY_MAX 365
+
+
+
+#define _GX_TF_CTF 32
+
+
+
+#define _GX_TF_ZTF 16
+
+
+
+#define _INTEGRAL_MAX_BITS 32
+
+
+
+#define _SND_CHORUS_NUM_BLOCKS 3
+
+
+
+#define __AIRegs 3422579712
+
+
+
+#define __DIRegs 3422576640
+
+
+
+#define __DSPRegs 3422572544
+
+
+
+#define __EXIRegs 3422578688
+
+
+
+#define __MEMRegs 3422568448
+
+
+
+#define __OSCONTEXT_PADDING 452
+
+
+
+#define __OS_CONTEXT_FRAME 768
+
+
+
+#define __OS_EXCEPTION_ALIGNMENT 5
+
+
+
+#define __OS_EXCEPTION_BREAKPOINT 12
+
+
+
+#define __OS_EXCEPTION_DECREMENTER 8
+
+
+
+#define __OS_EXCEPTION_DSI 2
+
+
+
+#define __OS_EXCEPTION_EXTERNAL_INTERRUPT 4
+
+
+
+#define __OS_EXCEPTION_FLOATING_POINT 7
+
+
+
+#define __OS_EXCEPTION_ISI 3
+
+
+
+#define __OS_EXCEPTION_MACHINE_CHECK 1
+
+
+
+#define __OS_EXCEPTION_MAX 15
+
+
+
+#define __OS_EXCEPTION_PERFORMACE_MONITOR 11
+
+
+
+#define __OS_EXCEPTION_PROGRAM 6
+
+
+
+#define __OS_EXCEPTION_SYSTEM_CALL 9
+
+
+
+#define __OS_EXCEPTION_SYSTEM_INTERRUPT 13
+
+
+
+#define __OS_EXCEPTION_SYSTEM_RESET 0
+
+
+
+#define __OS_EXCEPTION_THERMAL_INTERRUPT 14
+
+
+
+#define __OS_EXCEPTION_TRACE 10
+
+
+
+#define __OS_INTERRUPT_AI_AI 8
+
+
+
+#define __OS_INTERRUPT_DSP_AI 5
+
+
+
+#define __OS_INTERRUPT_DSP_ARAM 6
+
+
+
+#define __OS_INTERRUPT_DSP_DSP 7
+
+
+
+#define __OS_INTERRUPT_EXI_0_EXI 9
+
+
+
+#define __OS_INTERRUPT_EXI_0_EXT 11
+
+
+
+#define __OS_INTERRUPT_EXI_0_TC 10
+
+
+
+#define __OS_INTERRUPT_EXI_1_EXI 12
+
+
+
+#define __OS_INTERRUPT_EXI_1_EXT 14
+
+
+
+#define __OS_INTERRUPT_EXI_1_TC 13
+
+
+
+#define __OS_INTERRUPT_EXI_2_EXI 15
+
+
+
+#define __OS_INTERRUPT_EXI_2_TC 16
+
+
+
+#define __OS_INTERRUPT_MAX 32
+
+
+
+#define __OS_INTERRUPT_MEM_0 0
+
+
+
+#define __OS_INTERRUPT_MEM_1 1
+
+
+
+#define __OS_INTERRUPT_MEM_2 2
+
+
+
+#define __OS_INTERRUPT_MEM_3 3
+
+
+
+#define __OS_INTERRUPT_MEM_ADDRESS 4
+
+
+
+#define __OS_INTERRUPT_PI_CP 17
+
+
+
+#define __OS_INTERRUPT_PI_DEBUG 25
+
+
+
+#define __OS_INTERRUPT_PI_DI 21
+
+
+
+#define __OS_INTERRUPT_PI_ERROR 23
+
+
+
+#define __OS_INTERRUPT_PI_HSP 26
+
+
+
+#define __OS_INTERRUPT_PI_PE_FINISH 19
+
+
+
+#define __OS_INTERRUPT_PI_PE_TOKEN 18
+
+
+
+#define __OS_INTERRUPT_PI_RSW 22
+
+
+
+#define __OS_INTERRUPT_PI_SI 20
+
+
+
+#define __OS_INTERRUPT_PI_VI 24
+
+
+
+#define __PIRegs 3422564352
+
+
+
+#define __SIRegs 3422577664
+
+
+
+#define __STDC_VERSION__ 199900
+
+
+
+#define __VIRegs 3422560256
+
+
+
+#define __alphanumeric 208
+
+
+
+#define __control 3
+
+
+
+#define __control_char 1
+
+
+
+#define __digit 16
+
+
+
+#define __graphic 216
+
+
+
+#define __hex_digit 32
+
+
+
+#define __letter 192
+
+
+
+#define __lower_case 64
+
+
+
+#define __motion_char 2
+
+
+
+#define __printable 220
+
+
+
+#define __punctuation 8
+
+
+
+#define __space_char 4
+
+
+
+#define __upper_case 128
+
+
+
+#define __whitespace 6
+
+
+
+#define nullptr 0
+
+
+
 enum {
     demoStatus_n_a=0,
     demoStatus_demoPlaying=1,
     demoStatus_endDemo=2
 };
 typedef unsigned char demoStatus;
-
+
+
 typedef struct diveFrame diveFrame, *PdiveFrame;
-
+
+
 struct diveFrame {
     short maxFrame;
     short initialFrame;
     short minNearMissFrame;
 } __attribute__((packed));
-
+
+
 typedef struct eightVec eightVec, *PeightVec;
-
+
+
 struct eightVec {
     struct Vec3f pastCoordinates[8];
 } __attribute__((packed));
-
+
+
 enum {
     enumARAMLoadType_regularReadWithDecompression=0,
     enumARAMLoadType_New_Name=1,
@@ -18181,7 +23215,8 @@ enum {
     enumARAMLoadType_ARAMtoRAMwithoutDecompression=4
 };
 typedef unsigned char enumARAMLoadType;
-
+
+
 enum {
     enumAnimationCoordinatesType_chargeAnimation_=4,
     enumAnimationCoordinatesType_heldBall_petey_chem_antiChemGraphics=9,
@@ -18195,18 +23230,21 @@ enum {
     enumAnimationCoordinatesType_heldBall_rightyMag=79
 };
 typedef unsigned int enumAnimationCoordinatesType;
-
+
+
 enum {
     enumAwayHome_int_away=0,
     enumAwayHome_int_home=1
 };
 typedef unsigned int enumAwayHome_int;
-
+
+
 enum {
     enumBallCollision_fielder=9
 };
 typedef unsigned char enumBallCollision;
-
+
+
 enum {
     enumBallTrailTypes_nonChargePitch=1,
     enumBallTrailTypes_perfectChargePitch=2,
@@ -18216,12 +23254,14 @@ enum {
     enumBallTrailTypes_default_=16
 };
 typedef unsigned int enumBallTrailTypes;
-
+
+
 enum {
     enumBodyCheckCd_determiningBodyCheck_=1
 };
 typedef unsigned char enumBodyCheckCd;
-
+
+
 enum {
     enumCTRLControlTypeWord_CTRL_NONE=0,
     enumCTRLControlTypeWord_CTRL_SCALE=1,
@@ -18231,7 +23271,8 @@ enum {
     enumCTRLControlTypeWord_CTRL_MTX=16
 };
 typedef unsigned int enumCTRLControlTypeWord;
-
+
+
 enum {
     enumChallengeDifficulty_mushroom=0,
     enumChallengeDifficulty_flower=1,
@@ -18239,7 +23280,8 @@ enum {
     enumChallengeDifficulty_special=3
 };
 typedef unsigned char enumChallengeDifficulty;
-
+
+
 enum {
     enumCharIDWord_none=-1,
     enumCharIDWord_mario=0,
@@ -18298,7 +23340,8 @@ enum {
     enumCharIDWord_broB=53
 };
 typedef int enumCharIDWord;
-
+
+
 enum {
     enumCharacterID_int_mario=0,
     enumCharacterID_int_luigi=1,
@@ -18356,19 +23399,22 @@ enum {
     enumCharacterID_int_broB=53
 };
 typedef unsigned int enumCharacterID_int;
-
+
+
 enum {
     enumCharacterSounds_chemistryThrow=0,
     enumCharacterSounds_regularThrow=5,
     enumCharacterSounds_antiChemThrow=10
 };
 typedef unsigned int enumCharacterSounds;
-
+
+
 enum {
     enumDiskLocations_MarioStadium=114282496
 };
 typedef unsigned int enumDiskLocations;
-
+
+
 enum {
     enumErrorType_noError=0,
     enumErrorType_droppedFlyBall_=1,
@@ -18376,7 +23422,8 @@ enum {
     enumErrorType_falliedRundown_=3
 };
 typedef unsigned char enumErrorType;
-
+
+
 enum {
     enumFielder_none=-1,
     enumFielder_pitcher=0,
@@ -18390,7 +23437,8 @@ enum {
     enumFielder_rf=8
 };
 typedef int enumFielder;
-
+
+
 enum {
     enumFieldingStarMissionCodes_noteBlock=0,
     enumFieldingStarMissionCodes_catches=1,
@@ -18407,7 +23455,8 @@ enum {
     enumFieldingStarMissionCodes_bodyCheck=12
 };
 typedef unsigned int enumFieldingStarMissionCodes;
-
+
+
 enum {
     enumGameSetUpStep_captainSelect=1,
     enumGameSetUpStep_rosterSelect=2,
@@ -18415,7 +23464,8 @@ enum {
     enumGameSetUpStep_stadium_matchSettings=4
 };
 typedef unsigned char enumGameSetUpStep;
-
+
+
 enum {
     enumGameSettingScreenProcess_stadiumSelect=0,
     enumGameSettingScreenProcess_loadMatchSettings=1,
@@ -18424,13 +23474,15 @@ enum {
     enumGameSettingScreenProcess_okOrReturnToStadSelect=5
 };
 typedef unsigned short enumGameSettingScreenProcess;
-
+
+
 enum {
     enumInGameEventID_doublePlay=23,
     enumInGameEventID_triplePlay=24
 };
 typedef unsigned short enumInGameEventID;
-
+
+
 enum {
     enumMenuNumber_mainMenu_exhibition_capSelect=0,
     enumMenuNumber_exhibition_charSelect=2,
@@ -18469,7 +23521,8 @@ enum {
     enumMenuNumber_options=91
 };
 typedef unsigned char enumMenuNumber;
-
+
+
 enum {
     enumObjTypeInFile__none=0,
     enumObjTypeInFile__texture=1,
@@ -18483,7 +23536,8 @@ enum {
     enumObjTypeInFile__anim3=9
 };
 typedef unsigned char enumObjTypeInFile_;
-
+
+
 enum {  /* State for all things practice. First is the main menu, second is the sub menu, third is on the field */
     enumPracticeState__0_switchToTopMenu4_switchToSubMenu_loadfield_goTo1_newAB_=0,
     enumPracticeState__1__checkSomething_delay_goTo2=1,
@@ -18496,7 +23550,8 @@ enum {  /* State for all things practice. First is the main menu, second is the 
     enumPracticeState__8_exitToMainMenu=8
 };
 typedef unsigned char enumPracticeState;
-
+
+
 enum {
     enumPracticeType_pitching=0,
     enumPracticeType_batting=1,
@@ -18505,7 +23560,8 @@ enum {
     enumPracticeType_freePlay=4
 };
 typedef unsigned char enumPracticeType;
-
+
+
 enum {
     enumQuantTypeColor_GX_RGB565=0,
     enumQuantTypeColor_GX_RGB8=1,
@@ -18515,7 +23571,8 @@ enum {
     enumQuantTypeColor_GX_RGBA8=5
 };
 typedef unsigned char enumQuantTypeColor;
-
+
+
 enum {
     enumReplayID_noReplay=0,
     enumReplayID_fieldingRelated_=1,
@@ -18531,7 +23588,8 @@ enum {
     enumReplayID_homerun_moonshot_=13
 };
 typedef unsigned char enumReplayID;
-
+
+
 enum {
     enumScoutFlagMissions_N_A_=0,
     enumScoutFlagMissions_getPlayerOut=1,
@@ -18548,7 +23606,8 @@ enum {
     enumScoutFlagMissions_winTheGame=12
 };
 typedef unsigned char enumScoutFlagMissions;
-
+
+
 enum {
     enumSituationTracker_none=0,
     enumSituationTracker_LFTraj1=1,
@@ -18567,7 +23626,8 @@ enum {
     enumSituationTracker_sacFlyAttempt=14
 };
 typedef unsigned short enumSituationTracker;
-
+
+
 enum {
     enumSomeRunnerResultCd_sacFlyScoredARun=1,
     enumSomeRunnerResultCd_outfieldCatchForOut=2,
@@ -18577,7 +23637,8 @@ enum {
     enumSomeRunnerResultCd_foulBuntWith2Strikes=14
 };
 typedef unsigned char enumSomeRunnerResultCd;
-
+
+
 enum {
     enumSoundEffect_int_moveCursor1=4,
     enumSoundEffect_int_moveCursor2=8,
@@ -18627,7 +23688,8 @@ enum {
     enumSoundEffect_int_chainChompBark=734
 };
 typedef unsigned int enumSoundEffect_int;
-
+
+
 enum {
     enumSoundEffect_short_moveCursor1=4,
     enumSoundEffect_short_moveCursor2=8,
@@ -18677,14 +23739,16 @@ enum {
     enumSoundEffect_short_chainChompBark=734
 };
 typedef unsigned short enumSoundEffect_short;
-
+
+
 enum {
     enumStarChanceAnimationControl_dontShowHUDElement=0,
     enumStarChanceAnimationControl_initHUDElement=1,
     enumStarChanceAnimationControl_hUDElementShowing=2
 };
 typedef unsigned char enumStarChanceAnimationControl;
-
+
+
 enum {
     enumStarMissionBitInfo_winRequirement=1,
     enumStarMissionBitInfo_flowerDifficulty=2,
@@ -18699,7 +23763,8 @@ enum {
     enumStarMissionBitInfo_LGMVP=2048
 };
 typedef unsigned short enumStarMissionBitInfo;
-
+
+
 enum {
     enumStarMissions_MVP=1,
     enumStarMissions_teamStar=2,
@@ -18757,7 +23822,8 @@ enum {
     enumStarMissions_none=65535
 };
 typedef unsigned short enumStarMissions;
-
+
+
 enum {
     enumStickDirection_neutral=0,
     enumStickDirection_right=1,
@@ -18766,7 +23832,8 @@ enum {
     enumStickDirection_down=4
 };
 typedef unsigned char enumStickDirection;
-
+
+
 enum {
     enumSwapMenuType_regular_fielderSwapLeft=0,
     enumSwapMenuType_batterSwapLeft=1,
@@ -18774,12 +23841,14 @@ enum {
     enumSwapMenuType_starMissions=3
 };
 typedef unsigned char enumSwapMenuType;
-
+
+
 enum {
     enumTextObject_special_char=16384
 };
 typedef unsigned short enumTextObject;
-
+
+
 enum {
     enumTutorialState_menu_na=0,
     enumTutorialState_givingInstruction=1,
@@ -18787,13 +23856,15 @@ enum {
     enumTutorialState_playerHasControl=3
 };
 typedef unsigned char enumTutorialState;
-
+
+
 enum {
     enumVersionNumber_GPL_VERSION_NUMBER=6012001,
     enumVersionNumber_ACT_VERSION_NUMBER=8092000
 };
 typedef unsigned int enumVersionNumber;
-
+
+
 enum {
     enumWinningTeam_int_tbd=-1,
     enumWinningTeam_int_away=0,
@@ -18801,7 +23872,8 @@ enum {
     enumWinningTeam_int_tie=2
 };
 typedef int enumWinningTeam_int;
-
+
+
 enum {
     enum_1_VI_TVMODE_NTSC_INT=0,
     enum_1_VI_TVMODE_NTSC_DS=1,
@@ -18821,10 +23893,14 @@ enum {
     enum_1_VI_TVMODE_GCA_PROG=26
 };
 typedef unsigned int enum_1;
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vi.h/enum_2 - /musyx/musyx.h/enum_2 */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vi.h/enum_2 - /musyx/musyx.h/enum_2 */
+
+
+
 enum {
     enum_201_VI_TVMODE_NTSC_INT=0,
     enum_201_VI_TVMODE_NTSC_DS=1,
@@ -18840,32 +23916,37 @@ enum {
     enum_201_VI_TVMODE_EURGB60_DS=21
 };
 typedef unsigned int enum_201;
-
+
+
 enum {
     enum_202_VI_XFBMODE_SF=0,
     enum_202_VI_XFBMODE_DF=1
 };
 typedef unsigned int enum_202;
-
+
+
 enum {
     enum_atBatTracker_bitCode_rbis=7
 };
 typedef unsigned char enum_atBatTracker_bitCode;
-
+
+
 enum {
     enum_baserunnerTrackingState_notStarted_=0,
     enum_baserunnerTrackingState_waiting_=1,
     enum_baserunnerTrackingState_complete=2
 };
 typedef unsigned char enum_baserunnerTrackingState;
-
+
+
 enum {
     enum_bigPlayCode__0_none=0,
     enum_bigPlayCode__1_potentialBigPlay_SufficientDistance=1,
     enum_bigPlayCode__2_bigPlayConfirmed=2
 };
 typedef unsigned char enum_bigPlayCode;
-
+
+
 enum {
     enum_fielding0x113__0_noError=0,
     enum_fielding0x113__1_droppedFlyBall_=1,
@@ -18876,7 +23957,8 @@ enum {
     enum_fielding0x113__9_errorProcessed=9
 };
 typedef unsigned char enum_fielding0x113;
-
+
+
 enum {
     enum_fielding0x127__0_ongoingTargeting_=0,
     enum_fielding0x127__1_pickedOffRunnerSuccessfullyAdvanced_=1,
@@ -18884,34 +23966,39 @@ enum {
     enum_fielding0x127__1_noTargeting=255
 };
 typedef unsigned char enum_fielding0x127;
-
+
+
 enum {
     enum_forceOutStatus_noForceThisPlay=0,
     enum_forceOutStatus_forceStillPossible=1,
     enum_forceOutStatus_forceHappened=2
 };
 typedef unsigned char enum_forceOutStatus;
-
+
+
 enum {
     enum_highLevelMenuScene_mainMenu_ExGame_Chal_Rec_Opt=1,
     enum_highLevelMenuScene_in_game_TF_MG_Prac=2
 };
 typedef unsigned char enum_highLevelMenuScene;
-
+
+
 enum {
     enum_nRunnersForcedOutCd_nonForceOutOnPlay=-1,
     enum_nRunnersForcedOutCd__0_default=0,
     enum_nRunnersForcedOutCd_unknown=3
 };
 typedef signed char enum_nRunnersForcedOutCd;
-
+
+
 enum {
     enum_noHitter_none=0,
     enum_noHitter_perfectGame=1,
     enum_noHitter_noHitter=2
 };
 typedef unsigned char enum_noHitter;
-
+
+
 enum {
     enum_p2_CPU_code__1PlayerGame=0,
     enum_p2_CPU_code__2PlayerGame=1,
@@ -18919,56 +24006,67 @@ enum {
     enum_p2_CPU_code__3_unknown=3
 };
 typedef unsigned char enum_p2_CPU_code;
-
+
+
 enum {
     enum_pitchCodeForReplays_noPitch=0,
     enum_pitchCodeForReplays_realPitch=1,
     enum_pitchCodeForReplays_replayPitch=2
 };
 typedef unsigned char enum_pitchCodeForReplays;
-
+
+
 enum {
     enum_rosterView_battingOrder=0,
     enum_rosterView_defensiveAlignment=1
 };
 typedef unsigned char enum_rosterView;
-
+
+
 enum {
     enum_runnerForceCode_n_a=0,
     enum_runnerForceCode_forcedToAdvance=1,
     enum_runnerForceCode_reachedNextBase=2
 };
 typedef unsigned char enum_runnerForceCode;
-
+
+
 enum {
     enum_runnersTargettedWThrow__1_uninitialized=-1,
     enum_runnersTargettedWThrow__0_noOtherRunnersBeingTargeted=0,
     enum_runnersTargettedWThrow__5_notThrownToABase=5
 };
 typedef short enum_runnersTargettedWThrow;
-
+
+
 typedef double f128;
-
+
+
 typedef struct fanAnimationPointerStruct fanAnimationPointerStruct, *PfanAnimationPointerStruct;
-
+
+
 typedef struct fanAnimations fanAnimations, *PfanAnimations;
-
-struct fanAnimationPointerStruct {
-    void * field0_0x0;
-    void * field1_0x4;
-    void * field2_0x8;
-    void * field3_0xc;
-    struct fanAnimations (*field4_0x10)[32];
-} __attribute__((packed));
-
+
+
+// struct fanAnimationPointerStruct {
+//     void * field0_0x0;
+//     void * field1_0x4;
+//     void * field2_0x8;
+//     void * field3_0xc;
+//     struct fanAnimations (*field4_0x10)[32];
+// } __attribute__((packed));
+
+
 struct fanAnimations {
     byte fanType;
     byte currentAnimation;
     byte framesUntilNextAnimaiton;
 } __attribute__((packed));
-
+
+
 typedef struct fielderActionConstants fielderActionConstants, *PfielderActionConstants;
-
+
+
 struct fielderActionConstants {
     float _12_0_secondaryFielderDistToStandWhileSupporting;
     float _7_0;
@@ -19010,9 +24108,11 @@ struct fielderActionConstants {
     float _15_0_ballInPlantSomeThreshold_;
     float _1_5;
 } __attribute__((packed));
-
+
+
 typedef struct fielderDash fielderDash, *PfielderDash;
-
+
+
 struct fielderDash {
     int const0_;
     int const_0_0_;
@@ -19026,18 +24126,22 @@ struct fielderDash {
     short postSprintSlowdownTimer;
     dashState sprintingState;
 } __attribute__((packed));
-
+
+
 typedef struct fielderDashStruct fielderDashStruct, *PfielderDashStruct;
-
+
+
 typedef struct unkInputRelated unkInputRelated, *PunkInputRelated;
-
+
+
 struct unkInputRelated {
     short stickAngleWhenPressingA;
     byte aPressed_decidingWhatActionToTake;
     byte aiOutfieldFielderAction_;
     byte aiFieldingDashIndicator__[4];
 } __attribute__((packed));
-
+
+
 struct fielderDashStruct {
     struct fielderDash fielderDashByPort[4];
     short pad;
@@ -19091,7 +24195,8 @@ struct fielderDashStruct {
     autoMovementCodeEnum fielderAutoMovementCode[9];
     byte baseCoveredInd[4];
 } __attribute__((packed));
-
+
+
 enum {
     fielderTagAnimation_n_a=0,
     fielderTagAnimation_regularTag=1,
@@ -19101,9 +24206,11 @@ enum {
     fielderTagAnimation_gotBodychecked=7
 };
 typedef unsigned char fielderTagAnimation;
-
+
+
 typedef struct fieldersAutoMovementEnums fieldersAutoMovementEnums, *PfieldersAutoMovementEnums;
-
+
+
 struct fieldersAutoMovementEnums {
     autoMovementCodeEnum P;
     autoMovementCodeEnum C;
@@ -19115,14 +24222,16 @@ struct fieldersAutoMovementEnums {
     autoMovementCodeEnum CF;
     autoMovementCodeEnum RF;
 } __attribute__((packed));
-
+
+
 enum {
     forceOutSubResults_default_=0,
     forceOutSubResults_forceOutDidNotHappen=1,
     forceOutSubResults_forceOutHappened=2
 };
 typedef unsigned int forceOutSubResults;
-
+
+
 enum {
     futureCoordsAndDist_x=0,
     futureCoordsAndDist_y=1,
@@ -19130,9 +24239,11 @@ enum {
     futureCoordsAndDist_groundDist=3
 };
 typedef unsigned char futureCoordsAndDist;
-
+
+
 typedef struct gameSetUpStruct gameSetUpStruct, *PgameSetUpStruct;
-
+
+
 struct gameSetUpStruct {
     enumGameSetUpStep gameSetUpStep;
     byte field1_0x1[14][6];
@@ -19147,9 +24258,11 @@ struct gameSetUpStruct {
     undefined field10_0x62;
     undefined field11_0x63;
 } __attribute__((packed));
-
+
+
 typedef struct gameSettings gameSettings, *PgameSettings;
-
+
+
 struct gameSettings {
     byte startGameButton;
     byte firstBattingTeam;
@@ -19157,9 +24270,11 @@ struct gameSettings {
     byte inningSelectionMenuIndex;
     byte mercyRule;
 } __attribute__((packed));
-
+
+
 typedef struct globalFielding globalFielding, *PglobalFielding;
-
+
+
 enum {
     throwSpeedType_x1_3=0,
     throwSpeedType_x1_2=1,
@@ -19173,7 +24288,8 @@ enum {
     throwSpeedType_setTo0_55=9
 };
 typedef unsigned char throwSpeedType;
-
+
+
 enum {
     pickOffSteal_nonPickOffOrSteal=0,
     pickOffSteal_pickOff=1,
@@ -19181,13 +24297,15 @@ enum {
     pickOffSteal__4_can_tOccur_=4
 };
 typedef unsigned char pickOffSteal;
-
+
+
 enum {
     throwSPeedAlgoInd_throwSpeedAlgo=0,
     throwSPeedAlgoInd_setThrowSpeed9=1
 };
 typedef unsigned char throwSPeedAlgoInd;
-
+
+
 struct globalFielding {
     struct fielderDashStruct fielderControl;
     byte playerAtMoundCutoffLocation;
@@ -19263,12 +24381,14 @@ struct globalFielding {
     undefined field71_0x14e;
     undefined field72_0x14f;
 } __attribute__((packed));
-
+
+
 typedef struct graphicDataEntry graphicDataEntry, *PgraphicDataEntry;
-
+
+
 struct graphicDataEntry {
     short entryType;
-    short short;
+    short short_;
     struct Vec2f pos;
     int spriteID;
     byte blendMode;
@@ -19284,17 +24404,21 @@ struct graphicDataEntry {
     short textureID;
     struct graphicDataEntry *dataEntryPtr;
 } __attribute__((packed));
-
+
+
 typedef struct hitByPitchHitbox hitByPitchHitbox, *PhitByPitchHitbox;
-
+
+
 struct hitByPitchHitbox {
     byte zDepth;
     byte xOutsideWidth;
     byte xInsideWidth;
 } __attribute__((packed));
-
+
+
 typedef struct hitContants_shorts hitContants_shorts, *PhitContants_shorts;
-
+
+
 struct hitContants_shorts {
     short _180_frameChargeDownEnds;
     short _12_framesUntilChargeIsEnabled;
@@ -19313,18 +24437,21 @@ struct hitContants_shorts {
     short _50_captainStarHitGamePause;
     short _50_moonshotGamePause;
 } __attribute__((packed));
-
+
+
 enum {
     hitDistFromHomeEnum_withinBasepaths=0,
     hitDistFromHomeEnum___38_8m=1,
     hitDistFromHomeEnum___55_2m=2,
     hitDistFromHomeEnum___61_2m=3,
-    hitDistFromHomeEnum__= 61.2m=4
+    hitDistFromHomeEnum____61_2m=4
 };
 typedef unsigned int hitDistFromHomeEnum;
-
+
+
 typedef struct hitFloatConstants hitFloatConstants, *PhitFloatConstants;
-
+
+
 struct hitFloatConstants {
     float _0_05_minStarHitVelo;
     float _0_008_DKStarAngleDelta;
@@ -19339,13 +24466,17 @@ struct hitFloatConstants {
     float _3_0_centeringBoxSpeedMult;
     float _1_5_moonshotMult;
 } __attribute__((packed));
-
+
+
 typedef struct hugeAnimStruct hugeAnimStruct, *PhugeAnimStruct;
-
+
+
 typedef struct unkAnimSubstruct unkAnimSubstruct, *PunkAnimSubstruct;
-
+
+
 typedef struct starAnimationRelated starAnimationRelated, *PstarAnimationRelated;
-
+
+
 struct unkAnimSubstruct {
     void * field0_0x0[4];
     undefined field1_0x10[28];
@@ -19365,7 +24496,8 @@ struct unkAnimSubstruct {
     byte field15_0xd0;
     byte field16_0xd1;
 } __attribute__((packed));
-
+
+
 struct hugeAnimStruct {
     byte field0_0x0[4];
     struct StadiumFileHeader *stadiumFileHeaderPointer;
@@ -19661,7 +24793,8 @@ struct hugeAnimStruct {
     void * field291_0x3124[2];
     undefined field292_0x312c[40];
 } __attribute__((packed));
-
+
+
 struct starAnimationRelated {
     float field0_0x0;
     struct Vec3f magHoldingBallTrail_;
@@ -19683,25 +24816,31 @@ struct starAnimationRelated {
     undefined field17_0x2a;
     undefined field18_0x2b;
 } __attribute__((packed));
-
+
+
 typedef struct jumpStruct jumpStruct, *PjumpStruct;
-
+
+
 typedef struct jumpSubstruct jumpSubstruct, *PjumpSubstruct;
-
+
+
 struct jumpSubstruct {
     float initialVerticalVelocity;
     float jumpGravity;
     float horizontalJumpFactor;
     float addedFrames;
 } __attribute__((packed));
-
+
+
 struct jumpStruct {
     struct jumpSubstruct normalJump;
     struct jumpSubstruct superDuperJump;
 } __attribute__((packed));
-
+
+
 typedef struct jungleBarrelObj jungleBarrelObj, *PjungleBarrelObj;
-
+
+
 struct jungleBarrelObj {
     struct CTRLControl control;
     byte pad[16];
@@ -19740,25 +24879,31 @@ struct jungleBarrelObj {
     byte field34_0xcb;
     byte field35_0xcc[28];
 } __attribute__((packed));
-
+
+
 typedef struct keyframeInterpolationInfo keyframeInterpolationInfo, *PkeyframeInterpolationInfo;
-
+
+
 struct keyframeInterpolationInfo {
     int placeholder;
     int placeholder2;
     int placeholder3;
     int placeholder4;
 } __attribute__((packed));
-
+
+
 typedef struct keyframeSetting keyframeSetting, *PkeyframeSetting;
-
+
+
 struct keyframeSetting {
     int placeholder;
     int placeholder2;
 } __attribute__((packed));
-
+
+
 typedef struct lightPtrs lightPtrs, *PlightPtrs;
-
+
+
 struct lightPtrs {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -19791,9 +24936,11 @@ struct lightPtrs {
     undefined field28_0x1f;
     struct LITLightPtr *field29_0x20;
 } __attribute__((packed));
-
+
+
 typedef struct marioStadiumCollisionStrip0 marioStadiumCollisionStrip0, *PmarioStadiumCollisionStrip0;
-
+
+
 struct marioStadiumCollisionStrip0 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle LF2ndDeckBackWallCorner[10];
@@ -19805,9 +24952,11 @@ struct marioStadiumCollisionStrip0 {
     struct CollisionTriangle leftovers[7][3];
     struct collisionBoxHeader field8_0x2e0;
 } __attribute__((packed));
-
+
+
 typedef struct marioStadiumCollisionStrip1 marioStadiumCollisionStrip1, *PmarioStadiumCollisionStrip1;
-
+
+
 struct marioStadiumCollisionStrip1 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle field1_0x4[14];
@@ -19823,9 +24972,11 @@ struct marioStadiumCollisionStrip1 {
     struct CollisionTriangle leftovers[66];
     byte padding[4];
 } __attribute__((packed));
-
+
+
 typedef struct marioStadiumCollisionStrip2 marioStadiumCollisionStrip2, *PmarioStadiumCollisionStrip2;
-
+
+
 struct marioStadiumCollisionStrip2 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle field1_0x4[19];
@@ -19851,9 +25002,11 @@ struct marioStadiumCollisionStrip2 {
     struct CollisionTriangle leftovers[78];
     byte padding[4];
 } __attribute__((packed));
-
+
+
 typedef struct marioStadiumCollisionStrip23 marioStadiumCollisionStrip23, *PmarioStadiumCollisionStrip23;
-
+
+
 struct marioStadiumCollisionStrip23 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle _3BBleachers2ndDeckTopCorner[13];
@@ -19868,9 +25021,11 @@ struct marioStadiumCollisionStrip23 {
     struct collisionBoxHeader field10_0x2a4;
     struct CollisionTriangle field11_0x2a8[11][3];
 } __attribute__((packed));
-
+
+
 typedef struct marioStadiumCollisions marioStadiumCollisions, *PmarioStadiumCollisions;
-
+
+
 struct marioStadiumCollisions {
     void * pBoundingBox;
     void * triangleCollectionPtrs[24];
@@ -19882,9 +25037,11 @@ struct marioStadiumCollisions {
     struct marioStadiumCollisionStrip23 triSet23;
     byte padding[24];
 } __attribute__((packed));
-
+
+
 typedef struct maybeGraphicsManager maybeGraphicsManager, *PmaybeGraphicsManager;
-
+
+
 struct maybeGraphicsManager {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -19909,9 +25066,11 @@ struct maybeGraphicsManager {
     ushort maybeStartIndex;
     ushort maybeEntryCount;
 } __attribute__((packed));
-
+
+
 typedef struct maybeWallBallStruct maybeWallBallStruct, *PmaybeWallBallStruct;
-
+
+
 struct maybeWallBallStruct {
     float field0_0x0;  /* start of wall ball struct? */
     float field1_0x4;
@@ -19928,9 +25087,11 @@ struct maybeWallBallStruct {
     byte coinGenerationCategory;
     byte coinRelated[26];
 } __attribute__((packed));
-
+
+
 typedef struct miniGameControlStruct miniGameControlStruct, *PminiGameControlStruct;
-
+
+
 struct miniGameControlStruct {
     byte characterIndex[4];
     byte field1_0x4;
@@ -19943,7 +25104,8 @@ struct miniGameControlStruct {
     byte field8_0x14;
     byte field9_0x15;
 } __attribute__((packed));
-
+
+
 enum {
     miniGameDifficulty_multiplayer_ChallengeEasy=0,
     miniGameDifficulty_ChallengeNormal=1,
@@ -19951,28 +25113,37 @@ enum {
     miniGameDifficulty_soloNonChallenge=3
 };
 typedef unsigned char miniGameDifficulty;
-
+
+
 typedef struct minigameLinkedListNode minigameLinkedListNode, *PminigameLinkedListNode;
-
+
+
 struct minigameLinkedListNode {
     struct minigameLinkedListNode **next;
     byte data[92];
 } __attribute__((packed));
-
+
+
 typedef struct minigamePtrStruct minigamePtrStruct, *PminigamePtrStruct;
-
+
+
 struct minigamePtrStruct {
     struct minigameLinkedListNode nodes[8];
 } __attribute__((packed));
-
+
+
 typedef struct minigameStruct minigameStruct, *PminigameStruct;
-
+
+
 typedef struct someStarDashStruct someStarDashStruct, *PsomeStarDashStruct;
-
+
+
 typedef struct unkStarDashFloatStruct unkStarDashFloatStruct, *PunkStarDashFloatStruct;
-
+
+
 typedef struct unkStructMinigame_ unkStructMinigame_, *PunkStructMinigame_;
-
+
+
 enum {
     toyFieldResult_foul=1,
     toyFieldResult_caught=2,
@@ -19980,14 +25151,16 @@ enum {
     toyFieldResult_homerun=6
 };
 typedef unsigned char toyFieldResult;
-
+
+
 enum {
     wallBallGameState_calculateNewWalls=0,
     wallBallGameState_dropInNewWalls=1,
     wallBallGameState_pitchOrWaitingForPitch=2
 };
 typedef unsigned char wallBallGameState;
-
+
+
 enum {
     wallBallAIThrowType_perfect=0,
     wallBallAIThrowType_overcharge=1,
@@ -19995,7 +25168,8 @@ enum {
     wallBallAIThrowType_curveBall=3
 };
 typedef unsigned char wallBallAIThrowType;
-
+
+
 enum {
     wallBallAISwitch_calculatePitch=0,
     wallBallAISwitch_waitForPitch=1,
@@ -20009,7 +25183,8 @@ enum {
     wallBallAISwitch_unknown4=9
 };
 typedef unsigned char wallBallAISwitch;
-
+
+
 struct unkStructMinigame_ {
     struct Vec3f field0_0x0;
     struct Vec3f field1_0xc;
@@ -20022,14 +25197,16 @@ struct unkStructMinigame_ {
     struct Vec3f field8_0x50;
     struct Vec3f field9_0x5c;
 } __attribute__((packed));
-
+
+
 struct someStarDashStruct {
     short field0_0x0[2];
     byte field1_0x4[6];
     float field2_0xa;
     byte pad[26];
 } __attribute__((packed));
-
+
+
 struct unkStarDashFloatStruct {
     float field0_0x0;
     float field1_0x4;
@@ -20041,7 +25218,8 @@ struct unkStarDashFloatStruct {
     float field7_0x1c;
     short field8_0x20;
 } __attribute__((packed));
-
+
+
 struct minigameStruct {
     byte field0_0x0;
     byte field1_0x1;
@@ -21084,9 +26262,11 @@ struct minigameStruct {
     undefined field1038_0x1e29;
     undefined field1039_0x1e2a;
 } __attribute__((packed));
-
+
+
 typedef struct noteBlocks noteBlocks, *PnoteBlocks;
-
+
+
 struct noteBlocks {
     float X;
     float Y;
@@ -21097,17 +26277,21 @@ struct noteBlocks {
     byte blockTypeIndex_;
     byte maybeRelatedToRandomBlockType;
 } __attribute__((packed));
-
+
+
 typedef struct offsetStruct offsetStruct, *PoffsetStruct;
-
+
+
 struct offsetStruct {
     int currentOffset;
     int nextOffset;
     int next;
 } __attribute__((packed));
-
+
+
 typedef struct palaceChompObj palaceChompObj, *PpalaceChompObj;
-
+
+
 struct palaceChompObj {
     struct CTRLControl control;
     byte pad[16];
@@ -21179,7 +26363,8 @@ struct palaceChompObj {
     undefined field67_0xe6;
     undefined field68_0xe7;
 } __attribute__((packed));
-
+
+
 enum {
     pauseMenuButtonTransitionState_unloadingGame=0,
     pauseMenuButtonTransitionState_loadingPauseMenuAndSelectionHighlight=1,
@@ -21187,7 +26372,8 @@ enum {
     pauseMenuButtonTransitionState_unloadPauseMenu=3
 };
 typedef unsigned char pauseMenuButtonTransitionState;
-
+
+
 enum {
     pauseMenuTransitionState_unloadingPlayingField=0,
     pauseMenuTransitionState_betweenPlayingFieldAndMenu=1,
@@ -21196,7 +26382,8 @@ enum {
     pauseMenuTransitionState_offencePauseMenu_=9
 };
 typedef unsigned char pauseMenuTransitionState;
-
+
+
 enum {
     pauseMenuTypes_defenceExhibition=0,
     pauseMenuTypes_ofenceExhibition=1,
@@ -21204,9 +26391,11 @@ enum {
     pauseMenuTypes_offenceChallenge=3
 };
 typedef unsigned char pauseMenuTypes;
-
+
+
 typedef struct pauseRelatedStruct pauseRelatedStruct, *PpauseRelatedStruct;
-
+
+
 struct pauseRelatedStruct {
     int playerWhoPaused;
     short controllerInput;
@@ -21542,15 +26731,19 @@ struct pauseRelatedStruct {
     undefined field331_0x262;
     undefined field332_0x263;
 } __attribute__((packed));
-
+
+
 typedef struct pc pc, *Ppc;
-
+
+
 struct pc {
     struct Vec3f pastCoordinates[7][8];
 } __attribute__((packed));
-
+
+
 typedef struct pitchingStatStruct pitchingStatStruct, *PpitchingStatStruct;
-
+
+
 struct pitchingStatStruct {
     byte outsAsPitcherWhileLeading;
     byte winningPitcher;  /* Created by retype action */
@@ -21558,9 +26751,11 @@ struct pitchingStatStruct {
     undefined1 unused2;  /* Created by retype action */
     undefined1 unused3;  /* Created by retype action */
 } __attribute__((packed));
-
+
+
 typedef struct practiceStruct practiceStruct, *PpracticeStruct;
-
+
+
 struct practiceStruct {
     struct InputStruct inputs[2];
     void * ptr_commandList;
@@ -21699,7 +26894,8 @@ struct practiceStruct {
     byte bunt_;
     byte maybeRosterID_;
 } __attribute__((packed));
-
+
+
 enum {
     presetFielderLocations_int__goingTowardsBall=0,
     presetFielderLocations_int__goingToSupportPosition=1,
@@ -21714,42 +26910,52 @@ enum {
     presetFielderLocations_int___28_53_=10
 };
 typedef unsigned int presetFielderLocations_int_;
-
+
+
 typedef struct ptr2Short ptr2Short, *Pptr2Short;
-
+
+
 struct ptr2Short {
     void * ptr;
-    short short;
+    short short_;
     short short2;
 } __attribute__((packed));
-
+
+
 typedef struct ptrPtr8Byte ptrPtr8Byte, *PptrPtr8Byte;
-
+
+
 struct ptrPtr8Byte {
     struct ptrPtr8Byte *ptrNext;
     struct ptrPtr8Byte *ptrPrev;
     byte bytes[8];
 } __attribute__((packed));
-
+
+
 typedef struct rgba rgba, *Prgba;
-
+
+
 struct rgba {
     byte r;
     byte g;
     byte b;
     byte a;
 } __attribute__((packed));
-
+
+
 typedef struct runnerAngleConstants runnerAngleConstants, *PrunnerAngleConstants;
-
+
+
 struct runnerAngleConstants {
     float stoppedFacingAngle;
     float field1_0x4;
     float field2_0x8;
 } __attribute__((packed));
-
+
+
 typedef struct runnerConstants runnerConstants, *PrunnerConstants;
-
+
+
 struct runnerConstants {
     byte slideStartLatestFrame;
     byte slideStartEarliestFrame;
@@ -21757,17 +26963,21 @@ struct runnerConstants {
     undefined1 actionStage2Frames;  /* Created by retype action */
     undefined field4_0x4;
 } __attribute__((packed));
-
+
+
 typedef struct sAccBuffers sAccBuffers, *PsAccBuffers;
-
+
+
 struct sAccBuffers {
     s16 *src;
     short *indices;
     byte *weights;
 } __attribute__((packed));
-
+
+
 typedef struct sBatterAIConstants sBatterAIConstants, *PsBatterAIConstants;
-
+
+
 struct sBatterAIConstants {
     byte difficultyArray[4];
     byte padding1[4];
@@ -21824,20 +27034,32 @@ struct sBatterAIConstants {
     undefined field52_0x2d3;
     byte buntingProbabilities[4][4];
 } __attribute__((packed));
-
+
+
 typedef struct _sStats sStats;
-
-
-/* WARNING! conflicting data type names: /auto_structs/short - /short */
-
-
-/* WARNING! conflicting data type names: /types.h/size_t - /sdk/stddef.h/size_t */
-
-
-/* WARNING! conflicting data type names: /decompHeaders/types.h/size_t - /sdk/stddef.h/size_t */
-
+
+
+
+
+/* WARNING! conflicting data type names: /auto_structs/short - /short */
+
+
+
+
+
+/* WARNING! conflicting data type names: /types.h/size_t - /sdk/stddef.h/size_t */
+
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/types.h/size_t - /sdk/stddef.h/size_t */
+
+
+
 typedef struct sndEmitterRelated sndEmitterRelated, *PsndEmitterRelated;
-
+
+
 struct sndEmitterRelated {
     struct sndEmitterRelated *sndEmitterPtr;
     int field1_0x4;
@@ -21864,9 +27086,11 @@ struct sndEmitterRelated {
     struct SND_EMITTER emitter;
     struct SND_EMITTER emitter2;
 } __attribute__((packed));
-
+
+
 typedef struct someJungleBarrelStruct someJungleBarrelStruct, *PsomeJungleBarrelStruct;
-
+
+
 struct someJungleBarrelStruct {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -21926,9 +27150,11 @@ struct someJungleBarrelStruct {
     undefined field55_0x37;
     undefined field56_0x38;
 } __attribute__((packed));
-
+
+
 typedef struct someJungleBarrelStruct_2 someJungleBarrelStruct_2, *PsomeJungleBarrelStruct_2;
-
+
+
 struct someJungleBarrelStruct_2 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -22411,9 +27637,11 @@ struct someJungleBarrelStruct_2 {
     struct someJungleBarrelStruct field478_0x366;
     undefined field479_0x39f;
 } __attribute__((packed));
-
+
+
 typedef struct someScoreStruct someScoreStruct, *PsomeScoreStruct;
-
+
+
 struct someScoreStruct {
     byte field0_0x0;
     byte field1_0x1;
@@ -22427,7 +27655,8 @@ struct someScoreStruct {
     struct ScoreStruct hits[2];
     byte homeRunHittersRosterIDs[30];
 } __attribute__((packed));
-
+
+
 enum {
     someStadCollisionCode_marioStadium_nonGrass=0,
     someStadCollisionCode_marioStadium_grass=1,
@@ -22444,9 +27673,11 @@ enum {
     someStadCollisionCode_toyField=12
 };
 typedef unsigned int someStadCollisionCode;
-
+
+
 typedef struct someStadiumStruct2 someStadiumStruct2, *PsomeStadiumStruct2;
-
+
+
 struct someStadiumStruct2 {
     int field0_0x0;
     int field1_0x4;
@@ -22455,9 +27686,11 @@ struct someStadiumStruct2 {
     byte field4_0xd;
     short field5_0xe;
 } __attribute__((packed));
-
+
+
 typedef struct specialFieldingActionStruct specialFieldingActionStruct, *PspecialFieldingActionStruct;
-
+
+
 struct specialFieldingActionStruct {
     short const_6;
     short WJFrameLimitFar_50;
@@ -22501,17 +27734,21 @@ struct specialFieldingActionStruct {
     ghidra_word const_12;
     short const_20_;
 } __attribute__((packed));
-
+
+
 typedef struct stadiumCDRStruct stadiumCDRStruct, *PstadiumCDRStruct;
-
+
+
 struct stadiumCDRStruct {
     struct CompressedDiskRead minigame____0;
     struct CompressedDiskRead minigame____1;
     struct CompressedDiskRead minigame____2;
 } __attribute__((packed));
-
+
+
 typedef struct stadiumCompressedDiskReads stadiumCompressedDiskReads, *PstadiumCompressedDiskReads;
-
+
+
 struct stadiumCompressedDiskReads {
     struct stadiumCDRStruct marioStadium;
     struct stadiumCDRStruct bowserCastle;
@@ -22521,42 +27758,46 @@ struct stadiumCompressedDiskReads {
     struct stadiumCDRStruct dkJungle;
     struct stadiumCDRStruct toyField;
 } __attribute__((packed));
-
+
+
 typedef struct stadiumObjectCollision stadiumObjectCollision, *PstadiumObjectCollision;
-
-struct stadiumObjectCollision {
-    struct castleThwompObj *objectArrayPointer;
-    void *stadiumObjRelatedPtr;
-    struct CrowdAnimationStruct *crowdAnimationPtr;
-    void * field3_0xc;
-    void * crowdAnimRelatedPtr;
-    void *unkFloatStructPtr;
-    void (*functionPtr)(void *);
-    void (*functionPtr2(sounds?))(void *);
-    struct LITLightPtr *LITLightPtr;
-    void * field9_0x24;
-    void * field10_0x28;
-    void * field11_0x2c;
-    int objCount;
-    enumObjTypeInFile_ *objTypeArrayPtr;
-    void * ptrToObjDataInfo;
-    void * vertexDataArrayEndPtr;
-    void * vertexDataOffset;
-    void * vertexDataElementEndPtr;
-    void * vertexDataArray;
-    struct Vec3f vec;
-    struct Vec3f vec2;
-    short field21_0x64;
-    short currentRNGConfig_;
-    short rngBasedConfig;
-    byte unkLoadingFlag;
-    byte field25_0x6b;
-    byte gameStatusRelated;
-    byte objectsLoaded_5_;
-} __attribute__((packed));
-
+
+
+// struct stadiumObjectCollision {
+//     struct castleThwompObj *objectArrayPointer;
+//     void *stadiumObjRelatedPtr;
+//     struct CrowdAnimationStruct *crowdAnimationPtr;
+//     void * field3_0xc;
+//     void * crowdAnimRelatedPtr;
+//     void *unkFloatStructPtr;
+//     void (*functionPtr)(void *);
+//     void (*functionPtr2(sounds_))(void *);
+//     struct LITLightPtr *LITLightPtr;
+//     void * field9_0x24;
+//     void * field10_0x28;
+//     void * field11_0x2c;
+//     int objCount;
+//     enumObjTypeInFile_ *objTypeArrayPtr;
+//     void * ptrToObjDataInfo;
+//     void * vertexDataArrayEndPtr;
+//     void * vertexDataOffset;
+//     void * vertexDataElementEndPtr;
+//     void * vertexDataArray;
+//     struct Vec3f vec;
+//     struct Vec3f vec2;
+//     short field21_0x64;
+//     short currentRNGConfig_;
+//     short rngBasedConfig;
+//     byte unkLoadingFlag;
+//     byte field25_0x6b;
+//     byte gameStatusRelated;
+//     byte objectsLoaded_5_;
+// } __attribute__((packed));
+
+
 typedef struct stadiumObjectStruct stadiumObjectStruct, *PstadiumObjectStruct;
-
+
+
 struct stadiumObjectStruct {
     int maybeType_;
     struct CTRLControl ctrl;
@@ -22989,9 +28230,11 @@ struct stadiumObjectStruct {
     undefined field428_0x2b6;
     undefined field429_0x2b7;
 } __attribute__((packed));
-
+
+
 typedef struct stadiumObjects stadiumObjects, *PstadiumObjects;
-
+
+
 struct stadiumObjects {
     float xTrans;
     float yTrans;
@@ -23005,11 +28248,14 @@ struct stadiumObjects {
     byte field9_0x1e;
     byte field10_0x1f;
 } __attribute__((packed));
-
+
+
 typedef struct stadiumSunStruct stadiumSunStruct, *PstadiumSunStruct;
-
+
+
 typedef struct stadiumSunSubStruct stadiumSunSubStruct, *PstadiumSunSubStruct;
-
+
+
 struct stadiumSunSubStruct {
     float movementSpeed_;
     float unknown;
@@ -23019,7 +28265,8 @@ struct stadiumSunSubStruct {
     byte layerType_4ForCoords;
     byte baseLayerInd_;
 } __attribute__((packed));
-
+
+
 struct stadiumSunStruct {
     struct stadiumSunSubStruct layer1_;
     struct stadiumSunSubStruct layer2_;
@@ -23032,9 +28279,11 @@ struct stadiumSunStruct {
     struct stadiumSunSubStruct sunPosition;
     struct stadiumSunSubStruct field9_0x90;
 } __attribute__((packed));
-
+
+
 typedef struct starChanceVsStruct starChanceVsStruct, *PstarChanceVsStruct;
-
+
+
 struct starChanceVsStruct {
     int field0_0x0;
     short field1_0x4;
@@ -23086,9 +28335,11 @@ struct starChanceVsStruct {
     short field47_0x60;
     short field48_0x62;
 } __attribute__((packed));
-
+
+
 typedef struct starMissionStruct starMissionStruct, *PstarMissionStruct;
-
+
+
 struct starMissionStruct {
     enumStarMissions missionType;
     short qty_CharID_points_ability__other;
@@ -23096,7 +28347,8 @@ struct starMissionStruct {
     short difficultyForMatchMissions;
     short chellangeCoins;
 } __attribute__((packed));
-
+
+
 enum {
     stealing_BasesOccupiedStatus_stealNotStarted=0,
     stealing_BasesOccupiedStatus_R2OrR3Stealing_NotAllPriorBasesOccipied=1,
@@ -23105,17 +28357,21 @@ enum {
     stealing_BasesOccupiedStatus_R3Stealing_R1_R2Exist=4
 };
 typedef unsigned char stealing_BasesOccupiedStatus;
-
+
+
 typedef struct storedGameInfoStruct storedGameInfoStruct, *PstoredGameInfoStruct;
-
+
+
 typedef struct trackCatchesDuringPlay trackCatchesDuringPlay, *PtrackCatchesDuringPlay;
-
+
+
 struct trackCatchesDuringPlay {
     byte fielderIndex;
     byte outsDuringThisPosession;  /* Counts number of outs that occured due to this catch. */
     byte baseStandingOnWithRunnerOrForOut;  /* If ball was caught while on the base, this is the base index. */
 } __attribute__((packed));
-
+
+
 struct storedGameInfoStruct {
     atBatResult abResultFinal;
     atBatResult abResultTemporary;
@@ -23179,7 +28435,7 @@ struct storedGameInfoStruct {
     byte nBattersThisInning2_;
     byte nBattersThisInning2_stored;
     enum_noHitter noHitterTracker[2];
-    byte consecutiveStrikeouts[A/H][2];
+    byte consecutiveStrikeouts[2][2];
     byte consecutiveABsWithOuts[2];
     byte field64_0x69[2][10];
     byte inningOfFirstRun;
@@ -23198,10 +28454,12 @@ struct storedGameInfoStruct {
     byte goAheadRunsOccurances;
     undefined field79_0x8b;
 } __attribute__((packed));
-
-typedef struct struct struct, *Pstruct;
-
-struct struct {  /* bases */
+
+
+typedef struct struct_ struct_, *Pstruct;
+
+
+struct struct_ {  /* bases */
     float field0_0x0;
     float field1_0x4;
     float field2_0x8;
@@ -23211,18 +28469,22 @@ struct struct {  /* bases */
     float field6_0x18;
     float field7_0x1c;
 } __attribute__((packed));
-
+
+
 typedef struct structBattingHit structBattingHit, *PstructBattingHit;
-
+
+
 struct structBattingHit {
     uint field0_0x0;
     uint field1_0x4;
     uint field2_0x8[2];
     uint field3_0x10;
 } __attribute__((packed));
-
+
+
 typedef struct structCharSelect structCharSelect, *PstructCharSelect;
-
+
+
 struct structCharSelect {
     byte rosterCharID[2][9];
     byte positionSwapMapping[2][9];
@@ -23230,9 +28492,11 @@ struct structCharSelect {
     byte unused[2][9];
     byte rosterSpotFilledInd[2][9];
 } __attribute__((packed));
-
+
+
 typedef struct structScoutMissionProbabilities structScoutMissionProbabilities, *PstructScoutMissionProbabilities;
-
+
+
 struct structScoutMissionProbabilities {
     byte field0_0x0[4];
     byte field1_0x4[4];
@@ -23244,9 +28508,11 @@ struct structScoutMissionProbabilities {
     undefined field7_0xd;
     undefined field8_0xe;
 } __attribute__((packed));
-
+
+
 typedef struct struct_GraphicsObject struct_GraphicsObject, *Pstruct_GraphicsObject;
-
+
+
 struct struct_GraphicsObject {
     void * next;
     void * prev;
@@ -23278,9 +28544,11 @@ struct struct_GraphicsObject {
     undefined field27_0xab;
     short paletteSlots[10];
 } __attribute__((packed));
-
+
+
 typedef struct struct_challenge_matchCoinsAwarded struct_challenge_matchCoinsAwarded, *Pstruct_challenge_matchCoinsAwarded;
-
+
+
 struct struct_challenge_matchCoinsAwarded {
     short win_tie_loss_bonus[3];
     short marginOfVictoryBonus;
@@ -23293,9 +28561,11 @@ struct struct_challenge_matchCoinsAwarded {
     short bjNetWinIncrement[3];
     short toyfieldLoss;
 } __attribute__((packed));
-
+
+
 typedef struct struct_chompConstsSubStruct struct_chompConstsSubStruct, *Pstruct_chompConstsSubStruct;
-
+
+
 struct struct_chompConstsSubStruct {
     struct Vec3f basePosition_;
     byte field1_0xc;
@@ -23311,9 +28581,11 @@ struct struct_chompConstsSubStruct {
     byte field11_0x32;
     byte field12_0x33;
 } __attribute__((packed));
-
+
+
 typedef struct struct_controlOptions struct_controlOptions, *Pstruct_controlOptions;
-
+
+
 struct struct_controlOptions {
     bool autoRunning;
     bool autoFielding;
@@ -23323,9 +28595,11 @@ struct struct_controlOptions {
     bool field5_0x5;
     bool field6_0x6;
 } __attribute__((packed));
-
+
+
 typedef struct struct_eggConstants struct_eggConstants, *Pstruct_eggConstants;
-
+
+
 struct struct_eggConstants {
     float _0_35_targetY;
     float _7_0_firstBounceZLower;
@@ -23341,9 +28615,11 @@ struct struct_eggConstants {
     short _60_vParabolaUpper;
     short bounceSpeedLerpValues[4];
 } __attribute__((packed));
-
+
+
 typedef struct struct_gameSettingRelated struct_gameSettingRelated, *Pstruct_gameSettingRelated;
-
+
+
 struct struct_gameSettingRelated {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -23443,24 +28719,30 @@ struct struct_gameSettingRelated {
     undefined field95_0x6e;
     undefined field96_0x6f;
 } __attribute__((packed));
-
+
+
 typedef struct struct_graphicsObjectPtr struct_graphicsObjectPtr, *Pstruct_graphicsObjectPtr;
-
+
+
 struct struct_graphicsObjectPtr {
     void * next;
     void * field1_0x4;
     void * prev;
 } __attribute__((packed));
-
+
+
 typedef struct struct_graphicsRelated struct_graphicsRelated, *Pstruct_graphicsRelated;
-
+
+
 struct struct_graphicsRelated {
     struct struct_GraphicsObject *graphicsObjectPtr;
     void * ownerScenePtr;
 } __attribute__((packed));
-
+
+
 typedef struct struct_graphicsRelatedSubStruct struct_graphicsRelatedSubStruct, *Pstruct_graphicsRelatedSubStruct;
-
+
+
 struct struct_graphicsRelatedSubStruct {
     int next;
     int field1_0x4;
@@ -23511,9 +28793,11 @@ struct struct_graphicsRelatedSubStruct {
     int field46_0xb8;
     int field47_0xbc;
 } __attribute__((packed));
-
+
+
 typedef struct struct_hitTrajOptions struct_hitTrajOptions, *Pstruct_hitTrajOptions;
-
+
+
 struct struct_hitTrajOptions {
     uint field0_0x0;
     uint field1_0x4;
@@ -23521,9 +28805,11 @@ struct struct_hitTrajOptions {
     uint nonEasyBattingBitOptions;  /* 8th position is traj override */
     uint ballTailAnimationCode;
 } __attribute__((packed));
-
+
+
 typedef struct struct_pitchConstants struct_pitchConstants, *Pstruct_pitchConstants;
-
+
+
 struct struct_pitchConstants {
     short field0_0x0;
     short curve_lerp_lower;
@@ -23533,9 +28819,11 @@ struct struct_pitchConstants {
     short verticalParabolicConstant;
     short horizontalParabolaConstant;
 } __attribute__((packed));
-
+
+
 typedef struct struct_someChompConstants struct_someChompConstants, *Pstruct_someChompConstants;
-
+
+
 struct struct_someChompConstants {
     struct struct_chompConstsSubStruct byChomp[2];
     float field1_0x68;
@@ -23582,18 +28870,22 @@ struct struct_someChompConstants {
     undefined field42_0x9a;
     undefined field43_0x9b;
 } __attribute__((packed));
-
+
+
 typedef struct struct_strikeZone struct_strikeZone, *Pstruct_strikeZone;
-
+
+
 struct struct_strikeZone {
     float _0_53_left;
     float _0_53_right;
     float _1_05_front;
     float _0_5_back;
 } __attribute__((packed));
-
+
+
 typedef struct struct_vsSituations struct_vsSituations, *Pstruct_vsSituations;
-
+
+
 struct struct_vsSituations {
     int urgencyRelated;
     int field1_0x4;
@@ -23612,11 +28904,14 @@ struct struct_vsSituations {
     int trackIf0x28Triggered;
     int charComboAreAlsoCaptains_;
 } __attribute__((packed));
-
+
+
 typedef struct subStruct subStruct, *PsubStruct;
-
+
+
 typedef struct unkSubstr unkSubstr, *PunkSubstr;
-
+
+
 struct unkSubstr {
     int field0_0x0;
     int field1_0x4;
@@ -23637,7 +28932,8 @@ struct unkSubstr {
     int field16_0x40;
     int field17_0x44;
 } __attribute__((packed));
-
+
+
 struct subStruct {
     void * field0_0x0;
     int field1_0x4;
@@ -23801,9 +29097,11 @@ struct subStruct {
     byte field159_0x9b9;
     byte pad[2];
 } __attribute__((packed));
-
+
+
 typedef struct subSubStruct subSubStruct, *PsubSubStruct;
-
+
+
 struct subSubStruct {
     byte field0_0x0[140];
     int field1_0x8c;
@@ -23893,14 +29191,17 @@ struct subSubStruct {
     byte field85_0x11d;
     byte pad[2];
 } __attribute__((packed));
-
+
+
 typedef struct synthITDInfo synthITDInfo, *PsynthITDInfo;
-
+
+
 struct synthITDInfo {
     u8 music;
     u8 sfx;
 } __attribute__((packed));
-
+
+
 enum {
     tagAnimSonething_n_a=0,
     tagAnimSonething_regularTag=1,
@@ -23908,7 +29209,8 @@ enum {
     tagAnimSonething_tagOnRunnerTaggingUpAtDifferentBase_=5
 };
 typedef unsigned char tagAnimSonething;
-
+
+
 enum {
     teamManagementMenuProcesses_initialize=0,
     teamManagementMenuProcesses_loadTeamManagement=1,
@@ -23922,7 +29224,8 @@ enum {
     teamManagementMenuProcesses_unloadMenu1=14
 };
 typedef unsigned short teamManagementMenuProcesses;
-
+
+
 enum {
     throwYType_default_=0,
     throwYType_hitGround=1,
@@ -23931,9 +29234,11 @@ enum {
     throwYType_aboveCharY=4
 };
 typedef unsigned int throwYType;
-
+
+
 typedef struct thwompConstants thwompConstants, *PthwompConstants;
-
+
+
 struct thwompConstants {
     float _12_0_smoke0;
     float _10_928572_smoke1;
@@ -23950,9 +29255,11 @@ struct thwompConstants {
     byte pad2[4];
     double _0_2_raisingSpeed;
 } __attribute__((packed));
-
+
+
 typedef struct thwompStructure thwompStructure, *PthwompStructure;
-
+
+
 struct thwompStructure {
     struct Vec3f basePosition;
     float rotation;
@@ -23961,9 +29268,11 @@ struct thwompStructure {
     byte field4_0x12;
     byte field5_0x13;
 } __attribute__((packed));
-
+
+
 typedef struct toyFieldConstants toyFieldConstants, *PtoyFieldConstants;
-
+
+
 struct toyFieldConstants {
     short field0_0x0;
     short field1_0x2;
@@ -23976,16 +29285,19 @@ struct toyFieldConstants {
     short field8_0x10;
     short field9_0x12;
 } __attribute__((packed));
-
+
+
 enum {
     toyField_batterRank_firstPlace=0,
     toyField_batterRank_middlePlace=1,
     toyField_batterRank_lastPlace=2
 };
 typedef unsigned int toyField_batterRank;
-
+
+
 typedef struct trajMultZones trajMultZones, *PtrajMultZones;
-
+
+
 struct trajMultZones {
     float zone1;
     float zone2;
@@ -23993,17 +29305,21 @@ struct trajMultZones {
     float zone4;
     float zone5;
 } __attribute__((packed));
-
+
+
 typedef struct trajStruct trajStruct, *PtrajStruct;
-
+
+
 struct trajStruct {
     struct trajMultZones Mid;
     struct trajMultZones Pull;
     struct trajMultZones Push;
 } __attribute__((packed));
-
+
+
 typedef struct trajZones trajZones, *PtrajZones;
-
+
+
 struct trajZones {
     byte bottom;
     byte low;
@@ -24011,9 +29327,11 @@ struct trajZones {
     byte high;
     byte top;
 } __attribute__((packed));
-
+
+
 typedef struct trajZonesContact trajZonesContact, *PtrajZonesContact;
-
+
+
 struct trajZonesContact {
     struct trajZones Right_Sour;
     struct trajZones Right_Nice;
@@ -24021,32 +29339,44 @@ struct trajZonesContact {
     struct trajZones Left_Nice;
     struct trajZones Left_Sour;
 } __attribute__((packed));
-
+
+
 typedef struct trajZonesOvr trajZonesOvr, *PtrajZonesOvr;
-
+
+
 typedef struct trajZonesSwing trajZonesSwing, *PtrajZonesSwing;
-
+
+
 struct trajZonesSwing {
     struct trajZonesContact Slap;
     struct trajZonesContact Slap2;
     struct trajZonesContact Charge;
     struct trajZonesContact Charge2;
 } __attribute__((packed));
-
+
+
 struct trajZonesOvr {
     struct trajZonesSwing Mid;
     struct trajZonesSwing High;
     struct trajZonesSwing Low;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /decompHeaders/types.h/uint - /uint */
-
-
-/* WARNING! conflicting data type names: /types.h/ulong - /ulong */
-
+
+
+
+
+/* WARNING! conflicting data type names: /decompHeaders/types.h/uint - /uint */
+
+
+
+
+
+/* WARNING! conflicting data type names: /types.h/ulong - /ulong */
+
+
+
 typedef struct unk807b0000 unk807b0000, *Punk807b0000;
-
+
+
 struct unk807b0000 {
     char TEVSettingComment[51];  /* the display state to be displayed is not part of the tev setting */
     undefined field1_0x33;
@@ -24141,9 +29471,11 @@ struct unk807b0000 {
     undefined8 field90_0x98;
     float field91_0xa0[20];
 } __attribute__((packed));
-
+
+
 typedef struct unkAnimRelatedStruct unkAnimRelatedStruct, *PunkAnimRelatedStruct;
-
+
+
 struct unkAnimRelatedStruct {
     float fielderVelo_[4];
     float field1_0x10;
@@ -24188,29 +29520,37 @@ struct unkAnimRelatedStruct {
     byte field40_0x294[84];
     byte field41_0x2e8[12];
 } __attribute__((packed));
-
+
+
 typedef struct unkAnimSub unkAnimSub, *PunkAnimSub;
-
+
+
 struct unkAnimSub {
     float field0_0x0;
     float field1_0x4;
     byte field2_0x8[9];
     byte field3_0x11[15];
 } __attribute__((packed));
-
-typedef void * (*unkCB)(void *, struct DODisplayObj *, int, void *, int, char *);
-
+
+
+typedef void * (*unkCB)(void *, struct DODisplayObj *, int, void *, int, char *);
+
+
+
 typedef struct unkGraphicStruct unkGraphicStruct, *PunkGraphicStruct;
-
+
+
 struct unkGraphicStruct {
     struct Mtx mtx;
     struct Mtx mtx2;
     float field2_0x60;
     float field3_0x64;
 } __attribute__((packed));
-
+
+
 typedef struct unkSimulationRelatedStruct unkSimulationRelatedStruct, *PunkSimulationRelatedStruct;
-
+
+
 struct unkSimulationRelatedStruct {
     int frameCountRelated;
     byte loadingStateRelated_;
@@ -24222,9 +29562,11 @@ struct unkSimulationRelatedStruct {
     undefined field7_0xa;
     undefined field8_0xb;
 } __attribute__((packed));
-
+
+
 typedef struct unkSoundStruct unkSoundStruct, *PunkSoundStruct;
-
+
+
 struct unkSoundStruct {
     void * field0_0x0;
     int field1_0x4;
@@ -24256,9 +29598,11 @@ struct unkSoundStruct {
     undefined field27_0x36;
     undefined field28_0x37;
 } __attribute__((packed));
-
+
+
 typedef struct unkStateRelatedStruct unkStateRelatedStruct, *PunkStateRelatedStruct;
-
+
+
 struct unkStateRelatedStruct {
     struct DODisplayObj *DODisplayListPtr_;
     struct GEOPalette *field1_0x4;
@@ -24348,9 +29692,11 @@ struct unkStateRelatedStruct {
     byte field85_0xdb;
     byte field86_0xdc[72];
 } __attribute__((packed));
-
+
+
 typedef struct unkStruct unkStruct, *PunkStruct;
-
+
+
 struct unkStruct {
     short field0_0x0;
     short field1_0x2;
@@ -24481,9 +29827,11 @@ struct unkStruct {
     int field126_0xbf8[2];
     int field127_0xc00;
 } __attribute__((packed));
-
+
+
 typedef struct unkStructAutoFielderRelatedMaybe unkStructAutoFielderRelatedMaybe, *PunkStructAutoFielderRelatedMaybe;
-
+
+
 struct unkStructAutoFielderRelatedMaybe {
     byte field0_0x0[4];
     byte field1_0x4[4];
@@ -24564,11 +29912,14 @@ struct unkStructAutoFielderRelatedMaybe {
     undefined field76_0x6e;
     undefined field77_0x6f;
 } __attribute__((packed));
-
+
+
 typedef struct unkStructMatrix_ unkStructMatrix_, *PunkStructMatrix_;
-
+
+
 typedef struct unkSubstruct unkSubstruct, *PunkSubstruct;
-
+
+
 struct unkSubstruct {
     void * unkPtr;
     int field1_0x4;
@@ -24602,7 +29953,8 @@ struct unkSubstruct {
     int field29_0x9c;
     float unkFloats[18];
 } __attribute__((packed));
-
+
+
 struct unkStructMatrix_ {
     struct unkStructMatrix_ *ptr;
     short field1_0x4;
@@ -24688,9 +30040,11 @@ struct unkStructMatrix_ {
     byte field81_0x120[4];
     struct unkSubstruct unkSubStruct;
 } __attribute__((packed));
-
+
+
 typedef struct unkStruct_80892bac unkStruct_80892bac, *PunkStruct_80892bac;
-
+
+
 struct unkStruct_80892bac {
     struct Vec3f field0_0x0;
     short maybeFielderIndex;
@@ -25673,16 +31027,20 @@ struct unkStruct_80892bac {
     undefined field978_0x3de;
     undefined field979_0x3df;
 } __attribute__((packed));
-
+
+
 typedef struct unkWallBallSubstruct unkWallBallSubstruct, *PunkWallBallSubstruct;
-
+
+
 struct unkWallBallSubstruct {
     short field0_0x0;
     byte field1_0x2[42];
 } __attribute__((packed));
-
+
+
 typedef struct unk_0x807B2948 unk_0x807B2948, *Punk_0x807B2948;
-
+
+
 struct unk_0x807B2948 {
     float field0_0x0;
     float field1_0x4;
@@ -25697,11 +31055,14 @@ struct unk_0x807B2948 {
     float field10_0x28;
     float unkFloatArr[133];
 } __attribute__((packed));
-
+
+
 typedef u32 unknown;
-
+
+
 typedef struct unknownLoadingStruct unknownLoadingStruct, *PunknownLoadingStruct;
-
+
+
 struct unknownLoadingStruct {
     byte maybeBaseAddr;  /* Created by retype action */
     undefined field1_0x1;
@@ -25713,12 +31074,16 @@ struct unknownLoadingStruct {
     int unkField;
     int unkFlagOrState;
 } __attribute__((packed));
-
+
+
 typedef struct unknownStatStruct unknownStatStruct, *PunknownStatStruct;
-
-
+
+
+
+
 typedef struct unknownStruct unknownStruct, *PunknownStruct;
-
+
+
 struct unknownStruct {
     void * field0_0x0;
     byte field1_0x4;
@@ -25729,16 +31094,20 @@ struct unknownStruct {
     byte field6_0x9;
     byte pad[6];
 } __attribute__((packed));
-
+
+
 typedef struct us80893310 us80893310, *Pus80893310;
-
+
+
 struct us80893310 {
     short field0_0x0;
     byte field1_0x2[2];
 } __attribute__((packed));
-
+
+
 typedef struct us80893314 us80893314, *Pus80893314;
-
+
+
 struct us80893314 {
     byte field0_0x0;
     byte field1_0x1;
@@ -25748,9 +31117,11 @@ struct us80893314 {
     byte field5_0x5[7];
     float field6_0xc[310];
 } __attribute__((packed));
-
+
+
 typedef struct us808937f8 us808937f8, *Pus808937f8;
-
+
+
 struct us808937f8 {
     short field0_0x0;
     EnumPopupText_byte queuedText_[5];
@@ -25760,9 +31131,11 @@ struct us808937f8 {
     undefined field5_0xa;
     undefined field6_0xb;
 } __attribute__((packed));
-
+
+
 typedef struct us_80893280 us_80893280, *Pus_80893280;
-
+
+
 struct us_80893280 {
     float field0_0x0[4];
     short field1_0x10[3];
@@ -25788,9 +31161,11 @@ struct us_80893280 {
     byte field21_0x78;
     byte field22_0x79[7];
 } __attribute__((packed));
-
+
+
 typedef struct us_80893300 us_80893300, *Pus_80893300;
-
+
+
 struct us_80893300 {
     short field0_0x0;
     short field1_0x2;
@@ -25803,22 +31178,30 @@ struct us_80893300 {
     byte field8_0xc;
     byte field9_0xd;
 } __attribute__((packed));
-
-
-/* WARNING! conflicting data type names: /types.h/ushort - /ushort */
-
+
+
+
+
+/* WARNING! conflicting data type names: /types.h/ushort - /ushort */
+
+
+
 typedef void *va_list;
-
+
+
 typedef struct veloByContact veloByContact, *PveloByContact;
-
+
+
 typedef struct veloContact veloContact, *PveloContact;
-
+
+
 struct veloContact {
     ghidra_word min;
     ghidra_word max;
     s16 gravFactor;
 } __attribute__((packed));
-
+
+
 struct veloByContact {
     struct veloContact Right_Sour;
     struct veloContact Right_Nice;
@@ -25826,18 +31209,22 @@ struct veloByContact {
     struct veloContact Left_Nice;
     struct veloContact Left_Sour;
 } __attribute__((packed));
-
+
+
 typedef struct veloBySwing veloBySwing, *PveloBySwing;
-
+
+
 struct veloBySwing {
     struct veloByContact field0_0x0;
     struct veloByContact field1_0x1e;
     struct veloByContact field2_0x3c;
     struct veloByContact field3_0x5a;
 } __attribute__((packed));
-
+
+
 typedef struct vertRangeByContact vertRangeByContact, *PvertRangeByContact;
-
+
+
 struct vertRangeByContact {
     struct angleRange Right_Sour;
     struct angleRange Right_Nice;
@@ -25845,40 +31232,55 @@ struct vertRangeByContact {
     struct angleRange Left_Nice;
     struct angleRange Left_Sour;
 } __attribute__((packed));
-
+
+
 typedef struct vertStruct_Collision__ vertStruct_Collision__, *PvertStruct_Collision__;
-
+
+
 struct vertStruct_Collision__ {
     undefined field0_0x0;
     bool triangleStrip;
     short numVerts;
     struct Vec3f vec;
 } __attribute__((packed));
-
+
+
 typedef f128 vf128;
-
+
+
 typedef f32 vf32;
-
+
+
 typedef f64 vf64;
-
+
+
 typedef s16 vs16;
-
+
+
 typedef s32 vs32;
-
+
+
 typedef s64 vs64;
-
+
+
 typedef s8 vs8;
-
+
+
 typedef u16 vu16;
-
+
+
 typedef u32 vu32;
-
+
+
 typedef u64 vu64;
-
+
+
 typedef u8 vu8;
-
+
+
 typedef struct wallBallConstants1 wallBallConstants1, *PwallBallConstants1;
-
+
+
 struct wallBallConstants1 {
     float const_0_1_pitchVeloMult;
     float const_0_1_wallBreakOffset;
@@ -25890,9 +31292,11 @@ struct wallBallConstants1 {
     byte field7_0x12;
     byte field8_0x13;
 } __attribute__((packed));
-
+
+
 typedef struct wallBallConstants2 wallBallConstants2, *PwallBallConstants2;
-
+
+
 struct wallBallConstants2 {
     float const_0_1;
     float const_0_3;
@@ -25901,9 +31305,11 @@ struct wallBallConstants2 {
     byte randomBounds[4][2];
     byte perfect__OverchargeProb[4];
 } __attribute__((packed));
-
+
+
 typedef struct wallBallStruct2 wallBallStruct2, *PwallBallStruct2;
-
+
+
 struct wallBallStruct2 {
     short wallHealth;
     short field1_0x2;
@@ -25917,17 +31323,21 @@ struct wallBallStruct2 {
     short field9_0x12;
     short field10_0x14;
 } __attribute__((packed));
-
+
+
 typedef struct wallBallStruct3 wallBallStruct3, *PwallBallStruct3;
-
+
+
 struct wallBallStruct3 {
     float field0_0x0[7];
     float field1_0x1c[7];
     float field2_0x38[7];
 } __attribute__((packed));
-
+
+
 typedef struct warioStadiumObject warioStadiumObject, *PwarioStadiumObject;
-
+
+
 struct warioStadiumObject {
     float field0_0x0;
     float field1_0x4;
@@ -25937,9 +31347,11 @@ struct warioStadiumObject {
     byte field5_0xe;
     byte field6_0xf;
 } __attribute__((packed));
-
+
+
 typedef struct warioStadiumSandStars warioStadiumSandStars, *PwarioStadiumSandStars;
-
+
+
 struct warioStadiumSandStars {
     float field0_0x0;
     float field1_0x4;
@@ -25949,9 +31361,11 @@ struct warioStadiumSandStars {
     byte field5_0xe;
     byte field6_0xf;
 } __attribute__((packed));
-
+
+
 typedef struct warioStadiumTrees warioStadiumTrees, *PwarioStadiumTrees;
-
+
+
 struct warioStadiumTrees {
     float field0_0x0;
     float field1_0x4;
@@ -25965,11 +31379,14 @@ struct warioStadiumTrees {
     byte field9_0x1e;
     byte field10_0x1f;
 } __attribute__((packed));
-
+
+
 typedef struct weightStruct weightStruct, *PweightStruct;
-
+
+
 typedef struct weightsStruct weightsStruct, *PweightsStruct;
-
+
+
 struct weightsStruct {
     float field0_0x0;
     float field1_0x4;
@@ -25977,7 +31394,8 @@ struct weightsStruct {
     float baseCoveringRangeModifier;
     float diveStartOffset;
 } __attribute__((packed));
-
+
+
 struct weightStruct {
     struct weightsStruct field0_0x0;
     struct weightsStruct field1_0x14;
@@ -25986,9 +31404,11 @@ struct weightStruct {
     struct weightsStruct field4_0x50;
     struct weightsStruct field5_0x64;
 } __attribute__((packed));
-
+
+
 typedef struct yoshiStadiumPlants_ yoshiStadiumPlants_, *PyoshiStadiumPlants_;
-
+
+
 struct yoshiStadiumPlants_ {
     float x;
     float y;
@@ -26001,7 +31421,8 @@ struct yoshiStadiumPlants_ {
     float field8_0x14;
     float spitAngle_;
 } __attribute__((packed));
-
+
+
 
 
 // =============================================================================
@@ -38369,2728 +43790,2728 @@ struct yoshiStadiumPlants_ {
 
 // =============================================================================
 
-static inline void system_reset_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000100)(param_1, param_2, param_3); }
-static inline void machine_check_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000200)(param_1, param_2, param_3); }
-static inline void dsi_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000300)(param_1, param_2, param_3); }
-static inline void isi_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000400)(param_1, param_2, param_3); }
-static inline void external_interrupt_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000500)(param_1, param_2, param_3); }
-static inline void alignment_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000600)(param_1, param_2, param_3); }
-static inline void program_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000700)(param_1, param_2, param_3); }
-static inline void floating_point_unavailable_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000800)(param_1, param_2, param_3); }
-static inline void decrementer_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000900)(param_1, param_2, param_3); }
-static inline void system_call_exception_handler(void) { ((void(*)(void))0x80000C00)(); }
-static inline void trace_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000D00)(param_1, param_2, param_3); }
-static inline void performance_monitor_interrupt_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000F00)(param_1, param_2, param_3); }
-static inline void instruction_address_breakpoint_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80001300)(param_1, param_2, param_3); }
-static inline void thermal_management_interrupt_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80001700)(param_1, param_2, param_3); }
-static inline void __check_pad3(void) { ((void(*)(void))0x80003100)(); }
-static inline void __check_pad3_(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, int param_10) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int))0x80003110)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10); }
-static inline void __set_debug_bba(void) { ((void(*)(void))0x80003140)(); }
-static inline byte __get_debug_bba(void) { return ((byte(*)(void))0x8000314C)(); }
-static inline void __start(void) { ((void(*)(void))0x80003154)(); }
-static inline undefined8 __init_registers(void) { return ((undefined8(*)(void))0x800032B0)(); }
-static inline void __init_data(void) { ((void(*)(void))0x80003340)(); }
-static inline void __init_hardware(void) { ((void(*)(void))0x80003400)(); }
-static inline void __flush_cache(uint param_1, int param_2) { ((void(*)(uint, int))0x80003424)(param_1, param_2); }
-static inline undefined4 TRK_memset(undefined4 param_1) { return ((undefined4(*)(undefined4))0x80003458)(param_1); }
-static inline void TRK_memcpy(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80003488)(param_1, param_2, param_3); }
-static inline void __TRK_reset(void) { ((void(*)(void))0x800053E0)(); }
+#define system_reset_exception_handler FUNCTION_ADDRESS(void, 0x80000100)
+#define machine_check_exception_handler FUNCTION_ADDRESS(void, 0x80000200)
+#define dsi_exception_handler FUNCTION_ADDRESS(void, 0x80000300)
+#define isi_exception_handler FUNCTION_ADDRESS(void, 0x80000400)
+#define external_interrupt_exception_handler FUNCTION_ADDRESS(void, 0x80000500)
+#define alignment_exception_handler FUNCTION_ADDRESS(void, 0x80000600)
+#define program_exception_handler FUNCTION_ADDRESS(void, 0x80000700)
+#define floating_point_unavailable_exception_handler FUNCTION_ADDRESS(void, 0x80000800)
+#define decrementer_exception_handler FUNCTION_ADDRESS(void, 0x80000900)
+#define system_call_exception_handler FUNCTION_ADDRESS(void, 0x80000C00)
+#define trace_exception_handler FUNCTION_ADDRESS(void, 0x80000D00)
+#define performance_monitor_interrupt_handler FUNCTION_ADDRESS(void, 0x80000F00)
+#define instruction_address_breakpoint_exception_handler FUNCTION_ADDRESS(void, 0x80001300)
+#define thermal_management_interrupt_exception_handler FUNCTION_ADDRESS(void, 0x80001700)
+#define __check_pad3 FUNCTION_ADDRESS(void, 0x80003100)
+#define __check_pad3_ FUNCTION_ADDRESS(void, 0x80003110, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int)
+#define __set_debug_bba FUNCTION_ADDRESS(void, 0x80003140)
+#define __get_debug_bba FUNCTION_ADDRESS(void, 0x8000314C)
+#define __start FUNCTION_ADDRESS(void, 0x80003154)
+#define __init_registers FUNCTION_ADDRESS(void, 0x800032B0)
+#define __init_data FUNCTION_ADDRESS(void, 0x80003340)
+#define __init_hardware FUNCTION_ADDRESS(void, 0x80003400)
+#define __flush_cache FUNCTION_ADDRESS(void, 0x80003424)
+#define TRK_memset FUNCTION_ADDRESS(void, 0x80003458)
+#define TRK_memcpy FUNCTION_ADDRESS(void, 0x80003488)
+#define __TRK_reset FUNCTION_ADDRESS(void, 0x800053E0)
 #define memset FUNCTION_ADDRESS(int, 0x8000540C, void * /*ptr*/, uint /*val*/, uint /*Count*/)
-static inline void TRK_fill_mem(undefined * param_1, int param_2, int param_3) { ((void(*)(undefined *, int, int))0x8000543C)(param_1, param_2, param_3); }
+#define TRK_fill_mem FUNCTION_ADDRESS(void, 0x8000543C, undefined *, int, int)
 #define memcpy FUNCTION_ADDRESS(void, 0x800054F4, void * /*dst*/, void * /*src*/, uint /*byteCount*/)
-static inline void PostRetraceCallback(void) { ((void(*)(void))0x80008FD0)(); }
+#define PostRetraceCallback FUNCTION_ADDRESS(void, 0x80008FD0)
 #define main FUNCTION_ADDRESS(void, 0x80009180, int, int)
-static inline void PrepFilesToBeLoaded(void) { ((void(*)(void))0x800096DC)(); }
-static inline void handleLoadingProcess(void) { ((void(*)(void))0x800097A0)(); }
-static inline void interpolatePointsUnknown(int count, Vec2f * src, BOOL param_3, BOOL param_4) { ((void(*)(int, Vec2f *, BOOL, BOOL))0x80009E94)(count, src, param_3, param_4); }
-static inline void BezierInterpolate(float percentage, Vec2f * out, Vec2f * p1, Vec2f * p2, Vec2f * p3, Vec2f * p4) { ((void(*)(float, Vec2f *, Vec2f *, Vec2f *, Vec2f *, Vec2f *))0x8000A00C)(percentage, out, p1, p2, p3, p4); }
-static inline void interpolatePointsBezier_Vec2s(undefined8 percentage, int out, Vec2s * param_3, Vec2s * param_4, Vec2s * param_5, Vec2s * param_6, int param_7) { ((void(*)(undefined8, int, Vec2s *, Vec2s *, Vec2s *, Vec2s *, int))0x8000A1E8)(percentage, out, param_3, param_4, param_5, param_6, param_7); }
-static inline int updateMenuOrBackgroundUI(uint * param_1, int param_2, int param_3, Mtx * param_4, int param_5, uint param_6, ushort * * param_7, undefined2 * param_8) { return ((int(*)(uint *, int, int, Mtx *, int, uint, ushort * *, undefined2 *))0x8000BA3C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline int updateHUDRelatedUI(uint * param_1, int param_2, int param_3, Mtx * param_4, uint param_5, uint param_6, ushort * * param_7, TextureObj * param_8) { return ((int(*)(uint *, int, int, Mtx *, uint, uint, ushort * *, TextureObj *))0x8000C194)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline int triggerDefaultHUDAction_(uint * param_1, int param_2, int param_3, Mtx * param_4, uint param_5, uint param_6, ushort * * param_7, undefined4 param_8) { return ((int(*)(uint *, int, int, Mtx *, uint, uint, ushort * *, undefined4))0x8000D164)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void handleUIAction(undefined4 param_1, int param_2, int param_3) { ((void(*)(undefined4, int, int))0x8000D838)(param_1, param_2, param_3); }
-static inline void SetSpriteRect(byte * param_1, TextureObj * param_2, int mat, Vec2i * addition, short param_5) { ((void(*)(byte *, TextureObj *, int, Vec2i *, short))0x8000E900)(param_1, param_2, mat, addition, param_5); }
-static inline void AddVec2iToQuad(Quad * orig, Mtx * mat, Vec2i * addition) { ((void(*)(Quad *, Mtx *, Vec2i *))0x8000EF1C)(orig, mat, addition); }
-static inline void somethingSetTexturePointer(void) { ((void(*)(void))0x8000F48C)(); }
-static inline uint text_initializeNewChannel(int param_1, int param_2, short param_3, undefined4 param_4, undefined4 param_5, int param_6) { return ((uint(*)(int, int, short, undefined4, undefined4, int))0x8000F988)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline int calculateTextBlockWidth(uint textIndex) { return ((int(*)(uint))0x8000FA9C)(textIndex); }
-static inline void practiceTextRelated(undefined4 textChannel, undefined4 param_2, undefined4 letterBeingDrawn) { ((void(*)(undefined4, undefined4, undefined4))0x8000FD9C)(textChannel, param_2, letterBeingDrawn); }
-static inline void text_setPtrToWhereCharsAreStored(undefined4 r3_channelNumber, undefined4 r4_param_2, undefined4 r5_textOffset) { ((void(*)(undefined4, undefined4, undefined4))0x8000FE08)(r3_channelNumber, r4_param_2, r5_textOffset); }
-static inline void setText0x2aTo0(undefined4 textChannel) { ((void(*)(undefined4))0x8000FEE8)(textChannel); }
-static inline void initializeTextParameters(undefined4 param_1, undefined4 param_2, undefined2 xPos, undefined2 yPos, undefined1 param_5, undefined4 color, undefined1 textStyle) { ((void(*)(undefined4, undefined4, undefined2, undefined2, undefined1, undefined4, undefined1))0x8000FF04)(param_1, param_2, xPos, yPos, param_5, color, textStyle); }
-static inline void drawTransformedSprite(int xPos, int yPos, int param_3, int param_4, short width, int texture, int spriteType, int transformMtx) { ((void(*)(int, int, int, int, short, int, int, int))0x800100A4)(xPos, yPos, param_3, param_4, width, texture, spriteType, transformMtx); }
-static inline void DrawText(int textBlockIndex) { ((void(*)(int))0x80010498)(textBlockIndex); }
-static inline void DrawTextOnCondition(int param_1) { ((void(*)(int))0x80010F2C)(param_1); }
-static inline void initTextRendering_(void) { ((void(*)(void))0x80010FA0)(); }
-static inline void animationRelated(int animStruct, int param_2) { ((void(*)(int, int))0x800111FC)(animStruct, param_2); }
-static inline void LoadModel(AnimationStruct * animStructPtr) { ((void(*)(AnimationStruct *))0x800127F8)(animStructPtr); }
-static inline void animateModelArmsGlovesBats(AnimationStruct * animStruct) { ((void(*)(AnimationStruct *))0x80013680)(animStruct); }
-static inline undefined4 loadSomethingFromDiskAtBeginningOfAB1(int param_1) { return ((undefined4(*)(int))0x80014D4C)(param_1); }
-static inline undefined4 loadSomethingFromDiskAtBeginningOfAB2(int param_1) { return ((undefined4(*)(int))0x80014E50)(param_1); }
-static inline undefined4 loadBatterModelFromDisk_(int param_1) { return ((undefined4(*)(int))0x80014F40)(param_1); }
-static inline void practice_loadAllGraphics_(undefined4 team) { ((void(*)(undefined4))0x8001594C)(team); }
-static inline void setupAnimationModelMemory(void) { ((void(*)(void))0x80018024)(); }
-static inline void animationInitializationRunnerRelated(int param_1, undefined * param_2) { ((void(*)(int, undefined *))0x80018270)(param_1, param_2); }
-static inline void challengeMapRelated(void) { ((void(*)(void))0x8001A6B0)(); }
-static inline void copyAnimationStructures(void) { ((void(*)(void))0x8001B2D0)(); }
-static inline int getAnimationCollisionOffset(int fielderIndex, int offsetType, float * collisionOffset) { return ((int(*)(int, int, float *))0x8001B728)(fielderIndex, offsetType, collisionOffset); }
-static inline bool getAnimRelatedCoordinates(int character, enumAnimationCoordinatesType animationCode, Vec3f * coords) { return ((bool(*)(int, enumAnimationCoordinatesType, Vec3f *))0x8001B80C)(character, animationCode, coords); }
-static inline void QueueCharacterAnimation(int character, EnumCharacterAnimation_int animation, byte param_3, byte param_4, short param_5, bool flip, int param_7) { ((void(*)(int, EnumCharacterAnimation_int, byte, byte, short, bool, int))0x8001B918)(character, animation, param_3, param_4, param_5, flip, param_7); }
-static inline void AnimateCharacter(int character, EnumCharacterAnimation_int animationIndex, bool loop, byte param_4, byte param_5, short param_6, byte param_7, int param_8) { ((void(*)(int, EnumCharacterAnimation_int, bool, byte, byte, short, byte, int))0x8001B990)(character, animationIndex, loop, param_4, param_5, param_6, param_7, param_8); }
-static inline undefined4 loadFielderActors(int param_1, OSThread * param_2) { return ((undefined4(*)(int, OSThread *))0x8001C588)(param_1, param_2); }
-static inline bool loadAndAnimateCharacter(int charID, int charIndexIfMinigame) { return ((bool(*)(int, int))0x8001C67C)(charID, charIndexIfMinigame); }
-static inline int loadCharacterAnimation(int character) { return ((int(*)(int))0x8001C920)(character); }
-static inline void initStadiumLighting(void) { ((void(*)(void))0x8001CBD4)(); }
-static inline void stadiumSetupRelated(void) { ((void(*)(void))0x8001CE74)(); }
-static inline void applyUniformScaleToObject(float scaleFactor, int index) { ((void(*)(float, int))0x8001D0D0)(scaleFactor, index); }
-static inline void applyNonUniformScaleToObject(float xScale, float yScale, float zScale, int index) { ((void(*)(float, float, float, int))0x8001D110)(xScale, yScale, zScale, index); }
-static inline void baseballCTRLSetScale(float xS, float yS, float zS, int index) { ((void(*)(float, float, float, int))0x8001D148)(xS, yS, zS, index); }
-static inline void updateAnimationAction(int animIndex, int bitFlag, int actionFlag) { ((void(*)(int, int, int))0x8001D180)(animIndex, bitFlag, actionFlag); }
-static inline void animRelated_8001db74(ushort * param_1) { ((void(*)(ushort *))0x8001DB74)(param_1); }
-static inline void setNullPtrForStadiumObjs(void) { ((void(*)(void))0x8001E474)(); }
-static inline void resetGameStadiumStateOnExit(void) { ((void(*)(void))0x8001F228)(); }
-static inline void challengeMapMaybe_(void) { ((void(*)(void))0x8001F4C0)(); }
-static inline void somethingFileHandlingLoadingRelated(void) { ((void(*)(void))0x8001F5E8)(); }
-static inline void initShortsHandleCompressedDiskReads(int baseAddress) { ((void(*)(int))0x8001FC4C)(baseAddress); }
-static inline int calledWhenStartingMatch(void) { return ((int(*)(void))0x80020048)(); }
-static inline void challenge_setTransitionScreenCharacterPortrait(undefined1 param_1, undefined1 captain) { ((void(*)(undefined1, undefined1))0x800203E0)(param_1, captain); }
-static inline void changeScene_(byte param_1, short param_2) { ((void(*)(byte, short))0x800204CC)(param_1, param_2); }
-static inline void soundOrMusicRelated(void) { ((void(*)(void))0x80021308)(); }
-static inline void initSound(void) { ((void(*)(void))0x800219B4)(); }
-static inline undefined * loadCharacterDataRelated(enumCharIDWord charID, uint charTypes_Range1To6, int * charData) { return ((undefined *(*)(enumCharIDWord, uint, int *))0x80021CA4)(charID, charTypes_Range1To6, charData); }
-static inline void maybe_somethingAnimRelated(void) { ((void(*)(void))0x80022634)(); }
-static inline DODisplayObj * InitBone(ACTBone * parent, ACTBoneLayout * layout, ACTActor * actor, short * numBones) { return ((DODisplayObj *(*)(ACTBone *, ACTBoneLayout *, ACTActor *, short *))0x80022DAC)(parent, layout, actor, numBones); }
-static inline void InitActorWithLayout(ActLayout * layout, ACTActor * act) { ((void(*)(ActLayout *, ACTActor *))0x800232E0)(layout, act); }
-static inline void BuildBoneSkinOrientationMatrix(int param_1, Mtx * param_2) { ((void(*)(int, Mtx *))0x8002360C)(param_1, param_2); }
-static inline void characterAndBallDisplayRelated(int ptr, int mayberosterIndex, short maybeRosterIndex, int act, int param_5, int param_6) { ((void(*)(int, int, short, int, int, int))0x8002399C)(ptr, mayberosterIndex, maybeRosterIndex, act, param_5, param_6); }
-static inline void initActorArray(int numActors) { ((void(*)(int))0x80023B04)(numActors); }
-static inline void characterLightingRelated(int inputParams, int outputParams) { ((void(*)(int, int))0x80023B90)(inputParams, outputParams); }
-static inline void gOz_GXSetTexture(GXTevMode param_1, int param_2, int param_3) { ((void(*)(GXTevMode, int, int))0x80024184)(param_1, param_2, param_3); }
-static inline void SetDisplayStateTexture(TextureHeader * tex, int texMap, int tlutName) { ((void(*)(TextureHeader *, int, int))0x80024404)(tex, texMap, tlutName); }
-static inline void endOfGame_Campaign_starRelated_(int playerIndex, int challengeIndex) { ((void(*)(int, int))0x80024840)(playerIndex, challengeIndex); }
-static inline uint multBottomBits_asFloat(uint param_1, uint param_2) { return ((uint(*)(uint, uint))0x80024974)(param_1, param_2); }
-static inline void byteWiseMultiply(int scalar, int bytes) { ((void(*)(int, int))0x800249D8)(scalar, bytes); }
-static inline int LERPToNewRange_Float(int input, int inLow, int inHigh, int outLow, int outHigh) { return ((int(*)(int, int, int, int, int))0x80024B00)(input, inLow, inHigh, outLow, outHigh); }
-static inline double LinearInterpolateToNewRange(double value, double prevMin, double prevMax, double nextMin, double nextMax) { return ((double(*)(double, double, double, double, double))0x80024BB4)(value, prevMin, prevMax, nextMin, nextMax); }
-static inline void ACTActorRelated(ACTActor * ACTActor, GEOPalette * gpl, int param_3, int * param_4) { ((void(*)(ACTActor *, GEOPalette *, int, int *))0x80025C58)(ACTActor, gpl, param_3, param_4); }
-static inline void adjustInternalPointers(ACTActor * baseAddr) { ((void(*)(ACTActor *))0x80025DDC)(baseAddr); }
-static inline void actorRelated(ActLayout * param_1, int param_2, int param_3) { ((void(*)(ActLayout *, int, int))0x80025EEC)(param_1, param_2, param_3); }
-static inline void actRelated(ACTActor * actor, ActLayout * act2) { ((void(*)(ACTActor *, ActLayout *))0x80025FFC)(actor, act2); }
-static inline uint maybeTexOrSpriteRelated(int param_1) { return ((uint(*)(int))0x800263FC)(param_1); }
-static inline void pitchingMachinePitching_(byte param_1) { ((void(*)(byte))0x8003385C)(param_1); }
-static inline void initMinigamePointers(void) { ((void(*)(void))0x80034220)(); }
-static inline void configureMinigameGX(void) { ((void(*)(void))0x8003452C)(); }
-static inline void setupMinigamePointerStruct(void) { ((void(*)(void))0x800348C8)(); }
-static inline void removeGraphicsElementFromScene(DrawingSceneStruct * drawingItem) { ((void(*)(DrawingSceneStruct *))0x80034CEC)(drawingItem); }
-static inline void addGraphicsElementToScene(DrawingSceneStruct * scene, graphicDataEntry * elementData) { ((void(*)(DrawingSceneStruct *, graphicDataEntry *))0x80034E20)(scene, elementData); }
-static inline void allocateGraphicsSlot_(graphicDataEntry * elementData) { ((void(*)(graphicDataEntry *))0x80034F50)(elementData); }
-static inline void maybeProcessUIUpdates(void) { ((void(*)(void))0x80035168)(); }
-static inline int diskReadRelated(CompressedDiskRead * param_1, uint param_2) { return ((int(*)(CompressedDiskRead *, uint))0x80035838)(param_1, param_2); }
-static inline void load_Icon_(int pointer, int drawingItemNumber_, int menuOptionIndexNum, int iconGroup_, int offset_) { ((void(*)(int, int, int, int, int))0x800363D8)(pointer, drawingItemNumber_, menuOptionIndexNum, iconGroup_, offset_); }
-static inline void setIndicatorSlotState(DrawingSceneStruct * param_1, int param_2, int param_3, int param_4, int param_5) { ((void(*)(DrawingSceneStruct *, int, int, int, int))0x8003649C)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined * GetUITexture(void) { return ((undefined *(*)(void))0x80039AA8)(); }
-static inline TextureHeader * returnTexture_(void) { return ((TextureHeader *(*)(void))0x80039AB4)(); }
-static inline void updateFunctionPtr(undefined * param_1) { ((void(*)(undefined *))0x8003A548)(param_1); }
-static inline void GXTexObjRelated(TextureArchiveHeader * header) { ((void(*)(TextureArchiveHeader *))0x8003AD84)(header); }
-static inline void sceneDrawingLogic(void) { ((void(*)(void))0x8003C00C)(); }
-static inline void capApplicationFunction_(void) { ((void(*)(void))0x8004207C)(); }
-static inline undefined4 lineupOrderChangeRelated(uint param_1, int param_2) { return ((undefined4(*)(uint, int))0x80042598)(param_1, param_2); }
-static inline void adjustStatsForSuperstar(int playerNumber) { ((void(*)(int))0x800426DC)(playerNumber); }
-static inline void randRange_FUN_80042bf0(int high, int low) { ((void(*)(int, int))0x80042BF0)(high, low); }
-static inline void sndFXRelated(ushort param_1) { ((void(*)(ushort))0x80042C44)(param_1); }
-static inline undefined4 maybeCheckAndResetGrapicsElement(int param_1, int param_2, uint param_3) { return ((undefined4(*)(int, int, uint))0x80042DA8)(param_1, param_2, param_3); }
-static inline void challengeStarMenu(void) { ((void(*)(void))0x80042DE8)(); }
-static inline void viewStarMenuOverTeamManagementScreen_unused(void) { ((void(*)(void))0x8004338C)(); }
-static inline void swapPosMenu_left_rightPress(undefined1 left_right, undefined1 param_2) { ((void(*)(undefined1, undefined1))0x80043880)(left_right, param_2); }
-static inline void swapPosMenu_up_downPress(byte up_down, undefined1 player) { ((void(*)(byte, undefined1))0x80044C98)(up_down, player); }
-static inline void teamManagement_takeInputs(undefined4 playerNumber) { ((void(*)(undefined4))0x8004617C)(playerNumber); }
-static inline void initTeamManagementScreen(void) { ((void(*)(void))0x80047CE0)(); }
-static inline void teamManagementMenuControl(void) { ((void(*)(void))0x80047FE4)(); }
-static inline void createTeamManagementScreen_inGame(undefined2 param_1, undefined1 teamThatPaused, undefined1 playerWhoPaused) { ((void(*)(undefined2, undefined1, undefined1))0x800486E0)(param_1, teamThatPaused, playerWhoPaused); }
-static inline void createTeamManagementScreen_preGame(void) { ((void(*)(void))0x80048764)(); }
-static inline void startGameRelated(void) { ((void(*)(void))0x80048EB8)(); }
-static inline void possiblyTransferDataBetweenDifferentRels(void) { ((void(*)(void))0x80049878)(); }
-static inline void setTransitionVariable(int param_1) { ((void(*)(int))0x8004ABD8)(param_1); }
-static inline int marioHandOnFire_endFireAnimation_(int param_1) { return ((int(*)(int))0x8004ABE8)(param_1); }
-static inline void newPitcherEnteringGame_(double param_1, int param_2) { ((void(*)(double, int))0x8004AC00)(param_1, param_2); }
-static inline someStadCollisionCode stadiumCollisionRelated(EnumStadiumIDs4 stadiumID, TriangleCollisionTypes_word collisionType) { return ((someStadCollisionCode(*)(EnumStadiumIDs4, TriangleCollisionTypes_word))0x8004AD54)(stadiumID, collisionType); }
-static inline void processCharacterStateBasedOnGameMode(int param_1) { ((void(*)(int))0x8004B7F4)(param_1); }
-static inline void exitMenu(EnumControllerInput param_1) { ((void(*)(EnumControllerInput))0x8004CA6C)(param_1); }
-static inline int returnsCurrentMode(void) { return ((int(*)(void))0x8005268C)(); }
-static inline void setScissorAndProjection(int mode) { ((void(*)(int))0x80052694)(mode); }
-static inline float * returnFloatFromModeIndex(int mode) { return ((float *(*)(int))0x80052734)(mode); }
-static inline void setScissorMode(int param_1) { ((void(*)(int))0x80052798)(param_1); }
-static inline int returnScissorMode(void) { return ((int(*)(void))0x800527BC)(); }
-static inline void graphics_relatedToVsScreen(void) { ((void(*)(void))0x80052968)(); }
-static inline void possiblyTransitionBlackScreen(void) { ((void(*)(void))0x80052F98)(); }
-static inline void drawStarProgressionMenu_(int param_1) { ((void(*)(int))0x80056AE4)(param_1); }
-static inline void someChallengeStarFunction(int param_1) { ((void(*)(int))0x80056F70)(param_1); }
-static inline void someChallengeStarFunction2(int param_1) { ((void(*)(int))0x800572C0)(param_1); }
-static inline void challengeCheckStarsMenuLoading(void) { ((void(*)(void))0x800576F0)(); }
-static inline void starMissionMenu(void) { ((void(*)(void))0x80057C08)(); }
-static inline void scoutFlagMenu(void) { ((void(*)(void))0x80058050)(); }
-static inline void zMenuLoadGraphics(int param_1) { ((void(*)(int))0x80058394)(param_1); }
-static inline void starMissionRelated(int param_1) { ((void(*)(int))0x80059B38)(param_1); }
-static inline void battingOrderProcessInputs(maybeGraphicsManager * param_1, undefined4 playerNum) { ((void(*)(maybeGraphicsManager *, undefined4))0x8005A350)(param_1, playerNum); }
-static inline void teamManagementGraphics_fieldingAlignmentScreen(undefined4 drawingItem) { ((void(*)(undefined4))0x8005AF68)(drawingItem); }
-static inline void teamManagementGraphics_battingOrderScreen(undefined4 drawingItem) { ((void(*)(undefined4))0x8005B298)(drawingItem); }
-static inline void teamManagementGraphics_fieldingAlignmentInfo(int param_1) { ((void(*)(int))0x8005BF40)(param_1); }
-static inline void teamManagementGraphics_battingOrderInfo(int param_1) { ((void(*)(int))0x8005C2B0)(param_1); }
-static inline void teamManagementGraphics_steadyState(void) { ((void(*)(void))0x80060184)(); }
-static inline void teamManagementGraphics_initialLoad(void) { ((void(*)(void))0x80061B9C)(); }
-static inline void SetMenuNumber(void) { ((void(*)(void))0x8006236C)(); }
-static inline void updateCharacterSelectProcessCode(undefined4 player, undefined1 param_2) { ((void(*)(undefined4, undefined1))0x800625A4)(player, param_2); }
-static inline void makeCursorMovable(int param_1) { ((void(*)(int))0x80062674)(param_1); }
-static inline void initializeUnknown(void) { ((void(*)(void))0x80062A50)(); }
-static inline void relatedToReturningToPracticeMenu(void) { ((void(*)(void))0x80062A94)(); }
-static inline void maybeUpdateFielderTerrainStatus(byte fielderIndex) { ((void(*)(byte))0x80063958)(fielderIndex); }
-static inline void handleBallRollInWater(Vec3f * ballPos, Vec3f * velocity) { ((void(*)(Vec3f *, Vec3f *))0x80064344)(ballPos, velocity); }
-static inline int translateStarPitchHitIndex(byte starHitType) { return ((int(*)(byte))0x80064754)(starHitType); }
-static inline byte translateStarPitch(byte param_1) { return ((byte(*)(byte))0x800647E0)(param_1); }
-static inline byte translateStarSwing(byte param_1) { return ((byte(*)(byte))0x8006487C)(param_1); }
-static inline void challengeSetCPURoster2(int player) { ((void(*)(int))0x80064A04)(player); }
-static inline void setInitialBattingOrder(uint param_1) { ((void(*)(uint))0x80065DEC)(param_1); }
-static inline undefined4 teamClassTypeLogos(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x80067264)(param_1, param_2); }
-static inline void teamCompositionLogos(int team, int CaptainCharacterID) { ((void(*)(int, int))0x800675C4)(team, CaptainCharacterID); }
-static inline void teamLogoDetermination(int team) { ((void(*)(int))0x800678CC)(team); }
-static inline void unknownSettingTeamValues(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, byte param_11, byte param_12, byte param_13, byte param_14, byte param_15, byte param_16, byte param_17, int param_18, int param_19, int param_20) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, byte, byte, byte, byte, byte, int, int, int))0x8006885C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16, param_17, param_18, param_19, param_20); }
-static inline void setCaptainLocInRoster_(void) { ((void(*)(void))0x80069854)(); }
-static inline void findCharacterID(enumCharIDWord charID) { ((void(*)(enumCharIDWord))0x800698F8)(charID); }
-static inline void endDemo_(void) { ((void(*)(void))0x80069A98)(); }
-static inline void challengeDrawStarsOnMissionMenu_(void) { ((void(*)(void))0x8006C48C)(); }
-static inline void starMissionRelated_assignPlayersToBJTeamAfterBeatingBowser_(void) { ((void(*)(void))0x8006C7C4)(); }
-static inline void challenge_checkRecruitment(void) { ((void(*)(void))0x8006C9D8)(); }
-static inline double intermediateStatBuffForScoutFlags_(void) { return ((double(*)(void))0x8006CA9C)(); }
-static inline double intermediateStatBuffForCompletedMissions(int param_1) { return ((double(*)(int))0x8006CAC8)(param_1); }
-static inline int challengeRelated(int param_1) { return ((int(*)(int))0x8006CBE4)(param_1); }
-static inline int determineIfMissionDescriptionIsShown_(int param_1) { return ((int(*)(int))0x8006CCA4)(param_1); }
-static inline void PPCMfmsr(void) { ((void(*)(void))0x8006D024)(); }
-static inline void PPCMtmsr(void) { ((void(*)(void))0x8006D02C)(); }
-static inline void PPCMfhid0(void) { ((void(*)(void))0x8006D034)(); }
-static inline void PPCMthid0(void) { ((void(*)(void))0x8006D03C)(); }
-static inline void PPCMfl2cr(void) { ((void(*)(void))0x8006D044)(); }
-static inline void PPCMtl2cr(void) { ((void(*)(void))0x8006D04C)(); }
-static inline void PPCMtdec(void) { ((void(*)(void))0x8006D054)(); }
-static inline void PPCSync(void) { ((void(*)(void))0x8006D05C)(); }
-static inline void PPCHalt(void) { ((void(*)(void))0x8006D064)(); }
-static inline void PPCMtmmcr0(void) { ((void(*)(void))0x8006D078)(); }
-static inline void PPCMtmmcr1(void) { ((void(*)(void))0x8006D080)(); }
-static inline void PPCMtpmc1(void) { ((void(*)(void))0x8006D088)(); }
-static inline void PPCMtpmc2(void) { ((void(*)(void))0x8006D090)(); }
-static inline void PPCMtpmc3(void) { ((void(*)(void))0x8006D098)(); }
-static inline void PPCMtpmc4(void) { ((void(*)(void))0x8006D0A0)(); }
-static inline uint PPCMffpscr(void) { return ((uint(*)(void))0x8006D0A8)(); }
-static inline void PPCMtfpscr(void) { ((void(*)(void))0x8006D0C8)(); }
-static inline void PPCMfhid2(void) { ((void(*)(void))0x8006D0F0)(); }
-static inline void PPCMthid2(void) { ((void(*)(void))0x8006D0F8)(); }
-static inline void PPCMtwpar(void) { ((void(*)(void))0x8006D100)(); }
-static inline void PPCDisableSpeculation(void) { ((void(*)(void))0x8006D108)(); }
-static inline void PPCSetFpNonIEEEMode(void) { ((void(*)(void))0x8006D130)(); }
-static inline int * __OSFPRInit(void) { return ((int *(*)(void))0x8006D138)(); }
-static inline int GetConsoleType(void) { return ((int(*)(void))0x8006D260)(); }
-static inline void InquiryCallback(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x8006D288)(param_1, param_2); }
-static inline void OSInit(void) { ((void(*)(void))0x8006D2C4)(); }
-static inline void OSExceptionInit(void) { ((void(*)(void))0x8006D7A4)(); }
-static inline undefined4 __OSDBIntegrator(void) { return ((undefined4(*)(void))0x8006DA24)(); }
-static inline undefined4 __OSSetExceptionHandler(uint param_1, undefined4 param_2) { return ((undefined4(*)(uint, undefined4))0x8006DA4C)(param_1, param_2); }
-static inline undefined4 __OSGetExceptionHandler(uint param_1) { return ((undefined4(*)(uint))0x8006DA68)(param_1); }
-static inline void OSExceptionVector(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x8006DA7C)(param_1, param_2, param_3); }
-static inline void __DBVECTOR(undefined4 param_1, undefined4 param_2, uint param_3) { ((void(*)(undefined4, undefined4, uint))0x8006DAD4)(param_1, param_2, param_3); }
-static inline void __OSEVSetNumber(undefined4 param_1, undefined4 param_2, uint param_3) { ((void(*)(undefined4, undefined4, uint))0x8006DAE4)(param_1, param_2, param_3); }
-static inline void __OSEVEnd(undefined4 param_1, undefined4 * param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8) { ((void(*)(undefined4, undefined4 *, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8006DB14)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void OSDefaultExceptionHandler(undefined4 param_1, undefined4 * param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8) { ((void(*)(undefined4, undefined4 *, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8006DB18)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline undefined4 __OSPSInit(void) { return ((undefined4(*)(void))0x8006DB70)(); }
-static inline uint __OSGetDIConfig(void) { return ((uint(*)(void))0x8006DBC4)(); }
-static inline void OSRegisterVersion(undefined4 param_1) { ((void(*)(undefined4))0x8006DBD8)(param_1); }
-static inline void OSInitAlarm(void) { ((void(*)(void))0x8006DC04)(); }
-static inline void OSCreateAlarm(undefined4 * param_1) { ((void(*)(undefined4 *))0x8006DC5C)(param_1); }
-static inline void InsertAlarm(undefined4 * param_1, undefined4 param_2, uint param_3, uint param_4, undefined4 param_5) { ((void(*)(undefined4 *, undefined4, uint, uint, undefined4))0x8006DC6C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void OSSetAlarm(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5) { ((void(*)(int, undefined4, undefined4, undefined4, undefined4))0x8006DEBC)(param_1, param_2, param_3, param_4, param_5); }
-static inline void OSCancelAlarm(int * param_1) { ((void(*)(int *))0x8006DF24)(param_1); }
-static inline undefined4 OnReset(int param_1) { return ((undefined4(*)(int))0x8006E2C0)(param_1); }
-static inline uint * * DLInsert(uint * * param_1, uint * * param_2) { return ((uint * *(*)(uint * *, uint * *))0x8006E360)(param_1, param_2); }
-static inline void OSFreeToHeap(int param_1, int param_2) { ((void(*)(int, int))0x8006E40C)(param_1, param_2); }
-static inline int OSSetCurrentHeap(int param_1) { return ((int(*)(int))0x8006E488)(param_1); }
-static inline void OSInitAlloc(int param_1, uint param_2, int param_3) { ((void(*)(int, uint, int))0x8006E498)(param_1, param_2, param_3); }
-static inline void OSCreateHeap(void * low, void * high) { ((void(*)(void *, void *))0x8006E508)(low, high); }
-static inline undefined * OSGetArenaHi(void) { return ((undefined *(*)(void))0x8006E574)(); }
-static inline undefined * OSGetArenaLo(void) { return ((undefined *(*)(void))0x8006E57C)(); }
-static inline void OSSetArenaHi(void * newHi) { ((void(*)(void *))0x8006E584)(newHi); }
-static inline void OSSetArenaLo(void * newLo) { ((void(*)(void *))0x8006E58C)(newLo); }
-static inline void * OSAllocFromArenaLo(int size, int align) { return ((void *(*)(int, int))0x8006E594)(size, align); }
-static inline void __OSInitAudioSystem(void) { ((void(*)(void))0x8006E5C0)(); }
-static inline void __OSStopAudioSystem(void) { ((void(*)(void))0x8006E77C)(); }
-static inline uint DCEnable(void) { return ((uint(*)(void))0x8006E854)(); }
-static inline void DCInvalidateRange(void * addr, int numBytes) { ((void(*)(void *, int))0x8006E868)(addr, numBytes); }
-static inline uint DCFlushRange(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E894)(param_1, param_2); }
-static inline uint DCStoreRange(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E8C4)(param_1, param_2); }
-static inline uint DCFlushRangeNoSync(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E8F4)(param_1, param_2); }
-static inline uint DVStoreRangeNoSync(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E920)(param_1, param_2); }
-static inline uint ICInvalidateRange(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E94C)(param_1, param_2); }
-static inline uint ICFlashInvalidate(void) { return ((uint(*)(void))0x8006E980)(); }
-static inline uint ICEnable(void) { return ((uint(*)(void))0x8006E990)(); }
-static inline ulonglong __LCEnable(void) { return ((ulonglong(*)(void))0x8006E9A4)(); }
-static inline void LCEnable(void) { ((void(*)(void))0x8006EA70)(); }
-static inline ulonglong LCDisable(void) { return ((ulonglong(*)(void))0x8006EAA8)(); }
-static inline void LCLoadBlocks(void) { ((void(*)(void))0x8006EAD0)(); }
-static inline uint LCStoreBlocks(uint param_1) { return ((uint(*)(uint))0x8006EAF4)(param_1); }
-static inline uint LCLoadData(int param_1, int param_2, int param_3) { return ((uint(*)(int, int, int))0x8006EB18)(param_1, param_2, param_3); }
-static inline uint LCStoreData(int param_1, int param_2, int param_3) { return ((uint(*)(int, int, int))0x8006EBC4)(param_1, param_2, param_3); }
-static inline void LCQueueWait(int param_1) { ((void(*)(int))0x8006EC70)(param_1); }
-static inline void L2GlobalInvalidate(void) { ((void(*)(void))0x8006EC84)(); }
-static inline void __OSCacheInit(void) { ((void(*)(void))0x8006EE7C)(); }
-static inline undefined8 __OSLoadFPUContext(undefined8 param_1, undefined4 param_2, int param_3) { return ((undefined8(*)(undefined8, undefined4, int))0x8006EF70)(param_1, param_2, param_3); }
-static inline void __OSSaveFPUContext(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8, undefined8 param_9, undefined8 param_10, undefined8 param_11, undefined8 param_12, undefined8 param_13, undefined4 param_14, undefined4 param_15, int param_16) { ((void(*)(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined4, undefined4, int))0x8006F094)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
-static inline void OSLoadFPUContext(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8006F1BC)(param_1, param_2); }
-static inline void OSSetCurrentContext(OSThread * param_1) { ((void(*)(OSThread *))0x8006F1C4)(param_1); }
-static inline OSContext * OSGetCurrentContext(void) { return ((OSContext *(*)(void))0x8006F220)(); }
-static inline undefined4 OSSaveContext(int param_1) { return ((undefined4(*)(int))0x8006F22C)(param_1); }
-static inline undefined8 OSLoadContext(int param_1) { return ((undefined8(*)(int))0x8006F2AC)(param_1); }
-static inline undefined * OSGetStackPointer(void) { return ((undefined *(*)(void))0x8006F384)(); }
-static inline void OSClearContext(OSThread * param_1) { ((void(*)(OSThread *))0x8006F38C)(param_1); }
-static inline void OSInitContext(int param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(int, undefined4, undefined4))0x8006F3B0)(param_1, param_2, param_3); }
-static inline void OSDumpContext(undefined4 * param_1) { ((void(*)(undefined4 *))0x8006F46C)(param_1); }
-static inline void __OSContextInit(void) { ((void(*)(void))0x8006F798)(); }
+#define PrepFilesToBeLoaded FUNCTION_ADDRESS(void, 0x800096DC)
+#define handleLoadingProcess FUNCTION_ADDRESS(void, 0x800097A0)
+#define interpolatePointsUnknown FUNCTION_ADDRESS(void, 0x80009E94, int /*count*/, Vec2f * /*src*/, BOOL, BOOL)
+#define BezierInterpolate FUNCTION_ADDRESS(void, 0x8000A00C, float /*percentage*/, Vec2f * /*out*/, Vec2f * /*p1*/, Vec2f * /*p2*/, Vec2f * /*p3*/, Vec2f * /*p4*/)
+#define interpolatePointsBezier_Vec2s FUNCTION_ADDRESS(void, 0x8000A1E8, undefined8 /*percentage*/, int /*out*/, Vec2s *, Vec2s *, Vec2s *, Vec2s *, int)
+#define updateMenuOrBackgroundUI FUNCTION_ADDRESS(void, 0x8000BA3C)
+#define updateHUDRelatedUI FUNCTION_ADDRESS(void, 0x8000C194)
+#define triggerDefaultHUDAction_ FUNCTION_ADDRESS(void, 0x8000D164)
+#define handleUIAction FUNCTION_ADDRESS(void, 0x8000D838)
+#define SetSpriteRect FUNCTION_ADDRESS(void, 0x8000E900, byte *, TextureObj *, int /*mat*/, Vec2i * /*addition*/, short)
+#define AddVec2iToQuad FUNCTION_ADDRESS(void, 0x8000EF1C, Quad * /*orig*/, Mtx * /*mat*/, Vec2i * /*addition*/)
+#define somethingSetTexturePointer FUNCTION_ADDRESS(void, 0x8000F48C)
+#define text_initializeNewChannel FUNCTION_ADDRESS(void, 0x8000F988)
+#define calculateTextBlockWidth FUNCTION_ADDRESS(int, 0x8000FA9C, uint /*textIndex*/)
+#define practiceTextRelated FUNCTION_ADDRESS(void, 0x8000FD9C, undefined4 /*textChannel*/, undefined4, undefined4 /*letterBeingDrawn*/)
+#define text_setPtrToWhereCharsAreStored FUNCTION_ADDRESS(void, 0x8000FE08, undefined4 /*r3_channelNumber*/, undefined4 /*r4_param_2*/, undefined4 /*r5_textOffset*/)
+#define setText0x2aTo0 FUNCTION_ADDRESS(void, 0x8000FEE8, undefined4 /*textChannel*/)
+#define initializeTextParameters FUNCTION_ADDRESS(void, 0x8000FF04, undefined4, undefined4, undefined2 /*xPos*/, undefined2 /*yPos*/, undefined1, undefined4 /*color*/, undefined1 /*textStyle*/)
+#define drawTransformedSprite FUNCTION_ADDRESS(void, 0x800100A4, int /*xPos*/, int /*yPos*/, int, int, short /*width*/, int /*texture*/, int /*spriteType*/, int /*transformMtx*/)
+#define DrawText FUNCTION_ADDRESS(void, 0x80010498, int /*textBlockIndex*/)
+#define DrawTextOnCondition FUNCTION_ADDRESS(void, 0x80010F2C, int)
+#define initTextRendering_ FUNCTION_ADDRESS(void, 0x80010FA0)
+#define animationRelated FUNCTION_ADDRESS(void, 0x800111FC, int /*animStruct*/, int)
+#define LoadModel FUNCTION_ADDRESS(void, 0x800127F8, AnimationStruct * /*animStructPtr*/)
+#define animateModelArmsGlovesBats FUNCTION_ADDRESS(void, 0x80013680, AnimationStruct * /*animStruct*/)
+#define loadSomethingFromDiskAtBeginningOfAB1 FUNCTION_ADDRESS(void, 0x80014D4C)
+#define loadSomethingFromDiskAtBeginningOfAB2 FUNCTION_ADDRESS(void, 0x80014E50)
+#define loadBatterModelFromDisk_ FUNCTION_ADDRESS(void, 0x80014F40)
+#define practice_loadAllGraphics_ FUNCTION_ADDRESS(void, 0x8001594C, undefined4 /*team*/)
+#define setupAnimationModelMemory FUNCTION_ADDRESS(void, 0x80018024)
+#define animationInitializationRunnerRelated FUNCTION_ADDRESS(void, 0x80018270, int, undefined *)
+#define challengeMapRelated FUNCTION_ADDRESS(void, 0x8001A6B0)
+#define copyAnimationStructures FUNCTION_ADDRESS(void, 0x8001B2D0)
+#define getAnimationCollisionOffset FUNCTION_ADDRESS(int, 0x8001B728, int /*fielderIndex*/, int /*offsetType*/, float * /*collisionOffset*/)
+#define getAnimRelatedCoordinates FUNCTION_ADDRESS(bool, 0x8001B80C, int /*character*/, enumAnimationCoordinatesType /*animationCode*/, Vec3f * /*coords*/)
+#define QueueCharacterAnimation FUNCTION_ADDRESS(void, 0x8001B918, int /*character*/, EnumCharacterAnimation_int /*animation*/, byte, byte, short, bool /*flip*/, int)
+#define AnimateCharacter FUNCTION_ADDRESS(void, 0x8001B990, int /*character*/, EnumCharacterAnimation_int /*animationIndex*/, bool /*loop*/, byte, byte, short, byte, int)
+#define loadFielderActors FUNCTION_ADDRESS(void, 0x8001C588)
+#define loadAndAnimateCharacter FUNCTION_ADDRESS(bool, 0x8001C67C, int /*charID*/, int /*charIndexIfMinigame*/)
+#define loadCharacterAnimation FUNCTION_ADDRESS(int, 0x8001C920, int /*character*/)
+#define initStadiumLighting FUNCTION_ADDRESS(void, 0x8001CBD4)
+#define stadiumSetupRelated FUNCTION_ADDRESS(void, 0x8001CE74)
+#define applyUniformScaleToObject FUNCTION_ADDRESS(void, 0x8001D0D0, float /*scaleFactor*/, int /*index*/)
+#define applyNonUniformScaleToObject FUNCTION_ADDRESS(void, 0x8001D110, float /*xScale*/, float /*yScale*/, float /*zScale*/, int /*index*/)
+#define baseballCTRLSetScale FUNCTION_ADDRESS(void, 0x8001D148, float /*xS*/, float /*yS*/, float /*zS*/, int /*index*/)
+#define updateAnimationAction FUNCTION_ADDRESS(void, 0x8001D180, int /*animIndex*/, int /*bitFlag*/, int /*actionFlag*/)
+#define animRelated_8001db74 FUNCTION_ADDRESS(void, 0x8001DB74)
+#define setNullPtrForStadiumObjs FUNCTION_ADDRESS(void, 0x8001E474)
+#define resetGameStadiumStateOnExit FUNCTION_ADDRESS(void, 0x8001F228)
+#define challengeMapMaybe_ FUNCTION_ADDRESS(void, 0x8001F4C0)
+#define somethingFileHandlingLoadingRelated FUNCTION_ADDRESS(void, 0x8001F5E8)
+#define initShortsHandleCompressedDiskReads FUNCTION_ADDRESS(void, 0x8001FC4C, int /*baseAddress*/)
+#define calledWhenStartingMatch FUNCTION_ADDRESS(void, 0x80020048)
+#define challenge_setTransitionScreenCharacterPortrait FUNCTION_ADDRESS(void, 0x800203E0, undefined1, undefined1 /*captain*/)
+#define changeScene_ FUNCTION_ADDRESS(void, 0x800204CC)
+#define soundOrMusicRelated FUNCTION_ADDRESS(void, 0x80021308)
+#define initSound FUNCTION_ADDRESS(void, 0x800219B4)
+#define loadCharacterDataRelated FUNCTION_ADDRESS(undefined *, 0x80021CA4, enumCharIDWord /*charID*/, uint /*charTypes?Range1To6*/, int * /*charData*/)
+#define maybe_somethingAnimRelated FUNCTION_ADDRESS(void, 0x80022634)
+#define InitBone FUNCTION_ADDRESS(DODisplayObj *, 0x80022DAC, ACTBone * /*parent*/, ACTBoneLayout * /*layout*/, ACTActor * /*actor*/, short * /*numBones*/)
+#define InitActorWithLayout FUNCTION_ADDRESS(void, 0x800232E0, ActLayout * /*layout*/, ACTActor * /*act*/)
+#define BuildBoneSkinOrientationMatrix FUNCTION_ADDRESS(void, 0x8002360C)
+#define characterAndBallDisplayRelated FUNCTION_ADDRESS(void, 0x8002399C, int /*ptr*/, int /*mayberosterIndex*/, short /*maybeRosterIndex*/, int /*act*/, int, int)
+#define initActorArray FUNCTION_ADDRESS(void, 0x80023B04, int /*numActors*/)
+#define characterLightingRelated FUNCTION_ADDRESS(void, 0x80023B90, int /*inputParams*/, int /*outputParams*/)
+#define gOz_GXSetTexture FUNCTION_ADDRESS(void, 0x80024184)
+#define SetDisplayStateTexture FUNCTION_ADDRESS(void, 0x80024404, TextureHeader * /*tex*/, int /*texMap*/, int /*tlutName*/)
+#define endOfGame_Campaign_starRelated_ FUNCTION_ADDRESS(void, 0x80024840, int /*playerIndex*/, int /*challengeIndex*/)
+#define multBottomBits_asFloat FUNCTION_ADDRESS(void, 0x80024974)
+#define byteWiseMultiply FUNCTION_ADDRESS(void, 0x800249D8, int /*scalar*/, int /*bytes*/)
+#define LERPToNewRange_Float FUNCTION_ADDRESS(int, 0x80024B00, int /*input*/, int /*inLow*/, int /*inHigh*/, int /*outLow*/, int /*outHigh*/)
+#define LinearInterpolateToNewRange FUNCTION_ADDRESS(double, 0x80024BB4, double /*value*/, double /*prevMin*/, double /*prevMax*/, double /*nextMin*/, double /*nextMax*/)
+#define ACTActorRelated FUNCTION_ADDRESS(void, 0x80025C58, ACTActor * /*ACTActor*/, GEOPalette * /*gpl*/, int, int *)
+#define adjustInternalPointers FUNCTION_ADDRESS(void, 0x80025DDC, ACTActor * /*baseAddr*/)
+#define actorRelated FUNCTION_ADDRESS(void, 0x80025EEC, ActLayout *, int, int)
+#define actRelated FUNCTION_ADDRESS(void, 0x80025FFC, ACTActor * /*actor*/, ActLayout * /*act2*/)
+#define maybeTexOrSpriteRelated FUNCTION_ADDRESS(void, 0x800263FC)
+#define pitchingMachinePitching_ FUNCTION_ADDRESS(void, 0x8003385C)
+#define initMinigamePointers FUNCTION_ADDRESS(void, 0x80034220)
+#define configureMinigameGX FUNCTION_ADDRESS(void, 0x8003452C)
+#define setupMinigamePointerStruct FUNCTION_ADDRESS(void, 0x800348C8)
+#define removeGraphicsElementFromScene FUNCTION_ADDRESS(void, 0x80034CEC, DrawingSceneStruct * /*drawingItem*/)
+#define addGraphicsElementToScene FUNCTION_ADDRESS(void, 0x80034E20, DrawingSceneStruct * /*scene*/, graphicDataEntry * /*elementData*/)
+#define allocateGraphicsSlot_ FUNCTION_ADDRESS(void, 0x80034F50, graphicDataEntry * /*elementData*/)
+#define maybeProcessUIUpdates FUNCTION_ADDRESS(void, 0x80035168)
+#define diskReadRelated FUNCTION_ADDRESS(int, 0x80035838, CompressedDiskRead *, uint)
+#define load_Icon_ FUNCTION_ADDRESS(void, 0x800363D8, int /*pointer*/, int /*drawingItemNumber?*/, int /*menuOptionIndexNum*/, int /*iconGroup?*/, int /*offset?*/)
+#define setIndicatorSlotState FUNCTION_ADDRESS(void, 0x8003649C, DrawingSceneStruct *, int, int, int, int)
+#define GetUITexture FUNCTION_ADDRESS(undefined *, 0x80039AA8)
+#define returnTexture_ FUNCTION_ADDRESS(TextureHeader *, 0x80039AB4)
+#define updateFunctionPtr FUNCTION_ADDRESS(void, 0x8003A548)
+#define GXTexObjRelated FUNCTION_ADDRESS(void, 0x8003AD84, TextureArchiveHeader * /*header*/)
+#define sceneDrawingLogic FUNCTION_ADDRESS(void, 0x8003C00C)
+#define capApplicationFunction_ FUNCTION_ADDRESS(void, 0x8004207C)
+#define lineupOrderChangeRelated FUNCTION_ADDRESS(void, 0x80042598)
+#define adjustStatsForSuperstar FUNCTION_ADDRESS(void, 0x800426DC, int /*playerNumber*/)
+#define randRange_FUN_80042bf0 FUNCTION_ADDRESS(void, 0x80042BF0, int /*high*/, int /*low*/)
+#define sndFXRelated FUNCTION_ADDRESS(void, 0x80042C44)
+#define maybeCheckAndResetGrapicsElement FUNCTION_ADDRESS(void, 0x80042DA8)
+#define challengeStarMenu FUNCTION_ADDRESS(void, 0x80042DE8)
+#define viewStarMenuOverTeamManagementScreen_unused FUNCTION_ADDRESS(void, 0x8004338C)
+#define swapPosMenu_left_rightPress FUNCTION_ADDRESS(void, 0x80043880, undefined1 /*left/right*/, undefined1)
+#define swapPosMenu_up_downPress FUNCTION_ADDRESS(void, 0x80044C98, byte /*up/down*/, undefined1 /*player*/)
+#define teamManagement_takeInputs FUNCTION_ADDRESS(void, 0x8004617C, undefined4 /*playerNumber*/)
+#define initTeamManagementScreen FUNCTION_ADDRESS(void, 0x80047CE0)
+#define teamManagementMenuControl FUNCTION_ADDRESS(void, 0x80047FE4)
+#define createTeamManagementScreen_inGame FUNCTION_ADDRESS(void, 0x800486E0, undefined2, undefined1 /*teamThatPaused*/, undefined1 /*playerWhoPaused*/)
+#define createTeamManagementScreen_preGame FUNCTION_ADDRESS(void, 0x80048764)
+#define startGameRelated FUNCTION_ADDRESS(void, 0x80048EB8)
+#define possiblyTransferDataBetweenDifferentRels FUNCTION_ADDRESS(void, 0x80049878)
+#define setTransitionVariable FUNCTION_ADDRESS(void, 0x8004ABD8)
+#define marioHandOnFire_endFireAnimation_ FUNCTION_ADDRESS(void, 0x8004ABE8)
+#define newPitcherEnteringGame_ FUNCTION_ADDRESS(void, 0x8004AC00)
+#define stadiumCollisionRelated FUNCTION_ADDRESS(someStadCollisionCode, 0x8004AD54, EnumStadiumIDs4 /*stadiumID*/, TriangleCollisionTypes_word /*collisionType*/)
+#define processCharacterStateBasedOnGameMode FUNCTION_ADDRESS(void, 0x8004B7F4)
+#define exitMenu FUNCTION_ADDRESS(void, 0x8004CA6C, EnumControllerInput)
+#define returnsCurrentMode FUNCTION_ADDRESS(void, 0x8005268C)
+#define setScissorAndProjection FUNCTION_ADDRESS(void, 0x80052694, int /*mode*/)
+#define returnFloatFromModeIndex FUNCTION_ADDRESS(float *, 0x80052734, int /*mode*/)
+#define setScissorMode FUNCTION_ADDRESS(void, 0x80052798)
+#define returnScissorMode FUNCTION_ADDRESS(void, 0x800527BC)
+#define graphics_relatedToVsScreen FUNCTION_ADDRESS(void, 0x80052968)
+#define possiblyTransitionBlackScreen FUNCTION_ADDRESS(void, 0x80052F98)
+#define drawStarProgressionMenu_ FUNCTION_ADDRESS(void, 0x80056AE4)
+#define someChallengeStarFunction FUNCTION_ADDRESS(void, 0x80056F70)
+#define someChallengeStarFunction2 FUNCTION_ADDRESS(void, 0x800572C0)
+#define challengeCheckStarsMenuLoading FUNCTION_ADDRESS(void, 0x800576F0)
+#define starMissionMenu FUNCTION_ADDRESS(void, 0x80057C08)
+#define scoutFlagMenu FUNCTION_ADDRESS(void, 0x80058050)
+#define zMenuLoadGraphics FUNCTION_ADDRESS(void, 0x80058394)
+#define starMissionRelated FUNCTION_ADDRESS(void, 0x80059B38)
+#define battingOrderProcessInputs FUNCTION_ADDRESS(void, 0x8005A350, maybeGraphicsManager *, undefined4 /*playerNum*/)
+#define teamManagementGraphics_fieldingAlignmentScreen FUNCTION_ADDRESS(void, 0x8005AF68, undefined4 /*drawingItem*/)
+#define teamManagementGraphics_battingOrderScreen FUNCTION_ADDRESS(void, 0x8005B298, undefined4 /*drawingItem*/)
+#define teamManagementGraphics_fieldingAlignmentInfo FUNCTION_ADDRESS(void, 0x8005BF40)
+#define teamManagementGraphics_battingOrderInfo FUNCTION_ADDRESS(void, 0x8005C2B0)
+#define teamManagementGraphics_steadyState FUNCTION_ADDRESS(void, 0x80060184)
+#define teamManagementGraphics_initialLoad FUNCTION_ADDRESS(void, 0x80061B9C)
+#define SetMenuNumber FUNCTION_ADDRESS(void, 0x8006236C)
+#define updateCharacterSelectProcessCode FUNCTION_ADDRESS(void, 0x800625A4, undefined4 /*player*/, undefined1)
+#define makeCursorMovable FUNCTION_ADDRESS(void, 0x80062674)
+#define initializeUnknown FUNCTION_ADDRESS(void, 0x80062A50)
+#define relatedToReturningToPracticeMenu FUNCTION_ADDRESS(void, 0x80062A94)
+#define maybeUpdateFielderTerrainStatus FUNCTION_ADDRESS(void, 0x80063958, byte /*fielderIndex*/)
+#define handleBallRollInWater FUNCTION_ADDRESS(void, 0x80064344, Vec3f * /*ballPos*/, Vec3f * /*velocity*/)
+#define translateStarPitchHitIndex FUNCTION_ADDRESS(int, 0x80064754, byte /*starHitType*/)
+#define translateStarPitch FUNCTION_ADDRESS(byte, 0x800647E0, byte)
+#define translateStarSwing FUNCTION_ADDRESS(byte, 0x8006487C, byte)
+#define challengeSetCPURoster2 FUNCTION_ADDRESS(void, 0x80064A04, int /*player*/)
+#define setInitialBattingOrder FUNCTION_ADDRESS(void, 0x80065DEC)
+#define teamClassTypeLogos FUNCTION_ADDRESS(void, 0x80067264)
+#define teamCompositionLogos FUNCTION_ADDRESS(void, 0x800675C4, int /*team*/, int /*CaptainCharacterID*/)
+#define teamLogoDetermination FUNCTION_ADDRESS(void, 0x800678CC, int /*team*/)
+#define unknownSettingTeamValues FUNCTION_ADDRESS(void, 0x8006885C, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, byte, byte, byte, byte, byte, int, int, int)
+#define setCaptainLocInRoster_ FUNCTION_ADDRESS(void, 0x80069854)
+#define findCharacterID FUNCTION_ADDRESS(void, 0x800698F8, enumCharIDWord /*charID*/)
+#define endDemo_ FUNCTION_ADDRESS(void, 0x80069A98)
+#define challengeDrawStarsOnMissionMenu_ FUNCTION_ADDRESS(void, 0x8006C48C)
+#define starMissionRelated_assignPlayersToBJTeamAfterBeatingBowser_ FUNCTION_ADDRESS(void, 0x8006C7C4)
+#define challenge_checkRecruitment FUNCTION_ADDRESS(void, 0x8006C9D8)
+#define intermediateStatBuffForScoutFlags_ FUNCTION_ADDRESS(void, 0x8006CA9C)
+#define intermediateStatBuffForCompletedMissions FUNCTION_ADDRESS(void, 0x8006CAC8)
+#define challengeRelated FUNCTION_ADDRESS(void, 0x8006CBE4)
+#define determineIfMissionDescriptionIsShown_ FUNCTION_ADDRESS(void, 0x8006CCA4)
+#define PPCMfmsr FUNCTION_ADDRESS(void, 0x8006D024)
+#define PPCMtmsr FUNCTION_ADDRESS(void, 0x8006D02C)
+#define PPCMfhid0 FUNCTION_ADDRESS(void, 0x8006D034)
+#define PPCMthid0 FUNCTION_ADDRESS(void, 0x8006D03C)
+#define PPCMfl2cr FUNCTION_ADDRESS(void, 0x8006D044)
+#define PPCMtl2cr FUNCTION_ADDRESS(void, 0x8006D04C)
+#define PPCMtdec FUNCTION_ADDRESS(void, 0x8006D054)
+#define PPCSync FUNCTION_ADDRESS(void, 0x8006D05C)
+#define PPCHalt FUNCTION_ADDRESS(void, 0x8006D064)
+#define PPCMtmmcr0 FUNCTION_ADDRESS(void, 0x8006D078)
+#define PPCMtmmcr1 FUNCTION_ADDRESS(void, 0x8006D080)
+#define PPCMtpmc1 FUNCTION_ADDRESS(void, 0x8006D088)
+#define PPCMtpmc2 FUNCTION_ADDRESS(void, 0x8006D090)
+#define PPCMtpmc3 FUNCTION_ADDRESS(void, 0x8006D098)
+#define PPCMtpmc4 FUNCTION_ADDRESS(void, 0x8006D0A0)
+#define PPCMffpscr FUNCTION_ADDRESS(void, 0x8006D0A8)
+#define PPCMtfpscr FUNCTION_ADDRESS(void, 0x8006D0C8)
+#define PPCMfhid2 FUNCTION_ADDRESS(void, 0x8006D0F0)
+#define PPCMthid2 FUNCTION_ADDRESS(void, 0x8006D0F8)
+#define PPCMtwpar FUNCTION_ADDRESS(void, 0x8006D100)
+#define PPCDisableSpeculation FUNCTION_ADDRESS(void, 0x8006D108)
+#define PPCSetFpNonIEEEMode FUNCTION_ADDRESS(void, 0x8006D130)
+#define __OSFPRInit FUNCTION_ADDRESS(void, 0x8006D138)
+#define GetConsoleType FUNCTION_ADDRESS(void, 0x8006D260)
+#define InquiryCallback FUNCTION_ADDRESS(void, 0x8006D288)
+#define OSInit FUNCTION_ADDRESS(void, 0x8006D2C4)
+#define OSExceptionInit FUNCTION_ADDRESS(void, 0x8006D7A4)
+#define __OSDBIntegrator FUNCTION_ADDRESS(void, 0x8006DA24)
+#define __OSSetExceptionHandler FUNCTION_ADDRESS(void, 0x8006DA4C)
+#define __OSGetExceptionHandler FUNCTION_ADDRESS(void, 0x8006DA68)
+#define OSExceptionVector FUNCTION_ADDRESS(void, 0x8006DA7C)
+#define __DBVECTOR FUNCTION_ADDRESS(void, 0x8006DAD4)
+#define __OSEVSetNumber FUNCTION_ADDRESS(void, 0x8006DAE4)
+#define __OSEVEnd FUNCTION_ADDRESS(void, 0x8006DB14)
+#define OSDefaultExceptionHandler FUNCTION_ADDRESS(void, 0x8006DB18)
+#define __OSPSInit FUNCTION_ADDRESS(void, 0x8006DB70)
+#define __OSGetDIConfig FUNCTION_ADDRESS(void, 0x8006DBC4)
+#define OSRegisterVersion FUNCTION_ADDRESS(void, 0x8006DBD8)
+#define OSInitAlarm FUNCTION_ADDRESS(void, 0x8006DC04)
+#define OSCreateAlarm FUNCTION_ADDRESS(void, 0x8006DC5C)
+#define InsertAlarm FUNCTION_ADDRESS(void, 0x8006DC6C)
+#define OSSetAlarm FUNCTION_ADDRESS(void, 0x8006DEBC)
+#define OSCancelAlarm FUNCTION_ADDRESS(void, 0x8006DF24)
+#define OnReset FUNCTION_ADDRESS(void, 0x8006E2C0)
+#define DLInsert FUNCTION_ADDRESS(void, 0x8006E360)
+#define OSFreeToHeap FUNCTION_ADDRESS(void, 0x8006E40C)
+#define OSSetCurrentHeap FUNCTION_ADDRESS(void, 0x8006E488)
+#define OSInitAlloc FUNCTION_ADDRESS(void, 0x8006E498)
+#define OSCreateHeap FUNCTION_ADDRESS(void, 0x8006E508, void * /*low*/, void * /*high*/)
+#define OSGetArenaHi FUNCTION_ADDRESS(void, 0x8006E574)
+#define OSGetArenaLo FUNCTION_ADDRESS(void, 0x8006E57C)
+#define OSSetArenaHi FUNCTION_ADDRESS(void, 0x8006E584, void * /*newHi*/)
+#define OSSetArenaLo FUNCTION_ADDRESS(void, 0x8006E58C, void * /*newLo*/)
+#define OSAllocFromArenaLo FUNCTION_ADDRESS(void *, 0x8006E594, int /*size*/, int /*align*/)
+#define __OSInitAudioSystem FUNCTION_ADDRESS(void, 0x8006E5C0)
+#define __OSStopAudioSystem FUNCTION_ADDRESS(void, 0x8006E77C)
+#define DCEnable FUNCTION_ADDRESS(void, 0x8006E854)
+#define DCInvalidateRange FUNCTION_ADDRESS(void, 0x8006E868, void * /*addr*/, int /*numBytes*/)
+#define DCFlushRange FUNCTION_ADDRESS(void, 0x8006E894)
+#define DCStoreRange FUNCTION_ADDRESS(void, 0x8006E8C4)
+#define DCFlushRangeNoSync FUNCTION_ADDRESS(void, 0x8006E8F4)
+#define DVStoreRangeNoSync FUNCTION_ADDRESS(void, 0x8006E920)
+#define ICInvalidateRange FUNCTION_ADDRESS(void, 0x8006E94C)
+#define ICFlashInvalidate FUNCTION_ADDRESS(void, 0x8006E980)
+#define ICEnable FUNCTION_ADDRESS(void, 0x8006E990)
+#define __LCEnable FUNCTION_ADDRESS(void, 0x8006E9A4)
+#define LCEnable FUNCTION_ADDRESS(void, 0x8006EA70)
+#define LCDisable FUNCTION_ADDRESS(void, 0x8006EAA8)
+#define LCLoadBlocks FUNCTION_ADDRESS(void, 0x8006EAD0)
+#define LCStoreBlocks FUNCTION_ADDRESS(void, 0x8006EAF4)
+#define LCLoadData FUNCTION_ADDRESS(void, 0x8006EB18)
+#define LCStoreData FUNCTION_ADDRESS(void, 0x8006EBC4)
+#define LCQueueWait FUNCTION_ADDRESS(void, 0x8006EC70)
+#define L2GlobalInvalidate FUNCTION_ADDRESS(void, 0x8006EC84)
+#define __OSCacheInit FUNCTION_ADDRESS(void, 0x8006EE7C)
+#define __OSLoadFPUContext FUNCTION_ADDRESS(void, 0x8006EF70)
+#define __OSSaveFPUContext FUNCTION_ADDRESS(void, 0x8006F094)
+#define OSLoadFPUContext FUNCTION_ADDRESS(void, 0x8006F1BC)
+#define OSSetCurrentContext FUNCTION_ADDRESS(void, 0x8006F1C4)
+#define OSGetCurrentContext FUNCTION_ADDRESS(void, 0x8006F220)
+#define OSSaveContext FUNCTION_ADDRESS(void, 0x8006F22C)
+#define OSLoadContext FUNCTION_ADDRESS(void, 0x8006F2AC)
+#define OSGetStackPointer FUNCTION_ADDRESS(void, 0x8006F384)
+#define OSClearContext FUNCTION_ADDRESS(void, 0x8006F38C)
+#define OSInitContext FUNCTION_ADDRESS(void, 0x8006F3B0)
+#define OSDumpContext FUNCTION_ADDRESS(void, 0x8006F46C)
+#define __OSContextInit FUNCTION_ADDRESS(void, 0x8006F798)
 #define OSReport FUNCTION_ADDRESS(void, 0x8006F7E0, char *, ...)
 #define OSPanic FUNCTION_ADDRESS(void, 0x8006F860, char * /*fileName*/, uint /*line*/, char * /*message*/, ...)
-static inline int OSSetErrorHandler(ushort param_1, int param_2) { return ((int(*)(ushort, int))0x8006F98C)(param_1, param_2); }
-static inline void __OSUnhandledException(byte param_1, OSThread * param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(byte, OSThread *, undefined4, undefined4))0x8006FBA4)(param_1, param_2, param_3, param_4); }
-static inline void PackArgs(int * param_1, int param_2, int * param_3) { ((void(*)(int *, int, int *))0x8006FE8C)(param_1, param_2, param_3); }
-static inline void Run(void) { ((void(*)(void))0x80070014)(); }
-static inline void ReadDisc(void * param_1, int param_2, int param_3) { ((void(*)(void *, int, int))0x80070050)(param_1, param_2, param_3); }
-static inline void Callback(void) { ((void(*)(void))0x800700BC)(); }
-static inline void __OSGetExecParams(undefined4 * param_1) { ((void(*)(undefined4 *))0x800700C8)(param_1); }
-static inline int GetApploaderPosition(void) { return ((int(*)(void))0x80070108)(); }
-static inline void __OSBootDolSimple(int param_1, undefined4 param_2, int param_3, int param_4, int param_5, int param_6, int * param_7) { ((void(*)(int, undefined4, int, int, int, int, int *))0x800701CC)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
-static inline void __OSBootDol(undefined4 param_1, undefined4 param_2, int * param_3) { ((void(*)(undefined4, undefined4, int *))0x80070650)(param_1, param_2, param_3); }
-static inline uint GetFontCode(short param_1, uint param_2) { return ((uint(*)(short, uint))0x800707EC)(param_1, param_2); }
-static inline short OSGetFontEncode(void) { return ((short(*)(void))0x80070960)(); }
-static inline byte * ParseStringS(uint param_1, byte * param_2, int * param_3, undefined4 * param_4, undefined4 param_5, int param_6) { return ((byte *(*)(uint, byte *, int *, undefined4 *, undefined4, int))0x800709C4)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline ulonglong OSDisableInterrupts(void) { return ((ulonglong(*)(void))0x80070B00)(); }
-static inline ulonglong OSEnableInterrupts(void) { return ((ulonglong(*)(void))0x80070B14)(); }
-static inline void OSRestoreInterrupts(void) { ((void(*)(void))0x80070B28)(); }
-static inline undefined4 __OSSetInterruptHandler(short param_1, undefined4 param_2) { return ((undefined4(*)(short, undefined4))0x80070B4C)(param_1, param_2); }
-static inline undefined4 __OSGetInterruptHandler(short param_1) { return ((undefined4(*)(short))0x80070B68)(param_1); }
-static inline void __OSInterruptInit(void) { ((void(*)(void))0x80070B7C)(); }
-static inline uint SetInterruptMask(uint param_1, uint param_2) { return ((uint(*)(uint, uint))0x80070BF0)(param_1, param_2); }
-static inline uint __OSMaskInterrupts(uint param_1) { return ((uint(*)(uint))0x80070EC8)(param_1); }
-static inline uint __OSUnmaskInterrupts(uint param_1) { return ((uint(*)(uint))0x80070F50)(param_1); }
-static inline void __OSDispatchHandler(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x80070FD8)(param_1, param_2); }
-static inline void ExternalInterruptHandler(undefined4 param_1, undefined4 * param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8) { ((void(*)(undefined4, undefined4 *, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8007131C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void OSNotifyLink(void) { ((void(*)(void))0x8007136C)(); }
-static inline void OSNotifyUnlink(void) { ((void(*)(void))0x80071370)(); }
-static inline undefined4 Relocate(int * param_1, int param_2) { return ((undefined4(*)(int *, int))0x80071374)(param_1, param_2); }
-static inline void Link(OSModuleInfo * param_1, int bss, int param_3) { ((void(*)(OSModuleInfo *, int, int))0x80071630)(param_1, bss, param_3); }
-static inline void OSLink(OSModuleInfo * newModule, byte * bss) { ((void(*)(OSModuleInfo *, byte *))0x80071910)(newModule, bss); }
-static inline void Undo(OSModuleInfo * param_1, int param_2) { ((void(*)(OSModuleInfo *, int))0x80071934)(param_1, param_2); }
-static inline void OSUnlink(OSModuleInfo * oldModule) { ((void(*)(OSModuleInfo *))0x80071B6C)(oldModule); }
-static inline void __OSModuleInit(void) { ((void(*)(void))0x80071D40)(); }
-static inline void OSInitMessageQueue(int param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(int, undefined4, undefined4))0x80071D58)(param_1, param_2, param_3); }
-static inline undefined4 OSSendMessage(int param_1, undefined4 param_2, uint param_3) { return ((undefined4(*)(int, undefined4, uint))0x80071DB8)(param_1, param_2, param_3); }
-static inline undefined4 OSReceiveMessage(int param_1, undefined4 * param_2, uint param_3) { return ((undefined4(*)(int, undefined4 *, uint))0x80071E80)(param_1, param_2, param_3); }
-static inline undefined4 OnReset_80071f5c(int param_1) { return ((undefined4(*)(int))0x80071F5C)(param_1); }
-static inline void MEMIntrruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80071F98)(param_1, param_2); }
-static inline void Config24MB(void) { ((void(*)(void))0x80072004)(); }
-static inline uint RealMode(void) { return ((uint(*)(void))0x80072104)(); }
-static inline void __OSInitMemoryProtection(void) { ((void(*)(void))0x8007211C)(); }
-static inline void __OSUnlockAllMutex(int param_1) { ((void(*)(int))0x80072234)(param_1); }
-static inline void __OSReboot(uint param_1, undefined4 param_2) { ((void(*)(uint, undefined4))0x800722A4)(param_1, param_2); }
-static inline void OSGetSaveRegion(int * param_1, int * param_2) { ((void(*)(int *, int *))0x80072314)(param_1, param_2); }
-static inline void OSRegisterResetFunction(undefined * param_1) { ((void(*)(undefined *))0x80072328)(param_1); }
-static inline bool __OSCallResetFunctions(undefined4 param_1) { return ((bool(*)(undefined4))0x800723AC)(param_1); }
-static inline void KillThreads(void) { ((void(*)(void))0x800724C4)(); }
-static inline void __OSDoHotReset(int param_1) { ((void(*)(int))0x8007252C)(param_1); }
-static inline void ResetSystem(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80072574)(param_1, param_2, param_3); }
-static inline uint OSGetResetCode(void) { return ((uint(*)(void))0x80072774)(); }
-static inline uint OSGetResetButtonState(void) { return ((uint(*)(void))0x800728A0)(); }
-static inline void WriteSramCallback(void) { ((void(*)(void))0x80072B38)(); }
-static inline uint WriteSram(undefined4 param_1, int param_2, undefined4 param_3) { return ((uint(*)(undefined4, int, undefined4))0x80072B98)(param_1, param_2, param_3); }
-static inline void __OSInitSram(void) { ((void(*)(void))0x80072CB0)(); }
-static inline short * __OSLockSram(void) { return ((short *(*)(void))0x80072DEC)(); }
-static inline char * __OSLockSramEx(void) { return ((char *(*)(void))0x80072E48)(); }
-static inline int UnlockSram(int param_1, uint param_2) { return ((int(*)(int, uint))0x80072EA4)(param_1, param_2); }
-static inline void __OSUnlockSram(undefined4 param_1) { ((void(*)(undefined4))0x800731E0)(param_1); }
-static inline void __OSUnlockSramEx(undefined4 param_1) { ((void(*)(undefined4))0x80073204)(param_1); }
-static inline int __OSSyncSram(void) { return ((int(*)(void))0x80073228)(); }
-static inline bool OSGetSoundMode(void) { return ((bool(*)(void))0x80073238)(); }
-static inline void OSSetSoundMode(uint param_1) { ((void(*)(uint))0x800732B8)(param_1); }
-static inline byte OSGetProgressiveMode(void) { return ((byte(*)(void))0x8007335C)(); }
-static inline void OSSetProgressiveMode(uint param_1) { ((void(*)(uint))0x800733CC)(param_1); }
-static inline undefined2 OSGetWirelessID(int param_1) { return ((undefined2(*)(int))0x80073470)(param_1); }
-static inline void OSSetWirelessID(int param_1, short param_2) { ((void(*)(int, short))0x800734F4)(param_1, param_2); }
-static inline undefined2 OSGetGbsMode(void) { return ((undefined2(*)(void))0x800735A0)(); }
-static inline void OSSetGbsMode(ushort param_1) { ((void(*)(ushort))0x80073610)(param_1); }
-static inline void OSInitSemaphore(undefined4 * param_1, undefined4 param_2) { ((void(*)(undefined4 *, undefined4))0x800736C8)(param_1, param_2); }
-static inline int OSWaitSemaphore(int * param_1) { return ((int(*)(int *))0x80073720)(param_1); }
-static inline int OSSignalSemaphore(int * param_1) { return ((int(*)(int *))0x80073790)(param_1); }
-static inline void __OSInitSystemCall(void) { ((void(*)(void))0x80073810)(); }
-static inline void DefaultSwitchThreadCallback(void) { ((void(*)(void))0x80073874)(); }
-static inline void __OSThreadInit(void) { ((void(*)(void))0x80073878)(); }
-static inline void OSInitThreadQueue(undefined4 * param_1) { ((void(*)(undefined4 *))0x800739D0)(param_1); }
-static inline OSThread * OSGetCurrentThread(void) { return ((OSThread *(*)(void))0x800739E0)(); }
-static inline undefined4 OSIsThreadSuspended(int param_1) { return ((undefined4(*)(int))0x800739EC)(param_1); }
-static inline int OSDisableScheduler(void) { return ((int(*)(void))0x80073A08)(); }
-static inline int OSEnableScheduler(void) { return ((int(*)(void))0x80073A48)(); }
-static inline void UnsetRun(int param_1) { ((void(*)(int))0x80073A88)(param_1); }
-static inline int __OSGetEffectivePriority(int param_1) { return ((int(*)(int))0x80073AF0)(param_1); }
-static inline undefined4 SetEffectiovePriority(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x80073B2C)(param_1, param_2); }
-static inline OSThread * SelectThread(int param_1) { return ((OSThread *(*)(int))0x80073CEC)(param_1); }
-static inline void __OSReschedule(void) { ((void(*)(void))0x80073F14)(); }
-static inline bool OSCreateThread(OSThread * thread, void * func, void * param, void * stack, uint stackSize, OSPriority priority, ushort attr) { return ((bool(*)(OSThread *, void *, void *, void *, uint, OSPriority, ushort))0x80073F44)(thread, func, param, stack, stackSize, priority, attr); }
-static inline void OSExitThread(void * param_1) { ((void(*)(void *))0x8007412C)(param_1); }
-static inline void OSCancelThread(int param_1) { ((void(*)(int))0x80074210)(param_1); }
-static inline void OSResumeThread(OSThread * param_1) { ((void(*)(OSThread *))0x800743CC)(param_1); }
-static inline void OSSuspendThread(OSThread * param_1) { ((void(*)(OSThread *))0x80074654)(param_1); }
-static inline void OSSleepThread(OSThreadQueue * param_1) { ((void(*)(OSThreadQueue *))0x800747C4)(param_1); }
-static inline void OSWakeupThread(int * param_1) { ((void(*)(int *))0x800748B0)(param_1); }
-static inline void OSClearStack(uint param_1) { ((void(*)(uint))0x800749B4)(param_1); }
-static inline void OSGetTime(void) { ((void(*)(void))0x80074A60)(); }
-static inline void OSGetTick(void) { ((void(*)(void))0x80074A78)(); }
-static inline longlong __OSGetSystemTime(void) { return ((longlong(*)(void))0x80074A80)(); }
-static inline void GetDates(int param_1, int param_2) { ((void(*)(int, int))0x80074AE4)(param_1, param_2); }
-static inline void OSTicksToCalendarTime(int param_1, uint param_2, int * param_3) { ((void(*)(int, uint, int *))0x80074C80)(param_1, param_2, param_3); }
-static inline void __init_user(void) { ((void(*)(void))0x80074E84)(); }
-static inline void __init_cpp(void) { ((void(*)(void))0x80074EA4)(); }
-static inline void abort(void) { ((void(*)(void))0x80074EF8)(); }
-static inline void DBInit(void) { ((void(*)(void))0x80074F18)(); }
-static inline void __DBExceptionDestinationAux(void) { ((void(*)(void))0x80074F40)(); }
-static inline uint __DBIsExceptionMarked(uint param_1) { return ((uint(*)(uint))0x80074F98)(param_1); }
-static inline void DBPrintf(void) { ((void(*)(void))0x80074FB4)(); }
-static inline void PSMTXIdentity(Mtx * m) { ((void(*)(Mtx *))0x80075004)(m); }
-static inline void PSMTXCopy(Mtx * source, Mtx * dst) { ((void(*)(Mtx *, Mtx *))0x80075030)(source, dst); }
-static inline void PSMTXConcat(Mtx * a, Mtx * b, Mtx * ab) { ((void(*)(Mtx *, Mtx *, Mtx *))0x80075064)(a, b, ab); }
-static inline void PSMTXTranspose(Mtx * src, Mtx * xPose) { ((void(*)(Mtx *, Mtx *))0x80075130)(src, xPose); }
-static inline uint PSMTXInverse(Mtx * src, Mtx * inv) { return ((uint(*)(Mtx *, Mtx *))0x80075180)(src, inv); }
-static inline void PSMTXRotRad(Mtx * m, char axis, float rad) { ((void(*)(Mtx *, char, float))0x80075278)(m, axis, rad); }
-static inline void PSMTXRotTrig(Mtx * m, char axis, float sinA, float cosA) { ((void(*)(Mtx *, char, float, float))0x800752E8)(m, axis, sinA, cosA); }
-static inline double ___PSMTXRotAxisRadInternal(double param_1, double param_2, int param_3, int param_4) { return ((double(*)(double, double, int, int))0x80075398)(param_1, param_2, param_3, param_4); }
-static inline void PSMTXRotAxisRad(Mtx * m, Vec3f * axis, float rad) { ((void(*)(Mtx *, Vec3f *, float))0x80075448)(m, axis, rad); }
-static inline void PSMTXTrans(Mtx * m, float xT, float yT, float zT) { ((void(*)(Mtx *, float, float, float))0x800754B8)(m, xT, yT, zT); }
-static inline void PSMTXTransApply(Mtx * src, Mtx * dst, float xT, float yT, float zT) { ((void(*)(Mtx *, Mtx *, float, float, float))0x800754EC)(src, dst, xT, yT, zT); }
-static inline void PSMTXScale(Mtx * m, float xS, float yS, float zS) { ((void(*)(Mtx *, float, float, float))0x80075538)(m, xS, yS, zS); }
-static inline void PSMTXScaleApply(Mtx * src, Mtx * dst, float xS, float yS, float zS) { ((void(*)(Mtx *, Mtx *, float, float, float))0x80075560)(src, dst, xS, yS, zS); }
-static inline void PSMTXQuat(Mtx * m, Quaternion * q) { ((void(*)(Mtx *, Quaternion *))0x800755B8)(m, q); }
-static inline void C_MTXLookAt(Mtx * m, Vec3f * camPos, Vec3f * camUp, Vec3f * target) { ((void(*)(Mtx *, Vec3f *, Vec3f *, Vec3f *))0x8007565C)(m, camPos, camUp, target); }
-static inline void C_MTXLightOrtho(Mtx * m, float t, float b, float l, float r, float n, float scaleS, float scaleT, float transS, float transT) { ((void(*)(Mtx *, float, float, float, float, float, float, float, float, float))0x800757E8)(m, t, b, l, r, n, scaleS, scaleT, transS, transT); }
-static inline void PSMTXMultVec(Mtx * m, Vec3f * src, Vec3f * dst) { ((void(*)(Mtx *, Vec3f *, Vec3f *))0x80075870)(m, src, dst); }
-static inline void PSMTXMultVecArray(Mtx * m, Vec3f * srcBase, Vec3f * dstBase, uint count) { ((void(*)(Mtx *, Vec3f *, Vec3f *, uint))0x800758C4)(m, srcBase, dstBase, count); }
-static inline void PSMTXMultVecSR(Mtx * m, Vec3f * src, Vec3f * dst) { ((void(*)(Mtx *, Vec3f *, Vec3f *))0x80075950)(m, src, dst); }
-static inline void C_MTXFrustum(Mtx44 * m, float t, float b, float l, float r, float n, float f) { ((void(*)(Mtx44 *, float, float, float, float, float, float))0x800759A4)(m, t, b, l, r, n, f); }
-static inline void C_MTXLightOrtho_80075a40(Mtx44 * m, float t, float b, float l, float r, float n, float f) { ((void(*)(Mtx44 *, float, float, float, float, float, float))0x80075A40)(m, t, b, l, r, n, f); }
-static inline void PSMTX44Identity(Mtx44 * m) { ((void(*)(Mtx44 *))0x80075AD8)(m); }
-static inline void PSMTX44Copy(Mtx44 * src, Mtx44 * dst) { ((void(*)(Mtx44 *, Mtx44 *))0x80075B0C)(src, dst); }
-static inline void PSMTX44Concat(Mtx44 * a, Mtx44 * b, Mtx44 * ab) { ((void(*)(Mtx44 *, Mtx44 *, Mtx44 *))0x80075B50)(a, b, ab); }
-static inline uint C_MTX44Inverse(Mtx44 * src, Mtx44 * inv) { return ((uint(*)(Mtx44 *, Mtx44 *))0x80075C54)(src, inv); }
-static inline void PSMTX44RotRad(Mtx44 * m, char axis, float rad) { ((void(*)(Mtx44 *, char, float))0x80076044)(m, axis, rad); }
-static inline void PSMTX44RotTrig(Mtx44 * m, char axis, float sinA, float cosA) { ((void(*)(Mtx44 *, char, float, float))0x800760B4)(m, axis, sinA, cosA); }
-static inline void PSMTX44MultVec(Mtx44 * m, Vec3f * src, Vec3f * dst) { ((void(*)(Mtx44 *, Vec3f *, Vec3f *))0x80076188)(m, src, dst); }
-static inline void PSMTX44MultVecArray(Mtx44 * m, Vec3f * srcBase, Vec3f * dstBase, uint count) { ((void(*)(Mtx44 *, Vec3f *, Vec3f *, uint))0x80076200)(m, srcBase, dstBase, count); }
-static inline void PSVECAdd(Vec3f * a, Vec3f * b, Vec3f * ab) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x800762F0)(a, b, ab); }
-static inline void PSVECSubtract(Vec3f * a, Vec3f * b, Vec3f * a_b) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x80076314)(a, b, a_b); }
-static inline void PSVECScale(Vec3f * src, Vec3f * dst, float scale) { ((void(*)(Vec3f *, Vec3f *, float))0x80076338)(src, dst, scale); }
-static inline void PSVECNormalize(Vec3f * src, Vec3f * unit) { ((void(*)(Vec3f *, Vec3f *))0x80076354)(src, unit); }
-static inline float PSVECMag(Vec3f * v) { return ((float(*)(Vec3f *))0x80076398)(v); }
-static inline float PSVECDotProduct(Vec3f * a, Vec3f * b) { return ((float(*)(Vec3f *, Vec3f *))0x800763DC)(a, b); }
-static inline void PSVECCrossProduct(Vec3f * a, Vec3f * b, Vec3f * axb) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x800763FC)(a, b, axb); }
-static inline float PSVECSquareDistance(Vec3f * a, Vec3f * b) { return ((float(*)(Vec3f *, Vec3f *))0x80076438)(a, b); }
-static inline float PSVECDistance(Vec3f * a, Vec3f * b) { return ((float(*)(Vec3f *, Vec3f *))0x80076460)(a, b); }
-static inline void PSQUATAdd(Quaternion * p, Quaternion * q, Quaternion * r) { ((void(*)(Quaternion *, Quaternion *, Quaternion *))0x800764B4)(p, q, r); }
-static inline void PSQUATMultiply(Quaternion * p, Quaternion * q, Quaternion * pq) { ((void(*)(Quaternion *, Quaternion *, Quaternion *))0x800764D8)(p, q, pq); }
-static inline void PSQUATScale(Quaternion * q, Quaternion * r, float scale) { ((void(*)(Quaternion *, Quaternion *, float))0x80076534)(q, r, scale); }
-static inline float PSQUATDotProduct(Quaternion * p, Quaternion * q) { return ((float(*)(Quaternion *, Quaternion *))0x80076550)(p, q); }
-static inline void PSQUATNormalize(Quaternion * src, Quaternion * unit) { ((void(*)(Quaternion *, Quaternion *))0x80076570)(src, unit); }
-static inline void C_QUATRotAxisRad(Quaternion * r, Vec3f * axis, float rad) { ((void(*)(Quaternion *, Vec3f *, float))0x800765C4)(r, axis, rad); }
-static inline void C_QUATMtx(Quaternion * r, Mtx * m) { ((void(*)(Quaternion *, Mtx *))0x80076650)(r, m); }
-static inline void C_QUATSlerp(Quaternion * p, Quaternion * q, Quaternion * r, float t) { ((void(*)(Quaternion *, Quaternion *, Quaternion *, float))0x800768A8)(p, q, r, t); }
-static inline void PSMTXReorder(Mtx * src, ROMtx * dest) { ((void(*)(Mtx *, ROMtx *))0x80076A1C)(src, dest); }
-static inline void __DVDInitWA(void) { ((void(*)(void))0x80076A68)(); }
-static inline void __DVDInterruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80076AA8)(param_1, param_2); }
-static inline void AlarmHandler(void) { ((void(*)(void))0x80076D88)(); }
-static inline void AlarmHandlerForTimeout(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80076E0C)(param_1, param_2); }
-static inline void Read(int param_1, uint param_2, uint param_3, int param_4) { ((void(*)(int, uint, uint, int))0x80076E7C)(param_1, param_2, param_3, param_4); }
-static inline void SeekTwiceBeforeRead(int param_1, int param_2, uint param_3, int param_4) { ((void(*)(int, int, uint, int))0x80076F8C)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDLowRead(undefined * param_1, int param_2, uint param_3, int param_4) { return ((undefined4(*)(undefined *, int, uint, int))0x8007700C)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDLowSeek(uint param_1, int param_2) { return ((undefined4(*)(uint, int))0x800772A4)(param_1, param_2); }
-static inline undefined4 DVDLowWaitCoverClose(int param_1) { return ((undefined4(*)(int))0x80077338)(param_1); }
-static inline undefined4 DVDLowReadDiskID(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80077364)(param_1, param_2); }
-static inline undefined4 DVDLowStopMotor(int param_1) { return ((undefined4(*)(int))0x80077408)(param_1); }
-static inline undefined4 DVDLowRequestError(int param_1) { return ((undefined4(*)(int))0x80077494)(param_1); }
-static inline undefined4 DVDLowInquiry(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80077520)(param_1, param_2); }
-static inline undefined4 DVDLowAudioStatus(uint param_1, int param_2, uint param_3, int param_4) { return ((undefined4(*)(uint, int, uint, int))0x800775BC)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDLowRequestAudioStatus(uint param_1, int param_2) { return ((undefined4(*)(uint, int))0x80077654)(param_1, param_2); }
-static inline undefined4 DVDLowAudioBufferConfig(int param_1, uint param_2, int param_3) { return ((undefined4(*)(int, uint, int))0x800776E0)(param_1, param_2, param_3); }
-static inline void DVDLowReset(void) { ((void(*)(void))0x8007777C)(); }
-static inline undefined4 DVDLowBreak(void) { return ((undefined4(*)(void))0x80077838)(); }
-static inline int DVDLowClearCallback(void) { return ((int(*)(void))0x8007784C)(); }
-static inline void __DVDLowSetWAType(int param_1, int param_2) { ((void(*)(int, int))0x80077868)(param_1, param_2); }
-static inline undefined4 __DVDLowTestAlarm(undefined * param_1) { return ((undefined4(*)(undefined *))0x800778AC)(param_1); }
-static inline void __DVDFSInit(void) { ((void(*)(void))0x800778E4)(); }
-static inline s32 DVDConvertPathToEntrynum(char * fileName) { return ((s32(*)(char *))0x8007791C)(fileName); }
-static inline BOOL DVDFastOpen(int entryNum, DVDFileInfo * fileInfo) { return ((BOOL(*)(int, DVDFileInfo *))0x80077C10)(entryNum, fileInfo); }
-static inline BOOL DVDOpen(char * fileName, DVDFileInfo * fileInfo) { return ((BOOL(*)(char *, DVDFileInfo *))0x80077C84)(fileName, fileInfo); }
-static inline bool DVDClose(DVDFileInfo * fileInfo) { return ((bool(*)(DVDFileInfo *))0x80077D4C)(fileInfo); }
-static inline void entryToPath(int entry, int param_2, int param_3) { ((void(*)(int, int, int))0x80077D70)(entry, param_2, param_3); }
-static inline bool DVDGetCurrentDir(char * path, int maxlen) { return ((bool(*)(char *, int))0x80077ED0)(path, maxlen); }
+#define OSSetErrorHandler FUNCTION_ADDRESS(void, 0x8006F98C)
+#define __OSUnhandledException FUNCTION_ADDRESS(void, 0x8006FBA4)
+#define PackArgs FUNCTION_ADDRESS(void, 0x8006FE8C, int *, int, int *)
+#define Run FUNCTION_ADDRESS(void, 0x80070014)
+#define ReadDisc FUNCTION_ADDRESS(void, 0x80070050)
+#define Callback FUNCTION_ADDRESS(void, 0x800700BC)
+#define __OSGetExecParams FUNCTION_ADDRESS(void, 0x800700C8)
+#define GetApploaderPosition FUNCTION_ADDRESS(void, 0x80070108)
+#define __OSBootDolSimple FUNCTION_ADDRESS(void, 0x800701CC)
+#define __OSBootDol FUNCTION_ADDRESS(void, 0x80070650)
+#define GetFontCode FUNCTION_ADDRESS(void, 0x800707EC)
+#define OSGetFontEncode FUNCTION_ADDRESS(void, 0x80070960)
+#define ParseStringS FUNCTION_ADDRESS(void, 0x800709C4)
+#define OSDisableInterrupts FUNCTION_ADDRESS(void, 0x80070B00)
+#define OSEnableInterrupts FUNCTION_ADDRESS(void, 0x80070B14)
+#define OSRestoreInterrupts FUNCTION_ADDRESS(void, 0x80070B28)
+#define __OSSetInterruptHandler FUNCTION_ADDRESS(void, 0x80070B4C)
+#define __OSGetInterruptHandler FUNCTION_ADDRESS(void, 0x80070B68)
+#define __OSInterruptInit FUNCTION_ADDRESS(void, 0x80070B7C)
+#define SetInterruptMask FUNCTION_ADDRESS(void, 0x80070BF0)
+#define __OSMaskInterrupts FUNCTION_ADDRESS(void, 0x80070EC8)
+#define __OSUnmaskInterrupts FUNCTION_ADDRESS(void, 0x80070F50)
+#define __OSDispatchHandler FUNCTION_ADDRESS(void, 0x80070FD8)
+#define ExternalInterruptHandler FUNCTION_ADDRESS(void, 0x8007131C)
+#define OSNotifyLink FUNCTION_ADDRESS(void, 0x8007136C)
+#define OSNotifyUnlink FUNCTION_ADDRESS(void, 0x80071370)
+#define Relocate FUNCTION_ADDRESS(void, 0x80071374)
+#define Link FUNCTION_ADDRESS(void, 0x80071630, OSModuleInfo *, int /*bss*/, int)
+#define OSLink FUNCTION_ADDRESS(void, 0x80071910, OSModuleInfo * /*newModule*/, byte * /*bss*/)
+#define Undo FUNCTION_ADDRESS(void, 0x80071934, OSModuleInfo *, int)
+#define OSUnlink FUNCTION_ADDRESS(void, 0x80071B6C, OSModuleInfo * /*oldModule*/)
+#define __OSModuleInit FUNCTION_ADDRESS(void, 0x80071D40)
+#define OSInitMessageQueue FUNCTION_ADDRESS(void, 0x80071D58)
+#define OSSendMessage FUNCTION_ADDRESS(void, 0x80071DB8)
+#define OSReceiveMessage FUNCTION_ADDRESS(void, 0x80071E80)
+#define OnReset_80071f5c FUNCTION_ADDRESS(void, 0x80071F5C)
+#define MEMIntrruptHandler FUNCTION_ADDRESS(void, 0x80071F98)
+#define Config24MB FUNCTION_ADDRESS(void, 0x80072004)
+#define RealMode FUNCTION_ADDRESS(void, 0x80072104)
+#define __OSInitMemoryProtection FUNCTION_ADDRESS(void, 0x8007211C)
+#define __OSUnlockAllMutex FUNCTION_ADDRESS(void, 0x80072234)
+#define __OSReboot FUNCTION_ADDRESS(void, 0x800722A4)
+#define OSGetSaveRegion FUNCTION_ADDRESS(void, 0x80072314)
+#define OSRegisterResetFunction FUNCTION_ADDRESS(void, 0x80072328)
+#define __OSCallResetFunctions FUNCTION_ADDRESS(void, 0x800723AC)
+#define KillThreads FUNCTION_ADDRESS(void, 0x800724C4)
+#define __OSDoHotReset FUNCTION_ADDRESS(void, 0x8007252C)
+#define ResetSystem FUNCTION_ADDRESS(void, 0x80072574)
+#define OSGetResetCode FUNCTION_ADDRESS(void, 0x80072774)
+#define OSGetResetButtonState FUNCTION_ADDRESS(void, 0x800728A0)
+#define WriteSramCallback FUNCTION_ADDRESS(void, 0x80072B38)
+#define WriteSram FUNCTION_ADDRESS(void, 0x80072B98)
+#define __OSInitSram FUNCTION_ADDRESS(void, 0x80072CB0)
+#define __OSLockSram FUNCTION_ADDRESS(void, 0x80072DEC)
+#define __OSLockSramEx FUNCTION_ADDRESS(void, 0x80072E48)
+#define UnlockSram FUNCTION_ADDRESS(void, 0x80072EA4)
+#define __OSUnlockSram FUNCTION_ADDRESS(void, 0x800731E0)
+#define __OSUnlockSramEx FUNCTION_ADDRESS(void, 0x80073204)
+#define __OSSyncSram FUNCTION_ADDRESS(void, 0x80073228)
+#define OSGetSoundMode FUNCTION_ADDRESS(void, 0x80073238)
+#define OSSetSoundMode FUNCTION_ADDRESS(void, 0x800732B8)
+#define OSGetProgressiveMode FUNCTION_ADDRESS(void, 0x8007335C)
+#define OSSetProgressiveMode FUNCTION_ADDRESS(void, 0x800733CC)
+#define OSGetWirelessID FUNCTION_ADDRESS(void, 0x80073470)
+#define OSSetWirelessID FUNCTION_ADDRESS(void, 0x800734F4)
+#define OSGetGbsMode FUNCTION_ADDRESS(void, 0x800735A0)
+#define OSSetGbsMode FUNCTION_ADDRESS(void, 0x80073610)
+#define OSInitSemaphore FUNCTION_ADDRESS(void, 0x800736C8)
+#define OSWaitSemaphore FUNCTION_ADDRESS(void, 0x80073720)
+#define OSSignalSemaphore FUNCTION_ADDRESS(void, 0x80073790)
+#define __OSInitSystemCall FUNCTION_ADDRESS(void, 0x80073810)
+#define DefaultSwitchThreadCallback FUNCTION_ADDRESS(void, 0x80073874)
+#define __OSThreadInit FUNCTION_ADDRESS(void, 0x80073878)
+#define OSInitThreadQueue FUNCTION_ADDRESS(void, 0x800739D0)
+#define OSGetCurrentThread FUNCTION_ADDRESS(OSThread *, 0x800739E0)
+#define OSIsThreadSuspended FUNCTION_ADDRESS(void, 0x800739EC)
+#define OSDisableScheduler FUNCTION_ADDRESS(void, 0x80073A08)
+#define OSEnableScheduler FUNCTION_ADDRESS(void, 0x80073A48)
+#define UnsetRun FUNCTION_ADDRESS(void, 0x80073A88)
+#define __OSGetEffectivePriority FUNCTION_ADDRESS(void, 0x80073AF0)
+#define SetEffectiovePriority FUNCTION_ADDRESS(void, 0x80073B2C)
+#define SelectThread FUNCTION_ADDRESS(void, 0x80073CEC)
+#define __OSReschedule FUNCTION_ADDRESS(void, 0x80073F14)
+#define OSCreateThread FUNCTION_ADDRESS(bool, 0x80073F44, OSThread * /*thread*/, void * /*func*/, void * /*param*/, void * /*stack*/, uint /*stackSize*/, OSPriority /*priority*/, ushort /*attr*/)
+#define OSExitThread FUNCTION_ADDRESS(void, 0x8007412C)
+#define OSCancelThread FUNCTION_ADDRESS(void, 0x80074210)
+#define OSResumeThread FUNCTION_ADDRESS(void, 0x800743CC, OSThread *)
+#define OSSuspendThread FUNCTION_ADDRESS(void, 0x80074654, OSThread *)
+#define OSSleepThread FUNCTION_ADDRESS(void, 0x800747C4)
+#define OSWakeupThread FUNCTION_ADDRESS(void, 0x800748B0)
+#define OSClearStack FUNCTION_ADDRESS(void, 0x800749B4)
+#define OSGetTime FUNCTION_ADDRESS(void, 0x80074A60)
+#define OSGetTick FUNCTION_ADDRESS(void, 0x80074A78)
+#define __OSGetSystemTime FUNCTION_ADDRESS(void, 0x80074A80)
+#define GetDates FUNCTION_ADDRESS(void, 0x80074AE4)
+#define OSTicksToCalendarTime FUNCTION_ADDRESS(void, 0x80074C80)
+#define __init_user FUNCTION_ADDRESS(void, 0x80074E84)
+#define __init_cpp FUNCTION_ADDRESS(void, 0x80074EA4)
+#define abort FUNCTION_ADDRESS(void, 0x80074EF8)
+#define DBInit FUNCTION_ADDRESS(void, 0x80074F18)
+#define __DBExceptionDestinationAux FUNCTION_ADDRESS(void, 0x80074F40)
+#define __DBIsExceptionMarked FUNCTION_ADDRESS(void, 0x80074F98)
+#define DBPrintf FUNCTION_ADDRESS(void, 0x80074FB4)
+#define PSMTXIdentity FUNCTION_ADDRESS(void, 0x80075004, Mtx * /*m*/)
+#define PSMTXCopy FUNCTION_ADDRESS(void, 0x80075030, Mtx * /*source*/, Mtx * /*dst*/)
+#define PSMTXConcat FUNCTION_ADDRESS(void, 0x80075064, Mtx * /*a*/, Mtx * /*b*/, Mtx * /*ab*/)
+#define PSMTXTranspose FUNCTION_ADDRESS(void, 0x80075130, Mtx * /*src*/, Mtx * /*xPose*/)
+#define PSMTXInverse FUNCTION_ADDRESS(uint, 0x80075180, Mtx * /*src*/, Mtx * /*inv*/)
+#define PSMTXRotRad FUNCTION_ADDRESS(void, 0x80075278, Mtx * /*m*/, char /*axis*/, float /*rad*/)
+#define PSMTXRotTrig FUNCTION_ADDRESS(void, 0x800752E8, Mtx * /*m*/, char /*axis*/, float /*sinA*/, float /*cosA*/)
+#define ___PSMTXRotAxisRadInternal FUNCTION_ADDRESS(double, 0x80075398, double, double, int, int)
+#define PSMTXRotAxisRad FUNCTION_ADDRESS(void, 0x80075448, Mtx * /*m*/, Vec3f * /*axis*/, float /*rad*/)
+#define PSMTXTrans FUNCTION_ADDRESS(void, 0x800754B8, Mtx * /*m*/, float /*xT*/, float /*yT*/, float /*zT*/)
+#define PSMTXTransApply FUNCTION_ADDRESS(void, 0x800754EC, Mtx * /*src*/, Mtx * /*dst*/, float /*xT*/, float /*yT*/, float /*zT*/)
+#define PSMTXScale FUNCTION_ADDRESS(void, 0x80075538, Mtx * /*m*/, float /*xS*/, float /*yS*/, float /*zS*/)
+#define PSMTXScaleApply FUNCTION_ADDRESS(void, 0x80075560, Mtx * /*src*/, Mtx * /*dst*/, float /*xS*/, float /*yS*/, float /*zS*/)
+#define PSMTXQuat FUNCTION_ADDRESS(void, 0x800755B8, Mtx * /*m*/, Quaternion * /*q*/)
+#define C_MTXLookAt FUNCTION_ADDRESS(void, 0x8007565C, Mtx * /*m*/, Vec3f * /*camPos*/, Vec3f * /*camUp*/, Vec3f * /*target*/)
+#define C_MTXLightOrtho FUNCTION_ADDRESS(void, 0x800757E8, Mtx * /*m*/, float /*t*/, float /*b*/, float /*l*/, float /*r*/, float /*n*/, float /*scaleS*/, float /*scaleT*/, float /*transS*/, float /*transT*/)
+#define PSMTXMultVec FUNCTION_ADDRESS(void, 0x80075870, Mtx * /*m*/, Vec3f * /*src*/, Vec3f * /*dst*/)
+#define PSMTXMultVecArray FUNCTION_ADDRESS(void, 0x800758C4, Mtx * /*m*/, Vec3f * /*srcBase*/, Vec3f * /*dstBase*/, uint /*count*/)
+#define PSMTXMultVecSR FUNCTION_ADDRESS(void, 0x80075950, Mtx * /*m*/, Vec3f * /*src*/, Vec3f * /*dst*/)
+#define C_MTXFrustum FUNCTION_ADDRESS(void, 0x800759A4, Mtx44 * /*m*/, float /*t*/, float /*b*/, float /*l*/, float /*r*/, float /*n*/, float /*f*/)
+#define C_MTXLightOrtho_80075a40 FUNCTION_ADDRESS(void, 0x80075A40, Mtx44 * /*m*/, float /*t*/, float /*b*/, float /*l*/, float /*r*/, float /*n*/, float /*f*/)
+#define PSMTX44Identity FUNCTION_ADDRESS(void, 0x80075AD8, Mtx44 * /*m*/)
+#define PSMTX44Copy FUNCTION_ADDRESS(void, 0x80075B0C, Mtx44 * /*src*/, Mtx44 * /*dst*/)
+#define PSMTX44Concat FUNCTION_ADDRESS(void, 0x80075B50, Mtx44 * /*a*/, Mtx44 * /*b*/, Mtx44 * /*ab*/)
+#define C_MTX44Inverse FUNCTION_ADDRESS(uint, 0x80075C54, Mtx44 * /*src*/, Mtx44 * /*inv*/)
+#define PSMTX44RotRad FUNCTION_ADDRESS(void, 0x80076044, Mtx44 * /*m*/, char /*axis*/, float /*rad*/)
+#define PSMTX44RotTrig FUNCTION_ADDRESS(void, 0x800760B4, Mtx44 * /*m*/, char /*axis*/, float /*sinA*/, float /*cosA*/)
+#define PSMTX44MultVec FUNCTION_ADDRESS(void, 0x80076188, Mtx44 * /*m*/, Vec3f * /*src*/, Vec3f * /*dst*/)
+#define PSMTX44MultVecArray FUNCTION_ADDRESS(void, 0x80076200, Mtx44 * /*m*/, Vec3f * /*srcBase*/, Vec3f * /*dstBase*/, uint /*count*/)
+#define PSVECAdd FUNCTION_ADDRESS(void, 0x800762F0, Vec3f * /*a*/, Vec3f * /*b*/, Vec3f * /*ab*/)
+#define PSVECSubtract FUNCTION_ADDRESS(void, 0x80076314, Vec3f * /*a*/, Vec3f * /*b*/, Vec3f * /*a_b*/)
+#define PSVECScale FUNCTION_ADDRESS(void, 0x80076338, Vec3f * /*src*/, Vec3f * /*dst*/, float /*scale*/)
+#define PSVECNormalize FUNCTION_ADDRESS(void, 0x80076354, Vec3f * /*src*/, Vec3f * /*unit*/)
+#define PSVECMag FUNCTION_ADDRESS(float, 0x80076398, Vec3f * /*v*/)
+#define PSVECDotProduct FUNCTION_ADDRESS(float, 0x800763DC, Vec3f * /*a*/, Vec3f * /*b*/)
+#define PSVECCrossProduct FUNCTION_ADDRESS(void, 0x800763FC, Vec3f * /*a*/, Vec3f * /*b*/, Vec3f * /*axb*/)
+#define PSVECSquareDistance FUNCTION_ADDRESS(float, 0x80076438, Vec3f * /*a*/, Vec3f * /*b*/)
+#define PSVECDistance FUNCTION_ADDRESS(float, 0x80076460, Vec3f * /*a*/, Vec3f * /*b*/)
+#define PSQUATAdd FUNCTION_ADDRESS(void, 0x800764B4, Quaternion * /*p*/, Quaternion * /*q*/, Quaternion * /*r*/)
+#define PSQUATMultiply FUNCTION_ADDRESS(void, 0x800764D8, Quaternion * /*p*/, Quaternion * /*q*/, Quaternion * /*pq*/)
+#define PSQUATScale FUNCTION_ADDRESS(void, 0x80076534, Quaternion * /*q*/, Quaternion * /*r*/, float /*scale*/)
+#define PSQUATDotProduct FUNCTION_ADDRESS(float, 0x80076550, Quaternion * /*p*/, Quaternion * /*q*/)
+#define PSQUATNormalize FUNCTION_ADDRESS(void, 0x80076570, Quaternion * /*src*/, Quaternion * /*unit*/)
+#define C_QUATRotAxisRad FUNCTION_ADDRESS(void, 0x800765C4, Quaternion * /*r*/, Vec3f * /*axis*/, float /*rad*/)
+#define C_QUATMtx FUNCTION_ADDRESS(void, 0x80076650, Quaternion * /*r*/, Mtx * /*m*/)
+#define C_QUATSlerp FUNCTION_ADDRESS(void, 0x800768A8, Quaternion * /*p*/, Quaternion * /*q*/, Quaternion * /*r*/, float /*t*/)
+#define PSMTXReorder FUNCTION_ADDRESS(void, 0x80076A1C, Mtx * /*src*/, ROMtx * /*dest*/)
+#define __DVDInitWA FUNCTION_ADDRESS(void, 0x80076A68)
+#define __DVDInterruptHandler FUNCTION_ADDRESS(void, 0x80076AA8)
+#define AlarmHandler FUNCTION_ADDRESS(void, 0x80076D88)
+#define AlarmHandlerForTimeout FUNCTION_ADDRESS(void, 0x80076E0C)
+#define Read FUNCTION_ADDRESS(void, 0x80076E7C)
+#define SeekTwiceBeforeRead FUNCTION_ADDRESS(void, 0x80076F8C)
+#define DVDLowRead FUNCTION_ADDRESS(void, 0x8007700C)
+#define DVDLowSeek FUNCTION_ADDRESS(void, 0x800772A4)
+#define DVDLowWaitCoverClose FUNCTION_ADDRESS(void, 0x80077338)
+#define DVDLowReadDiskID FUNCTION_ADDRESS(void, 0x80077364)
+#define DVDLowStopMotor FUNCTION_ADDRESS(void, 0x80077408)
+#define DVDLowRequestError FUNCTION_ADDRESS(void, 0x80077494)
+#define DVDLowInquiry FUNCTION_ADDRESS(void, 0x80077520)
+#define DVDLowAudioStatus FUNCTION_ADDRESS(void, 0x800775BC)
+#define DVDLowRequestAudioStatus FUNCTION_ADDRESS(void, 0x80077654)
+#define DVDLowAudioBufferConfig FUNCTION_ADDRESS(void, 0x800776E0)
+#define DVDLowReset FUNCTION_ADDRESS(void, 0x8007777C)
+#define DVDLowBreak FUNCTION_ADDRESS(void, 0x80077838)
+#define DVDLowClearCallback FUNCTION_ADDRESS(void, 0x8007784C)
+#define __DVDLowSetWAType FUNCTION_ADDRESS(void, 0x80077868)
+#define __DVDLowTestAlarm FUNCTION_ADDRESS(void, 0x800778AC)
+#define __DVDFSInit FUNCTION_ADDRESS(void, 0x800778E4)
+#define DVDConvertPathToEntrynum FUNCTION_ADDRESS(s32, 0x8007791C, char * /*fileName*/)
+#define DVDFastOpen FUNCTION_ADDRESS(BOOL, 0x80077C10, int /*entryNum*/, DVDFileInfo * /*fileInfo*/)
+#define DVDOpen FUNCTION_ADDRESS(BOOL, 0x80077C84, char * /*fileName*/, DVDFileInfo * /*fileInfo*/)
+#define DVDClose FUNCTION_ADDRESS(bool, 0x80077D4C, DVDFileInfo * /*fileInfo*/)
+#define entryToPath FUNCTION_ADDRESS(void, 0x80077D70, int /*entry*/, int, int)
+#define DVDGetCurrentDir FUNCTION_ADDRESS(bool, 0x80077ED0, char * /*path*/, int /*maxlen*/)
 #define DVDReadAsyncPrio FUNCTION_ADDRESS(bool, 0x80077F94, DVDFileInfo * /*fileInfo*/, void * /*addr*/, int /*length*/, int /*offset*/, DVDCallback /*callback*/, int /*prio*/)
-static inline void cbForReadAsync(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x80078054)(param_1, param_2); }
-static inline s32 DVDReadPrio(DVDFileInfo * fileInfo, void * addr, s32 length, s32 offset, s32 prio) { return ((s32(*)(DVDFileInfo *, void *, s32, s32, s32))0x80078084)(fileInfo, addr, length, offset, prio); }
-static inline void cbForReadSync(void) { ((void(*)(void))0x8007819C)(); }
-static inline BOOL DVDPrepareStreamAsync(int param_1, uint param_2, uint param_3, int param_4) { return ((BOOL(*)(int, uint, uint, int))0x800781C0)(param_1, param_2, param_3, param_4); }
-static inline void cbForPrepareStreamAsync(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x800782AC)(param_1, param_2); }
-static inline void defaultOptionalCommandChecker(void) { ((void(*)(void))0x800782DC)(); }
-static inline void DVDInit(void) { ((void(*)(void))0x800782E0)(); }
-static inline void stateReadingFST(void) { ((void(*)(void))0x800783AC)(); }
-static inline void cbForStateReadingFST(uint param_1) { ((void(*)(uint))0x80078440)(param_1); }
-static inline void cbForStateError(int param_1) { ((void(*)(int))0x800784CC)(param_1); }
-static inline void stateTimeout(void) { ((void(*)(void))0x80078578)(); }
-static inline void stateGettingError(void) { ((void(*)(void))0x800785AC)(); }
-static inline undefined4 CategorizeError(uint param_1) { return ((undefined4(*)(uint))0x800785D4)(param_1); }
-static inline void cbForStateGettingError(uint param_1) { ((void(*)(uint))0x80078688)(param_1); }
-static inline void cbForUnrecoveredError(uint param_1) { ((void(*)(uint))0x8007891C)(param_1); }
-static inline void cbForUnrecoveredErrorRetry(uint param_1) { ((void(*)(uint))0x80078984)(param_1); }
-static inline void stateGoToRetry(void) { ((void(*)(void))0x80078A1C)(); }
-static inline void cbForStateGoToRetry(uint param_1) { ((void(*)(uint))0x80078A44)(param_1); }
-static inline void stateCheckID(void) { ((void(*)(void))0x80078B9C)(); }
-static inline void stateCheckID3(void) { ((void(*)(void))0x80078C7C)(); }
-static inline void stateCheckID2a(void) { ((void(*)(void))0x80078CB0)(); }
-static inline void cbForStateCheckID2a(uint param_1) { ((void(*)(uint))0x80078CE4)(param_1); }
-static inline void stateCheckID2(void) { ((void(*)(void))0x80078D58)(); }
-static inline void cbForStateCheckID1(uint param_1) { ((void(*)(uint))0x80078D90)(param_1); }
-static inline void cbForStateCheckID2(uint param_1) { ((void(*)(uint))0x80078EA4)(param_1); }
-static inline void cbForStatecheckID3(uint param_1) { ((void(*)(uint))0x80078F88)(param_1); }
-static inline void AlarmHandler_80079084(void) { ((void(*)(void))0x80079084)(); }
-static inline void stateCoverClosed(void) { ((void(*)(void))0x800790C8)(); }
-static inline void stateCoverClosed_CMD(void) { ((void(*)(void))0x80079194)(); }
-static inline void cbForStateCoverClosed(uint param_1) { ((void(*)(uint))0x800791C4)(param_1); }
-static inline void stateMotorStopped(void) { ((void(*)(void))0x80079234)(); }
-static inline void cbForStateMotorStopped(void) { ((void(*)(void))0x8007925C)(); }
-static inline void stateReady(void) { ((void(*)(void))0x80079340)(); }
-static inline void stateBusy(int param_1) { ((void(*)(int))0x80079570)(param_1); }
-static inline void cbForStateBusy(uint param_1) { ((void(*)(uint))0x80079890)(param_1); }
+#define cbForReadAsync FUNCTION_ADDRESS(void, 0x80078054)
+#define DVDReadPrio FUNCTION_ADDRESS(s32, 0x80078084, DVDFileInfo * /*fileInfo*/, void * /*addr*/, s32 /*length*/, s32 /*offset*/, s32 /*prio*/)
+#define cbForReadSync FUNCTION_ADDRESS(void, 0x8007819C)
+#define DVDPrepareStreamAsync FUNCTION_ADDRESS(BOOL, 0x800781C0, int, uint, uint, int)
+#define cbForPrepareStreamAsync FUNCTION_ADDRESS(void, 0x800782AC)
+#define defaultOptionalCommandChecker FUNCTION_ADDRESS(void, 0x800782DC)
+#define DVDInit FUNCTION_ADDRESS(void, 0x800782E0)
+#define stateReadingFST FUNCTION_ADDRESS(void, 0x800783AC)
+#define cbForStateReadingFST FUNCTION_ADDRESS(void, 0x80078440)
+#define cbForStateError FUNCTION_ADDRESS(void, 0x800784CC)
+#define stateTimeout FUNCTION_ADDRESS(void, 0x80078578)
+#define stateGettingError FUNCTION_ADDRESS(void, 0x800785AC)
+#define CategorizeError FUNCTION_ADDRESS(void, 0x800785D4)
+#define cbForStateGettingError FUNCTION_ADDRESS(void, 0x80078688)
+#define cbForUnrecoveredError FUNCTION_ADDRESS(void, 0x8007891C)
+#define cbForUnrecoveredErrorRetry FUNCTION_ADDRESS(void, 0x80078984)
+#define stateGoToRetry FUNCTION_ADDRESS(void, 0x80078A1C)
+#define cbForStateGoToRetry FUNCTION_ADDRESS(void, 0x80078A44)
+#define stateCheckID FUNCTION_ADDRESS(void, 0x80078B9C)
+#define stateCheckID3 FUNCTION_ADDRESS(void, 0x80078C7C)
+#define stateCheckID2a FUNCTION_ADDRESS(void, 0x80078CB0)
+#define cbForStateCheckID2a FUNCTION_ADDRESS(void, 0x80078CE4)
+#define stateCheckID2 FUNCTION_ADDRESS(void, 0x80078D58)
+#define cbForStateCheckID1 FUNCTION_ADDRESS(void, 0x80078D90)
+#define cbForStateCheckID2 FUNCTION_ADDRESS(void, 0x80078EA4)
+#define cbForStatecheckID3 FUNCTION_ADDRESS(void, 0x80078F88)
+#define AlarmHandler_80079084 FUNCTION_ADDRESS(void, 0x80079084)
+#define stateCoverClosed FUNCTION_ADDRESS(void, 0x800790C8)
+#define stateCoverClosed_CMD FUNCTION_ADDRESS(void, 0x80079194)
+#define cbForStateCoverClosed FUNCTION_ADDRESS(void, 0x800791C4)
+#define stateMotorStopped FUNCTION_ADDRESS(void, 0x80079234)
+#define cbForStateMotorStopped FUNCTION_ADDRESS(void, 0x8007925C)
+#define stateReady FUNCTION_ADDRESS(void, 0x80079340)
+#define stateBusy FUNCTION_ADDRESS(void, 0x80079570)
+#define cbForStateBusy FUNCTION_ADDRESS(void, 0x80079890)
 #define DVDReadAbsAsyncPrio FUNCTION_ADDRESS(bool, 0x80079EC8, DVDCommandBlock * /*block*/, void * /*addr*/, int /*length*/, int /*offset*/, DVDCBCallback /*callback*/, int /*prio*/)
-static inline undefined4 DVDReadAbsAsyncForBS(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5) { return ((undefined4(*)(int, undefined4, undefined4, undefined4, undefined4))0x80079FA4)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 DVDReadDiskID(int param_1, undefined4 param_2, undefined4 param_3) { return ((undefined4(*)(int, undefined4, undefined4))0x8007A074)(param_1, param_2, param_3); }
-static inline undefined4 DVDPrepareStreamAbsAsync(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { return ((undefined4(*)(int, undefined4, undefined4, undefined4))0x8007A148)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDCancelStreamAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A20C)(param_1, param_2); }
-static inline undefined4 DVDStopSteramAtEndAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A2C8)(param_1, param_2); }
-static inline undefined4 DVDGetStreamErrorStatusAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A384)(param_1, param_2); }
-static inline undefined4 DVDGetSteramPlayAddrAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A440)(param_1, param_2); }
-static inline undefined4 DVDInquiryAsync(int param_1, undefined4 param_2, undefined4 param_3) { return ((undefined4(*)(int, undefined4, undefined4))0x8007A4FC)(param_1, param_2, param_3); }
-static inline void DVDReset(void) { ((void(*)(void))0x8007A5CC)(); }
-static inline int DVDGetCommandBlockStatus(int param_1) { return ((int(*)(int))0x8007A610)(param_1); }
-static inline int DVDGetDriveStatus(void) { return ((int(*)(void))0x8007A65C)(); }
-static inline int DVDSetAutoInvalidation(int param_1) { return ((int(*)(int))0x8007A708)(param_1); }
-static inline void DVDResume(void) { ((void(*)(void))0x8007A718)(); }
+#define DVDReadAbsAsyncForBS FUNCTION_ADDRESS(void, 0x80079FA4)
+#define DVDReadDiskID FUNCTION_ADDRESS(void, 0x8007A074)
+#define DVDPrepareStreamAbsAsync FUNCTION_ADDRESS(void, 0x8007A148)
+#define DVDCancelStreamAsync FUNCTION_ADDRESS(void, 0x8007A20C)
+#define DVDStopSteramAtEndAsync FUNCTION_ADDRESS(void, 0x8007A2C8)
+#define DVDGetStreamErrorStatusAsync FUNCTION_ADDRESS(void, 0x8007A384)
+#define DVDGetSteramPlayAddrAsync FUNCTION_ADDRESS(void, 0x8007A440)
+#define DVDInquiryAsync FUNCTION_ADDRESS(void, 0x8007A4FC)
+#define DVDReset FUNCTION_ADDRESS(void, 0x8007A5CC)
+#define DVDGetCommandBlockStatus FUNCTION_ADDRESS(void, 0x8007A610)
+#define DVDGetDriveStatus FUNCTION_ADDRESS(void, 0x8007A65C)
+#define DVDSetAutoInvalidation FUNCTION_ADDRESS(void, 0x8007A708)
+#define DVDResume FUNCTION_ADDRESS(void, 0x8007A718)
 #define DVDCancelAsync FUNCTION_ADDRESS(bool, 0x8007A768, DVDCommandBlock * /*block*/, DVDCBCallback /*callback*/)
-static inline undefined4 DVDCancel(DVDCommandBlock * param_1) { return ((undefined4(*)(DVDCommandBlock *))0x8007A9E4)(param_1); }
-static inline char * DVDGetCurrentDiskID(void) { return ((char *(*)(void))0x8007AAB4)(); }
-static inline undefined4 DVDCheckDisk(void) { return ((undefined4(*)(void))0x8007AABC)(); }
-#define __DVDPrepareResetAsync FUNCTION_ADDRESS(void, 0x8007ABB4, DVDCBCallback)
-static inline undefined4 __DVDTestAlarm(undefined * param_1) { return ((undefined4(*)(undefined *))0x8007ACD0)(param_1); }
-static inline void __DVDClearWaitingQueue(void) { ((void(*)(void))0x8007AD08)(); }
-static inline undefined4 __DVDPushWaitingQueue(int param_1, undefined4 * param_2) { return ((undefined4(*)(int, undefined4 *))0x8007AD40)(param_1, param_2); }
-static inline int * * __DVDPopWaitingQueue(void) { return ((int * *(*)(void))0x8007ADA8)(); }
-static inline undefined4 __DVDCheckWaitingQueue(void) { return ((undefined4(*)(void))0x8007AE48)(); }
-static inline undefined4 __DVDDequeueWaitingQueue(int * param_1) { return ((undefined4(*)(int *))0x8007AEA0)(param_1); }
-static inline void DVDDumpWaitingQueue(void) { ((void(*)(void))0x8007AF00)(); }
-static inline char ErrorCode2Num(uint param_1) { return ((char(*)(uint))0x8007B00C)(param_1); }
-static inline void __DVDStoreErrorCode(uint param_1) { ((void(*)(uint))0x8007B128)(param_1); }
-static inline undefined4 DVDCompareDiskID(char * param_1, char * param_2) { return ((undefined4(*)(char *, char *))0x8007B1A4)(param_1, param_2); }
-static inline void __DVDPrintFatalMessage(void) { ((void(*)(void))0x8007B29C)(); }
-static inline void __fstLoad(void) { ((void(*)(void))0x8007B3A4)(); }
-static inline undefined * VISetPreRetraceCallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007B780)(param_1); }
-static inline undefined * VISetPostRetraceCallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007B7C4)(param_1); }
-static inline byte * getTiming(undefined4 param_1) { return ((byte *(*)(undefined4))0x8007B808)(param_1); }
-static inline void __VIInit(uint param_1) { ((void(*)(uint))0x8007B8A8)(param_1); }
-static inline void VIInit(void) { ((void(*)(void))0x8007BAA8)(); }
-static inline void VIWaitForRetrace(void) { ((void(*)(void))0x8007BF58)(); }
-static inline void setFbbRegs(int param_1, uint * param_2, uint * param_3, uint * param_4, uint * param_5) { ((void(*)(int, uint *, uint *, uint *, uint *))0x8007BFAC)(param_1, param_2, param_3, param_4, param_5); }
-static inline void setVerticalRegs(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, int param_9) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int))0x8007C280)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9); }
-static inline void VIConfigure(uint * param_1) { ((void(*)(uint *))0x8007C420)(param_1); }
-static inline void VIFlush(void) { ((void(*)(void))0x8007CC48)(); }
-static inline void VISetNextFrameBuffer(undefined4 param_1) { ((void(*)(undefined4))0x8007CD78)(param_1); }
-static inline void VISetNextRightFrameBuffer(undefined4 param_1) { ((void(*)(undefined4))0x8007CDE4)(param_1); }
-static inline void GetCurrentDisplayPosition(uint * param_1, uint * param_2) { ((void(*)(uint *, uint *))0x8007CE60)(param_1, param_2); }
-static inline undefined4 getCurrentFieldEvenOdd(void) { return ((undefined4(*)(void))0x8007CE9C)(); }
-static inline ushort VIGetNextField(void) { return ((ushort(*)(void))0x8007CF04)(); }
-static inline uint VIGetCurrentLine(void) { return ((uint(*)(void))0x8007CFA0)(); }
-static inline int VIGetTvFormat(void) { return ((int(*)(void))0x8007D038)(); }
-static inline ushort VIGetDTVStatus(void) { return ((ushort(*)(void))0x8007D0A0)(); }
-static inline void __VIDisplayPositionToXY(int param_1, int param_2, short * param_3, ushort * param_4) { ((void(*)(int, int, short *, ushort *))0x8007D0DC)(param_1, param_2, param_3, param_4); }
-static inline void __VIGetCurrentPosition(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8007D2F8)(param_1, param_2); }
-static inline void ClampStick(char * param_1, char * param_2, char param_3, char param_4, char param_5) { ((void(*)(char *, char *, char, char, char))0x8007D358)(param_1, param_2, param_3, param_4, param_5); }
-static inline void PADClamp(int param_1) { ((void(*)(int))0x8007D488)(param_1); }
-static inline void UpdateOrigin(int param_1) { ((void(*)(int))0x8007D59C)(param_1); }
-static inline void PadOriginCallback(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007D740)(param_1, param_2); }
-static inline void PADOriginUpdateCallback(int param_1, uint param_2) { ((void(*)(int, uint))0x8007D804)(param_1, param_2); }
-static inline void PADProbeCallback(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007D8D0)(param_1, param_2); }
-static inline void PADTypeAndStatusCallback(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007D9A8)(param_1, param_2); }
-static inline void PADReceiveCheckCallback(int param_1, uint param_2) { ((void(*)(int, uint))0x8007DCD4)(param_1, param_2); }
-static inline undefined4 PADReset(uint param_1) { return ((undefined4(*)(uint))0x8007DE14)(param_1); }
-static inline undefined4 PADRecalibrate(uint param_1) { return ((undefined4(*)(uint))0x8007DF24)(param_1); }
-static inline undefined4 PADInit(void) { return ((undefined4(*)(void))0x8007E038)(); }
-static inline uint PADRead(ushort * param_1) { return ((uint(*)(ushort *))0x8007E188)(param_1); }
-static inline void PadControlMotor(int param_1, uint param_2) { ((void(*)(int, uint))0x8007E488)(param_1, param_2); }
-static inline void PADSetSpec(int param_1) { ((void(*)(int))0x8007E540)(param_1); }
-static inline void SPEC0_MakeStatus(undefined4 param_1, ushort * param_2, uint * param_3) { ((void(*)(undefined4, ushort *, uint *))0x8007E5A0)(param_1, param_2, param_3); }
-static inline void SPEC1_MakeStatus(undefined4 param_1, ushort * param_2, uint * param_3) { ((void(*)(undefined4, ushort *, uint *))0x8007E714)(param_1, param_2, param_3); }
-static inline void SPEC2_MakeStatus(int param_1, ushort * param_2, undefined4 * param_3) { ((void(*)(int, ushort *, undefined4 *))0x8007E888)(param_1, param_2, param_3); }
-static inline int OnReset_8007ecf8(int param_1) { return ((int(*)(int))0x8007ECF8)(param_1); }
-static inline void SamplingHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8007EDB4)(param_1, param_2); }
-static inline int PADSetSamplingCallback(int param_1) { return ((int(*)(int))0x8007EE14)(param_1); }
-static inline bool __PADDisableRecalibration(int param_1) { return ((bool(*)(int))0x8007EE68)(param_1); }
-static inline undefined * AIRegisterDMACallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007EEE4)(param_1); }
-static inline void AIInitDMA(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007EF28)(param_1, param_2); }
-static inline void AIStartDMA(void) { ((void(*)(void))0x8007EFB0)(); }
-static inline void AIGetDMABytesLeft(void) { ((void(*)(void))0x8007EFC8)(); }
-static inline uint AIGetDMAStartAddr(void) { return ((uint(*)(void))0x8007EFE0)(); }
-static inline undefined * AIRegisterStreamCallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007EFFC)(param_1); }
-static inline void AIResetStreamSampleCount(void) { ((void(*)(void))0x8007F040)(); }
-static inline void AISetStreamTrigger(int param_1) { ((void(*)(int))0x8007F058)(param_1); }
-static inline void AISetStreamPlayState(uint param_1) { ((void(*)(uint))0x8007F064)(param_1); }
-static inline uint AIGetStreamPlayState(void) { return ((uint(*)(void))0x8007F13C)(); }
-static inline void AISetDSPSampleRate(int param_1) { ((void(*)(int))0x8007F14C)(param_1); }
-static inline uint AIGetDSPSampleRate(void) { return ((uint(*)(void))0x8007F22C)(); }
-static inline void __AI_set_stream_sample_rate(int param_1) { ((void(*)(int))0x8007F240)(param_1); }
-static inline uint AIGetStreamSampleRate(void) { return ((uint(*)(void))0x8007F314)(); }
-static inline void AISetStreamVolLeft(uint param_1) { ((void(*)(uint))0x8007F324)(param_1); }
-static inline uint AIGetStreamVolLeft(void) { return ((uint(*)(void))0x8007F340)(); }
-static inline void AISetStreamVolRight(uint param_1) { ((void(*)(uint))0x8007F350)(param_1); }
-static inline uint AIGetStreamVolRight(void) { return ((uint(*)(void))0x8007F36C)(); }
-static inline void AIInit(int param_1) { ((void(*)(int))0x8007F37C)(param_1); }
-static inline void __AICallbackStackSwitch(undefined * param_1) { ((void(*)(undefined *))0x8007F610)(param_1); }
-static inline void __AI_SRC_INIT(void) { ((void(*)(void))0x8007F668)(); }
-static inline undefined * ARRegisterDMACallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007F84C)(param_1); }
-static inline ushort ARGetDMAStatus(void) { return ((ushort(*)(void))0x8007F890)(); }
-static inline void ARStartDMA(int type, int mainmem_addr, int aram_addr, int length) { ((void(*)(int, int, int, int))0x8007F8CC)(type, mainmem_addr, aram_addr, length); }
-static inline int ARInit(int param_1, int param_2) { return ((int(*)(int, int))0x8007F9BC)(param_1, param_2); }
-static inline undefined4 ARGetBaseAddress(void) { return ((undefined4(*)(void))0x8007FA80)(); }
-static inline int ARGetSize(void) { return ((int(*)(void))0x8007FA88)(); }
-static inline void __ARHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8007FA90)(param_1, param_2); }
-static inline void __ARClearInterrupt(void) { ((void(*)(void))0x8007FB08)(); }
-static inline ushort __ARGetInterruptStatus(void) { return ((ushort(*)(void))0x8007FB28)(); }
-static inline void __ARChecksize(void) { ((void(*)(void))0x8007FB38)(); }
-static inline void __ARQServiceQueueLo(void) { ((void(*)(void))0x8008132C)(); }
-static inline void __ARQCallbackHack(void) { ((void(*)(void))0x8008142C)(); }
-static inline void __ARQInterruptServiceRoutine(void) { ((void(*)(void))0x80081430)(); }
-static inline void ARQInit(void) { ((void(*)(void))0x800814FC)(); }
+#define DVDCancel FUNCTION_ADDRESS(void, 0x8007A9E4)
+#define DVDGetCurrentDiskID FUNCTION_ADDRESS(char *, 0x8007AAB4)
+#define DVDCheckDisk FUNCTION_ADDRESS(void, 0x8007AABC)
+#define __DVDPrepareResetAsync FUNCTION_ADDRESS(void, 0x8007ABB4)
+#define __DVDTestAlarm FUNCTION_ADDRESS(void, 0x8007ACD0)
+#define __DVDClearWaitingQueue FUNCTION_ADDRESS(void, 0x8007AD08)
+#define __DVDPushWaitingQueue FUNCTION_ADDRESS(void, 0x8007AD40)
+#define __DVDPopWaitingQueue FUNCTION_ADDRESS(void, 0x8007ADA8)
+#define __DVDCheckWaitingQueue FUNCTION_ADDRESS(void, 0x8007AE48)
+#define __DVDDequeueWaitingQueue FUNCTION_ADDRESS(void, 0x8007AEA0)
+#define DVDDumpWaitingQueue FUNCTION_ADDRESS(void, 0x8007AF00)
+#define ErrorCode2Num FUNCTION_ADDRESS(void, 0x8007B00C)
+#define __DVDStoreErrorCode FUNCTION_ADDRESS(void, 0x8007B128)
+#define DVDCompareDiskID FUNCTION_ADDRESS(void, 0x8007B1A4)
+#define __DVDPrintFatalMessage FUNCTION_ADDRESS(void, 0x8007B29C)
+#define __fstLoad FUNCTION_ADDRESS(void, 0x8007B3A4)
+#define VISetPreRetraceCallback FUNCTION_ADDRESS(void, 0x8007B780)
+#define VISetPostRetraceCallback FUNCTION_ADDRESS(void, 0x8007B7C4)
+#define getTiming FUNCTION_ADDRESS(void, 0x8007B808)
+#define __VIInit FUNCTION_ADDRESS(void, 0x8007B8A8)
+#define VIInit FUNCTION_ADDRESS(void, 0x8007BAA8)
+#define VIWaitForRetrace FUNCTION_ADDRESS(void, 0x8007BF58)
+#define setFbbRegs FUNCTION_ADDRESS(void, 0x8007BFAC)
+#define setVerticalRegs FUNCTION_ADDRESS(void, 0x8007C280, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int)
+#define VIConfigure FUNCTION_ADDRESS(void, 0x8007C420)
+#define VIFlush FUNCTION_ADDRESS(void, 0x8007CC48)
+#define VISetNextFrameBuffer FUNCTION_ADDRESS(void, 0x8007CD78)
+#define VISetNextRightFrameBuffer FUNCTION_ADDRESS(void, 0x8007CDE4)
+#define GetCurrentDisplayPosition FUNCTION_ADDRESS(void, 0x8007CE60)
+#define getCurrentFieldEvenOdd FUNCTION_ADDRESS(void, 0x8007CE9C)
+#define VIGetNextField FUNCTION_ADDRESS(void, 0x8007CF04)
+#define VIGetCurrentLine FUNCTION_ADDRESS(void, 0x8007CFA0)
+#define VIGetTvFormat FUNCTION_ADDRESS(void, 0x8007D038)
+#define VIGetDTVStatus FUNCTION_ADDRESS(void, 0x8007D0A0)
+#define __VIDisplayPositionToXY FUNCTION_ADDRESS(void, 0x8007D0DC)
+#define __VIGetCurrentPosition FUNCTION_ADDRESS(void, 0x8007D2F8)
+#define ClampStick FUNCTION_ADDRESS(void, 0x8007D358)
+#define PADClamp FUNCTION_ADDRESS(void, 0x8007D488)
+#define UpdateOrigin FUNCTION_ADDRESS(void, 0x8007D59C)
+#define PadOriginCallback FUNCTION_ADDRESS(void, 0x8007D740)
+#define PADOriginUpdateCallback FUNCTION_ADDRESS(void, 0x8007D804)
+#define PADProbeCallback FUNCTION_ADDRESS(void, 0x8007D8D0)
+#define PADTypeAndStatusCallback FUNCTION_ADDRESS(void, 0x8007D9A8)
+#define PADReceiveCheckCallback FUNCTION_ADDRESS(void, 0x8007DCD4)
+#define PADReset FUNCTION_ADDRESS(void, 0x8007DE14)
+#define PADRecalibrate FUNCTION_ADDRESS(void, 0x8007DF24)
+#define PADInit FUNCTION_ADDRESS(void, 0x8007E038)
+#define PADRead FUNCTION_ADDRESS(void, 0x8007E188)
+#define PadControlMotor FUNCTION_ADDRESS(void, 0x8007E488)
+#define PADSetSpec FUNCTION_ADDRESS(void, 0x8007E540)
+#define SPEC0_MakeStatus FUNCTION_ADDRESS(void, 0x8007E5A0)
+#define SPEC1_MakeStatus FUNCTION_ADDRESS(void, 0x8007E714)
+#define SPEC2_MakeStatus FUNCTION_ADDRESS(void, 0x8007E888)
+#define OnReset_8007ecf8 FUNCTION_ADDRESS(void, 0x8007ECF8)
+#define SamplingHandler FUNCTION_ADDRESS(void, 0x8007EDB4)
+#define PADSetSamplingCallback FUNCTION_ADDRESS(void, 0x8007EE14)
+#define __PADDisableRecalibration FUNCTION_ADDRESS(void, 0x8007EE68)
+#define AIRegisterDMACallback FUNCTION_ADDRESS(void, 0x8007EEE4)
+#define AIInitDMA FUNCTION_ADDRESS(void, 0x8007EF28)
+#define AIStartDMA FUNCTION_ADDRESS(void, 0x8007EFB0)
+#define AIGetDMABytesLeft FUNCTION_ADDRESS(void, 0x8007EFC8)
+#define AIGetDMAStartAddr FUNCTION_ADDRESS(void, 0x8007EFE0)
+#define AIRegisterStreamCallback FUNCTION_ADDRESS(void, 0x8007EFFC)
+#define AIResetStreamSampleCount FUNCTION_ADDRESS(void, 0x8007F040)
+#define AISetStreamTrigger FUNCTION_ADDRESS(void, 0x8007F058)
+#define AISetStreamPlayState FUNCTION_ADDRESS(void, 0x8007F064)
+#define AIGetStreamPlayState FUNCTION_ADDRESS(void, 0x8007F13C)
+#define AISetDSPSampleRate FUNCTION_ADDRESS(void, 0x8007F14C)
+#define AIGetDSPSampleRate FUNCTION_ADDRESS(void, 0x8007F22C)
+#define __AI_set_stream_sample_rate FUNCTION_ADDRESS(void, 0x8007F240)
+#define AIGetStreamSampleRate FUNCTION_ADDRESS(void, 0x8007F314)
+#define AISetStreamVolLeft FUNCTION_ADDRESS(void, 0x8007F324)
+#define AIGetStreamVolLeft FUNCTION_ADDRESS(void, 0x8007F340)
+#define AISetStreamVolRight FUNCTION_ADDRESS(void, 0x8007F350)
+#define AIGetStreamVolRight FUNCTION_ADDRESS(void, 0x8007F36C)
+#define AIInit FUNCTION_ADDRESS(void, 0x8007F37C)
+#define __AICallbackStackSwitch FUNCTION_ADDRESS(void, 0x8007F610)
+#define __AI_SRC_INIT FUNCTION_ADDRESS(void, 0x8007F668)
+#define ARRegisterDMACallback FUNCTION_ADDRESS(void, 0x8007F84C)
+#define ARGetDMAStatus FUNCTION_ADDRESS(void, 0x8007F890)
+#define ARStartDMA FUNCTION_ADDRESS(void, 0x8007F8CC, int /*type*/, int /*mainmem_addr*/, int /*aram_addr*/, int /*length*/)
+#define ARInit FUNCTION_ADDRESS(void, 0x8007F9BC)
+#define ARGetBaseAddress FUNCTION_ADDRESS(void, 0x8007FA80)
+#define ARGetSize FUNCTION_ADDRESS(void, 0x8007FA88)
+#define __ARHandler FUNCTION_ADDRESS(void, 0x8007FA90)
+#define __ARClearInterrupt FUNCTION_ADDRESS(void, 0x8007FB08)
+#define __ARGetInterruptStatus FUNCTION_ADDRESS(void, 0x8007FB28)
+#define __ARChecksize FUNCTION_ADDRESS(void, 0x8007FB38)
+#define __ARQServiceQueueLo FUNCTION_ADDRESS(void, 0x8008132C)
+#define __ARQCallbackHack FUNCTION_ADDRESS(void, 0x8008142C)
+#define __ARQInterruptServiceRoutine FUNCTION_ADDRESS(void, 0x80081430)
+#define ARQInit FUNCTION_ADDRESS(void, 0x800814FC)
 #define ARQPostRequest FUNCTION_ADDRESS(void, 0x8008156C, ARQRequest * /*task*/, int /*owner*/, int /*type*/, int /*priority*/, int /*source*/, int /*dest*/, int /*length*/, func * /*callback*/)
-static inline void ARQRemoveOwnerRequest(int param_1) { ((void(*)(int))0x800816C8)(param_1); }
-static inline void ARQFlushQueue(void) { ((void(*)(void))0x800817B8)(); }
-static inline void ARQSetChunkSize(uint param_1) { ((void(*)(uint))0x800817F0)(param_1); }
-static inline ushort DSPCheckMailToDSP(void) { return ((ushort(*)(void))0x80081810)(); }
-static inline ushort DSPCheckMailFromDSP(void) { return ((ushort(*)(void))0x80081820)(); }
-static inline undefined4 DSPReadMailFromDSP(void) { return ((undefined4(*)(void))0x80081830)(); }
-static inline void DSPSendMailToDSP(undefined4 param_1) { ((void(*)(undefined4))0x80081848)(param_1); }
-static inline void DSPInit(void) { ((void(*)(void))0x8008185C)(); }
-static inline undefined4 * DSPAddTask(undefined4 * param_1) { return ((undefined4 *(*)(undefined4 *))0x80081920)(param_1); }
-static inline int DSPCancelTask(int param_1) { return ((int(*)(int))0x80081990)(param_1); }
-static inline void __DSP_debug_printf(void) { ((void(*)(void))0x800819D0)(); }
-static inline void __DSPHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80081A20)(param_1, param_2); }
-static inline void __DSP_exec_task(int param_1, int * param_2) { ((void(*)(int, int *))0x80081E44)(param_1, param_2); }
-static inline void __DSP_boot_task(int param_1) { ((void(*)(int))0x80081FE4)(param_1); }
-static inline void __DSP_insert_task(undefined * param_1) { ((void(*)(undefined *))0x80082170)(param_1); }
-static inline void __DSP_remove_task(undefined4 * param_1) { ((void(*)(undefined4 *))0x80082210)(param_1); }
-static inline void __CARDDefaultApiCallback(void) { ((void(*)(void))0x800822A4)(); }
-static inline void __CARDSyncCallback(int param_1) { ((void(*)(int))0x800822A8)(param_1); }
-static inline void __CARDExtHandler(int param_1) { ((void(*)(int))0x800822DC)(param_1); }
-static inline void __CARDExiHandler(int param_1) { ((void(*)(int))0x800823B4)(param_1); }
-static inline void __CARDTxHandler(int param_1) { ((void(*)(int))0x800824CC)(param_1); }
-static inline void __CARDUnlockHandler(int param_1) { ((void(*)(int))0x80082574)(param_1); }
-static inline undefined4 __CardEnableInterrupt(undefined4 param_1, int param_2) { return ((undefined4(*)(undefined4, int))0x800825F8)(param_1, param_2); }
-static inline undefined4 __CARDReadStatus(undefined4 param_1, undefined4 param_2) { return ((undefined4(*)(undefined4, undefined4))0x800826B8)(param_1, param_2); }
-static inline undefined4 __CARDClearStatus(undefined4 param_1) { return ((undefined4(*)(undefined4))0x800827A8)(param_1); }
-static inline void TimeoutHandler(undefined * param_1) { ((void(*)(undefined *))0x80082854)(param_1); }
-static inline undefined4 Retry(int param_1) { return ((undefined4(*)(int))0x800828F8)(param_1); }
-static inline void UnlockedCallback(int param_1, int param_2) { ((void(*)(int, int))0x80082B24)(param_1, param_2); }
-static inline undefined4 __CARDStart(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x80082C34)(param_1, param_2, param_3); }
-static inline int __CARDReadSegment(int param_1, undefined4 param_2) { return ((int(*)(int, undefined4))0x80082DE8)(param_1, param_2); }
-static inline int __CARDWritePage(int param_1, undefined4 param_2) { return ((int(*)(int, undefined4))0x80082F1C)(param_1, param_2); }
-static inline int __CARDEraseSector(int param_1, uint param_2) { return ((int(*)(int, uint))0x80083038)(param_1, param_2); }
-static inline void CARDInit(void) { ((void(*)(void))0x80083118)(); }
-static inline short __CARDGetFontEncode(void) { return ((short(*)(void))0x800831C4)(); }
-static inline void __CARDSetDiskID(undefined * param_1) { ((void(*)(undefined *))0x800831CC)(param_1); }
-static inline undefined4 __CARDGetControlBlock(int param_1, int * * param_2) { return ((undefined4(*)(int, int * *))0x80083204)(param_1, param_2); }
-static inline int __CARDPutControlBlock(int * param_1, int param_2) { return ((int(*)(int *, int))0x800832BC)(param_1, param_2); }
-static inline int CARDGetResultCode(int param_1) { return ((int(*)(int))0x80083320)(param_1); }
-static inline int CARDFreeBlocks(undefined4 param_1, int * param_2, int * param_3) { return ((int(*)(undefined4, int *, int *))0x80083350)(param_1, param_2, param_3); }
-static inline int __CARDSync(int param_1) { return ((int(*)(int))0x800834A0)(param_1); }
-static inline undefined4 OnReset_80083538(int param_1) { return ((undefined4(*)(int))0x80083538)(param_1); }
-static inline uint bitrev(uint param_1) { return ((uint(*)(uint))0x80083588)(param_1); }
-static inline undefined4 ReadArrayUnlock(int param_1, uint param_2, undefined4 param_3, undefined4 param_4, int param_5) { return ((undefined4(*)(int, uint, undefined4, undefined4, int))0x800836F4)(param_1, param_2, param_3, param_4, param_5); }
-static inline uint DummyLen(void) { return ((uint(*)(void))0x80083838)(); }
-static inline undefined4 __CARDUnlock(int param_1, uint * param_2) { return ((undefined4(*)(int, uint *))0x800838FC)(param_1, param_2); }
-static inline void InitCallback(int * param_1) { ((void(*)(int *))0x80084454)(param_1); }
-static inline void DoneCallback(int * param_1) { ((void(*)(int *))0x800844C4)(param_1); }
-static inline void BlockReadCallback(int param_1, int param_2) { ((void(*)(int, int))0x800847E8)(param_1, param_2); }
-static inline undefined4 __CARDRead(int param_1, undefined4 param_2, uint param_3, undefined * param_4, undefined4 param_5) { return ((undefined4(*)(int, undefined4, uint, undefined *, undefined4))0x800848C4)(param_1, param_2, param_3, param_4, param_5); }
-static inline void BlockWriteCallback(int param_1, int param_2) { ((void(*)(int, int))0x80084928)(param_1, param_2); }
-static inline undefined4 __CARDWrite(int param_1, undefined4 param_2, uint param_3, undefined * param_4, undefined4 param_5) { return ((undefined4(*)(int, undefined4, uint, undefined *, undefined4))0x80084A04)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 CARDGetXferredBytes(int param_1) { return ((undefined4(*)(int))0x80084A68)(param_1); }
-static inline undefined4 __CARDGetFatBlock(int param_1) { return ((undefined4(*)(int))0x80084A80)(param_1); }
-static inline void WriteCallback(int param_1, int param_2) { ((void(*)(int, int))0x80084A88)(param_1, param_2); }
-static inline void EraseCallback(int param_1, int param_2) { ((void(*)(int, int))0x80084B5C)(param_1, param_2); }
-static inline undefined4 __CARDAllocBlock(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x80084C24)(param_1, param_2); }
-static inline undefined4 __CARDFreeBlock(int param_1, ushort param_2) { return ((undefined4(*)(int, ushort))0x80084D3C)(param_1, param_2); }
-static inline void __CARDUpdateFatBlock(int param_1, int param_2, undefined4 param_3) { ((void(*)(int, int, undefined4))0x80084DD8)(param_1, param_2, param_3); }
-static inline undefined4 __CARDGetDirBlock(int param_1) { return ((undefined4(*)(int))0x80084E84)(param_1); }
-static inline void WriteCallback_80084e8c(int param_1, int param_2) { ((void(*)(int, int))0x80084E8C)(param_1, param_2); }
-static inline void EraseCallback_80084f5c(int param_1, int param_2) { ((void(*)(int, int))0x80084F5C)(param_1, param_2); }
-static inline undefined4 __CARDUpdateDir(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x80085024)(param_1, param_2); }
-static inline void __CARDCheckSum(ushort * param_1, uint param_2, short * param_3, short * param_4) { ((void(*)(ushort *, uint, short *, short *))0x800850E8)(param_1, param_2, param_3, param_4); }
-static inline undefined4 VerifyID(int param_1) { return ((undefined4(*)(int))0x80085298)(param_1); }
-static inline int VerifyDir(int param_1, uint * param_2) { return ((int(*)(int, uint *))0x8008551C)(param_1, param_2); }
-static inline int VerifyFat(int param_1, uint * param_2) { return ((int(*)(int, uint *))0x8008575C)(param_1, param_2); }
-static inline int __CARDVerify(undefined4 param_1) { return ((int(*)(undefined4))0x800859E0)(param_1); }
-static inline int CARDCheckExAsync(undefined4 param_1, undefined4 * param_2, undefined * param_3) { return ((int(*)(undefined4, undefined4 *, undefined *))0x80085A6C)(param_1, param_2, param_3); }
-static inline void CARDCheckAsync(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80085FFC)(param_1, param_2); }
-static inline void CARDCheckEx(undefined4 param_1) { ((void(*)(undefined4))0x80086024)(param_1); }
-static inline undefined4 IsCard(char * param_1) { return ((undefined4(*)(char *))0x80086078)(param_1); }
-static inline undefined4 CARDProbeEx(int param_1, uint * param_2, undefined4 * param_3) { return ((undefined4(*)(int, uint *, undefined4 *))0x80086144)(param_1, param_2, param_3); }
-static inline int DoMount(int param_1) { return ((int(*)(int))0x800862C0)(param_1); }
-static inline void __CARDMountCallback(int param_1, int param_2) { ((void(*)(int, int))0x800866D0)(param_1, param_2); }
-static inline undefined4 CARDMountAsync(int param_1, undefined * param_2, undefined4 param_3, undefined * param_4) { return ((undefined4(*)(int, undefined *, undefined4, undefined *))0x80086808)(param_1, param_2, param_3, param_4); }
-static inline void CARDMount(undefined4 param_1) { ((void(*)(undefined4))0x800869A8)(param_1); }
-static inline void DoUnmount(int param_1, int param_2) { ((void(*)(int, int))0x800869F0)(param_1, param_2); }
-static inline int CARDUnmount(int param_1) { return ((int(*)(int))0x80086A8C)(param_1); }
-static inline int __CARDFormatRegionAsync(int param_1, undefined2 param_2, undefined * param_3) { return ((int(*)(int, undefined2, undefined *))0x80086C7C)(param_1, param_2, param_3); }
-static inline void CARDFormatAsync(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800872D4)(param_1, param_2); }
-static inline void CARDFormat(undefined4 param_1) { ((void(*)(undefined4))0x8008731C)(param_1); }
-static inline undefined4 __CARDCompareFileName(int param_1, char * param_2) { return ((undefined4(*)(int, char *))0x80087370)(param_1, param_2); }
-static inline undefined4 __CARDAccess(int param_1, byte * param_2) { return ((undefined4(*)(int, byte *))0x800873D8)(param_1, param_2); }
-static inline int __CARDIsWritable(int param_1, byte * param_2) { return ((int(*)(int, byte *))0x8008746C)(param_1, param_2); }
-static inline int __CARDIsReadable(int param_1, byte * param_2) { return ((int(*)(int, byte *))0x800875A0)(param_1, param_2); }
-static inline undefined4 __CARDGetFileNo(int * param_1, byte * param_2, int * param_3) { return ((undefined4(*)(int *, byte *, int *))0x80087694)(param_1, param_2, param_3); }
-static inline void CARDOpen(undefined4 param_1, undefined4 param_2, undefined4 * param_3) { ((void(*)(undefined4, undefined4, undefined4 *))0x800877E4)(param_1, param_2, param_3); }
-static inline void CARDClose(undefined4 * param_1) { ((void(*)(undefined4 *))0x80087900)(param_1); }
-static inline undefined4 __CARDIsOpened(void) { return ((undefined4(*)(void))0x80087954)(); }
-static inline void CreateCallbackFat(int param_1, int param_2) { ((void(*)(int, int))0x8008795C)(param_1, param_2); }
-static inline int CARDCreateAsync(undefined4 param_1, char * param_2, uint param_3, undefined4 * param_4, undefined * param_5) { return ((int(*)(undefined4, char *, uint, undefined4 *, undefined *))0x80087A8C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void CARDCreate(undefined4 param_1) { ((void(*)(undefined4))0x80087CAC)(param_1); }
-static inline int __CARDSeek(undefined4 * param_1, int param_2, uint param_3, int * param_4) { return ((int(*)(undefined4 *, int, uint, int *))0x80087CF4)(param_1, param_2, param_3, param_4); }
-static inline void ReadCallback(int param_1, int param_2) { ((void(*)(int, int))0x80087EAC)(param_1, param_2); }
-static inline int CARDReadAsync(undefined4 * param_1, void * param_2, uint param_3, uint param_4, undefined * param_5) { return ((int(*)(undefined4 *, void *, uint, uint, undefined *))0x80087FDC)(param_1, param_2, param_3, param_4, param_5); }
-static inline void CARDRead(undefined4 * param_1) { ((void(*)(undefined4 *))0x80088120)(param_1); }
-static inline void WriteCallback_80088168(int param_1, int param_2) { ((void(*)(int, int))0x80088168)(param_1, param_2); }
-static inline void EraseCallback_800882d8(int param_1, int param_2) { ((void(*)(int, int))0x800882D8)(param_1, param_2); }
-static inline int CARDWriteAsync(undefined4 * param_1, undefined4 param_2, uint param_3, uint param_4, undefined * param_5) { return ((int(*)(undefined4 *, undefined4, uint, uint, undefined *))0x80088388)(param_1, param_2, param_3, param_4, param_5); }
-static inline void CARDWrite(undefined4 * param_1) { ((void(*)(undefined4 *))0x8008849C)(param_1); }
-static inline void DeleteCallback(int param_1, int param_2) { ((void(*)(int, int))0x800884E4)(param_1, param_2); }
-static inline int CARDFastDeleteAsync(undefined4 param_1, undefined4 param_2, undefined * param_3) { return ((int(*)(undefined4, undefined4, undefined *))0x80088588)(param_1, param_2, param_3); }
-static inline void CARDFastDelete(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80088698)(param_1, param_2); }
-static inline void UpdateIconOffsets(int param_1, int param_2) { ((void(*)(int, int))0x800886E0)(param_1, param_2); }
-static inline int CARDGetStatus(undefined4 param_1, int param_2, void * param_3) { return ((int(*)(undefined4, int, void *))0x800888D8)(param_1, param_2, param_3); }
-static inline int CARDSetStatusAsync(undefined4 param_1, int param_2, int param_3, undefined4 param_4) { return ((int(*)(undefined4, int, int, undefined4))0x800889EC)(param_1, param_2, param_3, param_4); }
-static inline void CARDSetStatus(undefined4 param_1) { ((void(*)(undefined4))0x80088B60)(param_1); }
-static inline int __CARDGetStatusEx(undefined4 param_1, int param_2, void * param_3) { return ((int(*)(undefined4, int, void *))0x80088BA8)(param_1, param_2, param_3); }
-static inline void __CARDSetStatusExAsync(int chan, int cardFile, int dst, int param_4) { ((void(*)(int, int, int, int))0x80088C4C)(chan, cardFile, dst, param_4); }
-static inline int CARDGetSerialNo(int param_1, uint * param_2) { return ((int(*)(int, uint *))0x80088EE8)(param_1, param_2); }
-static inline int CARDSetAttributesAsync(undefined4 param_1, undefined4 param_2, byte param_3, undefined4 param_4) { return ((int(*)(undefined4, undefined4, byte, undefined4))0x80088FAC)(param_1, param_2, param_3, param_4); }
-static inline void CARDSetAttributes(undefined4 param_1) { ((void(*)(undefined4))0x80089090)(param_1); }
-static inline undefined * __GXDefaultTexRegionCallback(GXTexObj * param_1, uint param_2) { return ((undefined *(*)(GXTexObj *, uint))0x800890D8)(param_1, param_2); }
-static inline undefined * __GXDefaultTlutRegionCallback(uint param_1) { return ((undefined *(*)(uint))0x800891D4)(param_1); }
-static inline undefined4 __GXShutdown(int param_1) { return ((undefined4(*)(int))0x800891F8)(param_1); }
-static inline void __GXInitRevisionBits(void) { ((void(*)(void))0x80089388)(); }
-static inline GXFifoObj * GXInit(void) { return ((GXFifoObj *(*)(void))0x8008952C)(); }
-static inline void __GXInitGX(void) { ((void(*)(void))0x80089B2C)(); }
-static inline void GXCPInterruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8008A464)(param_1, param_2); }
-static inline void * GXGetFifoBase(GXFifoObj * fifo) { return ((void *(*)(GXFifoObj *))0x8008A598)(fifo); }
-static inline void GXInitFifoPtrs(GXFifoObj * fifo, void * readPtr, void * writePtr) { ((void(*)(GXFifoObj *, void *, void *))0x8008A604)(fifo, readPtr, writePtr); }
-static inline void GXInitFifoLimits(GXFifoObj * fifo, int hiWaterMark, int loWaterMark) { ((void(*)(GXFifoObj *, int, int))0x8008A674)(fifo, hiWaterMark, loWaterMark); }
-static inline void GXSetCPUFifo(GXFifoObj * fifo) { ((void(*)(GXFifoObj *))0x8008A680)(fifo); }
-static inline void GXSetGPFifo(GXFifoObj * fifo) { ((void(*)(GXFifoObj *))0x8008A7A8)(fifo); }
-static inline int GXSetBreakPtCallback(int param_1) { return ((int(*)(int))0x8008A948)(param_1); }
-static inline void __GXFifoInit(void) { ((void(*)(void))0x8008A98C)(); }
-static inline void __GXFifoReadEnable(void) { ((void(*)(void))0x8008A9D8)(); }
-static inline void __GXFifoReadDisable(void) { ((void(*)(void))0x8008A9FC)(); }
-static inline void __GXFifoLink(char param_1) { ((void(*)(char))0x8008AA20)(param_1); }
-static inline void __GXWriteFifoIntEnable(uint param_1, uint param_2) { ((void(*)(uint, uint))0x8008AA54)(param_1, param_2); }
-static inline void __GXWriteFifoIntReset(uint param_1, uint param_2) { ((void(*)(uint, uint))0x8008AA84)(param_1, param_2); }
-static inline OSThread * GXSetCurrentGXThread(void) { return ((OSThread *(*)(void))0x8008AAB4)(); }
-static inline OSThread * GXGetCurrentGXThread(void) { return ((OSThread *(*)(void))0x8008AB00)(); }
-static inline GXFifoObj * GXGetGPFifo(void) { return ((GXFifoObj *(*)(void))0x8008AB08)(); }
-static inline void GXSetVtxDesc(GXAttr attr, GXAttrType type) { ((void(*)(GXAttr, GXAttrType))0x8008AB10)(attr, type); }
-static inline void GXSetVtxDescv(GXVtxDescList * attrPtr) { ((void(*)(GXVtxDescList *))0x8008AD7C)(attrPtr); }
-static inline void __GXSetVCD(void) { ((void(*)(void))0x8008B004)(); }
-static inline void __GXCalculateVLim(void) { ((void(*)(void))0x8008B0C0)(); }
-static inline void GXGetVtxDesc(GXAttr attr, GXAttrType * type) { ((void(*)(GXAttr, GXAttrType *))0x8008B1E4)(attr, type); }
-static inline void GXGetVtxDescv(GXVtxDescList * vcd) { ((void(*)(GXVtxDescList *))0x8008B398)(vcd); }
-static inline void GXClearVtxDesc(void) { ((void(*)(void))0x8008B428)(); }
-static inline void GXSetVtxAttrFmt(GXVtxFmt vtxfmt, GXAttr attr, GXCompCnt cnt, GXCompType type, byte frac) { ((void(*)(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, byte))0x8008B460)(vtxfmt, attr, cnt, type, frac); }
-static inline void GXSetVtxAttrFmtv(GXVtxFmt vtxfmt, GXVtxAttrFmtList * list) { ((void(*)(GXVtxFmt, GXVtxAttrFmtList *))0x8008B6BC)(vtxfmt, list); }
-static inline void __GXSetVAT(void) { ((void(*)(void))0x8008B93C)(); }
-static inline void GXGetVtxAttrFmt(GXVtxFmt idx, GXAttr attr, GXCompCnt * compCnt, GXCompType * compType, byte * shift) { ((void(*)(GXVtxFmt, GXAttr, GXCompCnt *, GXCompType *, byte *))0x8008B9C4)(idx, attr, compCnt, compType, shift); }
-static inline void GXGetVtxAttrFmtv(GXVtxFmt fmt, GXVtxAttrFmtList * vat) { ((void(*)(GXVtxFmt, GXVtxAttrFmtList *))0x8008BC44)(fmt, vat); }
-static inline void GXSetArray(GXAttr attr, void * base_ptr, byte stride) { ((void(*)(GXAttr, void *, byte))0x8008BCB8)(attr, base_ptr, stride); }
-static inline void GxInvalidateVtxCache(void) { ((void(*)(void))0x8008BCFC)(); }
-static inline void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc src_param, int mtx, GXBool normalize, int postmtx) { ((void(*)(GXTexCoordID, GXTexGenType, GXTexGenSrc, int, GXBool, int))0x8008BD0C)(dst_coord, func, src_param, mtx, normalize, postmtx); }
-static inline void GXSetNumTexGens(byte nTexGens) { ((void(*)(byte))0x8008BF8C)(nTexGens); }
-static inline void GXSetMisc(GXMiscToken token, int val) { ((void(*)(GXMiscToken, int))0x8008BFC8)(token, val); }
-static inline void GXFlush(void) { ((void(*)(void))0x8008C05C)(); }
-static inline void __GXAbort(void) { ((void(*)(void))0x8008C0B8)(); }
-static inline void GXSetDrawSync(short token) { ((void(*)(short))0x8008C224)(token); }
-static inline short GXReadDrawSync(void) { return ((short(*)(void))0x8008C2D8)(); }
-static inline void GXDrawDone(void) { ((void(*)(void))0x8008C2E4)(); }
-static inline void GXPixModeSync(void) { ((void(*)(void))0x8008C364)(); }
-static inline void GXPokeAlphaMode(GXCompare func, byte threshold) { ((void(*)(GXCompare, byte))0x8008C388)(func, threshold); }
-static inline void GXPokeAlphaRead(GXAlphaReadMode mode) { ((void(*)(GXAlphaReadMode))0x8008C39C)(mode); }
-static inline void GXPokeAlphaUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008C3BC)(update_enable); }
-static inline void GXPokeBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) { ((void(*)(GXBlendMode, GXBlendFactor, GXBlendFactor, GXLogicOp))0x8008C3D4)(type, src_factor, dst_factor, op); }
-static inline void GXPokeColorUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008C438)(update_enable); }
-static inline void GXPokeDstAlpha(GXBool enable, byte alpha) { ((void(*)(GXBool, byte))0x8008C450)(enable, alpha); }
-static inline void GXPokeDither(GXBool dither) { ((void(*)(GXBool))0x8008C474)(dither); }
-static inline void GXPokeZMode(GXBool compare_enable, GXCompare func, GXBool update_enable) { ((void(*)(GXBool, GXCompare, GXBool))0x8008C48C)(compare_enable, func, update_enable); }
-static inline int GXSetDrawSyncCallback(int param_1) { return ((int(*)(int))0x8008C4AC)(param_1); }
-static inline int GXSetDrawDoneCallback(int param_1) { return ((int(*)(int))0x8008C578)(param_1); }
-static inline void __GXPEInit(void) { ((void(*)(void))0x8008C63C)(); }
-static inline void __GXSetDirtyState(void) { ((void(*)(void))0x8008C6B0)(); }
-static inline void GXBegin(GXPrimitive type, GXVtxFmt vtxfmt, short nverts) { ((void(*)(GXPrimitive, GXVtxFmt, short))0x8008C730)(type, vtxfmt, nverts); }
-static inline void __GXSendFlushPrim(void) { ((void(*)(void))0x8008C800)(); }
-static inline void GXSetLineWidth(byte width, GXTexOffset texOffsets) { ((void(*)(byte, GXTexOffset))0x8008C888)(width, texOffsets); }
-static inline void GXGetLineWidth(byte * width, GXTexOffset * texOffsets) { ((void(*)(byte *, GXTexOffset *))0x8008C8C8)(width, texOffsets); }
-static inline void GXSetPointSize(byte pointSize, GXTexOffset texOffsets) { ((void(*)(byte, GXTexOffset))0x8008C8E4)(pointSize, texOffsets); }
-static inline void GXEnableTexOffsets(GXTexCoordID coord, GXBool line_enable, GXBool point_enable) { ((void(*)(GXTexCoordID, GXBool, GXBool))0x8008C924)(coord, line_enable, point_enable); }
-static inline void GXSetCullMode(GXCullMode mode) { ((void(*)(GXCullMode))0x8008C96C)(mode); }
-static inline void GXGetCullMode(GXCullMode * mode) { ((void(*)(GXCullMode *))0x8008C994)(mode); }
-static inline void GXSetCoPlanar(GXBool enable) { ((void(*)(GXBool))0x8008C9B0)(enable); }
-static inline void __GXSetGenMode(void) { ((void(*)(void))0x8008C9E4)(); }
-static inline void GXAdjustForOverscan(GXRenderModeObj * rmin, GXRenderModeObj * rmout, short hor, short ver) { ((void(*)(GXRenderModeObj *, GXRenderModeObj *, short, short))0x8008CA08)(rmin, rmout, hor, ver); }
-static inline void GXSetDispCopySrc(short left, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CB4C)(left, top, wd, ht); }
-static inline void GXSetTexCopySrc(short left, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CBC8)(left, top, wd, ht); }
-static inline void GXSetDispCopyDst(short wd, short ht) { ((void(*)(short, short))0x8008CC44)(wd, ht); }
-static inline void GXSetTexCopyDst(short wd, short ht, GXTexFmt fmt, GXBool mipmap) { ((void(*)(short, short, GXTexFmt, GXBool))0x8008CC78)(wd, ht, fmt, mipmap); }
-static inline void GXSetDispCopyFrame2Field(GXCopyMode mode) { ((void(*)(GXCopyMode))0x8008CDA8)(mode); }
-static inline void GXSetCopyClamp(GXFBClamp clamp) { ((void(*)(GXFBClamp))0x8008CDCC)(clamp); }
-static inline int GXSetDispCopyYScale(f64 vscale) { return ((int(*)(f64))0x8008CE24)(vscale); }
-static inline void GXSetCopyClear(GXColor clear_clr, int clear_z) { ((void(*)(GXColor, int))0x8008CEF0)(clear_clr, clear_z); }
+#define ARQRemoveOwnerRequest FUNCTION_ADDRESS(void, 0x800816C8)
+#define ARQFlushQueue FUNCTION_ADDRESS(void, 0x800817B8)
+#define ARQSetChunkSize FUNCTION_ADDRESS(void, 0x800817F0)
+#define DSPCheckMailToDSP FUNCTION_ADDRESS(void, 0x80081810)
+#define DSPCheckMailFromDSP FUNCTION_ADDRESS(void, 0x80081820)
+#define DSPReadMailFromDSP FUNCTION_ADDRESS(void, 0x80081830)
+#define DSPSendMailToDSP FUNCTION_ADDRESS(void, 0x80081848)
+#define DSPInit FUNCTION_ADDRESS(void, 0x8008185C)
+#define DSPAddTask FUNCTION_ADDRESS(void, 0x80081920)
+#define DSPCancelTask FUNCTION_ADDRESS(void, 0x80081990)
+#define __DSP_debug_printf FUNCTION_ADDRESS(void, 0x800819D0)
+#define __DSPHandler FUNCTION_ADDRESS(void, 0x80081A20)
+#define __DSP_exec_task FUNCTION_ADDRESS(void, 0x80081E44)
+#define __DSP_boot_task FUNCTION_ADDRESS(void, 0x80081FE4)
+#define __DSP_insert_task FUNCTION_ADDRESS(void, 0x80082170)
+#define __DSP_remove_task FUNCTION_ADDRESS(void, 0x80082210)
+#define __CARDDefaultApiCallback FUNCTION_ADDRESS(void, 0x800822A4)
+#define __CARDSyncCallback FUNCTION_ADDRESS(void, 0x800822A8)
+#define __CARDExtHandler FUNCTION_ADDRESS(void, 0x800822DC)
+#define __CARDExiHandler FUNCTION_ADDRESS(void, 0x800823B4)
+#define __CARDTxHandler FUNCTION_ADDRESS(void, 0x800824CC)
+#define __CARDUnlockHandler FUNCTION_ADDRESS(void, 0x80082574)
+#define __CardEnableInterrupt FUNCTION_ADDRESS(void, 0x800825F8)
+#define __CARDReadStatus FUNCTION_ADDRESS(void, 0x800826B8)
+#define __CARDClearStatus FUNCTION_ADDRESS(void, 0x800827A8)
+#define TimeoutHandler FUNCTION_ADDRESS(void, 0x80082854)
+#define Retry FUNCTION_ADDRESS(void, 0x800828F8)
+#define UnlockedCallback FUNCTION_ADDRESS(void, 0x80082B24)
+#define __CARDStart FUNCTION_ADDRESS(void, 0x80082C34)
+#define __CARDReadSegment FUNCTION_ADDRESS(void, 0x80082DE8)
+#define __CARDWritePage FUNCTION_ADDRESS(void, 0x80082F1C)
+#define __CARDEraseSector FUNCTION_ADDRESS(void, 0x80083038)
+#define CARDInit FUNCTION_ADDRESS(void, 0x80083118)
+#define __CARDGetFontEncode FUNCTION_ADDRESS(void, 0x800831C4)
+#define __CARDSetDiskID FUNCTION_ADDRESS(void, 0x800831CC)
+#define __CARDGetControlBlock FUNCTION_ADDRESS(void, 0x80083204)
+#define __CARDPutControlBlock FUNCTION_ADDRESS(void, 0x800832BC)
+#define CARDGetResultCode FUNCTION_ADDRESS(void, 0x80083320)
+#define CARDFreeBlocks FUNCTION_ADDRESS(void, 0x80083350)
+#define __CARDSync FUNCTION_ADDRESS(void, 0x800834A0)
+#define OnReset_80083538 FUNCTION_ADDRESS(void, 0x80083538)
+#define bitrev FUNCTION_ADDRESS(void, 0x80083588)
+#define ReadArrayUnlock FUNCTION_ADDRESS(void, 0x800836F4)
+#define DummyLen FUNCTION_ADDRESS(void, 0x80083838)
+#define __CARDUnlock FUNCTION_ADDRESS(void, 0x800838FC)
+#define InitCallback FUNCTION_ADDRESS(void, 0x80084454)
+#define DoneCallback FUNCTION_ADDRESS(void, 0x800844C4)
+#define BlockReadCallback FUNCTION_ADDRESS(void, 0x800847E8)
+#define __CARDRead FUNCTION_ADDRESS(void, 0x800848C4)
+#define BlockWriteCallback FUNCTION_ADDRESS(void, 0x80084928)
+#define __CARDWrite FUNCTION_ADDRESS(void, 0x80084A04)
+#define CARDGetXferredBytes FUNCTION_ADDRESS(void, 0x80084A68)
+#define __CARDGetFatBlock FUNCTION_ADDRESS(void, 0x80084A80)
+#define WriteCallback FUNCTION_ADDRESS(void, 0x80084A88)
+#define EraseCallback FUNCTION_ADDRESS(void, 0x80084B5C)
+#define __CARDAllocBlock FUNCTION_ADDRESS(void, 0x80084C24)
+#define __CARDFreeBlock FUNCTION_ADDRESS(void, 0x80084D3C)
+#define __CARDUpdateFatBlock FUNCTION_ADDRESS(void, 0x80084DD8)
+#define __CARDGetDirBlock FUNCTION_ADDRESS(void, 0x80084E84)
+#define WriteCallback_80084e8c FUNCTION_ADDRESS(void, 0x80084E8C)
+#define EraseCallback_80084f5c FUNCTION_ADDRESS(void, 0x80084F5C)
+#define __CARDUpdateDir FUNCTION_ADDRESS(void, 0x80085024)
+#define __CARDCheckSum FUNCTION_ADDRESS(void, 0x800850E8)
+#define VerifyID FUNCTION_ADDRESS(void, 0x80085298)
+#define VerifyDir FUNCTION_ADDRESS(void, 0x8008551C)
+#define VerifyFat FUNCTION_ADDRESS(void, 0x8008575C)
+#define __CARDVerify FUNCTION_ADDRESS(void, 0x800859E0)
+#define CARDCheckExAsync FUNCTION_ADDRESS(void, 0x80085A6C)
+#define CARDCheckAsync FUNCTION_ADDRESS(void, 0x80085FFC)
+#define CARDCheckEx FUNCTION_ADDRESS(void, 0x80086024)
+#define IsCard FUNCTION_ADDRESS(void, 0x80086078)
+#define CARDProbeEx FUNCTION_ADDRESS(void, 0x80086144)
+#define DoMount FUNCTION_ADDRESS(void, 0x800862C0)
+#define __CARDMountCallback FUNCTION_ADDRESS(void, 0x800866D0)
+#define CARDMountAsync FUNCTION_ADDRESS(void, 0x80086808)
+#define CARDMount FUNCTION_ADDRESS(void, 0x800869A8)
+#define DoUnmount FUNCTION_ADDRESS(void, 0x800869F0)
+#define CARDUnmount FUNCTION_ADDRESS(void, 0x80086A8C)
+#define __CARDFormatRegionAsync FUNCTION_ADDRESS(void, 0x80086C7C)
+#define CARDFormatAsync FUNCTION_ADDRESS(void, 0x800872D4)
+#define CARDFormat FUNCTION_ADDRESS(void, 0x8008731C)
+#define __CARDCompareFileName FUNCTION_ADDRESS(void, 0x80087370)
+#define __CARDAccess FUNCTION_ADDRESS(void, 0x800873D8)
+#define __CARDIsWritable FUNCTION_ADDRESS(void, 0x8008746C)
+#define __CARDIsReadable FUNCTION_ADDRESS(void, 0x800875A0)
+#define __CARDGetFileNo FUNCTION_ADDRESS(void, 0x80087694)
+#define CARDOpen FUNCTION_ADDRESS(void, 0x800877E4)
+#define CARDClose FUNCTION_ADDRESS(void, 0x80087900)
+#define __CARDIsOpened FUNCTION_ADDRESS(void, 0x80087954)
+#define CreateCallbackFat FUNCTION_ADDRESS(void, 0x8008795C)
+#define CARDCreateAsync FUNCTION_ADDRESS(void, 0x80087A8C)
+#define CARDCreate FUNCTION_ADDRESS(void, 0x80087CAC)
+#define __CARDSeek FUNCTION_ADDRESS(void, 0x80087CF4)
+#define ReadCallback FUNCTION_ADDRESS(void, 0x80087EAC)
+#define CARDReadAsync FUNCTION_ADDRESS(void, 0x80087FDC)
+#define CARDRead FUNCTION_ADDRESS(void, 0x80088120)
+#define WriteCallback_80088168 FUNCTION_ADDRESS(void, 0x80088168)
+#define EraseCallback_800882d8 FUNCTION_ADDRESS(void, 0x800882D8)
+#define CARDWriteAsync FUNCTION_ADDRESS(void, 0x80088388)
+#define CARDWrite FUNCTION_ADDRESS(void, 0x8008849C)
+#define DeleteCallback FUNCTION_ADDRESS(void, 0x800884E4)
+#define CARDFastDeleteAsync FUNCTION_ADDRESS(void, 0x80088588)
+#define CARDFastDelete FUNCTION_ADDRESS(void, 0x80088698)
+#define UpdateIconOffsets FUNCTION_ADDRESS(void, 0x800886E0)
+#define CARDGetStatus FUNCTION_ADDRESS(void, 0x800888D8)
+#define CARDSetStatusAsync FUNCTION_ADDRESS(void, 0x800889EC)
+#define CARDSetStatus FUNCTION_ADDRESS(void, 0x80088B60)
+#define __CARDGetStatusEx FUNCTION_ADDRESS(void, 0x80088BA8)
+#define __CARDSetStatusExAsync FUNCTION_ADDRESS(void, 0x80088C4C, int /*chan*/, int /*cardFile*/, int /*dst*/, int)
+#define CARDGetSerialNo FUNCTION_ADDRESS(void, 0x80088EE8)
+#define CARDSetAttributesAsync FUNCTION_ADDRESS(void, 0x80088FAC)
+#define CARDSetAttributes FUNCTION_ADDRESS(void, 0x80089090)
+#define __GXDefaultTexRegionCallback FUNCTION_ADDRESS(void, 0x800890D8)
+#define __GXDefaultTlutRegionCallback FUNCTION_ADDRESS(void, 0x800891D4)
+#define __GXShutdown FUNCTION_ADDRESS(void, 0x800891F8)
+#define __GXInitRevisionBits FUNCTION_ADDRESS(void, 0x80089388)
+#define GXInit FUNCTION_ADDRESS(void, 0x8008952C)
+#define __GXInitGX FUNCTION_ADDRESS(void, 0x80089B2C)
+#define GXCPInterruptHandler FUNCTION_ADDRESS(void, 0x8008A464)
+#define GXGetFifoBase FUNCTION_ADDRESS(void *, 0x8008A598, GXFifoObj * /*fifo*/)
+#define GXInitFifoPtrs FUNCTION_ADDRESS(void, 0x8008A604, GXFifoObj * /*fifo*/, void * /*readPtr*/, void * /*writePtr*/)
+#define GXInitFifoLimits FUNCTION_ADDRESS(void, 0x8008A674, GXFifoObj * /*fifo*/, int /*hiWaterMark*/, int /*loWaterMark*/)
+#define GXSetCPUFifo FUNCTION_ADDRESS(void, 0x8008A680, GXFifoObj * /*fifo*/)
+#define GXSetGPFifo FUNCTION_ADDRESS(void, 0x8008A7A8, GXFifoObj * /*fifo*/)
+#define GXSetBreakPtCallback FUNCTION_ADDRESS(void, 0x8008A948)
+#define __GXFifoInit FUNCTION_ADDRESS(void, 0x8008A98C)
+#define __GXFifoReadEnable FUNCTION_ADDRESS(void, 0x8008A9D8)
+#define __GXFifoReadDisable FUNCTION_ADDRESS(void, 0x8008A9FC)
+#define __GXFifoLink FUNCTION_ADDRESS(void, 0x8008AA20)
+#define __GXWriteFifoIntEnable FUNCTION_ADDRESS(void, 0x8008AA54)
+#define __GXWriteFifoIntReset FUNCTION_ADDRESS(void, 0x8008AA84)
+#define GXSetCurrentGXThread FUNCTION_ADDRESS(OSThread *, 0x8008AAB4)
+#define GXGetCurrentGXThread FUNCTION_ADDRESS(OSThread *, 0x8008AB00)
+#define GXGetGPFifo FUNCTION_ADDRESS(GXFifoObj *, 0x8008AB08)
+#define GXSetVtxDesc FUNCTION_ADDRESS(void, 0x8008AB10, GXAttr /*attr*/, GXAttrType /*type*/)
+#define GXSetVtxDescv FUNCTION_ADDRESS(void, 0x8008AD7C, GXVtxDescList * /*attrPtr*/)
+#define __GXSetVCD FUNCTION_ADDRESS(void, 0x8008B004)
+#define __GXCalculateVLim FUNCTION_ADDRESS(void, 0x8008B0C0)
+#define GXGetVtxDesc FUNCTION_ADDRESS(void, 0x8008B1E4, GXAttr /*attr*/, GXAttrType * /*type*/)
+#define GXGetVtxDescv FUNCTION_ADDRESS(void, 0x8008B398, GXVtxDescList * /*vcd*/)
+#define GXClearVtxDesc FUNCTION_ADDRESS(void, 0x8008B428)
+#define GXSetVtxAttrFmt FUNCTION_ADDRESS(void, 0x8008B460, GXVtxFmt /*vtxfmt*/, GXAttr /*attr*/, GXCompCnt /*cnt*/, GXCompType /*type*/, byte /*frac*/)
+#define GXSetVtxAttrFmtv FUNCTION_ADDRESS(void, 0x8008B6BC, GXVtxFmt /*vtxfmt*/, GXVtxAttrFmtList * /*list*/)
+#define __GXSetVAT FUNCTION_ADDRESS(void, 0x8008B93C)
+#define GXGetVtxAttrFmt FUNCTION_ADDRESS(void, 0x8008B9C4, GXVtxFmt /*idx*/, GXAttr /*attr*/, GXCompCnt * /*compCnt*/, GXCompType * /*compType*/, byte * /*shift*/)
+#define GXGetVtxAttrFmtv FUNCTION_ADDRESS(void, 0x8008BC44, GXVtxFmt /*fmt*/, GXVtxAttrFmtList * /*vat*/)
+#define GXSetArray FUNCTION_ADDRESS(void, 0x8008BCB8, GXAttr /*attr*/, void * /*base_ptr*/, byte /*stride*/)
+#define GxInvalidateVtxCache FUNCTION_ADDRESS(void, 0x8008BCFC)
+#define GXSetTexCoordGen2 FUNCTION_ADDRESS(void, 0x8008BD0C, GXTexCoordID /*dst_coord*/, GXTexGenType /*func*/, GXTexGenSrc /*src_param*/, int /*mtx*/, GXBool /*normalize*/, int /*postmtx*/)
+#define GXSetNumTexGens FUNCTION_ADDRESS(void, 0x8008BF8C, byte /*nTexGens*/)
+#define GXSetMisc FUNCTION_ADDRESS(void, 0x8008BFC8, GXMiscToken /*token*/, int /*val*/)
+#define GXFlush FUNCTION_ADDRESS(void, 0x8008C05C)
+#define __GXAbort FUNCTION_ADDRESS(void, 0x8008C0B8)
+#define GXSetDrawSync FUNCTION_ADDRESS(void, 0x8008C224, short /*token*/)
+#define GXReadDrawSync FUNCTION_ADDRESS(short, 0x8008C2D8)
+#define GXDrawDone FUNCTION_ADDRESS(void, 0x8008C2E4)
+#define GXPixModeSync FUNCTION_ADDRESS(void, 0x8008C364)
+#define GXPokeAlphaMode FUNCTION_ADDRESS(void, 0x8008C388, GXCompare /*func*/, byte /*threshold*/)
+#define GXPokeAlphaRead FUNCTION_ADDRESS(void, 0x8008C39C, GXAlphaReadMode /*mode*/)
+#define GXPokeAlphaUpdate FUNCTION_ADDRESS(void, 0x8008C3BC, GXBool /*update_enable*/)
+#define GXPokeBlendMode FUNCTION_ADDRESS(void, 0x8008C3D4, GXBlendMode /*type*/, GXBlendFactor /*src_factor*/, GXBlendFactor /*dst_factor*/, GXLogicOp /*op*/)
+#define GXPokeColorUpdate FUNCTION_ADDRESS(void, 0x8008C438, GXBool /*update_enable*/)
+#define GXPokeDstAlpha FUNCTION_ADDRESS(void, 0x8008C450, GXBool /*enable*/, byte /*alpha*/)
+#define GXPokeDither FUNCTION_ADDRESS(void, 0x8008C474, GXBool /*dither*/)
+#define GXPokeZMode FUNCTION_ADDRESS(void, 0x8008C48C, GXBool /*compare_enable*/, GXCompare /*func*/, GXBool /*update_enable*/)
+#define GXSetDrawSyncCallback FUNCTION_ADDRESS(void, 0x8008C4AC)
+#define GXSetDrawDoneCallback FUNCTION_ADDRESS(void, 0x8008C578)
+#define __GXPEInit FUNCTION_ADDRESS(void, 0x8008C63C)
+#define __GXSetDirtyState FUNCTION_ADDRESS(void, 0x8008C6B0)
+#define GXBegin FUNCTION_ADDRESS(void, 0x8008C730, GXPrimitive /*type*/, GXVtxFmt /*vtxfmt*/, short /*nverts*/)
+#define __GXSendFlushPrim FUNCTION_ADDRESS(void, 0x8008C800)
+#define GXSetLineWidth FUNCTION_ADDRESS(void, 0x8008C888, byte /*width*/, GXTexOffset /*texOffsets*/)
+#define GXGetLineWidth FUNCTION_ADDRESS(void, 0x8008C8C8, byte * /*width*/, GXTexOffset * /*texOffsets*/)
+#define GXSetPointSize FUNCTION_ADDRESS(void, 0x8008C8E4, byte /*pointSize*/, GXTexOffset /*texOffsets*/)
+#define GXEnableTexOffsets FUNCTION_ADDRESS(void, 0x8008C924, GXTexCoordID /*coord*/, GXBool /*line_enable*/, GXBool /*point_enable*/)
+#define GXSetCullMode FUNCTION_ADDRESS(void, 0x8008C96C, GXCullMode /*mode*/)
+#define GXGetCullMode FUNCTION_ADDRESS(void, 0x8008C994, GXCullMode * /*mode*/)
+#define GXSetCoPlanar FUNCTION_ADDRESS(void, 0x8008C9B0, GXBool /*enable*/)
+#define __GXSetGenMode FUNCTION_ADDRESS(void, 0x8008C9E4)
+#define GXAdjustForOverscan FUNCTION_ADDRESS(void, 0x8008CA08, GXRenderModeObj * /*rmin*/, GXRenderModeObj * /*rmout*/, short /*hor*/, short /*ver*/)
+#define GXSetDispCopySrc FUNCTION_ADDRESS(void, 0x8008CB4C, short /*left*/, short /*top*/, short /*wd*/, short /*ht*/)
+#define GXSetTexCopySrc FUNCTION_ADDRESS(void, 0x8008CBC8, short /*left*/, short /*top*/, short /*wd*/, short /*ht*/)
+#define GXSetDispCopyDst FUNCTION_ADDRESS(void, 0x8008CC44, short /*wd*/, short /*ht*/)
+#define GXSetTexCopyDst FUNCTION_ADDRESS(void, 0x8008CC78, short /*wd*/, short /*ht*/, GXTexFmt /*fmt*/, GXBool /*mipmap*/)
+#define GXSetDispCopyFrame2Field FUNCTION_ADDRESS(void, 0x8008CDA8, GXCopyMode /*mode*/)
+#define GXSetCopyClamp FUNCTION_ADDRESS(void, 0x8008CDCC, GXFBClamp /*clamp*/)
+#define GXSetDispCopyYScale FUNCTION_ADDRESS(int, 0x8008CE24, f64 /*vscale*/)
+#define GXSetCopyClear FUNCTION_ADDRESS(void, 0x8008CEF0, GXColor /*clear_clr*/, int /*clear_z*/)
 #define GXSetCopyFilter FUNCTION_ADDRESS(void, 0x8008CF68, GXBool /*aa*/, byte_12__2_ * /*sample_pattern*/, GXBool /*vf*/, byte_7_ /*vfilter*/)
-static inline void GXSetDispCopyGamma(GXGamma gamma) { ((void(*)(GXGamma))0x8008D170)(gamma); }
-static inline void GXCopyDisp(void * dest, GXBool clear) { ((void(*)(void *, GXBool))0x8008D184)(dest, clear); }
-static inline void GXCopyTex(void * dest, GXBool clear) { ((void(*)(void *, GXBool))0x8008D2EC)(dest, clear); }
-static inline void GXClearBoundingBox(void) { ((void(*)(void))0x8008D478)(); }
-static inline void GXInitLightAttn(undefined lt_obj, float a0, float a1, float a2, float k0, float k1, float k2) { ((void(*)(undefined, float, float, float, float, float, float))0x8008D4B0)(lt_obj, a0, a1, a2, k0, k1, k2); }
-static inline void GXInitLightPos(GXLightObjPriv * lt_obj, float x, float y, float z) { ((void(*)(GXLightObjPriv *, float, float, float))0x8008D4CC)(lt_obj, x, y, z); }
-static inline void GXInitLightDir(GXLightObjPriv * lt_obj, float nx, float ny, float nz) { ((void(*)(GXLightObjPriv *, float, float, float))0x8008D4DC)(lt_obj, nx, ny, nz); }
-static inline void GXInitLightColor(undefined lt_obj, GXColor color) { ((void(*)(undefined, GXColor))0x8008D4F8)(lt_obj, color); }
-static inline void GXLoadLightObjImm(undefined lt_obj, GXLightID light) { ((void(*)(undefined, GXLightID))0x8008D504)(lt_obj, light); }
-static inline void GXSetChanAmbColor(GXChannelID chan, GXColor amb_color) { ((void(*)(GXChannelID, GXColor))0x8008D580)(chan, amb_color); }
-static inline void GXSetChanMatColor(GXChannelID chan, GXColor mat_color) { ((void(*)(GXChannelID, GXColor))0x8008D668)(chan, mat_color); }
-static inline void GXSetNumChans(byte nChans) { ((void(*)(byte))0x8008D750)(nChans); }
-static inline void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, int light_mask, GXDiffuseFn diff_fn, GXAttnFn attn_fn) { ((void(*)(GXChannelID, GXBool, GXColorSrc, GXColorSrc, int, GXDiffuseFn, GXAttnFn))0x8008D78C)(chan, enable, amb_src, mat_src, light_mask, diff_fn, attn_fn); }
-static inline int GXGetTexBufferSize(short width, short height, int format, GXBool mipmap, byte max_lod) { return ((int(*)(short, short, int, GXBool, byte))0x8008D83C)(width, height, format, mipmap, max_lod); }
-static inline void __GetImageTileCount(int param_1, ushort param_2, ushort param_3, int * param_4, int * param_5, undefined4 * param_6) { ((void(*)(int, ushort, ushort, int *, int *, undefined4 *))0x8008D998)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void GXInitTexObj(GXTexObj * obj, void * image_ptr, short width, short height, GXTexFmt format, GXTexWrapMode wrap_s, GXTexWrapMode wrap_t, GXBool mipmap) { ((void(*)(GXTexObj *, void *, short, short, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool))0x8008DA60)(obj, image_ptr, width, height, format, wrap_s, wrap_t, mipmap); }
-static inline void GXInitTexObjCI(GXTexObj * obj, void * image_ptr, short width, short height, GXCITexFmt format, GXTexWrapMode wrap_s, GXTexWrapMode wrap_t, GXBool mipmap, int tlut_name) { ((void(*)(GXTexObj *, void *, short, short, GXCITexFmt, GXTexWrapMode, GXTexWrapMode, GXBool, int))0x8008DCAC)(obj, image_ptr, width, height, format, wrap_s, wrap_t, mipmap, tlut_name); }
-static inline void GXInitTexObjLOD(GXTexObj * obj, GXTexFilter min_filt, GXTexFilter mag_filt, float min_lod, float max_lod, float lod_bias, GXBool bias_clamp, GXBool do_edge_lod, GXAnisotropy max_aniso) { ((void(*)(GXTexObj *, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy))0x8008DCF4)(obj, min_filt, mag_filt, min_lod, max_lod, lod_bias, bias_clamp, do_edge_lod, max_aniso); }
-static inline short GXGetTexObjWidth(GXTexObj * tex_obj) { return ((short(*)(GXTexObj *))0x8008DE58)(tex_obj); }
-static inline short GXGetTexObjHeight(GXTexObj * tex_obj) { return ((short(*)(GXTexObj *))0x8008DE68)(tex_obj); }
-static inline GXTexFmt GXGetTexObjFmt(GXTexObj * tex_obj) { return ((GXTexFmt(*)(GXTexObj *))0x8008DE78)(tex_obj); }
-static inline GXBool GXGetTexObjMipMap(GXTexObj * tex_obj) { return ((GXBool(*)(GXTexObj *))0x8008DE80)(tex_obj); }
-static inline void GXLoadTexObjPreLoaded(GXTexObj * obj, GXTexRegion * region, GXTexMapID id) { ((void(*)(GXTexObj *, GXTexRegion *, GXTexMapID))0x8008DE98)(obj, region, id); }
-static inline void GXLoadTexObj(GXTexObj * obj, GXTexMapID id) { ((void(*)(GXTexObj *, GXTexMapID))0x8008E014)(obj, id); }
-static inline void GXInitTlutObj(GXTlutObj * tlut_obj, void * lut, GXTlutFmt fmt, short n_entries) { ((void(*)(GXTlutObj *, void *, GXTlutFmt, short))0x8008E068)(tlut_obj, lut, fmt, n_entries); }
-static inline void GXLoadTlut(GXTlutObj * tlut_obj, int tlut_name) { ((void(*)(GXTlutObj *, int))0x8008E0A0)(tlut_obj, tlut_name); }
-static inline void GXInitTexCacheRegion(GXTexRegion * region, GXBool is_32b_mipmap, int tmem_even, GXTexCacheSize size_even, int tmem_odd, GXTexCacheSize size_odd) { ((void(*)(GXTexRegion *, GXBool, int, GXTexCacheSize, int, GXTexCacheSize))0x8008E138)(region, is_32b_mipmap, tmem_even, size_even, tmem_odd, size_odd); }
-static inline void GXInitTlutRegion(GXTlutRegion * region, int tmem_addr, GXTlutSize tlut_size) { ((void(*)(GXTlutRegion *, int, GXTlutSize))0x8008E22C)(region, tmem_addr, tlut_size); }
-static inline void GXInvalidateTexAll(void) { ((void(*)(void))0x8008E264)(); }
-static inline undefined4 GXSetTexRegionCallback(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8008E2AC)(param_1); }
-static inline undefined4 GXSetTlutRegionCallback(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8008E2C0)(param_1); }
-static inline void GXSetTexCoordScaleManually(GXTexCoordID coord, GXBool enable, short ss, short ts) { ((void(*)(GXTexCoordID, GXBool, short, short))0x8008E2D4)(coord, enable, ss, ts); }
-static inline void __SetSURegs(int param_1, int param_2) { ((void(*)(int, int))0x8008E350)(param_1, param_2); }
-static inline void __GXSetSuTexRegs(void) { ((void(*)(void))0x8008E3F0)(); }
-static inline void __GXSetTmemConfig(int param_1) { ((void(*)(int))0x8008E56C)(param_1); }
-static inline void GXSetTevIndirect(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexFormat format, GXIndTexBiasSel bias_sel, GXIndTexMtxID matrix_sel, GXIndTexWrap wrap_s, GXIndTexWrap wrap_t, GXBool add_prev, GXBool ind_lod, GXIndTexAlphaSel alpha_sel) { ((void(*)(GXTevStageID, GXIndTexStageID, GXIndTexFormat, GXIndTexBiasSel, GXIndTexMtxID, GXIndTexWrap, GXIndTexWrap, GXBool, GXBool, GXIndTexAlphaSel))0x8008E8C0)(tev_stage, ind_stage, format, bias_sel, matrix_sel, wrap_s, wrap_t, add_prev, ind_lod, alpha_sel); }
+#define GXSetDispCopyGamma FUNCTION_ADDRESS(void, 0x8008D170, GXGamma /*gamma*/)
+#define GXCopyDisp FUNCTION_ADDRESS(void, 0x8008D184, void * /*dest*/, GXBool /*clear*/)
+#define GXCopyTex FUNCTION_ADDRESS(void, 0x8008D2EC, void * /*dest*/, GXBool /*clear*/)
+#define GXClearBoundingBox FUNCTION_ADDRESS(void, 0x8008D478)
+#define GXInitLightAttn FUNCTION_ADDRESS(void, 0x8008D4B0, undefined /*lt_obj*/, float /*a0*/, float /*a1*/, float /*a2*/, float /*k0*/, float /*k1*/, float /*k2*/)
+#define GXInitLightPos FUNCTION_ADDRESS(void, 0x8008D4CC, GXLightObjPriv * /*lt_obj*/, float /*x*/, float /*y*/, float /*z*/)
+#define GXInitLightDir FUNCTION_ADDRESS(void, 0x8008D4DC, GXLightObjPriv * /*lt_obj*/, float /*nx*/, float /*ny*/, float /*nz*/)
+#define GXInitLightColor FUNCTION_ADDRESS(void, 0x8008D4F8, undefined /*lt_obj*/, GXColor /*color*/)
+#define GXLoadLightObjImm FUNCTION_ADDRESS(void, 0x8008D504, undefined /*lt_obj*/, GXLightID /*light*/)
+#define GXSetChanAmbColor FUNCTION_ADDRESS(void, 0x8008D580, GXChannelID /*chan*/, GXColor /*amb_color*/)
+#define GXSetChanMatColor FUNCTION_ADDRESS(void, 0x8008D668, GXChannelID /*chan*/, GXColor /*mat_color*/)
+#define GXSetNumChans FUNCTION_ADDRESS(void, 0x8008D750, byte /*nChans*/)
+#define GXSetChanCtrl FUNCTION_ADDRESS(void, 0x8008D78C, GXChannelID /*chan*/, GXBool /*enable*/, GXColorSrc /*amb_src*/, GXColorSrc /*mat_src*/, int /*light_mask*/, GXDiffuseFn /*diff_fn*/, GXAttnFn /*attn_fn*/)
+#define GXGetTexBufferSize FUNCTION_ADDRESS(int, 0x8008D83C, short /*width*/, short /*height*/, int /*format*/, GXBool /*mipmap*/, byte /*max_lod*/)
+#define __GetImageTileCount FUNCTION_ADDRESS(void, 0x8008D998)
+#define GXInitTexObj FUNCTION_ADDRESS(void, 0x8008DA60, GXTexObj * /*obj*/, void * /*image_ptr*/, short /*width*/, short /*height*/, GXTexFmt /*format*/, GXTexWrapMode /*wrap_s*/, GXTexWrapMode /*wrap_t*/, GXBool /*mipmap*/)
+#define GXInitTexObjCI FUNCTION_ADDRESS(void, 0x8008DCAC, GXTexObj * /*obj*/, void * /*image_ptr*/, short /*width*/, short /*height*/, GXCITexFmt /*format*/, GXTexWrapMode /*wrap_s*/, GXTexWrapMode /*wrap_t*/, GXBool /*mipmap*/, int /*tlut_name*/)
+#define GXInitTexObjLOD FUNCTION_ADDRESS(void, 0x8008DCF4, GXTexObj * /*obj*/, GXTexFilter /*min_filt*/, GXTexFilter /*mag_filt*/, float /*min_lod*/, float /*max_lod*/, float /*lod_bias*/, GXBool /*bias_clamp*/, GXBool /*do_edge_lod*/, GXAnisotropy /*max_aniso*/)
+#define GXGetTexObjWidth FUNCTION_ADDRESS(short, 0x8008DE58, GXTexObj * /*tex_obj*/)
+#define GXGetTexObjHeight FUNCTION_ADDRESS(short, 0x8008DE68, GXTexObj * /*tex_obj*/)
+#define GXGetTexObjFmt FUNCTION_ADDRESS(GXTexFmt, 0x8008DE78, GXTexObj * /*tex_obj*/)
+#define GXGetTexObjMipMap FUNCTION_ADDRESS(GXBool, 0x8008DE80, GXTexObj * /*tex_obj*/)
+#define GXLoadTexObjPreLoaded FUNCTION_ADDRESS(void, 0x8008DE98, GXTexObj * /*obj*/, GXTexRegion * /*region*/, GXTexMapID /*id*/)
+#define GXLoadTexObj FUNCTION_ADDRESS(void, 0x8008E014, GXTexObj * /*obj*/, GXTexMapID /*id*/)
+#define GXInitTlutObj FUNCTION_ADDRESS(void, 0x8008E068, GXTlutObj * /*tlut_obj*/, void * /*lut*/, GXTlutFmt /*fmt*/, short /*n_entries*/)
+#define GXLoadTlut FUNCTION_ADDRESS(void, 0x8008E0A0, GXTlutObj * /*tlut_obj*/, int /*tlut_name*/)
+#define GXInitTexCacheRegion FUNCTION_ADDRESS(void, 0x8008E138, GXTexRegion * /*region*/, GXBool /*is_32b_mipmap*/, int /*tmem_even*/, GXTexCacheSize /*size_even*/, int /*tmem_odd*/, GXTexCacheSize /*size_odd*/)
+#define GXInitTlutRegion FUNCTION_ADDRESS(void, 0x8008E22C, GXTlutRegion * /*region*/, int /*tmem_addr*/, GXTlutSize /*tlut_size*/)
+#define GXInvalidateTexAll FUNCTION_ADDRESS(void, 0x8008E264)
+#define GXSetTexRegionCallback FUNCTION_ADDRESS(void, 0x8008E2AC)
+#define GXSetTlutRegionCallback FUNCTION_ADDRESS(void, 0x8008E2C0)
+#define GXSetTexCoordScaleManually FUNCTION_ADDRESS(void, 0x8008E2D4, GXTexCoordID /*coord*/, GXBool /*enable*/, short /*ss*/, short /*ts*/)
+#define __SetSURegs FUNCTION_ADDRESS(void, 0x8008E350)
+#define __GXSetSuTexRegs FUNCTION_ADDRESS(void, 0x8008E3F0)
+#define __GXSetTmemConfig FUNCTION_ADDRESS(void, 0x8008E56C)
+#define GXSetTevIndirect FUNCTION_ADDRESS(void, 0x8008E8C0, GXTevStageID /*tev_stage*/, GXIndTexStageID /*ind_stage*/, GXIndTexFormat /*format*/, GXIndTexBiasSel /*bias_sel*/, GXIndTexMtxID /*matrix_sel*/, GXIndTexWrap /*wrap_s*/, GXIndTexWrap /*wrap_t*/, GXBool /*add_prev*/, GXBool /*ind_lod*/, GXIndTexAlphaSel /*alpha_sel*/)
 #define GXSetIndTexMtx FUNCTION_ADDRESS(void, 0x8008E92C, GXIndTexMtxID /*mtx_sel*/, float_2__3_ * /*offset*/, s8 /*scale_exp*/)
-static inline void GXSetIndTexCoordScale(GXIndTexStageID ind_state, GXIndTexScale scale_s, GXIndTexScale scale_t) { ((void(*)(GXIndTexStageID, GXIndTexScale, GXIndTexScale))0x8008EAA4)(ind_state, scale_s, scale_t); }
-static inline void GXSetIndTexOrder(GXIndTexStageID ind_stage, GXTexCoordID tex_coord, GXTexMapID tex_map) { ((void(*)(GXIndTexStageID, GXTexCoordID, GXTexMapID))0x8008EBE8)(ind_stage, tex_coord, tex_map); }
-static inline void GXSetNumIndStages(byte nIndStages) { ((void(*)(byte))0x8008ECD4)(nIndStages); }
-static inline void GXSetTevDirect(GXTevStageID tev_stage) { ((void(*)(GXTevStageID))0x8008ECF8)(tev_stage); }
-static inline void GXSetTevIndWarp(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXBool signed_offset, GXBool replace_mode, GXIndTexMtxID matrix_sel) { ((void(*)(GXTevStageID, GXIndTexStageID, GXBool, GXBool, GXIndTexMtxID))0x8008ED40)(tev_stage, ind_stage, signed_offset, replace_mode, matrix_sel); }
-static inline void __GXUpdateBPMask(void) { ((void(*)(void))0x8008EDA4)(); }
-static inline void __GXSetIndirectMask(uint param_1) { ((void(*)(uint))0x8008EDA8)(param_1); }
-static inline void __GXFlushTextureState(void) { ((void(*)(void))0x8008EDD8)(); }
-static inline void GXSetTevOp(GXTevStageID id, GXTevMode mode) { ((void(*)(GXTevStageID, GXTevMode))0x8008EDFC)(id, mode); }
-static inline void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d) { ((void(*)(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg))0x8008EE88)(stage, a, b, c, d); }
-static inline void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d) { ((void(*)(GXTevStageID, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg))0x8008EECC)(stage, a, b, c, d); }
-static inline void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg) { ((void(*)(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID))0x8008EF10)(stage, op, bias, scale, clamp, out_reg); }
-static inline void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg) { ((void(*)(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID))0x8008EF78)(stage, op, bias, scale, clamp, out_reg); }
-static inline void GXSetTevColor(GXTevRegID id, GXColor color) { ((void(*)(GXTevRegID, GXColor))0x8008EFE0)(id, color); }
-static inline void GXSetTevKColor(GXTevKColorID id, GXColor color) { ((void(*)(GXTevKColorID, GXColor))0x8008F040)(id, color); }
-static inline void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel) { ((void(*)(GXTevStageID, GXTevKColorSel))0x8008F0A4)(stage, sel); }
-static inline void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel) { ((void(*)(GXTevStageID, GXTevKAlphaSel))0x8008F100)(stage, sel); }
-static inline void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel) { ((void(*)(GXTevStageID, GXTevSwapSel, GXTevSwapSel))0x8008F15C)(stage, ras_sel, tex_sel); }
-static inline void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan green, GXTevColorChan blue, GXTevColorChan alpha) { ((void(*)(GXTevSwapSel, GXTevColorChan, GXTevColorChan, GXTevColorChan, GXTevColorChan))0x8008F1A4)(table, red, green, blue, alpha); }
-static inline void GXSetAlphaCompare(GXCompare comp0, byte ref0, GXAlphaOp op, GXCompare comp1, byte ref1) { ((void(*)(GXCompare, byte, GXAlphaOp, GXCompare, byte))0x8008F224)(comp0, ref0, op, comp1, ref1); }
-static inline void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, int bias) { ((void(*)(GXZTexOp, GXTexFmt, int))0x8008F268)(op, fmt, bias); }
-static inline void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color) { ((void(*)(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID))0x8008F2F4)(stage, coord, map, color); }
-static inline void GXSetNumTevStages(byte nStages) { ((void(*)(byte))0x8008F490)(nStages); }
-static inline void GXSetFog(GXFogType type, float startz, float endz, float nearz, float farz, GXColor color) { ((void(*)(GXFogType, float, float, float, float, GXColor))0x8008F4B8)(type, startz, endz, nearz, farz, color); }
+#define GXSetIndTexCoordScale FUNCTION_ADDRESS(void, 0x8008EAA4, GXIndTexStageID /*ind_state*/, GXIndTexScale /*scale_s*/, GXIndTexScale /*scale_t*/)
+#define GXSetIndTexOrder FUNCTION_ADDRESS(void, 0x8008EBE8, GXIndTexStageID /*ind_stage*/, GXTexCoordID /*tex_coord*/, GXTexMapID /*tex_map*/)
+#define GXSetNumIndStages FUNCTION_ADDRESS(void, 0x8008ECD4, byte /*nIndStages*/)
+#define GXSetTevDirect FUNCTION_ADDRESS(void, 0x8008ECF8, GXTevStageID /*tev_stage*/)
+#define GXSetTevIndWarp FUNCTION_ADDRESS(void, 0x8008ED40, GXTevStageID /*tev_stage*/, GXIndTexStageID /*ind_stage*/, GXBool /*signed_offset*/, GXBool /*replace_mode*/, GXIndTexMtxID /*matrix_sel*/)
+#define __GXUpdateBPMask FUNCTION_ADDRESS(void, 0x8008EDA4)
+#define __GXSetIndirectMask FUNCTION_ADDRESS(void, 0x8008EDA8)
+#define __GXFlushTextureState FUNCTION_ADDRESS(void, 0x8008EDD8)
+#define GXSetTevOp FUNCTION_ADDRESS(void, 0x8008EDFC, GXTevStageID /*id*/, GXTevMode /*mode*/)
+#define GXSetTevColorIn FUNCTION_ADDRESS(void, 0x8008EE88, GXTevStageID /*stage*/, GXTevColorArg /*a*/, GXTevColorArg /*b*/, GXTevColorArg /*c*/, GXTevColorArg /*d*/)
+#define GXSetTevAlphaIn FUNCTION_ADDRESS(void, 0x8008EECC, GXTevStageID /*stage*/, GXTevAlphaArg /*a*/, GXTevAlphaArg /*b*/, GXTevAlphaArg /*c*/, GXTevAlphaArg /*d*/)
+#define GXSetTevColorOp FUNCTION_ADDRESS(void, 0x8008EF10, GXTevStageID /*stage*/, GXTevOp /*op*/, GXTevBias /*bias*/, GXTevScale /*scale*/, GXBool /*clamp*/, GXTevRegID /*out_reg*/)
+#define GXSetTevAlphaOp FUNCTION_ADDRESS(void, 0x8008EF78, GXTevStageID /*stage*/, GXTevOp /*op*/, GXTevBias /*bias*/, GXTevScale /*scale*/, GXBool /*clamp*/, GXTevRegID /*out_reg*/)
+#define GXSetTevColor FUNCTION_ADDRESS(void, 0x8008EFE0, GXTevRegID /*id*/, GXColor /*color*/)
+#define GXSetTevKColor FUNCTION_ADDRESS(void, 0x8008F040, GXTevKColorID /*id*/, GXColor /*color*/)
+#define GXSetTevKColorSel FUNCTION_ADDRESS(void, 0x8008F0A4, GXTevStageID /*stage*/, GXTevKColorSel /*sel*/)
+#define GXSetTevKAlphaSel FUNCTION_ADDRESS(void, 0x8008F100, GXTevStageID /*stage*/, GXTevKAlphaSel /*sel*/)
+#define GXSetTevSwapMode FUNCTION_ADDRESS(void, 0x8008F15C, GXTevStageID /*stage*/, GXTevSwapSel /*ras_sel*/, GXTevSwapSel /*tex_sel*/)
+#define GXSetTevSwapModeTable FUNCTION_ADDRESS(void, 0x8008F1A4, GXTevSwapSel /*table*/, GXTevColorChan /*red*/, GXTevColorChan /*green*/, GXTevColorChan /*blue*/, GXTevColorChan /*alpha*/)
+#define GXSetAlphaCompare FUNCTION_ADDRESS(void, 0x8008F224, GXCompare /*comp0*/, byte /*ref0*/, GXAlphaOp /*op*/, GXCompare /*comp1*/, byte /*ref1*/)
+#define GXSetZTexture FUNCTION_ADDRESS(void, 0x8008F268, GXZTexOp /*op*/, GXTexFmt /*fmt*/, int /*bias*/)
+#define GXSetTevOrder FUNCTION_ADDRESS(void, 0x8008F2F4, GXTevStageID /*stage*/, GXTexCoordID /*coord*/, GXTexMapID /*map*/, GXChannelID /*color*/)
+#define GXSetNumTevStages FUNCTION_ADDRESS(void, 0x8008F490, byte /*nStages*/)
+#define GXSetFog FUNCTION_ADDRESS(void, 0x8008F4B8, GXFogType /*type*/, float /*startz*/, float /*endz*/, float /*nearz*/, float /*farz*/, GXColor /*color*/)
 #define GXInitFogAdjTable FUNCTION_ADDRESS(void, 0x8008F6CC, GXFogAdjTable * /*table*/, short /*width*/, float_4__4_ * /*projmtx*/)
-static inline void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) { ((void(*)(GXBlendMode, GXBlendFactor, GXBlendFactor, GXLogicOp))0x8008F7F0)(type, src_factor, dst_factor, op); }
-static inline void GXSetColorUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008F844)(update_enable); }
-static inline void GXSetAlphaUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008F870)(update_enable); }
-static inline void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable) { ((void(*)(GXBool, GXCompare, GXBool))0x8008F89C)(compare_enable, func, update_enable); }
-static inline void GXSetZCompLoc(GXBool before_tex) { ((void(*)(GXBool))0x8008F8D0)(before_tex); }
-static inline void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt) { ((void(*)(GXPixelFmt, GXZFmt16))0x8008F904)(pix_fmt, z_fmt); }
-static inline void GXSetDither(GXBool dither) { ((void(*)(GXBool))0x8008F9D8)(dither); }
-static inline void GXSetDstAlpha(GXBool enable, byte alpha) { ((void(*)(GXBool, byte))0x8008FA04)(enable, alpha); }
-static inline void GXSetFieldMask(GXBool odd_mask, GXBool even_mask) { ((void(*)(GXBool, GXBool))0x8008FA40)(odd_mask, even_mask); }
-static inline void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio) { ((void(*)(GXBool, GXBool))0x8008FA78)(field_mode, half_aspect_ratio); }
-static inline void Subdivide(char param_1, float * param_2, float * param_3, float * param_4) { ((void(*)(char, float *, float *, float *))0x8008FAF0)(param_1, param_2, param_3, param_4); }
-static inline void GXDrawSphere1(byte depth) { ((void(*)(byte))0x8008FEA4)(depth); }
-static inline void GXCallDisplayList(void * list, int nbytes) { ((void(*)(void *, int))0x8008FFB8)(list, nbytes); }
-static inline void GXProject(float x, float y, float z, Mtx * mtx, float * pm, float * vp, float * sx, float * sy, float * sz) { ((void(*)(float, float, float, Mtx *, float *, float *, float *, float *, float *))0x80090028)(x, y, z, mtx, pm, vp, sx, sy, sz); }
-static inline void GXSetProjection(Mtx * mtx, GXProjectionType type) { ((void(*)(Mtx *, GXProjectionType))0x8009019C)(mtx, type); }
-static inline void GXSetProjectionv(float * ptr) { ((void(*)(float *))0x80090240)(ptr); }
-static inline void GXGetProjectionv(float * p) { ((void(*)(float *))0x800902CC)(p); }
-static inline void GXLoadPosMtxImm(Mtx * mtx, GXPosNrmMtx id) { ((void(*)(Mtx *, GXPosNrmMtx))0x80090314)(mtx, id); }
-static inline void GXLoadNrmMtxImm(Mtx * mtx, int id) { ((void(*)(Mtx *, int))0x80090364)(mtx, id); }
-static inline void GXSetCurrentMtx(GXPosNrmMtx id) { ((void(*)(GXPosNrmMtx))0x800903B4)(id); }
-static inline void GXLoadTexMtxImm(Mtx * mtx, uint id, GXTexMtxType type) { ((void(*)(Mtx *, uint, GXTexMtxType))0x800903E8)(mtx, id, type); }
-static inline void __GXSetViewport(void) { ((void(*)(void))0x8009049C)(); }
-static inline void GXSetViewportJitter(float left, float top, float wd, float ht, float nearz, float farz, int field) { ((void(*)(float, float, float, float, float, float, int))0x8009052C)(left, top, wd, ht, nearz, farz, field); }
-static inline void GXSetViewport(float left, float top, float wd, float ht, float nearz, float farz) { ((void(*)(float, float, float, float, float, float))0x80090584)(left, top, wd, ht, nearz, farz); }
-static inline void GXGetViewportv(float * viewport) { ((void(*)(float *))0x800905CC)(viewport); }
-static inline void GXSetScissor(int left, int top, int wd, int ht) { ((void(*)(int, int, int, int))0x800905F0)(left, top, wd, ht); }
-static inline void GXGetScissor(int * left, int * top, int * width, int * height) { ((void(*)(int *, int *, int *, int *))0x80090668)(left, top, width, height); }
-static inline void GXSetScissorBoxOffset(s32 x_off, s32 y_off) { ((void(*)(s32, s32))0x800906B0)(x_off, y_off); }
-static inline void GXSetClipMode(GXClipMode mode) { ((void(*)(GXClipMode))0x800906F0)(mode); }
-static inline void __GXSetMatrixIndex(int param_1) { ((void(*)(int))0x80090718)(param_1); }
-static inline void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1) { ((void(*)(GXPerf0, GXPerf1))0x8009079C)(perf0, perf1); }
-static inline void GXReadGPMetric(int * cnt0, int * cnt1) { ((void(*)(int *, int *))0x80090FE4)(cnt0, cnt1); }
-static inline void GXClearGPMetric(void) { ((void(*)(void))0x8009118C)(); }
-static inline int GXReadGP0Metric(void) { return ((int(*)(void))0x8009119C)(); }
-static inline int GXReadGP1Metric(void) { return ((int(*)(void))0x800911C8)(); }
-static inline void GXReadPixMetric(int * top_pixels_in, int * top_pixels_out, int * bot_pixels_in, int * bot_pixels_out, int * clr_pixels_in, int * copy_clks) { ((void(*)(int *, int *, int *, int *, int *, int *))0x800911F4)(top_pixels_in, top_pixels_out, bot_pixels_in, bot_pixels_out, clr_pixels_in, copy_clks); }
-static inline void GXClearPixMetric(void) { ((void(*)(void))0x8009132C)(); }
-static inline void GXSetVCacheMetric(GXVCachePerf attr) { ((void(*)(GXVCachePerf))0x8009135C)(attr); }
-static inline void GXReadVCacheMetric(int * check, int * miss, int * stall) { ((void(*)(int *, int *, int *))0x800913A0)(check, miss, stall); }
-static inline void GXClearVCacheMetric(void) { ((void(*)(void))0x80091434)(); }
-static inline TEXDescriptor * TEXGet(TEXPalette * pal, int id) { return ((TEXDescriptor *(*)(TEXPalette *, int))0x80091450)(pal, id); }
-static inline void DSInitList(DSList * DSList, int maybeStartAddr, int maybeEndAddr) { ((void(*)(DSList *, int, int))0x80091460)(DSList, maybeStartAddr, maybeEndAddr); }
-static inline void DSInsertListObject(DSList * param_1, int param_2, int param_3) { ((void(*)(DSList *, int, int))0x80091478)(param_1, param_2, param_3); }
-static inline int Strcmp(char * param_1, char * param_2) { return ((int(*)(char *, char *))0x8009150C)(param_1, param_2); }
-static inline void DSInitTree(int * param_1, int param_2, int param_3) { ((void(*)(int *, int, int))0x8009155C)(param_1, param_2, param_3); }
-static inline void DSInsertBranchBelow(int * param_1, int param_2, int param_3) { ((void(*)(int *, int, int))0x80091570)(param_1, param_2, param_3); }
-static inline void TRKNubMainLoop(void) { ((void(*)(void))0x80091608)(); }
-static inline void TRKDestructEvent(int param_1) { ((void(*)(int))0x80091700)(param_1); }
-static inline void TRKConstructEvent(undefined4 * param_1, undefined4 param_2) { ((void(*)(undefined4 *, undefined4))0x80091724)(param_1, param_2); }
-static inline undefined4 TRKPostEvent(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8009173C)(param_1); }
-static inline undefined4 TRKGetNextEvent(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8009181C)(param_1); }
-static inline undefined4 TRKInitializeEventQueue(void) { return ((undefined4(*)(void))0x800918D0)(); }
-static inline void TRKNubWelcome(void) { ((void(*)(void))0x80091928)(); }
-static inline undefined4 TRKTerminateNub(void) { return ((undefined4(*)(void))0x80091950)(); }
-static inline int TRKInitializeNub(void) { return ((int(*)(void))0x80091974)(); }
-static inline undefined4 TRKMessageSend(int param_1) { return ((undefined4(*)(int))0x80091AC0)(param_1); }
-static inline void TRKReadBuffer_ui32(int param_1, undefined * param_2, int param_3) { ((void(*)(int, undefined *, int))0x80091B04)(param_1, param_2, param_3); }
-static inline void TRKReadBuffer_ui8(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80091BF4)(param_1, param_2, param_3); }
-static inline int TRKReadBuffer1_ui64(int param_1, undefined * param_2) { return ((int(*)(int, undefined *))0x80091C8C)(param_1, param_2); }
-static inline void TRKAppendBuffer_ui32(int param_1, int * param_2, int param_3) { ((void(*)(int, int *, int))0x80091D74)(param_1, param_2, param_3); }
-static inline int TRKAppendBuffer_ui8(int param_1, undefined * param_2, int param_3) { return ((int(*)(int, undefined *, int))0x80091E70)(param_1, param_2, param_3); }
-static inline undefined4 TRKAppendBuffer1_ui64(int param_1, undefined4 param_2, int param_3, int param_4) { return ((undefined4(*)(int, undefined4, int, int))0x80091ED8)(param_1, param_2, param_3, param_4); }
-static inline undefined4 TRKReadBuffer(int param_1, undefined4 param_2, uint param_3) { return ((undefined4(*)(int, undefined4, uint))0x80091FD4)(param_1, param_2, param_3); }
-static inline undefined4 TRKAppendBuffer(int param_1, undefined * param_2, uint param_3) { return ((undefined4(*)(int, undefined *, uint))0x80092060)(param_1, param_2, param_3); }
-static inline undefined4 TRKSetBufferPosition(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x80092104)(param_1, param_2); }
-static inline void TRKResetBuffer(int param_1, int param_2) { ((void(*)(int, int))0x80092134)(param_1, param_2); }
-static inline void TRKReleaseBuffer(int param_1) { ((void(*)(int))0x80092174)(param_1); }
-static inline undefined * TRKGetBuffer(int param_1) { return ((undefined *(*)(int))0x800921D8)(param_1); }
-static inline int TRKGetFreeBuffer(int * param_1, undefined4 * param_2) { return ((int(*)(int *, undefined4 *))0x80092204)(param_1, param_2); }
-static inline undefined4 TRKIntializeMessageBuffers(void) { return ((undefined4(*)(void))0x800922CC)(); }
-static inline undefined4 TRKTerminateSerialHandler(void) { return ((undefined4(*)(void))0x80092340)(); }
-static inline undefined4 TRKInitializeProgramEndTrap(void) { return ((undefined4(*)(void))0x80092348)(); }
-static inline void TRKProcessInput(int param_1) { ((void(*)(int))0x8009240C)(param_1); }
-static inline void TRKGetInput(void) { ((void(*)(void))0x8009245C)(); }
-static inline int TRKTestForPacket(void) { return ((int(*)(void))0x800924BC)(); }
-static inline void usr_put_initialize(void) { ((void(*)(void))0x800925F8)(); }
-static inline void usr_puts_serial(byte * param_1) { ((void(*)(byte *))0x800925FC)(param_1); }
-static inline undefined4 TRKDispatchMessage(int param_1) { return ((undefined4(*)(int))0x80092684)(param_1); }
-static inline undefined4 TRKInitializeDispatcher(void) { return ((undefined4(*)(void))0x800927F4)(); }
-static inline undefined4 TRKDoSetOption(int param_1) { return ((undefined4(*)(int))0x800927FC)(param_1); }
-static inline undefined4 TRKDoStop(void) { return ((undefined4(*)(void))0x800928A4)(); }
-static inline undefined4 TRKDoStep(int param_1) { return ((undefined4(*)(int))0x8009294C)(param_1); }
-static inline undefined4 TRKDoContinue(void) { return ((undefined4(*)(void))0x80092B6C)(); }
-static inline undefined4 TRKDoWriteRegisters(int param_1) { return ((undefined4(*)(int))0x80092C1C)(param_1); }
-static inline undefined4 TRKDoReadRegisters(int param_1) { return ((undefined4(*)(int))0x80092EAC)(param_1); }
-static inline undefined4 TRKDoWriteMemory(int param_1) { return ((undefined4(*)(int))0x8009318C)(param_1); }
-static inline undefined4 TRKDoReadMemory(int param_1) { return ((undefined4(*)(int))0x800933C8)(param_1); }
-static inline undefined4 TRKDoSupportMask(void) { return ((undefined4(*)(void))0x8009360C)(); }
-static inline undefined4 TRKDoVersions(void) { return ((undefined4(*)(void))0x80093614)(); }
-static inline undefined4 TRKDoOverride(void) { return ((undefined4(*)(void))0x8009361C)(); }
-static inline undefined4 TRKDoReset(void) { return ((undefined4(*)(void))0x80093674)(); }
-static inline undefined4 TRKDoDisconnect(void) { return ((undefined4(*)(void))0x800936CC)(); }
-static inline undefined4 TRKDoConnect(void) { return ((undefined4(*)(void))0x80093744)(); }
-static inline void SetTRKConnected(int param_1) { ((void(*)(int))0x800937A8)(param_1); }
-static inline int GetTRKConnected(void) { return ((int(*)(void))0x800937B4)(); }
-static inline void OutputData(undefined * param_1, int param_2) { ((void(*)(undefined *, int))0x800937C4)(param_1, param_2); }
-static inline int HandlePositionFileSupportRequest(int param_1, int * param_2, byte param_3, undefined4 * param_4) { return ((int(*)(int, int *, byte, undefined4 *))0x8009386C)(param_1, param_2, param_3, param_4); }
-static inline int HandleCloseFileSupportRequest(int param_1, undefined4 * param_2) { return ((int(*)(int, undefined4 *))0x8009397C)(param_1, param_2); }
-static inline int HandleOpenFileSupportRequest(char * param_1, byte param_2, undefined4 * param_3, undefined4 * param_4) { return ((int(*)(char *, byte, undefined4 *, undefined4 *))0x80093A64)(param_1, param_2, param_3, param_4); }
-static inline int TRKRequestSend(undefined4 param_1, int * param_2, undefined4 param_3, int param_4, int param_5) { return ((int(*)(undefined4, int *, undefined4, int, int))0x80093B80)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKSuppAccessFile(int param_1, int param_2, uint * param_3, uint * param_4, int param_5, int param_6) { return ((int(*)(int, int, uint *, uint *, int, int))0x80093D60)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline undefined4 TRKReleaseMutex(void) { return ((undefined4(*)(void))0x80093F80)(); }
-static inline undefined4 TRKAcquireMutex(void) { return ((undefined4(*)(void))0x80093F88)(); }
-static inline undefined4 TRKInitializeMutex(void) { return ((undefined4(*)(void))0x80093F90)(); }
-static inline int TRKDoNotifyStopped(int param_1) { return ((int(*)(int))0x80093F98)(param_1); }
-static inline void TRK_flushCache(uint param_1, int param_2) { ((void(*)(uint, int))0x80094030)(param_1, param_2); }
-static inline void TRK_fill_mem_80094068(int param_1, byte param_2, uint param_3) { ((void(*)(int, byte, uint))0x80094068)(param_1, param_2, param_3); }
-static inline void __TRK_get_MSR(void) { ((void(*)(void))0x80094120)(); }
-static inline void __TRK_set_MSR(void) { ((void(*)(void))0x80094128)(); }
-static inline void TRK_ppc_memcpy(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80094130)(param_1, param_2, param_3); }
-static inline int TRKSwapAndGo(undefined4 param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7, int param_8) { return ((int(*)(undefined4, int, int, int, int, int, int, int))0x8009439C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void ReadFPSCR(ulonglong * param_1) { ((void(*)(ulonglong *))0x800944B4)(param_1); }
-static inline void WriteFPSCR(void) { ((void(*)(void))0x800944D8)(); }
-static inline undefined4 TRKTargetAccessARAM(undefined4 param_1, undefined4 param_2, undefined4 * param_3, int param_4) { return ((undefined4(*)(undefined4, undefined4, undefined4 *, int))0x800944FC)(param_1, param_2, param_3, param_4); }
-static inline void TRKTargetSetInputPendingPtr(int param_1) { ((void(*)(int))0x800945C0)(param_1); }
-static inline undefined4 TRKTargetStop(void) { return ((undefined4(*)(void))0x800945D0)(); }
-static inline void TRKTargetSetStopped(int param_1) { ((void(*)(int))0x800945E8)(param_1); }
-static inline int TRKTargetStopped(void) { return ((int(*)(void))0x800945F8)(); }
-static inline int TRKTargetSupportRequest(void) { return ((int(*)(void))0x80094608)(); }
-static inline int TRKTargetGetPC(void) { return ((int(*)(void))0x80094808)(); }
-static inline undefined4 TRKTargetStopOutOfRange(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x80094818)(param_1, param_2, param_3); }
-static inline undefined4 TRKTargetSingleStep(int param_1, int param_2) { return ((undefined4(*)(int, int))0x800948D0)(param_1, param_2); }
-static inline void TRKTargetAddExceptionInfo(undefined4 param_1) { ((void(*)(undefined4))0x8009497C)(param_1); }
-static inline void TRKTargetAddStopInfo(undefined4 param_1) { ((void(*)(undefined4))0x80094A00)(param_1); }
-static inline undefined4 TRKTargetInterrupt(int * param_1) { return ((undefined4(*)(int *))0x80094A8C)(param_1); }
-static inline void TRKPostInterruptEvent(void) { ((void(*)(void))0x80094C1C)(); }
-static inline int TRKTargetAccessExtended2(uint param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((int(*)(uint, uint, undefined4, int *, int))0x80094CC8)(param_1, param_2, param_3, param_4, param_5); }
-static inline uint TRKTargetAccessExtended1(uint param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((uint(*)(uint, uint, undefined4, int *, int))0x80095100)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKTargetAccessFP(uint param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((int(*)(uint, uint, undefined4, int *, int))0x80095270)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 TRKTargetAccessDefault(int param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((undefined4(*)(int, uint, undefined4, int *, int))0x8009577C)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKTargetReadInstruction(undefined4 param_1, undefined4 param_2) { return ((int(*)(undefined4, undefined4))0x80095870)(param_1, param_2); }
-static inline int TRKTargetAccessMemory(undefined4 param_1, int param_2, undefined4 * param_3, undefined4 param_4, int param_5) { return ((int(*)(undefined4, int, undefined4 *, undefined4, int))0x800958BC)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKValidMemory32(uint param_1, int param_2, int param_3) { return ((int(*)(uint, int, int))0x80095A08)(param_1, param_2, param_3); }
-static inline void TRKAccessFile(void) { ((void(*)(void))0x80095CB0)(); }
-static inline void TRKOpenFile(void) { ((void(*)(void))0x80095CB8)(); }
-static inline void TRKCloseFile(void) { ((void(*)(void))0x80095CC0)(); }
-static inline void TRKPositionFile(void) { ((void(*)(void))0x80095CC8)(); }
-static inline void TRKSaveExtended1Block(void) { ((void(*)(void))0x80095CD0)(); }
-static inline void TRKSaveExtended1Block_1(void) { ((void(*)(void))0x80095DDC)(); }
-static inline void TRKSaveExtended1Block_2(void) { ((void(*)(void))0x80095E20)(); }
-static inline void TRKSaveExtended1Block_3(void) { ((void(*)(void))0x80095E5C)(); }
-static inline void TRKRestoreExtended1Block(void) { ((void(*)(void))0x80095E88)(); }
-static inline void TRKRestoreExtended1Block_1(void) { ((void(*)(void))0x80095EF8)(); }
-static inline void TRKRestoreExtended1Block_2(void) { ((void(*)(void))0x80095F5C)(); }
-static inline undefined8 InitMetroTRK(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7, int param_8) { return ((undefined8(*)(int, int, int, int, int, int, int, int))0x80096040)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline undefined8 InitMetroTRK_BBA(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7, int param_8) { return ((undefined8(*)(int, int, int, int, int, int, int, int))0x800960D8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void TRK__write_aram(int param_1, uint param_2, int * param_3) { ((void(*)(int, uint, int *))0x8009616C)(param_1, param_2, param_3); }
-static inline void TRK__read_aram(int param_1, uint param_2, int * param_3) { ((void(*)(int, uint, int *))0x80096358)(param_1, param_2, param_3); }
-static inline undefined4 TRKInitializeTarget(void) { return ((undefined4(*)(void))0x8009648C)(); }
-static inline void __TRK_copy_vectors(void) { ((void(*)(void))0x800964D8)(); }
-static inline uint TRKTargetTranslate(uint param_1) { return ((uint(*)(uint))0x80096604)(param_1); }
-static inline void EnableMetroTRKInterrupts(void) { ((void(*)(void))0x8009665C)(); }
-static inline void TRK_main(void) { ((void(*)(void))0x8009667C)(); }
-static inline int TRKLoadContext(int * param_1, int param_2, undefined4 param_3, undefined4 param_4, int param_5, int param_6, int param_7, int param_8) { return ((int(*)(int *, int, undefined4, undefined4, int, int, int, int))0x800966D4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void TRKUARTInterruptHandler(void) { ((void(*)(void))0x8009675C)(); }
-static inline void InitializeProgramEndTrap(void) { ((void(*)(void))0x80096760)(); }
-static inline void TRK_board_display(undefined4 param_1) { ((void(*)(undefined4))0x800967B8)(param_1); }
-static inline void UnreserveEXI2Port(void) { ((void(*)(void))0x800967E8)(); }
-static inline void ReserveEXI2Port(void) { ((void(*)(void))0x80096818)(); }
-static inline int TRKWriteUARTN(void) { return ((int(*)(void))0x80096848)(); }
-static inline int TRKReadUARTN(void) { return ((int(*)(void))0x80096884)(); }
-static inline void TRKPollUART(void) { ((void(*)(void))0x800968C0)(); }
-static inline void EnableExi2Interrupts(void) { ((void(*)(void))0x800968F0)(); }
-static inline undefined4 TRKInitializeIntDriverUART(void) { return ((undefined4(*)(void))0x80096938)(); }
-static inline undefined4 InitMetroTRKCommTable(int param_1) { return ((undefined4(*)(int))0x80096988)(param_1); }
-static inline void TRKEXICallBack(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80096BF4)(param_1, param_2); }
-static inline undefined4 TRKTargetContinue(void) { return ((undefined4(*)(void))0x80096C2C)(); }
-static inline byte GetUseSerialIO(void) { return ((byte(*)(void))0x80096C60)(); }
-static inline void SetUseSerialIO(byte param_1) { ((void(*)(byte))0x80096C70)(param_1); }
-static inline undefined4 __close_console(undefined4 param_1) { return ((undefined4(*)(undefined4))0x80096C7C)(param_1); }
-static inline undefined4 __TRK_write_console(undefined4 param_1, undefined4 param_2, int * param_3) { return ((undefined4(*)(undefined4, undefined4, int *))0x80096D00)(param_1, param_2, param_3); }
-static inline undefined4 __read_console(undefined4 param_1, undefined4 param_2, int * param_3) { return ((undefined4(*)(undefined4, undefined4, int *))0x80096DBC)(param_1, param_2, param_3); }
-static inline undefined4 udp_cc_post_stop(void) { return ((undefined4(*)(void))0x80096E78)(); }
-static inline undefined4 udp_cc_pre_continue(void) { return ((undefined4(*)(void))0x80096E80)(); }
-static inline undefined4 udp_cc_peek(void) { return ((undefined4(*)(void))0x80096E88)(); }
-static inline undefined4 udp_cc_write(void) { return ((undefined4(*)(void))0x80096E90)(); }
-static inline undefined4 udp_cc_read(void) { return ((undefined4(*)(void))0x80096E98)(); }
-static inline undefined4 udp_cc_close(void) { return ((undefined4(*)(void))0x80096EA0)(); }
-static inline undefined4 udp_cc_open(void) { return ((undefined4(*)(void))0x80096EA8)(); }
-static inline undefined4 udp_cc_shutdown(void) { return ((undefined4(*)(void))0x80096EB0)(); }
-static inline undefined4 udp_cc_initialize(void) { return ((undefined4(*)(void))0x80096EB8)(); }
-static inline undefined4 ddh_cc_initinterrupts(void) { return ((undefined4(*)(void))0x80096EC0)(); }
-static inline int ddh_cc_peek(void) { return ((int(*)(void))0x80096EE4)(); }
-static inline undefined4 ddh_cc_post_stop(void) { return ((undefined4(*)(void))0x80096F54)(); }
-static inline undefined4 ddh_cc_pre_continue(void) { return ((undefined4(*)(void))0x80096F78)(); }
-static inline undefined4 ddh_cc_write(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80096F9C)(param_1, param_2); }
-static inline int ddh_cc_read(undefined4 param_1, uint param_2) { return ((int(*)(undefined4, uint))0x8009705C)(param_1, param_2); }
-static inline undefined4 ddh_cc_close(void) { return ((undefined4(*)(void))0x80097148)(); }
-static inline undefined4 ddh_cc_open(void) { return ((undefined4(*)(void))0x80097150)(); }
-static inline undefined4 ddh_cc_shutdown(void) { return ((undefined4(*)(void))0x80097174)(); }
-static inline undefined4 ddh_cc_initialize(undefined4 param_1, undefined4 param_2) { return ((undefined4(*)(undefined4, undefined4))0x8009717C)(param_1, param_2); }
-static inline undefined4 CircleBufferReadBytes(void * * param_1, void * param_2, void * param_3) { return ((undefined4(*)(void * *, void *, void *))0x80097204)(param_1, param_2, param_3); }
-static inline undefined4 CircleBufferWriteBytes(int param_1, void * param_2, uint param_3) { return ((undefined4(*)(int, void *, uint))0x8009730C)(param_1, param_2, param_3); }
-static inline void CircleBufferInitialize(undefined4 * param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4 *, undefined4, undefined4))0x80097414)(param_1, param_2, param_3); }
-static inline undefined4 CBGetBytesAvailableForRead(int param_1) { return ((undefined4(*)(int))0x80097464)(param_1); }
-static inline undefined4 gdev_cc_initinterrupts(void) { return ((undefined4(*)(void))0x8009746C)(); }
-static inline int gdev_cc_peek(void) { return ((int(*)(void))0x80097490)(); }
-static inline undefined4 gdev_cc_post_stop(void) { return ((undefined4(*)(void))0x80097500)(); }
-static inline undefined4 gdev_cc_pre_continue(void) { return ((undefined4(*)(void))0x80097524)(); }
-static inline undefined4 gdev_cc_write(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80097548)(param_1, param_2); }
-static inline int gdev_cc_read(undefined4 param_1, uint param_2) { return ((int(*)(undefined4, uint))0x80097608)(param_1, param_2); }
-static inline undefined4 gdev_cc_close(void) { return ((undefined4(*)(void))0x800976FC)(); }
-static inline undefined4 gdev_cc_open(void) { return ((undefined4(*)(void))0x80097704)(); }
-static inline undefined4 gdev_cc_shutdown(void) { return ((undefined4(*)(void))0x80097728)(); }
-static inline void gdev_cc_initalize(int inputPendingPtrRef, int monitorCallback) { ((void(*)(int, int))0x80097730)(inputPendingPtrRef, monitorCallback); }
-static inline void MWTRACE(void) { ((void(*)(void))0x800977B8)(); }
-static inline void MWExitCriticalSection(void) { ((void(*)(void))0x80097808)(); }
-static inline void MWEnterCriticalSection(undefined4 * param_1) { ((void(*)(undefined4 *))0x8009782C)(param_1); }
-static inline void MWInitializeCriticalSection(void) { ((void(*)(void))0x8009785C)(); }
-static inline int * __va_arg(char * param_1, int param_2) { return ((int *(*)(char *, int))0x80097860)(param_1, param_2); }
-static inline void __destroy_global_chain(void) { ((void(*)(void))0x80097928)(); }
-static inline int __cvt_fp2unsigned(double param_1) { return ((int(*)(double))0x80097970)(param_1); }
-static inline void __save_fpr(void) { ((void(*)(void))0x800979CC)(); }
-static inline void __save_fpr_2(void) { ((void(*)(void))0x800979F8)(); }
-static inline void __restore_fpr(void) { ((void(*)(void))0x80097A18)(); }
-static inline void __restore_fpr_2(void) { ((void(*)(void))0x80097A44)(); }
-static inline void _savegpr_14(void) { ((void(*)(void))0x80097A64)(); }
-static inline void _savegpr_15(void) { ((void(*)(void))0x80097A68)(); }
-static inline void _savegpr_18(void) { ((void(*)(void))0x80097A74)(); }
-static inline void _savegpr_20(void) { ((void(*)(void))0x80097A7C)(); }
-static inline void _savegpr_21(void) { ((void(*)(void))0x80097A80)(); }
-static inline void _savegpr_22(void) { ((void(*)(void))0x80097A84)(); }
-static inline void _savegpr_23(void) { ((void(*)(void))0x80097A88)(); }
-static inline void _savegpr_24(void) { ((void(*)(void))0x80097A8C)(); }
-static inline void _savegpr_25(void) { ((void(*)(void))0x80097A90)(); }
-static inline void _savegpr_26(void) { ((void(*)(void))0x80097A94)(); }
-static inline void _savegpr_27(void) { ((void(*)(void))0x80097A98)(); }
-static inline void _restgpr_14(void) { ((void(*)(void))0x80097AB0)(); }
-static inline void _restgpr_15(void) { ((void(*)(void))0x80097AB4)(); }
-static inline void _restgpr_18(void) { ((void(*)(void))0x80097AC0)(); }
-static inline void _restgpr_20(void) { ((void(*)(void))0x80097AC8)(); }
-static inline void _restgpr_21(void) { ((void(*)(void))0x80097ACC)(); }
-static inline void _restgpr_22(void) { ((void(*)(void))0x80097AD0)(); }
-static inline void _restgpr_23(void) { ((void(*)(void))0x80097AD4)(); }
-static inline void _restgpr_24(void) { ((void(*)(void))0x80097AD8)(); }
-static inline void _restgpr_25(void) { ((void(*)(void))0x80097ADC)(); }
-static inline void _restgpr_26(void) { ((void(*)(void))0x80097AE0)(); }
-static inline void _restgpr_27(void) { ((void(*)(void))0x80097AE4)(); }
-static inline undefined8 __div2u(uint param_1, uint param_2, int param_3, uint param_4) { return ((undefined8(*)(uint, uint, int, uint))0x80097AFC)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __div2i(uint param_1, uint param_2, uint param_3, uint param_4) { return ((undefined8(*)(uint, uint, uint, uint))0x80097BE8)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __mod2u(uint param_1, uint param_2, int param_3, uint param_4) { return ((undefined8(*)(uint, uint, int, uint))0x80097D20)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __mod2i(uint param_1, uint param_2, int param_3, uint param_4) { return ((undefined8(*)(uint, uint, int, uint))0x80097E04)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __shl2i(int param_1, uint param_2, int param_3) { return ((undefined8(*)(int, uint, int))0x80097F10)(param_1, param_2, param_3); }
-static inline undefined8 __shr2u(uint param_1, uint param_2, int param_3) { return ((undefined8(*)(uint, uint, int))0x80097F34)(param_1, param_2, param_3); }
-static inline undefined8 __shr2i(int param_1, uint param_2, uint param_3) { return ((undefined8(*)(int, uint, uint))0x80097F58)(param_1, param_2, param_3); }
-static inline undefined8 __cvt_dbl_usll(ulonglong param_1) { return ((undefined8(*)(ulonglong))0x80097F80)(param_1); }
-static inline short * GetR2(void) { return ((short *(*)(void))0x8009804C)(); }
-static inline void __fini_cpp_exceptions(void) { ((void(*)(void))0x80098054)(); }
-static inline void __init_cpp_exceptions(void) { ((void(*)(void))0x80098088)(); }
-static inline void __unregister_fragment(int param_1) { ((void(*)(int))0x800980C8)(param_1); }
-static inline undefined4 __register_fragment(undefined * param_1, undefined * param_2) { return ((undefined4(*)(undefined *, undefined *))0x800980FC)(param_1, param_2); }
-static inline void __sys_free(int param_1) { ((void(*)(int))0x80098130)(param_1); }
-static inline void exit(int __status) { ((void(*)(int))0x800981E8)(__status); }
+#define GXSetBlendMode FUNCTION_ADDRESS(void, 0x8008F7F0, GXBlendMode /*type*/, GXBlendFactor /*src_factor*/, GXBlendFactor /*dst_factor*/, GXLogicOp /*op*/)
+#define GXSetColorUpdate FUNCTION_ADDRESS(void, 0x8008F844, GXBool /*update_enable*/)
+#define GXSetAlphaUpdate FUNCTION_ADDRESS(void, 0x8008F870, GXBool /*update_enable*/)
+#define GXSetZMode FUNCTION_ADDRESS(void, 0x8008F89C, GXBool /*compare_enable*/, GXCompare /*func*/, GXBool /*update_enable*/)
+#define GXSetZCompLoc FUNCTION_ADDRESS(void, 0x8008F8D0, GXBool /*before_tex*/)
+#define GXSetPixelFmt FUNCTION_ADDRESS(void, 0x8008F904, GXPixelFmt /*pix_fmt*/, GXZFmt16 /*z_fmt*/)
+#define GXSetDither FUNCTION_ADDRESS(void, 0x8008F9D8, GXBool /*dither*/)
+#define GXSetDstAlpha FUNCTION_ADDRESS(void, 0x8008FA04, GXBool /*enable*/, byte /*alpha*/)
+#define GXSetFieldMask FUNCTION_ADDRESS(void, 0x8008FA40, GXBool /*odd_mask*/, GXBool /*even_mask*/)
+#define GXSetFieldMode FUNCTION_ADDRESS(void, 0x8008FA78, GXBool /*field_mode*/, GXBool /*half_aspect_ratio*/)
+#define Subdivide FUNCTION_ADDRESS(void, 0x8008FAF0)
+#define GXDrawSphere1 FUNCTION_ADDRESS(void, 0x8008FEA4, byte /*depth*/)
+#define GXCallDisplayList FUNCTION_ADDRESS(void, 0x8008FFB8, void * /*list*/, int /*nbytes*/)
+#define GXProject FUNCTION_ADDRESS(void, 0x80090028, float /*x*/, float /*y*/, float /*z*/, Mtx * /*mtx*/, float * /*pm*/, float * /*vp*/, float * /*sx*/, float * /*sy*/, float * /*sz*/)
+#define GXSetProjection FUNCTION_ADDRESS(void, 0x8009019C, Mtx * /*mtx*/, GXProjectionType /*type*/)
+#define GXSetProjectionv FUNCTION_ADDRESS(void, 0x80090240, float * /*ptr*/)
+#define GXGetProjectionv FUNCTION_ADDRESS(void, 0x800902CC, float * /*p*/)
+#define GXLoadPosMtxImm FUNCTION_ADDRESS(void, 0x80090314, Mtx * /*mtx*/, GXPosNrmMtx /*id*/)
+#define GXLoadNrmMtxImm FUNCTION_ADDRESS(void, 0x80090364, Mtx * /*mtx*/, int /*id*/)
+#define GXSetCurrentMtx FUNCTION_ADDRESS(void, 0x800903B4, GXPosNrmMtx /*id*/)
+#define GXLoadTexMtxImm FUNCTION_ADDRESS(void, 0x800903E8, Mtx * /*mtx*/, uint /*id*/, GXTexMtxType /*type*/)
+#define __GXSetViewport FUNCTION_ADDRESS(void, 0x8009049C)
+#define GXSetViewportJitter FUNCTION_ADDRESS(void, 0x8009052C, float /*left*/, float /*top*/, float /*wd*/, float /*ht*/, float /*nearz*/, float /*farz*/, int /*field*/)
+#define GXSetViewport FUNCTION_ADDRESS(void, 0x80090584, float /*left*/, float /*top*/, float /*wd*/, float /*ht*/, float /*nearz*/, float /*farz*/)
+#define GXGetViewportv FUNCTION_ADDRESS(void, 0x800905CC, float * /*viewport*/)
+#define GXSetScissor FUNCTION_ADDRESS(void, 0x800905F0, int /*left*/, int /*top*/, int /*wd*/, int /*ht*/)
+#define GXGetScissor FUNCTION_ADDRESS(void, 0x80090668, int * /*left*/, int * /*top*/, int * /*width*/, int * /*height*/)
+#define GXSetScissorBoxOffset FUNCTION_ADDRESS(void, 0x800906B0, s32 /*x_off*/, s32 /*y_off*/)
+#define GXSetClipMode FUNCTION_ADDRESS(void, 0x800906F0, GXClipMode /*mode*/)
+#define __GXSetMatrixIndex FUNCTION_ADDRESS(void, 0x80090718)
+#define GXSetGPMetric FUNCTION_ADDRESS(void, 0x8009079C, GXPerf0 /*perf0*/, GXPerf1 /*perf1*/)
+#define GXReadGPMetric FUNCTION_ADDRESS(void, 0x80090FE4, int * /*cnt0*/, int * /*cnt1*/)
+#define GXClearGPMetric FUNCTION_ADDRESS(void, 0x8009118C)
+#define GXReadGP0Metric FUNCTION_ADDRESS(void, 0x8009119C)
+#define GXReadGP1Metric FUNCTION_ADDRESS(void, 0x800911C8)
+#define GXReadPixMetric FUNCTION_ADDRESS(void, 0x800911F4, int * /*top_pixels_in*/, int * /*top_pixels_out*/, int * /*bot_pixels_in*/, int * /*bot_pixels_out*/, int * /*clr_pixels_in*/, int * /*copy_clks*/)
+#define GXClearPixMetric FUNCTION_ADDRESS(void, 0x8009132C)
+#define GXSetVCacheMetric FUNCTION_ADDRESS(void, 0x8009135C, GXVCachePerf /*attr*/)
+#define GXReadVCacheMetric FUNCTION_ADDRESS(void, 0x800913A0, int * /*check*/, int * /*miss*/, int * /*stall*/)
+#define GXClearVCacheMetric FUNCTION_ADDRESS(void, 0x80091434)
+#define TEXGet FUNCTION_ADDRESS(TEXDescriptor *, 0x80091450, TEXPalette * /*pal*/, int /*id*/)
+#define DSInitList FUNCTION_ADDRESS(void, 0x80091460, DSList * /*DSList*/, int /*maybeStartAddr*/, int /*maybeEndAddr*/)
+#define DSInsertListObject FUNCTION_ADDRESS(void, 0x80091478, DSList *, int, int)
+#define Strcmp FUNCTION_ADDRESS(int, 0x8009150C, char *, char *)
+#define DSInitTree FUNCTION_ADDRESS(void, 0x8009155C)
+#define DSInsertBranchBelow FUNCTION_ADDRESS(void, 0x80091570)
+#define TRKNubMainLoop FUNCTION_ADDRESS(void, 0x80091608)
+#define TRKDestructEvent FUNCTION_ADDRESS(void, 0x80091700)
+#define TRKConstructEvent FUNCTION_ADDRESS(void, 0x80091724)
+#define TRKPostEvent FUNCTION_ADDRESS(void, 0x8009173C)
+#define TRKGetNextEvent FUNCTION_ADDRESS(void, 0x8009181C)
+#define TRKInitializeEventQueue FUNCTION_ADDRESS(void, 0x800918D0)
+#define TRKNubWelcome FUNCTION_ADDRESS(void, 0x80091928)
+#define TRKTerminateNub FUNCTION_ADDRESS(void, 0x80091950)
+#define TRKInitializeNub FUNCTION_ADDRESS(void, 0x80091974)
+#define TRKMessageSend FUNCTION_ADDRESS(void, 0x80091AC0)
+#define TRKReadBuffer_ui32 FUNCTION_ADDRESS(void, 0x80091B04)
+#define TRKReadBuffer_ui8 FUNCTION_ADDRESS(void, 0x80091BF4)
+#define TRKReadBuffer1_ui64 FUNCTION_ADDRESS(void, 0x80091C8C)
+#define TRKAppendBuffer_ui32 FUNCTION_ADDRESS(void, 0x80091D74)
+#define TRKAppendBuffer_ui8 FUNCTION_ADDRESS(void, 0x80091E70)
+#define TRKAppendBuffer1_ui64 FUNCTION_ADDRESS(void, 0x80091ED8)
+#define TRKReadBuffer FUNCTION_ADDRESS(void, 0x80091FD4)
+#define TRKAppendBuffer FUNCTION_ADDRESS(void, 0x80092060)
+#define TRKSetBufferPosition FUNCTION_ADDRESS(void, 0x80092104)
+#define TRKResetBuffer FUNCTION_ADDRESS(void, 0x80092134)
+#define TRKReleaseBuffer FUNCTION_ADDRESS(void, 0x80092174)
+#define TRKGetBuffer FUNCTION_ADDRESS(void, 0x800921D8)
+#define TRKGetFreeBuffer FUNCTION_ADDRESS(void, 0x80092204)
+#define TRKIntializeMessageBuffers FUNCTION_ADDRESS(void, 0x800922CC)
+#define TRKTerminateSerialHandler FUNCTION_ADDRESS(void, 0x80092340)
+#define TRKInitializeProgramEndTrap FUNCTION_ADDRESS(void, 0x80092348)
+#define TRKProcessInput FUNCTION_ADDRESS(void, 0x8009240C)
+#define TRKGetInput FUNCTION_ADDRESS(void, 0x8009245C)
+#define TRKTestForPacket FUNCTION_ADDRESS(void, 0x800924BC)
+#define usr_put_initialize FUNCTION_ADDRESS(void, 0x800925F8)
+#define usr_puts_serial FUNCTION_ADDRESS(void, 0x800925FC)
+#define TRKDispatchMessage FUNCTION_ADDRESS(void, 0x80092684)
+#define TRKInitializeDispatcher FUNCTION_ADDRESS(void, 0x800927F4)
+#define TRKDoSetOption FUNCTION_ADDRESS(void, 0x800927FC)
+#define TRKDoStop FUNCTION_ADDRESS(void, 0x800928A4)
+#define TRKDoStep FUNCTION_ADDRESS(void, 0x8009294C)
+#define TRKDoContinue FUNCTION_ADDRESS(void, 0x80092B6C)
+#define TRKDoWriteRegisters FUNCTION_ADDRESS(void, 0x80092C1C)
+#define TRKDoReadRegisters FUNCTION_ADDRESS(void, 0x80092EAC)
+#define TRKDoWriteMemory FUNCTION_ADDRESS(void, 0x8009318C)
+#define TRKDoReadMemory FUNCTION_ADDRESS(void, 0x800933C8)
+#define TRKDoSupportMask FUNCTION_ADDRESS(void, 0x8009360C)
+#define TRKDoVersions FUNCTION_ADDRESS(void, 0x80093614)
+#define TRKDoOverride FUNCTION_ADDRESS(void, 0x8009361C)
+#define TRKDoReset FUNCTION_ADDRESS(void, 0x80093674)
+#define TRKDoDisconnect FUNCTION_ADDRESS(void, 0x800936CC)
+#define TRKDoConnect FUNCTION_ADDRESS(void, 0x80093744)
+#define SetTRKConnected FUNCTION_ADDRESS(void, 0x800937A8)
+#define GetTRKConnected FUNCTION_ADDRESS(void, 0x800937B4)
+#define OutputData FUNCTION_ADDRESS(void, 0x800937C4)
+#define HandlePositionFileSupportRequest FUNCTION_ADDRESS(void, 0x8009386C)
+#define HandleCloseFileSupportRequest FUNCTION_ADDRESS(void, 0x8009397C)
+#define HandleOpenFileSupportRequest FUNCTION_ADDRESS(void, 0x80093A64)
+#define TRKRequestSend FUNCTION_ADDRESS(void, 0x80093B80)
+#define TRKSuppAccessFile FUNCTION_ADDRESS(void, 0x80093D60)
+#define TRKReleaseMutex FUNCTION_ADDRESS(void, 0x80093F80)
+#define TRKAcquireMutex FUNCTION_ADDRESS(void, 0x80093F88)
+#define TRKInitializeMutex FUNCTION_ADDRESS(void, 0x80093F90)
+#define TRKDoNotifyStopped FUNCTION_ADDRESS(void, 0x80093F98)
+#define TRK_flushCache FUNCTION_ADDRESS(void, 0x80094030)
+#define TRK_fill_mem_80094068 FUNCTION_ADDRESS(void, 0x80094068)
+#define __TRK_get_MSR FUNCTION_ADDRESS(void, 0x80094120)
+#define __TRK_set_MSR FUNCTION_ADDRESS(void, 0x80094128)
+#define TRK_ppc_memcpy FUNCTION_ADDRESS(void, 0x80094130)
+#define TRKSwapAndGo FUNCTION_ADDRESS(void, 0x8009439C)
+#define ReadFPSCR FUNCTION_ADDRESS(void, 0x800944B4)
+#define WriteFPSCR FUNCTION_ADDRESS(void, 0x800944D8)
+#define TRKTargetAccessARAM FUNCTION_ADDRESS(void, 0x800944FC)
+#define TRKTargetSetInputPendingPtr FUNCTION_ADDRESS(void, 0x800945C0)
+#define TRKTargetStop FUNCTION_ADDRESS(void, 0x800945D0)
+#define TRKTargetSetStopped FUNCTION_ADDRESS(void, 0x800945E8)
+#define TRKTargetStopped FUNCTION_ADDRESS(void, 0x800945F8)
+#define TRKTargetSupportRequest FUNCTION_ADDRESS(void, 0x80094608)
+#define TRKTargetGetPC FUNCTION_ADDRESS(void, 0x80094808)
+#define TRKTargetStopOutOfRange FUNCTION_ADDRESS(void, 0x80094818)
+#define TRKTargetSingleStep FUNCTION_ADDRESS(void, 0x800948D0)
+#define TRKTargetAddExceptionInfo FUNCTION_ADDRESS(void, 0x8009497C)
+#define TRKTargetAddStopInfo FUNCTION_ADDRESS(void, 0x80094A00)
+#define TRKTargetInterrupt FUNCTION_ADDRESS(void, 0x80094A8C)
+#define TRKPostInterruptEvent FUNCTION_ADDRESS(void, 0x80094C1C)
+#define TRKTargetAccessExtended2 FUNCTION_ADDRESS(void, 0x80094CC8)
+#define TRKTargetAccessExtended1 FUNCTION_ADDRESS(void, 0x80095100)
+#define TRKTargetAccessFP FUNCTION_ADDRESS(void, 0x80095270)
+#define TRKTargetAccessDefault FUNCTION_ADDRESS(void, 0x8009577C)
+#define TRKTargetReadInstruction FUNCTION_ADDRESS(void, 0x80095870)
+#define TRKTargetAccessMemory FUNCTION_ADDRESS(void, 0x800958BC)
+#define TRKValidMemory32 FUNCTION_ADDRESS(void, 0x80095A08)
+#define TRKAccessFile FUNCTION_ADDRESS(void, 0x80095CB0)
+#define TRKOpenFile FUNCTION_ADDRESS(void, 0x80095CB8)
+#define TRKCloseFile FUNCTION_ADDRESS(void, 0x80095CC0)
+#define TRKPositionFile FUNCTION_ADDRESS(void, 0x80095CC8)
+#define TRKSaveExtended1Block FUNCTION_ADDRESS(void, 0x80095CD0)
+#define TRKSaveExtended1Block_1 FUNCTION_ADDRESS(void, 0x80095DDC)
+#define TRKSaveExtended1Block_2 FUNCTION_ADDRESS(void, 0x80095E20)
+#define TRKSaveExtended1Block_3 FUNCTION_ADDRESS(void, 0x80095E5C)
+#define TRKRestoreExtended1Block FUNCTION_ADDRESS(void, 0x80095E88)
+#define TRKRestoreExtended1Block_1 FUNCTION_ADDRESS(void, 0x80095EF8)
+#define TRKRestoreExtended1Block_2 FUNCTION_ADDRESS(void, 0x80095F5C)
+#define InitMetroTRK FUNCTION_ADDRESS(void, 0x80096040)
+#define InitMetroTRK_BBA FUNCTION_ADDRESS(void, 0x800960D8)
+#define TRK__write_aram FUNCTION_ADDRESS(void, 0x8009616C)
+#define TRK__read_aram FUNCTION_ADDRESS(void, 0x80096358)
+#define TRKInitializeTarget FUNCTION_ADDRESS(void, 0x8009648C)
+#define __TRK_copy_vectors FUNCTION_ADDRESS(void, 0x800964D8)
+#define TRKTargetTranslate FUNCTION_ADDRESS(void, 0x80096604)
+#define EnableMetroTRKInterrupts FUNCTION_ADDRESS(void, 0x8009665C)
+#define TRK_main FUNCTION_ADDRESS(void, 0x8009667C)
+#define TRKLoadContext FUNCTION_ADDRESS(void, 0x800966D4)
+#define TRKUARTInterruptHandler FUNCTION_ADDRESS(void, 0x8009675C)
+#define InitializeProgramEndTrap FUNCTION_ADDRESS(void, 0x80096760)
+#define TRK_board_display FUNCTION_ADDRESS(void, 0x800967B8)
+#define UnreserveEXI2Port FUNCTION_ADDRESS(void, 0x800967E8)
+#define ReserveEXI2Port FUNCTION_ADDRESS(void, 0x80096818)
+#define TRKWriteUARTN FUNCTION_ADDRESS(void, 0x80096848)
+#define TRKReadUARTN FUNCTION_ADDRESS(void, 0x80096884)
+#define TRKPollUART FUNCTION_ADDRESS(void, 0x800968C0)
+#define EnableExi2Interrupts FUNCTION_ADDRESS(void, 0x800968F0)
+#define TRKInitializeIntDriverUART FUNCTION_ADDRESS(void, 0x80096938)
+#define InitMetroTRKCommTable FUNCTION_ADDRESS(void, 0x80096988)
+#define TRKEXICallBack FUNCTION_ADDRESS(void, 0x80096BF4)
+#define TRKTargetContinue FUNCTION_ADDRESS(void, 0x80096C2C)
+#define GetUseSerialIO FUNCTION_ADDRESS(void, 0x80096C60)
+#define SetUseSerialIO FUNCTION_ADDRESS(void, 0x80096C70)
+#define __close_console FUNCTION_ADDRESS(void, 0x80096C7C)
+#define __TRK_write_console FUNCTION_ADDRESS(void, 0x80096D00)
+#define __read_console FUNCTION_ADDRESS(void, 0x80096DBC)
+#define udp_cc_post_stop FUNCTION_ADDRESS(void, 0x80096E78)
+#define udp_cc_pre_continue FUNCTION_ADDRESS(void, 0x80096E80)
+#define udp_cc_peek FUNCTION_ADDRESS(void, 0x80096E88)
+#define udp_cc_write FUNCTION_ADDRESS(void, 0x80096E90)
+#define udp_cc_read FUNCTION_ADDRESS(void, 0x80096E98)
+#define udp_cc_close FUNCTION_ADDRESS(void, 0x80096EA0)
+#define udp_cc_open FUNCTION_ADDRESS(void, 0x80096EA8)
+#define udp_cc_shutdown FUNCTION_ADDRESS(void, 0x80096EB0)
+#define udp_cc_initialize FUNCTION_ADDRESS(void, 0x80096EB8)
+#define ddh_cc_initinterrupts FUNCTION_ADDRESS(void, 0x80096EC0)
+#define ddh_cc_peek FUNCTION_ADDRESS(void, 0x80096EE4)
+#define ddh_cc_post_stop FUNCTION_ADDRESS(void, 0x80096F54)
+#define ddh_cc_pre_continue FUNCTION_ADDRESS(void, 0x80096F78)
+#define ddh_cc_write FUNCTION_ADDRESS(void, 0x80096F9C)
+#define ddh_cc_read FUNCTION_ADDRESS(void, 0x8009705C)
+#define ddh_cc_close FUNCTION_ADDRESS(void, 0x80097148)
+#define ddh_cc_open FUNCTION_ADDRESS(void, 0x80097150)
+#define ddh_cc_shutdown FUNCTION_ADDRESS(void, 0x80097174)
+#define ddh_cc_initialize FUNCTION_ADDRESS(void, 0x8009717C)
+#define CircleBufferReadBytes FUNCTION_ADDRESS(void, 0x80097204)
+#define CircleBufferWriteBytes FUNCTION_ADDRESS(void, 0x8009730C)
+#define CircleBufferInitialize FUNCTION_ADDRESS(void, 0x80097414)
+#define CBGetBytesAvailableForRead FUNCTION_ADDRESS(void, 0x80097464)
+#define gdev_cc_initinterrupts FUNCTION_ADDRESS(void, 0x8009746C)
+#define gdev_cc_peek FUNCTION_ADDRESS(void, 0x80097490)
+#define gdev_cc_post_stop FUNCTION_ADDRESS(void, 0x80097500)
+#define gdev_cc_pre_continue FUNCTION_ADDRESS(void, 0x80097524)
+#define gdev_cc_write FUNCTION_ADDRESS(void, 0x80097548)
+#define gdev_cc_read FUNCTION_ADDRESS(void, 0x80097608)
+#define gdev_cc_close FUNCTION_ADDRESS(void, 0x800976FC)
+#define gdev_cc_open FUNCTION_ADDRESS(void, 0x80097704)
+#define gdev_cc_shutdown FUNCTION_ADDRESS(void, 0x80097728)
+#define gdev_cc_initalize FUNCTION_ADDRESS(void, 0x80097730, int /*inputPendingPtrRef*/, int /*monitorCallback*/)
+#define MWTRACE FUNCTION_ADDRESS(void, 0x800977B8)
+#define MWExitCriticalSection FUNCTION_ADDRESS(void, 0x80097808)
+#define MWEnterCriticalSection FUNCTION_ADDRESS(void, 0x8009782C)
+#define MWInitializeCriticalSection FUNCTION_ADDRESS(void, 0x8009785C)
+#define __va_arg FUNCTION_ADDRESS(void, 0x80097860)
+#define __destroy_global_chain FUNCTION_ADDRESS(void, 0x80097928)
+#define __cvt_fp2unsigned FUNCTION_ADDRESS(void, 0x80097970)
+#define __save_fpr FUNCTION_ADDRESS(void, 0x800979CC)
+#define __save_fpr_2 FUNCTION_ADDRESS(void, 0x800979F8)
+#define __restore_fpr FUNCTION_ADDRESS(void, 0x80097A18)
+#define __restore_fpr_2 FUNCTION_ADDRESS(void, 0x80097A44)
+#define _savegpr_14 FUNCTION_ADDRESS(void, 0x80097A64)
+#define _savegpr_15 FUNCTION_ADDRESS(void, 0x80097A68)
+#define _savegpr_18 FUNCTION_ADDRESS(void, 0x80097A74)
+#define _savegpr_20 FUNCTION_ADDRESS(void, 0x80097A7C)
+#define _savegpr_21 FUNCTION_ADDRESS(void, 0x80097A80)
+#define _savegpr_22 FUNCTION_ADDRESS(void, 0x80097A84)
+#define _savegpr_23 FUNCTION_ADDRESS(void, 0x80097A88)
+#define _savegpr_24 FUNCTION_ADDRESS(void, 0x80097A8C)
+#define _savegpr_25 FUNCTION_ADDRESS(void, 0x80097A90)
+#define _savegpr_26 FUNCTION_ADDRESS(void, 0x80097A94)
+#define _savegpr_27 FUNCTION_ADDRESS(void, 0x80097A98)
+#define _restgpr_14 FUNCTION_ADDRESS(void, 0x80097AB0)
+#define _restgpr_15 FUNCTION_ADDRESS(void, 0x80097AB4)
+#define _restgpr_18 FUNCTION_ADDRESS(void, 0x80097AC0)
+#define _restgpr_20 FUNCTION_ADDRESS(void, 0x80097AC8)
+#define _restgpr_21 FUNCTION_ADDRESS(void, 0x80097ACC)
+#define _restgpr_22 FUNCTION_ADDRESS(void, 0x80097AD0)
+#define _restgpr_23 FUNCTION_ADDRESS(void, 0x80097AD4)
+#define _restgpr_24 FUNCTION_ADDRESS(void, 0x80097AD8)
+#define _restgpr_25 FUNCTION_ADDRESS(void, 0x80097ADC)
+#define _restgpr_26 FUNCTION_ADDRESS(void, 0x80097AE0)
+#define _restgpr_27 FUNCTION_ADDRESS(void, 0x80097AE4)
+#define __div2u FUNCTION_ADDRESS(void, 0x80097AFC)
+#define __div2i FUNCTION_ADDRESS(void, 0x80097BE8)
+#define __mod2u FUNCTION_ADDRESS(void, 0x80097D20)
+#define __mod2i FUNCTION_ADDRESS(void, 0x80097E04)
+#define __shl2i FUNCTION_ADDRESS(void, 0x80097F10)
+#define __shr2u FUNCTION_ADDRESS(void, 0x80097F34)
+#define __shr2i FUNCTION_ADDRESS(void, 0x80097F58)
+#define __cvt_dbl_usll FUNCTION_ADDRESS(void, 0x80097F80)
+#define GetR2 FUNCTION_ADDRESS(void, 0x8009804C)
+#define __fini_cpp_exceptions FUNCTION_ADDRESS(void, 0x80098054)
+#define __init_cpp_exceptions FUNCTION_ADDRESS(void, 0x80098088)
+#define __unregister_fragment FUNCTION_ADDRESS(void, 0x800980C8)
+#define __register_fragment FUNCTION_ADDRESS(void, 0x800980FC)
+#define __sys_free FUNCTION_ADDRESS(void, 0x80098130, int)
+#define exit FUNCTION_ADDRESS(void, 0x800981E8, int /*__status*/)
 #define free FUNCTION_ADDRESS(void, 0x800982D8, void * /*__ptr*/)
-static inline void __pool_free(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x80098348)(param_1, param_2); }
-static inline void deallocate_from_fixed_pools(int param_1, int * * param_2, uint param_3) { ((void(*)(int, int * *, uint))0x800983A0)(param_1, param_2, param_3); }
-static inline void deallocate_from_var_pools(int * * param_1, uint * * param_2) { ((void(*)(int * *, uint * *))0x800984F8)(param_1, param_2); }
-static inline undefined4 __flsuh_all(void) { return ((undefined4(*)(void))0x8009878C)(); }
-static inline void __close_all(void) { ((void(*)(void))0x800987FC)(); }
-static inline void __num2dec(int param_1, int param_2) { ((void(*)(int, int))0x800988A4)(param_1, param_2); }
-static inline void __num2dec_internal(double param_1, char * param_2) { ((void(*)(double, char *))0x80098A48)(param_1, param_2); }
-static inline void __two_exp(int * param_1, uint param_2) { ((void(*)(int *, uint))0x80098DFC)(param_1, param_2); }
-static inline void __timesdec(undefined * param_1, int param_2, int param_3) { ((void(*)(undefined *, int, int))0x8009A580)(param_1, param_2, param_3); }
-static inline int __flush_buffer(undefined4 * param_1, undefined4 * param_2) { return ((int(*)(undefined4 *, undefined4 *))0x8009A7F8)(param_1, param_2); }
-static inline void __prep_buffer(int param_1) { ((void(*)(int))0x8009A8BC)(param_1); }
-static inline void __end_critical_region(void) { ((void(*)(void))0x8009A8F0)(); }
-static inline void __begin_critical_region(void) { ((void(*)(void))0x8009A8F4)(); }
-static inline void __kill_critical_regions(void) { ((void(*)(void))0x8009A8F8)(); }
-static inline int tolower(int __c) { return ((int(*)(int))0x8009A8FC)(__c); }
-static inline uint __fwrite(char * param_1, uint param_2, int param_3, __FILE * param_4) { return ((uint(*)(char *, uint, int, __FILE *))0x8009A920)(param_1, param_2, param_3, param_4); }
-static inline size_t fwrite(void * __ptr, size_t __size, size_t __n, FILE * __s) { return ((size_t(*)(void *, size_t, size_t, FILE *))0x8009AC2C)(__ptr, __size, __n, __s); }
-static inline int fflush(FILE * __stream) { return ((int(*)(FILE *))0x8009ACA8)(__stream); }
-static inline int fclose(FILE * __stream) { return ((int(*)(FILE *))0x8009ADE0)(__stream); }
-static inline int fseek(FILE * __stream, long __off, int __whence) { return ((int(*)(FILE *, long, int))0x8009AF9C)(__stream, __off, __whence); }
-static inline undefined4 _fseek(undefined4 * param_1, int param_2, int param_3) { return ((undefined4(*)(undefined4 *, int, int))0x8009B008)(param_1, param_2, param_3); }
-static inline long ftell(FILE * __stream) { return ((long(*)(FILE *))0x8009B278)(__stream); }
-static inline size_t wcstombs(char * __s, wchar_t * __pwcs, size_t __n) { return ((size_t(*)(char *, wchar_t *, size_t))0x8009B35C)(__s, __pwcs, __n); }
+#define __pool_free FUNCTION_ADDRESS(void, 0x80098348)
+#define deallocate_from_fixed_pools FUNCTION_ADDRESS(void, 0x800983A0)
+#define deallocate_from_var_pools FUNCTION_ADDRESS(void, 0x800984F8)
+#define __flsuh_all FUNCTION_ADDRESS(void, 0x8009878C)
+#define __close_all FUNCTION_ADDRESS(void, 0x800987FC)
+#define __num2dec FUNCTION_ADDRESS(void, 0x800988A4)
+#define __num2dec_internal FUNCTION_ADDRESS(void, 0x80098A48)
+#define __two_exp FUNCTION_ADDRESS(void, 0x80098DFC)
+#define __timesdec FUNCTION_ADDRESS(void, 0x8009A580)
+#define __flush_buffer FUNCTION_ADDRESS(void, 0x8009A7F8)
+#define __prep_buffer FUNCTION_ADDRESS(void, 0x8009A8BC)
+#define __end_critical_region FUNCTION_ADDRESS(void, 0x8009A8F0)
+#define __begin_critical_region FUNCTION_ADDRESS(void, 0x8009A8F4)
+#define __kill_critical_regions FUNCTION_ADDRESS(void, 0x8009A8F8)
+#define tolower FUNCTION_ADDRESS(int, 0x8009A8FC, int /*__c*/)
+#define __fwrite FUNCTION_ADDRESS(void, 0x8009A920)
+#define fwrite FUNCTION_ADDRESS(size_t, 0x8009AC2C, void * /*__ptr*/, size_t /*__size*/, size_t /*__n*/, FILE * /*__s*/)
+#define fflush FUNCTION_ADDRESS(int, 0x8009ACA8, FILE * /*__stream*/)
+#define fclose FUNCTION_ADDRESS(int, 0x8009ADE0, FILE * /*__stream*/)
+#define fseek FUNCTION_ADDRESS(int, 0x8009AF9C, FILE * /*__stream*/, long /*__off*/, int /*__whence*/)
+#define _fseek FUNCTION_ADDRESS(void, 0x8009B008)
+#define ftell FUNCTION_ADDRESS(long, 0x8009B278, FILE * /*__stream*/)
+#define wcstombs FUNCTION_ADDRESS(size_t, 0x8009B35C, char * /*__s*/, wchar_t * /*__pwcs*/, size_t /*__n*/)
 #define memcmp FUNCTION_ADDRESS(int, 0x8009B474, byte * /*array1*/, byte * /*array2*/, int /*byteCount*/)
-static inline char * __memrchr(int param_1, char param_2, int param_3) { return ((char *(*)(int, char, int))0x8009B4C0)(param_1, param_2, param_3); }
+#define __memrchr FUNCTION_ADDRESS(void, 0x8009B4C0)
 #define memchr FUNCTION_ADDRESS(void *, 0x8009B4EC, void * /*__s*/, int /*__c*/, size_t /*__n*/)
 #define memmove FUNCTION_ADDRESS(void *, 0x8009B518, void * /*__dest*/, void * /*__src*/, size_t /*__n*/)
-static inline void __copy_longs_rev_unaligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B5E4)(param_1, param_2, param_3); }
-static inline void __copy_longs_unaligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B690)(param_1, param_2, param_3); }
-static inline void __copy_longs_rev_aligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B750)(param_1, param_2, param_3); }
-static inline void __copy_longs_aligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B7F8)(param_1, param_2, param_3); }
-static inline void __stdio_atexit(void) { ((void(*)(void))0x8009B8B4)(); }
+#define __copy_longs_rev_unaligned FUNCTION_ADDRESS(void, 0x8009B5E4, long *, long *, uint)
+#define __copy_longs_unaligned FUNCTION_ADDRESS(void, 0x8009B690, long *, long *, uint)
+#define __copy_longs_rev_aligned FUNCTION_ADDRESS(void, 0x8009B750, long *, long *, uint)
+#define __copy_longs_aligned FUNCTION_ADDRESS(void, 0x8009B7F8, long *, long *, uint)
+#define __stdio_atexit FUNCTION_ADDRESS(void, 0x8009B8B4)
 #define sprintf FUNCTION_ADDRESS(int, 0x8009B8C4, char * /*__s*/, char * /*__format*/, ...)
-static inline int vprintf(char * __format, __gnuc_va_list __arg) { return ((int(*)(char *, __gnuc_va_list))0x8009B9A4)(__format, __arg); }
-static inline undefined4 __StringWrite(int * param_1, void * param_2, uint param_3) { return ((undefined4(*)(int *, void *, uint))0x8009BA3C)(param_1, param_2, param_3); }
-static inline FILE * __FileWrite(FILE * param_1, void * param_2, size_t param_3) { return ((FILE *(*)(FILE *, void *, size_t))0x8009BAA8)(param_1, param_2, param_3); }
-static inline int __pformatter(undefined * param_1, int param_2, char * param_3, int param_4) { return ((int(*)(undefined *, int, char *, int))0x8009BB00)(param_1, param_2, param_3, param_4); }
-static inline char * float2str(double param_1, int param_2, int param_3) { return ((char *(*)(double, int, int))0x8009C274)(param_1, param_2, param_3); }
-static inline void round_decimal(int param_1, int param_2) { ((void(*)(int, int))0x8009C990)(param_1, param_2); }
-static inline char * double2hex(ulonglong param_1, int param_2, int param_3) { return ((char *(*)(ulonglong, int, int))0x8009CABC)(param_1, param_2, param_3); }
-static inline char * longlong2str(uint param_1, uint param_2, int param_3, char * param_4) { return ((char *(*)(uint, uint, int, char *))0x8009CDF4)(param_1, param_2, param_3, param_4); }
-static inline char * long2str(uint param_1, int param_2, char * param_3) { return ((char *(*)(uint, int, char *))0x8009D108)(param_1, param_2, param_3); }
-static inline char * parse_format(int param_1, undefined4 param_2, int * param_3) { return ((char *(*)(int, undefined4, int *))0x8009D360)(param_1, param_2, param_3); }
-static inline int rand(void) { return ((int(*)(void))0x8009D864)(); }
+#define vprintf FUNCTION_ADDRESS(int, 0x8009B9A4, char * /*__format*/, __gnuc_va_list /*__arg*/)
+#define __StringWrite FUNCTION_ADDRESS(void, 0x8009BA3C)
+#define __FileWrite FUNCTION_ADDRESS(void, 0x8009BAA8)
+#define __pformatter FUNCTION_ADDRESS(int, 0x8009BB00, undefined *, int, char *, int)
+#define float2str FUNCTION_ADDRESS(char *, 0x8009C274, double, int, int)
+#define round_decimal FUNCTION_ADDRESS(void, 0x8009C990)
+#define double2hex FUNCTION_ADDRESS(void, 0x8009CABC)
+#define longlong2str FUNCTION_ADDRESS(void, 0x8009CDF4)
+#define long2str FUNCTION_ADDRESS(void, 0x8009D108)
+#define parse_format FUNCTION_ADDRESS(void, 0x8009D360)
+#define rand FUNCTION_ADDRESS(int, 0x8009D864)
 #define strchr FUNCTION_ADDRESS(char *, 0x8009D884, char * /*__s*/, int /*__c*/)
-static inline int strcnmp(int param_1, int param_2, int param_3) { return ((int(*)(int, int, int))0x8009D8B4)(param_1, param_2, param_3); }
+#define strcnmp FUNCTION_ADDRESS(void, 0x8009D8B4)
 #define strncpy FUNCTION_ADDRESS(char *, 0x8009D8F4, char * /*__dest*/, char * /*__src*/, size_t /*__n*/)
 #define strcpy FUNCTION_ADDRESS(char *, 0x8009D938, char * /*__dest*/, char * /*__src*/)
 #define strlen FUNCTION_ADDRESS(size_t, 0x8009D9F0, char * /*__s*/)
-static inline int fwide(__FILE * __fp, int __mode) { return ((int(*)(__FILE *, int))0x8009DA0C)(__fp, __mode); }
-static inline undefined4 __write_console(undefined4 param_1, undefined4 param_2, undefined4 * param_3, undefined4 param_4) { return ((undefined4(*)(undefined4, undefined4, undefined4 *, undefined4))0x8009DA94)(param_1, param_2, param_3, param_4); }
-static inline double __ieee754_acos(double param_1) { return ((double(*)(double))0x8009DB64)(param_1); }
-static inline double __ieee754_asin(double x) { return ((double(*)(double))0x8009DDA0)(x); }
-static inline double __ieee754_atan2(double y, double x) { return ((double(*)(double, double))0x8009DFD8)(y, x); }
-static inline double __ieee754_fmod(double param_1, double param_2) { return ((double(*)(double, double))0x8009E268)(param_1, param_2); }
-static inline double __ieee754_pow(double x, double y) { return ((double(*)(double, double))0x8009E5A4)(x, y); }
-static inline double __ieee754_rem_pio2(double param_1, double * param_2) { return ((double(*)(double, double *))0x8009EDD4)(param_1, param_2); }
-static inline double __kernel_cos(double param_1, double param_2) { return ((double(*)(double, double))0x8009F174)(param_1, param_2); }
-static inline int __kernel_rem_pio2(double * x, double * y, int e0, int nx, int prec, int * ipio2) { return ((int(*)(double *, double *, int, int, int, int *))0x8009F268)(x, y, e0, nx, prec, ipio2); }
-static inline double __kernel_sin(double param_1, double param_2, int param_3) { return ((double(*)(double, double, int))0x800A00BC)(param_1, param_2, param_3); }
-static inline double __kernel_tan(double param_1, double param_2, uint param_3) { return ((double(*)(double, double, uint))0x800A015C)(param_1, param_2, param_3); }
-static inline double atan(double __x) { return ((double(*)(double))0x800A0370)(__x); }
-static inline double copysign(double __x, double __y) { return ((double(*)(double, double))0x800A0588)(__x, __y); }
+#define fwide FUNCTION_ADDRESS(int, 0x8009DA0C, __FILE * /*__fp*/, int /*__mode*/)
+#define __write_console FUNCTION_ADDRESS(void, 0x8009DA94)
+#define __ieee754_acos FUNCTION_ADDRESS(double, 0x8009DB64, double)
+#define __ieee754_asin FUNCTION_ADDRESS(double, 0x8009DDA0, double /*x*/)
+#define __ieee754_atan2 FUNCTION_ADDRESS(double, 0x8009DFD8, double /*y*/, double /*x*/)
+#define __ieee754_fmod FUNCTION_ADDRESS(void, 0x8009E268)
+#define __ieee754_pow FUNCTION_ADDRESS(double, 0x8009E5A4, double /*x*/, double /*y*/)
+#define __ieee754_rem_pio2 FUNCTION_ADDRESS(double, 0x8009EDD4, double, double *)
+#define __kernel_cos FUNCTION_ADDRESS(double, 0x8009F174, double, double)
+#define __kernel_rem_pio2 FUNCTION_ADDRESS(int, 0x8009F268, double * /*x*/, double * /*y*/, int /*e0*/, int /*nx*/, int /*prec*/, int * /*ipio2*/)
+#define __kernel_sin FUNCTION_ADDRESS(double, 0x800A00BC, double, double, int)
+#define __kernel_tan FUNCTION_ADDRESS(void, 0x800A015C)
+#define atan FUNCTION_ADDRESS(double, 0x800A0370, double /*__x*/)
+#define copysign FUNCTION_ADDRESS(double, 0x800A0588, double /*__x*/, double /*__y*/)
 #define cos FUNCTION_ADDRESS(double, 0x800A05B0, double /*__x*/)
 #define floor FUNCTION_ADDRESS(double, 0x800A0684, double /*__x*/)
-static inline double frexp(double __x, int * __exponent) { return ((double(*)(double, int *))0x800A07CC)(__x, __exponent); }
-static inline double ldexp(double __x, int __exponent) { return ((double(*)(double, int))0x800A0858)(__x, __exponent); }
-static inline double modf(double __x, double * __iptr) { return ((double(*)(double, double *))0x800A0A1C)(__x, __iptr); }
+#define frexp FUNCTION_ADDRESS(double, 0x800A07CC, double /*__x*/, int * /*__exponent*/)
+#define ldexp FUNCTION_ADDRESS(double, 0x800A0858, double /*__x*/, int /*__exponent*/)
+#define modf FUNCTION_ADDRESS(double, 0x800A0A1C, double /*__x*/, double * /*__iptr*/)
 #define sin FUNCTION_ADDRESS(double, 0x800A0B18, double /*__x*/)
 #define tan FUNCTION_ADDRESS(double, 0x800A0BF0, double /*__x*/)
-static inline float acosf(float __x) { return ((float(*)(float))0x800A0C68)(__x); }
-static inline double asin(double __x) { return ((double(*)(double))0x800A0C88)(__x); }
-static inline double atan_800a0ca8(double y, double x) { return ((double(*)(double, double))0x800A0CA8)(y, x); }
-static inline double fmod(double __x, double __y) { return ((double(*)(double, double))0x800A0CC8)(__x, __y); }
+#define acosf FUNCTION_ADDRESS(float, 0x800A0C68, float /*__x*/)
+#define asin FUNCTION_ADDRESS(double, 0x800A0C88, double /*__x*/)
+#define atan_800a0ca8 FUNCTION_ADDRESS(double, 0x800A0CA8, double /*y*/, double /*x*/)
+#define fmod FUNCTION_ADDRESS(double, 0x800A0CC8, double /*__x*/, double /*__y*/)
 #define pow FUNCTION_ADDRESS(double, 0x800A0CE8, double /*__x*/, double /*__y*/)
-static inline double __ieee754_sqrt(double param_1) { return ((double(*)(double))0x800A0D08)(param_1); }
-static inline float sinf(float __x) { return ((float(*)(float))0x800A0F2C)(__x); }
-static inline float cosf(float __x) { return ((float(*)(float))0x800A0F50)(__x); }
-static inline float acosf_800a0f74(float __x) { return ((float(*)(float))0x800A0F74)(__x); }
+#define __ieee754_sqrt FUNCTION_ADDRESS(double, 0x800A0D08, double)
+#define sinf FUNCTION_ADDRESS(float, 0x800A0F2C, float /*__x*/)
+#define cosf FUNCTION_ADDRESS(float, 0x800A0F50, float /*__x*/)
+#define acosf_800a0f74 FUNCTION_ADDRESS(float, 0x800A0F74, float /*__x*/)
 #define sqrt FUNCTION_ADDRESS(double, 0x800A0F98, double /*__x*/)
-static inline void EXI2_Init(void) { ((void(*)(void))0x800A0FB8)(); }
-static inline void EXI2_EnableInterrupts(void) { ((void(*)(void))0x800A0FBC)(); }
-static inline undefined4 EXI2_Poll(void) { return ((undefined4(*)(void))0x800A0FC0)(); }
-static inline undefined4 EXI2_ReadN(void) { return ((undefined4(*)(void))0x800A0FC8)(); }
-static inline undefined4 EXI2_WriteN(void) { return ((undefined4(*)(void))0x800A0FD0)(); }
-static inline void EXI2_Reserve(void) { ((void(*)(void))0x800A0FD8)(); }
-static inline void EXI2_Unreserve(void) { ((void(*)(void))0x800A0FDC)(); }
-static inline undefined4 AMC_IsStub(void) { return ((undefined4(*)(void))0x800A0FE0)(); }
-static inline undefined4 Hu_IsStub(void) { return ((undefined4(*)(void))0x800A0FE8)(); }
-static inline undefined4 DBGEXIImm(byte * param_1, int param_2, int param_3) { return ((undefined4(*)(byte *, int, int))0x800A0FF0)(param_1, param_2, param_3); }
-static inline uint DBGReadMailbox(undefined4 param_1) { return ((uint(*)(undefined4))0x800A1288)(param_1); }
-static inline uint DBGRead(uint param_1, int * param_2, int param_3) { return ((uint(*)(uint, int *, int))0x800A1334)(param_1, param_2, param_3); }
-static inline uint DBGWrite(uint param_1, int * param_2, int param_3) { return ((uint(*)(uint, int *, int))0x800A1410)(param_1, param_2, param_3); }
-static inline uint DBGReadStatus(undefined4 param_1) { return ((uint(*)(undefined4))0x800A14EC)(param_1); }
-static inline void MWCallback(void) { ((void(*)(void))0x800A1598)(); }
-static inline void DBGHandler(short param_1) { ((void(*)(short))0x800A15D4)(param_1); }
-static inline void DBInitComm(byte * * param_1, int param_2) { ((void(*)(byte * *, int))0x800A1614)(param_1, param_2); }
-static inline void DBInitInterrupts(void) { ((void(*)(void))0x800A168C)(); }
-static inline int DBQueryData(void) { return ((int(*)(void))0x800A16E0)(); }
-static inline undefined4 DBRead(undefined4 param_1, int param_2) { return ((undefined4(*)(undefined4, int))0x800A177C)(param_1, param_2); }
-static inline undefined4 DBWrite(undefined4 param_1, uint param_2) { return ((undefined4(*)(undefined4, uint))0x800A1808)(param_1, param_2); }
-static inline void DBOpen(void) { ((void(*)(void))0x800A1A68)(); }
-static inline void DBClose(void) { ((void(*)(void))0x800A1A6C)(); }
-static inline void SetExiInterruptMask(int param_1, int * param_2) { ((void(*)(int, int *))0x800A2B5C)(param_1, param_2); }
-static inline undefined4 EXIImm(int param_1, byte * param_2, int param_3, int param_4, undefined4 param_5) { return ((undefined4(*)(int, byte *, int, int, undefined4))0x800A2C50)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 EXIImmEx(undefined4 param_1, int param_2, int param_3, undefined4 param_4) { return ((undefined4(*)(undefined4, int, int, undefined4))0x800A2EAC)(param_1, param_2, param_3, param_4); }
-static inline undefined4 EXIDma(int param_1, uint param_2, undefined4 param_3, int param_4, undefined4 param_5) { return ((undefined4(*)(int, uint, undefined4, int, undefined4))0x800A2F4C)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 EXISync(int param_1) { return ((undefined4(*)(int))0x800A3038)(param_1); }
-static inline uint EXIClearInterrupts(int param_1, int param_2, int param_3, int param_4) { return ((uint(*)(int, int, int, int))0x800A3284)(param_1, param_2, param_3, param_4); }
-static inline undefined4 EXISetExiCallback(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x800A32CC)(param_1, param_2); }
-static inline undefined4 __EXIProbe(int param_1) { return ((undefined4(*)(int))0x800A3348)(param_1); }
-static inline int EXIProbe(int param_1) { return ((int(*)(int))0x800A34BC)(param_1); }
-static inline undefined4 EXIProbeEx(int param_1) { return ((undefined4(*)(int))0x800A353C)(param_1); }
-static inline undefined4 EXIAttach(int param_1, undefined * param_2) { return ((undefined4(*)(int, undefined *))0x800A35F0)(param_1, param_2); }
-static inline undefined4 EXIDetach(int param_1) { return ((undefined4(*)(int))0x800A36FC)(param_1); }
-static inline undefined4 EXISelect(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x800A37B8)(param_1, param_2, param_3); }
-static inline undefined4 EXIDeselect(int param_1) { return ((undefined4(*)(int))0x800A38E4)(param_1); }
-static inline void EXIIntrruptHandler(short param_1, undefined4 param_2) { ((void(*)(short, undefined4))0x800A39F4)(param_1, param_2); }
-static inline void TCIIntrruptHandler(short param_1, undefined4 param_2) { ((void(*)(short, undefined4))0x800A3ABC)(param_1, param_2); }
-static inline void EXTIntrruptHandler(short param_1, undefined4 param_2) { ((void(*)(short, undefined4))0x800A3CD4)(param_1, param_2); }
-static inline void EXIInit(void) { ((void(*)(void))0x800A3DA4)(); }
-static inline undefined4 EXILock(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x800A3F78)(param_1, param_2, param_3); }
-static inline undefined4 EXIUnlock(int param_1) { return ((undefined4(*)(int))0x800A406C)(param_1); }
-static inline undefined4 EXIGetState(int param_1) { return ((undefined4(*)(int))0x800A4148)(param_1); }
-static inline void UnlockedHandler(undefined4 param_1) { ((void(*)(undefined4))0x800A4160)(param_1); }
-static inline int EXIGetID(int param_1, int param_2, int * param_3) { return ((int(*)(int, int, int *))0x800A4188)(param_1, param_2, param_3); }
-static inline undefined4 ProbeBarnacle(int param_1, int param_2, int * param_3) { return ((undefined4(*)(int, int, int *))0x800A4538)(param_1, param_2, param_3); }
-static inline void __OSEnableBarnacle(int param_1, int param_2) { ((void(*)(int, int))0x800A46C4)(param_1, param_2); }
-static inline undefined4 InitializeUART(void) { return ((undefined4(*)(void))0x800A4880)(); }
-static inline undefined4 WriteUARTN(char * param_1, uint param_2) { return ((undefined4(*)(char *, uint))0x800A48F0)(param_1, param_2); }
-static inline undefined4 SIBusy(void) { return ((undefined4(*)(void))0x800A4B0C)(); }
-static inline undefined4 SIIsChanBusy(int param_1) { return ((undefined4(*)(int))0x800A4B2C)(param_1); }
-static inline uint CompleteTransfer(void) { return ((uint(*)(void))0x800A4B68)(); }
-static inline void SIInterruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800A4E64)(param_1, param_2); }
-static inline bool SIEnablePollingInterrupt(int param_1) { return ((bool(*)(int))0x800A51A8)(param_1); }
-static inline undefined4 SIRegisterPollingHandle(int param_1) { return ((undefined4(*)(int))0x800A5240)(param_1); }
-static inline undefined4 SIUnregisterPollingHandle(int param_1) { return ((undefined4(*)(int))0x800A530C)(param_1); }
-static inline void SIInit(void) { ((void(*)(void))0x800A5400)(); }
-static inline undefined4 __SITransfer(uint param_1, undefined4 * param_2, int param_3, int param_4, int param_5, int param_6) { return ((undefined4(*)(uint, undefined4 *, int, int, int, int))0x800A54B4)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline uint SIGetStatus(int param_1) { return ((uint(*)(int))0x800A56C0)(param_1); }
-static inline void SISetCommand(int param_1, undefined4 param_2) { ((void(*)(int, undefined4))0x800A573C)(param_1, param_2); }
-static inline void SITransferCommands(void) { ((void(*)(void))0x800A5750)(); }
-static inline uint SISetXY(int param_1, int param_2) { return ((uint(*)(int, int))0x800A5760)(param_1, param_2); }
-static inline uint SIEnablePolling(uint param_1) { return ((uint(*)(uint))0x800A57CC)(param_1); }
-static inline uint SIDisablePolling(uint param_1) { return ((uint(*)(uint))0x800A5868)(param_1); }
-static inline bool SIGetResponseRaw(int param_1) { return ((bool(*)(int))0x800A58D4)(param_1); }
-static inline int SIGetResponse(int param_1, undefined4 * param_2) { return ((int(*)(int, undefined4 *))0x800A59A8)(param_1, param_2); }
-static inline void AlarmHandler_800a5a6c(int param_1) { ((void(*)(int))0x800A5A6C)(param_1); }
-static inline undefined4 SITransfer(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6, uint param_7, uint param_8) { return ((undefined4(*)(int, int, int, int, int, int, uint, uint))0x800A5AF8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void GetTypeCallback(int param_1, uint param_2) { ((void(*)(int, uint))0x800A5C64)(param_1, param_2); }
-static inline int SIGetType(uint param_1) { return ((int(*)(uint))0x800A5EFC)(param_1); }
-static inline undefined4 SIGetTypeAsync(int param_1, undefined * param_2) { return ((undefined4(*)(int, undefined *))0x800A60C0)(param_1, param_2); }
-static inline void SISetSamplingRate(uint param_1) { ((void(*)(uint))0x800A61FC)(param_1); }
-static inline void SIRefreshSamplingRate(void) { ((void(*)(void))0x800A62E0)(); }
-static inline void SetReadParameters(CompressedDiskRead * cdr, undefined * readBuffer, undefined * dst, int isSegmentedRead) { ((void(*)(CompressedDiskRead *, undefined *, undefined *, int))0x800A64E0)(cdr, readBuffer, dst, isSegmentedRead); }
-static inline void StartThreadForReadingFromDisk(void) { ((void(*)(void))0x800A65A0)(); }
-static inline void ReadDataFromDisk(void) { ((void(*)(void))0x800A65F8)(); }
-static inline void DecompressDiskData(void) { ((void(*)(void))0x800A6654)(); }
-static inline void ReadBits(int bits) { ((void(*)(int))0x800A673C)(bits); }
-static inline void manageFileReadingProcess(void) { ((void(*)(void))0x800A6900)(); }
-static inline void ARAMTransfer(CompressedDiskRead * compressedStruct, undefined * readDestination, byte loadInfo, undefined * aramAddress) { ((void(*)(CompressedDiskRead *, undefined *, byte, undefined *))0x800A70DC)(compressedStruct, readDestination, loadInfo, aramAddress); }
-static inline uint ConvertPathToEntryNum(char * * param_1) { return ((uint(*)(char * *))0x800A7544)(param_1); }
-static inline void handleDVDCancelAndARQRemoval(void) { ((void(*)(void))0x800A7568)(); }
-static inline void cancelReadCallback1(void) { ((void(*)(void))0x800A75EC)(); }
-static inline void cancelReadCallback2(void) { ((void(*)(void))0x800A7670)(); }
-static inline void initializeDVDSystem(void) { ((void(*)(void))0x800A76BC)(); }
-static inline void someGFXRenderingFn(void) { ((void(*)(void))0x800A7C08)(); }
-static inline void initRenderMode(undefined * param_1, int param_2, short param_3) { ((void(*)(undefined *, int, short))0x800A80E8)(param_1, param_2, param_3); }
-static inline void LoadFile(int fileName, int param_2, int param_3, int param_4, int param_5) { ((void(*)(int, int, int, int, int))0x800A8CBC)(fileName, param_2, param_3, param_4, param_5); }
-static inline void initInputDevices(void) { ((void(*)(void))0x800A983C)(); }
-static inline void memoryCardRelatedFunction(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(int, undefined4, undefined4, undefined4))0x800AAEE4)(param_1, param_2, param_3, param_4); }
-static inline void processBannerImage(int param_1, astruct_9 * textureData, int texSize, int param_4, int param_5, int param_6, byte param_7, int param_8, int param_9, int maybeSize) { ((void(*)(int, astruct_9 *, int, int, int, int, byte, int, int, int))0x800AC508)(param_1, textureData, texSize, param_4, param_5, param_6, param_7, param_8, param_9, maybeSize); }
-static inline void unkLoadingCleanupRelated(int * param_1) { ((void(*)(int *))0x800ACF14)(param_1); }
-static inline void allocateAlignedMemoryBlock(int alignment, int size) { ((void(*)(int, int))0x800ACF34)(alignment, size); }
-static inline void * OSAllocFromHeap(OSHeapHandle heapHandle, int size) { return ((void *(*)(OSHeapHandle, int))0x800ACFD0)(heapHandle, size); }
-static inline void YUV2RGB(int src, byte * dst, int param_3, int param_4) { ((void(*)(int, byte *, int, int))0x800ADF60)(src, dst, param_3, param_4); }
-static inline void YUV2RGB_(int src, byte * dst, int param_3, int param_4) { ((void(*)(int, byte *, int, int))0x800AE298)(src, dst, param_3, param_4); }
-static inline undefined4 MovStreamThread(byte * param_1) { return ((undefined4(*)(byte *))0x800AEB18)(param_1); }
-static inline undefined4 MovDecodeThread(void) { return ((undefined4(*)(void))0x800AED34)(); }
-static inline void makeLookAtMatrix(Mtx * m, Vec3f * coordinate, Vec3f * up, Vec3f * target) { ((void(*)(Mtx *, Vec3f *, Vec3f *, Vec3f *))0x800B0724)(m, coordinate, up, target); }
-static inline void soundQuit(void) { ((void(*)(void))0x800B07FC)(); }
-static inline void initSound_800b0834(byte * param_1, undefined4 param_2, int param_3, int param_4) { ((void(*)(byte *, undefined4, int, int))0x800B0834)(param_1, param_2, param_3, param_4); }
-static inline void SndFree(int param_1) { ((void(*)(int))0x800B0938)(param_1); }
-static inline void SndAlloc(int param_1) { ((void(*)(int))0x800B099C)(param_1); }
-static inline void removeCurrentDrawingItem(void) { ((void(*)(void))0x800B0A14)(); }
+#define EXI2_Init FUNCTION_ADDRESS(void, 0x800A0FB8)
+#define EXI2_EnableInterrupts FUNCTION_ADDRESS(void, 0x800A0FBC)
+#define EXI2_Poll FUNCTION_ADDRESS(void, 0x800A0FC0)
+#define EXI2_ReadN FUNCTION_ADDRESS(void, 0x800A0FC8)
+#define EXI2_WriteN FUNCTION_ADDRESS(void, 0x800A0FD0)
+#define EXI2_Reserve FUNCTION_ADDRESS(void, 0x800A0FD8)
+#define EXI2_Unreserve FUNCTION_ADDRESS(void, 0x800A0FDC)
+#define AMC_IsStub FUNCTION_ADDRESS(void, 0x800A0FE0)
+#define Hu_IsStub FUNCTION_ADDRESS(void, 0x800A0FE8)
+#define DBGEXIImm FUNCTION_ADDRESS(void, 0x800A0FF0)
+#define DBGReadMailbox FUNCTION_ADDRESS(void, 0x800A1288)
+#define DBGRead FUNCTION_ADDRESS(void, 0x800A1334)
+#define DBGWrite FUNCTION_ADDRESS(void, 0x800A1410)
+#define DBGReadStatus FUNCTION_ADDRESS(void, 0x800A14EC)
+#define MWCallback FUNCTION_ADDRESS(void, 0x800A1598)
+#define DBGHandler FUNCTION_ADDRESS(void, 0x800A15D4)
+#define DBInitComm FUNCTION_ADDRESS(void, 0x800A1614)
+#define DBInitInterrupts FUNCTION_ADDRESS(void, 0x800A168C)
+#define DBQueryData FUNCTION_ADDRESS(void, 0x800A16E0)
+#define DBRead FUNCTION_ADDRESS(void, 0x800A177C)
+#define DBWrite FUNCTION_ADDRESS(void, 0x800A1808)
+#define DBOpen FUNCTION_ADDRESS(void, 0x800A1A68)
+#define DBClose FUNCTION_ADDRESS(void, 0x800A1A6C)
+#define SetExiInterruptMask FUNCTION_ADDRESS(void, 0x800A2B5C)
+#define EXIImm FUNCTION_ADDRESS(void, 0x800A2C50)
+#define EXIImmEx FUNCTION_ADDRESS(void, 0x800A2EAC)
+#define EXIDma FUNCTION_ADDRESS(void, 0x800A2F4C)
+#define EXISync FUNCTION_ADDRESS(void, 0x800A3038)
+#define EXIClearInterrupts FUNCTION_ADDRESS(void, 0x800A3284)
+#define EXISetExiCallback FUNCTION_ADDRESS(void, 0x800A32CC)
+#define __EXIProbe FUNCTION_ADDRESS(void, 0x800A3348)
+#define EXIProbe FUNCTION_ADDRESS(void, 0x800A34BC)
+#define EXIProbeEx FUNCTION_ADDRESS(void, 0x800A353C)
+#define EXIAttach FUNCTION_ADDRESS(void, 0x800A35F0)
+#define EXIDetach FUNCTION_ADDRESS(void, 0x800A36FC)
+#define EXISelect FUNCTION_ADDRESS(void, 0x800A37B8)
+#define EXIDeselect FUNCTION_ADDRESS(void, 0x800A38E4)
+#define EXIIntrruptHandler FUNCTION_ADDRESS(void, 0x800A39F4)
+#define TCIIntrruptHandler FUNCTION_ADDRESS(void, 0x800A3ABC)
+#define EXTIntrruptHandler FUNCTION_ADDRESS(void, 0x800A3CD4)
+#define EXIInit FUNCTION_ADDRESS(void, 0x800A3DA4)
+#define EXILock FUNCTION_ADDRESS(void, 0x800A3F78)
+#define EXIUnlock FUNCTION_ADDRESS(void, 0x800A406C)
+#define EXIGetState FUNCTION_ADDRESS(void, 0x800A4148)
+#define UnlockedHandler FUNCTION_ADDRESS(void, 0x800A4160)
+#define EXIGetID FUNCTION_ADDRESS(void, 0x800A4188)
+#define ProbeBarnacle FUNCTION_ADDRESS(void, 0x800A4538)
+#define __OSEnableBarnacle FUNCTION_ADDRESS(void, 0x800A46C4)
+#define InitializeUART FUNCTION_ADDRESS(void, 0x800A4880)
+#define WriteUARTN FUNCTION_ADDRESS(void, 0x800A48F0)
+#define SIBusy FUNCTION_ADDRESS(void, 0x800A4B0C)
+#define SIIsChanBusy FUNCTION_ADDRESS(void, 0x800A4B2C)
+#define CompleteTransfer FUNCTION_ADDRESS(void, 0x800A4B68)
+#define SIInterruptHandler FUNCTION_ADDRESS(void, 0x800A4E64)
+#define SIEnablePollingInterrupt FUNCTION_ADDRESS(void, 0x800A51A8)
+#define SIRegisterPollingHandle FUNCTION_ADDRESS(void, 0x800A5240)
+#define SIUnregisterPollingHandle FUNCTION_ADDRESS(void, 0x800A530C)
+#define SIInit FUNCTION_ADDRESS(void, 0x800A5400)
+#define __SITransfer FUNCTION_ADDRESS(void, 0x800A54B4)
+#define SIGetStatus FUNCTION_ADDRESS(void, 0x800A56C0)
+#define SISetCommand FUNCTION_ADDRESS(void, 0x800A573C)
+#define SITransferCommands FUNCTION_ADDRESS(void, 0x800A5750)
+#define SISetXY FUNCTION_ADDRESS(void, 0x800A5760)
+#define SIEnablePolling FUNCTION_ADDRESS(void, 0x800A57CC)
+#define SIDisablePolling FUNCTION_ADDRESS(void, 0x800A5868)
+#define SIGetResponseRaw FUNCTION_ADDRESS(void, 0x800A58D4)
+#define SIGetResponse FUNCTION_ADDRESS(void, 0x800A59A8)
+#define AlarmHandler_800a5a6c FUNCTION_ADDRESS(void, 0x800A5A6C)
+#define SITransfer FUNCTION_ADDRESS(void, 0x800A5AF8)
+#define GetTypeCallback FUNCTION_ADDRESS(void, 0x800A5C64)
+#define SIGetType FUNCTION_ADDRESS(void, 0x800A5EFC)
+#define SIGetTypeAsync FUNCTION_ADDRESS(void, 0x800A60C0)
+#define SISetSamplingRate FUNCTION_ADDRESS(void, 0x800A61FC)
+#define SIRefreshSamplingRate FUNCTION_ADDRESS(void, 0x800A62E0)
+#define SetReadParameters FUNCTION_ADDRESS(void, 0x800A64E0, CompressedDiskRead * /*cdr*/, undefined * /*readBuffer*/, undefined * /*dst*/, int /*isSegmentedRead*/)
+#define StartThreadForReadingFromDisk FUNCTION_ADDRESS(void, 0x800A65A0)
+#define ReadDataFromDisk FUNCTION_ADDRESS(void, 0x800A65F8)
+#define DecompressDiskData FUNCTION_ADDRESS(void, 0x800A6654)
+#define ReadBits FUNCTION_ADDRESS(void, 0x800A673C, int /*bits*/)
+#define manageFileReadingProcess FUNCTION_ADDRESS(void, 0x800A6900)
+#define ARAMTransfer FUNCTION_ADDRESS(void, 0x800A70DC, CompressedDiskRead * /*compressedStruct*/, undefined * /*readDestination*/, byte /*loadInfo*/, undefined * /*aramAddress*/)
+#define ConvertPathToEntryNum FUNCTION_ADDRESS(uint, 0x800A7544, char * *)
+#define handleDVDCancelAndARQRemoval FUNCTION_ADDRESS(void, 0x800A7568)
+#define cancelReadCallback1 FUNCTION_ADDRESS(void, 0x800A75EC)
+#define cancelReadCallback2 FUNCTION_ADDRESS(void, 0x800A7670)
+#define initializeDVDSystem FUNCTION_ADDRESS(void, 0x800A76BC)
+#define someGFXRenderingFn FUNCTION_ADDRESS(void, 0x800A7C08)
+#define initRenderMode FUNCTION_ADDRESS(void, 0x800A80E8)
+#define LoadFile FUNCTION_ADDRESS(void, 0x800A8CBC, int /*fileName*/, int, int, int, int)
+#define initInputDevices FUNCTION_ADDRESS(void, 0x800A983C)
+#define memoryCardRelatedFunction FUNCTION_ADDRESS(void, 0x800AAEE4)
+#define processBannerImage FUNCTION_ADDRESS(void, 0x800AC508, int, astruct_9 * /*textureData*/, int /*texSize*/, int, int, int, byte, int, int, int /*maybeSize*/)
+#define unkLoadingCleanupRelated FUNCTION_ADDRESS(void, 0x800ACF14, int *)
+#define allocateAlignedMemoryBlock FUNCTION_ADDRESS(void, 0x800ACF34, int /*alignment*/, int /*size*/)
+#define OSAllocFromHeap FUNCTION_ADDRESS(void *, 0x800ACFD0, OSHeapHandle /*heapHandle*/, int /*size*/)
+#define YUV2RGB FUNCTION_ADDRESS(void, 0x800ADF60, int /*src*/, byte * /*dst*/, int, int)
+#define YUV2RGB_ FUNCTION_ADDRESS(void, 0x800AE298, int /*src*/, byte * /*dst*/, int, int)
+#define MovStreamThread FUNCTION_ADDRESS(void, 0x800AEB18)
+#define MovDecodeThread FUNCTION_ADDRESS(void, 0x800AED34)
+#define makeLookAtMatrix FUNCTION_ADDRESS(void, 0x800B0724, Mtx * /*m*/, Vec3f * /*coordinate*/, Vec3f * /*up*/, Vec3f * /*target*/)
+#define soundQuit FUNCTION_ADDRESS(void, 0x800B07FC)
+#define initSound_800b0834 FUNCTION_ADDRESS(void, 0x800B0834)
+#define SndFree FUNCTION_ADDRESS(void, 0x800B0938)
+#define SndAlloc FUNCTION_ADDRESS(void, 0x800B099C)
+#define removeCurrentDrawingItem FUNCTION_ADDRESS(void, 0x800B0A14)
 #define insertGraphicDrawingFunction FUNCTION_ADDRESS(DrawingSceneStruct *, 0x800B0A5C, func * /*paramFuncPtr*/, short /*priority*/)
-static inline void resetAllDrawingStructs_tonop(void) { ((void(*)(void))0x800B0B2C)(); }
-static inline void resetAllDrawingStructs(void) { ((void(*)(void))0x800B0BE8)(); }
-static inline void nop_function(void) { ((void(*)(void))0x800B0CB4)(); }
-static inline void RunDrawScripts_with_stack_variables(void) { ((void(*)(void))0x800B0CB8)(); }
-static inline int AllocateSprite_(uint param_1, int param_2) { return ((int(*)(uint, int))0x800B0D68)(param_1, param_2); }
-static inline void DrawNullSprite(SpritePositionStruct * position, int count) { ((void(*)(SpritePositionStruct *, int))0x800B12A4)(position, count); }
-static inline void renderSprite(int param_1, int tex, int width, int height) { ((void(*)(int, int, int, int))0x800B1314)(param_1, tex, width, height); }
-static inline void DrawSprite_TexObj(SpritePositionStruct * param_1, TextureObj * tex) { ((void(*)(SpritePositionStruct *, TextureObj *))0x800B1350)(param_1, tex); }
-static inline void DrawSprite(int drawSpriteEnum, SpritePositionStruct * position, int positionStructCount, TextureObj * texture, int width, int height) { ((void(*)(int, SpritePositionStruct *, int, TextureObj *, int, int))0x800B1500)(drawSpriteEnum, position, positionStructCount, texture, width, height); }
-static inline void setTextRenderingMode_(byte param_1) { ((void(*)(byte))0x800B2160)(param_1); }
-static inline void ProcessActorBonesForShadows(ACTActor * actor) { ((void(*)(ACTActor *))0x800B2AC8)(actor); }
-static inline void Set_FUN_800b2b6c(undefined * param_1, int param_2) { ((void(*)(undefined *, int))0x800B2B6C)(param_1, param_2); }
-static inline void callDSInsertListObject(int param_1, uint param_2) { ((void(*)(int, uint))0x800B2B74)(param_1, param_2); }
-static inline void maybeTransformVectorByAnimationMatrix(int param_1, uint param_2, int vec) { ((void(*)(int, uint, int))0x800B2C44)(param_1, param_2, vec); }
-static inline void ACTSort(ACTActor * actor) { ((void(*)(ACTActor *))0x800B2CBC)(actor); }
-static inline void actorBoneRelated(ACTActor * param_1, int param_2, int param_3, int param_4) { ((void(*)(ACTActor *, int, int, int))0x800B34B4)(param_1, param_2, param_3, param_4); }
-static inline void BuildBoneSkinOrientationMatrix_800b37a4(ACTBone * actBone, int mtx) { ((void(*)(ACTBone *, int))0x800B37A4)(actBone, mtx); }
-static inline int maybeBallRelated(ACTActor * * actor, ActLayout * actLayout, short actorID) { return ((int(*)(ACTActor * *, ActLayout *, short))0x800B4048)(actor, actLayout, actorID); }
-static inline void InitBone_800b4084(undefined4 param_1, int * param_2, int param_3, ushort * param_4, int param_5) { ((void(*)(undefined4, int *, int, ushort *, int))0x800B4084)(param_1, param_2, param_3, param_4, param_5); }
-static inline void maybeProcessActLayout(ACTActor * act, ActLayout * layout) { ((void(*)(ACTActor *, ActLayout *))0x800B43A0)(act, layout); }
-static inline void renderingRelated(int param_1) { ((void(*)(int))0x800B472C)(param_1); }
-static inline void PointActorToGEOPalette(ACTActor * actor, GEOPalette * gPalette) { ((void(*)(ACTActor *, GEOPalette *))0x800B4908)(actor, gPalette); }
-static inline void LoadActorLayout(ActLayout * actLayout) { ((void(*)(ActLayout *))0x800B4910)(actLayout); }
-static inline void AdjustActorPointers(ACTActor * actor) { ((void(*)(ACTActor *))0x800B49E4)(actor); }
-static inline double calledByHazardLogic(int param_1) { return ((double(*)(int))0x800B4A94)(param_1); }
-static inline void updateBoneParam(ActLayout * act, byte param_2) { ((void(*)(ActLayout *, byte))0x800B4AFC)(act, param_2); }
-static inline void AnimateActorBones(ACTActor * actor) { ((void(*)(ACTActor *))0x800B4B38)(actor); }
-static inline void ACTSetAnimation(ACTActor * actor, AnimBank * animBank, char * sequenceName, short seqNum, float time) { ((void(*)(ACTActor *, AnimBank *, char *, short, float))0x800B4D64)(actor, animBank, sequenceName, seqNum, time); }
-static inline void ANIMGetKeyFrameFromTrack(ANIMTrack * animTrack, float time, ANIMKeyFrame * currentFrame, ANIMKeyFrame * nextFrame) { ((void(*)(ANIMTrack *, float, ANIMKeyFrame *, ANIMKeyFrame *))0x800B4E9C)(animTrack, time, currentFrame, nextFrame); }
-static inline void ANIMGetTrackFromSequence(AnimSequence * animSeq, short animTrackID) { ((void(*)(AnimSequence *, short))0x800B4F9C)(animSeq, animTrackID); }
-static inline AnimSequence * ANIMGetSequence(AnimBank * animBank, char * sequenceName, short seqNum) { return ((AnimSequence *(*)(AnimBank *, char *, short))0x800B4FEC)(animBank, sequenceName, seqNum); }
-static inline void ANIMGet(AnimBank * animBank, char * name) { ((void(*)(AnimBank *, char *))0x800B508C)(animBank, name); }
-static inline void Squad(double param_1, float * param_2, float * param_3, float * param_4, float * param_5, float * param_6) { ((void(*)(double, float *, float *, float *, float *, float *))0x800B516C)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void GetData(double param_1, byte param_2, int param_3, int param_4, byte param_5) { ((void(*)(double, byte, int, int, byte))0x800B560C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void DoTranslationAnimation(float * param_1, float * param_2, float * param_3) { ((void(*)(float *, float *, float *))0x800B5DA8)(param_1, param_2, param_3); }
-static inline void DoScaleAnimation(ANIMPipe * animPipe, ANIMKeyFrame * startFrame, ANIMKeyFrame * endFrame) { ((void(*)(ANIMPipe *, ANIMKeyFrame *, ANIMKeyFrame *))0x800B63DC)(animPipe, startFrame, endFrame); }
-static inline void DoEulerAnimation(float * param_1, float * param_2, float * param_3) { ((void(*)(float *, float *, float *))0x800B6E0C)(param_1, param_2, param_3); }
-static inline void DoQuatAnimation(float * param_1, float * param_2, float * param_3) { ((void(*)(float *, float *, float *))0x800B71C0)(param_1, param_2, param_3); }
-static inline void ANIMTick(ANIMPipe * animPipe) { ((void(*)(ANIMPipe *))0x800B7718)(animPipe); }
-static inline void ANIMBind(ANIMPipe * animPipe, CTRLControl * control, ANIMTrack * animTrack, float time) { ((void(*)(ANIMPipe *, CTRLControl *, ANIMTrack *, float))0x800B79A0)(animPipe, control, animTrack, time); }
-static inline void ACTSetBoneTrack(ACTBone * bone, ANIMTrack * track, float time) { ((void(*)(ACTBone *, ANIMTrack *, float))0x800B79D0)(bone, track, time); }
-static inline int checkObjectVisibility(int objIndex, Vec3f * SrcVec, Mtx * transformationMtx) { return ((int(*)(int, Vec3f *, Mtx *))0x800B7D3C)(objIndex, SrcVec, transformationMtx); }
-static inline int checkPlaneIntersection(Vec3f * planePoints, Vec3f * testPoints) { return ((int(*)(Vec3f *, Vec3f *))0x800B81C0)(planePoints, testPoints); }
-static inline void CTRL_GetQuatUnk(int ctrl, float * x, float * y, float * z, float * w) { ((void(*)(int, float *, float *, float *, float *))0x800B845C)(ctrl, x, y, z, w); }
-static inline void CTRL_SetQuatUnk(undefined8 x, undefined8 y, undefined8 z, undefined8 w, byte * param_5) { ((void(*)(undefined8, undefined8, undefined8, undefined8, byte *))0x800B8480)(x, y, z, w, param_5); }
-static inline void CTRLBuildInverseMatrix(CTRLControl * src, int dst) { ((void(*)(CTRLControl *, int))0x800B87F4)(src, dst); }
-static inline void CTRLBuildMatrix_Flip(CTRLControl * src, int dst, EnumCTRLXYZ flip) { ((void(*)(CTRLControl *, int, EnumCTRLXYZ))0x800B8BF0)(src, dst, flip); }
-static inline void CTRLBuildMatrix_FlipX(CTRLControl * param_1, int param_2) { ((void(*)(CTRLControl *, int))0x800B8F20)(param_1, param_2); }
-static inline void CTRLBuildMatrix_FlipY(CTRLControl * param_1, int param_2) { ((void(*)(CTRLControl *, int))0x800B9214)(param_1, param_2); }
-static inline void CTRLBuildMatrix(CTRLControl * control, Mtx * m) { ((void(*)(CTRLControl *, Mtx *))0x800B9508)(control, m); }
-static inline void CTRLGetTranslation(CTRLControl * control, float * x, float * y, float * z) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B97D4)(control, x, y, z); }
-static inline void CTRLGetQuat(CTRLControl * control, float * x, float * y, float * z, float * w) { ((void(*)(CTRLControl *, float *, float *, float *, float *))0x800B97F0)(control, x, y, z, w); }
-static inline void CTRLGetRotation(CTRLControl * control, float * x, float * y, float * z) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9814)(control, x, y, z); }
-static inline void CTRLGetScale(CTRLControl * control, float * x, float * y, float * z) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9830)(control, x, y, z); }
-static inline void CTRLSetMatrix(CTRLControl * control, Mtx * m) { ((void(*)(CTRLControl *, Mtx *))0x800B984C)(control, m); }
-static inline void CTRLSetTranslation(CTRLControl * control, float x, float y, float z) { ((void(*)(CTRLControl *, float, float, float))0x800B9880)(control, x, y, z); }
-static inline void CTRLSetQuat(CTRLControl * control, float x, float y, float z, float w) { ((void(*)(CTRLControl *, float, float, float, float))0x800B98A8)(control, x, y, z, w); }
-static inline void CTRLSetRotation(CTRLControl * control, float x, float y, float z) { ((void(*)(CTRLControl *, float, float, float))0x800B98E0)(control, x, y, z); }
-static inline void CTRLSetScale(CTRLControl * control, float x, float y, float z) { ((void(*)(CTRLControl *, float, float, float))0x800B9914)(control, x, y, z); }
-static inline void SetFogNone(void) { ((void(*)(void))0x800B9974)(); }
-static inline void SetFog(double param_1, double param_2, double param_3, double param_4, GXFogType param_5, int * param_6) { ((void(*)(double, double, double, double, GXFogType, int *))0x800B99C4)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void SetFogNoneAgain(void) { ((void(*)(void))0x800B9A30)(); }
-static inline void setLITLightPtr(LITLightPtr * lit) { ((void(*)(LITLightPtr *))0x800B9AA8)(lit); }
-static inline void DODefaultUserTevMode(int param_1, int param_2, int param_3, int param_4, GXTexCoordID GXTexCoordID) { ((void(*)(int, int, int, int, GXTexCoordID))0x800BA44C)(param_1, param_2, param_3, param_4, GXTexCoordID); }
-static inline void CustomSetState(DODisplayObj * DODisplayObj, DODisplayState * state, int cameraMtx) { ((void(*)(DODisplayObj *, DODisplayState *, int))0x800BA848)(DODisplayObj, state, cameraMtx); }
-static inline void SetState(DODisplayState * state, DODisplayObj * dispObj, int camera) { ((void(*)(DODisplayState *, DODisplayObj *, int))0x800BBB2C)(state, dispObj, camera); }
-static inline void GetColorFromQuant(int src, byte srcCode, int r, int g, int b, int a) { ((void(*)(int, byte, int, int, int, int))0x800BBF5C)(src, srcCode, r, g, b, a); }
-static inline void DOVARender(DODisplayObj * displayObj, int camera, byte numLights, va_list * list) { ((void(*)(DODisplayObj *, int, byte, va_list *))0x800BC0C4)(displayObj, camera, numLights, list); }
-static inline void DOVARenderSkin(int param_1, int param_2, Mtx * mtxArray, int invTransposeMtxArray, int param_5, int param_6) { ((void(*)(int, int, Mtx *, int, int, int))0x800BC7E8)(param_1, param_2, mtxArray, invTransposeMtxArray, param_5, param_6); }
-static inline void updateMemoryLocation(int memoryAddress, int value) { ((void(*)(int, int))0x800BC824)(memoryAddress, value); }
-static inline void DOSetWorldMatrix(DODisplayObj * dispObj, int m) { ((void(*)(DODisplayObj *, int))0x800BC834)(dispObj, m); }
-static inline void InitDisplayObjWithLayout(DODisplayObj * dispObj, DOLayout * layout) { ((void(*)(DODisplayObj *, DOLayout *))0x800BC860)(dispObj, layout); }
-static inline void DOGet(DODisplayObj * dispObj, GEOPalette * pal, short id) { ((void(*)(DODisplayObj *, GEOPalette *, short))0x800BCAB8)(dispObj, pal, id); }
-static inline void LoadGeoPalette(GEOPalette * geoPal, char * name) { ((void(*)(GEOPalette *, char *))0x800BCB44)(geoPal, name); }
-static inline void convertGeometryAndSknHeader(GEOPalette * geo, SKNHeader * skn) { ((void(*)(GEOPalette *, SKNHeader *))0x800BCD60)(geo, skn); }
-static inline void AdjustGEOPalettePointers(GEOPalette * palette) { ((void(*)(GEOPalette *))0x800BCE38)(palette); }
-static inline void AdjustGPLDataPointers(GEOPalette * inputData, DODisplayObj * outputData) { ((void(*)(GEOPalette *, DODisplayObj *))0x800BCEF8)(inputData, outputData); }
-static inline void UpdateTexturePalettePointers(GEOPalette * palette, int newPalettePointer) { ((void(*)(GEOPalette *, int))0x800BD190)(palette, newPalettePointer); }
-static inline void __MTGQR5(void) { ((void(*)(void))0x800BD1F0)(); }
-static inline void __MTGQR6(void) { ((void(*)(void))0x800BD1F8)(); }
-static inline void __MTGQR7(void) { ((void(*)(void))0x800BD200)(); }
-static inline void GQRSetup7(int param_1, int param_2, int param_3, int param_4) { ((void(*)(int, int, int, int))0x800BD208)(param_1, param_2, param_3, param_4); }
-static inline void GQRSetup6(int param_1, int param_2, int param_3, int param_4) { ((void(*)(int, int, int, int))0x800BD240)(param_1, param_2, param_3, param_4); }
-static inline void GQRSetup5(int param_1, int param_2, int param_3, int param_4) { ((void(*)(int, int, int, int))0x800BD278)(param_1, param_2, param_3, param_4); }
-#define lightingRelated FUNCTION_ADDRESS(byte, 0x800BD2B0, byte_4_ *)
-#define adjustLightingParams FUNCTION_ADDRESS(void, 0x800BD2CC, byte, byte_4_ *)
-static inline void LITXForm(int param_1, Mtx * param_2) { ((void(*)(int, Mtx *))0x800BD300)(param_1, param_2); }
-static inline void LITInitColor(LITLightPtr * light, GXColor color) { ((void(*)(LITLightPtr *, GXColor))0x800BD3A0)(light, color); }
-static inline void LITInitDir(double param_1, double param_2, double param_3, int param_4) { ((void(*)(double, double, double, int))0x800BD3AC)(param_1, param_2, param_3, param_4); }
-static inline void LITInitPos(LITLightPtr * light, float x, float y, float z) { ((void(*)(LITLightPtr *, float, float, float))0x800BD3BC)(light, x, y, z); }
-static inline void LITInitAttn(LITLightPtr * light, float a0, float a1, float a2, float k0, float k1, float k2) { ((void(*)(LITLightPtr *, float, float, float, float, float, float))0x800BD3CC)(light, a0, a1, a2, k0, k1, k2); }
-static inline void LITAlloc(LITLightPtr * light) { ((void(*)(LITLightPtr *))0x800BD3EC)(light); }
-static inline void sknRelated(ACTActor * param_1, int param_2) { ((void(*)(ACTActor *, int))0x800BDA94)(param_1, param_2); }
-static inline void animateBallRelated(int param_1, ushort param_2, undefined2 param_3, ActLayout * param_4, int param_5, undefined4 param_6) { ((void(*)(int, ushort, undefined2, ActLayout *, int, undefined4))0x800BDC88)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void ActorObjectInitTable(ushort functionArguments) { ((void(*)(ushort))0x800BDD74)(functionArguments); }
-static inline void setVectors(Vec3f * param_1) { ((void(*)(Vec3f *))0x800BEA04)(param_1); }
-static inline Mtx * returnMtxPtr(uint param_1) { return ((Mtx *(*)(uint))0x800BEB80)(param_1); }
-static inline void returnDrawShadows(void) { ((void(*)(void))0x800BEBA0)(); }
-static inline bool GetDrawShadows(void) { return ((bool(*)(void))0x800BEBB0)(); }
-static inline void DrawShadows(bool shadowsOn) { ((void(*)(bool))0x800BEBC0)(shadowsOn); }
-static inline void updateVectorInArray(int index, Vec3f * vector) { ((void(*)(int, Vec3f *))0x800BEBCC)(index, vector); }
-static inline void loadTlutRelated(void) { ((void(*)(void))0x800BF008)(); }
-static inline void maybeUpdateFunctionPointer(undefined * param_1) { ((void(*)(undefined *))0x800BF038)(param_1); }
-static inline bool * ShouldDrawShadows(void) { return ((bool *(*)(void))0x800BF068)(); }
-static inline void SKNLoadFile(SKHeader * skHeader) { ((void(*)(SKHeader *))0x800BF074)(skHeader); }
-static inline void SKNFlushByIndex(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x800BF1A4)(param_1, param_2, param_3); }
-static inline void SKNFlushByIndex_800bf1c0(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x800BF1C0)(param_1, param_2, param_3); }
-static inline int SKNBzero32B(int param_1, uint param_2) { return ((int(*)(int, uint))0x800BF1E8)(param_1, param_2); }
-static inline void SKNInit(void) { ((void(*)(void))0x800BF204)(); }
-static inline void processModelDataRelated(int param_1, int params, int param_3) { ((void(*)(int, int, int))0x800BF2A8)(param_1, params, param_3); }
-static inline void SKNIt(ACTBone * bones, SKHeader * param_2, int param_3) { ((void(*)(ACTBone *, SKHeader *, int))0x800BF89C)(bones, param_2, param_3); }
-static inline void SKN1Vecs16Norms16(int param_1, float * param_2, int param_3, int param_4) { ((void(*)(int, float *, int, int))0x800BFE90)(param_1, param_2, param_3, param_4); }
-static inline void SKN2Vecs16Norms16NoTouch(int param_1, int param_2, float * param_3, float * param_4, int param_5, int param_6) { ((void(*)(int, int, float *, float *, int, int))0x800C00A8)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline undefined8 SKNAccVecs16Norms16Iu16(int param_1, int param_2, float * param_3, int param_4, ushort * param_5, int param_6) { return ((undefined8(*)(int, int, float *, int, ushort *, int))0x800C04E8)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline undefined8 SKNAccVecs16Norms16Iu16_800c0630(int param_1, int param_2, float * param_3, int param_4, ushort * param_5, int param_6) { return ((undefined8(*)(int, int, float *, int, ushort *, int))0x800C0630)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void AdjustTextureHeaderPointers(TextureArchiveHeader * textureArchive) { ((void(*)(TextureArchiveHeader *))0x800C0770)(textureArchive); }
-static inline uint seqGetPrivateId(uint param_1) { return ((uint(*)(uint))0x800C0A8C)(param_1); }
-static inline void seqStartPlay(undefined4 param_1, undefined4 param_2, int param_3, int * param_4, uint * param_5, undefined param_6, undefined2 param_7) { ((void(*)(undefined4, undefined4, int, int *, uint *, undefined, undefined2))0x800C0AF4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
-static inline void StartPause(int * param_1) { ((void(*)(int *))0x800C15C0)(param_1); }
-static inline void seqPause(uint param_1) { ((void(*)(uint))0x800C1624)(param_1); }
-static inline void seqStop(uint param_1) { ((void(*)(uint))0x800C18A0)(param_1); }
-static inline void seqKillAllInstances(void) { ((void(*)(void))0x800C1B50)(); }
-static inline void seqKillInstancesByGroupID(short param_1) { ((void(*)(short))0x800C1BAC)(param_1); }
-static inline void seqSpeed(uint param_1, short param_2) { ((void(*)(uint, short))0x800C1C3C)(param_1, param_2); }
-static inline void seqContinue(uint param_1) { ((void(*)(uint))0x800C1D20)(param_1); }
-static inline void seqMute(uint param_1, int param_2, int param_3) { ((void(*)(uint, int, int))0x800C1E28)(param_1, param_2, param_3); }
-static inline void seqVolume(undefined4 param_1, undefined4 param_2, uint param_3, uint param_4) { ((void(*)(undefined4, undefined4, uint, uint))0x800C1EE4)(param_1, param_2, param_3, param_4); }
-static inline void seqCrossFade(undefined4 param_1, undefined4 param_2, uint param_3) { ((void(*)(undefined4, undefined4, uint))0x800C20B0)(param_1, param_2, param_3); }
-static inline undefined * GenerateNextTrackEvent(byte param_1) { return ((undefined *(*)(byte))0x800C2C08)(param_1); }
-static inline void HandleEvent(undefined4 param_1, undefined4 param_2, uint * param_3, undefined4 param_4, uint param_5) { ((void(*)(undefined4, undefined4, uint *, undefined4, uint))0x800C2E20)(param_1, param_2, param_3, param_4, param_5); }
-static inline void InitTrackEvents(void) { ((void(*)(void))0x800C38E0)(); }
-static inline void HandleTrackEvents(void) { ((void(*)(void))0x800C3A54)(); }
-static inline void seqHandle(void) { ((void(*)(void))0x800C3EF0)(); }
-static inline void seqInit(void) { ((void(*)(void))0x800C490C)(); }
-static inline void synthSetBpm(int param_1, byte param_2, uint param_3) { ((void(*)(int, byte, uint))0x800C4AB4)(param_1, param_2, param_3); }
-static inline undefined4 synthGetTicksPerSecond(int param_1) { return ((undefined4(*)(int))0x800C4AF8)(param_1); }
-static inline void synthInitPortamento(int param_1) { ((void(*)(int))0x800C4B2C)(param_1); }
-static inline void do_voice_portamento(undefined4 param_1, undefined4 param_2, uint param_3, undefined4 param_4, undefined4 * param_5) { ((void(*)(undefined4, undefined4, uint, undefined4, undefined4 *))0x800C4BA4)(param_1, param_2, param_3, param_4, param_5); }
-static inline void StartLayer(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, int param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int))0x800C4E44)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
-static inline void StartKeymap(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, int param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int))0x800C5204)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
-static inline enumSoundEffect_int synthStartSound(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, uint param_5, undefined4 param_6, uint param_7, undefined4 param_8, undefined param_9, undefined param_10, undefined2 param_11, undefined2 param_12, undefined param_13, short param_14, undefined param_15, undefined4 param_16) { return ((enumSoundEffect_int(*)(undefined4, undefined4, undefined4, undefined4, uint, undefined4, uint, undefined4, undefined, undefined, undefined2, undefined2, undefined, short, undefined, undefined4))0x800C5460)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
-static inline void LowPrecisionHandler(int param_1) { ((void(*)(int))0x800C58C0)(param_1); }
-static inline void ZeroOffsetHandler(int param_1) { ((void(*)(int))0x800C6004)(param_1); }
-static inline void synthAddJob(int * * param_1, int * * param_2, uint param_3, undefined4 param_4, int * * param_5) { ((void(*)(int * *, int * *, uint, undefined4, int * *))0x800C67B4)(param_1, param_2, param_3, param_4, param_5); }
-static inline void synthStartSynthJobHandling(int param_1) { ((void(*)(int))0x800C6904)(param_1); }
-static inline void synthForceLowPrecisionUpdate(undefined4 param_1) { ((void(*)(undefined4))0x800C6968)(param_1); }
-static inline void synthKeyStateUpdate(undefined4 param_1) { ((void(*)(undefined4))0x800C69AC)(param_1); }
-static inline void synthHandle(void) { ((void(*)(void))0x800C69D4)(); }
-static inline void synthFXGetMaxVoices(void) { ((void(*)(void))0x800C6EE4)(); }
-static inline enumSoundEffect_int synthFXStart(short fid, byte unk, byte vol, byte pan, byte studio, int itd) { return ((enumSoundEffect_int(*)(short, byte, byte, byte, byte, int))0x800C6F18)(fid, unk, vol, pan, studio, itd); }
-static inline uint synthCheckFXRealloc(uint param_1) { return ((uint(*)(uint))0x800C6FFC)(param_1); }
-static inline bool synthFXSetCtrl(enumSoundEffect_short vid, byte ctrl, byte value) { return ((bool(*)(enumSoundEffect_short, byte, byte))0x800C7078)(vid, ctrl, value); }
-static inline bool synthFXSetCtrl14(int vid, byte ctrl, short value) { return ((bool(*)(int, byte, short))0x800C715C)(vid, ctrl, value); }
-static inline void synthFXCloneMidiSetup(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800C7240)(param_1, param_2); }
-static inline undefined4 synthSendKeyOff(void) { return ((undefined4(*)(void))0x800C72C4)(); }
-static inline void synthVolume(uint param_1, uint param_2, uint param_3, byte param_4, int param_5) { ((void(*)(uint, uint, uint, byte, int))0x800C734C)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 synthIsFadeOutActive(uint param_1) { return ((undefined4(*)(uint))0x800C787C)(param_1); }
-static inline void synthSetMusicVolumeType(uint param_1, byte param_2) { ((void(*)(uint, byte))0x800C78D0)(param_1, param_2); }
-static inline undefined4 synthHWMessageHandler(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x800C78F8)(param_1, param_2); }
-static inline void synthInit(void) { ((void(*)(void))0x800C79C8)(); }
-static inline void synthExit(void) { ((void(*)(void))0x800C7F3C)(); }
-static inline uint sndSeqGetValid(void) { return ((uint(*)(void))0x800C7F60)(); }
-static inline void sndSeqStop(undefined4 param_1) { ((void(*)(undefined4))0x800C7F90)(param_1); }
-static inline undefined4 sndSeqLoop(undefined4 param_1, undefined4 param_2) { return ((undefined4(*)(undefined4, undefined4))0x800C7FC8)(param_1, param_2); }
-static inline void sndSeqSpeed(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800C806C)(param_1, param_2); }
-static inline void sndSeqContinue(undefined4 param_1) { ((void(*)(undefined4))0x800C80B4)(param_1); }
-static inline void sndSeqMute(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x800C80EC)(param_1, param_2, param_3); }
-static inline void sndSeqVolume(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x800C8144)(param_1, param_2, param_3, param_4); }
-static inline short seqGetMidiPriority(uint param_1, uint param_2) { return ((short(*)(uint, uint))0x800C81AC)(param_1, param_2); }
-static inline undefined4 seqGetInstancesForVoice(int param_1) { return ((undefined4(*)(int))0x800C81C8)(param_1); }
-static inline bool sndFXCtrl(enumSoundEffect_short soundID, byte ctrl, byte value) { return ((bool(*)(enumSoundEffect_short, byte, byte))0x800C826C)(soundID, ctrl, value); }
-static inline bool sndFXCtrl14(SND_VOICEID vid, byte ctrl, short value) { return ((bool(*)(SND_VOICEID, byte, short))0x800C82CC)(vid, ctrl, value); }
-static inline int sndFXKeyOff(int param_1) { return ((int(*)(int))0x800C832C)(param_1); }
-static inline enumSoundEffect_int sndFXStartEx(enumSoundEffect_short sfx, int vol, int pan, int studio) { return ((enumSoundEffect_int(*)(enumSoundEffect_short, int, int, int))0x800C836C)(sfx, vol, pan, studio); }
-static inline undefined4 sndFXCheck(undefined4 param_1) { return ((undefined4(*)(undefined4))0x800C83F4)(param_1); }
-static inline void sndSilence(void) { ((void(*)(void))0x800C8440)(); }
-static inline void sndVolume(uint volume, uint time, uint volGroup) { ((void(*)(uint, uint, uint))0x800C8474)(volume, time, volGroup); }
-static inline void sndMasterVolume(int volume, int time, byte music, byte fx) { ((void(*)(int, int, byte, byte))0x800C84D4)(volume, time, music, fx); }
-static inline void sndOutputMode(int param_1) { ((void(*)(int))0x800C8568)(param_1); }
+#define resetAllDrawingStructs_tonop FUNCTION_ADDRESS(void, 0x800B0B2C)
+#define resetAllDrawingStructs FUNCTION_ADDRESS(void, 0x800B0BE8)
+#define nop_function FUNCTION_ADDRESS(void, 0x800B0CB4)
+#define RunDrawScripts_with_stack_variables FUNCTION_ADDRESS(void, 0x800B0CB8)
+#define AllocateSprite_ FUNCTION_ADDRESS(void, 0x800B0D68)
+#define DrawNullSprite FUNCTION_ADDRESS(void, 0x800B12A4, SpritePositionStruct * /*position*/, int /*count*/)
+#define renderSprite FUNCTION_ADDRESS(void, 0x800B1314, int, int /*tex*/, int /*width*/, int /*height*/)
+#define DrawSprite_TexObj FUNCTION_ADDRESS(void, 0x800B1350, SpritePositionStruct *, TextureObj * /*tex*/)
+#define DrawSprite FUNCTION_ADDRESS(void, 0x800B1500, int /*drawSpriteEnum*/, SpritePositionStruct * /*position*/, int /*positionStructCount*/, TextureObj * /*texture*/, int /*width*/, int /*height*/)
+#define setTextRenderingMode_ FUNCTION_ADDRESS(void, 0x800B2160)
+#define ProcessActorBonesForShadows FUNCTION_ADDRESS(void, 0x800B2AC8, ACTActor * /*actor*/)
+#define Set_FUN_800b2b6c FUNCTION_ADDRESS(void, 0x800B2B6C, undefined *, int)
+#define callDSInsertListObject FUNCTION_ADDRESS(void, 0x800B2B74)
+#define maybeTransformVectorByAnimationMatrix FUNCTION_ADDRESS(void, 0x800B2C44, int, uint, int /*vec*/)
+#define ACTSort FUNCTION_ADDRESS(void, 0x800B2CBC, ACTActor * /*actor*/)
+#define actorBoneRelated FUNCTION_ADDRESS(void, 0x800B34B4, ACTActor *, int, int, int)
+#define BuildBoneSkinOrientationMatrix_800b37a4 FUNCTION_ADDRESS(void, 0x800B37A4, ACTBone * /*actBone*/, int /*mtx*/)
+#define maybeBallRelated FUNCTION_ADDRESS(int, 0x800B4048, ACTActor * * /*actor*/, ActLayout * /*actLayout*/, short /*actorID*/)
+#define InitBone_800b4084 FUNCTION_ADDRESS(void, 0x800B4084)
+#define maybeProcessActLayout FUNCTION_ADDRESS(void, 0x800B43A0, ACTActor * /*act*/, ActLayout * /*layout*/)
+#define renderingRelated FUNCTION_ADDRESS(void, 0x800B472C)
+#define PointActorToGEOPalette FUNCTION_ADDRESS(void, 0x800B4908, ACTActor * /*actor*/, GEOPalette * /*gPalette*/)
+#define LoadActorLayout FUNCTION_ADDRESS(void, 0x800B4910, ActLayout * /*actLayout*/)
+#define AdjustActorPointers FUNCTION_ADDRESS(void, 0x800B49E4, ACTActor * /*actor*/)
+#define calledByHazardLogic FUNCTION_ADDRESS(void, 0x800B4A94)
+#define updateBoneParam FUNCTION_ADDRESS(void, 0x800B4AFC, ActLayout * /*act*/, byte)
+#define AnimateActorBones FUNCTION_ADDRESS(void, 0x800B4B38, ACTActor * /*actor*/)
+#define ACTSetAnimation FUNCTION_ADDRESS(void, 0x800B4D64, ACTActor * /*actor*/, AnimBank * /*animBank*/, char * /*sequenceName*/, short /*seqNum*/, float /*time*/)
+#define ANIMGetKeyFrameFromTrack FUNCTION_ADDRESS(void, 0x800B4E9C, ANIMTrack * /*animTrack*/, float /*time*/, ANIMKeyFrame * /*currentFrame*/, ANIMKeyFrame * /*nextFrame*/)
+#define ANIMGetTrackFromSequence FUNCTION_ADDRESS(void, 0x800B4F9C, AnimSequence * /*animSeq*/, short /*animTrackID*/)
+#define ANIMGetSequence FUNCTION_ADDRESS(AnimSequence *, 0x800B4FEC, AnimBank * /*animBank*/, char * /*sequenceName*/, short /*seqNum*/)
+#define ANIMGet FUNCTION_ADDRESS(void, 0x800B508C, AnimBank * /*animBank*/, char * /*name*/)
+#define Squad FUNCTION_ADDRESS(void, 0x800B516C)
+#define GetData FUNCTION_ADDRESS(void, 0x800B560C)
+#define DoTranslationAnimation FUNCTION_ADDRESS(void, 0x800B5DA8)
+#define DoScaleAnimation FUNCTION_ADDRESS(void, 0x800B63DC, ANIMPipe * /*animPipe*/, ANIMKeyFrame * /*startFrame*/, ANIMKeyFrame * /*endFrame*/)
+#define DoEulerAnimation FUNCTION_ADDRESS(void, 0x800B6E0C)
+#define DoQuatAnimation FUNCTION_ADDRESS(void, 0x800B71C0)
+#define ANIMTick FUNCTION_ADDRESS(void, 0x800B7718, ANIMPipe * /*animPipe*/)
+#define ANIMBind FUNCTION_ADDRESS(void, 0x800B79A0, ANIMPipe * /*animPipe*/, CTRLControl * /*control*/, ANIMTrack * /*animTrack*/, float /*time*/)
+#define ACTSetBoneTrack FUNCTION_ADDRESS(void, 0x800B79D0, ACTBone * /*bone*/, ANIMTrack * /*track*/, float /*time*/)
+#define checkObjectVisibility FUNCTION_ADDRESS(int, 0x800B7D3C, int /*objIndex*/, Vec3f * /*SrcVec*/, Mtx * /*transformationMtx*/)
+#define checkPlaneIntersection FUNCTION_ADDRESS(int, 0x800B81C0, Vec3f * /*planePoints*/, Vec3f * /*testPoints*/)
+#define CTRL_GetQuatUnk FUNCTION_ADDRESS(void, 0x800B845C, int /*ctrl*/, float * /*x*/, float * /*y*/, float * /*z*/, float * /*w*/)
+#define CTRL_SetQuatUnk FUNCTION_ADDRESS(void, 0x800B8480, undefined8 /*x*/, undefined8 /*y*/, undefined8 /*z*/, undefined8 /*w*/, byte *)
+#define CTRLBuildInverseMatrix FUNCTION_ADDRESS(void, 0x800B87F4, CTRLControl * /*src*/, int /*dst*/)
+#define CTRLBuildMatrix_Flip FUNCTION_ADDRESS(void, 0x800B8BF0, CTRLControl * /*src*/, int /*dst*/, EnumCTRLXYZ /*flip*/)
+#define CTRLBuildMatrix_FlipX FUNCTION_ADDRESS(void, 0x800B8F20, CTRLControl *, int)
+#define CTRLBuildMatrix_FlipY FUNCTION_ADDRESS(void, 0x800B9214, CTRLControl *, int)
+#define CTRLBuildMatrix FUNCTION_ADDRESS(void, 0x800B9508, CTRLControl * /*control*/, Mtx * /*m*/)
+#define CTRLGetTranslation FUNCTION_ADDRESS(void, 0x800B97D4, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/)
+#define CTRLGetQuat FUNCTION_ADDRESS(void, 0x800B97F0, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/, float * /*w*/)
+#define CTRLGetRotation FUNCTION_ADDRESS(void, 0x800B9814, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/)
+#define CTRLGetScale FUNCTION_ADDRESS(void, 0x800B9830, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/)
+#define CTRLSetMatrix FUNCTION_ADDRESS(void, 0x800B984C, CTRLControl * /*control*/, Mtx * /*m*/)
+#define CTRLSetTranslation FUNCTION_ADDRESS(void, 0x800B9880, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/)
+#define CTRLSetQuat FUNCTION_ADDRESS(void, 0x800B98A8, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/, float /*w*/)
+#define CTRLSetRotation FUNCTION_ADDRESS(void, 0x800B98E0, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/)
+#define CTRLSetScale FUNCTION_ADDRESS(void, 0x800B9914, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/)
+#define SetFogNone FUNCTION_ADDRESS(void, 0x800B9974)
+#define SetFog FUNCTION_ADDRESS(void, 0x800B99C4)
+#define SetFogNoneAgain FUNCTION_ADDRESS(void, 0x800B9A30)
+#define setLITLightPtr FUNCTION_ADDRESS(void, 0x800B9AA8, LITLightPtr * /*lit*/)
+#define DODefaultUserTevMode FUNCTION_ADDRESS(void, 0x800BA44C, int, int, int, int, GXTexCoordID /*GXTexCoordID*/)
+#define CustomSetState FUNCTION_ADDRESS(void, 0x800BA848, DODisplayObj * /*DODisplayObj*/, DODisplayState * /*state*/, int /*cameraMtx*/)
+#define SetState FUNCTION_ADDRESS(void, 0x800BBB2C, DODisplayState * /*state*/, DODisplayObj * /*dispObj*/, int /*camera*/)
+#define GetColorFromQuant FUNCTION_ADDRESS(void, 0x800BBF5C, int /*src*/, byte /*srcCode*/, int /*r*/, int /*g*/, int /*b*/, int /*a*/)
+#define DOVARender FUNCTION_ADDRESS(void, 0x800BC0C4, DODisplayObj * /*displayObj*/, int /*camera*/, byte /*numLights*/, va_list * /*list*/)
+#define DOVARenderSkin FUNCTION_ADDRESS(void, 0x800BC7E8, int, int, Mtx * /*mtxArray*/, int /*invTransposeMtxArray*/, int, int)
+#define updateMemoryLocation FUNCTION_ADDRESS(void, 0x800BC824, int /*memoryAddress*/, int /*value*/)
+#define DOSetWorldMatrix FUNCTION_ADDRESS(void, 0x800BC834, DODisplayObj * /*dispObj*/, int /*m*/)
+#define InitDisplayObjWithLayout FUNCTION_ADDRESS(void, 0x800BC860, DODisplayObj * /*dispObj*/, DOLayout * /*layout*/)
+#define DOGet FUNCTION_ADDRESS(void, 0x800BCAB8, DODisplayObj * /*dispObj*/, GEOPalette * /*pal*/, short /*id*/)
+#define LoadGeoPalette FUNCTION_ADDRESS(void, 0x800BCB44, GEOPalette * /*geoPal*/, char * /*name*/)
+#define convertGeometryAndSknHeader FUNCTION_ADDRESS(void, 0x800BCD60, GEOPalette * /*geo*/, SKNHeader * /*skn*/)
+#define AdjustGEOPalettePointers FUNCTION_ADDRESS(void, 0x800BCE38, GEOPalette * /*palette*/)
+#define AdjustGPLDataPointers FUNCTION_ADDRESS(void, 0x800BCEF8, GEOPalette * /*inputData*/, DODisplayObj * /*outputData*/)
+#define UpdateTexturePalettePointers FUNCTION_ADDRESS(void, 0x800BD190, GEOPalette * /*palette*/, int /*newPalettePointer*/)
+#define __MTGQR5 FUNCTION_ADDRESS(void, 0x800BD1F0)
+#define __MTGQR6 FUNCTION_ADDRESS(void, 0x800BD1F8)
+#define __MTGQR7 FUNCTION_ADDRESS(void, 0x800BD200)
+#define GQRSetup7 FUNCTION_ADDRESS(void, 0x800BD208)
+#define GQRSetup6 FUNCTION_ADDRESS(void, 0x800BD240)
+#define GQRSetup5 FUNCTION_ADDRESS(void, 0x800BD278)
+#define lightingRelated FUNCTION_ADDRESS(void, 0x800BD2B0)
+#define adjustLightingParams FUNCTION_ADDRESS(void, 0x800BD2CC)
+#define LITXForm FUNCTION_ADDRESS(void, 0x800BD300)
+#define LITInitColor FUNCTION_ADDRESS(void, 0x800BD3A0, LITLightPtr * /*light*/, GXColor /*color*/)
+#define LITInitDir FUNCTION_ADDRESS(void, 0x800BD3AC)
+#define LITInitPos FUNCTION_ADDRESS(void, 0x800BD3BC, LITLightPtr * /*light*/, float /*x*/, float /*y*/, float /*z*/)
+#define LITInitAttn FUNCTION_ADDRESS(void, 0x800BD3CC, LITLightPtr * /*light*/, float /*a0*/, float /*a1*/, float /*a2*/, float /*k0*/, float /*k1*/, float /*k2*/)
+#define LITAlloc FUNCTION_ADDRESS(void, 0x800BD3EC, LITLightPtr * /*light*/)
+#define sknRelated FUNCTION_ADDRESS(void, 0x800BDA94, ACTActor *, int)
+#define animateBallRelated FUNCTION_ADDRESS(void, 0x800BDC88)
+#define ActorObjectInitTable FUNCTION_ADDRESS(void, 0x800BDD74, ushort /*functionArguments*/)
+#define setVectors FUNCTION_ADDRESS(void, 0x800BEA04)
+#define returnMtxPtr FUNCTION_ADDRESS(Mtx *, 0x800BEB80, uint)
+#define returnDrawShadows FUNCTION_ADDRESS(void, 0x800BEBA0)
+#define GetDrawShadows FUNCTION_ADDRESS(bool, 0x800BEBB0)
+#define DrawShadows FUNCTION_ADDRESS(void, 0x800BEBC0, bool /*shadowsOn*/)
+#define updateVectorInArray FUNCTION_ADDRESS(void, 0x800BEBCC, int /*index*/, Vec3f * /*vector*/)
+#define loadTlutRelated FUNCTION_ADDRESS(void, 0x800BF008)
+#define maybeUpdateFunctionPointer FUNCTION_ADDRESS(void, 0x800BF038)
+#define ShouldDrawShadows FUNCTION_ADDRESS(void, 0x800BF068)
+#define SKNLoadFile FUNCTION_ADDRESS(void, 0x800BF074, SKHeader * /*skHeader*/)
+#define SKNFlushByIndex FUNCTION_ADDRESS(void, 0x800BF1A4)
+#define SKNFlushByIndex_800bf1c0 FUNCTION_ADDRESS(void, 0x800BF1C0)
+#define SKNBzero32B FUNCTION_ADDRESS(void, 0x800BF1E8)
+#define SKNInit FUNCTION_ADDRESS(void, 0x800BF204)
+#define processModelDataRelated FUNCTION_ADDRESS(void, 0x800BF2A8, int, int /*params*/, int)
+#define SKNIt FUNCTION_ADDRESS(void, 0x800BF89C, ACTBone * /*bones*/, SKHeader *, int)
+#define SKN1Vecs16Norms16 FUNCTION_ADDRESS(void, 0x800BFE90)
+#define SKN2Vecs16Norms16NoTouch FUNCTION_ADDRESS(void, 0x800C00A8)
+#define SKNAccVecs16Norms16Iu16 FUNCTION_ADDRESS(void, 0x800C04E8)
+#define SKNAccVecs16Norms16Iu16_800c0630 FUNCTION_ADDRESS(void, 0x800C0630)
+#define AdjustTextureHeaderPointers FUNCTION_ADDRESS(void, 0x800C0770, TextureArchiveHeader * /*textureArchive*/)
+#define seqGetPrivateId FUNCTION_ADDRESS(void, 0x800C0A8C)
+#define seqStartPlay FUNCTION_ADDRESS(void, 0x800C0AF4)
+#define StartPause FUNCTION_ADDRESS(void, 0x800C15C0)
+#define seqPause FUNCTION_ADDRESS(void, 0x800C1624)
+#define seqStop FUNCTION_ADDRESS(void, 0x800C18A0)
+#define seqKillAllInstances FUNCTION_ADDRESS(void, 0x800C1B50)
+#define seqKillInstancesByGroupID FUNCTION_ADDRESS(void, 0x800C1BAC)
+#define seqSpeed FUNCTION_ADDRESS(void, 0x800C1C3C)
+#define seqContinue FUNCTION_ADDRESS(void, 0x800C1D20)
+#define seqMute FUNCTION_ADDRESS(void, 0x800C1E28)
+#define seqVolume FUNCTION_ADDRESS(void, 0x800C1EE4)
+#define seqCrossFade FUNCTION_ADDRESS(void, 0x800C20B0)
+#define GenerateNextTrackEvent FUNCTION_ADDRESS(void, 0x800C2C08)
+#define HandleEvent FUNCTION_ADDRESS(void, 0x800C2E20)
+#define InitTrackEvents FUNCTION_ADDRESS(void, 0x800C38E0)
+#define HandleTrackEvents FUNCTION_ADDRESS(void, 0x800C3A54)
+#define seqHandle FUNCTION_ADDRESS(void, 0x800C3EF0)
+#define seqInit FUNCTION_ADDRESS(void, 0x800C490C)
+#define synthSetBpm FUNCTION_ADDRESS(void, 0x800C4AB4)
+#define synthGetTicksPerSecond FUNCTION_ADDRESS(void, 0x800C4AF8)
+#define synthInitPortamento FUNCTION_ADDRESS(void, 0x800C4B2C)
+#define do_voice_portamento FUNCTION_ADDRESS(void, 0x800C4BA4)
+#define StartLayer FUNCTION_ADDRESS(void, 0x800C4E44, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int)
+#define StartKeymap FUNCTION_ADDRESS(void, 0x800C5204, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int)
+#define synthStartSound FUNCTION_ADDRESS(enumSoundEffect_int, 0x800C5460, undefined4, undefined4, undefined4, undefined4, uint, undefined4, uint, undefined4, undefined, undefined, undefined2, undefined2, undefined, short, undefined, undefined4)
+#define LowPrecisionHandler FUNCTION_ADDRESS(void, 0x800C58C0)
+#define ZeroOffsetHandler FUNCTION_ADDRESS(void, 0x800C6004)
+#define synthAddJob FUNCTION_ADDRESS(void, 0x800C67B4)
+#define synthStartSynthJobHandling FUNCTION_ADDRESS(void, 0x800C6904)
+#define synthForceLowPrecisionUpdate FUNCTION_ADDRESS(void, 0x800C6968)
+#define synthKeyStateUpdate FUNCTION_ADDRESS(void, 0x800C69AC)
+#define synthHandle FUNCTION_ADDRESS(void, 0x800C69D4)
+#define synthFXGetMaxVoices FUNCTION_ADDRESS(void, 0x800C6EE4)
+#define synthFXStart FUNCTION_ADDRESS(enumSoundEffect_int, 0x800C6F18, short /*fid*/, byte /*unk*/, byte /*vol*/, byte /*pan*/, byte /*studio*/, int /*itd*/)
+#define synthCheckFXRealloc FUNCTION_ADDRESS(void, 0x800C6FFC)
+#define synthFXSetCtrl FUNCTION_ADDRESS(bool, 0x800C7078, enumSoundEffect_short /*vid*/, byte /*ctrl*/, byte /*value*/)
+#define synthFXSetCtrl14 FUNCTION_ADDRESS(bool, 0x800C715C, int /*vid*/, byte /*ctrl*/, short /*value*/)
+#define synthFXCloneMidiSetup FUNCTION_ADDRESS(void, 0x800C7240)
+#define synthSendKeyOff FUNCTION_ADDRESS(void, 0x800C72C4)
+#define synthVolume FUNCTION_ADDRESS(void, 0x800C734C)
+#define synthIsFadeOutActive FUNCTION_ADDRESS(void, 0x800C787C)
+#define synthSetMusicVolumeType FUNCTION_ADDRESS(void, 0x800C78D0)
+#define synthHWMessageHandler FUNCTION_ADDRESS(void, 0x800C78F8)
+#define synthInit FUNCTION_ADDRESS(void, 0x800C79C8)
+#define synthExit FUNCTION_ADDRESS(void, 0x800C7F3C)
+#define sndSeqGetValid FUNCTION_ADDRESS(void, 0x800C7F60)
+#define sndSeqStop FUNCTION_ADDRESS(void, 0x800C7F90)
+#define sndSeqLoop FUNCTION_ADDRESS(void, 0x800C7FC8)
+#define sndSeqSpeed FUNCTION_ADDRESS(void, 0x800C806C)
+#define sndSeqContinue FUNCTION_ADDRESS(void, 0x800C80B4)
+#define sndSeqMute FUNCTION_ADDRESS(void, 0x800C80EC)
+#define sndSeqVolume FUNCTION_ADDRESS(void, 0x800C8144)
+#define seqGetMidiPriority FUNCTION_ADDRESS(void, 0x800C81AC)
+#define seqGetInstancesForVoice FUNCTION_ADDRESS(void, 0x800C81C8)
+#define sndFXCtrl FUNCTION_ADDRESS(bool, 0x800C826C, enumSoundEffect_short /*soundID*/, byte /*ctrl*/, byte /*value*/)
+#define sndFXCtrl14 FUNCTION_ADDRESS(bool, 0x800C82CC, SND_VOICEID /*vid*/, byte /*ctrl*/, short /*value*/)
+#define sndFXKeyOff FUNCTION_ADDRESS(int, 0x800C832C, int)
+#define sndFXStartEx FUNCTION_ADDRESS(enumSoundEffect_int, 0x800C836C, enumSoundEffect_short /*sfx*/, int /*vol*/, int /*pan*/, int /*studio*/)
+#define sndFXCheck FUNCTION_ADDRESS(void, 0x800C83F4)
+#define sndSilence FUNCTION_ADDRESS(void, 0x800C8440)
+#define sndVolume FUNCTION_ADDRESS(void, 0x800C8474, uint /*volume*/, uint /*time*/, uint /*volGroup*/)
+#define sndMasterVolume FUNCTION_ADDRESS(void, 0x800C84D4, int /*volume*/, int /*time*/, byte /*music*/, byte /*fx*/)
+#define sndOutputMode FUNCTION_ADDRESS(void, 0x800C8568)
 #define sndSetAuxProcessing FUNCTION_ADDRESS(void, 0x800C8654, byte /*studio*/, SND_AUX_CALLBACK /*auxA*/, void * /*userA*/, byte /*midiA*/, SND_SEQID /*seqIDA*/, SND_AUX_CALLBACK /*auxB*/, void * /*userB*/, byte /*midiB*/, SND_SEQID /*seqIDB*/)
-static inline void streamInit(void) { ((void(*)(void))0x800C87AC)(); }
-static inline void streamHandle(void) { ((void(*)(void))0x800C8874)(); }
-static inline void streamCorrectLoops(void) { ((void(*)(void))0x800C9158)(); }
-static inline void streamKill(int param_1) { ((void(*)(int))0x800C915C)(param_1); }
-static inline void streamOutputModeChanged(void) { ((void(*)(void))0x800C91F4)(); }
-static inline undefined4 dataInsertKeymap(ushort param_1, undefined * param_2) { return ((undefined4(*)(ushort, undefined *))0x800C9324)(param_1, param_2); }
-static inline undefined4 dataRemoveKeymap(short param_1) { return ((undefined4(*)(short))0x800C9514)(param_1); }
-static inline undefined4 dataInsertLayer(ushort param_1, undefined * param_2, short param_3) { return ((undefined4(*)(ushort, undefined *, short))0x800C9690)(param_1, param_2, param_3); }
-static inline undefined4 dataRemoveLayer(short param_1) { return ((undefined4(*)(short))0x800C98D8)(param_1); }
-static inline undefined4 dataInsertCurve(ushort param_1, undefined * param_2) { return ((undefined4(*)(ushort, undefined *))0x800C9A9C)(param_1, param_2); }
-static inline undefined4 dataRemoveCurve(short param_1) { return ((undefined4(*)(short))0x800C9CA0)(param_1); }
-static inline bool dataInsertSDir(SDIR_DATA * sdir, void * smp_data) { return ((bool(*)(SDIR_DATA *, void *))0x800C9E1C)(sdir, smp_data); }
-static inline undefined4 dataRemoveSDir(SDIR_DATA * param_1) { return ((undefined4(*)(SDIR_DATA *))0x800C9F84)(param_1); }
-static inline undefined4 dataAddSampleReference(u16 param_1, undefined4 param_2) { return ((undefined4(*)(u16, undefined4))0x800CA160)(param_1, param_2); }
-static inline undefined4 dataRemoveSampleReference(u16 param_1, undefined4 param_2) { return ((undefined4(*)(u16, undefined4))0x800CA238)(param_1, param_2); }
-static inline bool dataInsertFX(short gid, FX_TAB * fx, short fxNum) { return ((bool(*)(short, FX_TAB *, short))0x800CA2D4)(gid, fx, fxNum); }
-static inline undefined4 dataRemoveFX(u16 param_1) { return ((undefined4(*)(u16))0x800CA414)(param_1); }
-static inline undefined4 dataInsertMacro(uint param_1, undefined * param_2) { return ((undefined4(*)(uint, undefined *))0x800CA5E0)(param_1, param_2); }
-static inline undefined4 dataRemoveMacro(uint param_1) { return ((undefined4(*)(uint))0x800CA8CC)(param_1); }
-static inline undefined4 dataGetMacro(uint param_1) { return ((undefined4(*)(uint))0x800CAB60)(param_1); }
-static inline undefined4 dataGetSample(undefined2 param_1, undefined4 * param_2) { return ((undefined4(*)(undefined2, undefined4 *))0x800CABFC)(param_1, param_2); }
-static inline undefined4 dataGetCurve(short param_1) { return ((undefined4(*)(short))0x800CAD3C)(param_1); }
-static inline undefined4 dataGetKeymap(short param_1) { return ((undefined4(*)(short))0x800CAD98)(param_1); }
-static inline undefined4 dataGetLayer(undefined2 param_1, undefined2 * param_2) { return ((undefined4(*)(undefined2, undefined2 *))0x800CAE04)(param_1, param_2); }
-static inline int dataGetFX(undefined2 param_1) { return ((int(*)(undefined2))0x800CAE90)(param_1); }
-static inline void dataInit(void) { ((void(*)(void))0x800CAF2C)(); }
-static inline void dataExit(void) { ((void(*)(void))0x800CB010)(); }
-static inline undefined4 mcmdWait(int param_1, uint * param_2) { return ((undefined4(*)(int, uint *))0x800CB030)(param_1, param_2); }
-static inline undefined4 mcmdGosub(int param_1, uint * param_2) { return ((undefined4(*)(int, uint *))0x800CB320)(param_1, param_2); }
-static inline void mcmdLoop(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB3F0)(param_1, param_2); }
-static inline void mcmdPlayMacro(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB544)(param_1, param_2); }
-static inline void mcmdAddKey(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB6D0)(param_1, param_2); }
-static inline void mcmdStartSample(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB7A8)(param_1, param_2); }
-static inline void mcmdVibrato(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB9A8)(param_1, param_2); }
-static inline void DoSetPitch(int param_1) { ((void(*)(int))0x800CBB24)(param_1); }
-static inline void mcmdSetADSR(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CBCC4)(param_1, param_2); }
-static inline void mcmdSetADSRFromCtrl(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CBF1C)(param_1, param_2); }
-static inline void mcmdSetPitchADSR(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC048)(param_1, param_2); }
-static inline void mcmdSetPanning(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC2C4)(param_1, param_2); }
-static inline void mcmdSetSurroundPanning(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC360)(param_1, param_2); }
-static inline void mcmdScaleVolume(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC3FC)(param_1, param_2); }
-static inline void mcmdEnvelope(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC530)(param_1, param_2); }
-static inline void mcmdFadeIn(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC660)(param_1, param_2); }
-static inline void mcmdRandomKey(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC79C)(param_1, param_2); }
-static inline void mcmdVolumeSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC938)(param_1, param_2); }
-static inline void mcmdPanningSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCA3C)(param_1, param_2); }
-static inline void mcmdPitchWheelSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCB40)(param_1, param_2); }
-static inline void mcmdModWheelSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCC44)(param_1, param_2); }
-static inline void mcmdPedalSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCD48)(param_1, param_2); }
-static inline void mcmdPortamentoSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCE4C)(param_1, param_2); }
-static inline void mcmdReverbSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCF50)(param_1, param_2); }
-static inline void mcmdPreAuxASelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD054)(param_1, param_2); }
-static inline void mcmdPreAuxBSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD158)(param_1, param_2); }
-static inline void mcmdPostAuxBSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD25C)(param_1, param_2); }
-static inline void mcmdSurroundPanningSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD360)(param_1, param_2); }
-static inline void mcmdDopplerSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD464)(param_1, param_2); }
-static inline void mcmdTremoloSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD568)(param_1, param_2); }
-static inline void mcmdFilterSwitchSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD66C)(param_1, param_2); }
-static inline void mcmdFilterParameterSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD770)(param_1, param_2); }
-static inline void mcmdAuxAFXSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD874)(param_1, param_2); }
-static inline void mcmdAuxBFXSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD9F0)(param_1, param_2); }
-static inline void mcmdPortamento(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CDB6C)(param_1, param_2); }
-static inline int varGet(int param_1, int param_2, uint param_3) { return ((int(*)(int, int, uint))0x800CDCD0)(param_1, param_2, param_3); }
-static inline void mcmdVarCalculation(int param_1, uint * param_2, byte param_3) { ((void(*)(int, uint *, byte))0x800CDD38)(param_1, param_2, param_3); }
-static inline void mcmdIfVarCompare(int param_1, uint * param_2, char param_3) { ((void(*)(int, uint *, char))0x800CDF58)(param_1, param_2, param_3); }
-static inline void mcmdSendMessage(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CE0A4)(param_1, param_2); }
-static inline void mcmdGetVID(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CE2E8)(param_1, param_2); }
-static inline void mcmdSetKeyGroup(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CE368)(param_1, param_2); }
-static inline void macHandleActive(void) { ((void(*)(void))0x800CE444)(); }
-static inline void macHandle(uint param_1) { ((void(*)(uint))0x800CF3D8)(param_1); }
-static inline void macSampleEndNotify(int param_1) { ((void(*)(int))0x800CF52C)(param_1); }
-static inline void macSetExternalKeyoff(int param_1) { ((void(*)(int))0x800CF5D8)(param_1); }
-static inline void maxSetPedalState(int param_1, int param_2) { ((void(*)(int, int))0x800CF6C8)(param_1, param_2); }
-static inline void TimeQueueAdd(int param_1) { ((void(*)(int))0x800CF7D0)(param_1); }
-static inline void macMakeActive(int param_1) { ((void(*)(int))0x800CF874)(param_1); }
-static inline void macMakeInactive(int param_1, int param_2) { ((void(*)(int, int))0x800CF97C)(param_1, param_2); }
-static inline void macStart(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, byte param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, byte, byte, byte, int))0x800CFA78)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
-static inline void macInit(void) { ((void(*)(void))0x800CFEB0)(); }
-static inline void vidInit(void) { ((void(*)(void))0x800CFF18)(); }
-static inline void vidRemoveVoiceReferences(int param_1) { ((void(*)(int))0x800CFFF8)(param_1); }
-static inline undefined4 vidMakeRoot(int param_1) { return ((undefined4(*)(int))0x800D0360)(param_1); }
-static inline uint vidMakeNew(int param_1, int param_2) { return ((uint(*)(int, int))0x800D0374)(param_1, param_2); }
-static inline void vidGetInternalId(int vid) { ((void(*)(int))0x800D0488)(vid); }
-static inline undefined4 vidGetPublicId(uint param_1) { return ((undefined4(*)(uint))0x800D04D8)(param_1); }
-static inline void voiceSetPrioriety(int param_1, byte param_2) { ((void(*)(int, byte))0x800D052C)(param_1, param_2); }
-static inline void voiceAllocateFind(undefined4 param_1, undefined4 param_2, u32 param_3, uint param_4) { ((void(*)(undefined4, undefined4, u32, uint))0x800D0778)(param_1, param_2, param_3, param_4); }
-static inline void voiceAllocate(void) { ((void(*)(void))0x800D0B00)(); }
-static inline undefined4 voiceAllocatePeek(void) { return ((undefined4(*)(void))0x800D0C10)(); }
-static inline void voiceFree(int param_1) { ((void(*)(int))0x800D0C88)(param_1); }
-static inline void synthInitAllocationAids(void) { ((void(*)(void))0x800D0E4C)(); }
-static inline void voiceUnblock(u32 param_1) { ((void(*)(u32))0x800D10EC)(param_1); }
-static inline void voiceKill(int param_1) { ((void(*)(int))0x800D1304)(param_1); }
-static inline undefined4 voiceKillSound(uint param_1) { return ((undefined4(*)(uint))0x800D1538)(param_1); }
-static inline void synthKillAllVoices(char param_1) { ((void(*)(char))0x800D15FC)(param_1); }
-static inline void synthKillVoicesByMacroReferences(ushort * param_1) { ((void(*)(ushort *))0x800D16A4)(param_1); }
-static inline void synthKillVoicesBySampleReferences(ushort * param_1) { ((void(*)(ushort *))0x800D1800)(param_1); }
-static inline undefined4 voiceIsLastStarted(int param_1) { return ((undefined4(*)(int))0x800D195C)(param_1); }
-static inline void voiceSetLastStarted(int param_1) { ((void(*)(int))0x800D19D0)(param_1); }
-static inline void voiceResetLastStarted(int param_1) { ((void(*)(int))0x800D1A24)(param_1); }
-static inline void voiceInitLastStarted(void) { ((void(*)(void))0x800D1A98)(); }
-static inline int sndPitchUpOne(uint param_1) { return ((int(*)(uint))0x800D1BDC)(param_1); }
-static inline void sndGetPitch(uint param_1, uint param_2) { ((void(*)(uint, uint))0x800D1C18)(param_1, param_2); }
-static inline void adsrConvertTimeCents(uint param_1) { ((void(*)(uint))0x800D1CFC)(param_1); }
-static inline undefined4 salChangeADSRState(char * param_1) { return ((undefined4(*)(char *))0x800D1D54)(param_1); }
-static inline void adsrSetup(int param_1) { ((void(*)(int))0x800D1FC0)(param_1); }
-static inline undefined4 adsrStartRelease(char * param_1, uint param_2) { return ((undefined4(*)(char *, uint))0x800D1FE8)(param_1, param_2); }
-static inline undefined4 adsrRelease(byte * param_1) { return ((undefined4(*)(byte *))0x800D2138)(param_1); }
-static inline undefined4 adsrHandle(char * param_1, undefined2 * param_2, short * param_3) { return ((undefined4(*)(char *, undefined2 *, short *))0x800D22A0)(param_1, param_2, param_3); }
-static inline undefined4 adsrHandleLowPrecision(undefined4 param_1, undefined4 param_2, undefined4 param_3) { return ((undefined4(*)(undefined4, undefined4, undefined4))0x800D2438)(param_1, param_2, param_3); }
-static inline void vsInit(void) { ((void(*)(void))0x800D24BC)(); }
-static inline uint vsSampleStartNotify(uint param_1) { return ((uint(*)(uint))0x800D2578)(param_1); }
-static inline void vsSampleEndNotify(uint param_1) { ((void(*)(uint))0x800D2844)(param_1); }
-static inline void vsUpdateBuffer(int param_1, uint param_2) { ((void(*)(int, uint))0x800D28EC)(param_1, param_2); }
-static inline void vsSampleUpdates(void) { ((void(*)(void))0x800D2C44)(); }
-static inline void dataInitStack(int param_1, int param_2) { ((void(*)(int, int))0x800D2E54)(param_1, param_2); }
-static inline void InsertData(int id, void * data, byte dataType, int remove) { ((void(*)(int, void *, byte, int))0x800D2E94)(id, data, dataType, remove); }
-static inline int sndPushGroup(void * prj_data, int gid, void * samples, void * sdir, void * pool) { return ((int(*)(void *, int, void *, void *, void *))0x800D3120)(prj_data, gid, samples, sdir, pool); }
-static inline undefined4 sndPopGroup(void) { return ((undefined4(*)(void))0x800D346C)(); }
-static inline void seqPlaySong(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, uint param_5, undefined4 param_6) { ((void(*)(undefined4, undefined4, undefined4, undefined4, uint, undefined4))0x800D37BC)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void sndSeqPlayEx(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5) { ((void(*)(undefined4, undefined4, undefined4, undefined4, undefined4))0x800D3910)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 salInitDspCtrl(byte param_1, byte param_2, uint param_3) { return ((undefined4(*)(byte, byte, uint))0x800D3A34)(param_1, param_2, param_3); }
-static inline void salInitHRTFBuffer(void) { ((void(*)(void))0x800D3DE8)(); }
-static inline undefined4 salExitDspCtrl(void) { return ((undefined4(*)(void))0x800D3E20)(); }
-static inline void salActivateStudio(uint param_1, byte param_2, int param_3) { ((void(*)(uint, byte, int))0x800D3F00)(param_1, param_2, param_3); }
-static inline undefined4 salCheckVolErrorAndResetDelta(undefined2 * param_1, undefined2 * param_2, short * param_3, short param_4, int param_5, ushort param_6) { return ((undefined4(*)(undefined2 *, undefined2 *, short *, short, int, ushort))0x800D4050)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void sal_setup_dspvol(short * param_1, short * param_2, short param_3) { ((void(*)(short *, short *, short))0x800D4144)(param_1, param_2, param_3); }
-static inline void sal_update_hostplayinfo(int * param_1) { ((void(*)(int *))0x800D418C)(param_1); }
-static inline void DoDepopFade(int * param_1, short * param_2, int * param_3) { ((void(*)(int *, short *, int *))0x800D4200)(param_1, param_2, param_3); }
-static inline void HandleDepopVoice(int param_1, int * param_2) { ((void(*)(int, int *))0x800D42AC)(param_1, param_2); }
-static inline void SortVoices(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x800D45B8)(param_1, param_2, param_3); }
-static inline void salBuildCommandList(void) { ((void(*)(void))0x800D4810)(); }
-static inline undefined4 salSynthSendMessage(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x800D6E08)(param_1, param_2); }
-static inline void salActivateVoice(undefined * param_1, byte param_2) { ((void(*)(undefined *, byte))0x800D6E4C)(param_1, param_2); }
-static inline void salDeactivateVoice(int param_1) { ((void(*)(int))0x800D6EEC)(param_1); }
-static inline void salHandleAuxProcessing(void) { ((void(*)(void))0x800D6F4C)(); }
-static inline void salCalcVolume(undefined8 param_1, double param_2, double param_3, undefined4 param_4, undefined4 param_5, undefined * param_6, undefined * param_7, int param_8, int param_9) { ((void(*)(undefined8, double, double, undefined4, undefined4, undefined *, undefined *, int, int))0x800D70A4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9); }
-static inline void CalcEmitter(undefined4 param_1, undefined4 param_2, float * param_3, float * param_4, float * param_5, float * param_6, float * param_7) { ((void(*)(undefined4, undefined4, float *, float *, float *, float *, float *))0x800D7794)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
-static inline bool sndUpdateEmitter(SND_EMITTER * em, SND_FVECTOR * pos, SND_FVECTOR * dir, byte maxVol, SND_ROOM * room) { return ((bool(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, byte, SND_ROOM *))0x800D7E10)(em, pos, dir, maxVol, room); }
-static inline bool sndCheckEmitter(SND_EMITTER * em) { return ((bool(*)(SND_EMITTER *))0x800D7EE8)(em); }
-static inline SND_VOICEID AddEmitter(SND_EMITTER * em_buffer, SND_FVECTOR * pos, SND_FVECTOR * dir, float maxDis, float comp, int flags, short fxid, int groupid, byte maxVol, byte minVol, SND_ROOM * room, SND_PARAMETER_INFO * para, byte studio) { return ((SND_VOICEID(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, float, float, int, short, int, byte, byte, SND_ROOM *, SND_PARAMETER_INFO *, byte))0x800D7F08)(em_buffer, pos, dir, maxDis, comp, flags, fxid, groupid, maxVol, minVol, room, para, studio); }
-static inline int sndAddEmitter(SND_EMITTER * em_buffer, SND_FVECTOR * pos, SND_FVECTOR * dir, float maxDis, float comp, int flags, ushort fxid, byte maxVol, byte minVol, SND_ROOM * room) { return ((int(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, float, float, int, ushort, byte, byte, SND_ROOM *))0x800D83B0)(em_buffer, pos, dir, maxDis, comp, flags, fxid, maxVol, minVol, room); }
-static inline undefined4 sndRemoveEmitter(SND_EMITTER * * param_1) { return ((undefined4(*)(SND_EMITTER * *))0x800D8408)(param_1); }
-static inline void s3dKillAllEmitter(void) { ((void(*)(void))0x800D84B0)(); }
-static inline void s3dKillEmitterByFXID(short * param_1, int param_2) { ((void(*)(short *, int))0x800D8568)(param_1, param_2); }
-static inline bool sndUpdateListener(int param_1, undefined4 * param_2, undefined4 * param_3, undefined4 * param_4, undefined4 * param_5, uint param_6) { return ((bool(*)(int, undefined4 *, undefined4 *, undefined4 *, undefined4 *, uint))0x800D8664)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void sndAddListener(undefined8 param_1, double param_2, double param_3, undefined4 param_4, undefined4 param_5, int * param_6, float * param_7, float * param_8, int param_9, uint param_10, float * param_11) { ((void(*)(undefined8, double, double, undefined4, undefined4, int *, float *, float *, int, uint, float *))0x800D87D8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11); }
-static inline undefined4 sndRemoveListener(sndEmitterRelated * * param_1) { return ((undefined4(*)(sndEmitterRelated * *))0x800D89E8)(param_1); }
-static inline undefined4 AddStartingEmitter(double param_1, double param_2, double param_3, double param_4, double param_5, double param_6, undefined * param_7) { return ((undefined4(*)(double, double, double, double, double, double, undefined *))0x800D8A64)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
-static inline void StartContinousEmitters(void) { ((void(*)(void))0x800D8BB8)(); }
-static inline void s3dHandle(void) { ((void(*)(void))0x800D94AC)(); }
-static inline void s3dInit(uint param_1) { ((void(*)(uint))0x800D9BD4)(param_1); }
-static inline void s3dExit(void) { ((void(*)(void))0x800D9C0C)(); }
-static inline int sndInit(byte voices, byte music, byte sfx, byte studios, int flags, int aramSize) { return ((int(*)(byte, byte, byte, byte, int, int))0x800D9C10)(voices, music, sfx, studios, flags, aramSize); }
-static inline void sndQuit(void) { ((void(*)(void))0x800D9D48)(); }
-static inline void salApplyMatrix(Mtx * param_1, Vec3f * param_2, Vec3f * param_3) { ((void(*)(Mtx *, Vec3f *, Vec3f *))0x800D9D7C)(param_1, param_2, param_3); }
-static inline void salNormalizeVector(Vec3f * param_1) { ((void(*)(Vec3f *))0x800D9E28)(param_1); }
-static inline void salCrossProduct(Vec3f * param_1, Vec3f * param_2, Vec3f * param_3) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x800D9EDC)(param_1, param_2, param_3); }
-static inline void salInvertMatrix(Mtx * param_1, Mtx * param_2) { ((void(*)(Mtx *, Mtx *))0x800D9F40)(param_1, param_2); }
-static inline void inpSetGlobalMIDIDirtyFlag(uint param_1, uint param_2, uint param_3) { ((void(*)(uint, uint, uint))0x800DA13C)(param_1, param_2, param_3); }
-static inline void inpSetRPNHi(byte param_1, byte param_2, byte param_3) { ((void(*)(byte, byte, byte))0x800DA160)(param_1, param_2, param_3); }
-static inline void inpSetRPNDec(byte param_1, byte param_2) { ((void(*)(byte, byte))0x800DA340)(param_1, param_2); }
-static inline void inpSetRPNInc(byte param_1, byte param_2) { ((void(*)(byte, byte))0x800DA564)(param_1, param_2); }
-static inline void inpSetMidiCtrl(byte ctrl, byte channel, byte set, byte value) { ((void(*)(byte, byte, byte, byte))0x800DA788)(ctrl, channel, set, value); }
-static inline void inpSetMidiCtrl14(byte ctrl, byte channel, byte set, ushort value) { ((void(*)(byte, byte, byte, ushort))0x800DACA4)(ctrl, channel, set, value); }
-static inline void inpResetMidiCtrl(uint param_1, uint param_2, int param_3) { ((void(*)(uint, uint, int))0x800DADC8)(param_1, param_2, param_3); }
-static inline uint inpGetMidiCtrl(uint param_1, uint param_2, uint param_3) { return ((uint(*)(uint, uint, uint))0x800DAEB8)(param_1, param_2, param_3); }
-static inline byte * inpGetChannelDefaults(uint param_1, uint param_2) { return ((byte *(*)(uint, uint))0x800DB17C)(param_1, param_2); }
-static inline void inpResetChannelDefaults(uint param_1, uint param_2) { ((void(*)(uint, uint))0x800DB1C0)(param_1, param_2); }
-static inline void inpAddCtrl(int param_1, undefined4 param_2, undefined4 param_3, byte param_4, int param_5) { ((void(*)(int, undefined4, undefined4, byte, int))0x800DB21C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void inpFXCopyCtrl(uint param_1, int param_2, int param_3) { ((void(*)(uint, int, int))0x800DB2B4)(param_1, param_2, param_3); }
-static inline void inpSetMidiLastNote(uint param_1, byte param_2, char param_3) { ((void(*)(uint, byte, char))0x800DB3C8)(param_1, param_2, param_3); }
-static inline char inpGetMidiLastNote(uint param_1, byte param_2) { return ((char(*)(uint, byte))0x800DB404)(param_1, param_2); }
-static inline void _GetInputValue(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x800DB440)(param_1, param_2, param_3, param_4); }
-static inline uint inpGetVolume(int param_1) { return ((uint(*)(int))0x800DB8E0)(param_1); }
-static inline uint inpGetPanning(int param_1) { return ((uint(*)(int))0x800DB928)(param_1); }
-static inline uint inpGetSurPanning(int param_1) { return ((uint(*)(int))0x800DB970)(param_1); }
-static inline uint inpGetPitchBend(int param_1) { return ((uint(*)(int))0x800DB9B8)(param_1); }
-static inline uint inpGetDoppler(int param_1) { return ((uint(*)(int))0x800DBA00)(param_1); }
-static inline uint inpGetModulation(int param_1) { return ((uint(*)(int))0x800DBA48)(param_1); }
-static inline uint inpGetPedal(int param_1) { return ((uint(*)(int))0x800DBA90)(param_1); }
-static inline uint inpGetPreAuxA(int param_1) { return ((uint(*)(int))0x800DBAD8)(param_1); }
-static inline uint inpGetReverb(int param_1) { return ((uint(*)(int))0x800DBB20)(param_1); }
-static inline uint inpGetPreAuxB(int param_1) { return ((uint(*)(int))0x800DBB68)(param_1); }
-static inline uint inpGetPostAuxB(int param_1) { return ((uint(*)(int))0x800DBBB0)(param_1); }
-static inline uint inpGetTremolo(int param_1) { return ((uint(*)(int))0x800DBBF8)(param_1); }
-static inline uint inpGetFilterSwitch(int param_1) { return ((uint(*)(int))0x800DBC40)(param_1); }
-static inline uint inpGetFilterParameter(int param_1) { return ((uint(*)(int))0x800DBC88)(param_1); }
-static inline uint inpGetAuxA(uint param_1, uint param_2, uint param_3, uint param_4) { return ((uint(*)(uint, uint, uint, uint))0x800DBCD0)(param_1, param_2, param_3, param_4); }
-static inline uint inpGetAuxB(uint param_1, uint param_2, uint param_3, uint param_4) { return ((uint(*)(uint, uint, uint, uint))0x800DBD84)(param_1, param_2, param_3, param_4); }
-static inline void inpInit(int param_1) { ((void(*)(int))0x800DBE38)(param_1); }
-static inline uint inpTranslateExCtrl(uint param_1) { return ((uint(*)(uint))0x800DC0FC)(param_1); }
-static inline short inpGetExCtrl(int param_1, uint param_2) { return ((short(*)(int, uint))0x800DC16C)(param_1, param_2); }
-static inline void inpSetExCtrl(int param_1, byte param_2, short param_3) { ((void(*)(int, byte, short))0x800DC268)(param_1, param_2, param_3); }
-static inline uint sndRand(void) { return ((uint(*)(void))0x800DC44C)(); }
-static inline int sndSin(uint param_1) { return ((int(*)(uint))0x800DC468)(param_1); }
-static inline void sndBSearch(undefined4 param_1, undefined4 param_2, int param_3, int param_4, undefined * param_5) { ((void(*)(undefined4, undefined4, int, int, undefined *))0x800DC4F4)(param_1, param_2, param_3, param_4, param_5); }
-static inline double sndSqrt(double param_1) { return ((double(*)(double))0x800DC598)(param_1); }
-static inline double sndCos(undefined8 param_1) { return ((double(*)(undefined8))0x800DC5EC)(param_1); }
-static inline void sndConvertMs(int * param_1) { ((void(*)(int *))0x800DC6C0)(param_1); }
-static inline void sndConvertTicks(uint * param_1, undefined4 param_2) { ((void(*)(uint *, undefined4))0x800DC6D0)(param_1, param_2); }
-static inline uint sndConvert2Ms(uint param_1) { return ((uint(*)(uint))0x800DC718)(param_1); }
-static inline void snd_handle_irq(void) { ((void(*)(void))0x800DC720)(); }
-static inline undefined4 hwInit(undefined4 param_1, undefined param_2, undefined param_3, uint param_4) { return ((undefined4(*)(undefined4, undefined, undefined, uint))0x800DC874)(param_1, param_2, param_3, param_4); }
-static inline void hwExit(void) { ((void(*)(void))0x800DC938)(); }
-static inline void hwSetTimeOffset(byte param_1) { ((void(*)(byte))0x800DC96C)(param_1); }
-static inline byte hwGetTimeOffset(void) { return ((byte(*)(void))0x800DC974)(); }
-static inline uint hwIsActive(int param_1) { return ((uint(*)(int))0x800DC97C)(param_1); }
-static inline void hwSetMesgCallback(undefined * param_1) { ((void(*)(undefined *))0x800DC99C)(param_1); }
-static inline void hwSetPriority(int param_1, undefined4 param_2) { ((void(*)(int, undefined4))0x800DC9A4)(param_1, param_2); }
-static inline void hwInitSamplePlayback(int param_1, undefined2 param_2, undefined4 * param_3, int param_4, undefined4 param_5, undefined4 param_6, int param_7, undefined4 param_8) { ((void(*)(int, undefined2, undefined4 *, int, undefined4, undefined4, int, undefined4))0x800DC9B8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void hwBreak(int param_1) { ((void(*)(int))0x800DCB6C)(param_1); }
-static inline void hwSetADSR(int param_1, uint * param_2, byte param_3) { ((void(*)(int, uint *, byte))0x800DCBBC)(param_1, param_2, param_3); }
-static inline void hwSetVirtualSampleLoopBuffer(int param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(int, undefined4, undefined4))0x800DCD68)(param_1, param_2, param_3); }
-static inline void hwGetVirtualSampleState(int param_1) { ((void(*)(int))0x800DCD88)(param_1); }
-static inline void hwGetSampleType(int param_1) { ((void(*)(int))0x800DCD9C)(param_1); }
-static inline undefined2 hwGetSampleID(int param_1) { return ((undefined2(*)(int))0x800DCDB0)(param_1); }
-static inline undefined4 hwGetSampleExtraData(int param_1) { return ((undefined4(*)(int))0x800DCDC4)(param_1); }
-static inline void hwSetStreamLoopPS(int param_1, undefined param_2) { ((void(*)(int, undefined))0x800DCDD8)(param_1, param_2); }
-static inline void hwStart(int param_1) { ((void(*)(int))0x800DCDEC)(param_1); }
-static inline void hwKeyOff(int param_1) { ((void(*)(int))0x800DCE28)(param_1); }
-static inline void hwSetPitch(int param_1, ushort param_2) { ((void(*)(int, ushort))0x800DCE50)(param_1, param_2); }
-static inline void hwSetSRCType(int param_1, uint param_2) { ((void(*)(int, uint))0x800DCEC8)(param_1, param_2); }
-static inline void hwSetPolyPhaseFilter(int param_1, uint param_2) { ((void(*)(int, uint))0x800DCEF4)(param_1, param_2); }
-static inline void hwLowPassFrqToCoef(undefined4 param_1, undefined2 * param_2, undefined2 * param_3) { ((void(*)(undefined4, undefined2 *, undefined2 *))0x800DCF20)(param_1, param_2, param_3); }
-static inline void hwSetFilter(int param_1, char param_2, undefined2 param_3, undefined2 param_4) { ((void(*)(int, char, undefined2, undefined2))0x800DD018)(param_1, param_2, param_3, param_4); }
-static inline void hwSetITDMode(int param_1, char param_2) { ((void(*)(int, char))0x800DD098)(param_1, param_2); }
-static inline void hwSetVolume(double param_1, double param_2, double param_3, int param_4, undefined4 param_5, uint param_6, undefined4 param_7) { ((void(*)(double, double, double, int, undefined4, uint, undefined4))0x800DD0F4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
+#define streamInit FUNCTION_ADDRESS(void, 0x800C87AC)
+#define streamHandle FUNCTION_ADDRESS(void, 0x800C8874)
+#define streamCorrectLoops FUNCTION_ADDRESS(void, 0x800C9158)
+#define streamKill FUNCTION_ADDRESS(void, 0x800C915C)
+#define streamOutputModeChanged FUNCTION_ADDRESS(void, 0x800C91F4)
+#define dataInsertKeymap FUNCTION_ADDRESS(void, 0x800C9324)
+#define dataRemoveKeymap FUNCTION_ADDRESS(void, 0x800C9514)
+#define dataInsertLayer FUNCTION_ADDRESS(void, 0x800C9690)
+#define dataRemoveLayer FUNCTION_ADDRESS(void, 0x800C98D8)
+#define dataInsertCurve FUNCTION_ADDRESS(void, 0x800C9A9C)
+#define dataRemoveCurve FUNCTION_ADDRESS(void, 0x800C9CA0)
+#define dataInsertSDir FUNCTION_ADDRESS(bool, 0x800C9E1C, SDIR_DATA * /*sdir*/, void * /*smp_data*/)
+#define dataRemoveSDir FUNCTION_ADDRESS(void, 0x800C9F84)
+#define dataAddSampleReference FUNCTION_ADDRESS(void, 0x800CA160)
+#define dataRemoveSampleReference FUNCTION_ADDRESS(void, 0x800CA238)
+#define dataInsertFX FUNCTION_ADDRESS(bool, 0x800CA2D4, short /*gid*/, FX_TAB * /*fx*/, short /*fxNum*/)
+#define dataRemoveFX FUNCTION_ADDRESS(void, 0x800CA414)
+#define dataInsertMacro FUNCTION_ADDRESS(void, 0x800CA5E0)
+#define dataRemoveMacro FUNCTION_ADDRESS(void, 0x800CA8CC)
+#define dataGetMacro FUNCTION_ADDRESS(void, 0x800CAB60)
+#define dataGetSample FUNCTION_ADDRESS(void, 0x800CABFC)
+#define dataGetCurve FUNCTION_ADDRESS(void, 0x800CAD3C)
+#define dataGetKeymap FUNCTION_ADDRESS(void, 0x800CAD98)
+#define dataGetLayer FUNCTION_ADDRESS(void, 0x800CAE04)
+#define dataGetFX FUNCTION_ADDRESS(void, 0x800CAE90)
+#define dataInit FUNCTION_ADDRESS(void, 0x800CAF2C)
+#define dataExit FUNCTION_ADDRESS(void, 0x800CB010)
+#define mcmdWait FUNCTION_ADDRESS(void, 0x800CB030)
+#define mcmdGosub FUNCTION_ADDRESS(void, 0x800CB320)
+#define mcmdLoop FUNCTION_ADDRESS(void, 0x800CB3F0)
+#define mcmdPlayMacro FUNCTION_ADDRESS(void, 0x800CB544)
+#define mcmdAddKey FUNCTION_ADDRESS(void, 0x800CB6D0)
+#define mcmdStartSample FUNCTION_ADDRESS(void, 0x800CB7A8)
+#define mcmdVibrato FUNCTION_ADDRESS(void, 0x800CB9A8)
+#define DoSetPitch FUNCTION_ADDRESS(void, 0x800CBB24)
+#define mcmdSetADSR FUNCTION_ADDRESS(void, 0x800CBCC4)
+#define mcmdSetADSRFromCtrl FUNCTION_ADDRESS(void, 0x800CBF1C)
+#define mcmdSetPitchADSR FUNCTION_ADDRESS(void, 0x800CC048)
+#define mcmdSetPanning FUNCTION_ADDRESS(void, 0x800CC2C4)
+#define mcmdSetSurroundPanning FUNCTION_ADDRESS(void, 0x800CC360)
+#define mcmdScaleVolume FUNCTION_ADDRESS(void, 0x800CC3FC)
+#define mcmdEnvelope FUNCTION_ADDRESS(void, 0x800CC530)
+#define mcmdFadeIn FUNCTION_ADDRESS(void, 0x800CC660)
+#define mcmdRandomKey FUNCTION_ADDRESS(void, 0x800CC79C)
+#define mcmdVolumeSelect FUNCTION_ADDRESS(void, 0x800CC938)
+#define mcmdPanningSelect FUNCTION_ADDRESS(void, 0x800CCA3C)
+#define mcmdPitchWheelSelect FUNCTION_ADDRESS(void, 0x800CCB40)
+#define mcmdModWheelSelect FUNCTION_ADDRESS(void, 0x800CCC44)
+#define mcmdPedalSelect FUNCTION_ADDRESS(void, 0x800CCD48)
+#define mcmdPortamentoSelect FUNCTION_ADDRESS(void, 0x800CCE4C)
+#define mcmdReverbSelect FUNCTION_ADDRESS(void, 0x800CCF50)
+#define mcmdPreAuxASelect FUNCTION_ADDRESS(void, 0x800CD054)
+#define mcmdPreAuxBSelect FUNCTION_ADDRESS(void, 0x800CD158)
+#define mcmdPostAuxBSelect FUNCTION_ADDRESS(void, 0x800CD25C)
+#define mcmdSurroundPanningSelect FUNCTION_ADDRESS(void, 0x800CD360)
+#define mcmdDopplerSelect FUNCTION_ADDRESS(void, 0x800CD464)
+#define mcmdTremoloSelect FUNCTION_ADDRESS(void, 0x800CD568)
+#define mcmdFilterSwitchSelect FUNCTION_ADDRESS(void, 0x800CD66C)
+#define mcmdFilterParameterSelect FUNCTION_ADDRESS(void, 0x800CD770)
+#define mcmdAuxAFXSelect FUNCTION_ADDRESS(void, 0x800CD874)
+#define mcmdAuxBFXSelect FUNCTION_ADDRESS(void, 0x800CD9F0)
+#define mcmdPortamento FUNCTION_ADDRESS(void, 0x800CDB6C)
+#define varGet FUNCTION_ADDRESS(void, 0x800CDCD0)
+#define mcmdVarCalculation FUNCTION_ADDRESS(void, 0x800CDD38)
+#define mcmdIfVarCompare FUNCTION_ADDRESS(void, 0x800CDF58)
+#define mcmdSendMessage FUNCTION_ADDRESS(void, 0x800CE0A4)
+#define mcmdGetVID FUNCTION_ADDRESS(void, 0x800CE2E8)
+#define mcmdSetKeyGroup FUNCTION_ADDRESS(void, 0x800CE368)
+#define macHandleActive FUNCTION_ADDRESS(void, 0x800CE444)
+#define macHandle FUNCTION_ADDRESS(void, 0x800CF3D8)
+#define macSampleEndNotify FUNCTION_ADDRESS(void, 0x800CF52C)
+#define macSetExternalKeyoff FUNCTION_ADDRESS(void, 0x800CF5D8)
+#define maxSetPedalState FUNCTION_ADDRESS(void, 0x800CF6C8)
+#define TimeQueueAdd FUNCTION_ADDRESS(void, 0x800CF7D0)
+#define macMakeActive FUNCTION_ADDRESS(void, 0x800CF874)
+#define macMakeInactive FUNCTION_ADDRESS(void, 0x800CF97C)
+#define macStart FUNCTION_ADDRESS(void, 0x800CFA78, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, byte, byte, byte, int)
+#define macInit FUNCTION_ADDRESS(void, 0x800CFEB0)
+#define vidInit FUNCTION_ADDRESS(void, 0x800CFF18)
+#define vidRemoveVoiceReferences FUNCTION_ADDRESS(void, 0x800CFFF8)
+#define vidMakeRoot FUNCTION_ADDRESS(void, 0x800D0360)
+#define vidMakeNew FUNCTION_ADDRESS(void, 0x800D0374)
+#define vidGetInternalId FUNCTION_ADDRESS(void, 0x800D0488, int /*vid*/)
+#define vidGetPublicId FUNCTION_ADDRESS(void, 0x800D04D8)
+#define voiceSetPrioriety FUNCTION_ADDRESS(void, 0x800D052C)
+#define voiceAllocateFind FUNCTION_ADDRESS(void, 0x800D0778)
+#define voiceAllocate FUNCTION_ADDRESS(void, 0x800D0B00)
+#define voiceAllocatePeek FUNCTION_ADDRESS(void, 0x800D0C10)
+#define voiceFree FUNCTION_ADDRESS(void, 0x800D0C88)
+#define synthInitAllocationAids FUNCTION_ADDRESS(void, 0x800D0E4C)
+#define voiceUnblock FUNCTION_ADDRESS(void, 0x800D10EC)
+#define voiceKill FUNCTION_ADDRESS(void, 0x800D1304)
+#define voiceKillSound FUNCTION_ADDRESS(void, 0x800D1538)
+#define synthKillAllVoices FUNCTION_ADDRESS(void, 0x800D15FC)
+#define synthKillVoicesByMacroReferences FUNCTION_ADDRESS(void, 0x800D16A4)
+#define synthKillVoicesBySampleReferences FUNCTION_ADDRESS(void, 0x800D1800)
+#define voiceIsLastStarted FUNCTION_ADDRESS(void, 0x800D195C)
+#define voiceSetLastStarted FUNCTION_ADDRESS(void, 0x800D19D0)
+#define voiceResetLastStarted FUNCTION_ADDRESS(void, 0x800D1A24)
+#define voiceInitLastStarted FUNCTION_ADDRESS(void, 0x800D1A98)
+#define sndPitchUpOne FUNCTION_ADDRESS(void, 0x800D1BDC)
+#define sndGetPitch FUNCTION_ADDRESS(void, 0x800D1C18)
+#define adsrConvertTimeCents FUNCTION_ADDRESS(void, 0x800D1CFC)
+#define salChangeADSRState FUNCTION_ADDRESS(void, 0x800D1D54)
+#define adsrSetup FUNCTION_ADDRESS(void, 0x800D1FC0)
+#define adsrStartRelease FUNCTION_ADDRESS(void, 0x800D1FE8)
+#define adsrRelease FUNCTION_ADDRESS(void, 0x800D2138)
+#define adsrHandle FUNCTION_ADDRESS(void, 0x800D22A0)
+#define adsrHandleLowPrecision FUNCTION_ADDRESS(void, 0x800D2438)
+#define vsInit FUNCTION_ADDRESS(void, 0x800D24BC)
+#define vsSampleStartNotify FUNCTION_ADDRESS(void, 0x800D2578)
+#define vsSampleEndNotify FUNCTION_ADDRESS(void, 0x800D2844)
+#define vsUpdateBuffer FUNCTION_ADDRESS(void, 0x800D28EC)
+#define vsSampleUpdates FUNCTION_ADDRESS(void, 0x800D2C44)
+#define dataInitStack FUNCTION_ADDRESS(void, 0x800D2E54)
+#define InsertData FUNCTION_ADDRESS(void, 0x800D2E94, int /*id*/, void * /*data*/, byte /*dataType*/, int /*remove*/)
+#define sndPushGroup FUNCTION_ADDRESS(int, 0x800D3120, void * /*prj_data*/, int /*gid*/, void * /*samples*/, void * /*sdir*/, void * /*pool*/)
+#define sndPopGroup FUNCTION_ADDRESS(void, 0x800D346C)
+#define seqPlaySong FUNCTION_ADDRESS(void, 0x800D37BC)
+#define sndSeqPlayEx FUNCTION_ADDRESS(void, 0x800D3910)
+#define salInitDspCtrl FUNCTION_ADDRESS(void, 0x800D3A34)
+#define salInitHRTFBuffer FUNCTION_ADDRESS(void, 0x800D3DE8)
+#define salExitDspCtrl FUNCTION_ADDRESS(void, 0x800D3E20)
+#define salActivateStudio FUNCTION_ADDRESS(void, 0x800D3F00)
+#define salCheckVolErrorAndResetDelta FUNCTION_ADDRESS(void, 0x800D4050)
+#define sal_setup_dspvol FUNCTION_ADDRESS(void, 0x800D4144)
+#define sal_update_hostplayinfo FUNCTION_ADDRESS(void, 0x800D418C)
+#define DoDepopFade FUNCTION_ADDRESS(void, 0x800D4200)
+#define HandleDepopVoice FUNCTION_ADDRESS(void, 0x800D42AC)
+#define SortVoices FUNCTION_ADDRESS(void, 0x800D45B8)
+#define salBuildCommandList FUNCTION_ADDRESS(void, 0x800D4810)
+#define salSynthSendMessage FUNCTION_ADDRESS(void, 0x800D6E08)
+#define salActivateVoice FUNCTION_ADDRESS(void, 0x800D6E4C)
+#define salDeactivateVoice FUNCTION_ADDRESS(void, 0x800D6EEC)
+#define salHandleAuxProcessing FUNCTION_ADDRESS(void, 0x800D6F4C)
+#define salCalcVolume FUNCTION_ADDRESS(void, 0x800D70A4)
+#define CalcEmitter FUNCTION_ADDRESS(void, 0x800D7794)
+#define sndUpdateEmitter FUNCTION_ADDRESS(bool, 0x800D7E10, SND_EMITTER * /*em*/, SND_FVECTOR * /*pos*/, SND_FVECTOR * /*dir*/, byte /*maxVol*/, SND_ROOM * /*room*/)
+#define sndCheckEmitter FUNCTION_ADDRESS(bool, 0x800D7EE8, SND_EMITTER * /*em*/)
+#define AddEmitter FUNCTION_ADDRESS(SND_VOICEID, 0x800D7F08, SND_EMITTER * /*em_buffer*/, SND_FVECTOR * /*pos*/, SND_FVECTOR * /*dir*/, float /*maxDis*/, float /*comp*/, int /*flags*/, short /*fxid*/, int /*groupid*/, byte /*maxVol*/, byte /*minVol*/, SND_ROOM * /*room*/, SND_PARAMETER_INFO * /*para*/, byte /*studio*/)
+#define sndAddEmitter FUNCTION_ADDRESS(int, 0x800D83B0, SND_EMITTER * /*em_buffer*/, SND_FVECTOR * /*pos*/, SND_FVECTOR * /*dir*/, float /*maxDis*/, float /*comp*/, int /*flags*/, ushort /*fxid*/, byte /*maxVol*/, byte /*minVol*/, SND_ROOM * /*room*/)
+#define sndRemoveEmitter FUNCTION_ADDRESS(void, 0x800D8408)
+#define s3dKillAllEmitter FUNCTION_ADDRESS(void, 0x800D84B0)
+#define s3dKillEmitterByFXID FUNCTION_ADDRESS(void, 0x800D8568)
+#define sndUpdateListener FUNCTION_ADDRESS(void, 0x800D8664)
+#define sndAddListener FUNCTION_ADDRESS(void, 0x800D87D8)
+#define sndRemoveListener FUNCTION_ADDRESS(void, 0x800D89E8)
+#define AddStartingEmitter FUNCTION_ADDRESS(void, 0x800D8A64)
+#define StartContinousEmitters FUNCTION_ADDRESS(void, 0x800D8BB8)
+#define s3dHandle FUNCTION_ADDRESS(void, 0x800D94AC)
+#define s3dInit FUNCTION_ADDRESS(void, 0x800D9BD4)
+#define s3dExit FUNCTION_ADDRESS(void, 0x800D9C0C)
+#define sndInit FUNCTION_ADDRESS(int, 0x800D9C10, byte /*voices*/, byte /*music*/, byte /*sfx*/, byte /*studios*/, int /*flags*/, int /*aramSize*/)
+#define sndQuit FUNCTION_ADDRESS(void, 0x800D9D48)
+#define salApplyMatrix FUNCTION_ADDRESS(void, 0x800D9D7C, Mtx *, Vec3f *, Vec3f *)
+#define salNormalizeVector FUNCTION_ADDRESS(void, 0x800D9E28, Vec3f *)
+#define salCrossProduct FUNCTION_ADDRESS(void, 0x800D9EDC, Vec3f *, Vec3f *, Vec3f *)
+#define salInvertMatrix FUNCTION_ADDRESS(void, 0x800D9F40, Mtx *, Mtx *)
+#define inpSetGlobalMIDIDirtyFlag FUNCTION_ADDRESS(void, 0x800DA13C)
+#define inpSetRPNHi FUNCTION_ADDRESS(void, 0x800DA160)
+#define inpSetRPNDec FUNCTION_ADDRESS(void, 0x800DA340)
+#define inpSetRPNInc FUNCTION_ADDRESS(void, 0x800DA564)
+#define inpSetMidiCtrl FUNCTION_ADDRESS(void, 0x800DA788, byte /*ctrl*/, byte /*channel*/, byte /*set*/, byte /*value*/)
+#define inpSetMidiCtrl14 FUNCTION_ADDRESS(void, 0x800DACA4, byte /*ctrl*/, byte /*channel*/, byte /*set*/, ushort /*value*/)
+#define inpResetMidiCtrl FUNCTION_ADDRESS(void, 0x800DADC8)
+#define inpGetMidiCtrl FUNCTION_ADDRESS(void, 0x800DAEB8)
+#define inpGetChannelDefaults FUNCTION_ADDRESS(void, 0x800DB17C)
+#define inpResetChannelDefaults FUNCTION_ADDRESS(void, 0x800DB1C0)
+#define inpAddCtrl FUNCTION_ADDRESS(void, 0x800DB21C)
+#define inpFXCopyCtrl FUNCTION_ADDRESS(void, 0x800DB2B4)
+#define inpSetMidiLastNote FUNCTION_ADDRESS(void, 0x800DB3C8)
+#define inpGetMidiLastNote FUNCTION_ADDRESS(void, 0x800DB404)
+#define _GetInputValue FUNCTION_ADDRESS(void, 0x800DB440)
+#define inpGetVolume FUNCTION_ADDRESS(void, 0x800DB8E0)
+#define inpGetPanning FUNCTION_ADDRESS(void, 0x800DB928)
+#define inpGetSurPanning FUNCTION_ADDRESS(void, 0x800DB970)
+#define inpGetPitchBend FUNCTION_ADDRESS(void, 0x800DB9B8)
+#define inpGetDoppler FUNCTION_ADDRESS(void, 0x800DBA00)
+#define inpGetModulation FUNCTION_ADDRESS(void, 0x800DBA48)
+#define inpGetPedal FUNCTION_ADDRESS(void, 0x800DBA90)
+#define inpGetPreAuxA FUNCTION_ADDRESS(void, 0x800DBAD8)
+#define inpGetReverb FUNCTION_ADDRESS(void, 0x800DBB20)
+#define inpGetPreAuxB FUNCTION_ADDRESS(void, 0x800DBB68)
+#define inpGetPostAuxB FUNCTION_ADDRESS(void, 0x800DBBB0)
+#define inpGetTremolo FUNCTION_ADDRESS(void, 0x800DBBF8)
+#define inpGetFilterSwitch FUNCTION_ADDRESS(void, 0x800DBC40)
+#define inpGetFilterParameter FUNCTION_ADDRESS(void, 0x800DBC88)
+#define inpGetAuxA FUNCTION_ADDRESS(void, 0x800DBCD0)
+#define inpGetAuxB FUNCTION_ADDRESS(void, 0x800DBD84)
+#define inpInit FUNCTION_ADDRESS(void, 0x800DBE38)
+#define inpTranslateExCtrl FUNCTION_ADDRESS(void, 0x800DC0FC)
+#define inpGetExCtrl FUNCTION_ADDRESS(void, 0x800DC16C)
+#define inpSetExCtrl FUNCTION_ADDRESS(void, 0x800DC268)
+#define sndRand FUNCTION_ADDRESS(void, 0x800DC44C)
+#define sndSin FUNCTION_ADDRESS(void, 0x800DC468)
+#define sndBSearch FUNCTION_ADDRESS(void, 0x800DC4F4)
+#define sndSqrt FUNCTION_ADDRESS(void, 0x800DC598)
+#define sndCos FUNCTION_ADDRESS(void, 0x800DC5EC)
+#define sndConvertMs FUNCTION_ADDRESS(void, 0x800DC6C0)
+#define sndConvertTicks FUNCTION_ADDRESS(void, 0x800DC6D0)
+#define sndConvert2Ms FUNCTION_ADDRESS(void, 0x800DC718)
+#define snd_handle_irq FUNCTION_ADDRESS(void, 0x800DC720)
+#define hwInit FUNCTION_ADDRESS(void, 0x800DC874)
+#define hwExit FUNCTION_ADDRESS(void, 0x800DC938)
+#define hwSetTimeOffset FUNCTION_ADDRESS(void, 0x800DC96C)
+#define hwGetTimeOffset FUNCTION_ADDRESS(void, 0x800DC974)
+#define hwIsActive FUNCTION_ADDRESS(void, 0x800DC97C)
+#define hwSetMesgCallback FUNCTION_ADDRESS(void, 0x800DC99C)
+#define hwSetPriority FUNCTION_ADDRESS(void, 0x800DC9A4)
+#define hwInitSamplePlayback FUNCTION_ADDRESS(void, 0x800DC9B8)
+#define hwBreak FUNCTION_ADDRESS(void, 0x800DCB6C)
+#define hwSetADSR FUNCTION_ADDRESS(void, 0x800DCBBC)
+#define hwSetVirtualSampleLoopBuffer FUNCTION_ADDRESS(void, 0x800DCD68)
+#define hwGetVirtualSampleState FUNCTION_ADDRESS(void, 0x800DCD88)
+#define hwGetSampleType FUNCTION_ADDRESS(void, 0x800DCD9C)
+#define hwGetSampleID FUNCTION_ADDRESS(void, 0x800DCDB0)
+#define hwGetSampleExtraData FUNCTION_ADDRESS(void, 0x800DCDC4)
+#define hwSetStreamLoopPS FUNCTION_ADDRESS(void, 0x800DCDD8)
+#define hwStart FUNCTION_ADDRESS(void, 0x800DCDEC)
+#define hwKeyOff FUNCTION_ADDRESS(void, 0x800DCE28)
+#define hwSetPitch FUNCTION_ADDRESS(void, 0x800DCE50)
+#define hwSetSRCType FUNCTION_ADDRESS(void, 0x800DCEC8)
+#define hwSetPolyPhaseFilter FUNCTION_ADDRESS(void, 0x800DCEF4)
+#define hwLowPassFrqToCoef FUNCTION_ADDRESS(void, 0x800DCF20)
+#define hwSetFilter FUNCTION_ADDRESS(void, 0x800DD018)
+#define hwSetITDMode FUNCTION_ADDRESS(void, 0x800DD098)
+#define hwSetVolume FUNCTION_ADDRESS(void, 0x800DD0F4)
 #define hwSetAuxProcessingCallbacks FUNCTION_ADDRESS(void, 0x800DD3B4, byte /*studio*/, SND_AUX_CALLBACK /*auxA*/, SND_AUX_CALLBACK /*auxB*/, void * /*userB*/)
-static inline int hwGetPos(int param_1) { return ((int(*)(int))0x800DD3DC)(param_1); }
-static inline void hwFlushStream(undefined4 param_1, undefined4 param_2, int param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6) { ((void(*)(undefined4, undefined4, int, undefined4, undefined4, undefined4))0x800DD488)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void hwGetStreamPlayBuffer(undefined4 param_1) { ((void(*)(undefined4))0x800DD518)(param_1); }
-static inline void * hwTransAddr(void * samples) { return ((void *(*)(void *))0x800DD53C)(samples); }
-static inline void hwFrqPitch(undefined4 param_1) { ((void(*)(undefined4))0x800DD540)(param_1); }
-static inline void hwInitSampleMem(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800DD59C)(param_1, param_2); }
-static inline void hwExitSampleMem(void) { ((void(*)(void))0x800DD5C0)(); }
-static inline void hwSaveSample(int * param_1, undefined4 * param_2) { ((void(*)(int *, undefined4 *))0x800DD5E0)(param_1, param_2); }
-static inline void hwRemoveSample(int param_1, undefined4 param_2) { ((void(*)(int, undefined4))0x800DD678)(param_1, param_2); }
-static inline void hwSyncSampleMem(void) { ((void(*)(void))0x800DD700)(); }
-static inline void hwFrameDone(void) { ((void(*)(void))0x800DD720)(); }
-static inline void sndSetHooks(undefined4 * param_1) { ((void(*)(undefined4 *))0x800DD724)(param_1); }
-static inline void hwDisableHRTF(void) { ((void(*)(void))0x800DD740)(); }
-static inline void hwEnableCompressor(void) { ((void(*)(void))0x800DD74C)(); }
-static inline undefined4 hwGetVirtualSampleID(int param_1) { return ((undefined4(*)(int))0x800DD758)(param_1); }
-static inline uint hwVoiceInStartup(int param_1) { return ((uint(*)(int))0x800DD780)(param_1); }
-static inline ulong aramQueueCallback(void) { return ((ulong(*)(void))0x800DD7A0)(); }
-static inline void aramUploadData(undefined4 param_1, undefined4 param_2, undefined * param_3, uint param_4, undefined * param_5, undefined * param_6) { ((void(*)(undefined4, undefined4, undefined *, uint, undefined *, undefined *))0x800DD840)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void aramSyncTransferQueue(void) { ((void(*)(void))0x800DDA1C)(); }
-static inline void aramInit(int param_1) { ((void(*)(int))0x800DDA34)(param_1); }
-static inline void aramExit(void) { ((void(*)(void))0x800DDD18)(); }
-static inline void aramGetZeroBuffer(void) { ((void(*)(void))0x800DDD1C)(); }
-static inline int aramGetFirstUserAddress(void) { return ((int(*)(void))0x800DDD3C)(); }
-static inline int aramGetUserBytes(int param_1) { return ((int(*)(int))0x800DDD60)(param_1); }
-static inline void aramStoreData(undefined4 param_1, undefined4 param_2, int * param_3) { ((void(*)(undefined4, undefined4, int *))0x800DDD68)(param_1, param_2, param_3); }
-static inline void aramRemoveData(undefined4 param_1, int param_2, int param_3) { ((void(*)(undefined4, int, int))0x800DE18C)(param_1, param_2, param_3); }
-static inline void InitStreamBuffers(void) { ((void(*)(void))0x800DE1A4)(); }
-static inline int aramGetStreamBufferAddress(uint param_1, undefined4 * param_2) { return ((int(*)(uint, undefined4 *))0x800DE268)(param_1, param_2); }
-static inline void salCallback(void) { ((void(*)(void))0x800DE2A0)(); }
-static inline void dspInitCallback(void) { ((void(*)(void))0x800DE348)(); }
-static inline void dspResumeCallback(void) { ((void(*)(void))0x800DE358)(); }
-static inline void dspDoneCallback(void) { ((void(*)(void))0x800DE3BC)(); }
-static inline bool salInitAi(undefined * param_1, undefined4 param_2, undefined4 * param_3) { return ((bool(*)(undefined *, undefined4, undefined4 *))0x800DE3E0)(param_1, param_2, param_3); }
-static inline void salStartAi(void) { ((void(*)(void))0x800DE4A8)(); }
-static inline undefined4 salExitAi(void) { return ((undefined4(*)(void))0x800DE4C8)(); }
-static inline undefined * salAIGetDest(void) { return ((undefined *(*)(void))0x800DE4FC)(); }
-static inline undefined4 salInitDsp(void) { return ((undefined4(*)(void))0x800DE52C)(); }
-static inline undefined4 salExitDsp(void) { return ((undefined4(*)(void))0x800DE600)(); }
-static inline void salCtrlDsp(undefined4 param_1) { ((void(*)(undefined4))0x800DE650)(param_1); }
-static inline uint salGetStartDelay(void) { return ((uint(*)(void))0x800DE6C4)(); }
-static inline void hwInitIrq(void) { ((void(*)(void))0x800DE710)(); }
-static inline void hwExitIeq(void) { ((void(*)(void))0x800DE73C)(); }
-static inline void hwEnableIrq(void) { ((void(*)(void))0x800DE740)(); }
-static inline void hwDisableIrq(void) { ((void(*)(void))0x800DE778)(); }
-static inline void hwIRQEnterCritical(void) { ((void(*)(void))0x800DE7B0)(); }
-static inline void hwIRQLeaveCritical(void) { ((void(*)(void))0x800DE7D0)(); }
-static inline void salMalloc(void) { ((void(*)(void))0x800DE7F0)(); }
-static inline void salMallocPhysical(void) { ((void(*)(void))0x800DE81C)(); }
-static inline void salFree(void) { ((void(*)(void))0x800DE84C)(); }
-static inline void sndAuxCallbackReverbHI(char param_1, undefined4 * param_2, int param_3) { ((void(*)(char, undefined4 *, int))0x800DE87C)(param_1, param_2, param_3); }
-static inline void sndAuxCallbackPrepareReverbHI(int param_1) { ((void(*)(int))0x800DE8D8)(param_1); }
-static inline void ReverbHICreate(undefined8 param_1, double param_2, double param_3, double param_4, double param_5, double param_6) { ((void(*)(undefined8, double, double, double, double, double))0x800DE918)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void DoCrossTalk(undefined8 param_1, undefined8 param_2, uint * param_3, uint * param_4) { ((void(*)(undefined8, undefined8, uint *, uint *))0x800DEE24)(param_1, param_2, param_3, param_4); }
-static inline void HandleReverb(uint * param_1, int param_2, int param_3) { ((void(*)(uint *, int, int))0x800DEFA8)(param_1, param_2, param_3); }
-static inline void ReverbHICallback(undefined4 param_1, undefined4 param_2, undefined4 param_3, int param_4) { ((void(*)(undefined4, undefined4, undefined4, int))0x800DF4B4)(param_1, param_2, param_3, param_4); }
-static inline void do_src1(int * * param_1) { ((void(*)(int * *))0x800DF594)(param_1); }
-static inline void do_src2(int * * param_1) { ((void(*)(int * *))0x800DF72C)(param_1); }
-static inline void sndAuxCallbackChorus(char param_1, undefined4 * param_2, undefined4 * param_3) { ((void(*)(char, undefined4 *, undefined4 *))0x800DF918)(param_1, param_2, param_3); }
-static inline undefined4 sndAuxCallbackPrepareChorus(int * param_1) { return ((undefined4(*)(int *))0x800DFBD4)(param_1); }
-static inline void maybeProcessTeamData(void) { ((void(*)(void))0x8063F094)(); }
-static inline void unreferenced(void) { ((void(*)(void))0x8063F2EC)(); }
-static inline void manageStadiumLoading(void) { ((void(*)(void))0x8063F588)(); }
-static inline void manageLoadingState(void) { ((void(*)(void))0x8063F6F0)(); }
-static inline TriangleCollisionTypes checkCollision(VecSrcDst * inVec, OutCollisionStruct * outCollisionStruct, int collisionCheckType, BOOL useBallCoords) { return ((TriangleCollisionTypes(*)(VecSrcDst *, OutCollisionStruct *, int, BOOL))0x8063F9A8)(inVec, outCollisionStruct, collisionCheckType, useBallCoords); }
-static inline TriangleCollisionTypes checkStadiumHazardCollisions(VecSrcDst * in, VecSrcDst * out, stadiumObjectCollision * mstadiumObj) { return ((TriangleCollisionTypes(*)(VecSrcDst *, VecSrcDst *, stadiumObjectCollision *))0x8063FB00)(in, out, mstadiumObj); }
-static inline TriangleCollisionTypes DidCollideWithBoundingBoxes(VecSrcDst * inCoord, OutCollisionStruct * outVecs, CollisionBox * inBoxes, short inCount) { return ((TriangleCollisionTypes(*)(VecSrcDst *, OutCollisionStruct *, CollisionBox *, short))0x8063FE84)(inCoord, outVecs, inBoxes, inCount); }
-static inline BOOL checkTriangleCollisions(TriangleCollisionStruct * collisionData, TriangleGroup * triangleGroup) { return ((BOOL(*)(TriangleCollisionStruct *, TriangleGroup *))0x80640174)(collisionData, triangleGroup); }
-static inline void running_rouondBasePosition_(undefined8 param_1, int someXCoord, int param_3, int param_4) { ((void(*)(undefined8, int, int, int))0x80641674)(param_1, someXCoord, param_3, param_4); }
-static inline void setFanObjPtr(int ptr) { ((void(*)(int))0x80642678)(ptr); }
-static inline void CTRLBuildMatrixRelated(TextureArchiveHeader * param_1) { ((void(*)(TextureArchiveHeader *))0x806426CC)(param_1); }
-static inline void inningScoreDisplayRelated_(EnumStadiumIDs4 stadiumId) { ((void(*)(EnumStadiumIDs4))0x80643ACC)(stadiumId); }
-static inline void drawStadiumObjects_(int * param_1) { ((void(*)(int *))0x80644710)(param_1); }
-static inline void drawStadium_(int * param_1) { ((void(*)(int *))0x80644C40)(param_1); }
-static inline void updateStadiumFileHeaders(StadiumFileHeader * stadiumHeader) { ((void(*)(StadiumFileHeader *))0x80644F54)(stadiumHeader); }
-static inline void chompCollision_processStarHitVariables(void) { ((void(*)(void))0x806455C4)(); }
-static inline void plantPhysics(void) { ((void(*)(void))0x806456B4)(); }
-static inline void checkForBallDead(void) { ((void(*)(void))0x80645728)(); }
-static inline void ballCollisionLogic(void) { ((void(*)(void))0x80645CCC)(); }
-static inline void handleBallBounceAndRoll(int verticalVelocity, int bounceFrameCount, byte * ballIsRolling, int param_4) { ((void(*)(int, int, byte *, int))0x80647D84)(verticalVelocity, bounceFrameCount, ballIsRolling, param_4); }
-static inline void handleBallHitDeadBallOutcome(void) { ((void(*)(void))0x806480E0)(); }
-static inline void fairOrFoulBall(TriangleCollisionTypes_word collType) { ((void(*)(TriangleCollisionTypes_word))0x806482F4)(collType); }
-static inline void processLandedBallBouncing(void) { ((void(*)(void))0x8064859C)(); }
-static inline void processBallInAir__Landed(void) { ((void(*)(void))0x8064889C)(); }
-static inline double ballDistCalculator(double param_1, double param_2) { return ((double(*)(double, double))0x80648D74)(param_1, param_2); }
-static inline void relatedToGroundRuleDouble(void) { ((void(*)(void))0x80648F18)(); }
-static inline void foulBall_80649184(void) { ((void(*)(void))0x80649184)(); }
-static inline void warioWaluStarHit(void) { ((void(*)(void))0x8064922C)(); }
-static inline void updatePastHitBallCoords(void) { ((void(*)(void))0x806498D0)(); }
-static inline void liveBallHitPhysics(int thrownBallInd) { ((void(*)(int))0x80649A04)(thrownBallInd); }
-static inline void estimateTimeForThrowToReachTarget(void) { ((void(*)(void))0x8064A4D4)(); }
-static inline void fielding_setHeldBallOffset(void) { ((void(*)(void))0x8064A9D4)(); }
-static inline void futureFrameForClosestBall(undefined8 playerX, undefined8 playerZ, int averageXOfDive, int diveMaxFramePlus15, int const2) { ((void(*)(undefined8, undefined8, int, int, int))0x8064AC50)(playerX, playerZ, averageXOfDive, diveMaxFramePlus15, const2); }
-static inline void setHitClassification3(void) { ((void(*)(void))0x8064AE0C)(); }
-static inline void classifyHitTrajectoryOrHitAnimRelated(void) { ((void(*)(void))0x8064B0C8)(); }
-static inline void updateFrameCountersAndBallPastCoordinatesWhenFielderHoldingBall(void) { ((void(*)(void))0x8064BA88)(); }
-static inline void estimateAndSetFutureCoords(int param_1) { ((void(*)(int))0x8064BEBC)(param_1); }
-static inline void adjustVeloByAirResistance(void) { ((void(*)(void))0x8064CC64)(); }
-static inline void estimateWhereBallWillHitWall(int param_1) { ((void(*)(int))0x8064CCDC)(param_1); }
-static inline void calculateImplicationsOfTheHitTrajectory(void) { ((void(*)(void))0x8064D368)(); }
-static inline void setLiveBallVariablesAfterContact(void) { ((void(*)(void))0x8064DEE0)(); }
-static inline void setDefaultInMemBall(void) { ((void(*)(void))0x8064E270)(); }
-static inline void resetBallValuesBetweenBatters_(void) { ((void(*)(void))0x8064E60C)(); }
-static inline void resetInMemBall(void) { ((void(*)(void))0x8064E84C)(); }
-static inline void initBallAndGameStateOnLoad(void) { ((void(*)(void))0x8064EC3C)(); }
-static inline void UpdateRandomInts(void) { ((void(*)(void))0x8064EFE0)(); }
-static inline void ballPhysicsMainFunction(void) { ((void(*)(void))0x8064F1E0)(); }
-static inline void starHitSetting_Unused__(void) { ((void(*)(void))0x8064F35C)(); }
-static inline void CalculateBallVelocityAcceleration(void) { ((void(*)(void))0x8064F504)(); }
-static inline short _unused__CalculateBallHorizontalAngle(void) { return ((short(*)(void))0x8064F98C)(); }
-static inline void calculateBuntHorizontalAngle(void) { ((void(*)(void))0x8064FB14)(); }
-static inline void calculateHorizontalPower(void) { ((void(*)(void))0x8064FD94)(); }
-static inline void calculateVerticalAngle(void) { ((void(*)(void))0x806504FC)(); }
-static inline void calculateBallHorizontalAngleHit(void) { ((void(*)(void))0x80650C30)(); }
-static inline void calculateContactAndHitType(void) { ((void(*)(void))0x80650F64)(); }
-static inline void maybe_determineStarType(void) { ((void(*)(void))0x80651570)(); }
-static inline void CalculateHitVariables(void) { ((void(*)(void))0x806515E8)(); }
-static inline void CalculateIfHitBall(void) { ((void(*)(void))0x80651D48)(); }
-static inline void ifBunt(void) { ((void(*)(void))0x80651E70)(); }
-static inline void starSwingSpendStars(void) { ((void(*)(void))0x8065209C)(); }
-static inline void ifSwing(void) { ((void(*)(void))0x806522F0)(); }
-static inline void unusedBatterPreSwing(void) { ((void(*)(void))0x80652830)(); }
-static inline void batterInBoxMovement(void) { ((void(*)(void))0x80652A34)(); }
-static inline void batterHumanControlled(void) { ((void(*)(void))0x80652E28)(); }
-static inline void updateBallHittableZoneStatus(void) { ((void(*)(void))0x80653350)(); }
-static inline int loadBatterActor(void) { return ((int(*)(void))0x8065341C)(); }
-static inline void setDefaultInMemBatter(void) { ((void(*)(void))0x806534E8)(); }
-static inline void setBatterContactConstants(void) { ((void(*)(void))0x80653758)(); }
-static inline void initializeInMemBatter(void) { ((void(*)(void))0x806538C0)(); }
-static inline void atBat_Batter(void) { ((void(*)(void))0x806538EC)(); }
-static inline void assignFrameCountersToAPointer(void) { ((void(*)(void))0x806545B8)(); }
-static inline void resetSomeStruct(void) { ((void(*)(void))0x80654E24)(); }
-static inline void pauseMenuCameraAngle(void) { ((void(*)(void))0x80655028)(); }
-static inline void bOD_Cam_liveBall(void) { ((void(*)(void))0x80655E00)(); }
-static inline void camera_matchLiveBall_regular_replay(void) { ((void(*)(void))0x80656B84)(); }
-static inline void gameplay_Camera_(void) { ((void(*)(void))0x80656E34)(); }
-static inline void cameraRelated(void) { ((void(*)(void))0x806575A0)(); }
-static inline void camera_zoomInDuringFielderAction_slide_clamber_wallJump_(undefined8 midXCoord, undefined8 midYCoord, undefined8 midZCoord, byte specialCatchTypeInd, short frames_) { ((void(*)(undefined8, undefined8, undefined8, byte, short))0x80659ED8)(midXCoord, midYCoord, midZCoord, specialCatchTypeInd, frames_); }
-static inline void camera_match_setMovement(void) { ((void(*)(void))0x8065A404)(); }
-static inline void matchCamera_setPastAndCurrentTarget(void) { ((void(*)(void))0x8065AAAC)(); }
-static inline void camera_matchLiveBall(void) { ((void(*)(void))0x8065B244)(); }
-static inline void cameraControl(void) { ((void(*)(void))0x8065BF24)(); }
-static inline undefined4 staminaRelated(void) { return ((undefined4(*)(void))0x8065C900)(); }
-static inline void versusStarChanceSetPointers_(void) { ((void(*)(void))0x8065CCC4)(); }
-static inline void trackLastPitchInfo(void) { ((void(*)(void))0x8065CDDC)(); }
-static inline void setDefaultAIValues(void) { ((void(*)(void))0x8065CF4C)(); }
-static inline void betweenABSetPitcherBatter(void) { ((void(*)(void))0x8065D1E8)(); }
-static inline void someRosterMemoryManagement(void) { ((void(*)(void))0x8065D20C)(); }
-static inline void initializeAIConstants(void) { ((void(*)(void))0x8065D3BC)(); }
-static inline uint unreferenced_8065d7b8(void) { return ((uint(*)(void))0x8065D7B8)(); }
-static inline uint batterAIBallLocRelated(void) { return ((uint(*)(void))0x8065D888)(); }
-static inline void batterAIFrameToSwingAndStickInput(void) { ((void(*)(void))0x8065DB3C)(); }
-static inline int batterAISwingInd(void) { return ((int(*)(void))0x8065E078)(); }
-static inline void batterTrackBallInBox(void) { ((void(*)(void))0x8065E50C)(); }
-static inline void batterAIMoveBatter(void) { ((void(*)(void))0x8065EA2C)(); }
-static inline void batterAIControlled(void) { ((void(*)(void))0x8065EE20)(); }
-static inline void trackLastPitchInfo2(void) { ((void(*)(void))0x8065EFDC)(); }
-static inline void batterAISwingEarlyOrLate(void) { ((void(*)(void))0x8065F0F8)(); }
-static inline void batterAIRNGValueSetting(void) { ((void(*)(void))0x8065F2B8)(); }
-static inline void resetBatterPreAB_(void) { ((void(*)(void))0x8065FAF4)(); }
-static inline void resetLastPitchData(void) { ((void(*)(void))0x8065FB44)(); }
-static inline undefined4 aIPickoff(void) { return ((undefined4(*)(void))0x8065FBC4)(); }
-static inline void aiPitchCurveDirection(undefined8 curvePerFrame) { ((void(*)(undefined8))0x8065FD80)(curvePerFrame); }
-static inline void movePitcherOnMound(void) { ((void(*)(void))0x8065FEE4)(); }
-static inline void unused_8065ff80(void) { ((void(*)(void))0x8065FF80)(); }
-static inline void pitcherAISetCurve(void) { ((void(*)(void))0x80660044)(); }
-static inline void pitcherAISelectPitch(void) { ((void(*)(void))0x80660334)(); }
-static inline void pitcherAI_prePitchSetConstants(void) { ((void(*)(void))0x80660640)(); }
-static inline void pitcherAINewBatter(void) { ((void(*)(void))0x806607FC)(); }
-static inline void resetPitcherPreAB_(void) { ((void(*)(void))0x80660A34)(); }
-static inline int maybeSetVsIndOrScoutFlagChance_(void) { return ((int(*)(void))0x80660FA8)(); }
-static inline void resetSomethingRelatedToVersus(void) { ((void(*)(void))0x806618E4)(); }
-static inline void versusScreen_seemsToDoNothing(void) { ((void(*)(void))0x80661CA4)(); }
-static inline void championshipScreen(void) { ((void(*)(void))0x80661CB4)(); }
-static inline void starChanceVsScreenProcess(void) { ((void(*)(void))0x80662550)(); }
-static inline void homeRunTrot(void) { ((void(*)(void))0x80662924)(); }
-static inline void homeRunEnd(void) { ((void(*)(void))0x80662D80)(); }
-static inline void postReplayBatterCelebration(void) { ((void(*)(void))0x8066318C)(); }
-static inline void initializeAnimations_(void) { ((void(*)(void))0x80664190)(); }
-static inline void knockOut_setPosAndVelo(uint fielderIndex) { ((void(*)(uint))0x80664278)(fielderIndex); }
-static inline void garlicOrStadiumHazardKnockOuts_(int fielderIndex, short knockOutAngle_) { ((void(*)(int, short))0x80664438)(fielderIndex, knockOutAngle_); }
-static inline void fielderOnFirePosAndVelo(int fielderIndex) { ((void(*)(int))0x806646DC)(fielderIndex); }
-static inline void maybeCastleFireballBurn(int fielderIndex, int countdownIndex) { ((void(*)(int, int))0x806648D8)(fielderIndex, countdownIndex); }
-static inline void unused_8066496c(int fielderInd) { ((void(*)(int))0x8066496C)(fielderInd); }
-static inline void runningCatch_updatePositionAndVelocity(int fielderIndex) { ((void(*)(int))0x80664AFC)(fielderIndex); }
-static inline void mag_BirdoSlidingCatchSetCoordinates(int fielderIndex) { ((void(*)(int))0x80664CD4)(fielderIndex); }
-static inline void fielderMovement_VelocityDuringCatchAnimations(int fielderIndex) { ((void(*)(int))0x8066527C)(fielderIndex); }
-static inline void calculateBobble(int fielder) { ((void(*)(int))0x806656F8)(fielder); }
-static inline void updateVariablesPostCatch(int fielderIndex) { ((void(*)(int))0x80665B08)(fielderIndex); }
-static inline void processFielderAutoCatch(void) { ((void(*)(void))0x806666DC)(); }
-static inline void catchAnimationProgression(int fielderIndex) { ((void(*)(int))0x806668F4)(fielderIndex); }
-static inline void clamberCheckCatch(int fielderInd) { ((void(*)(int))0x80666DFC)(fielderInd); }
-static inline undefined4 wallJumpSOmething3_(int param_1) { return ((undefined4(*)(int))0x80667088)(param_1); }
-static inline int wallJumpInitialization(int fielderIndex) { return ((int(*)(int))0x806672B8)(fielderIndex); }
-static inline int divingCatch_80667d3c(int fielderIndex) { return ((int(*)(int))0x80667D3C)(fielderIndex); }
-static inline bool uncalledattemptJumpingCatch(int fielderIndex) { return ((bool(*)(int))0x806691F8)(fielderIndex); }
-static inline BOOL checkForAndSetFielderWallActionsOrDives(int fielderIndex) { return ((BOOL(*)(int))0x8066931C)(fielderIndex); }
-static inline void ballThrownToEmptyBaseCatchAttempt(int fielder) { ((void(*)(int))0x80669730)(fielder); }
-static inline undefined4 unused_80669d6c(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80669D6C)(param_1, param_2); }
-static inline void catchThrownBallFun(int fielderInd) { ((void(*)(int))0x80669DFC)(fielderInd); }
-static inline BOOL checkIfRunningCatchOccurs(int fielderInd) { return ((BOOL(*)(int))0x8066A728)(fielderInd); }
-static inline BOOL checkIfCatchOccurs(int fielderInd) { return ((BOOL(*)(int))0x8066AB98)(fielderInd); }
-static inline void evaluateFlyBallCatch(int fielderIndex) { ((void(*)(int))0x8066B384)(fielderIndex); }
-static inline void checkForCatchBallAction(int fielderIndex) { ((void(*)(int))0x8066B72C)(fielderIndex); }
-static inline undefined4 minigameDashUpdateFieldingVals(int param_1) { return ((undefined4(*)(int))0x8066BC74)(param_1); }
-static inline void unused_FUN_8066bf88(int fielderIndex) { ((void(*)(int))0x8066BF88)(fielderIndex); }
-static inline void determineBestFrameForFielder(int fielderIndex) { ((void(*)(int))0x8066C114)(fielderIndex); }
-static inline void updateFielderPositionBasedOnBallState(int fielderIndex) { ((void(*)(int))0x8066C510)(fielderIndex); }
-static inline void unused_FUN_8066c7fc(int fielderIndex) { ((void(*)(int))0x8066C7FC)(fielderIndex); }
-static inline void autoMovement28_minigameDashRelated3(int fielderIndex) { ((void(*)(int))0x8066C9C0)(fielderIndex); }
-static inline void autoMovement27_minigameDashRelated2(int fielderIndex) { ((void(*)(int))0x8066CB58)(fielderIndex); }
-static inline void autoMovement26_minigameRelated1(int fielderIndex) { ((void(*)(int))0x8066CD88)(fielderIndex); }
-static inline void minigameRelated_FUN_8066d4b0(void) { ((void(*)(void))0x8066D4B0)(); }
-static inline void toyfieldRelated_(void) { ((void(*)(void))0x8066D910)(); }
-static inline void miniGameFielding_(void) { ((void(*)(void))0x8066DAB8)(); }
-static inline void minigameDashUpdateFieldingVariables(uint param_1) { ((void(*)(uint))0x8066DF58)(param_1); }
-static inline void miniGameDash(void) { ((void(*)(void))0x8066E518)(); }
-static inline void jumpSetPosAndVelo(int fielderIndex) { ((void(*)(int))0x8066E608)(fielderIndex); }
-static inline void unused_8066e868(int param_1) { ((void(*)(int))0x8066E868)(param_1); }
-static inline void wallSplat_setPosAndVelo(int fielderIndex) { ((void(*)(int))0x8066E9B8)(fielderIndex); }
-static inline void setClamberPos(int fielderIndex) { ((void(*)(int))0x8066EC30)(fielderIndex); }
-static inline void clamberJumpOffWall(int fielderIndex) { ((void(*)(int))0x8066EFC0)(fielderIndex); }
-static inline void unused_8066f14c(int param_1) { ((void(*)(int))0x8066F14C)(param_1); }
-static inline int clamberInitialization(int param_1) { return ((int(*)(int))0x8066F2A8)(param_1); }
-static inline void walljump_calculateJumpedOffWallPositionAndVelocity(int fIndex) { ((void(*)(int))0x8066F5F8)(fIndex); }
-static inline void unused_8066f6b0(void) { ((void(*)(void))0x8066F6B0)(); }
-static inline void unReferenced(void) { ((void(*)(void))0x8066FAEC)(); }
-static inline void fielding_prePitchAutomovement(void) { ((void(*)(void))0x8066FE08)(); }
-static inline void fielding_atBat_SetSomeAutomovements_callCollisionFn(void) { ((void(*)(void))0x80670444)(); }
-static inline void atBat_Fielders(void) { ((void(*)(void))0x80670628)(); }
-static inline void unused_8067070c(void) { ((void(*)(void))0x8067070C)(); }
-static inline void unused_80670ad0(void) { ((void(*)(void))0x80670AD0)(); }
-static inline void fielderActionsOnSteal(void) { ((void(*)(void))0x80670CE4)(); }
-static inline void stealSetFielders(void) { ((void(*)(void))0x80671124)(); }
-static inline void determineSelectedfielderOnIFHit_Dribbler(void) { ((void(*)(void))0x80671438)(); }
-static inline void selectInitialFielders_linedriveThroughPitcher(void) { ((void(*)(void))0x806718A4)(); }
-static inline void setInitialFielderMovements_foulBall(void) { ((void(*)(void))0x80671A38)(); }
-static inline void chooseSecondaryFielderFromClosestOutfielder(void) { ((void(*)(void))0x8067211C)(); }
-static inline void setInitialFielderMovements_generalCase(int secondaryFielderWillBeSetSeparatelyInd) { ((void(*)(int))0x80672580)(secondaryFielderWillBeSetSeparatelyInd); }
-static inline void determinePrimaryAndSecondaryOutFielders(int primaryFielder, int secondaryFielder) { ((void(*)(int, int))0x80672E64)(primaryFielder, secondaryFielder); }
-static inline void setInitialFielderMovements_DeepFly(void) { ((void(*)(void))0x8067327C)(); }
-static inline void humanTeamFieldingFirstFrameAfterHit(void) { ((void(*)(void))0x806734E4)(); }
-static inline void decideHowToTrackFoulBall(int fielderIndex) { ((void(*)(int))0x80673AD4)(fielderIndex); }
-static inline void autoMovement16_trackFoulBall(int fielderIndex) { ((void(*)(int))0x80674DBC)(fielderIndex); }
-static inline void setPlayerWhoCanInterceptThrow(void) { ((void(*)(void))0x80674EB0)(); }
-static inline void SelectClosestFielder2(undefined8 targetX, undefined8 targetZ) { ((void(*)(undefined8, undefined8))0x8067526C)(targetX, targetZ); }
-static inline int selectBestFielder(float ballX, float ballZ, int fielder1Index, int fielder2Index, int mode) { return ((int(*)(float, float, int, int, int))0x8067570C)(ballX, ballZ, fielder1Index, fielder2Index, mode); }
-static inline enumFielder SelectBetterFielder(float ballX, float ballZ, enumFielder fielder1Index, enumFielder fielder2Index, int mode) { return ((enumFielder(*)(float, float, enumFielder, enumFielder, int))0x806761A8)(ballX, ballZ, fielder1Index, fielder2Index, mode); }
-static inline void unused_FUN_8067661c(void) { ((void(*)(void))0x8067661C)(); }
-static inline void selectClosestFielderBasedOnFutureCoord(int futureCoordIndex) { ((void(*)(int))0x806766A4)(futureCoordIndex); }
-static inline void SelectOptimalFielder(void) { ((void(*)(void))0x80677094)(); }
-static inline void unreferenced_806772c8(void) { ((void(*)(void))0x806772C8)(); }
-static inline void selectAssignClosestFielder2(void) { ((void(*)(void))0x80677398)(); }
-static inline void setNewSelectedFielder_determinePriorSelectedFielder_sAutoMovement(int newFielderIndex, int autoMovementMode_) { ((void(*)(int, int))0x80677824)(newFielderIndex, autoMovementMode_); }
-static inline void HandleMiddleInfieldSelection(void) { ((void(*)(void))0x80677DA4)(); }
-static inline void fielderSelect_tertiaryFielderExists_determine2FieldersToKeep(void) { ((void(*)(void))0x8067808C)(); }
-static inline void updateBallLandedFielderSelection(void) { ((void(*)(void))0x80678444)(); }
-static inline void updateInAirFielderSelection(void) { ((void(*)(void))0x806788EC)(); }
-static inline void unused_FUN_80678e58(void) { ((void(*)(void))0x80678E58)(); }
-static inline void updateFielderSelection(void) { ((void(*)(void))0x80678F44)(); }
-static inline void setFielderVelocity_someSituation(int fielderIndex) { ((void(*)(int))0x806792C8)(fielderIndex); }
-static inline void moveFielder_CheckForAndSetJump(int fielderIndex) { ((void(*)(int))0x80679618)(fielderIndex); }
-static inline void updateFielderMovementIfNoBall(enumFielder fielderIndex) { ((void(*)(enumFielder))0x80679D54)(fielderIndex); }
-static inline void autoMovement21_23_humanControlInitialSelectedFielders(enumFielder fielderIndex) { ((void(*)(enumFielder))0x80679EC8)(fielderIndex); }
-static inline void autoMovement15_selectedFielderOnLooseBall_(int fielderIndex) { ((void(*)(int))0x8067A404)(fielderIndex); }
-static inline void liveBallFielderControlHumanTeam(void) { ((void(*)(void))0x8067AA78)(); }
-static inline void checkIfPlayerNeedsToMoveToCatchBall(int fielderIndex) { ((void(*)(int))0x8067AEE4)(fielderIndex); }
-static inline void autoMovement19_foulBall(int fIndex) { ((void(*)(int))0x8067B23C)(fIndex); }
-static inline void autoMovement0_stayStill_exceptForSpecialActions(int fielderIndex) { ((void(*)(int))0x8067B2B4)(fielderIndex); }
-static inline void runOffBaseOverride(int fIndex) { ((void(*)(int))0x8067B628)(fIndex); }
-static inline void autoMovement9_OffBase_coverHome_(int fielderIndex) { ((void(*)(int))0x8067BD44)(fielderIndex); }
-static inline void autoMovement17_runningOffField(int fielderIndex) { ((void(*)(int))0x8067C398)(fielderIndex); }
-static inline void autoMovement12_stopBetweenInstructions(enumFielder fIndex) { ((void(*)(enumFielder))0x8067C740)(fIndex); }
-static inline void setFielderLocToBeNearBase(int fIndex) { ((void(*)(int))0x8067C868)(fIndex); }
-static inline void autoMovement14_infieldSupport(int fielderIndex) { ((void(*)(int))0x8067CC0C)(fielderIndex); }
-static inline void autoMovement20_pitcherLinedriveRelated(int fielderIndex) { ((void(*)(int))0x8067D3E0)(fielderIndex); }
-static inline void knockoutRelated_Grounder_Liner(int param_1) { ((void(*)(int))0x8067D724)(param_1); }
-static inline void knockoutRelated_FlyBall(int param_1) { ((void(*)(int))0x8067DC00)(param_1); }
-static inline void knockoutRelated(void) { ((void(*)(void))0x8067E0C8)(); }
-static inline void uncalled(void) { ((void(*)(void))0x8067E1B8)(); }
-static inline void aITeamFieldingFirstFrameAfterHit(void) { ((void(*)(void))0x80680240)(); }
-static inline void fielderAIAssignmentRelated(int param_1) { ((void(*)(int))0x80680A10)(param_1); }
-static inline void fielderAISomething(void) { ((void(*)(void))0x80680E0C)(); }
-static inline void decideWhenToLeaveFunction2_16_18(int feilderIndex) { ((void(*)(int))0x80681110)(feilderIndex); }
-static inline void updateFielderPosition(int fielderIndex) { ((void(*)(int))0x80681D70)(fielderIndex); }
-static inline void setIntendedLocToInterceptBall(int fielderIndex) { ((void(*)(int))0x806820CC)(fielderIndex); }
-static inline void fielderTrackingBall_updateVariables(int fielderIndex) { ((void(*)(int))0x80682474)(fielderIndex); }
-static inline void fielderTrackingBall_initialVariableSetting_(int fielderIndex) { ((void(*)(int))0x80683858)(fielderIndex); }
-static inline void autoMovement2_18_goTowardsBall_phase2(int fielderIndex) { ((void(*)(int))0x80684428)(fielderIndex); }
-static inline void autoMovement4_AI_goTowardsHitBall_(int fielderIndex) { ((void(*)(int))0x80684648)(fielderIndex); }
-static inline void autoMovement3_goTowardsHitBall_AITeam(int fielderIndex) { ((void(*)(int))0x806848F4)(fielderIndex); }
-static inline void autoMovement25_readyToInterceptThrownBall(int fielderIndex) { ((void(*)(int))0x80684C1C)(fielderIndex); }
-static inline void updateFielderValuesSubFunction1_cuttoffRelated(void) { ((void(*)(void))0x80684F2C)(); }
-static inline void checkIfCutoffIsntAtThrowDestination(int fielderIndex) { ((void(*)(int))0x80685B50)(fielderIndex); }
-static inline void setCutoffLocationToStandAt(int fielderIndex, int intendedLocX, int intendedLocZ) { ((void(*)(int, int, int))0x80685E9C)(fielderIndex, intendedLocX, intendedLocZ); }
-static inline void setInitialFielderMovements_cutoffs(void) { ((void(*)(void))0x8068680C)(); }
-static inline void autoMovement5(int fielderIndex) { ((void(*)(int))0x80687514)(fielderIndex); }
-static inline void autoMovement11_cutoff_setInitialLocation(int fielderIndex) { ((void(*)(int))0x80687AE8)(fielderIndex); }
-static inline void secondaryOutfielderWhenToStopMoving(int fielderIndex) { ((void(*)(int))0x80688588)(fielderIndex); }
-static inline void setSecondaryFielderToBe12mFromDropSpotToSupport_(int fielderIndex, Vec3f * intendedLocation) { ((void(*)(int, Vec3f *))0x80688A58)(fielderIndex, intendedLocation); }
-static inline void autoMovement24_goTowardsHitBall_humanTeam(int fielderIndex) { ((void(*)(int))0x80688CAC)(fielderIndex); }
-static inline void updateFielderValuesSubFunction3_empty(void) { ((void(*)(void))0x80688FD0)(); }
-static inline void autoMovementDetermineWhatToDo(enumFielder fIndex, presetFielderLocations_int_ outfieldPositionToStand) { ((void(*)(enumFielder, presetFielderLocations_int_))0x80688FD4)(fIndex, outfieldPositionToStand); }
-static inline void setInitialFielderMovements_restOfFielders(void) { ((void(*)(void))0x806891B8)(); }
-static inline void setIntendedLocationAheadOfBallPath(int fIndex, int xCoord, int zCoord) { ((void(*)(int, int, int))0x8068949C)(fIndex, xCoord, zCoord); }
-static inline void autoMovement13_GoTowardsBallAsBackUp(int fIndex) { ((void(*)(int))0x80689A40)(fIndex); }
-static inline void autoMovement6_outfielderNoCatch_Phase2(enumFielder fielderIndex) { ((void(*)(enumFielder))0x8068A1BC)(fielderIndex); }
-static inline void autoMovement7_8_outfiederNoCatch_Phase1(enumFielder fielderIndex) { ((void(*)(enumFielder))0x8068A5A8)(fielderIndex); }
-static inline void updateSomeAutoMovementAssignments(void) { ((void(*)(void))0x8068AAA0)(); }
-static inline void setInitialFielderMovements_CoverBases(void) { ((void(*)(void))0x8068BA5C)(); }
-static inline void autoMovement1_coverBase(int fielderIndex) { ((void(*)(int))0x8068C2A0)(fielderIndex); }
-static inline void bobbleDirection(int bobblingPlayerIndex) { ((void(*)(int))0x8068CCA8)(bobblingPlayerIndex); }
-static inline void findClosestFieldersToLooseBallAndAssignToGoGetIt(void) { ((void(*)(void))0x8068D250)(); }
-static inline void checkForAndHandleLooseBalls(void) { ((void(*)(void))0x8068D6CC)(); }
-static inline void aISetFielderWithBallIndex(void) { ((void(*)(void))0x8068DC58)(); }
-static inline void knockoutRelated_subFn(int fielderIndex, int param_2) { ((void(*)(int, int))0x8068E05C)(fielderIndex, param_2); }
-static inline void setCatcherCatchStrategy_distToLandingSpot(int fielderIndex) { ((void(*)(int))0x8068E598)(fielderIndex); }
-static inline void setFielderCatchStrategy_calcFramesToGetToDropSpot(int fielderIndex) { ((void(*)(int))0x8068EBC8)(fielderIndex); }
-static inline void fielderMovement_adjustPlaceToStandForBallBouncingOffWall(int fielderInd, int xCoord, int zCoord) { ((void(*)(int, int, int))0x8068FCB4)(fielderInd, xCoord, zCoord); }
-static inline void updateSprintPointers(void) { ((void(*)(void))0x806902B4)(); }
-static inline uint adjustPlayerPosOutsideFoulLine(int fielderIndex, Vec3f * outPosVec) { return ((uint(*)(int, Vec3f *))0x806906E0)(fielderIndex, outPosVec); }
-static inline int updateFielderPosition_checkFielderCollision_(int fielderIndex, Vec3f * outNewPos, int param_3) { return ((int(*)(int, Vec3f *, int))0x8069082C)(fielderIndex, outNewPos, param_3); }
-static inline undefined4 setZoneAwayFromHome(double param_1, double param_2) { return ((undefined4(*)(double, double))0x80690E84)(param_1, param_2); }
-static inline void calculateMinDiveDistAndEndingCoords(double xDist, double zDist, int fielderIndex, int frameAhead, float * postDiveX, float * postDiveZ, float * minimumDiveDistance) { ((void(*)(double, double, int, int, float *, float *, float *))0x80691374)(xDist, zDist, fielderIndex, frameAhead, postDiveX, postDiveZ, minimumDiveDistance); }
-static inline void fRunningTimeToDestinationPlus7(undefined8 someX, undefined8 someZ, int fielderIndex) { ((void(*)(undefined8, undefined8, int))0x806915F4)(someX, someZ, fielderIndex); }
-static inline void setFielderVelocity(int fielderIndex, int param_2, int distFromRunner) { ((void(*)(int, int, int))0x80691770)(fielderIndex, param_2, distFromRunner); }
-static inline void setFielderAutoCoords(undefined8 targetX, undefined8 targetZ, int param_3) { ((void(*)(undefined8, undefined8, int))0x80691FE0)(targetX, targetZ, param_3); }
-static inline void updateFielderPositionAndVelocityForSpecialActions(int fielderIndex) { ((void(*)(int))0x806921C4)(fielderIndex); }
-static inline void setStandingOnBaseVariables(int fielderIndex) { ((void(*)(int))0x806927C0)(fielderIndex); }
-static inline void fielderMovementRelated(int param_1) { ((void(*)(int))0x80692F7C)(param_1); }
-static inline void minigameFieldingRelated_collisions_(void) { ((void(*)(void))0x80692FDC)(); }
-static inline void fielding_handleCollisionsAndSpecialActions(void) { ((void(*)(void))0x8069354C)(); }
-static inline void updateFielderDirectionFacing(int fielderIndex) { ((void(*)(int))0x80693BEC)(fielderIndex); }
-static inline void handleBodyCheck2(int fielderWBall) { ((void(*)(int))0x806947A4)(fielderWBall); }
-static inline void fielder_endOfInning_deadball_updateCounters(void) { ((void(*)(void))0x806949AC)(); }
-static inline void fielderUpdateChasingRunnerValues(int fielderIndex) { ((void(*)(int))0x80694D58)(fielderIndex); }
-static inline void updateFielder_SpecificValuesEachFrame(int fielderIndex) { ((void(*)(int))0x80694F80)(fielderIndex); }
-static inline void liveBallUpdateFieldingValues(void) { ((void(*)(void))0x806961D8)(); }
-static inline void updateOutfielderPositionBasedOnBallState(void) { ((void(*)(void))0x8069651C)(); }
-static inline void processFielderJumpAI(int fielderIndex) { ((void(*)(int))0x80696748)(fielderIndex); }
-static inline void aITeamFielding_SelectCharWithHand(void) { ((void(*)(void))0x80696AA8)(); }
-static inline void updateFielderMovementAndPosition(void) { ((void(*)(void))0x80696C48)(); }
-static inline void liveBallFielderControlAITeam(void) { ((void(*)(void))0x8069744C)(); }
-static inline void fielderResetAndStoreValuesEachFrame(void) { ((void(*)(void))0x8069771C)(); }
-static inline void setDefaultInMemFielder(void) { ((void(*)(void))0x80697904)(); }
-static inline void initializeMiniGameCharacters(void) { ((void(*)(void))0x80697EE4)(); }
-static inline void fielding_setStartingCoordinates(int positionIndex, int xCoord, int zCoord) { ((void(*)(int, int, int))0x80697FEC)(positionIndex, xCoord, zCoord); }
-static inline void pPRelated_(void) { ((void(*)(void))0x80698240)(); }
-static inline void resetInMemFielders(void) { ((void(*)(void))0x806983CC)(); }
-static inline void initializeFielderConstants(void) { ((void(*)(void))0x80698658)(); }
-static inline void initFielders(void) { ((void(*)(void))0x8069878C)(); }
-static inline void ifCurrentFielderIsTakingOverBaseCovering(int fielderIndex, int fielderAction) { ((void(*)(int, int))0x806988F0)(fielderIndex, fielderAction); }
-static inline void fielderMainFunction(void) { ((void(*)(void))0x80698964)(); }
-static inline void QueueTextToDisplay(EnumPopupText_word textToDisplay) { ((void(*)(EnumPopupText_word))0x806989AC)(textToDisplay); }
-static inline void initializeSomethingDuringTransition(void) { ((void(*)(void))0x80698B24)(); }
-static inline void resetCount(void) { ((void(*)(void))0x80699718)(); }
-static inline void configureTeamsForGame_Unused__(int battingInd, int param_2, int initialBattingAndFielding, int addtlParam) { ((void(*)(int, int, int, int))0x80699734)(battingInd, param_2, initialBattingAndFielding, addtlParam); }
-static inline void SetGameStatus(EnumGameStatus newGameStatus) { ((void(*)(EnumGameStatus))0x80699768)(newGameStatus); }
-static inline void exitToMenuControl(void) { ((void(*)(void))0x80699790)(); }
-static inline void gameInitRelated(void) { ((void(*)(void))0x80699910)(); }
-static inline void simulate1FrameOfTheGame(void) { ((void(*)(void))0x80699D34)(); }
-static inline void transferSomeValuesOnMatchLoad(void) { ((void(*)(void))0x80699F30)(); }
-static inline void gameSimulationFunction(void) { ((void(*)(void))0x8069A158)(); }
-static inline undefined4 exitMenu_main(EnumControllerInput param_1) { return ((undefined4(*)(EnumControllerInput))0x8069A414)(param_1); }
-static inline void startChallengeModeMatch_(void) { ((void(*)(void))0x8069A634)(); }
-static inline void endOfGame_menuControl(void) { ((void(*)(void))0x8069AAC0)(); }
-static inline void matchEndGameScreenFunction(void) { ((void(*)(void))0x8069ADD4)(); }
-static inline void evaluateInningCondition(int inning) { ((void(*)(int))0x8069B5C4)(inning); }
-static inline void uncalledRunnerUpdateRelated(void) { ((void(*)(void))0x8069B65C)(); }
-static inline void transitionToLiveBallWithoutContact(byte stealInd) { ((void(*)(byte))0x8069B730)(stealInd); }
-static inline void processScoreChanges(int isLiveBallScreen) { ((void(*)(int))0x8069B7E0)(isLiveBallScreen); }
-static inline void endOfMatch(void) { ((void(*)(void))0x8069BE48)(); }
-static inline void unreferenced_8069c064(void) { ((void(*)(void))0x8069C064)(); }
-static inline void endOfGameCheck(int isRBI) { ((void(*)(int))0x8069C128)(isRBI); }
-static inline void inningImportanceAI(void) { ((void(*)(void))0x8069C490)(); }
-static inline void inningChange(int param_1) { ((void(*)(int))0x8069C67C)(param_1); }
-static inline void settingGameStatus(void) { ((void(*)(void))0x8069CB30)(); }
-static inline int handleABEndEvent(void) { return ((int(*)(void))0x8069CD74)(); }
-static inline void handleDeadBall(void) { ((void(*)(void))0x8069CDC4)(); }
-static inline void playOverTransitionStuff(void) { ((void(*)(void))0x8069CFE8)(); }
-static inline void checkIfPlayOver(void) { ((void(*)(void))0x8069D358)(); }
-static inline void switchFromAtBatToLiveBall(void) { ((void(*)(void))0x8069DE2C)(); }
-static inline void freePracticeSomething_(void) { ((void(*)(void))0x8069DE6C)(); }
-static inline void endBatterTransition(void) { ((void(*)(void))0x8069DEEC)(); }
-static inline void atBatScreen(void) { ((void(*)(void))0x8069E080)(); }
-static inline void newPitch(void) { ((void(*)(void))0x8069E1E8)(); }
-static inline void matchTransitionPrepareNextAB(void) { ((void(*)(void))0x8069E490)(); }
-static inline void practiceNewBatter_(void) { ((void(*)(void))0x8069E7B4)(); }
-static inline void initNewInning_(void) { ((void(*)(void))0x8069E83C)(); }
-static inline void exhibitionGameTransitionCalculations(int param_1) { ((void(*)(int))0x8069E9C4)(param_1); }
-static inline void initializeGame_(void) { ((void(*)(void))0x8069EFA4)(); }
-static inline void baseballMatchSimulation(void) { ((void(*)(void))0x8069F1B0)(); }
-static inline int updateFielderState(int fielderIndex, int updateType) { return ((int(*)(int, int))0x8069F898)(fielderIndex, updateType); }
-static inline void foulAnimationRelatedMaybe(int fielderInd, AnimationStruct * animStruct) { ((void(*)(int, AnimationStruct *))0x8069FB2C)(fielderInd, animStruct); }
-static inline void fielderThrowingAnimations(int fielderIndex) { ((void(*)(int))0x806A02BC)(fielderIndex); }
-static inline void animationsForFielding(int fielderIndex) { ((void(*)(int))0x806A05D8)(fielderIndex); }
-static inline void fielderAnimations_setAnimation(int fielderIndex) { ((void(*)(int))0x806A0BF8)(fielderIndex); }
-static inline void handleRunnerActionsAndTagging(void) { ((void(*)(void))0x806A1998)(); }
-static inline void fielderAnimations(void) { ((void(*)(void))0x806A1F04)(); }
-static inline void runnerAnimation_general(int runnerIndex) { ((void(*)(int))0x806A2240)(runnerIndex); }
-static inline void runnerAnimation_detailed(int param_1) { ((void(*)(int))0x806A2908)(param_1); }
-static inline void batterAnimations_(void) { ((void(*)(void))0x806A2B8C)(); }
-static inline void pitcherAnimation_(void) { ((void(*)(void))0x806A3C70)(); }
-static inline void minigameAnimations(void) { ((void(*)(void))0x806A51D4)(); }
-static inline void matchAnimations(void) { ((void(*)(void))0x806A5590)(); }
-static inline void unsure_updateAnimations(void) { ((void(*)(void))0x806A5950)(); }
-static inline void setDefaultPlayTrackingVariables3(void) { ((void(*)(void))0x806A61C4)(); }
-static inline void setupBallTrailEffect(enumBallTrailTypes maybeBallTrailType, int trailDuration) { ((void(*)(enumBallTrailTypes, int))0x806A66B4)(maybeBallTrailType, trailDuration); }
-static inline void ballAnimationSubFun4(void) { ((void(*)(void))0x806A6ADC)(); }
-static inline void displayBallTrail(void) { ((void(*)(void))0x806A7684)(); }
-static inline void ballSpinSetting(void) { ((void(*)(void))0x806A7C48)(); }
-static inline void clearAnimationRelatedPointers(void) { ((void(*)(void))0x806A8190)(); }
-static inline void ballAnimationSubFun3(void) { ((void(*)(void))0x806A8218)(); }
-static inline void ballAnimationSubFun2(void) { ((void(*)(void))0x806A8374)(); }
-static inline void ballAnimationSubFun1(int param_1) { ((void(*)(int))0x806A868C)(param_1); }
-static inline void ballAnimations(void) { ((void(*)(void))0x806A8860)(); }
-static inline void AnimBlr(void) { ((void(*)(void))0x806A92E4)(); }
-static inline void resetAnimationRelatedPointers(void) { ((void(*)(void))0x806A92F0)(); }
-static inline void animateStarHits_Pitches_(void) { ((void(*)(void))0x806A94A8)(); }
-static inline void animateChargeSprites(void) { ((void(*)(void))0x806A9BEC)(); }
-static inline void resetAnimationFlags(void) { ((void(*)(void))0x806A9F74)(); }
-static inline void computeAdjustedFielderOrientation(int fielderIndex) { ((void(*)(int))0x806AA030)(fielderIndex); }
-static inline void animateDefence_(void) { ((void(*)(void))0x806AA1D8)(); }
-static inline undefined4 loadMVPMaybe_(void) { return ((undefined4(*)(void))0x806AA66C)(); }
-static inline void animateShadows_nonBall_(void) { ((void(*)(void))0x806AA708)(); }
-static inline void matchTransitionFunction2(void) { ((void(*)(void))0x806AA904)(); }
-static inline undefined4 loadRunnerActors_(void) { return ((undefined4(*)(void))0x806AAAF8)(); }
-static inline void setDefaultPlayTrackingVariables2(void) { ((void(*)(void))0x806AB174)(); }
-static inline void initializeSomethingDuringTransition2(void) { ((void(*)(void))0x806AB19C)(); }
-static inline void setInningEndingKIndTo0(void) { ((void(*)(void))0x806AB1D0)(); }
-static inline void graphicsFunction_nonMiniGame_(void) { ((void(*)(void))0x806AB26C)(); }
-static inline void resetAnimRelatedPointer(void) { ((void(*)(void))0x806AB4A4)(); }
-static inline void emptyFunction(void) { ((void(*)(void))0x806AB4BC)(); }
-static inline void resetAnimationFlags2(void) { ((void(*)(void))0x806AB4E8)(); }
-static inline void animateOffence(void) { ((void(*)(void))0x806AB564)(); }
-static inline void setCharacterAnimations_(int battingTeam, int param_2) { ((void(*)(int, int))0x806AB8E8)(battingTeam, param_2); }
-static inline void checkForButtonPressToSkip_(undefined4 param_1, undefined2 inputsToCheckFor) { ((void(*)(undefined4, undefined2))0x806AB9CC)(param_1, inputsToCheckFor); }
-static inline void InterpretControllerInputsIntoMagnitude(int param_1) { ((void(*)(int))0x806ABE1C)(param_1); }
-static inline void UpdateControllerInputs(void) { ((void(*)(void))0x806AC398)(); }
-static inline void resetInputTrackers(void) { ((void(*)(void))0x806AC534)(); }
-static inline void getAdjustedPitcherStamina(int team, int rosterID, int stamAdj) { ((void(*)(int, int, int))0x806AC5F8)(team, rosterID, stamAdj); }
-static inline int CheckFieldingStat(int team, int rosterID, EnumFieldingAbilityBitLocation bit) { return ((int(*)(int, int, EnumFieldingAbilityBitLocation))0x806AC698)(team, rosterID, bit); }
-static inline void calculateChemistry(int teamFielding, int character, int secondCharacter) { ((void(*)(int, int, int))0x806AC6EC)(teamFielding, character, secondCharacter); }
-static inline void unreferenced_806ac768(int param_1) { ((void(*)(int))0x806AC768)(param_1); }
-static inline void initializeInMemRunner(int rosterID, int runnerInd) { ((void(*)(int, int))0x806AC9F8)(rosterID, runnerInd); }
-static inline void setInMemBatterConstants(int rosterID) { ((void(*)(int))0x806ACEF4)(rosterID); }
-static inline void getThrowSpeedBasedOnArmStrengthStat(undefined4 armStrength) { ((void(*)(undefined4))0x806AD268)(armStrength); }
-static inline void setFielderValues(int rosterID, int fielder) { ((void(*)(int, int))0x806AD2E0)(rosterID, fielder); }
-static inline void setPitcherStatsToInMemPitcher(int param_1) { ((void(*)(int))0x806ADC48)(param_1); }
-static inline void initRosterForMatch(void) { ((void(*)(void))0x806ADFB0)(); }
-static inline int runnerStealing_TransitionToLiveViewIndicator(void) { return ((int(*)(void))0x806AE57C)(); }
-static inline undefined4 waitingForPitch_checkForPickoffs(void) { return ((undefined4(*)(void))0x806AE7DC)(); }
-static inline void unused_806aeabc(void) { ((void(*)(void))0x806AEABC)(); }
-static inline void unused_806aec2c(void) { ((void(*)(void))0x806AEC2C)(); }
-static inline void pitchCall(void) { ((void(*)(void))0x806AF480)(); }
-static inline void estimateXAndFrameAtBatterZ(undefined8 batZ, int varToUpdate, int considerCurveInd) { ((void(*)(undefined8, int, int))0x806AF7FC)(batZ, varToUpdate, considerCurveInd); }
-static inline void unused_806af8cc(void) { ((void(*)(void))0x806AF8CC)(); }
-static inline void unused_806afc28(void) { ((void(*)(void))0x806AFC28)(); }
-static inline void pitchCurve(void) { ((void(*)(void))0x806AFF88)(); }
-static inline void pitchInAirFunction(void) { ((void(*)(void))0x806B02DC)(); }
-static inline void pitchSetPhysicsConstants(void) { ((void(*)(void))0x806B17FC)(); }
-static inline void adjustPitchCurveSpeedCursedBall(void) { ((void(*)(void))0x806B1D3C)(); }
-static inline void pitchBeingReleased(void) { ((void(*)(void))0x806B21A0)(); }
-static inline void handleHPBORRunnerAdvance(void) { ((void(*)(void))0x806B263C)(); }
-static inline void resetBatterCount(void) { ((void(*)(void))0x806B2760)(); }
-static inline void resetCounter(void) { ((void(*)(void))0x806B27AC)(); }
-static inline void unreferenced_806b27c0(void) { ((void(*)(void))0x806B27C0)(); }
-static inline void endAtBatNonHit(void) { ((void(*)(void))0x806B293C)(); }
-static inline void unreferenced_806b2e7c(void) { ((void(*)(void))0x806B2E7C)(); }
-static inline void unused_806b2fc0(void) { ((void(*)(void))0x806B2FC0)(); }
-static inline void unused_806b3040(void) { ((void(*)(void))0x806B3040)(); }
-static inline void pitchingWindUpFunction(void) { ((void(*)(void))0x806B31BC)(); }
-static inline void pitcherMovementOnMound(void) { ((void(*)(void))0x806B3B58)(); }
-static inline void waitingForPitch(void) { ((void(*)(void))0x806B3DA0)(); }
-static inline void pitcherAITransitionFromPrePitchToWindup(pitchStatus param_1) { ((void(*)(pitchStatus))0x806B4158)(param_1); }
-static inline int loadPitcherActor(void) { return ((int(*)(void))0x806B4170)(); }
-static inline void setDefaultInMemPitcher(void) { ((void(*)(void))0x806B4248)(); }
-static inline void resetPitcherValuesBetweenBatters_(int param_1) { ((void(*)(int))0x806B447C)(param_1); }
-static inline void resetInMemPitcher(void) { ((void(*)(void))0x806B44C8)(); }
-static inline void setPitchingConstants_(void) { ((void(*)(void))0x806B454C)(); }
-static inline void atBat_Pitcher(void) { ((void(*)(void))0x806B45F4)(); }
-static inline void unreferenced_806b4950(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, int param_11, int param_12, int param_13, int param_14) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int, int, int, int))0x806B4950)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14); }
-static inline void MVPCalculation(void) { ((void(*)(void))0x806B4A50)(); }
-static inline void winningPitcher_(void) { ((void(*)(void))0x806B5208)(); }
-static inline void endOfGameStats_MVP(void) { ((void(*)(void))0x806B55EC)(); }
-static inline void steal_pickoff_incrementSteal_runsStats(void) { ((void(*)(void))0x806B5B30)(); }
-static inline void updateStatsBasedOnABResult(int batterIndex, EnumAtBatResult_word atBatResult, int fIndexWhoCausedOut_, int rbisOnPlay) { ((void(*)(int, EnumAtBatResult_word, int, int))0x806B5D9C)(batterIndex, atBatResult, fIndexWhoCausedOut_, rbisOnPlay); }
-static inline void postPlayTrackStats(void) { ((void(*)(void))0x806B69A8)(); }
-static inline void pickoff_infieldThrow_related(undefined2 throwingFielder) { ((void(*)(undefined2))0x806B7608)(throwingFielder); }
-static inline void monitorForErrors(void) { ((void(*)(void))0x806B77C4)(); }
-static inline void update_runnersBeingTargetedWhileBatterCanBeForcedOut(void) { ((void(*)(void))0x806B7B58)(); }
-static inline void initialize_runnersBeingTargetedWhileBatterCanBeForcedOut(void) { ((void(*)(void))0x806B80D4)(); }
-static inline void runnerResultCd_bunt(void) { ((void(*)(void))0x806B84A8)(); }
-static inline void adjustTotalBasesOnHit(void) { ((void(*)(void))0x806B863C)(); }
-static inline void setInitialTotalBasesOnHit(void) { ((void(*)(void))0x806B8800)(); }
-static inline void midPlay_trackStats(void) { ((void(*)(void))0x806B8B60)(); }
-static inline void updatePitcherStatsOnScoreChange(void) { ((void(*)(void))0x806B8F88)(); }
-static inline void postPitchStatUpdating(int liveBallInd) { ((void(*)(int))0x806B91E8)(liveBallInd); }
-static inline void incrementPitchCount(void) { ((void(*)(void))0x806B9BC8)(); }
-static inline void postPitchStatRelated(undefined4 param_1_always0, undefined4 param_2, undefined4 param_3, undefined4 battingPositionOfCatcher_) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x806B9C0C)(param_1_always0, param_2, param_3, battingPositionOfCatcher_); }
-static inline void setRunnerOnBaseIndicators(void) { ((void(*)(void))0x806B9FFC)(); }
-static inline void intializeRunnersDuringTransition(void) { ((void(*)(void))0x806BA078)(); }
-static inline void resetGameControlVars_duringNewInning__(void) { ((void(*)(void))0x806BA1C4)(); }
-static inline void initializeStats(void) { ((void(*)(void))0x806BA39C)(); }
-static inline void determineIfReplayShouldPlay(void) { ((void(*)(void))0x806BACB4)(); }
-static inline void replaceGameStructs_postReplay(undefined4 param_1_always1) { ((void(*)(undefined4))0x806BB290)(param_1_always1); }
-static inline void useReplayInputs(void) { ((void(*)(void))0x806BB578)(); }
-static inline void structCopying(void) { ((void(*)(void))0x806BB840)(); }
-static inline void CopyMoreStructs(int param_1) { ((void(*)(int))0x806BBA6C)(param_1); }
-static inline void lastPlayStats(void) { ((void(*)(void))0x806BBF24)(); }
-static inline void initializeReplayState(void) { ((void(*)(void))0x806BC01C)(); }
-static inline void ReplayRelatedCopying_storeDataBeforePlay(void) { ((void(*)(void))0x806BC4EC)(); }
-static inline void initializeReplayVariables(void) { ((void(*)(void))0x806BC814)(); }
-static inline void runnerChangeDirectionHumanInput(int runnerNum) { ((void(*)(int))0x806BCBC4)(runnerNum); }
-static inline void cCSRunningFun(void) { ((void(*)(void))0x806BCE00)(); }
-static inline void running_LiveBall_Human(void) { ((void(*)(void))0x806BD350)(); }
-static inline void running_sendOutRunnerToDugout(int runnerIndex) { ((void(*)(int))0x806BDC68)(runnerIndex); }
-static inline void running_roundBaseDecision(int runnerIndex) { ((void(*)(int))0x806BDD90)(runnerIndex); }
-static inline undefined4 running_overrun1stIndicator(void) { return ((undefined4(*)(void))0x806BE36C)(); }
-static inline void running_triggerSlideOrBodyCheck(int runnerNum) { ((void(*)(int))0x806BE528)(runnerNum); }
-static inline void unused_(int param_1) { ((void(*)(int))0x806BEA58)(param_1); }
-static inline runnerMovementType running_DirectionOverrides(int runnerNum) { return ((runnerMovementType(*)(int))0x806BEB0C)(runnerNum); }
-static inline void unused__806bee24(int param_1) { ((void(*)(int))0x806BEE24)(param_1); }
-static inline void running_updatePosition(int runnerIndex) { ((void(*)(int))0x806BF0BC)(runnerIndex); }
-static inline void running_updatePositionTracking_storeRBIs_stopAtNextBase_displaySafe(int runnerIndex) { ((void(*)(int))0x806C0224)(runnerIndex); }
-static inline void unReferenced_806c0b4c(int param_1) { ((void(*)(int))0x806C0B4C)(param_1); }
-static inline void running_overrunBaseControl(undefined4 rIndex) { ((void(*)(undefined4))0x806C0C5C)(rIndex); }
-static inline void runnerOverrun1BRelated(undefined4 rIndex) { ((void(*)(undefined4))0x806C0F40)(rIndex); }
-static inline void running_ActionControlAndVelocity(undefined4 rIndex) { ((void(*)(undefined4))0x806C1448)(rIndex); }
-static inline void running_CalculateSpeedVariables(int rIndex) { ((void(*)(int))0x806C1704)(rIndex); }
-static inline void updateRunnerFramesToClosestBases(int runnerNum, int framesPrevBase, int framesNextBase) { ((void(*)(int, int, int))0x806C2014)(runnerNum, framesPrevBase, framesNextBase); }
-static inline void running_updateDistAndFramesToClosestBases(int runnerNum) { ((void(*)(int))0x806C2110)(runnerNum); }
-static inline void unused__806c2480(int param_1) { ((void(*)(int))0x806C2480)(param_1); }
-static inline void running_LiveBall_AI(void) { ((void(*)(void))0x806C27A8)(); }
-static inline undefined4 possibleRunnerAIRelated(int param_1, int param_2) { return ((undefined4(*)(int, int))0x806C3254)(param_1, param_2); }
-static inline void runnerAILiveBall_(int runnerIndex) { ((void(*)(int))0x806C3378)(runnerIndex); }
-static inline int runnerAI_2(int param_1) { return ((int(*)(int))0x806C375C)(param_1); }
-static inline void runnerAISubfunction4(int runnerIndex, int someFrames) { ((void(*)(int, int))0x806C3B64)(runnerIndex, someFrames); }
-static inline undefined4 runnerAISubfunction3(int param_1, int param_2) { return ((undefined4(*)(int, int))0x806C4108)(param_1, param_2); }
-static inline void runnerAISubfunction2(int runnerIndex, int param_2, int param_3) { ((void(*)(int, int, int))0x806C48D4)(runnerIndex, param_2, param_3); }
-static inline void running_AIStartSteals(void) { ((void(*)(void))0x806C4D44)(); }
-static inline void runnerAISetRunningDirection(int runnerNum, int actionCode) { ((void(*)(int, int))0x806C4F88)(runnerNum, actionCode); }
-static inline int runnerAISubfunction(void) { return ((int(*)(void))0x806C51AC)(); }
-static inline void running_setRestrictedMovements(void) { ((void(*)(void))0x806C5830)(); }
-static inline void running_beginSteal_CheckForPerfect(void) { ((void(*)(void))0x806C5F8C)(); }
-static inline void unreferenced_806c6140(void) { ((void(*)(void))0x806C6140)(); }
-static inline void updateRunnerValues(void) { ((void(*)(void))0x806C6360)(); }
-static inline void running_CheckForForceOuts_UpdateStamina_UpdateTagOutVars(void) { ((void(*)(void))0x806C64B8)(); }
-static inline void running_UpdateTrackingValues_BasesEarned(void) { ((void(*)(void))0x806C68B0)(); }
-static inline void running_CalcVeloAndIfBatterShouldStayStill(void) { ((void(*)(void))0x806C6B7C)(); }
-static inline void running_chainChompSprintRelated(void) { ((void(*)(void))0x806C6D5C)(); }
-static inline void setRunnerAngle(void) { ((void(*)(void))0x806C6F14)(); }
-static inline void unused_forceOutSomething(void) { ((void(*)(void))0x806C72BC)(); }
-static inline void running_checkForOuts(void) { ((void(*)(void))0x806C749C)(); }
-static inline void running_ForceOutStateRelated(void) { ((void(*)(void))0x806C7BAC)(); }
-static inline void maybeUpdateRunnerNoRun(void) { ((void(*)(void))0x806C7CB8)(); }
-static inline void runnerOut(int runnerNum) { ((void(*)(int))0x806C7E1C)(runnerNum); }
-static inline void maybeHandleBaserunners(void) { ((void(*)(void))0x806C802C)(); }
-static inline void stealCancelLeadoffs(void) { ((void(*)(void))0x806C81B0)(); }
-static inline void setDefaultInMemRunner(void) { ((void(*)(void))0x806C81D0)(); }
-static inline void updateRunnerPosition(int runnerNum, byte baseIncrement) { ((void(*)(int, byte))0x806C88F8)(runnerNum, baseIncrement); }
-static inline void transferInMemRunnerValuesToNextRunnerIndex(void) { ((void(*)(void))0x806C8A50)(); }
-static inline void initializeARunner(void) { ((void(*)(void))0x806C926C)(); }
-static inline void resetInMemRunners(void) { ((void(*)(void))0x806C93E4)(); }
-static inline void initBaseRunnersAfterFoulBall(void) { ((void(*)(void))0x806C9578)(); }
-static inline void initializeInMemRunner_806c9638(void) { ((void(*)(void))0x806C9638)(); }
-static inline void unreferenced_806c96ac(void) { ((void(*)(void))0x806C96AC)(); }
-static inline void _unused_(void) { ((void(*)(void))0x806C9848)(); }
-static inline void running_MainFunction(void) { ((void(*)(void))0x806C99EC)(); }
-static inline undefined4 addToCircularBuffer(undefined param_1, undefined param_2, undefined param_3) { return ((undefined4(*)(undefined, undefined, undefined))0x806CA2EC)(param_1, param_2, param_3); }
-static inline void stadiumMusic_(EnumStadiumIDs4 stadium) { ((void(*)(EnumStadiumIDs4))0x806CA3AC)(stadium); }
-static inline void updateAndRemoveStadiumEmitter(int emitterIndex) { ((void(*)(int))0x806CA924)(emitterIndex); }
-static inline SND_EMITTER * updateOrRemoveEmitter(int emitterID, SND_FVECTOR * newPos, SND_FVECTOR * newDir) { return ((SND_EMITTER *(*)(int, SND_FVECTOR *, SND_FVECTOR *))0x806CAAF4)(emitterID, newPos, newDir); }
-static inline int initializeStadiumObjectEmitter(int soundID, SND_FVECTOR * position, SND_FVECTOR * direction, int paramIndex) { return ((int(*)(int, SND_FVECTOR *, SND_FVECTOR *, int))0x806CAC58)(soundID, position, direction, paramIndex); }
-static inline void initializeCamera_(void) { ((void(*)(void))0x806CAF20)(); }
-static inline void transitionToReplay_(void) { ((void(*)(void))0x806CB110)(); }
-static inline InMemBall * makeSoundOfBallBouncing(void) { return ((InMemBall *(*)(void))0x806CB65C)(); }
-static inline void handleGameSound(void) { ((void(*)(void))0x806CBE08)(); }
-static inline unkSoundStruct * soundControl_(void) { return ((unkSoundStruct *(*)(void))0x806CCB14)(); }
-static inline GameControlsStruct * soundFxRelated(void) { return ((GameControlsStruct *(*)(void))0x806CE2B0)(); }
-static inline void newAtBatPlaySound(void) { ((void(*)(void))0x806CECA0)(); }
-static inline uint adjustBallSoundEffectBasedOnHeight(void) { return ((uint(*)(void))0x806CED14)(); }
-static inline void initializeSounds_(void) { ((void(*)(void))0x806CEFAC)(); }
-static inline int animateThrownBall_(float x, float y, float z, enumSoundEffect_short soundCode) { return ((int(*)(float, float, float, enumSoundEffect_short))0x806CEFF0)(x, y, z, soundCode); }
-static inline void callSfx(enumSoundEffect_short sfxID) { ((void(*)(enumSoundEffect_short))0x806CF0F8)(sfxID); }
-static inline void playCharacterSound(int charID, enumCharacterSounds soundCode) { ((void(*)(int, enumCharacterSounds))0x806CF2B4)(charID, soundCode); }
-static inline void PlaySoundEffect(enumSoundEffect_short soundNumber) { ((void(*)(enumSoundEffect_short))0x806CF328)(soundNumber); }
-static inline void playOverSounds(uint param_1) { ((void(*)(uint))0x806CF3BC)(param_1); }
-static inline void cleanupCharacters(void) { ((void(*)(void))0x806CFD44)(); }
-static inline void hud_ScoreUpdate_ToyFieldOffScreenPlayers(void) { ((void(*)(void))0x806D04D0)(); }
-static inline void animateScreenRelated(void) { ((void(*)(void))0x806D0C30)(); }
-static inline void animateScreenRelated_806d0d04(void) { ((void(*)(void))0x806D0D04)(); }
-static inline void manageScoreboardGraphic(void) { ((void(*)(void))0x806D1058)(); }
-static inline void graphics_ShowScoreUpdateOnRBI_ongoing(void) { ((void(*)(void))0x806D29F4)(); }
-static inline void graphics_ShowScoreUpdateOnRBI_initial(void) { ((void(*)(void))0x806D2DF0)(); }
-static inline void relatedToAnimatingEndOfGame(void) { ((void(*)(void))0x806D3228)(); }
-static inline void HUD_ongoingStarChance(void) { ((void(*)(void))0x806D45FC)(); }
-static inline void HUD_initStarChance(void) { ((void(*)(void))0x806D4660)(); }
-static inline void drawDiamondMiniMap_ongoing(void) { ((void(*)(void))0x806D4A50)(); }
-static inline void drawDiamondMiniMap_init(void) { ((void(*)(void))0x806D5730)(); }
-static inline void toyfield_hud_turns_diamondMap(void) { ((void(*)(void))0x806D59A8)(); }
-static inline void handleInGameEventsAndSoundEffects(void) { ((void(*)(void))0x806D5D38)(); }
-static inline void manageEventStates(void) { ((void(*)(void))0x806D61D8)(); }
-static inline void animateMatchScene(void) { ((void(*)(void))0x806D6480)(); }
-static inline void initAnimStruct_(void) { ((void(*)(void))0x806D6894)(); }
-static inline void pauseMenu_ControlsMenu_(void) { ((void(*)(void))0x806D6D80)(); }
-static inline void animatePauseMenu(void) { ((void(*)(void))0x806D80F8)(); }
-static inline void wallBallAnimationRelated(void) { ((void(*)(void))0x806D88AC)(); }
-static inline void draw_OnBaseChemLinks(void) { ((void(*)(void))0x806D8D90)(); }
-static inline void draw_ongoingStarGuageHud(void) { ((void(*)(void))0x806D8EA4)(); }
-static inline void draw_initStarGuageHud(void) { ((void(*)(void))0x806D9938)(); }
-static inline void draw_ScoreInningHud(void) { ((void(*)(void))0x806DA888)(); }
-static inline void maybe_updateBallStrikeOutUI(undefined4 scene) { ((void(*)(undefined4))0x806DAF74)(scene); }
-static inline void update_BallStrikeOutHud(void) { ((void(*)(void))0x806DB0A8)(); }
-static inline void init_BallStrikeOutHud(void) { ((void(*)(void))0x806DB320)(); }
-static inline void matchHudDrawingControl(void) { ((void(*)(void))0x806DB60C)(); }
-static inline void runScored(void) { ((void(*)(void))0x806DB828)(); }
-static inline void categorizeBallTrajectory(void) { ((void(*)(void))0x806DBB84)(); }
-static inline void atBatBuntResult(void) { ((void(*)(void))0x806DBF0C)(); }
-static inline void atBatResultsForOuts(void) { ((void(*)(void))0x806DC1D4)(); }
-static inline undefined4 noForceOutInd_atBatResultsAfterForcedRunnersAllAdvance(void) { return ((undefined4(*)(void))0x806DC408)(); }
-static inline void setAtBatResult(void) { ((void(*)(void))0x806DC738)(); }
-static inline void setDefaultPlayTrackingVariables1(void) { ((void(*)(void))0x806DCBF0)(); }
-static inline void initializeInningTrackers(void) { ((void(*)(void))0x806DCC78)(); }
-static inline int bobOmbDerbyBatterAI2_(int * param_1, int param_2) { return ((int(*)(int *, int))0x806DD3FC)(param_1, param_2); }
-static inline int WeightedRandomIndex(byte * weights, int param_counter) { return ((int(*)(byte *, int))0x806DD634)(weights, param_counter); }
-static inline void iterateBatter(int teamBatting) { ((void(*)(int))0x806DD868)(teamBatting); }
-static inline double randomInRange_(double param_1, double param_2) { return ((double(*)(double, double))0x806DDC60)(param_1, param_2); }
-static inline int randBetween(int param_1, int param_2) { return ((int(*)(int, int))0x806DDDB0)(param_1, param_2); }
-static inline int RandomInt(uint param_1) { return ((int(*)(uint))0x806DDEB8)(param_1); }
-static inline int RandomInt_Game(int MaxNum) { return ((int(*)(int))0x806DDF4C)(MaxNum); }
-static inline void calculateBallInterceptDistance_(InMemBall * inmemBall, int zero_, int ballFutureX_, int auStack_) { ((void(*)(InMemBall *, int, int, int))0x806DE064)(inmemBall, zero_, ballFutureX_, auStack_); }
-static inline void fieldersRunningToDugoutCalculateOffsets(undefined8 stadiumRelated, undefined8 fielderRelatedX, undefined8 fielderRelatedZ, int xOffset, int zOffset) { ((void(*)(undefined8, undefined8, undefined8, int, int))0x806DE830)(stadiumRelated, fielderRelatedX, fielderRelatedZ, xOffset, zOffset); }
-static inline void sinAndCosOfAngle(undefined8 angle, int cos, int sin) { ((void(*)(undefined8, int, int))0x806DE9F8)(angle, cos, sin); }
-static inline void getAngleComponents(short angle, int xComponent, int zComponent) { ((void(*)(short, int, int))0x806DEA5C)(angle, xComponent, zComponent); }
-static inline void radianAngleToPoint(undefined8 x, undefined8 y) { ((void(*)(undefined8, undefined8))0x806DEBD4)(x, y); }
-static inline int calculateAngleFromCoordinates(double param_1, double param_2) { return ((int(*)(double, double))0x806DEC20)(param_1, param_2); }
-static inline void calculateDiffInAngles_(undefined8 angle1, undefined8 angle2) { ((void(*)(undefined8, undefined8))0x806DECB0)(angle1, angle2); }
-static inline void angleDifferenceNormalized(short angle1, short angle2) { ((void(*)(short, short))0x806DED38)(angle1, angle2); }
-static inline void getDifferenceInAngle(int angle1, int angle2) { ((void(*)(int, int))0x806DED8C)(angle1, angle2); }
-static inline void normalizeAnglebetween_2048And2047(short anglePlus180) { ((void(*)(short))0x806DEDBC)(anglePlus180); }
-static inline short normalizeAngle(short BallAngle) { return ((short(*)(short))0x806DEF00)(BallAngle); }
-static inline double radianAngleReduction(double angle) { return ((double(*)(double))0x806DEF3C)(angle); }
-static inline void normalizeAngleToRange(undefined8 angleRadians) { ((void(*)(undefined8))0x806DEF98)(angleRadians); }
-static inline int convertRadiansToBase4096(double param_1) { return ((int(*)(double))0x806DEFF4)(param_1); }
-static inline double normalizeAngle_806df040(short param_1) { return ((double(*)(short))0x806DF040)(param_1); }
-static inline double someAngleFun(short param_1) { return ((double(*)(short))0x806DF0AC)(param_1); }
-static inline void fielderAIDecideWhatRunnerToTarget(int fielderIndex) { ((void(*)(int))0x806DF130)(fielderIndex); }
-static inline int fielderAIWeirdSituation(void) { return ((int(*)(void))0x806E10DC)(); }
-static inline undefined4 canThrowOutRunnerWhoNeedsToTagUp(void) { return ((undefined4(*)(void))0x806E12C0)(); }
-static inline undefined4 throwOutRunnerTaggingUpInd(void) { return ((undefined4(*)(void))0x806E1498)(); }
-static inline int genericPlayOnRunnerOffBase(void) { return ((int(*)(void))0x806E1658)(); }
-static inline undefined4 fielderAIOutfieldPlayAttemptInd(void) { return ((undefined4(*)(void))0x806E2408)(); }
-static inline void fielderAIChaseRunner_(void) { ((void(*)(void))0x806E2D54)(); }
-static inline void fielderAIMakePlay(int targetRunner) { ((void(*)(int))0x806E3734)(targetRunner); }
-static inline void fieldingAIPlayStrategy(void) { ((void(*)(void))0x806E3AA4)(); }
-static inline void throwTimeToBase_(int baseCounter) { ((void(*)(int))0x806E3FE4)(baseCounter); }
-static inline void runnerTimeToCoverBase(int runnerIndex) { ((void(*)(int))0x806E4798)(runnerIndex); }
-static inline void fieldingAIThrowOrChase(int runnerNum) { ((void(*)(int))0x806E4BE0)(runnerNum); }
-static inline void howManyFramesTheRunnerIsOutOfReach(int runnerNum, int forwardsInd, int throwRunStrat, int runningOutStrat) { ((void(*)(int, int, int, int))0x806E5478)(runnerNum, forwardsInd, throwRunStrat, runningOutStrat); }
-static inline void estimatedThrowFramesBetweenTwoPoints_(undefined8 x1, undefined8 y1, undefined8 x2, undefined8 y2) { ((void(*)(undefined8, undefined8, undefined8, undefined8))0x806E58A4)(x1, y1, x2, y2); }
-static inline void tagRelated(void) { ((void(*)(void))0x806E5F2C)(); }
-static inline void tagOutValues(undefined8 distToBase, int fielderIndex) { ((void(*)(undefined8, int))0x806E60D4)(distToBase, fielderIndex); }
-static inline void fielderHasBall(void) { ((void(*)(void))0x806E6748)(); }
-static inline void checkForBufferedThrow(void) { ((void(*)(void))0x806E6D1C)(); }
-static inline void fielderControl_classifyControlStickDirection(void) { ((void(*)(void))0x806E6F8C)(); }
-static inline void setRunnerChasingAfter_(int fielderIndex) { ((void(*)(int))0x806E7108)(fielderIndex); }
-static inline void fielderChasingAI_(int param_1) { ((void(*)(int))0x806E73CC)(param_1); }
-static inline undefined4 runnerTagUpOrBatterTo1B(int * param_1, int * param_2) { return ((undefined4(*)(int *, int *))0x806E750C)(param_1, param_2); }
-static inline void maybeUnused_SetThrowSpeedType2(double param_1) { ((void(*)(double))0x806E765C)(param_1); }
-static inline void knockBallLoose(int fielderIndex, int knockOutCause) { ((void(*)(int, int))0x806E83E8)(fielderIndex, knockOutCause); }
-static inline void fielderBodyCheck_setStatus_Pos_Velo(int fielderIndex) { ((void(*)(int))0x806E8790)(fielderIndex); }
-static inline void fielderKnockback(int fielderIndex) { ((void(*)(int))0x806E8A18)(fielderIndex); }
-static inline void setFielder215(int param_1) { ((void(*)(int))0x806E8D08)(param_1); }
-static inline void autoMovement10_HasBall(int fielderIndex) { ((void(*)(int))0x806E8DB4)(fielderIndex); }
-static inline void setCutoffThrowTargetLocation(undefined4 throwTargetX, undefined4 throwTargetZ) { ((void(*)(undefined4, undefined4))0x806EA084)(throwTargetX, throwTargetZ); }
-static inline void initializeThrowAngle_Speed_Length(int framesForFielderToGetToLoc, float * throwAngle, float * throwSpeed) { ((void(*)(int, float *, float *))0x806EA644)(framesForFielderToGetToLoc, throwAngle, throwSpeed); }
-static inline void makeThrowVariables(int throwingFielder) { ((void(*)(int))0x806EAE64)(throwingFielder); }
-static inline void howToPlayScreen_(void) { ((void(*)(void))0x806EBB8C)(); }
-static inline void controlOptionsMenu(void) { ((void(*)(void))0x806EBDCC)(); }
-static inline void pauseMenuControl(int param_1) { ((void(*)(int))0x806EC1F8)(param_1); }
-static inline void positionSwapScreenInputs(void) { ((void(*)(void))0x806EC450)(); }
-static inline void positionSwap(void) { ((void(*)(void))0x806EC960)(); }
-static inline void loadPauseMenu_(void) { ((void(*)(void))0x806EE1A0)(); }
-static inline void pauseMenuControl_806ee638(void) { ((void(*)(void))0x806EE638)(); }
-static inline void transitionToPauseScreen(void) { ((void(*)(void))0x806EEAF8)(); }
-static inline void match_checkForPause(void) { ((void(*)(void))0x806EEBF8)(); }
-static inline void setPausedTo0AndOtherStateVars(void) { ((void(*)(void))0x806EEE38)(); }
-static inline void practiceRelatedPostPlay(void) { ((void(*)(void))0x806EEEA0)(); }
-static inline void guidedPracticeRelated(void) { ((void(*)(void))0x806EF0D0)(); }
-static inline void unused__806ef274(void) { ((void(*)(void))0x806EF274)(); }
-static inline void someBattingPitchingCallFuns(void) { ((void(*)(void))0x806EF2F0)(); }
-static inline void battingPracticeRelated(void) { ((void(*)(void))0x806EF33C)(); }
-static inline undefined4 unused__806ef4f8(void) { return ((undefined4(*)(void))0x806EF4F8)(); }
-static inline void battingPracticeSomething(void) { ((void(*)(void))0x806EF600)(); }
-static inline void battingPracticeSwitcher(void) { ((void(*)(void))0x806EF908)(); }
-static inline void battingPracticeControl(void) { ((void(*)(void))0x806EFB40)(); }
-static inline void fieldingPractice_setHitVariables(void) { ((void(*)(void))0x806EFBF0)(); }
-static inline uint batterAI_buntForPractice(void) { return ((uint(*)(void))0x806EFD88)(); }
-static inline void fieldingPracticeAISwingDecision(void) { ((void(*)(void))0x806EFDC0)(); }
-static inline void practice_fieldingRelated(void) { ((void(*)(void))0x806EFE94)(); }
-static inline void unused_806f0264(void) { ((void(*)(void))0x806F0264)(); }
-static inline void unused_806f038c(void) { ((void(*)(void))0x806F038C)(); }
-static inline undefined4 practiceRelatedUnused_(void) { return ((undefined4(*)(void))0x806F0504)(); }
-static inline void fieldingPracticeInitialization_(void) { ((void(*)(void))0x806F060C)(); }
-static inline void fieldingPracticeRelated(void) { ((void(*)(void))0x806F0AC4)(); }
-static inline void fieldingPracticeControl(void) { ((void(*)(void))0x806F0CA8)(); }
-static inline undefined4 loadGuidedPractice(void) { return ((undefined4(*)(void))0x806F0D44)(); }
-static inline void playPracticeCPUInputs(void) { ((void(*)(void))0x806F0E64)(); }
-static inline undefined4 setUpPlayerTryingSkill(void) { return ((undefined4(*)(void))0x806F15E0)(); }
-static inline void practice_giveAndDemonstrateInstructions(void) { ((void(*)(void))0x806F16C4)(); }
-static inline void practiceRelatedInit(void) { ((void(*)(void))0x806F1838)(); }
-static inline void practice_pause_unloadPauseMenu_(void) { ((void(*)(void))0x806F193C)(); }
-static inline void practicePauseRelated(void) { ((void(*)(void))0x806F1EB4)(); }
-static inline undefined4 practice_checkForPause(void) { return ((undefined4(*)(void))0x806F234C)(); }
-static inline void practiceMenuLogic(void) { ((void(*)(void))0x806F24DC)(); }
-static inline void practiceLogicRelatedPause(void) { ((void(*)(void))0x806F26B4)(); }
-static inline void transitionToPlayerControl_806f2ae0(void) { ((void(*)(void))0x806F2AE0)(); }
-static inline void practiceRelatedReset(void) { ((void(*)(void))0x806F2C04)(); }
-static inline void baserunningPracticeRelated(void) { ((void(*)(void))0x806F2C64)(); }
-static inline void setTutorialState(enumTutorialState param_1) { ((void(*)(enumTutorialState))0x806F2D0C)(param_1); }
-static inline void updatePracticeTransitionState(byte state) { ((void(*)(byte))0x806F2D28)(state); }
-static inline void switchSecondaryGameMode(EnumSecondaryGameModes param_1) { ((void(*)(EnumSecondaryGameModes))0x806F2D40)(param_1); }
-static inline undefined4 practice_relatedToSettingCharacters(void) { return ((undefined4(*)(void))0x806F2D68)(); }
-static inline void practiceLoadingRelatedMaybe(void) { ((void(*)(void))0x806F307C)(); }
-static inline void practice_loadCharacter(undefined4 teamIndex, undefined4 rosterIndex, undefined4 characterID, undefined4 editHandedness) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x806F31B8)(teamIndex, rosterIndex, characterID, editHandedness); }
-static inline void practice_loadCharacterData(void) { ((void(*)(void))0x806F333C)(); }
-static inline void loadPracticeScreen(void) { ((void(*)(void))0x806F347C)(); }
-static inline void practiceSimulation(void) { ((void(*)(void))0x806F38C0)(); }
-static inline void practiceRelatedMenu(void) { ((void(*)(void))0x806F3CD4)(); }
-static inline void unref(void) { ((void(*)(void))0x806F4124)(); }
-static inline void practice_subMenu_stateHandling(void) { ((void(*)(void))0x806F4278)(); }
-static inline void notReferenced(void) { ((void(*)(void))0x806F4728)(); }
-static inline void practice_mainMenu_stateHandling(void) { ((void(*)(void))0x806F48AC)(); }
-static inline void unused_MaybePractice(void) { ((void(*)(void))0x806F4D48)(); }
-static inline void practiceMenu(void) { ((void(*)(void))0x806F4E0C)(); }
-static inline void unused_806f5184(void) { ((void(*)(void))0x806F5184)(); }
-static inline void unused_806f5254(void) { ((void(*)(void))0x806F5254)(); }
-static inline undefined4 practiceRelUnuse_(void) { return ((undefined4(*)(void))0x806F53B4)(); }
-static inline void pitchingPractice_BaseballControl(void) { ((void(*)(void))0x806F54D4)(); }
-static inline void pitchingPracticeRelated(void) { ((void(*)(void))0x806F5A28)(); }
-static inline void pitchingPracticeControl(void) { ((void(*)(void))0x806F5C38)(); }
-static inline void unused_806f5f2c(void) { ((void(*)(void))0x806F5F2C)(); }
-static inline void unused_806f6000(void) { ((void(*)(void))0x806F6000)(); }
-static inline int practiceRelatedUnused__806f6110(void) { return ((int(*)(void))0x806F6110)(); }
-static inline void baseRunningPracticeRelated(void) { ((void(*)(void))0x806F6218)(); }
-static inline void practiceRel(void) { ((void(*)(void))0x806F66B4)(); }
-static inline void baseRunningPracticeControl(void) { ((void(*)(void))0x806F6870)(); }
-static inline bool checkFielderCollision(float * inParamFielder, float * futureCoordinate) { return ((bool(*)(float *, float *))0x806F6CC0)(inParamFielder, futureCoordinate); }
-static inline void isCoordinateUncatchableTerrain(float xCoordParam, float zCoordParam) { ((void(*)(float, float))0x806F6D70)(xCoordParam, zCoordParam); }
-static inline bool foul_isBallWithin3mFair_(double x, double y) { return ((bool(*)(double, double))0x806F6E00)(x, y); }
-static inline void foul_ifBallConsideredPastTheBases(undefined8 ballX, undefined8 ballZ) { ((void(*)(undefined8, undefined8))0x806F6E6C)(ballX, ballZ); }
-static inline int foul_checkIfFoul(double x, double z) { return ((int(*)(double, double))0x806F6EA4)(x, z); }
-static inline double DistanceSquared(Vec3f * velo1, Vec3f * velo2) { return ((double(*)(Vec3f *, Vec3f *))0x806F6F84)(velo1, velo2); }
-static inline void CrossProduct(Vec3f * out, Vec3f * a, Vec3f * b) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x806F6FAC)(out, a, b); }
-static inline int rng(short param_1) { return ((int(*)(short))0x806F7004)(param_1); }
-static inline void randomizeAndLoadSoundEffect(int soundID, int param_2) { ((void(*)(int, int))0x806F705C)(soundID, param_2); }
-static inline void maybeYoshiParkGXRelated(void) { ((void(*)(void))0x806F7164)(); }
-static inline void storeBoundingBoxCoordinates(int minCoordsDest, int maxCoordsDest) { ((void(*)(int, int))0x806F74A8)(minCoordsDest, maxCoordsDest); }
-static inline void transformVectorsUpdateBoundingBox(int transformMatrix, int vertexData) { ((void(*)(int, int))0x806F74F8)(transformMatrix, vertexData); }
-static inline void initBoundingBoxLimits(void) { ((void(*)(void))0x806F7608)(); }
-static inline int calculateHazardDataAddress(int index, int * calculatedAddress) { return ((int(*)(int, int *))0x806F763C)(index, calculatedAddress); }
-static inline void CopyOutVecSrcDst(int index, Vec3f * src, Vec3f * dst) { ((void(*)(int, Vec3f *, Vec3f *))0x806F7670)(index, src, dst); }
-static inline void loadStadiumObjectVisuals(Mtx * param_1, int param_2, int param_3) { ((void(*)(Mtx *, int, int))0x806F78BC)(param_1, param_2, param_3); }
-static inline void initStadiumObjectData(void) { ((void(*)(void))0x806F8120)(); }
-static inline void updateStadiumObjCollision(void) { ((void(*)(void))0x806F81B8)(); }
-static inline void processStadiumObjectFunction(EnumStadiumIDs4 stadium, Vec3f * vec, TriangleCollisionTypes triangleCollisionType, OutCollisionStruct * outCollisionStruct) { ((void(*)(EnumStadiumIDs4, Vec3f *, TriangleCollisionTypes, OutCollisionStruct *))0x806F8200)(stadium, vec, triangleCollisionType, outCollisionStruct); }
-static inline TriangleGroup * getStadiumHazardTriangles(EnumStadiumIDs4 stadium, int offset, Mtx * mtx) { return ((TriangleGroup *(*)(EnumStadiumIDs4, int, Mtx *))0x806F825C)(stadium, offset, mtx); }
-static inline void updateGameStatusFlag(void) { ((void(*)(void))0x806F8430)(); }
-static inline void hazardSimulationRelated(void) { ((void(*)(void))0x806F8460)(); }
-static inline void cleanupMinigameResources(void) { ((void(*)(void))0x806F8680)(); }
-static inline void actOrAnimRelated(ACTActor * act, AnimBank * act2) { ((void(*)(ACTActor *, AnimBank *))0x806F8870)(act, act2); }
-static inline void calledWhileMatchIsLoading_(void) { ((void(*)(void))0x806F8A78)(); }
-static inline int loadStadiumObjects(EnumStadiumIDs4 stadiumID) { return ((int(*)(EnumStadiumIDs4))0x806F8C48)(stadiumID); }
-static inline void processStadiumFileObjects(enumObjTypeInFile_ * objTypeArray, int numObjects, int baseAddr, int outputArray) { ((void(*)(enumObjTypeInFile_ *, int, int, int))0x806F8DFC)(objTypeArray, numObjects, baseAddr, outputArray); }
-static inline void loadStadiumLighting(int mStadiumType, int stadiumData) { ((void(*)(int, int))0x806F904C)(mStadiumType, stadiumData); }
-static inline void spriteAnimations_(void) { ((void(*)(void))0x806FB028)(); }
-static inline void animateDustCloudsBehindFielder_Runner(void) { ((void(*)(void))0x806FB370)(); }
-static inline void maybeFireworks_(int param_1, int param_2, int maybeShape_, int param_4) { ((void(*)(int, int, int, int))0x806FB76C)(param_1, param_2, maybeShape_, param_4); }
-static inline void drawSun(void) { ((void(*)(void))0x806FBAB4)(); }
-static inline void sunRelated(Mtx * param_1) { ((void(*)(Mtx *))0x806FC26C)(param_1); }
-static inline void setSunLocation(int stadiumID, int miniGameStadInd) { ((void(*)(int, int))0x806FC4C8)(stadiumID, miniGameStadInd); }
-static inline void animationRelated_806fc598(double param_1, double param_2, double param_3, int param_4) { ((void(*)(double, double, double, int))0x806FC598)(param_1, param_2, param_3, param_4); }
-static inline void setContactWordSprite(double param_1, double param_2, double param_3, int param_4) { ((void(*)(double, double, double, int))0x806FD208)(param_1, param_2, param_3, param_4); }
-static inline void pauseStateOnStadiums_(void) { ((void(*)(void))0x806FE1EC)(); }
-static inline void pauseAnimations_(void) { ((void(*)(void))0x806FE240)(); }
-static inline void maybeHudRelated(void) { ((void(*)(void))0x806FE754)(); }
-static inline bool maybeLoadHUDObjectFromMemory(void) { return ((bool(*)(void))0x806FE90C)(); }
-static inline void chargeAnimRelated(void) { ((void(*)(void))0x806FF834)(); }
-static inline void applyChargeAnimationEffect(double param_1, double param_2, int animIndex, int param_4) { ((void(*)(double, double, int, int))0x807003D8)(param_1, param_2, animIndex, param_4); }
-static inline void maybeConfigureChargeEffectGraphics(int animIndex) { ((void(*)(int))0x80700804)(animIndex); }
-static inline void bowserCastleSomething(void) { ((void(*)(void))0x80702A5C)(); }
-static inline void thwomp_screenShake(int param_1) { ((void(*)(int))0x80702ACC)(param_1); }
-static inline void bowserCastleStarPadsContaactFn(int param_1) { ((void(*)(int))0x807031E0)(param_1); }
-static inline void stadiumObjCollision_Castle__(int * param_1, int * param_2) { ((void(*)(int *, int *))0x80703338)(param_1, param_2); }
-static inline undefined4 castleFireballMaybe(int param_1) { return ((undefined4(*)(int))0x80704D74)(param_1); }
-static inline void bowserCastleRelated(void) { ((void(*)(void))0x80704E70)(); }
-static inline void flameControl(castleFireObject * currFire) { ((void(*)(castleFireObject *))0x80705464)(currFire); }
-static inline void stadiumObjRelated_Castle__(int currentVertexIndex, int currentObjectIndex) { ((void(*)(int, int))0x80706260)(currentVertexIndex, currentObjectIndex); }
-static inline bool thwomp_bounceOffSoundAndVisualFx_(void) { return ((bool(*)(void))0x80706530)(); }
-static inline ulong thwomp_smokeRelated(void) { return ((ulong(*)(void))0x8070664C)(); }
-static inline void thwomp_slamControl(castleThwompObj * thwompObj) { ((void(*)(castleThwompObj *))0x80706AA0)(thwompObj); }
-static inline void loadBowserCastle(int baseAddr) { ((void(*)(int))0x807076E4)(baseAddr); }
-static inline void manageMarioStadiumSoundEmmitters(void) { ((void(*)(void))0x807087D8)(); }
-static inline void fanAnimationRelated(void) { ((void(*)(void))0x8070890C)(); }
-static inline void sta_c0(void) { ((void(*)(void))0x80708D28)(); }
-static inline void loadMarioStadium(int baseLoadAddress) { ((void(*)(int))0x80708E48)(baseLoadAddress); }
-static inline void perfectPitchGraphicsRelated(void) { ((void(*)(void))0x8070A030)(); }
-static inline void animatePitchersHandOnFire(void) { ((void(*)(void))0x8070A440)(); }
-static inline void stadiumStarAnimation(void) { ((void(*)(void))0x8070A7CC)(); }
-static inline void stadiumStarAwarded(float param_1, float param_2, float param_3) { ((void(*)(float, float, float))0x8070A87C)(param_1, param_2, param_3); }
-static inline void palaceStadiumObjTransformationAndPhysics(castleThwompObj * stadiumObj) { ((void(*)(castleThwompObj *))0x8070B014)(stadiumObj); }
-static inline void mPalaceObjHandling(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8070B658)(obj); }
-static inline void maybeChainChompSprintCTRLRelated(void) { ((void(*)(void))0x8070B8B0)(); }
-static inline void palaceMinigameObjectLoading(int param_1, int param_2) { ((void(*)(int, int))0x8070BCB8)(param_1, param_2); }
-static inline void palaceHazeTextureMaybe(int param_1, byte param_2) { ((void(*)(int, byte))0x8070D600)(param_1, param_2); }
-static inline void warioPalaceSomething(void) { ((void(*)(void))0x8070D978)(); }
-static inline uint starHitAnimation_(int param_1) { return ((uint(*)(int))0x8070E7C0)(param_1); }
-static inline void warioPalaceSandStarRelated(undefined4 sandStar) { ((void(*)(undefined4))0x8070E9C4)(sandStar); }
-static inline void palaceNadoLogic_(castleThwompObj * param_1) { ((void(*)(castleThwompObj *))0x8070F9AC)(param_1); }
-static inline void maybePalaceCTRLRelated(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80710314)(obj); }
-static inline void applyTransformationToPalaceObjs(int param_1) { ((void(*)(int))0x807107D0)(param_1); }
-static inline void chomp_attackBall(palaceChompObj * chomp) { ((void(*)(palaceChompObj *))0x80711AA0)(chomp); }
-static inline void chompState3(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x80712164)(param_1); }
-static inline void chompState1(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x80712914)(param_1); }
-static inline void chompState0(palaceChompObj * chompObj) { ((void(*)(palaceChompObj *))0x80712D70)(chompObj); }
-static inline void palaceChainChompControl(palaceChompObj * chomp) { ((void(*)(palaceChompObj *))0x80712FE8)(chomp); }
-static inline void someCTRLButNotCalled(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80713D38)(obj); }
-static inline void someCTRLButNotCalled2(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80713E94)(obj); }
-static inline void processPalaceObjectCollisions(Mtx * param_1, float * param_2) { ((void(*)(Mtx *, float *))0x80714680)(param_1, param_2); }
-static inline void stadiumObjCollisionRelated_Palace__(int * param_1) { ((void(*)(int *))0x80714F14)(param_1); }
-static inline void loadWarioPalace_(int * param_1) { ((void(*)(int *))0x80715860)(param_1); }
-static inline void toyFieldRelated(void) { ((void(*)(void))0x80718AC4)(); }
-static inline void toyFieldPoints_(void) { ((void(*)(void))0x807198C8)(); }
-static inline void processToyFieldBallState(void) { ((void(*)(void))0x8071B414)(); }
-static inline void toyFieldPause(void) { ((void(*)(void))0x8071BD14)(); }
-static inline void toyFieldStateTransitionRelated(void) { ((void(*)(void))0x8071C094)(); }
-static inline void toyFieldInningTransition(void) { ((void(*)(void))0x8071C23C)(); }
-static inline void toyFieldLiveBall(void) { ((void(*)(void))0x8071CA38)(); }
-static inline void initializeStgh2(void) { ((void(*)(void))0x8071CFB0)(); }
-static inline void initializeToyFieldSomething(void) { ((void(*)(void))0x8071D7D8)(); }
-static inline void toyFieldRelated_8071dc24(void) { ((void(*)(void))0x8071DC24)(); }
-static inline void toyFieldTransitionPrepareNextPlay(void) { ((void(*)(void))0x8071E0A0)(); }
-static inline void toyFieldTransitionToMinigameStart(void) { ((void(*)(void))0x8071E2F0)(); }
-static inline void toyFieldGameStartMovie(void) { ((void(*)(void))0x8071E46C)(); }
-static inline void initializeMinigameData(void) { ((void(*)(void))0x8071E968)(); }
-static inline void toyfieldSimulation(void) { ((void(*)(void))0x8071EC40)(); }
-static inline void updateMinigameFielderAnimations(void) { ((void(*)(void))0x8072050C)(); }
-static inline void graphicsFunction_minigames_(void) { ((void(*)(void))0x80720A7C)(); }
-static inline void parkPlantMaybe(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x80721700)(param_1); }
-static inline int managePlantBallInteraction(castleThwompObj * obj) { return ((int(*)(castleThwompObj *))0x80721C04)(obj); }
-static inline void updateStadiumObjStateAndTransform(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80721F0C)(obj); }
-static inline void yoshiParkPlantRelated(int param_1) { ((void(*)(int))0x80721FE0)(param_1); }
-static inline void nadoRelated_(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807220D8)(obj); }
-static inline void handleYoshiParkPlantInteraction(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80722318)(obj); }
-static inline void loadYoshiPark2SubFun(int obj) { ((void(*)(int))0x807226FC)(obj); }
-static inline void maybe_YoshiParkPlantsPopUp(castleThwompObj * stadObj) { ((void(*)(castleThwompObj *))0x807227F8)(stadObj); }
-static inline void controlYoshiParkPlants(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80722C1C)(obj); }
-static inline void processYoshiParkPlantBoundingBoxes(int currentVertexIndex, int currentObjectIndex) { ((void(*)(int, int))0x80723D44)(currentVertexIndex, currentObjectIndex); }
-static inline void loadYoshiPark(int param_1) { ((void(*)(int))0x80724058)(param_1); }
-static inline void processToyFieldObjectCollisions(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x8072641C)(param_1, param_2); }
-static inline void loadToyField_(int param_1) { ((void(*)(int))0x80727BB8)(param_1); }
-static inline void toyfield_offScreenCharacterImage(void) { ((void(*)(void))0x80728DC4)(); }
-static inline void toyfield_offScreenCharacterImage_loadFn(void) { ((void(*)(void))0x807293D4)(); }
-static inline void toyField_draw_theCoinsBesideThe_CoinsX2_Graphic(void) { ((void(*)(void))0x8072C524)(); }
-static inline void toyFieldDrawRelated_miniMap_(void) { ((void(*)(void))0x8072C608)(); }
-static inline void toyField_hud_scores_BallsStrikesOuts(void) { ((void(*)(void))0x8072C8AC)(); }
-static inline void toyfield_drawHud(void) { ((void(*)(void))0x8072CDA4)(); }
-static inline void klaptrapHitAnimation(int klaptrapIndex) { ((void(*)(int))0x8072E068)(klaptrapIndex); }
-static inline void jungleStadiumObjectRelated(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8072E49C)(obj); }
-static inline void jungleObjState4(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8072E9C4)(obj); }
-static inline void jungleObjState2(castleThwompObj * param_1) { ((void(*)(castleThwompObj *))0x8072F2B8)(param_1); }
-static inline void jungleObjState1(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8072F8C0)(obj); }
-static inline void jungleCTRLRelated(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80730038)(obj); }
-static inline void klaptrapCTRLSetup(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807304DC)(obj); }
-static inline void maybeGharialCTRLRel(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807305AC)(obj); }
-static inline void handleDKJungleBarrels(void * param_1) { ((void(*)(void *))0x807309D0)(param_1); }
-static inline void dkBarrelCollision_(int param_1) { ((void(*)(int))0x80730EC0)(param_1); }
-static inline void dkBarrel_collisionWithFielder(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x807314DC)(param_1); }
-static inline void dkBarrelCollisionRElated_(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x807319CC)(param_1); }
-static inline void unreferenced_80732090(double param_1, double param_2, int param_3) { ((void(*)(double, double, int))0x80732090)(param_1, param_2, param_3); }
-static inline void setBarrelTrajectory(undefined8 targetX, undefined8 targetZ, jungleBarrelObj * obj) { ((void(*)(undefined8, undefined8, jungleBarrelObj *))0x80732274)(targetX, targetZ, obj); }
-static inline float dkJungleRelated(CTRLControl * param_1) { return ((float(*)(CTRLControl *))0x80733734)(param_1); }
-static inline void unreferenced_80733ce0(int param_1) { ((void(*)(int))0x80733CE0)(param_1); }
-static inline void handleBarrelFiring(jungleBarrelObj * stadiumObject) { ((void(*)(jungleBarrelObj *))0x80734050)(stadiumObject); }
-static inline void dkJungleHazardsLogic(jungleBarrelObj * obj) { ((void(*)(jungleBarrelObj *))0x80734760)(obj); }
-static inline void processJungleObjectCollisions(castleThwompObj * param_1, float * param_2) { ((void(*)(castleThwompObj *, float *))0x80735118)(param_1, param_2); }
-static inline void updateDKJungleObjBoundingBoxes(int objIndex) { ((void(*)(int))0x8073575C)(objIndex); }
-static inline void maybeBarrelCTRLRel(int * param_1) { ((void(*)(int *))0x807359CC)(param_1); }
-static inline void updateDKJungleControl(void) { ((void(*)(void))0x80735CF4)(); }
-static inline void loadDKJungle_(int * param_1) { ((void(*)(int *))0x80736070)(param_1); }
-static inline void peachGardenSomething(void) { ((void(*)(void))0x80737B50)(); }
-static inline void loadPeachGarden_(int * param_1) { ((void(*)(int *))0x80739620)(param_1); }
-static inline void camera_switchScene(cameraScene sceneID) { ((void(*)(cameraScene))0x8073AE40)(sceneID); }
-static inline void camera_replay_(void) { ((void(*)(void))0x8073AEB8)(); }
-static inline void manageDrawingItemState(void) { ((void(*)(void))0x8073CAB0)(); }
-static inline undefined4 unkPauseSimulationCheck(void) { return ((undefined4(*)(void))0x8073F110)(); }
-static inline void someAllocFunction(void) { ((void(*)(void))0x80745E90)(); }
-static inline bool loadSomeDataFile(void) { return ((bool(*)(void))0x80745EE4)(); }
-static inline void unreferenced_80745f68(void) { ((void(*)(void))0x80745F68)(); }
-static inline void minigames_0x27(void) { ((void(*)(void))0x80746138)(); }
-static inline void minigames_0x26(void) { ((void(*)(void))0x807462C0)(); }
-static inline void minigames_0x28(void) { ((void(*)(void))0x80746818)(); }
-static inline void AI_getPort(undefined1 portNum) { ((void(*)(undefined1))0x80746E48)(portNum); }
-static inline void minigame_checkIfAIInputIs_Algorithmic_Or_ControllerBased(byte rosterID) { ((void(*)(byte))0x80746ED0)(rosterID); }
-static inline void minigamePause(void) { ((void(*)(void))0x80747548)(); }
-static inline undefined4 checkForPauses_(void) { return ((undefined4(*)(void))0x807478E8)(); }
-static inline void postMinigame(void) { ((void(*)(void))0x80747CE8)(); }
-static inline void minigameEndSwitcher(void) { ((void(*)(void))0x80749134)(); }
-static inline void minigameStartSwitcher(void) { ((void(*)(void))0x80749F84)(); }
-static inline void minigames_pickOpponentsAndLoadStats_(void) { ((void(*)(void))0x8074AF10)(); }
-static inline void unused_8074b4e4(int param_1, int param_2) { ((void(*)(int, int))0x8074B4E4)(param_1, param_2); }
-static inline void unused_8074b620(void) { ((void(*)(void))0x8074B620)(); }
-static inline void toyFieldCharSelectSwitcher(void) { ((void(*)(void))0x8074D6A0)(); }
-static inline void minigameSelectSwitcher(void) { ((void(*)(void))0x8074E268)(); }
-static inline void toyFieldStadiumLoad(void) { ((void(*)(void))0x8074E46C)(); }
-static inline void minigameSimulation(void) { ((void(*)(void))0x8074EE5C)(); }
-static inline void unusedBattingSomething(void) { ((void(*)(void))0x8074F568)(); }
-static inline void bobOmbDerbyBatterAI(void) { ((void(*)(void))0x8074F6C8)(); }
-static inline void BODScoring_(void) { ((void(*)(void))0x8074FB68)(); }
-static inline void unused_BODRelated(void) { ((void(*)(void))0x807500CC)(); }
-static inline void bobOmbDerbyCalculatePoints(void) { ((void(*)(void))0x80750348)(); }
-static inline void unusedBODFunction(void) { ((void(*)(void))0x807507CC)(); }
-static inline void bOD_bB_Pitcher_waitingForPitch(void) { ((void(*)(void))0x80750948)(); }
-static inline void unused_80750cf0(void) { ((void(*)(void))0x80750CF0)(); }
-static inline void bobOmbDerbyPitchTransition(void) { ((void(*)(void))0x807512C4)(); }
-static inline void bOD_LoadGame(void) { ((void(*)(void))0x807516A4)(); }
-static inline void bobOmbDerbySimulation(void) { ((void(*)(void))0x80751C6C)(); }
-static inline void wallBallMultiplayer_AIControl(void) { ((void(*)(void))0x80752458)(); }
-static inline void wallBallAIPitches(void) { ((void(*)(void))0x80752790)(); }
-static inline void wallBallCalc_WallsBroken(void) { ((void(*)(void))0x80752ADC)(); }
-static inline void wallBallSomething2(void) { ((void(*)(void))0x80752FA8)(); }
-static inline void wallBallDropInNewWalls(void) { ((void(*)(void))0x80753298)(); }
-static inline void wallBallCalculateNewWalls(void) { ((void(*)(void))0x80753418)(); }
-static inline void wallBallRotatePitchers(int param_1) { ((void(*)(int))0x80753B1C)(param_1); }
-static inline void wallBallCalculatePointsAndEndTurn(void) { ((void(*)(void))0x8075419C)(); }
-static inline void unreferenced_807545d4(void) { ((void(*)(void))0x807545D4)(); }
-static inline void unreferenced_80754a0c(void) { ((void(*)(void))0x80754A0C)(); }
-static inline void wallBallInitializeValues(void) { ((void(*)(void))0x80754CB8)(); }
-static inline void wallBallSituationSwitcher(void) { ((void(*)(void))0x80755150)(); }
-static inline void nonPracticePitchingMachineLogic_(int param_1, int param_2) { ((void(*)(int, int))0x807599C0)(param_1, param_2); }
-static inline void loadPitchingMachineModel(void) { ((void(*)(void))0x80759BC0)(); }
-static inline void minigameStateLogic(void) { ((void(*)(void))0x80763438)(); }
-static inline void minigameGraphics(void) { ((void(*)(void))0x8076C288)(); }
-static inline void bB_AI(void) { ((void(*)(void))0x8076CC14)(); }
-static inline void bB_AI_setSwingVariables(void) { ((void(*)(void))0x8076CE60)(); }
-static inline void unused_BarrelBatterRelated(void) { ((void(*)(void))0x8076D8D0)(); }
-static inline void bB_chooseBombBarrel_dropNewBarrels(void) { ((void(*)(void))0x8076D990)(); }
-static inline void bB_likelyReplaceBlownUpBarrels(undefined4 bIndex) { ((void(*)(undefined4))0x8076E038)(bIndex); }
-static inline void bB_connectingBarrels(int barrelNum_, short blowUpDelay, int bombBarrelHitInd) { ((void(*)(int, short, int))0x8076E4B8)(barrelNum_, blowUpDelay, bombBarrelHitInd); }
-static inline void bB_checkIfBarrelHitAndCalculateScore(void) { ((void(*)(void))0x8076E6B8)(); }
-static inline void barrelBatterLiveBallSubFun(void) { ((void(*)(void))0x8076F31C)(); }
-static inline void bobombDerbyRelated(void) { ((void(*)(void))0x8076FB60)(); }
-static inline void bB_AtBat(void) { ((void(*)(void))0x8076FD00)(); }
-static inline void barrelBatterTransitionToMainFunction(void) { ((void(*)(void))0x807705D4)(); }
-static inline void bB_LoadGame(void) { ((void(*)(void))0x80771150)(); }
-static inline void barrelBatterSwitcher(void) { ((void(*)(void))0x8077157C)(); }
-static inline void unused_80774af8(void) { ((void(*)(void))0x80774AF8)(); }
-static inline void minigame_transferPoints(int param_1, int param_2) { ((void(*)(int, int))0x807790DC)(param_1, param_2); }
-static inline void starDashRelated(void) { ((void(*)(void))0x80779140)(); }
-static inline void starDashRelated_80779b0c(void) { ((void(*)(void))0x80779B0C)(); }
-static inline void starDashLiveBall(void) { ((void(*)(void))0x8077A318)(); }
-static inline void starDashSomething(void) { ((void(*)(void))0x8077AD4C)(); }
-static inline void starDashSwitcher(void) { ((void(*)(void))0x8077B4FC)(); }
-static inline void chainChompSpringPoints_(void) { ((void(*)(void))0x8077DAC4)(); }
-static inline void chainChompSpringMainFun(void) { ((void(*)(void))0x8077FD74)(); }
-static inline void mVPRelated(void) { ((void(*)(void))0x80780184)(); }
-static inline void chainChompSprintRelated(void) { ((void(*)(void))0x80780540)(); }
-static inline void chainChompSprintSwitcher(void) { ((void(*)(void))0x80780AC4)(); }
-static inline void pP_relatedToCalculatingHeldBallLoc(int param_1) { ((void(*)(int))0x807837B0)(param_1); }
-static inline void piranhaPanicPoints_(int param_1) { ((void(*)(int))0x80784450)(param_1); }
-static inline void ppRelated(void) { ((void(*)(void))0x80784C2C)(); }
-static inline void piranhaPanicLiveBall(void) { ((void(*)(void))0x8078549C)(); }
-static inline void piranhaPanicRelated(void) { ((void(*)(void))0x80785B24)(); }
-static inline void piranhaPanicSwitcher(void) { ((void(*)(void))0x80786258)(); }
-static inline void barrelBatterRel(int * param_1) { ((void(*)(int *))0x807899A0)(param_1); }
-static inline void wallBall_updateSomePointers(void) { ((void(*)(void))0x8078F15C)(); }
-static inline void bobOmbDerbyPitching(void) { ((void(*)(void))0x8079431C)(); }
-static inline void bODPitchAnimation(void) { ((void(*)(void))0x807952AC)(); }
-static inline void practiceAnimationRelated4(void) { ((void(*)(void))0x80796EBC)(); }
-static inline void practiceAnimationRelated2(void) { ((void(*)(void))0x80797140)(); }
-static inline void practiceAnimationRelated_text_(void) { ((void(*)(void))0x80797BF8)(); }
-static inline void practiceAnimationRelated(void) { ((void(*)(void))0x80798078)(); }
-static inline void graphicsRelated(void) { ((void(*)(void))0x80798A4C)(); }
-static inline void animationOrDrawingRelated(void) { ((void(*)(void))0x807994DC)(); }
-static inline void practice_drawHud_(void) { ((void(*)(void))0x807997F0)(); }
-static inline void animatePracticeScene(void) { ((void(*)(void))0x80799A88)(); }
-static inline void practice_startPitchAfter90Frames(void) { ((void(*)(void))0x80799E28)(); }
-static inline void practiceRelated(void) { ((void(*)(void))0x80799EC8)(); }
-static inline void _unused_matchSimulationRelated(void) { ((void(*)(void))0x8079A00C)(); }
-static inline void fieldingPractice_resetMem(void) { ((void(*)(void))0x8079A16C)(); }
-static inline void fieldingPracticeRelated_8079a528(void) { ((void(*)(void))0x8079A528)(); }
-static inline void freeFieldingPracticeControl(void) { ((void(*)(void))0x8079A6A4)(); }
-static inline void animationRelated_8079a830(int param_1) { ((void(*)(int))0x8079A830)(param_1); }
-static inline void peachDaisyStarSwingRelated2(void) { ((void(*)(void))0x8079B094)(); }
-static inline int peachDaisyStarSwingRelated(void) { return ((int(*)(void))0x8079B0A8)(); }
-static inline void compilingStats_(int param_1) { ((void(*)(int))0x8079C26C)(param_1); }
-static inline void animateMVP_GameEnd(void) { ((void(*)(void))0x8079E4A4)(); }
-static inline void starMissionsMinigamesSpecialAction(int missionCode, int pointsEarned, int specialActionCount) { ((void(*)(int, int, int))0x8079F984)(missionCode, pointsEarned, specialActionCount); }
-static inline void starMissionsMinigamesTotalPoints(void) { ((void(*)(void))0x807A010C)(); }
-static inline void starMissionsQuantityBased(enumFieldingStarMissionCodes switchVar, int rosterLocation) { ((void(*)(enumFieldingStarMissionCodes, int))0x807A061C)(switchVar, rosterLocation); }
-static inline void challenge_postPitchStarMissionTracking(void) { ((void(*)(void))0x807A1114)(); }
-static inline void starMissionsOffensive_StarChange_DoublePlay(int playResultCd, int param_2) { ((void(*)(int, int))0x807A13A0)(playResultCd, param_2); }
-static inline void starMissionsWholeGame(void) { ((void(*)(void))0x807A1DE8)(); }
-static inline void recruitWholeTeamAfterMercy_(void) { ((void(*)(void))0x807A2880)(); }
-static inline void challengeModeRelated_checkScoutMissionSuccess_(void) { ((void(*)(void))0x807A3B08)(); }
-static inline void setScoutMissionRelatedToZero(void) { ((void(*)(void))0x807A4A20)(); }
-static inline void shouldScoutMissionBeEnabled_(int potentialMissionID) { ((void(*)(int))0x807A4A34)(potentialMissionID); }
-static inline int decideScoutFlagMission(void) { return ((int(*)(void))0x807A4DB8)(); }
-static inline void practiceAnimationRelated_807a5440(void) { ((void(*)(void))0x807A5440)(); }
-static inline void magikoopaAnimationRelated(void) { ((void(*)(void))0x807A5A00)(); }
-static inline void applyStarRelatedTransformations(void) { ((void(*)(void))0x807A5A30)(); }
-static inline void fieldingRelatedAnimations(int param_1, byte switch_) { ((void(*)(int, byte))0x807A7340)(param_1, switch_); }
-static inline void mUpdateActorTransformAndAnimation(int mActorID) { ((void(*)(int))0x807A7B00)(mActorID); }
-static inline void displayChem_antiChemGraphics(undefined4 param_1, undefined4 _0chem_1antiChem) { ((void(*)(undefined4, undefined4))0x807A8034)(param_1, _0chem_1antiChem); }
-static inline uint gardenSFXRelated(char param_1) { return ((uint(*)(char))0x807AB4A4)(param_1); }
-static inline void checkFielderCollisionPotential(double ballHeight, byte fielderIndex) { ((void(*)(double, byte))0x807AC56C)(ballHeight, fielderIndex); }
-static inline void processBallFielderCollision(int interactionType) { ((void(*)(int))0x807AC678)(interactionType); }
-static inline void animateScoreBoard_(void) { ((void(*)(void))0x807AD280)(); }
-static inline void animateScoreBoardCheck_(int TextureData, int objOrTextureCount) { ((void(*)(int, int))0x807AD3CC)(TextureData, objOrTextureCount); }
+#define hwGetPos FUNCTION_ADDRESS(void, 0x800DD3DC)
+#define hwFlushStream FUNCTION_ADDRESS(void, 0x800DD488)
+#define hwGetStreamPlayBuffer FUNCTION_ADDRESS(void, 0x800DD518)
+#define hwTransAddr FUNCTION_ADDRESS(void *, 0x800DD53C, void * /*samples*/)
+#define hwFrqPitch FUNCTION_ADDRESS(void, 0x800DD540)
+#define hwInitSampleMem FUNCTION_ADDRESS(void, 0x800DD59C)
+#define hwExitSampleMem FUNCTION_ADDRESS(void, 0x800DD5C0)
+#define hwSaveSample FUNCTION_ADDRESS(void, 0x800DD5E0)
+#define hwRemoveSample FUNCTION_ADDRESS(void, 0x800DD678)
+#define hwSyncSampleMem FUNCTION_ADDRESS(void, 0x800DD700)
+#define hwFrameDone FUNCTION_ADDRESS(void, 0x800DD720)
+#define sndSetHooks FUNCTION_ADDRESS(void, 0x800DD724)
+#define hwDisableHRTF FUNCTION_ADDRESS(void, 0x800DD740)
+#define hwEnableCompressor FUNCTION_ADDRESS(void, 0x800DD74C)
+#define hwGetVirtualSampleID FUNCTION_ADDRESS(void, 0x800DD758)
+#define hwVoiceInStartup FUNCTION_ADDRESS(void, 0x800DD780)
+#define aramQueueCallback FUNCTION_ADDRESS(ulong, 0x800DD7A0)
+#define aramUploadData FUNCTION_ADDRESS(void, 0x800DD840)
+#define aramSyncTransferQueue FUNCTION_ADDRESS(void, 0x800DDA1C)
+#define aramInit FUNCTION_ADDRESS(void, 0x800DDA34)
+#define aramExit FUNCTION_ADDRESS(void, 0x800DDD18)
+#define aramGetZeroBuffer FUNCTION_ADDRESS(void, 0x800DDD1C)
+#define aramGetFirstUserAddress FUNCTION_ADDRESS(void, 0x800DDD3C)
+#define aramGetUserBytes FUNCTION_ADDRESS(void, 0x800DDD60)
+#define aramStoreData FUNCTION_ADDRESS(void, 0x800DDD68)
+#define aramRemoveData FUNCTION_ADDRESS(void, 0x800DE18C)
+#define InitStreamBuffers FUNCTION_ADDRESS(void, 0x800DE1A4)
+#define aramGetStreamBufferAddress FUNCTION_ADDRESS(void, 0x800DE268)
+#define salCallback FUNCTION_ADDRESS(void, 0x800DE2A0)
+#define dspInitCallback FUNCTION_ADDRESS(void, 0x800DE348)
+#define dspResumeCallback FUNCTION_ADDRESS(void, 0x800DE358)
+#define dspDoneCallback FUNCTION_ADDRESS(void, 0x800DE3BC)
+#define salInitAi FUNCTION_ADDRESS(void, 0x800DE3E0)
+#define salStartAi FUNCTION_ADDRESS(void, 0x800DE4A8)
+#define salExitAi FUNCTION_ADDRESS(void, 0x800DE4C8)
+#define salAIGetDest FUNCTION_ADDRESS(void, 0x800DE4FC)
+#define salInitDsp FUNCTION_ADDRESS(void, 0x800DE52C)
+#define salExitDsp FUNCTION_ADDRESS(void, 0x800DE600)
+#define salCtrlDsp FUNCTION_ADDRESS(void, 0x800DE650)
+#define salGetStartDelay FUNCTION_ADDRESS(void, 0x800DE6C4)
+#define hwInitIrq FUNCTION_ADDRESS(void, 0x800DE710)
+#define hwExitIeq FUNCTION_ADDRESS(void, 0x800DE73C)
+#define hwEnableIrq FUNCTION_ADDRESS(void, 0x800DE740)
+#define hwDisableIrq FUNCTION_ADDRESS(void, 0x800DE778)
+#define hwIRQEnterCritical FUNCTION_ADDRESS(void, 0x800DE7B0)
+#define hwIRQLeaveCritical FUNCTION_ADDRESS(void, 0x800DE7D0)
+#define salMalloc FUNCTION_ADDRESS(void, 0x800DE7F0)
+#define salMallocPhysical FUNCTION_ADDRESS(void, 0x800DE81C)
+#define salFree FUNCTION_ADDRESS(void, 0x800DE84C)
+#define sndAuxCallbackReverbHI FUNCTION_ADDRESS(void, 0x800DE87C)
+#define sndAuxCallbackPrepareReverbHI FUNCTION_ADDRESS(void, 0x800DE8D8)
+#define ReverbHICreate FUNCTION_ADDRESS(void, 0x800DE918)
+#define DoCrossTalk FUNCTION_ADDRESS(void, 0x800DEE24)
+#define HandleReverb FUNCTION_ADDRESS(void, 0x800DEFA8)
+#define ReverbHICallback FUNCTION_ADDRESS(void, 0x800DF4B4)
+#define do_src1 FUNCTION_ADDRESS(void, 0x800DF594)
+#define do_src2 FUNCTION_ADDRESS(void, 0x800DF72C)
+#define sndAuxCallbackChorus FUNCTION_ADDRESS(void, 0x800DF918)
+#define sndAuxCallbackPrepareChorus FUNCTION_ADDRESS(void, 0x800DFBD4)
+#define maybeProcessTeamData FUNCTION_ADDRESS(void, 0x8063F094)
+#define unreferenced FUNCTION_ADDRESS(void, 0x8063F2EC)
+#define manageStadiumLoading FUNCTION_ADDRESS(void, 0x8063F588)
+#define manageLoadingState FUNCTION_ADDRESS(void, 0x8063F6F0)
+#define checkCollision FUNCTION_ADDRESS(TriangleCollisionTypes, 0x8063F9A8, VecSrcDst * /*inVec*/, OutCollisionStruct * /*outCollisionStruct*/, int /*collisionCheckType*/, BOOL /*useBallCoords*/)
+#define checkStadiumHazardCollisions FUNCTION_ADDRESS(TriangleCollisionTypes, 0x8063FB00, VecSrcDst * /*in*/, VecSrcDst * /*out*/, stadiumObjectCollision * /*mstadiumObj*/)
+#define DidCollideWithBoundingBoxes FUNCTION_ADDRESS(TriangleCollisionTypes, 0x8063FE84, VecSrcDst * /*inCoord*/, OutCollisionStruct * /*outVecs*/, CollisionBox * /*inBoxes*/, short /*inCount*/)
+#define checkTriangleCollisions FUNCTION_ADDRESS(BOOL, 0x80640174, TriangleCollisionStruct * /*collisionData*/, TriangleGroup * /*triangleGroup*/)
+#define running_rouondBasePosition_ FUNCTION_ADDRESS(void, 0x80641674, undefined8, int /*someXCoord*/, int, int)
+#define setFanObjPtr FUNCTION_ADDRESS(void, 0x80642678, int /*ptr*/)
+#define CTRLBuildMatrixRelated FUNCTION_ADDRESS(void, 0x806426CC, TextureArchiveHeader *)
+#define inningScoreDisplayRelated_ FUNCTION_ADDRESS(void, 0x80643ACC, EnumStadiumIDs4 /*stadiumId*/)
+#define drawStadiumObjects_ FUNCTION_ADDRESS(void, 0x80644710, int *)
+#define drawStadium_ FUNCTION_ADDRESS(void, 0x80644C40)
+#define updateStadiumFileHeaders FUNCTION_ADDRESS(void, 0x80644F54, StadiumFileHeader * /*stadiumHeader*/)
+#define chompCollision_processStarHitVariables FUNCTION_ADDRESS(void, 0x806455C4)
+#define plantPhysics FUNCTION_ADDRESS(void, 0x806456B4)
+#define checkForBallDead FUNCTION_ADDRESS(void, 0x80645728)
+#define ballCollisionLogic FUNCTION_ADDRESS(void, 0x80645CCC)
+#define handleBallBounceAndRoll FUNCTION_ADDRESS(void, 0x80647D84, int /*verticalVelocity*/, int /*bounceFrameCount*/, byte * /*ballIsRolling*/, int)
+#define handleBallHitDeadBallOutcome FUNCTION_ADDRESS(void, 0x806480E0)
+#define fairOrFoulBall FUNCTION_ADDRESS(void, 0x806482F4, TriangleCollisionTypes_word /*collType*/)
+#define processLandedBallBouncing FUNCTION_ADDRESS(void, 0x8064859C)
+#define processBallInAir__Landed FUNCTION_ADDRESS(void, 0x8064889C)
+#define ballDistCalculator FUNCTION_ADDRESS(void, 0x80648D74)
+#define relatedToGroundRuleDouble FUNCTION_ADDRESS(void, 0x80648F18)
+#define foulBall_80649184 FUNCTION_ADDRESS(void, 0x80649184)
+#define warioWaluStarHit FUNCTION_ADDRESS(void, 0x8064922C)
+#define updatePastHitBallCoords FUNCTION_ADDRESS(void, 0x806498D0)
+#define liveBallHitPhysics FUNCTION_ADDRESS(void, 0x80649A04, int /*thrownBallInd*/)
+#define estimateTimeForThrowToReachTarget FUNCTION_ADDRESS(void, 0x8064A4D4)
+#define fielding_setHeldBallOffset FUNCTION_ADDRESS(void, 0x8064A9D4)
+#define futureFrameForClosestBall FUNCTION_ADDRESS(void, 0x8064AC50, undefined8 /*playerX*/, undefined8 /*playerZ*/, int /*averageXOfDive*/, int /*diveMaxFramePlus15*/, int /*const2*/)
+#define setHitClassification3 FUNCTION_ADDRESS(void, 0x8064AE0C)
+#define classifyHitTrajectoryOrHitAnimRelated FUNCTION_ADDRESS(void, 0x8064B0C8)
+#define updateFrameCountersAndBallPastCoordinatesWhenFielderHoldingBall FUNCTION_ADDRESS(void, 0x8064BA88)
+#define estimateAndSetFutureCoords FUNCTION_ADDRESS(void, 0x8064BEBC)
+#define adjustVeloByAirResistance FUNCTION_ADDRESS(void, 0x8064CC64)
+#define estimateWhereBallWillHitWall FUNCTION_ADDRESS(void, 0x8064CCDC)
+#define calculateImplicationsOfTheHitTrajectory FUNCTION_ADDRESS(void, 0x8064D368)
+#define setLiveBallVariablesAfterContact FUNCTION_ADDRESS(void, 0x8064DEE0)
+#define setDefaultInMemBall FUNCTION_ADDRESS(void, 0x8064E270)
+#define resetBallValuesBetweenBatters_ FUNCTION_ADDRESS(void, 0x8064E60C)
+#define resetInMemBall FUNCTION_ADDRESS(void, 0x8064E84C)
+#define initBallAndGameStateOnLoad FUNCTION_ADDRESS(void, 0x8064EC3C)
+#define UpdateRandomInts FUNCTION_ADDRESS(void, 0x8064EFE0)
+#define ballPhysicsMainFunction FUNCTION_ADDRESS(void, 0x8064F1E0)
+#define starHitSetting_Unused__ FUNCTION_ADDRESS(void, 0x8064F35C)
+#define CalculateBallVelocityAcceleration FUNCTION_ADDRESS(void, 0x8064F504)
+#define _unused__CalculateBallHorizontalAngle FUNCTION_ADDRESS(short, 0x8064F98C)
+#define calculateBuntHorizontalAngle FUNCTION_ADDRESS(void, 0x8064FB14)
+#define calculateHorizontalPower FUNCTION_ADDRESS(void, 0x8064FD94)
+#define calculateVerticalAngle FUNCTION_ADDRESS(void, 0x806504FC)
+#define calculateBallHorizontalAngleHit FUNCTION_ADDRESS(void, 0x80650C30)
+#define calculateContactAndHitType FUNCTION_ADDRESS(void, 0x80650F64)
+#define maybe_determineStarType FUNCTION_ADDRESS(void, 0x80651570)
+#define CalculateHitVariables FUNCTION_ADDRESS(void, 0x806515E8)
+#define CalculateIfHitBall FUNCTION_ADDRESS(void, 0x80651D48)
+#define ifBunt FUNCTION_ADDRESS(void, 0x80651E70)
+#define starSwingSpendStars FUNCTION_ADDRESS(void, 0x8065209C)
+#define ifSwing FUNCTION_ADDRESS(void, 0x806522F0)
+#define unusedBatterPreSwing FUNCTION_ADDRESS(void, 0x80652830)
+#define batterInBoxMovement FUNCTION_ADDRESS(void, 0x80652A34)
+#define batterHumanControlled FUNCTION_ADDRESS(void, 0x80652E28)
+#define updateBallHittableZoneStatus FUNCTION_ADDRESS(void, 0x80653350)
+#define loadBatterActor FUNCTION_ADDRESS(int, 0x8065341C)
+#define setDefaultInMemBatter FUNCTION_ADDRESS(void, 0x806534E8)
+#define setBatterContactConstants FUNCTION_ADDRESS(void, 0x80653758)
+#define initializeInMemBatter FUNCTION_ADDRESS(void, 0x806538C0)
+#define atBat_Batter FUNCTION_ADDRESS(void, 0x806538EC)
+#define assignFrameCountersToAPointer FUNCTION_ADDRESS(void, 0x806545B8)
+#define resetSomeStruct FUNCTION_ADDRESS(void, 0x80654E24)
+#define pauseMenuCameraAngle FUNCTION_ADDRESS(void, 0x80655028)
+#define bOD_Cam_liveBall FUNCTION_ADDRESS(void, 0x80655E00)
+#define camera_matchLiveBall_regular_replay FUNCTION_ADDRESS(void, 0x80656B84)
+#define gameplay_Camera_ FUNCTION_ADDRESS(void, 0x80656E34)
+#define cameraRelated FUNCTION_ADDRESS(void, 0x806575A0)
+#define camera_zoomInDuringFielderAction_slide_clamber_wallJump_ FUNCTION_ADDRESS(void, 0x80659ED8, undefined8 /*midXCoord*/, undefined8 /*midYCoord*/, undefined8 /*midZCoord*/, byte /*specialCatchTypeInd*/, short /*frames?*/)
+#define camera_match_setMovement FUNCTION_ADDRESS(void, 0x8065A404)
+#define matchCamera_setPastAndCurrentTarget FUNCTION_ADDRESS(void, 0x8065AAAC)
+#define camera_matchLiveBall FUNCTION_ADDRESS(void, 0x8065B244)
+#define cameraControl FUNCTION_ADDRESS(void, 0x8065BF24)
+#define staminaRelated FUNCTION_ADDRESS(void, 0x8065C900)
+#define versusStarChanceSetPointers_ FUNCTION_ADDRESS(void, 0x8065CCC4)
+#define trackLastPitchInfo FUNCTION_ADDRESS(void, 0x8065CDDC)
+#define setDefaultAIValues FUNCTION_ADDRESS(void, 0x8065CF4C)
+#define betweenABSetPitcherBatter FUNCTION_ADDRESS(void, 0x8065D1E8)
+#define someRosterMemoryManagement FUNCTION_ADDRESS(void, 0x8065D20C)
+#define initializeAIConstants FUNCTION_ADDRESS(void, 0x8065D3BC)
+#define unreferenced_8065d7b8 FUNCTION_ADDRESS(void, 0x8065D7B8)
+#define batterAIBallLocRelated FUNCTION_ADDRESS(void, 0x8065D888)
+#define batterAIFrameToSwingAndStickInput FUNCTION_ADDRESS(void, 0x8065DB3C)
+#define batterAISwingInd FUNCTION_ADDRESS(void, 0x8065E078)
+#define batterTrackBallInBox FUNCTION_ADDRESS(void, 0x8065E50C)
+#define batterAIMoveBatter FUNCTION_ADDRESS(void, 0x8065EA2C)
+#define batterAIControlled FUNCTION_ADDRESS(void, 0x8065EE20)
+#define trackLastPitchInfo2 FUNCTION_ADDRESS(void, 0x8065EFDC)
+#define batterAISwingEarlyOrLate FUNCTION_ADDRESS(void, 0x8065F0F8)
+#define batterAIRNGValueSetting FUNCTION_ADDRESS(void, 0x8065F2B8)
+#define resetBatterPreAB_ FUNCTION_ADDRESS(void, 0x8065FAF4)
+#define resetLastPitchData FUNCTION_ADDRESS(void, 0x8065FB44)
+#define aIPickoff FUNCTION_ADDRESS(void, 0x8065FBC4)
+#define aiPitchCurveDirection FUNCTION_ADDRESS(void, 0x8065FD80, undefined8 /*curvePerFrame*/)
+#define movePitcherOnMound FUNCTION_ADDRESS(void, 0x8065FEE4)
+#define unused_8065ff80 FUNCTION_ADDRESS(void, 0x8065FF80)
+#define pitcherAISetCurve FUNCTION_ADDRESS(void, 0x80660044)
+#define pitcherAISelectPitch FUNCTION_ADDRESS(void, 0x80660334)
+#define pitcherAI_prePitchSetConstants FUNCTION_ADDRESS(void, 0x80660640)
+#define pitcherAINewBatter FUNCTION_ADDRESS(void, 0x806607FC)
+#define resetPitcherPreAB_ FUNCTION_ADDRESS(void, 0x80660A34)
+#define maybeSetVsIndOrScoutFlagChance_ FUNCTION_ADDRESS(void, 0x80660FA8)
+#define resetSomethingRelatedToVersus FUNCTION_ADDRESS(void, 0x806618E4)
+#define versusScreen_seemsToDoNothing FUNCTION_ADDRESS(void, 0x80661CA4)
+#define championshipScreen FUNCTION_ADDRESS(void, 0x80661CB4)
+#define starChanceVsScreenProcess FUNCTION_ADDRESS(void, 0x80662550)
+#define homeRunTrot FUNCTION_ADDRESS(void, 0x80662924)
+#define homeRunEnd FUNCTION_ADDRESS(void, 0x80662D80)
+#define postReplayBatterCelebration FUNCTION_ADDRESS(void, 0x8066318C)
+#define initializeAnimations_ FUNCTION_ADDRESS(void, 0x80664190)
+#define knockOut_setPosAndVelo FUNCTION_ADDRESS(void, 0x80664278, uint /*fielderIndex*/)
+#define garlicOrStadiumHazardKnockOuts_ FUNCTION_ADDRESS(void, 0x80664438, int /*fielderIndex*/, short /*knockOutAngle?*/)
+#define fielderOnFirePosAndVelo FUNCTION_ADDRESS(void, 0x806646DC, int /*fielderIndex*/)
+#define maybeCastleFireballBurn FUNCTION_ADDRESS(void, 0x806648D8, int /*fielderIndex*/, int /*countdownIndex*/)
+#define unused_8066496c FUNCTION_ADDRESS(void, 0x8066496C, int /*fielderInd*/)
+#define runningCatch_updatePositionAndVelocity FUNCTION_ADDRESS(void, 0x80664AFC, int /*fielderIndex*/)
+#define mag_BirdoSlidingCatchSetCoordinates FUNCTION_ADDRESS(void, 0x80664CD4, int /*fielderIndex*/)
+#define fielderMovement_VelocityDuringCatchAnimations FUNCTION_ADDRESS(void, 0x8066527C, int /*fielderIndex*/)
+#define calculateBobble FUNCTION_ADDRESS(void, 0x806656F8, int /*fielder*/)
+#define updateVariablesPostCatch FUNCTION_ADDRESS(void, 0x80665B08, int /*fielderIndex*/)
+#define processFielderAutoCatch FUNCTION_ADDRESS(void, 0x806666DC)
+#define catchAnimationProgression FUNCTION_ADDRESS(void, 0x806668F4, int /*fielderIndex*/)
+#define clamberCheckCatch FUNCTION_ADDRESS(void, 0x80666DFC, int /*fielderInd*/)
+#define wallJumpSOmething3_ FUNCTION_ADDRESS(void, 0x80667088)
+#define wallJumpInitialization FUNCTION_ADDRESS(int, 0x806672B8, int /*fielderIndex*/)
+#define divingCatch_80667d3c FUNCTION_ADDRESS(int, 0x80667D3C, int /*fielderIndex*/)
+#define uncalledattemptJumpingCatch FUNCTION_ADDRESS(bool, 0x806691F8, int /*fielderIndex*/)
+#define checkForAndSetFielderWallActionsOrDives FUNCTION_ADDRESS(BOOL, 0x8066931C, int /*fielderIndex*/)
+#define ballThrownToEmptyBaseCatchAttempt FUNCTION_ADDRESS(void, 0x80669730, int /*fielder*/)
+#define unused_80669d6c FUNCTION_ADDRESS(void, 0x80669D6C)
+#define catchThrownBallFun FUNCTION_ADDRESS(void, 0x80669DFC, int /*fielderInd*/)
+#define checkIfRunningCatchOccurs FUNCTION_ADDRESS(BOOL, 0x8066A728, int /*fielderInd*/)
+#define checkIfCatchOccurs FUNCTION_ADDRESS(BOOL, 0x8066AB98, int /*fielderInd*/)
+#define evaluateFlyBallCatch FUNCTION_ADDRESS(void, 0x8066B384, int /*fielderIndex*/)
+#define checkForCatchBallAction FUNCTION_ADDRESS(void, 0x8066B72C, int /*fielderIndex*/)
+#define minigameDashUpdateFieldingVals FUNCTION_ADDRESS(void, 0x8066BC74)
+#define unused_FUN_8066bf88 FUNCTION_ADDRESS(void, 0x8066BF88, int /*fielderIndex*/)
+#define determineBestFrameForFielder FUNCTION_ADDRESS(void, 0x8066C114, int /*fielderIndex*/)
+#define updateFielderPositionBasedOnBallState FUNCTION_ADDRESS(void, 0x8066C510, int /*fielderIndex*/)
+#define unused_FUN_8066c7fc FUNCTION_ADDRESS(void, 0x8066C7FC, int /*fielderIndex*/)
+#define autoMovement28_minigameDashRelated3 FUNCTION_ADDRESS(void, 0x8066C9C0, int /*fielderIndex*/)
+#define autoMovement27_minigameDashRelated2 FUNCTION_ADDRESS(void, 0x8066CB58, int /*fielderIndex*/)
+#define autoMovement26_minigameRelated1 FUNCTION_ADDRESS(void, 0x8066CD88, int /*fielderIndex*/)
+#define minigameRelated_FUN_8066d4b0 FUNCTION_ADDRESS(void, 0x8066D4B0)
+#define toyfieldRelated_ FUNCTION_ADDRESS(void, 0x8066D910)
+#define miniGameFielding_ FUNCTION_ADDRESS(void, 0x8066DAB8)
+#define minigameDashUpdateFieldingVariables FUNCTION_ADDRESS(void, 0x8066DF58)
+#define miniGameDash FUNCTION_ADDRESS(void, 0x8066E518)
+#define jumpSetPosAndVelo FUNCTION_ADDRESS(void, 0x8066E608, int /*fielderIndex*/)
+#define unused_8066e868 FUNCTION_ADDRESS(void, 0x8066E868)
+#define wallSplat_setPosAndVelo FUNCTION_ADDRESS(void, 0x8066E9B8, int /*fielderIndex*/)
+#define setClamberPos FUNCTION_ADDRESS(void, 0x8066EC30, int /*fielderIndex*/)
+#define clamberJumpOffWall FUNCTION_ADDRESS(void, 0x8066EFC0, int /*fielderIndex*/)
+#define unused_8066f14c FUNCTION_ADDRESS(void, 0x8066F14C)
+#define clamberInitialization FUNCTION_ADDRESS(void, 0x8066F2A8)
+#define walljump_calculateJumpedOffWallPositionAndVelocity FUNCTION_ADDRESS(void, 0x8066F5F8, int /*fIndex*/)
+#define unused_8066f6b0 FUNCTION_ADDRESS(void, 0x8066F6B0)
+#define unReferenced FUNCTION_ADDRESS(void, 0x8066FAEC)
+#define fielding_prePitchAutomovement FUNCTION_ADDRESS(void, 0x8066FE08)
+#define fielding_atBat_SetSomeAutomovements_callCollisionFn FUNCTION_ADDRESS(void, 0x80670444)
+#define atBat_Fielders FUNCTION_ADDRESS(void, 0x80670628)
+#define unused_8067070c FUNCTION_ADDRESS(void, 0x8067070C)
+#define unused_80670ad0 FUNCTION_ADDRESS(void, 0x80670AD0)
+#define fielderActionsOnSteal FUNCTION_ADDRESS(void, 0x80670CE4)
+#define stealSetFielders FUNCTION_ADDRESS(void, 0x80671124)
+#define determineSelectedfielderOnIFHit_Dribbler FUNCTION_ADDRESS(void, 0x80671438)
+#define selectInitialFielders_linedriveThroughPitcher FUNCTION_ADDRESS(void, 0x806718A4)
+#define setInitialFielderMovements_foulBall FUNCTION_ADDRESS(void, 0x80671A38)
+#define chooseSecondaryFielderFromClosestOutfielder FUNCTION_ADDRESS(void, 0x8067211C)
+#define setInitialFielderMovements_generalCase FUNCTION_ADDRESS(void, 0x80672580, int /*secondaryFielderWillBeSetSeparatelyInd*/)
+#define determinePrimaryAndSecondaryOutFielders FUNCTION_ADDRESS(void, 0x80672E64, int /*primaryFielder*/, int /*secondaryFielder*/)
+#define setInitialFielderMovements_DeepFly FUNCTION_ADDRESS(void, 0x8067327C)
+#define humanTeamFieldingFirstFrameAfterHit FUNCTION_ADDRESS(void, 0x806734E4)
+#define decideHowToTrackFoulBall FUNCTION_ADDRESS(void, 0x80673AD4, int /*fielderIndex*/)
+#define autoMovement16_trackFoulBall FUNCTION_ADDRESS(void, 0x80674DBC, int /*fielderIndex*/)
+#define setPlayerWhoCanInterceptThrow FUNCTION_ADDRESS(void, 0x80674EB0)
+#define SelectClosestFielder2 FUNCTION_ADDRESS(void, 0x8067526C, undefined8 /*targetX*/, undefined8 /*targetZ*/)
+#define selectBestFielder FUNCTION_ADDRESS(int, 0x8067570C, float /*ballX*/, float /*ballZ*/, int /*fielder1Index*/, int /*fielder2Index*/, int /*mode*/)
+#define SelectBetterFielder FUNCTION_ADDRESS(enumFielder, 0x806761A8, float /*ballX*/, float /*ballZ*/, enumFielder /*fielder1Index*/, enumFielder /*fielder2Index*/, int /*mode*/)
+#define unused_FUN_8067661c FUNCTION_ADDRESS(void, 0x8067661C)
+#define selectClosestFielderBasedOnFutureCoord FUNCTION_ADDRESS(void, 0x806766A4, int /*futureCoordIndex*/)
+#define SelectOptimalFielder FUNCTION_ADDRESS(void, 0x80677094)
+#define unreferenced_806772c8 FUNCTION_ADDRESS(void, 0x806772C8)
+#define selectAssignClosestFielder2 FUNCTION_ADDRESS(void, 0x80677398)
+#define setNewSelectedFielder_determinePriorSelectedFielder_sAutoMovement FUNCTION_ADDRESS(void, 0x80677824, int /*newFielderIndex*/, int /*autoMovementMode?*/)
+#define HandleMiddleInfieldSelection FUNCTION_ADDRESS(void, 0x80677DA4)
+#define fielderSelect_tertiaryFielderExists_determine2FieldersToKeep FUNCTION_ADDRESS(void, 0x8067808C)
+#define updateBallLandedFielderSelection FUNCTION_ADDRESS(void, 0x80678444)
+#define updateInAirFielderSelection FUNCTION_ADDRESS(void, 0x806788EC)
+#define unused_FUN_80678e58 FUNCTION_ADDRESS(void, 0x80678E58)
+#define updateFielderSelection FUNCTION_ADDRESS(void, 0x80678F44)
+#define setFielderVelocity_someSituation FUNCTION_ADDRESS(void, 0x806792C8, int /*fielderIndex*/)
+#define moveFielder_CheckForAndSetJump FUNCTION_ADDRESS(void, 0x80679618, int /*fielderIndex*/)
+#define updateFielderMovementIfNoBall FUNCTION_ADDRESS(void, 0x80679D54, enumFielder /*fielderIndex*/)
+#define autoMovement21_23_humanControlInitialSelectedFielders FUNCTION_ADDRESS(void, 0x80679EC8, enumFielder /*fielderIndex*/)
+#define autoMovement15_selectedFielderOnLooseBall_ FUNCTION_ADDRESS(void, 0x8067A404, int /*fielderIndex*/)
+#define liveBallFielderControlHumanTeam FUNCTION_ADDRESS(void, 0x8067AA78)
+#define checkIfPlayerNeedsToMoveToCatchBall FUNCTION_ADDRESS(void, 0x8067AEE4, int /*fielderIndex*/)
+#define autoMovement19_foulBall FUNCTION_ADDRESS(void, 0x8067B23C, int /*fIndex*/)
+#define autoMovement0_stayStill_exceptForSpecialActions FUNCTION_ADDRESS(void, 0x8067B2B4, int /*fielderIndex*/)
+#define runOffBaseOverride FUNCTION_ADDRESS(void, 0x8067B628, int /*fIndex*/)
+#define autoMovement9_OffBase_coverHome_ FUNCTION_ADDRESS(void, 0x8067BD44, int /*fielderIndex*/)
+#define autoMovement17_runningOffField FUNCTION_ADDRESS(void, 0x8067C398, int /*fielderIndex*/)
+#define autoMovement12_stopBetweenInstructions FUNCTION_ADDRESS(void, 0x8067C740, enumFielder /*fIndex*/)
+#define setFielderLocToBeNearBase FUNCTION_ADDRESS(void, 0x8067C868, int /*fIndex*/)
+#define autoMovement14_infieldSupport FUNCTION_ADDRESS(void, 0x8067CC0C, int /*fielderIndex*/)
+#define autoMovement20_pitcherLinedriveRelated FUNCTION_ADDRESS(void, 0x8067D3E0, int /*fielderIndex*/)
+#define knockoutRelated_Grounder_Liner FUNCTION_ADDRESS(void, 0x8067D724)
+#define knockoutRelated_FlyBall FUNCTION_ADDRESS(void, 0x8067DC00)
+#define knockoutRelated FUNCTION_ADDRESS(void, 0x8067E0C8)
+#define uncalled FUNCTION_ADDRESS(void, 0x8067E1B8)
+#define aITeamFieldingFirstFrameAfterHit FUNCTION_ADDRESS(void, 0x80680240)
+#define fielderAIAssignmentRelated FUNCTION_ADDRESS(void, 0x80680A10)
+#define fielderAISomething FUNCTION_ADDRESS(void, 0x80680E0C)
+#define decideWhenToLeaveFunction2_16_18 FUNCTION_ADDRESS(void, 0x80681110, int /*feilderIndex*/)
+#define updateFielderPosition FUNCTION_ADDRESS(void, 0x80681D70, int /*fielderIndex*/)
+#define setIntendedLocToInterceptBall FUNCTION_ADDRESS(void, 0x806820CC, int /*fielderIndex*/)
+#define fielderTrackingBall_updateVariables FUNCTION_ADDRESS(void, 0x80682474, int /*fielderIndex*/)
+#define fielderTrackingBall_initialVariableSetting_ FUNCTION_ADDRESS(void, 0x80683858, int /*fielderIndex*/)
+#define autoMovement2_18_goTowardsBall_phase2 FUNCTION_ADDRESS(void, 0x80684428, int /*fielderIndex*/)
+#define autoMovement4_AI_goTowardsHitBall_ FUNCTION_ADDRESS(void, 0x80684648, int /*fielderIndex*/)
+#define autoMovement3_goTowardsHitBall_AITeam FUNCTION_ADDRESS(void, 0x806848F4, int /*fielderIndex*/)
+#define autoMovement25_readyToInterceptThrownBall FUNCTION_ADDRESS(void, 0x80684C1C, int /*fielderIndex*/)
+#define updateFielderValuesSubFunction1_cuttoffRelated FUNCTION_ADDRESS(void, 0x80684F2C)
+#define checkIfCutoffIsntAtThrowDestination FUNCTION_ADDRESS(void, 0x80685B50, int /*fielderIndex*/)
+#define setCutoffLocationToStandAt FUNCTION_ADDRESS(void, 0x80685E9C, int /*fielderIndex*/, int /*intendedLocX*/, int /*intendedLocZ*/)
+#define setInitialFielderMovements_cutoffs FUNCTION_ADDRESS(void, 0x8068680C)
+#define autoMovement5 FUNCTION_ADDRESS(void, 0x80687514, int /*fielderIndex*/)
+#define autoMovement11_cutoff_setInitialLocation FUNCTION_ADDRESS(void, 0x80687AE8, int /*fielderIndex*/)
+#define secondaryOutfielderWhenToStopMoving FUNCTION_ADDRESS(void, 0x80688588, int /*fielderIndex*/)
+#define setSecondaryFielderToBe12mFromDropSpotToSupport_ FUNCTION_ADDRESS(void, 0x80688A58, int /*fielderIndex*/, Vec3f * /*intendedLocation*/)
+#define autoMovement24_goTowardsHitBall_humanTeam FUNCTION_ADDRESS(void, 0x80688CAC, int /*fielderIndex*/)
+#define updateFielderValuesSubFunction3_empty FUNCTION_ADDRESS(void, 0x80688FD0)
+#define autoMovementDetermineWhatToDo FUNCTION_ADDRESS(void, 0x80688FD4, enumFielder /*fIndex*/, presetFielderLocations_int_ /*outfieldPositionToStand*/)
+#define setInitialFielderMovements_restOfFielders FUNCTION_ADDRESS(void, 0x806891B8)
+#define setIntendedLocationAheadOfBallPath FUNCTION_ADDRESS(void, 0x8068949C, int /*fIndex*/, int /*xCoord*/, int /*zCoord*/)
+#define autoMovement13_GoTowardsBallAsBackUp FUNCTION_ADDRESS(void, 0x80689A40, int /*fIndex*/)
+#define autoMovement6_outfielderNoCatch_Phase2 FUNCTION_ADDRESS(void, 0x8068A1BC, enumFielder /*fielderIndex*/)
+#define autoMovement7_8_outfiederNoCatch_Phase1 FUNCTION_ADDRESS(void, 0x8068A5A8, enumFielder /*fielderIndex*/)
+#define updateSomeAutoMovementAssignments FUNCTION_ADDRESS(void, 0x8068AAA0)
+#define setInitialFielderMovements_CoverBases FUNCTION_ADDRESS(void, 0x8068BA5C)
+#define autoMovement1_coverBase FUNCTION_ADDRESS(void, 0x8068C2A0, int /*fielderIndex*/)
+#define bobbleDirection FUNCTION_ADDRESS(void, 0x8068CCA8, int /*bobblingPlayerIndex*/)
+#define findClosestFieldersToLooseBallAndAssignToGoGetIt FUNCTION_ADDRESS(void, 0x8068D250)
+#define checkForAndHandleLooseBalls FUNCTION_ADDRESS(void, 0x8068D6CC)
+#define aISetFielderWithBallIndex FUNCTION_ADDRESS(void, 0x8068DC58)
+#define knockoutRelated_subFn FUNCTION_ADDRESS(void, 0x8068E05C, int /*fielderIndex*/, int)
+#define setCatcherCatchStrategy_distToLandingSpot FUNCTION_ADDRESS(void, 0x8068E598, int /*fielderIndex*/)
+#define setFielderCatchStrategy_calcFramesToGetToDropSpot FUNCTION_ADDRESS(void, 0x8068EBC8, int /*fielderIndex*/)
+#define fielderMovement_adjustPlaceToStandForBallBouncingOffWall FUNCTION_ADDRESS(void, 0x8068FCB4, int /*fielderInd*/, int /*xCoord*/, int /*zCoord*/)
+#define updateSprintPointers FUNCTION_ADDRESS(void, 0x806902B4)
+#define adjustPlayerPosOutsideFoulLine FUNCTION_ADDRESS(uint, 0x806906E0, int /*fielderIndex*/, Vec3f * /*outPosVec*/)
+#define updateFielderPosition_checkFielderCollision_ FUNCTION_ADDRESS(int, 0x8069082C, int /*fielderIndex*/, Vec3f * /*outNewPos*/, int)
+#define setZoneAwayFromHome FUNCTION_ADDRESS(void, 0x80690E84)
+#define calculateMinDiveDistAndEndingCoords FUNCTION_ADDRESS(void, 0x80691374, double /*xDist*/, double /*zDist*/, int /*fielderIndex*/, int /*frameAhead*/, float * /*postDiveX*/, float * /*postDiveZ*/, float * /*minimumDiveDistance*/)
+#define fRunningTimeToDestinationPlus7 FUNCTION_ADDRESS(void, 0x806915F4, undefined8 /*someX*/, undefined8 /*someZ*/, int /*fielderIndex*/)
+#define setFielderVelocity FUNCTION_ADDRESS(void, 0x80691770, int /*fielderIndex*/, int, int /*distFromRunner*/)
+#define setFielderAutoCoords FUNCTION_ADDRESS(void, 0x80691FE0, undefined8 /*targetX*/, undefined8 /*targetZ*/, int)
+#define updateFielderPositionAndVelocityForSpecialActions FUNCTION_ADDRESS(void, 0x806921C4, int /*fielderIndex*/)
+#define setStandingOnBaseVariables FUNCTION_ADDRESS(void, 0x806927C0, int /*fielderIndex*/)
+#define fielderMovementRelated FUNCTION_ADDRESS(void, 0x80692F7C)
+#define minigameFieldingRelated_collisions_ FUNCTION_ADDRESS(void, 0x80692FDC)
+#define fielding_handleCollisionsAndSpecialActions FUNCTION_ADDRESS(void, 0x8069354C)
+#define updateFielderDirectionFacing FUNCTION_ADDRESS(void, 0x80693BEC, int /*fielderIndex*/)
+#define handleBodyCheck2 FUNCTION_ADDRESS(void, 0x806947A4, int /*fielderWBall*/)
+#define fielder_endOfInning_deadball_updateCounters FUNCTION_ADDRESS(void, 0x806949AC)
+#define fielderUpdateChasingRunnerValues FUNCTION_ADDRESS(void, 0x80694D58, int /*fielderIndex*/)
+#define updateFielder_SpecificValuesEachFrame FUNCTION_ADDRESS(void, 0x80694F80, int /*fielderIndex*/)
+#define liveBallUpdateFieldingValues FUNCTION_ADDRESS(void, 0x806961D8)
+#define updateOutfielderPositionBasedOnBallState FUNCTION_ADDRESS(void, 0x8069651C)
+#define processFielderJumpAI FUNCTION_ADDRESS(void, 0x80696748, int /*fielderIndex*/)
+#define aITeamFielding_SelectCharWithHand FUNCTION_ADDRESS(void, 0x80696AA8)
+#define updateFielderMovementAndPosition FUNCTION_ADDRESS(void, 0x80696C48)
+#define liveBallFielderControlAITeam FUNCTION_ADDRESS(void, 0x8069744C)
+#define fielderResetAndStoreValuesEachFrame FUNCTION_ADDRESS(void, 0x8069771C)
+#define setDefaultInMemFielder FUNCTION_ADDRESS(void, 0x80697904)
+#define initializeMiniGameCharacters FUNCTION_ADDRESS(void, 0x80697EE4)
+#define fielding_setStartingCoordinates FUNCTION_ADDRESS(void, 0x80697FEC, int /*positionIndex*/, int /*xCoord*/, int /*zCoord*/)
+#define pPRelated_ FUNCTION_ADDRESS(void, 0x80698240)
+#define resetInMemFielders FUNCTION_ADDRESS(void, 0x806983CC)
+#define initializeFielderConstants FUNCTION_ADDRESS(void, 0x80698658)
+#define initFielders FUNCTION_ADDRESS(void, 0x8069878C)
+#define ifCurrentFielderIsTakingOverBaseCovering FUNCTION_ADDRESS(void, 0x806988F0, int /*fielderIndex*/, int /*fielderAction*/)
+#define fielderMainFunction FUNCTION_ADDRESS(void, 0x80698964)
+#define QueueTextToDisplay FUNCTION_ADDRESS(void, 0x806989AC, EnumPopupText_word /*textToDisplay*/)
+#define initializeSomethingDuringTransition FUNCTION_ADDRESS(void, 0x80698B24)
+#define resetCount FUNCTION_ADDRESS(void, 0x80699718)
+#define configureTeamsForGame_Unused__ FUNCTION_ADDRESS(void, 0x80699734, int /*battingInd*/, int, int /*initialBattingAndFielding*/, int /*addtlParam*/)
+#define SetGameStatus FUNCTION_ADDRESS(void, 0x80699768, EnumGameStatus /*newGameStatus*/)
+#define exitToMenuControl FUNCTION_ADDRESS(void, 0x80699790)
+#define gameInitRelated FUNCTION_ADDRESS(void, 0x80699910)
+#define simulate1FrameOfTheGame FUNCTION_ADDRESS(void, 0x80699D34)
+#define transferSomeValuesOnMatchLoad FUNCTION_ADDRESS(void, 0x80699F30)
+#define gameSimulationFunction FUNCTION_ADDRESS(void, 0x8069A158)
+#define exitMenu_main FUNCTION_ADDRESS(void, 0x8069A414)
+#define startChallengeModeMatch_ FUNCTION_ADDRESS(void, 0x8069A634)
+#define endOfGame_menuControl FUNCTION_ADDRESS(void, 0x8069AAC0)
+#define matchEndGameScreenFunction FUNCTION_ADDRESS(void, 0x8069ADD4)
+#define evaluateInningCondition FUNCTION_ADDRESS(void, 0x8069B5C4, int /*inning*/)
+#define uncalledRunnerUpdateRelated FUNCTION_ADDRESS(void, 0x8069B65C)
+#define transitionToLiveBallWithoutContact FUNCTION_ADDRESS(void, 0x8069B730, byte /*stealInd*/)
+#define processScoreChanges FUNCTION_ADDRESS(void, 0x8069B7E0, int /*isLiveBallScreen*/)
+#define endOfMatch FUNCTION_ADDRESS(void, 0x8069BE48)
+#define unreferenced_8069c064 FUNCTION_ADDRESS(void, 0x8069C064)
+#define endOfGameCheck FUNCTION_ADDRESS(void, 0x8069C128, int /*isRBI*/)
+#define inningImportanceAI FUNCTION_ADDRESS(void, 0x8069C490)
+#define inningChange FUNCTION_ADDRESS(void, 0x8069C67C)
+#define settingGameStatus FUNCTION_ADDRESS(void, 0x8069CB30)
+#define handleABEndEvent FUNCTION_ADDRESS(void, 0x8069CD74)
+#define handleDeadBall FUNCTION_ADDRESS(void, 0x8069CDC4)
+#define playOverTransitionStuff FUNCTION_ADDRESS(void, 0x8069CFE8)
+#define checkIfPlayOver FUNCTION_ADDRESS(void, 0x8069D358)
+#define switchFromAtBatToLiveBall FUNCTION_ADDRESS(void, 0x8069DE2C)
+#define freePracticeSomething_ FUNCTION_ADDRESS(void, 0x8069DE6C)
+#define endBatterTransition FUNCTION_ADDRESS(void, 0x8069DEEC)
+#define atBatScreen FUNCTION_ADDRESS(void, 0x8069E080)
+#define newPitch FUNCTION_ADDRESS(void, 0x8069E1E8)
+#define matchTransitionPrepareNextAB FUNCTION_ADDRESS(void, 0x8069E490)
+#define practiceNewBatter_ FUNCTION_ADDRESS(void, 0x8069E7B4)
+#define initNewInning_ FUNCTION_ADDRESS(void, 0x8069E83C)
+#define exhibitionGameTransitionCalculations FUNCTION_ADDRESS(void, 0x8069E9C4)
+#define initializeGame_ FUNCTION_ADDRESS(void, 0x8069EFA4)
+#define baseballMatchSimulation FUNCTION_ADDRESS(void, 0x8069F1B0)
+#define updateFielderState FUNCTION_ADDRESS(int, 0x8069F898, int /*fielderIndex*/, int /*updateType*/)
+#define foulAnimationRelatedMaybe FUNCTION_ADDRESS(void, 0x8069FB2C, int /*fielderInd*/, AnimationStruct * /*animStruct*/)
+#define fielderThrowingAnimations FUNCTION_ADDRESS(void, 0x806A02BC, int /*fielderIndex*/)
+#define animationsForFielding FUNCTION_ADDRESS(void, 0x806A05D8, int /*fielderIndex*/)
+#define fielderAnimations_setAnimation FUNCTION_ADDRESS(void, 0x806A0BF8, int /*fielderIndex*/)
+#define handleRunnerActionsAndTagging FUNCTION_ADDRESS(void, 0x806A1998)
+#define fielderAnimations FUNCTION_ADDRESS(void, 0x806A1F04)
+#define runnerAnimation_general FUNCTION_ADDRESS(void, 0x806A2240, int /*runnerIndex*/)
+#define runnerAnimation_detailed FUNCTION_ADDRESS(void, 0x806A2908)
+#define batterAnimations_ FUNCTION_ADDRESS(void, 0x806A2B8C)
+#define pitcherAnimation_ FUNCTION_ADDRESS(void, 0x806A3C70)
+#define minigameAnimations FUNCTION_ADDRESS(void, 0x806A51D4)
+#define matchAnimations FUNCTION_ADDRESS(void, 0x806A5590)
+#define unsure_updateAnimations FUNCTION_ADDRESS(void, 0x806A5950)
+#define setDefaultPlayTrackingVariables3 FUNCTION_ADDRESS(void, 0x806A61C4)
+#define setupBallTrailEffect FUNCTION_ADDRESS(void, 0x806A66B4, enumBallTrailTypes /*maybeBallTrailType*/, int /*trailDuration*/)
+#define ballAnimationSubFun4 FUNCTION_ADDRESS(void, 0x806A6ADC)
+#define displayBallTrail FUNCTION_ADDRESS(void, 0x806A7684)
+#define ballSpinSetting FUNCTION_ADDRESS(void, 0x806A7C48)
+#define clearAnimationRelatedPointers FUNCTION_ADDRESS(void, 0x806A8190)
+#define ballAnimationSubFun3 FUNCTION_ADDRESS(void, 0x806A8218)
+#define ballAnimationSubFun2 FUNCTION_ADDRESS(void, 0x806A8374)
+#define ballAnimationSubFun1 FUNCTION_ADDRESS(void, 0x806A868C)
+#define ballAnimations FUNCTION_ADDRESS(void, 0x806A8860)
+#define AnimBlr FUNCTION_ADDRESS(void, 0x806A92E4)
+#define resetAnimationRelatedPointers FUNCTION_ADDRESS(void, 0x806A92F0)
+#define animateStarHits_Pitches_ FUNCTION_ADDRESS(void, 0x806A94A8)
+#define animateChargeSprites FUNCTION_ADDRESS(void, 0x806A9BEC)
+#define resetAnimationFlags FUNCTION_ADDRESS(void, 0x806A9F74)
+#define computeAdjustedFielderOrientation FUNCTION_ADDRESS(void, 0x806AA030, int /*fielderIndex*/)
+#define animateDefence_ FUNCTION_ADDRESS(void, 0x806AA1D8)
+#define loadMVPMaybe_ FUNCTION_ADDRESS(void, 0x806AA66C)
+#define animateShadows_nonBall_ FUNCTION_ADDRESS(void, 0x806AA708)
+#define matchTransitionFunction2 FUNCTION_ADDRESS(void, 0x806AA904)
+#define loadRunnerActors_ FUNCTION_ADDRESS(void, 0x806AAAF8)
+#define setDefaultPlayTrackingVariables2 FUNCTION_ADDRESS(void, 0x806AB174)
+#define initializeSomethingDuringTransition2 FUNCTION_ADDRESS(void, 0x806AB19C)
+#define setInningEndingKIndTo0 FUNCTION_ADDRESS(void, 0x806AB1D0)
+#define graphicsFunction_nonMiniGame_ FUNCTION_ADDRESS(void, 0x806AB26C)
+#define resetAnimRelatedPointer FUNCTION_ADDRESS(void, 0x806AB4A4)
+#define emptyFunction FUNCTION_ADDRESS(void, 0x806AB4BC)
+#define resetAnimationFlags2 FUNCTION_ADDRESS(void, 0x806AB4E8)
+#define animateOffence FUNCTION_ADDRESS(void, 0x806AB564)
+#define setCharacterAnimations_ FUNCTION_ADDRESS(void, 0x806AB8E8, int /*battingTeam*/, int)
+#define checkForButtonPressToSkip_ FUNCTION_ADDRESS(void, 0x806AB9CC, undefined4, undefined2 /*inputsToCheckFor*/)
+#define InterpretControllerInputsIntoMagnitude FUNCTION_ADDRESS(void, 0x806ABE1C)
+#define UpdateControllerInputs FUNCTION_ADDRESS(void, 0x806AC398)
+#define resetInputTrackers FUNCTION_ADDRESS(void, 0x806AC534)
+#define getAdjustedPitcherStamina FUNCTION_ADDRESS(void, 0x806AC5F8, int /*team*/, int /*rosterID*/, int /*stamAdj*/)
+#define CheckFieldingStat FUNCTION_ADDRESS(int, 0x806AC698, int /*team*/, int /*rosterID*/, EnumFieldingAbilityBitLocation /*bit*/)
+#define calculateChemistry FUNCTION_ADDRESS(void, 0x806AC6EC, int /*teamFielding*/, int /*character*/, int /*secondCharacter*/)
+#define unreferenced_806ac768 FUNCTION_ADDRESS(void, 0x806AC768)
+#define initializeInMemRunner FUNCTION_ADDRESS(void, 0x806AC9F8, int /*rosterID*/, int /*runnerInd*/)
+#define setInMemBatterConstants FUNCTION_ADDRESS(void, 0x806ACEF4, int /*rosterID*/)
+#define getThrowSpeedBasedOnArmStrengthStat FUNCTION_ADDRESS(void, 0x806AD268, undefined4 /*armStrength*/)
+#define setFielderValues FUNCTION_ADDRESS(void, 0x806AD2E0, int /*rosterID*/, int /*fielder*/)
+#define setPitcherStatsToInMemPitcher FUNCTION_ADDRESS(void, 0x806ADC48)
+#define initRosterForMatch FUNCTION_ADDRESS(void, 0x806ADFB0)
+#define runnerStealing_TransitionToLiveViewIndicator FUNCTION_ADDRESS(int, 0x806AE57C)
+#define waitingForPitch_checkForPickoffs FUNCTION_ADDRESS(void, 0x806AE7DC)
+#define unused_806aeabc FUNCTION_ADDRESS(void, 0x806AEABC)
+#define unused_806aec2c FUNCTION_ADDRESS(void, 0x806AEC2C)
+#define pitchCall FUNCTION_ADDRESS(void, 0x806AF480)
+#define estimateXAndFrameAtBatterZ FUNCTION_ADDRESS(void, 0x806AF7FC, undefined8 /*batZ*/, int /*varToUpdate*/, int /*considerCurveInd*/)
+#define unused_806af8cc FUNCTION_ADDRESS(void, 0x806AF8CC)
+#define unused_806afc28 FUNCTION_ADDRESS(void, 0x806AFC28)
+#define pitchCurve FUNCTION_ADDRESS(void, 0x806AFF88)
+#define pitchInAirFunction FUNCTION_ADDRESS(void, 0x806B02DC)
+#define pitchSetPhysicsConstants FUNCTION_ADDRESS(void, 0x806B17FC)
+#define adjustPitchCurveSpeedCursedBall FUNCTION_ADDRESS(void, 0x806B1D3C)
+#define pitchBeingReleased FUNCTION_ADDRESS(void, 0x806B21A0)
+#define handleHPBORRunnerAdvance FUNCTION_ADDRESS(void, 0x806B263C)
+#define resetBatterCount FUNCTION_ADDRESS(void, 0x806B2760)
+#define resetCounter FUNCTION_ADDRESS(void, 0x806B27AC)
+#define unreferenced_806b27c0 FUNCTION_ADDRESS(void, 0x806B27C0)
+#define endAtBatNonHit FUNCTION_ADDRESS(void, 0x806B293C)
+#define unreferenced_806b2e7c FUNCTION_ADDRESS(void, 0x806B2E7C)
+#define unused_806b2fc0 FUNCTION_ADDRESS(void, 0x806B2FC0)
+#define unused_806b3040 FUNCTION_ADDRESS(void, 0x806B3040)
+#define pitchingWindUpFunction FUNCTION_ADDRESS(void, 0x806B31BC)
+#define pitcherMovementOnMound FUNCTION_ADDRESS(void, 0x806B3B58)
+#define waitingForPitch FUNCTION_ADDRESS(void, 0x806B3DA0)
+#define pitcherAITransitionFromPrePitchToWindup FUNCTION_ADDRESS(void, 0x806B4158)
+#define loadPitcherActor FUNCTION_ADDRESS(void, 0x806B4170)
+#define setDefaultInMemPitcher FUNCTION_ADDRESS(void, 0x806B4248)
+#define resetPitcherValuesBetweenBatters_ FUNCTION_ADDRESS(void, 0x806B447C)
+#define resetInMemPitcher FUNCTION_ADDRESS(void, 0x806B44C8)
+#define setPitchingConstants_ FUNCTION_ADDRESS(void, 0x806B454C)
+#define atBat_Pitcher FUNCTION_ADDRESS(void, 0x806B45F4)
+#define unreferenced_806b4950 FUNCTION_ADDRESS(void, 0x806B4950, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int, int, int, int)
+#define MVPCalculation FUNCTION_ADDRESS(void, 0x806B4A50)
+#define winningPitcher_ FUNCTION_ADDRESS(void, 0x806B5208)
+#define endOfGameStats_MVP FUNCTION_ADDRESS(void, 0x806B55EC)
+#define steal_pickoff_incrementSteal_runsStats FUNCTION_ADDRESS(void, 0x806B5B30)
+#define updateStatsBasedOnABResult FUNCTION_ADDRESS(void, 0x806B5D9C, int /*batterIndex*/, EnumAtBatResult_word /*atBatResult*/, int /*fIndexWhoCausedOut?*/, int /*rbisOnPlay*/)
+#define postPlayTrackStats FUNCTION_ADDRESS(void, 0x806B69A8)
+#define pickoff_infieldThrow_related FUNCTION_ADDRESS(void, 0x806B7608, undefined2 /*throwingFielder*/)
+#define monitorForErrors FUNCTION_ADDRESS(void, 0x806B77C4)
+#define update_runnersBeingTargetedWhileBatterCanBeForcedOut FUNCTION_ADDRESS(void, 0x806B7B58)
+#define initialize_runnersBeingTargetedWhileBatterCanBeForcedOut FUNCTION_ADDRESS(void, 0x806B80D4)
+#define runnerResultCd_bunt FUNCTION_ADDRESS(void, 0x806B84A8)
+#define adjustTotalBasesOnHit FUNCTION_ADDRESS(void, 0x806B863C)
+#define setInitialTotalBasesOnHit FUNCTION_ADDRESS(void, 0x806B8800)
+#define midPlay_trackStats FUNCTION_ADDRESS(void, 0x806B8B60)
+#define updatePitcherStatsOnScoreChange FUNCTION_ADDRESS(void, 0x806B8F88)
+#define postPitchStatUpdating FUNCTION_ADDRESS(void, 0x806B91E8, int /*liveBallInd*/)
+#define incrementPitchCount FUNCTION_ADDRESS(void, 0x806B9BC8)
+#define postPitchStatRelated FUNCTION_ADDRESS(void, 0x806B9C0C, undefined4 /*param_1_always0*/, undefined4, undefined4, undefined4 /*battingPositionOfCatcher?*/)
+#define setRunnerOnBaseIndicators FUNCTION_ADDRESS(void, 0x806B9FFC)
+#define intializeRunnersDuringTransition FUNCTION_ADDRESS(void, 0x806BA078)
+#define resetGameControlVars_duringNewInning__ FUNCTION_ADDRESS(void, 0x806BA1C4)
+#define initializeStats FUNCTION_ADDRESS(void, 0x806BA39C)
+#define determineIfReplayShouldPlay FUNCTION_ADDRESS(void, 0x806BACB4)
+#define replaceGameStructs_postReplay FUNCTION_ADDRESS(void, 0x806BB290, undefined4 /*param_1_always1*/)
+#define useReplayInputs FUNCTION_ADDRESS(void, 0x806BB578)
+#define structCopying FUNCTION_ADDRESS(void, 0x806BB840)
+#define CopyMoreStructs FUNCTION_ADDRESS(void, 0x806BBA6C)
+#define lastPlayStats FUNCTION_ADDRESS(void, 0x806BBF24)
+#define initializeReplayState FUNCTION_ADDRESS(void, 0x806BC01C)
+#define ReplayRelatedCopying_storeDataBeforePlay FUNCTION_ADDRESS(void, 0x806BC4EC)
+#define initializeReplayVariables FUNCTION_ADDRESS(void, 0x806BC814)
+#define runnerChangeDirectionHumanInput FUNCTION_ADDRESS(void, 0x806BCBC4, int /*runnerNum*/)
+#define cCSRunningFun FUNCTION_ADDRESS(void, 0x806BCE00)
+#define running_LiveBall_Human FUNCTION_ADDRESS(void, 0x806BD350)
+#define running_sendOutRunnerToDugout FUNCTION_ADDRESS(void, 0x806BDC68, int /*runnerIndex*/)
+#define running_roundBaseDecision FUNCTION_ADDRESS(void, 0x806BDD90, int /*runnerIndex*/)
+#define running_overrun1stIndicator FUNCTION_ADDRESS(void, 0x806BE36C)
+#define running_triggerSlideOrBodyCheck FUNCTION_ADDRESS(void, 0x806BE528, int /*runnerNum*/)
+#define unused_ FUNCTION_ADDRESS(void, 0x806BEA58)
+#define running_DirectionOverrides FUNCTION_ADDRESS(runnerMovementType, 0x806BEB0C, int /*runnerNum*/)
+#define unused__806bee24 FUNCTION_ADDRESS(void, 0x806BEE24)
+#define running_updatePosition FUNCTION_ADDRESS(void, 0x806BF0BC, int /*runnerIndex*/)
+#define running_updatePositionTracking_storeRBIs_stopAtNextBase_displaySafe FUNCTION_ADDRESS(void, 0x806C0224, int /*runnerIndex*/)
+#define unReferenced_806c0b4c FUNCTION_ADDRESS(void, 0x806C0B4C)
+#define running_overrunBaseControl FUNCTION_ADDRESS(void, 0x806C0C5C, undefined4 /*rIndex*/)
+#define runnerOverrun1BRelated FUNCTION_ADDRESS(void, 0x806C0F40, undefined4 /*rIndex*/)
+#define running_ActionControlAndVelocity FUNCTION_ADDRESS(void, 0x806C1448, undefined4 /*rIndex*/)
+#define running_CalculateSpeedVariables FUNCTION_ADDRESS(void, 0x806C1704, int /*rIndex*/)
+#define updateRunnerFramesToClosestBases FUNCTION_ADDRESS(void, 0x806C2014, int /*runnerNum*/, int /*framesPrevBase*/, int /*framesNextBase*/)
+#define running_updateDistAndFramesToClosestBases FUNCTION_ADDRESS(void, 0x806C2110, int /*runnerNum*/)
+#define unused__806c2480 FUNCTION_ADDRESS(void, 0x806C2480)
+#define running_LiveBall_AI FUNCTION_ADDRESS(void, 0x806C27A8)
+#define possibleRunnerAIRelated FUNCTION_ADDRESS(void, 0x806C3254)
+#define runnerAILiveBall_ FUNCTION_ADDRESS(void, 0x806C3378, int /*runnerIndex*/)
+#define runnerAI_2 FUNCTION_ADDRESS(void, 0x806C375C)
+#define runnerAISubfunction4 FUNCTION_ADDRESS(void, 0x806C3B64, int /*runnerIndex*/, int /*someFrames*/)
+#define runnerAISubfunction3 FUNCTION_ADDRESS(void, 0x806C4108)
+#define runnerAISubfunction2 FUNCTION_ADDRESS(void, 0x806C48D4, int /*runnerIndex*/, int, int)
+#define running_AIStartSteals FUNCTION_ADDRESS(void, 0x806C4D44)
+#define runnerAISetRunningDirection FUNCTION_ADDRESS(void, 0x806C4F88, int /*runnerNum*/, int /*actionCode*/)
+#define runnerAISubfunction FUNCTION_ADDRESS(void, 0x806C51AC)
+#define running_setRestrictedMovements FUNCTION_ADDRESS(void, 0x806C5830)
+#define running_beginSteal_CheckForPerfect FUNCTION_ADDRESS(void, 0x806C5F8C)
+#define unreferenced_806c6140 FUNCTION_ADDRESS(void, 0x806C6140)
+#define updateRunnerValues FUNCTION_ADDRESS(void, 0x806C6360)
+#define running_CheckForForceOuts_UpdateStamina_UpdateTagOutVars FUNCTION_ADDRESS(void, 0x806C64B8)
+#define running_UpdateTrackingValues_BasesEarned FUNCTION_ADDRESS(void, 0x806C68B0)
+#define running_CalcVeloAndIfBatterShouldStayStill FUNCTION_ADDRESS(void, 0x806C6B7C)
+#define running_chainChompSprintRelated FUNCTION_ADDRESS(void, 0x806C6D5C)
+#define setRunnerAngle FUNCTION_ADDRESS(void, 0x806C6F14)
+#define unused_forceOutSomething FUNCTION_ADDRESS(void, 0x806C72BC)
+#define running_checkForOuts FUNCTION_ADDRESS(void, 0x806C749C)
+#define running_ForceOutStateRelated FUNCTION_ADDRESS(void, 0x806C7BAC)
+#define maybeUpdateRunnerNoRun FUNCTION_ADDRESS(void, 0x806C7CB8)
+#define runnerOut FUNCTION_ADDRESS(void, 0x806C7E1C, int /*runnerNum*/)
+#define maybeHandleBaserunners FUNCTION_ADDRESS(void, 0x806C802C)
+#define stealCancelLeadoffs FUNCTION_ADDRESS(void, 0x806C81B0)
+#define setDefaultInMemRunner FUNCTION_ADDRESS(void, 0x806C81D0)
+#define updateRunnerPosition FUNCTION_ADDRESS(void, 0x806C88F8, int /*runnerNum*/, byte /*baseIncrement*/)
+#define transferInMemRunnerValuesToNextRunnerIndex FUNCTION_ADDRESS(void, 0x806C8A50)
+#define initializeARunner FUNCTION_ADDRESS(void, 0x806C926C)
+#define resetInMemRunners FUNCTION_ADDRESS(void, 0x806C93E4)
+#define initBaseRunnersAfterFoulBall FUNCTION_ADDRESS(void, 0x806C9578)
+#define initializeInMemRunner_806c9638 FUNCTION_ADDRESS(void, 0x806C9638)
+#define unreferenced_806c96ac FUNCTION_ADDRESS(void, 0x806C96AC)
+#define _unused_ FUNCTION_ADDRESS(void, 0x806C9848)
+#define running_MainFunction FUNCTION_ADDRESS(void, 0x806C99EC)
+#define addToCircularBuffer FUNCTION_ADDRESS(void, 0x806CA2EC)
+#define stadiumMusic_ FUNCTION_ADDRESS(void, 0x806CA3AC, EnumStadiumIDs4 /*stadium*/)
+#define updateAndRemoveStadiumEmitter FUNCTION_ADDRESS(void, 0x806CA924, int /*emitterIndex*/)
+#define updateOrRemoveEmitter FUNCTION_ADDRESS(SND_EMITTER *, 0x806CAAF4, int /*emitterID*/, SND_FVECTOR * /*newPos*/, SND_FVECTOR * /*newDir*/)
+#define initializeStadiumObjectEmitter FUNCTION_ADDRESS(int, 0x806CAC58, int /*soundID*/, SND_FVECTOR * /*position*/, SND_FVECTOR * /*direction*/, int /*paramIndex*/)
+#define initializeCamera_ FUNCTION_ADDRESS(void, 0x806CAF20)
+#define transitionToReplay_ FUNCTION_ADDRESS(void, 0x806CB110)
+#define makeSoundOfBallBouncing FUNCTION_ADDRESS(void, 0x806CB65C)
+#define handleGameSound FUNCTION_ADDRESS(void, 0x806CBE08)
+#define soundControl_ FUNCTION_ADDRESS(void, 0x806CCB14)
+#define soundFxRelated FUNCTION_ADDRESS(void, 0x806CE2B0)
+#define newAtBatPlaySound FUNCTION_ADDRESS(void, 0x806CECA0)
+#define adjustBallSoundEffectBasedOnHeight FUNCTION_ADDRESS(void, 0x806CED14)
+#define initializeSounds_ FUNCTION_ADDRESS(void, 0x806CEFAC)
+#define animateThrownBall_ FUNCTION_ADDRESS(int, 0x806CEFF0, float /*x*/, float /*y*/, float /*z*/, enumSoundEffect_short /*soundCode*/)
+#define callSfx FUNCTION_ADDRESS(void, 0x806CF0F8, enumSoundEffect_short /*sfxID*/)
+#define playCharacterSound FUNCTION_ADDRESS(void, 0x806CF2B4, int /*charID*/, enumCharacterSounds /*soundCode*/)
+#define PlaySoundEffect FUNCTION_ADDRESS(void, 0x806CF328, enumSoundEffect_short /*soundNumber*/)
+#define playOverSounds FUNCTION_ADDRESS(void, 0x806CF3BC)
+#define cleanupCharacters FUNCTION_ADDRESS(void, 0x806CFD44)
+#define hud_ScoreUpdate_ToyFieldOffScreenPlayers FUNCTION_ADDRESS(void, 0x806D04D0)
+#define animateScreenRelated FUNCTION_ADDRESS(void, 0x806D0C30)
+#define animateScreenRelated_806d0d04 FUNCTION_ADDRESS(void, 0x806D0D04)
+#define manageScoreboardGraphic FUNCTION_ADDRESS(void, 0x806D1058)
+#define graphics_ShowScoreUpdateOnRBI_ongoing FUNCTION_ADDRESS(void, 0x806D29F4)
+#define graphics_ShowScoreUpdateOnRBI_initial FUNCTION_ADDRESS(void, 0x806D2DF0)
+#define relatedToAnimatingEndOfGame FUNCTION_ADDRESS(void, 0x806D3228)
+#define HUD_ongoingStarChance FUNCTION_ADDRESS(void, 0x806D45FC)
+#define HUD_initStarChance FUNCTION_ADDRESS(void, 0x806D4660)
+#define drawDiamondMiniMap_ongoing FUNCTION_ADDRESS(void, 0x806D4A50)
+#define drawDiamondMiniMap_init FUNCTION_ADDRESS(void, 0x806D5730)
+#define toyfield_hud_turns_diamondMap FUNCTION_ADDRESS(void, 0x806D59A8)
+#define handleInGameEventsAndSoundEffects FUNCTION_ADDRESS(void, 0x806D5D38)
+#define manageEventStates FUNCTION_ADDRESS(void, 0x806D61D8)
+#define animateMatchScene FUNCTION_ADDRESS(void, 0x806D6480)
+#define initAnimStruct_ FUNCTION_ADDRESS(void, 0x806D6894)
+#define pauseMenu_ControlsMenu_ FUNCTION_ADDRESS(void, 0x806D6D80)
+#define animatePauseMenu FUNCTION_ADDRESS(void, 0x806D80F8)
+#define wallBallAnimationRelated FUNCTION_ADDRESS(void, 0x806D88AC)
+#define draw_OnBaseChemLinks FUNCTION_ADDRESS(void, 0x806D8D90)
+#define draw_ongoingStarGuageHud FUNCTION_ADDRESS(void, 0x806D8EA4)
+#define draw_initStarGuageHud FUNCTION_ADDRESS(void, 0x806D9938)
+#define draw_ScoreInningHud FUNCTION_ADDRESS(void, 0x806DA888)
+#define maybe_updateBallStrikeOutUI FUNCTION_ADDRESS(void, 0x806DAF74, undefined4 /*scene*/)
+#define update_BallStrikeOutHud FUNCTION_ADDRESS(void, 0x806DB0A8)
+#define init_BallStrikeOutHud FUNCTION_ADDRESS(void, 0x806DB320)
+#define matchHudDrawingControl FUNCTION_ADDRESS(void, 0x806DB60C)
+#define runScored FUNCTION_ADDRESS(void, 0x806DB828)
+#define categorizeBallTrajectory FUNCTION_ADDRESS(void, 0x806DBB84)
+#define atBatBuntResult FUNCTION_ADDRESS(void, 0x806DBF0C)
+#define atBatResultsForOuts FUNCTION_ADDRESS(void, 0x806DC1D4)
+#define noForceOutInd_atBatResultsAfterForcedRunnersAllAdvance FUNCTION_ADDRESS(void, 0x806DC408)
+#define setAtBatResult FUNCTION_ADDRESS(void, 0x806DC738)
+#define setDefaultPlayTrackingVariables1 FUNCTION_ADDRESS(void, 0x806DCBF0)
+#define initializeInningTrackers FUNCTION_ADDRESS(void, 0x806DCC78)
+#define bobOmbDerbyBatterAI2_ FUNCTION_ADDRESS(void, 0x806DD3FC)
+#define WeightedRandomIndex FUNCTION_ADDRESS(int, 0x806DD634, byte * /*weights*/, int /*param_counter*/)
+#define iterateBatter FUNCTION_ADDRESS(void, 0x806DD868, int /*teamBatting*/)
+#define randomInRange_ FUNCTION_ADDRESS(void, 0x806DDC60)
+#define randBetween FUNCTION_ADDRESS(void, 0x806DDDB0)
+#define RandomInt FUNCTION_ADDRESS(void, 0x806DDEB8)
+#define RandomInt_Game FUNCTION_ADDRESS(int, 0x806DDF4C, int /*MaxNum*/)
+#define calculateBallInterceptDistance_ FUNCTION_ADDRESS(void, 0x806DE064, InMemBall * /*inmemBall*/, int /*zero?*/, int /*ballFutureX?*/, int /*auStack?*/)
+#define fieldersRunningToDugoutCalculateOffsets FUNCTION_ADDRESS(void, 0x806DE830, undefined8 /*stadiumRelated*/, undefined8 /*fielderRelatedX*/, undefined8 /*fielderRelatedZ*/, int /*xOffset*/, int /*zOffset*/)
+#define sinAndCosOfAngle FUNCTION_ADDRESS(void, 0x806DE9F8, undefined8 /*angle*/, int /*cos*/, int /*sin*/)
+#define getAngleComponents FUNCTION_ADDRESS(void, 0x806DEA5C, short /*angle*/, int /*xComponent*/, int /*zComponent*/)
+#define radianAngleToPoint FUNCTION_ADDRESS(void, 0x806DEBD4, undefined8 /*x*/, undefined8 /*y*/)
+#define calculateAngleFromCoordinates FUNCTION_ADDRESS(void, 0x806DEC20)
+#define calculateDiffInAngles_ FUNCTION_ADDRESS(void, 0x806DECB0, undefined8 /*angle1*/, undefined8 /*angle2*/)
+#define angleDifferenceNormalized FUNCTION_ADDRESS(void, 0x806DED38, short /*angle1*/, short /*angle2*/)
+#define getDifferenceInAngle FUNCTION_ADDRESS(void, 0x806DED8C, int /*angle1*/, int /*angle2*/)
+#define normalizeAnglebetween_2048And2047 FUNCTION_ADDRESS(void, 0x806DEDBC, short /*anglePlus180*/)
+#define normalizeAngle FUNCTION_ADDRESS(short, 0x806DEF00, short /*BallAngle*/)
+#define radianAngleReduction FUNCTION_ADDRESS(double, 0x806DEF3C, double /*angle*/)
+#define normalizeAngleToRange FUNCTION_ADDRESS(void, 0x806DEF98, undefined8 /*angleRadians*/)
+#define convertRadiansToBase4096 FUNCTION_ADDRESS(void, 0x806DEFF4)
+#define normalizeAngle_806df040 FUNCTION_ADDRESS(void, 0x806DF040)
+#define someAngleFun FUNCTION_ADDRESS(void, 0x806DF0AC)
+#define fielderAIDecideWhatRunnerToTarget FUNCTION_ADDRESS(void, 0x806DF130, int /*fielderIndex*/)
+#define fielderAIWeirdSituation FUNCTION_ADDRESS(void, 0x806E10DC)
+#define canThrowOutRunnerWhoNeedsToTagUp FUNCTION_ADDRESS(void, 0x806E12C0)
+#define throwOutRunnerTaggingUpInd FUNCTION_ADDRESS(void, 0x806E1498)
+#define genericPlayOnRunnerOffBase FUNCTION_ADDRESS(void, 0x806E1658)
+#define fielderAIOutfieldPlayAttemptInd FUNCTION_ADDRESS(void, 0x806E2408)
+#define fielderAIChaseRunner_ FUNCTION_ADDRESS(void, 0x806E2D54)
+#define fielderAIMakePlay FUNCTION_ADDRESS(void, 0x806E3734, int /*targetRunner*/)
+#define fieldingAIPlayStrategy FUNCTION_ADDRESS(void, 0x806E3AA4)
+#define throwTimeToBase_ FUNCTION_ADDRESS(void, 0x806E3FE4, int /*baseCounter*/)
+#define runnerTimeToCoverBase FUNCTION_ADDRESS(void, 0x806E4798, int /*runnerIndex*/)
+#define fieldingAIThrowOrChase FUNCTION_ADDRESS(void, 0x806E4BE0, int /*runnerNum*/)
+#define howManyFramesTheRunnerIsOutOfReach FUNCTION_ADDRESS(void, 0x806E5478, int /*runnerNum*/, int /*forwardsInd*/, int /*throwRunStrat*/, int /*runningOutStrat*/)
+#define estimatedThrowFramesBetweenTwoPoints_ FUNCTION_ADDRESS(void, 0x806E58A4, undefined8 /*x1*/, undefined8 /*y1*/, undefined8 /*x2*/, undefined8 /*y2*/)
+#define tagRelated FUNCTION_ADDRESS(void, 0x806E5F2C)
+#define tagOutValues FUNCTION_ADDRESS(void, 0x806E60D4, undefined8 /*distToBase*/, int /*fielderIndex*/)
+#define fielderHasBall FUNCTION_ADDRESS(void, 0x806E6748)
+#define checkForBufferedThrow FUNCTION_ADDRESS(void, 0x806E6D1C)
+#define fielderControl_classifyControlStickDirection FUNCTION_ADDRESS(void, 0x806E6F8C)
+#define setRunnerChasingAfter_ FUNCTION_ADDRESS(void, 0x806E7108, int /*fielderIndex*/)
+#define fielderChasingAI_ FUNCTION_ADDRESS(void, 0x806E73CC)
+#define runnerTagUpOrBatterTo1B FUNCTION_ADDRESS(void, 0x806E750C)
+#define maybeUnused_SetThrowSpeedType2 FUNCTION_ADDRESS(void, 0x806E765C)
+#define knockBallLoose FUNCTION_ADDRESS(void, 0x806E83E8, int /*fielderIndex*/, int /*knockOutCause*/)
+#define fielderBodyCheck_setStatus_Pos_Velo FUNCTION_ADDRESS(void, 0x806E8790, int /*fielderIndex*/)
+#define fielderKnockback FUNCTION_ADDRESS(void, 0x806E8A18, int /*fielderIndex*/)
+#define setFielder215 FUNCTION_ADDRESS(void, 0x806E8D08)
+#define autoMovement10_HasBall FUNCTION_ADDRESS(void, 0x806E8DB4, int /*fielderIndex*/)
+#define setCutoffThrowTargetLocation FUNCTION_ADDRESS(void, 0x806EA084, undefined4 /*throwTargetX*/, undefined4 /*throwTargetZ*/)
+#define initializeThrowAngle_Speed_Length FUNCTION_ADDRESS(void, 0x806EA644, int /*framesForFielderToGetToLoc*/, float * /*throwAngle*/, float * /*throwSpeed*/)
+#define makeThrowVariables FUNCTION_ADDRESS(void, 0x806EAE64, int /*throwingFielder*/)
+#define howToPlayScreen_ FUNCTION_ADDRESS(void, 0x806EBB8C)
+#define controlOptionsMenu FUNCTION_ADDRESS(void, 0x806EBDCC)
+#define pauseMenuControl FUNCTION_ADDRESS(void, 0x806EC1F8)
+#define positionSwapScreenInputs FUNCTION_ADDRESS(void, 0x806EC450)
+#define positionSwap FUNCTION_ADDRESS(void, 0x806EC960)
+#define loadPauseMenu_ FUNCTION_ADDRESS(void, 0x806EE1A0)
+#define pauseMenuControl_806ee638 FUNCTION_ADDRESS(void, 0x806EE638)
+#define transitionToPauseScreen FUNCTION_ADDRESS(void, 0x806EEAF8)
+#define match_checkForPause FUNCTION_ADDRESS(void, 0x806EEBF8)
+#define setPausedTo0AndOtherStateVars FUNCTION_ADDRESS(void, 0x806EEE38)
+#define practiceRelatedPostPlay FUNCTION_ADDRESS(void, 0x806EEEA0)
+#define guidedPracticeRelated FUNCTION_ADDRESS(void, 0x806EF0D0)
+#define unused__806ef274 FUNCTION_ADDRESS(void, 0x806EF274)
+#define someBattingPitchingCallFuns FUNCTION_ADDRESS(void, 0x806EF2F0)
+#define battingPracticeRelated FUNCTION_ADDRESS(void, 0x806EF33C)
+#define unused__806ef4f8 FUNCTION_ADDRESS(void, 0x806EF4F8)
+#define battingPracticeSomething FUNCTION_ADDRESS(void, 0x806EF600)
+#define battingPracticeSwitcher FUNCTION_ADDRESS(void, 0x806EF908)
+#define battingPracticeControl FUNCTION_ADDRESS(void, 0x806EFB40)
+#define fieldingPractice_setHitVariables FUNCTION_ADDRESS(void, 0x806EFBF0)
+#define batterAI_buntForPractice FUNCTION_ADDRESS(void, 0x806EFD88)
+#define fieldingPracticeAISwingDecision FUNCTION_ADDRESS(void, 0x806EFDC0)
+#define practice_fieldingRelated FUNCTION_ADDRESS(void, 0x806EFE94)
+#define unused_806f0264 FUNCTION_ADDRESS(void, 0x806F0264)
+#define unused_806f038c FUNCTION_ADDRESS(void, 0x806F038C)
+#define practiceRelatedUnused_ FUNCTION_ADDRESS(void, 0x806F0504)
+#define fieldingPracticeInitialization_ FUNCTION_ADDRESS(void, 0x806F060C)
+#define fieldingPracticeRelated FUNCTION_ADDRESS(void, 0x806F0AC4)
+#define fieldingPracticeControl FUNCTION_ADDRESS(void, 0x806F0CA8)
+#define loadGuidedPractice FUNCTION_ADDRESS(void, 0x806F0D44)
+#define playPracticeCPUInputs FUNCTION_ADDRESS(void, 0x806F0E64)
+#define setUpPlayerTryingSkill FUNCTION_ADDRESS(void, 0x806F15E0)
+#define practice_giveAndDemonstrateInstructions FUNCTION_ADDRESS(void, 0x806F16C4)
+#define practiceRelatedInit FUNCTION_ADDRESS(void, 0x806F1838)
+#define practice_pause_unloadPauseMenu_ FUNCTION_ADDRESS(void, 0x806F193C)
+#define practicePauseRelated FUNCTION_ADDRESS(void, 0x806F1EB4)
+#define practice_checkForPause FUNCTION_ADDRESS(void, 0x806F234C)
+#define practiceMenuLogic FUNCTION_ADDRESS(void, 0x806F24DC)
+#define practiceLogicRelatedPause FUNCTION_ADDRESS(void, 0x806F26B4)
+#define transitionToPlayerControl_806f2ae0 FUNCTION_ADDRESS(void, 0x806F2AE0)
+#define practiceRelatedReset FUNCTION_ADDRESS(void, 0x806F2C04)
+#define baserunningPracticeRelated FUNCTION_ADDRESS(void, 0x806F2C64)
+#define setTutorialState FUNCTION_ADDRESS(void, 0x806F2D0C)
+#define updatePracticeTransitionState FUNCTION_ADDRESS(void, 0x806F2D28, byte /*state*/)
+#define switchSecondaryGameMode FUNCTION_ADDRESS(void, 0x806F2D40)
+#define practice_relatedToSettingCharacters FUNCTION_ADDRESS(void, 0x806F2D68)
+#define practiceLoadingRelatedMaybe FUNCTION_ADDRESS(void, 0x806F307C)
+#define practice_loadCharacter FUNCTION_ADDRESS(void, 0x806F31B8, undefined4 /*teamIndex*/, undefined4 /*rosterIndex*/, undefined4 /*characterID*/, undefined4 /*editHandedness*/)
+#define practice_loadCharacterData FUNCTION_ADDRESS(void, 0x806F333C)
+#define loadPracticeScreen FUNCTION_ADDRESS(void, 0x806F347C)
+#define practiceSimulation FUNCTION_ADDRESS(void, 0x806F38C0)
+#define practiceRelatedMenu FUNCTION_ADDRESS(void, 0x806F3CD4)
+#define unref FUNCTION_ADDRESS(void, 0x806F4124)
+#define practice_subMenu_stateHandling FUNCTION_ADDRESS(void, 0x806F4278)
+#define notReferenced FUNCTION_ADDRESS(void, 0x806F4728)
+#define practice_mainMenu_stateHandling FUNCTION_ADDRESS(void, 0x806F48AC)
+#define unused_MaybePractice FUNCTION_ADDRESS(void, 0x806F4D48)
+#define practiceMenu FUNCTION_ADDRESS(void, 0x806F4E0C)
+#define unused_806f5184 FUNCTION_ADDRESS(void, 0x806F5184)
+#define unused_806f5254 FUNCTION_ADDRESS(void, 0x806F5254)
+#define practiceRelUnuse_ FUNCTION_ADDRESS(void, 0x806F53B4)
+#define pitchingPractice_BaseballControl FUNCTION_ADDRESS(void, 0x806F54D4)
+#define pitchingPracticeRelated FUNCTION_ADDRESS(void, 0x806F5A28)
+#define pitchingPracticeControl FUNCTION_ADDRESS(void, 0x806F5C38)
+#define unused_806f5f2c FUNCTION_ADDRESS(void, 0x806F5F2C)
+#define unused_806f6000 FUNCTION_ADDRESS(void, 0x806F6000)
+#define practiceRelatedUnused__806f6110 FUNCTION_ADDRESS(int, 0x806F6110)
+#define baseRunningPracticeRelated FUNCTION_ADDRESS(void, 0x806F6218)
+#define practiceRel FUNCTION_ADDRESS(void, 0x806F66B4)
+#define baseRunningPracticeControl FUNCTION_ADDRESS(void, 0x806F6870)
+#define checkFielderCollision FUNCTION_ADDRESS(bool, 0x806F6CC0, float * /*inParamFielder*/, float * /*futureCoordinate*/)
+#define isCoordinateUncatchableTerrain FUNCTION_ADDRESS(void, 0x806F6D70, float /*xCoordParam*/, float /*zCoordParam*/)
+#define foul_isBallWithin3mFair_ FUNCTION_ADDRESS(bool, 0x806F6E00, double /*x*/, double /*y*/)
+#define foul_ifBallConsideredPastTheBases FUNCTION_ADDRESS(void, 0x806F6E6C, undefined8 /*ballX*/, undefined8 /*ballZ*/)
+#define foul_checkIfFoul FUNCTION_ADDRESS(int, 0x806F6EA4, double /*x*/, double /*z*/)
+#define DistanceSquared FUNCTION_ADDRESS(double, 0x806F6F84, Vec3f * /*velo1*/, Vec3f * /*velo2*/)
+#define CrossProduct FUNCTION_ADDRESS(void, 0x806F6FAC, Vec3f * /*out*/, Vec3f * /*a*/, Vec3f * /*b*/)
+#define rng FUNCTION_ADDRESS(void, 0x806F7004)
+#define randomizeAndLoadSoundEffect FUNCTION_ADDRESS(void, 0x806F705C, int /*soundID*/, int)
+#define maybeYoshiParkGXRelated FUNCTION_ADDRESS(void, 0x806F7164)
+#define storeBoundingBoxCoordinates FUNCTION_ADDRESS(void, 0x806F74A8, int /*minCoordsDest*/, int /*maxCoordsDest*/)
+#define transformVectorsUpdateBoundingBox FUNCTION_ADDRESS(void, 0x806F74F8, int /*transformMatrix*/, int /*vertexData*/)
+#define initBoundingBoxLimits FUNCTION_ADDRESS(void, 0x806F7608)
+#define calculateHazardDataAddress FUNCTION_ADDRESS(int, 0x806F763C, int /*index*/, int * /*calculatedAddress*/)
+#define CopyOutVecSrcDst FUNCTION_ADDRESS(void, 0x806F7670, int /*index*/, Vec3f * /*src*/, Vec3f * /*dst*/)
+#define loadStadiumObjectVisuals FUNCTION_ADDRESS(void, 0x806F78BC, Mtx *, int, int)
+#define initStadiumObjectData FUNCTION_ADDRESS(void, 0x806F8120)
+#define updateStadiumObjCollision FUNCTION_ADDRESS(void, 0x806F81B8)
+#define processStadiumObjectFunction FUNCTION_ADDRESS(void, 0x806F8200, EnumStadiumIDs4 /*stadium*/, Vec3f * /*vec*/, TriangleCollisionTypes /*triangleCollisionType*/, OutCollisionStruct * /*outCollisionStruct*/)
+#define getStadiumHazardTriangles FUNCTION_ADDRESS(TriangleGroup *, 0x806F825C, EnumStadiumIDs4 /*stadium*/, int /*offset*/, Mtx * /*mtx*/)
+#define updateGameStatusFlag FUNCTION_ADDRESS(void, 0x806F8430)
+#define hazardSimulationRelated FUNCTION_ADDRESS(void, 0x806F8460)
+#define cleanupMinigameResources FUNCTION_ADDRESS(void, 0x806F8680)
+#define actOrAnimRelated FUNCTION_ADDRESS(void, 0x806F8870, ACTActor * /*act*/, AnimBank * /*act2*/)
+#define calledWhileMatchIsLoading_ FUNCTION_ADDRESS(void, 0x806F8A78)
+#define loadStadiumObjects FUNCTION_ADDRESS(int, 0x806F8C48, EnumStadiumIDs4 /*stadiumID*/)
+#define processStadiumFileObjects FUNCTION_ADDRESS(void, 0x806F8DFC, enumObjTypeInFile_ * /*objTypeArray*/, int /*numObjects*/, int /*baseAddr*/, int /*outputArray*/)
+#define loadStadiumLighting FUNCTION_ADDRESS(void, 0x806F904C, int /*mStadiumType*/, int /*stadiumData*/)
+#define spriteAnimations_ FUNCTION_ADDRESS(void, 0x806FB028)
+#define animateDustCloudsBehindFielder_Runner FUNCTION_ADDRESS(void, 0x806FB370)
+#define maybeFireworks_ FUNCTION_ADDRESS(void, 0x806FB76C, int, int, int /*maybeShape?*/, int)
+#define drawSun FUNCTION_ADDRESS(void, 0x806FBAB4)
+#define sunRelated FUNCTION_ADDRESS(void, 0x806FC26C)
+#define setSunLocation FUNCTION_ADDRESS(void, 0x806FC4C8, int /*stadiumID*/, int /*miniGameStadInd*/)
+#define animationRelated_806fc598 FUNCTION_ADDRESS(void, 0x806FC598)
+#define setContactWordSprite FUNCTION_ADDRESS(void, 0x806FD208)
+#define pauseStateOnStadiums_ FUNCTION_ADDRESS(void, 0x806FE1EC)
+#define pauseAnimations_ FUNCTION_ADDRESS(void, 0x806FE240)
+#define maybeHudRelated FUNCTION_ADDRESS(void, 0x806FE754)
+#define maybeLoadHUDObjectFromMemory FUNCTION_ADDRESS(void, 0x806FE90C)
+#define chargeAnimRelated FUNCTION_ADDRESS(void, 0x806FF834)
+#define applyChargeAnimationEffect FUNCTION_ADDRESS(void, 0x807003D8, double, double, int /*animIndex*/, int)
+#define maybeConfigureChargeEffectGraphics FUNCTION_ADDRESS(void, 0x80700804, int /*animIndex*/)
+#define bowserCastleSomething FUNCTION_ADDRESS(void, 0x80702A5C)
+#define thwomp_screenShake FUNCTION_ADDRESS(void, 0x80702ACC)
+#define bowserCastleStarPadsContaactFn FUNCTION_ADDRESS(void, 0x807031E0)
+#define stadiumObjCollision_Castle__ FUNCTION_ADDRESS(void, 0x80703338)
+#define castleFireballMaybe FUNCTION_ADDRESS(void, 0x80704D74)
+#define bowserCastleRelated FUNCTION_ADDRESS(void, 0x80704E70)
+#define flameControl FUNCTION_ADDRESS(void, 0x80705464, castleFireObject * /*currFire*/)
+#define stadiumObjRelated_Castle__ FUNCTION_ADDRESS(void, 0x80706260, int /*currentVertexIndex*/, int /*currentObjectIndex*/)
+#define thwomp_bounceOffSoundAndVisualFx_ FUNCTION_ADDRESS(void, 0x80706530)
+#define thwomp_smokeRelated FUNCTION_ADDRESS(ulong, 0x8070664C)
+#define thwomp_slamControl FUNCTION_ADDRESS(void, 0x80706AA0, castleThwompObj * /*thwompObj*/)
+#define loadBowserCastle FUNCTION_ADDRESS(void, 0x807076E4, int /*baseAddr*/)
+#define manageMarioStadiumSoundEmmitters FUNCTION_ADDRESS(void, 0x807087D8)
+#define fanAnimationRelated FUNCTION_ADDRESS(void, 0x8070890C)
+#define sta_c0 FUNCTION_ADDRESS(void, 0x80708D28)
+#define loadMarioStadium FUNCTION_ADDRESS(void, 0x80708E48, int /*baseLoadAddress*/)
+#define perfectPitchGraphicsRelated FUNCTION_ADDRESS(void, 0x8070A030)
+#define animatePitchersHandOnFire FUNCTION_ADDRESS(void, 0x8070A440)
+#define stadiumStarAnimation FUNCTION_ADDRESS(void, 0x8070A7CC)
+#define stadiumStarAwarded FUNCTION_ADDRESS(void, 0x8070A87C, float, float, float)
+#define palaceStadiumObjTransformationAndPhysics FUNCTION_ADDRESS(void, 0x8070B014, castleThwompObj * /*stadiumObj*/)
+#define mPalaceObjHandling FUNCTION_ADDRESS(void, 0x8070B658, castleThwompObj * /*obj*/)
+#define maybeChainChompSprintCTRLRelated FUNCTION_ADDRESS(void, 0x8070B8B0)
+#define palaceMinigameObjectLoading FUNCTION_ADDRESS(void, 0x8070BCB8)
+#define palaceHazeTextureMaybe FUNCTION_ADDRESS(void, 0x8070D600)
+#define warioPalaceSomething FUNCTION_ADDRESS(void, 0x8070D978)
+#define starHitAnimation_ FUNCTION_ADDRESS(void, 0x8070E7C0)
+#define warioPalaceSandStarRelated FUNCTION_ADDRESS(void, 0x8070E9C4, undefined4 /*sandStar*/)
+#define palaceNadoLogic_ FUNCTION_ADDRESS(void, 0x8070F9AC, castleThwompObj *)
+#define maybePalaceCTRLRelated FUNCTION_ADDRESS(void, 0x80710314, castleThwompObj * /*obj*/)
+#define applyTransformationToPalaceObjs FUNCTION_ADDRESS(void, 0x807107D0)
+#define chomp_attackBall FUNCTION_ADDRESS(void, 0x80711AA0, palaceChompObj * /*chomp*/)
+#define chompState3 FUNCTION_ADDRESS(void, 0x80712164)
+#define chompState1 FUNCTION_ADDRESS(void, 0x80712914)
+#define chompState0 FUNCTION_ADDRESS(void, 0x80712D70, palaceChompObj * /*chompObj*/)
+#define palaceChainChompControl FUNCTION_ADDRESS(void, 0x80712FE8, palaceChompObj * /*chomp*/)
+#define someCTRLButNotCalled FUNCTION_ADDRESS(void, 0x80713D38, castleThwompObj * /*obj*/)
+#define someCTRLButNotCalled2 FUNCTION_ADDRESS(void, 0x80713E94, castleThwompObj * /*obj*/)
+#define processPalaceObjectCollisions FUNCTION_ADDRESS(void, 0x80714680)
+#define stadiumObjCollisionRelated_Palace__ FUNCTION_ADDRESS(void, 0x80714F14)
+#define loadWarioPalace_ FUNCTION_ADDRESS(void, 0x80715860)
+#define toyFieldRelated FUNCTION_ADDRESS(void, 0x80718AC4)
+#define toyFieldPoints_ FUNCTION_ADDRESS(void, 0x807198C8)
+#define processToyFieldBallState FUNCTION_ADDRESS(void, 0x8071B414)
+#define toyFieldPause FUNCTION_ADDRESS(void, 0x8071BD14)
+#define toyFieldStateTransitionRelated FUNCTION_ADDRESS(void, 0x8071C094)
+#define toyFieldInningTransition FUNCTION_ADDRESS(void, 0x8071C23C)
+#define toyFieldLiveBall FUNCTION_ADDRESS(void, 0x8071CA38)
+#define initializeStgh2 FUNCTION_ADDRESS(void, 0x8071CFB0)
+#define initializeToyFieldSomething FUNCTION_ADDRESS(void, 0x8071D7D8)
+#define toyFieldRelated_8071dc24 FUNCTION_ADDRESS(void, 0x8071DC24)
+#define toyFieldTransitionPrepareNextPlay FUNCTION_ADDRESS(void, 0x8071E0A0)
+#define toyFieldTransitionToMinigameStart FUNCTION_ADDRESS(void, 0x8071E2F0)
+#define toyFieldGameStartMovie FUNCTION_ADDRESS(void, 0x8071E46C)
+#define initializeMinigameData FUNCTION_ADDRESS(void, 0x8071E968)
+#define toyfieldSimulation FUNCTION_ADDRESS(void, 0x8071EC40)
+#define updateMinigameFielderAnimations FUNCTION_ADDRESS(void, 0x8072050C)
+#define graphicsFunction_minigames_ FUNCTION_ADDRESS(void, 0x80720A7C)
+#define parkPlantMaybe FUNCTION_ADDRESS(void, 0x80721700)
+#define managePlantBallInteraction FUNCTION_ADDRESS(int, 0x80721C04, castleThwompObj * /*obj*/)
+#define updateStadiumObjStateAndTransform FUNCTION_ADDRESS(void, 0x80721F0C, castleThwompObj * /*obj*/)
+#define yoshiParkPlantRelated FUNCTION_ADDRESS(void, 0x80721FE0)
+#define nadoRelated_ FUNCTION_ADDRESS(void, 0x807220D8, castleThwompObj * /*obj*/)
+#define handleYoshiParkPlantInteraction FUNCTION_ADDRESS(void, 0x80722318, castleThwompObj * /*obj*/)
+#define loadYoshiPark2SubFun FUNCTION_ADDRESS(void, 0x807226FC, int /*obj*/)
+#define maybe_YoshiParkPlantsPopUp FUNCTION_ADDRESS(void, 0x807227F8, castleThwompObj * /*stadObj*/)
+#define controlYoshiParkPlants FUNCTION_ADDRESS(void, 0x80722C1C, castleThwompObj * /*obj*/)
+#define processYoshiParkPlantBoundingBoxes FUNCTION_ADDRESS(void, 0x80723D44, int /*currentVertexIndex*/, int /*currentObjectIndex*/)
+#define loadYoshiPark FUNCTION_ADDRESS(void, 0x80724058)
+#define processToyFieldObjectCollisions FUNCTION_ADDRESS(void, 0x8072641C)
+#define loadToyField_ FUNCTION_ADDRESS(void, 0x80727BB8)
+#define toyfield_offScreenCharacterImage FUNCTION_ADDRESS(void, 0x80728DC4)
+#define toyfield_offScreenCharacterImage_loadFn FUNCTION_ADDRESS(void, 0x807293D4)
+#define toyField_draw_theCoinsBesideThe_CoinsX2_Graphic FUNCTION_ADDRESS(void, 0x8072C524)
+#define toyFieldDrawRelated_miniMap_ FUNCTION_ADDRESS(void, 0x8072C608)
+#define toyField_hud_scores_BallsStrikesOuts FUNCTION_ADDRESS(void, 0x8072C8AC)
+#define toyfield_drawHud FUNCTION_ADDRESS(void, 0x8072CDA4)
+#define klaptrapHitAnimation FUNCTION_ADDRESS(void, 0x8072E068, int /*klaptrapIndex*/)
+#define jungleStadiumObjectRelated FUNCTION_ADDRESS(void, 0x8072E49C, castleThwompObj * /*obj*/)
+#define jungleObjState4 FUNCTION_ADDRESS(void, 0x8072E9C4, castleThwompObj * /*obj*/)
+#define jungleObjState2 FUNCTION_ADDRESS(void, 0x8072F2B8, castleThwompObj *)
+#define jungleObjState1 FUNCTION_ADDRESS(void, 0x8072F8C0, castleThwompObj * /*obj*/)
+#define jungleCTRLRelated FUNCTION_ADDRESS(void, 0x80730038, castleThwompObj * /*obj*/)
+#define klaptrapCTRLSetup FUNCTION_ADDRESS(void, 0x807304DC, castleThwompObj * /*obj*/)
+#define maybeGharialCTRLRel FUNCTION_ADDRESS(void, 0x807305AC, castleThwompObj * /*obj*/)
+#define handleDKJungleBarrels FUNCTION_ADDRESS(void, 0x807309D0, void *)
+#define dkBarrelCollision_ FUNCTION_ADDRESS(void, 0x80730EC0)
+#define dkBarrel_collisionWithFielder FUNCTION_ADDRESS(void, 0x807314DC, CTRLControl *)
+#define dkBarrelCollisionRElated_ FUNCTION_ADDRESS(void, 0x807319CC)
+#define unreferenced_80732090 FUNCTION_ADDRESS(void, 0x80732090)
+#define setBarrelTrajectory FUNCTION_ADDRESS(void, 0x80732274, undefined8 /*targetX*/, undefined8 /*targetZ*/, jungleBarrelObj * /*obj*/)
+#define dkJungleRelated FUNCTION_ADDRESS(void, 0x80733734)
+#define unreferenced_80733ce0 FUNCTION_ADDRESS(void, 0x80733CE0)
+#define handleBarrelFiring FUNCTION_ADDRESS(void, 0x80734050, jungleBarrelObj * /*stadiumObject*/)
+#define dkJungleHazardsLogic FUNCTION_ADDRESS(void, 0x80734760, jungleBarrelObj * /*obj*/)
+#define processJungleObjectCollisions FUNCTION_ADDRESS(void, 0x80735118)
+#define updateDKJungleObjBoundingBoxes FUNCTION_ADDRESS(void, 0x8073575C, int /*objIndex*/)
+#define maybeBarrelCTRLRel FUNCTION_ADDRESS(void, 0x807359CC)
+#define updateDKJungleControl FUNCTION_ADDRESS(void, 0x80735CF4)
+#define loadDKJungle_ FUNCTION_ADDRESS(void, 0x80736070)
+#define peachGardenSomething FUNCTION_ADDRESS(void, 0x80737B50)
+#define loadPeachGarden_ FUNCTION_ADDRESS(void, 0x80739620)
+#define camera_switchScene FUNCTION_ADDRESS(void, 0x8073AE40, cameraScene /*sceneID*/)
+#define camera_replay_ FUNCTION_ADDRESS(void, 0x8073AEB8)
+#define manageDrawingItemState FUNCTION_ADDRESS(void, 0x8073CAB0)
+#define unkPauseSimulationCheck FUNCTION_ADDRESS(void, 0x8073F110)
+#define someAllocFunction FUNCTION_ADDRESS(void, 0x80745E90)
+#define loadSomeDataFile FUNCTION_ADDRESS(void, 0x80745EE4)
+#define unreferenced_80745f68 FUNCTION_ADDRESS(void, 0x80745F68)
+#define minigames_0x27 FUNCTION_ADDRESS(void, 0x80746138)
+#define minigames_0x26 FUNCTION_ADDRESS(void, 0x807462C0)
+#define minigames_0x28 FUNCTION_ADDRESS(void, 0x80746818)
+#define AI_getPort FUNCTION_ADDRESS(void, 0x80746E48, undefined1 /*portNum*/)
+#define minigame_checkIfAIInputIs_Algorithmic_Or_ControllerBased FUNCTION_ADDRESS(void, 0x80746ED0, byte /*rosterID*/)
+#define minigamePause FUNCTION_ADDRESS(void, 0x80747548)
+#define checkForPauses_ FUNCTION_ADDRESS(void, 0x807478E8)
+#define postMinigame FUNCTION_ADDRESS(void, 0x80747CE8)
+#define minigameEndSwitcher FUNCTION_ADDRESS(void, 0x80749134)
+#define minigameStartSwitcher FUNCTION_ADDRESS(void, 0x80749F84)
+#define minigames_pickOpponentsAndLoadStats_ FUNCTION_ADDRESS(void, 0x8074AF10)
+#define unused_8074b4e4 FUNCTION_ADDRESS(void, 0x8074B4E4)
+#define unused_8074b620 FUNCTION_ADDRESS(void, 0x8074B620)
+#define toyFieldCharSelectSwitcher FUNCTION_ADDRESS(void, 0x8074D6A0)
+#define minigameSelectSwitcher FUNCTION_ADDRESS(void, 0x8074E268)
+#define toyFieldStadiumLoad FUNCTION_ADDRESS(void, 0x8074E46C)
+#define minigameSimulation FUNCTION_ADDRESS(void, 0x8074EE5C)
+#define unusedBattingSomething FUNCTION_ADDRESS(void, 0x8074F568)
+#define bobOmbDerbyBatterAI FUNCTION_ADDRESS(void, 0x8074F6C8)
+#define BODScoring_ FUNCTION_ADDRESS(void, 0x8074FB68)
+#define unused_BODRelated FUNCTION_ADDRESS(void, 0x807500CC)
+#define bobOmbDerbyCalculatePoints FUNCTION_ADDRESS(void, 0x80750348)
+#define unusedBODFunction FUNCTION_ADDRESS(void, 0x807507CC)
+#define bOD_bB_Pitcher_waitingForPitch FUNCTION_ADDRESS(void, 0x80750948)
+#define unused_80750cf0 FUNCTION_ADDRESS(void, 0x80750CF0)
+#define bobOmbDerbyPitchTransition FUNCTION_ADDRESS(void, 0x807512C4)
+#define bOD_LoadGame FUNCTION_ADDRESS(void, 0x807516A4)
+#define bobOmbDerbySimulation FUNCTION_ADDRESS(void, 0x80751C6C)
+#define wallBallMultiplayer_AIControl FUNCTION_ADDRESS(void, 0x80752458)
+#define wallBallAIPitches FUNCTION_ADDRESS(void, 0x80752790)
+#define wallBallCalc_WallsBroken FUNCTION_ADDRESS(void, 0x80752ADC)
+#define wallBallSomething2 FUNCTION_ADDRESS(void, 0x80752FA8)
+#define wallBallDropInNewWalls FUNCTION_ADDRESS(void, 0x80753298)
+#define wallBallCalculateNewWalls FUNCTION_ADDRESS(void, 0x80753418)
+#define wallBallRotatePitchers FUNCTION_ADDRESS(void, 0x80753B1C)
+#define wallBallCalculatePointsAndEndTurn FUNCTION_ADDRESS(void, 0x8075419C)
+#define unreferenced_807545d4 FUNCTION_ADDRESS(void, 0x807545D4)
+#define unreferenced_80754a0c FUNCTION_ADDRESS(void, 0x80754A0C)
+#define wallBallInitializeValues FUNCTION_ADDRESS(void, 0x80754CB8)
+#define wallBallSituationSwitcher FUNCTION_ADDRESS(void, 0x80755150)
+#define nonPracticePitchingMachineLogic_ FUNCTION_ADDRESS(void, 0x807599C0)
+#define loadPitchingMachineModel FUNCTION_ADDRESS(void, 0x80759BC0)
+#define minigameStateLogic FUNCTION_ADDRESS(void, 0x80763438)
+#define minigameGraphics FUNCTION_ADDRESS(void, 0x8076C288)
+#define bB_AI FUNCTION_ADDRESS(void, 0x8076CC14)
+#define bB_AI_setSwingVariables FUNCTION_ADDRESS(void, 0x8076CE60)
+#define unused_BarrelBatterRelated FUNCTION_ADDRESS(void, 0x8076D8D0)
+#define bB_chooseBombBarrel_dropNewBarrels FUNCTION_ADDRESS(void, 0x8076D990)
+#define bB_likelyReplaceBlownUpBarrels FUNCTION_ADDRESS(void, 0x8076E038, undefined4 /*bIndex*/)
+#define bB_connectingBarrels FUNCTION_ADDRESS(void, 0x8076E4B8, int /*barrelNum?*/, short /*blowUpDelay*/, int /*bombBarrelHitInd*/)
+#define bB_checkIfBarrelHitAndCalculateScore FUNCTION_ADDRESS(void, 0x8076E6B8)
+#define barrelBatterLiveBallSubFun FUNCTION_ADDRESS(void, 0x8076F31C)
+#define bobombDerbyRelated FUNCTION_ADDRESS(void, 0x8076FB60)
+#define bB_AtBat FUNCTION_ADDRESS(void, 0x8076FD00)
+#define barrelBatterTransitionToMainFunction FUNCTION_ADDRESS(void, 0x807705D4)
+#define bB_LoadGame FUNCTION_ADDRESS(void, 0x80771150)
+#define barrelBatterSwitcher FUNCTION_ADDRESS(void, 0x8077157C)
+#define unused_80774af8 FUNCTION_ADDRESS(void, 0x80774AF8)
+#define minigame_transferPoints FUNCTION_ADDRESS(void, 0x807790DC)
+#define starDashRelated FUNCTION_ADDRESS(void, 0x80779140)
+#define starDashRelated_80779b0c FUNCTION_ADDRESS(void, 0x80779B0C)
+#define starDashLiveBall FUNCTION_ADDRESS(void, 0x8077A318)
+#define starDashSomething FUNCTION_ADDRESS(void, 0x8077AD4C)
+#define starDashSwitcher FUNCTION_ADDRESS(void, 0x8077B4FC)
+#define chainChompSpringPoints_ FUNCTION_ADDRESS(void, 0x8077DAC4)
+#define chainChompSpringMainFun FUNCTION_ADDRESS(void, 0x8077FD74)
+#define mVPRelated FUNCTION_ADDRESS(void, 0x80780184)
+#define chainChompSprintRelated FUNCTION_ADDRESS(void, 0x80780540)
+#define chainChompSprintSwitcher FUNCTION_ADDRESS(void, 0x80780AC4)
+#define pP_relatedToCalculatingHeldBallLoc FUNCTION_ADDRESS(void, 0x807837B0)
+#define piranhaPanicPoints_ FUNCTION_ADDRESS(void, 0x80784450, int)
+#define ppRelated FUNCTION_ADDRESS(void, 0x80784C2C)
+#define piranhaPanicLiveBall FUNCTION_ADDRESS(void, 0x8078549C)
+#define piranhaPanicRelated FUNCTION_ADDRESS(void, 0x80785B24)
+#define piranhaPanicSwitcher FUNCTION_ADDRESS(void, 0x80786258)
+#define barrelBatterRel FUNCTION_ADDRESS(void, 0x807899A0)
+#define wallBall_updateSomePointers FUNCTION_ADDRESS(void, 0x8078F15C)
+#define bobOmbDerbyPitching FUNCTION_ADDRESS(void, 0x8079431C)
+#define bODPitchAnimation FUNCTION_ADDRESS(void, 0x807952AC)
+#define practiceAnimationRelated4 FUNCTION_ADDRESS(void, 0x80796EBC)
+#define practiceAnimationRelated2 FUNCTION_ADDRESS(void, 0x80797140)
+#define practiceAnimationRelated_text_ FUNCTION_ADDRESS(void, 0x80797BF8)
+#define practiceAnimationRelated FUNCTION_ADDRESS(void, 0x80798078)
+#define graphicsRelated FUNCTION_ADDRESS(void, 0x80798A4C)
+#define animationOrDrawingRelated FUNCTION_ADDRESS(void, 0x807994DC)
+#define practice_drawHud_ FUNCTION_ADDRESS(void, 0x807997F0)
+#define animatePracticeScene FUNCTION_ADDRESS(void, 0x80799A88)
+#define practice_startPitchAfter90Frames FUNCTION_ADDRESS(void, 0x80799E28)
+#define practiceRelated FUNCTION_ADDRESS(void, 0x80799EC8)
+#define _unused_matchSimulationRelated FUNCTION_ADDRESS(void, 0x8079A00C)
+#define fieldingPractice_resetMem FUNCTION_ADDRESS(void, 0x8079A16C)
+#define fieldingPracticeRelated_8079a528 FUNCTION_ADDRESS(void, 0x8079A528)
+#define freeFieldingPracticeControl FUNCTION_ADDRESS(void, 0x8079A6A4)
+#define animationRelated_8079a830 FUNCTION_ADDRESS(void, 0x8079A830)
+#define peachDaisyStarSwingRelated2 FUNCTION_ADDRESS(void, 0x8079B094)
+#define peachDaisyStarSwingRelated FUNCTION_ADDRESS(void, 0x8079B0A8)
+#define compilingStats_ FUNCTION_ADDRESS(void, 0x8079C26C)
+#define animateMVP_GameEnd FUNCTION_ADDRESS(void, 0x8079E4A4)
+#define starMissionsMinigamesSpecialAction FUNCTION_ADDRESS(void, 0x8079F984, int /*missionCode*/, int /*pointsEarned*/, int /*specialActionCount*/)
+#define starMissionsMinigamesTotalPoints FUNCTION_ADDRESS(void, 0x807A010C)
+#define starMissionsQuantityBased FUNCTION_ADDRESS(void, 0x807A061C, enumFieldingStarMissionCodes /*switchVar*/, int /*rosterLocation*/)
+#define challenge_postPitchStarMissionTracking FUNCTION_ADDRESS(void, 0x807A1114)
+#define starMissionsOffensive_StarChange_DoublePlay FUNCTION_ADDRESS(void, 0x807A13A0, int /*playResultCd*/, int)
+#define starMissionsWholeGame FUNCTION_ADDRESS(void, 0x807A1DE8)
+#define recruitWholeTeamAfterMercy_ FUNCTION_ADDRESS(void, 0x807A2880)
+#define challengeModeRelated_checkScoutMissionSuccess_ FUNCTION_ADDRESS(void, 0x807A3B08)
+#define setScoutMissionRelatedToZero FUNCTION_ADDRESS(void, 0x807A4A20)
+#define shouldScoutMissionBeEnabled_ FUNCTION_ADDRESS(void, 0x807A4A34, int /*potentialMissionID*/)
+#define decideScoutFlagMission FUNCTION_ADDRESS(void, 0x807A4DB8)
+#define practiceAnimationRelated_807a5440 FUNCTION_ADDRESS(void, 0x807A5440)
+#define magikoopaAnimationRelated FUNCTION_ADDRESS(void, 0x807A5A00)
+#define applyStarRelatedTransformations FUNCTION_ADDRESS(void, 0x807A5A30)
+#define fieldingRelatedAnimations FUNCTION_ADDRESS(void, 0x807A7340, int, byte /*switch*/)
+#define mUpdateActorTransformAndAnimation FUNCTION_ADDRESS(void, 0x807A7B00, int /*mActorID*/)
+#define displayChem_antiChemGraphics FUNCTION_ADDRESS(void, 0x807A8034, undefined4, undefined4 /*0chem_1antiChem*/)
+#define gardenSFXRelated FUNCTION_ADDRESS(void, 0x807AB4A4)
+#define checkFielderCollisionPotential FUNCTION_ADDRESS(void, 0x807AC56C, double /*ballHeight*/, byte /*fielderIndex*/)
+#define processBallFielderCollision FUNCTION_ADDRESS(void, 0x807AC678, int /*interactionType*/)
+#define animateScoreBoard_ FUNCTION_ADDRESS(void, 0x807AD280)
+#define animateScoreBoardCheck_ FUNCTION_ADDRESS(void, 0x807AD3CC, int /*TextureData*/, int /*objOrTextureCount*/)
 
