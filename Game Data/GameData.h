@@ -50,8 +50,7 @@ struct astruct_9 { unsigned char _opaque_stub; } __attribute__((packed));
 struct unknownStatStruct { unsigned char _opaque_stub; } __attribute__((packed));
 
 typedef unsigned char undefined;
-
-
+
 typedef unsigned char bool_;
 typedef unsigned char byte;
 typedef unsigned int dword;
@@ -71,82 +70,59 @@ typedef unsigned short ushort;
 typedef short wchar_t;
 typedef unsigned short ghidra_word;
 typedef struct _3dAxes _3dAxes, *P3dAxes;
-
-
+
 struct _3dAxes {
     short pitch;
     short yaw;
     short roll;
 } __attribute__((packed));
-
-
+
 typedef struct _3dAxesFloat _3dAxesFloat, *P3dAxesFloat;
-
-
+
 struct _3dAxesFloat {
     float pitch;
     float yaw;
     float roll;
 } __attribute__((packed));
-
-
+
 typedef struct ACTActor ACTActor, *PACTActor;
-
-
+
 typedef struct ActLayout ActLayout, *PActLayout;
-
-
+
 typedef struct DSTree DSTree, *PDSTree;
-
-
+
 typedef struct GEOPalette GEOPalette, *PGEOPalette;
-
-
+
 typedef struct DODisplayObj DODisplayObj, *PDODisplayObj;
-
-
+
 typedef struct ACTBone ACTBone, *PACTBone;
-
-
+
 typedef struct CTRLControl CTRLControl, *PCTRLControl;
-
-
+
 typedef struct Mtx Mtx, *PMtx;
-
-
+
 typedef struct DSList DSList, *PDSList;
-
-
+
 typedef struct SKHeader SKHeader, *PSKHeader;
-
-
+
 typedef struct GEODescriptor GEODescriptor, *PGEODescriptor;
-
-
+
 typedef struct DOPositionHeader DOPositionHeader, *PDOPositionHeader;
-
-
+
 typedef struct DOColorHeader DOColorHeader, *PDOColorHeader;
-
-
+
 typedef struct DOTextureDataHeader DOTextureDataHeader, *PDOTextureDataHeader;
-
-
+
 typedef struct DOLightingHeader DOLightingHeader, *PDOLightingHeader;
-
-
+
 typedef struct DODisplayHeader DODisplayHeader, *PDODisplayHeader;
-
-
+
 typedef struct DSBranch DSBranch, *PDSBranch;
-
-
+
 typedef struct ANIMPipe ANIMPipe, *PANIMPipe;
-
-
+
 typedef struct DSLink DSLink, *PDSLink;
-
-
+
 enum {
     EnumCTRLControlType_CTRL_NONE=0,
     EnumCTRLControlType_CTRL_SCALE=1,
@@ -156,32 +132,23 @@ enum {
     EnumCTRLControlType_CTRL_MTX=16
 };
 typedef unsigned char EnumCTRLControlType;
-
-
+
 typedef uchar u8;
-
-
+
 typedef ushort u16;
-
-
+
 typedef union _ControlParams _ControlParams, *P_ControlParams;
-
-
+
 typedef struct DOLayout DOLayout, *PDOLayout;
-
-
+
 typedef struct DODisplayState DODisplayState, *PDODisplayState;
-
-
+
 typedef struct ANIMTrack ANIMTrack, *PANIMTrack;
-
-
+
 typedef struct DrawingSceneStruct DrawingSceneStruct, *PDrawingSceneStruct;
-
-
+
 typedef struct CTRLSRTControl CTRLSRTControl, *PCTRLSRTControl;
-
-
+
 enum {
     enumDisplayState_DISPLAY_STATE_TEXTURE=1,
     enumDisplayState_DISPLAY_STATE_VCD=3,
@@ -189,34 +156,27 @@ enum {
     enumDisplayState_DISPLAY_STATE_MTXLOAD=5
 };
 typedef unsigned char enumDisplayState;
-
-
+
 typedef struct ANIMKeyFrame ANIMKeyFrame, *PANIMKeyFrame;
-
-
+
 typedef struct animType animType, *PanimType;
-
-
+
 typedef struct Vec3f Vec3f, *PVec3f;
-
-
+
 typedef struct Quaternion Quaternion, *PQuaternion;
-
-
+
 struct GEODescriptor {
     struct DOLayout *layout;
     char *name;
 } __attribute__((packed));
-
-
+
 struct Quaternion {
     float x;
     float y;
     float z;
     float w;
 } __attribute__((packed));
-
-
+
 struct DOLayout {
     struct DOPositionHeader *positionDataHeader;
     struct DOColorHeader *colorDataHeader;
@@ -227,8 +187,7 @@ struct DOLayout {
     byte pad1;
     short pad2;
 } __attribute__((packed));
-
-
+
 struct SKHeader {
     short numSk1List;
     short numSk2List;
@@ -243,33 +202,28 @@ struct SKHeader {
     void *flushIndices;
     int flushCount;
 } __attribute__((packed));
-
-
+
 struct DSTree {
     uint Offset;
     void * Root;
 } __attribute__((packed));
-
-
+
 struct Mtx {
     float data[3][4];
 } __attribute__((packed));
-
-
+
 struct Vec3f {
     float X;
     float Y;
     float Z;
 } __attribute__((packed));
-
-
+
 struct CTRLSRTControl {
     struct Vec3f s;
     struct Quaternion r;
     struct Vec3f t;
 } __attribute__((packed));
-
-
+
 struct DODisplayObj {
     struct DOPositionHeader *positionData;
     struct DOColorHeader *colorData;
@@ -287,22 +241,19 @@ struct DODisplayObj {
     void *shaderFunc;
     void *shaderData;
 } __attribute__((packed));
-
-
+
 struct DSLink {
     struct DrawingSceneStruct *Prev;
     struct DrawingSceneStruct *Next;
 } __attribute__((packed));
-
-
+
 struct DSBranch {
     void * Prev;
     void * Next;
     void * Parent;
     void * Children;
 } __attribute__((packed));
-
-
+
 struct ANIMPipe {
     float time;
     float speed;
@@ -310,29 +261,25 @@ struct ANIMPipe {
     struct CTRLControl *control;
     byte replaceHierarchyCtrl;
 } __attribute__((packed));
-
-
+
 struct ANIMKeyFrame {
     float time;
     void *setting;
     void *interpolation;
 } __attribute__((packed));
-
-
+
 union _ControlParams {
     struct CTRLSRTControl srt;
     struct Mtx mtx;
 } __attribute__((packed));
-
-
+
 struct CTRLControl {
     EnumCTRLControlType ctrlType;
     u8 pad;
     u16 pad2;
     union _ControlParams controlParams;
 } __attribute__((packed));
-
-
+
 struct DODisplayState {
     enumDisplayState DisplayStateID;
     byte pad8;
@@ -341,8 +288,7 @@ struct DODisplayState {
     void * primitiveList;
     int listSize;
 } __attribute__((packed));
-
-
+
 struct ACTBone {
     short boneID;
     byte inheritenceFlag;
@@ -358,15 +304,13 @@ struct ACTBone {
     struct Mtx *orientationInvMtx;
     struct DSLink drawPriorityLink;
 } __attribute__((packed));
-
-
+
 struct DSList {
     uint Offset;
     void * Head;
     void * Tail;
 } __attribute__((packed));
-
-
+
 struct ACTActor {
     struct ActLayout *layout;
     ushort actorID;
@@ -383,8 +327,7 @@ struct ACTActor {
     struct DSList drawPriorityList;
     struct SKHeader *skHeader;
 } __attribute__((packed));
-
-
+
 struct DOLightingHeader {
     void * normalArray;
     short numNormals;
@@ -392,8 +335,7 @@ struct DOLightingHeader {
     byte compCount;
     float ambientPercentage;
 } __attribute__((packed));
-
-
+
 struct animType {
     byte none :3;
     byte matrix :1;
@@ -402,8 +344,7 @@ struct animType {
     byte scale :1;
     byte trans :1;
 } __attribute__((packed));
-
-
+
 struct ANIMTrack {
     float animTime;
     struct ANIMKeyFrame *keyFrames;
@@ -414,8 +355,7 @@ struct ANIMTrack {
     byte interpolationType;
     byte replaceHierarchyCtrl;
 } __attribute__((packed));
-
-
+
 struct DrawingSceneStruct {
     void * aFunctionPointer;
     struct DSLink Link;
@@ -451,8 +391,7 @@ struct DrawingSceneStruct {
     byte field31_0x3d;
     byte field32_0x3e[2];
 } __attribute__((packed));
-
-
+
 struct GEOPalette {
     int versionNumber;
     int userDataSize;
@@ -460,24 +399,21 @@ struct GEOPalette {
     int numDescriptors;
     struct GEODescriptor *descriptorArray;
 } __attribute__((packed));
-
-
+
 struct DOPositionHeader {
     byte *positionArray;
     short numberOfPositions;
     byte quantizeInfo;
     byte numberOfComponents;
 } __attribute__((packed));
-
-
+
 struct DOColorHeader {
     byte *colorArray;
     short numberOfColors;
     byte quantizeInfo;
     byte numberOfComponents;
 } __attribute__((packed));
-
-
+
 struct DOTextureDataHeader {
     byte *textureCoordArray;
     short numTextureCoords;
@@ -486,16 +422,14 @@ struct DOTextureDataHeader {
     char *texturePaletteName;
     byte *texturePalette;
 } __attribute__((packed));
-
-
+
 struct DODisplayHeader {
     void * primitiveBank;
     struct DODisplayState *displayStateList;
     short numStateEntries;
     short pad16;
 } __attribute__((packed));
-
-
+
 struct ActLayout {
     int VersionNumber;
     short actorID;
@@ -507,11 +441,9 @@ struct ActLayout {
     int userDefinedDataSize;
     void * pUserData;
 } __attribute__((packed));
-
-
+
 typedef struct ACTBoneLayout ACTBoneLayout, *PACTBoneLayout;
-
-
+
 struct ACTBoneLayout {
     struct CTRLControl *pOrientationControl;
     struct DSBranch branch;
@@ -521,31 +453,24 @@ struct ACTBoneLayout {
     u8 drawingPriority;
     u16 pad16;
 } __attribute__((packed));
-
-
+
 typedef struct ADSR_INFO ADSR_INFO, *PADSR_INFO;
-
-
+
 typedef union ai_data ai_data, *Pai_data;
-
-
+
 typedef struct _struct_133 _struct_133, *P_struct_133;
-
-
+
 typedef struct _struct_134 _struct_134, *P_struct_134;
-
-
+
 typedef long s32;
-
-
+
 struct _struct_134 {
     u16 atime;
     u16 dtime;
     u16 slevel;
     u16 rtime;
 } __attribute__((packed));
-
-
+
 struct _struct_133 {
     s32 atime;
     s32 dtime;
@@ -554,34 +479,26 @@ struct _struct_133 {
     s32 ascale;
     s32 dscale;
 } __attribute__((packed));
-
-
+
 union ai_data {
     struct _struct_133 dls;
     struct _struct_134 linear;
 } __attribute__((packed));
-
-
+
 struct ADSR_INFO {
     union ai_data data;
 } __attribute__((packed));
-
-
+
 typedef struct ADSR_VARS ADSR_VARS, *PADSR_VARS;
-
-
+
 typedef ulong u32;
-
-
+
 typedef union data data, *Pdata;
-
-
+
 typedef struct _dls _dls, *P_dls;
-
-
+
 typedef struct _linear _linear, *P_linear;
-
-
+
 struct _dls {
     u32 aTime;
     u32 dTime;
@@ -590,22 +507,19 @@ struct _dls {
     u16 cutOff;
     u8 aMode;
 } __attribute__((packed));
-
-
+
 struct _linear {
     u32 aTime;
     u32 dTime;
     u16 sLevel;
     u32 rTime;
 } __attribute__((packed));
-
-
+
 union data {
     struct _dls dls;
     struct _linear linear;
 } __attribute__((packed));
-
-
+
 struct ADSR_VARS {
     u8 mode;
     u8 state;
@@ -615,19 +529,13 @@ struct ADSR_VARS {
     s32 currentDelta;
     union data data;
 } __attribute__((packed));
-
-
-typedef void (*AIDCallback)(void);
-
-
-
-typedef void (*AISCallback)(int);
-
-
-
+
+typedef void (*AIDCallback)(void);
+
+typedef void (*AISCallback)(int);
+
 typedef struct AIStruct AIStruct, *PAIStruct;
-
-
+
 enum {
     enum_AIPitchType_curve=0,
     enum_AIPitchType_charge=1,
@@ -635,8 +543,7 @@ enum {
     enum_AIPitchType_changeUp=3
 };
 typedef unsigned char enum_AIPitchType;
-
-
+
 enum {
     enum_pitchCurveType_NotSelected=0,
     enum_pitchCurveType_DownMiddle=1,
@@ -644,8 +551,7 @@ enum {
     enum_pitchCurveType_curve=3
 };
 typedef unsigned char enum_pitchCurveType;
-
-
+
 enum {
     enumAISwingType_slap=0,
     enumAISwingType_charge=1,
@@ -653,8 +559,7 @@ enum {
     enumAISwingType_noSwing=3
 };
 typedef unsigned char enumAISwingType;
-
-
+
 enum {
     enumPitchLocationZone_inside_Ball=0,
     enumPitchLocationZone_inside_Strike=1,
@@ -664,8 +569,7 @@ enum {
     enumPitchLocationZone_n_a=255
 };
 typedef unsigned char enumPitchLocationZone;
-
-
+
 enum {
     EnumPitchType_Curve=0,
     EnumPitchType_Charge=1,
@@ -673,16 +577,14 @@ enum {
     EnumPitchType_default_=255
 };
 typedef unsigned char EnumPitchType;
-
-
+
 enum {
     enumBatterAITrackingCode_n_a=0,
     enumBatterAITrackingCode_trackingPoorly=1,
     enumBatterAITrackingCode_trackingPerfectly=2
 };
 typedef unsigned char enumBatterAITrackingCode;
-
-
+
 struct AIStruct {
     float aIDifficultyMultiplierArray[2];
     float batterAIBoxPosXVelo;
@@ -767,14 +669,11 @@ struct AIStruct {
     byte field80_0xba;
     byte field81_0xbb;
 } __attribute__((packed));
-
-
+
 typedef struct ANIMAnimTrack ANIMAnimTrack, *PANIMAnimTrack;
-
-
+
 typedef struct KeyFrame KeyFrame, *PKeyFrame;
-
-
+
 struct ANIMAnimTrack {
     float animTime;
     struct KeyFrame *keyFrames;
@@ -785,29 +684,24 @@ struct ANIMAnimTrack {
     byte interpolationType;
     byte replaceHierarchyCtrl;
 } __attribute__((packed));
-
-
+
 struct KeyFrame {
     float time;
     char *setting;
     char *interpolation;
 } __attribute__((packed));
-
-
+
 typedef struct ANIMBank ANIMBank, *PANIMBank;
-
-
+
 typedef struct ANIMSequences ANIMSequences, *PANIMSequences;
-
-
+
 struct ANIMSequences {
     char *sequenceName;
     struct ANIMAnimTrack *trackArray;
     short totalTracks;
     short pad16;
 } __attribute__((packed));
-
-
+
 struct ANIMBank {
     int versionNumber;
     struct ANIMSequences *animSequences;
@@ -818,25 +712,16 @@ struct ANIMBank {
     int userDataSize;
     void *userData;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/anim.h/ANIMPipe - /ANIMPipe */
-
-
-
-typedef void * (*ARAMUploadCallback)(u32, u32);
-
-
-
-typedef void (*ARQCallback)(int);
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/anim.h/ANIMPipe - /ANIMPipe */
+
+typedef void * (*ARAMUploadCallback)(u32, u32);
+
+typedef void (*ARQCallback)(int);
+
 typedef struct ARQRequest ARQRequest, *PARQRequest;
-
-
+
 struct ARQRequest {
     struct ARQRequest *next;
     int owner;
@@ -847,17 +732,12 @@ struct ARQRequest {
     int length;
     void * callback;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/ar.h/ARQRequest - /ARQRequest */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/ar.h/ARQRequest - /ARQRequest */
+
 typedef struct ARR ARR, *PARR;
-
-
+
 struct ARR {
     u32 tTab;
     u32 pTab;
@@ -867,140 +747,90 @@ struct ARR {
     u32 loopPoint[16];
     u32 tsTab;
 } __attribute__((packed));
-
-
+
 typedef struct Actor Actor, *PActor;
-
-
+
 typedef struct ActorLayout ActorLayout, *PActorLayout;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/Tree.h/DSTree - /DSTree */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/Tree.h/DSTree - /DSTree */
+
 typedef struct DODisplayData DODisplayData, *PDODisplayData;
-
-
+
 typedef struct DODisplayData *DODisplayDataPtr;
-
-
+
 typedef struct sBone sBone, *PsBone;
-
-
+
 typedef struct Control Control, *PControl;
-
-
+
 typedef float MtxPtr[4];
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/List.h/DSList - /DSList */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/List.h/DSList - /DSList */
+
 typedef struct sHdr sHdr, *PsHdr;
-
-
+
 typedef struct DODescriptor DODescriptor, *PDODescriptor;
-
-
+
 typedef struct DODescriptor *DODescriptorPtr;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/Tree.h/DSBranch - /DSBranch */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/List.h/DSLink - /DSLink */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/Tree.h/DSBranch - /DSBranch */
+
+
+/* WARNING! conflicting data type names: /sdk/List.h/DSLink - /DSLink */
+
 typedef union ControlParams ControlParams, *PControlParams;
-
-
+
 typedef struct SK1List SK1List, *PSK1List;
-
-
+
 typedef struct SK2List SK2List, *PSK2List;
-
-
+
 typedef struct SKAccList SKAccList, *PSKAccList;
-
-
+
 typedef struct DODisplayLayout DODisplayLayout, *PDODisplayLayout;
-
-
+
 typedef struct Srt Srt, *PSrt;
-
-
+
 typedef struct _struct_8 _struct_8, *P_struct_8;
-
-
+
 typedef float ROMtx[4][3];
-
-
+
 typedef struct PositionData PositionData, *PPositionData;
-
-
+
 typedef struct ColorData ColorData, *PColorData;
-
-
+
 typedef struct TextureData TextureData, *PTextureData;
-
-
+
 typedef struct LightingData LightingData, *PLightingData;
-
-
+
 typedef struct DisplayData DisplayData, *PDisplayData;
-
-
+
 typedef struct Vec Vec, *PVec;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/mtx.h/Quaternion - /Quaternion */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/mtx.h/Quaternion - /Quaternion */
+
 typedef struct TEXPalette TEXPalette, *PTEXPalette;
-
-
+
 typedef struct TEXPalette *TEXPalettePtr;
-
-
+
 typedef struct DisplayStateList DisplayStateList, *PDisplayStateList;
-
-
+
 typedef struct TEXDescriptor TEXDescriptor, *PTEXDescriptor;
-
-
+
 typedef struct TEXDescriptor *TEXDescriptorPtr;
-
-
+
 typedef struct TEXHeader TEXHeader, *PTEXHeader;
-
-
+
 typedef struct TEXHeader *TEXHeaderPtr;
-
-
+
 typedef struct CLUTHeader CLUTHeader, *PCLUTHeader;
-
-
+
 typedef struct CLUTHeader *CLUTHeaderPtr;
-
-
+
 typedef char *Ptr;
-
-
+
 enum {
     _GXTexWrapMode_GX_CLAMP=0,
     _GXTexWrapMode_GX_REPEAT=1,
@@ -1008,11 +838,9 @@ enum {
     _GXTexWrapMode_GX_MAX_TEXWRAPMODE=3
 };
 typedef unsigned int _GXTexWrapMode;
-
-
+
 typedef _GXTexWrapMode GXTexWrapMode;
-
-
+
 enum {
     _GXTexFilter_GX_NEAR=0,
     _GXTexFilter_GX_LINEAR=1,
@@ -1022,11 +850,9 @@ enum {
     _GXTexFilter_GX_LIN_MIP_LIN=5
 };
 typedef unsigned int _GXTexFilter;
-
-
+
 typedef _GXTexFilter GXTexFilter;
-
-
+
 enum {
     _GXTlutFmt_GX_TL_IA8=0,
     _GXTlutFmt_GX_TL_RGB565=1,
@@ -1034,11 +860,9 @@ enum {
     _GXTlutFmt_GX_MAX_TLUTFMT=3
 };
 typedef unsigned int _GXTlutFmt;
-
-
+
 typedef _GXTlutFmt GXTlutFmt;
-
-
+
 struct DODisplayLayout {
     struct PositionData *positionData;
     struct ColorData *colorData;
@@ -1049,8 +873,7 @@ struct DODisplayLayout {
     byte pad8;
     short pad16;
 } __attribute__((packed));
-
-
+
 struct CLUTHeader {
     short numEntries;
     byte unpacked;
@@ -1058,33 +881,28 @@ struct CLUTHeader {
     GXTlutFmt format;
     Ptr data;
 } __attribute__((packed));
-
-
+
 struct _struct_8 {
     struct Mtx m;
 } __attribute__((packed));
-
-
+
 struct Vec {
     float x;
     float y;
     float z;
 } __attribute__((packed));
-
-
+
 struct Srt {
     struct Vec s;
     struct Quaternion r;
     struct Vec t;
 } __attribute__((packed));
-
-
+
 union ControlParams {
     struct Srt srt;
     struct _struct_8 mtx;
 } __attribute__((packed));
-
-
+
 struct DisplayStateList {
     byte id;
     byte pad8;
@@ -1093,16 +911,14 @@ struct DisplayStateList {
     char *primitiveList;
     int listSize;
 } __attribute__((packed));
-
-
+
 struct Control {
     byte type;
     byte pad8;
     short pad16;
     union ControlParams controlParams;
 } __attribute__((packed));
-
-
+
 struct TextureData {
     char *textureCoordArray;
     short numTextureCoords;
@@ -1111,8 +927,7 @@ struct TextureData {
     char *texturePaletteName;
     TEXPalettePtr texturePalette;
 } __attribute__((packed));
-
-
+
 struct Actor {
     struct ActorLayout *layout;
     short actorID;
@@ -1129,8 +944,7 @@ struct Actor {
     struct DSList drawPriorityList;
     struct sHdr *skHeader;
 } __attribute__((packed));
-
-
+
 struct TEXHeader {
     short height;
     short width;
@@ -1146,16 +960,14 @@ struct TEXHeader {
     byte maxLOD;
     byte unpacked;
 } __attribute__((packed));
-
-
+
 struct PositionData {
     char *positionArray;
     short numPositions;
     byte quantizeInfo;
     byte compCount;
 } __attribute__((packed));
-
-
+
 struct SK2List {
     ROMtx m0;
     ROMtx m1;
@@ -1168,8 +980,7 @@ struct SK2List {
     byte vertSrcOffset;
     byte pad8;
 } __attribute__((packed));
-
-
+
 struct SK1List {
     ROMtx m;
     void *vertSrc;
@@ -1180,8 +991,7 @@ struct SK1List {
     byte pad8;
     short pad16;
 } __attribute__((packed));
-
-
+
 struct sBone {
     short boneID;
     byte inheritanceFlag;
@@ -1197,14 +1007,12 @@ struct sBone {
     MtxPtr orientationInvMtx;
     struct DSLink drawPriorityLink;
 } __attribute__((packed));
-
-
+
 struct DODescriptor {
     struct DODisplayLayout *layout;
     char *name;
 } __attribute__((packed));
-
-
+
 struct SKAccList {
     ROMtx m;
     void *vertSrc;
@@ -1214,14 +1022,12 @@ struct SKAccList {
     short boneIndex;
     short count;
 } __attribute__((packed));
-
-
+
 struct TEXDescriptor {
     TEXHeaderPtr textureHeader;
     CLUTHeaderPtr CLUTHeader;
 } __attribute__((packed));
-
-
+
 struct LightingData {
     char *normalArray;
     short numNormals;
@@ -1229,16 +1035,14 @@ struct LightingData {
     byte compCount;
     float ambientPercentage;
 } __attribute__((packed));
-
-
+
 struct ColorData {
     char *colorArray;
     short numColors;
     byte quantizeInfo;
     byte compCount;
 } __attribute__((packed));
-
-
+
 struct DODisplayData {
     int versionNumber;
     int userDataSize;
@@ -1246,8 +1050,7 @@ struct DODisplayData {
     int numDescriptors;
     DODescriptorPtr descriptorArray;
 } __attribute__((packed));
-
-
+
 struct sHdr {
     short numSk1List;
     short numSk2List;
@@ -1262,15 +1065,13 @@ struct sHdr {
     void *flushIndices;
     int flushCount;
 } __attribute__((packed));
-
-
+
 struct TEXPalette {
     int versionNumber;
     int numDescriptors;
     TEXDescriptorPtr descriptorArray;
 } __attribute__((packed));
-
-
+
 struct ActorLayout {
     int versionNumber;
     short actorID;
@@ -1282,19 +1083,16 @@ struct ActorLayout {
     int userDataSize;
     char *userData;
 } __attribute__((packed));
-
-
+
 struct DisplayData {
     char *primitiveBank;
     struct DisplayStateList *displayStateList;
     short numStateEntries;
     short pad16;
 } __attribute__((packed));
-
-
+
 typedef struct ActorBone ActorBone, *PActorBone;
-
-
+
 struct ActorBone {
     struct Control *orientationCtrl;
     struct DSBranch branch;
@@ -1304,27 +1102,19 @@ struct ActorBone {
     byte drawingPriority;
     short pad16;
 } __attribute__((packed));
-
-
+
 typedef short s16;
-
-
+
 typedef s16 __OSInterrupt;
-
-
+
 typedef struct OSContext OSContext, *POSContext;
-
-
-typedef void (*__OSInterruptHandler)(__OSInterrupt, struct OSContext *);
-
-
-
+
+typedef void (*__OSInterruptHandler)(__OSInterrupt, struct OSContext *);
+
 typedef __OSInterruptHandler AmcEXICallback;
-
-
+
 typedef double f64;
-
-
+
 struct OSContext {
     u32 gpr[32];
     u32 cr;
@@ -1341,24 +1131,19 @@ struct OSContext {
     u32 gqr[8];
     f64 psf[32];
 } __attribute__((packed));
-
-
+
 enum {
     enum_85_AMC_EXI_NO_ERROR=0,
     enum_85_AMC_EXI_UNSELECTED=1
 };
 typedef unsigned int enum_85;
-
-
+
 typedef enum_85 AmcExiError;
-
-
+
 typedef struct AnimBank AnimBank, *PAnimBank;
-
-
+
 typedef struct AnimSequence AnimSequence, *PAnimSequence;
-
-
+
 struct AnimBank {
     int versionNumber;
     struct AnimSequence *animSequences;
@@ -1369,19 +1154,16 @@ struct AnimBank {
     int userDataSize;
     void *userData;
 } __attribute__((packed));
-
-
+
 struct AnimSequence {
     char *sequenceName;
     struct ANIMTrack *trackArray;
     short totalTracks;
     short pad16;
 } __attribute__((packed));
-
-
+
 typedef struct AnimationStruct AnimationStruct, *PAnimationStruct;
-
-
+
 enum {
     EnumCharacterAnimation_short_FielderStandStill=0,
     EnumCharacterAnimation_short_FielderHoldBallStill=1,
@@ -1492,8 +1274,7 @@ enum {
     EnumCharacterAnimation_short_WinningCelebration=107
 };
 typedef unsigned short EnumCharacterAnimation_short;
-
-
+
 enum {
     enumCharacterID_byte_mario=0,
     enumCharacterID_byte_luigi=1,
@@ -1551,8 +1332,7 @@ enum {
     enumCharacterID_byte_broB=53
 };
 typedef unsigned char enumCharacterID_byte;
-
-
+
 struct AnimationStruct {
     struct ActLayout **ACTPtr;
     int pad;
@@ -1626,11 +1406,9 @@ struct AnimationStruct {
     byte field69_0x279;
     short field70_0x27a;
 } __attribute__((packed));
-
-
+
 typedef struct AnimationStruct2 AnimationStruct2, *PAnimationStruct2;
-
-
+
 struct AnimationStruct2 {
     struct Vec3f field0_0x0;
     undefined field1_0xc;
@@ -1648,11 +1426,9 @@ struct AnimationStruct2 {
     undefined field13_0x1a;
     undefined field14_0x1b;
 } __attribute__((packed));
-
-
+
 typedef struct BI2Debug BI2Debug, *PBI2Debug;
-
-
+
 struct BI2Debug {
     int debugMonSize;
     int simMemSize;
@@ -1664,36 +1440,24 @@ struct BI2Debug {
     u8 _1C[8];
     u32 padSpec;
 } __attribute__((packed));
-
-
+
 enum {
     BOOL_FALSE=0,
     BOOL_TRUE=1
 };
 typedef unsigned int BOOL;
-
-
-
-
-/* WARNING! conflicting data type names: /types.h/BOOL - /BOOL */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/types.h/BOOL - /BOOL */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/types.h/BOOL - /BOOL */
-
-
-
+
+
+/* WARNING! conflicting data type names: /types.h/BOOL - /BOOL */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/types.h/BOOL - /BOOL */
+
+
+/* WARNING! conflicting data type names: /sdk/types.h/BOOL - /BOOL */
+
 typedef struct BaseRunningHexStruct BaseRunningHexStruct, *PBaseRunningHexStruct;
-
-
+
 struct BaseRunningHexStruct {
     short baseRunnerHex;
     short baseRunnerStartingPos;
@@ -1720,11 +1484,9 @@ struct BaseRunningHexStruct {
     undefined field22_0x1e;
     byte field23_0x1f;
 } __attribute__((packed));
-
-
+
 typedef struct BatterReaches BatterReaches, *PBatterReaches;
-
-
+
 struct BatterReaches {
     float HorizontalRangeNear;
     float HorizontalRangeFar;
@@ -1736,14 +1498,11 @@ struct BatterReaches {
     float PitchingHeight;
     float TrimmedBat;
 } __attribute__((packed));
-
-
+
 typedef struct BothTeamInputStruct BothTeamInputStruct, *PBothTeamInputStruct;
-
-
+
 typedef struct ReplayInputStruct ReplayInputStruct, *PReplayInputStruct;
-
-
+
 enum {
     EnumControllerInput_Left=1,
     EnumControllerInput_Right=2,
@@ -1760,8 +1519,7 @@ enum {
     EnumControllerInput_Start=4096
 };
 typedef unsigned short EnumControllerInput;
-
-
+
 struct ReplayInputStruct {
     short ControlStickAngle;
     EnumControllerInput buttoninput;
@@ -1769,114 +1527,80 @@ struct ReplayInputStruct {
     byte right_left;
     byte up_down;
 } __attribute__((packed));
-
-
+
 struct BothTeamInputStruct {
     struct ReplayInputStruct playerA;
     struct ReplayInputStruct playerB;
 } __attribute__((packed));
-
-
+
 typedef struct BoxCorners BoxCorners, *PBoxCorners;
-
-
+
 struct BoxCorners {
     struct Vec3f boxCorner1;
     struct Vec3f boxCorner2;
 } __attribute__((packed));
-
-
+
 typedef struct Branch Branch, *PBranch;
-
-
+
 struct Branch {
     char *Prev;
     char *Next;
     char *Parent;
     char *Children;
 } __attribute__((packed));
-
-
+
 typedef struct CALLSTACK CALLSTACK, *PCALLSTACK;
-
-
+
 typedef struct MSTEP MSTEP, *PMSTEP;
-
-
+
 struct CALLSTACK {
     struct MSTEP *addr;
     struct MSTEP *curAddr;
 } __attribute__((packed));
-
-
+
 struct MSTEP {
     u32 para[2];
 } __attribute__((packed));
-
-
-typedef void (*CARDCallback)(s32, s32);
-
-
-
+
+typedef void (*CARDCallback)(s32, s32);
+
 typedef struct CARDControl CARDControl, *PCARDControl;
-
-
+
 typedef struct STRUCT_DSP_TASK STRUCT_DSP_TASK, *PSTRUCT_DSP_TASK;
-
-
+
 typedef struct STRUCT_DSP_TASK DSPTaskInfo;
-
-
+
 typedef struct CARDDir CARDDir, *PCARDDir;
-
-
+
 typedef struct OSThreadQueue OSThreadQueue, *POSThreadQueue;
-
-
+
 typedef struct CARDFileInfo CARDFileInfo, *PCARDFileInfo;
-
-
+
 typedef struct OSAlarm OSAlarm, *POSAlarm;
-
-
-typedef void (*DSPCallback)(void *);
-
-
-
+
+typedef void (*DSPCallback)(void *);
+
 typedef longlong s64;
-
-
+
 typedef s64 OSTime;
-
-
+
 typedef struct OSThread OSThread, *POSThread;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSContext.h/OSContext - /decompHeaders/OSContext.h/OSContext */
-
-
-
-typedef void (*OSAlarmHandler)(struct OSAlarm *, struct OSContext *);
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSContext.h/OSContext - /decompHeaders/OSContext.h/OSContext */
+
+typedef void (*OSAlarmHandler)(struct OSAlarm *, struct OSContext *);
+
 typedef s32 OSPriority;
-
-
+
 typedef struct OSThreadLink OSThreadLink, *POSThreadLink;
-
-
+
 typedef struct OSMutex OSMutex, *POSMutex;
-
-
+
 typedef struct OSMutexQueue OSMutexQueue, *POSMutexQueue;
-
-
+
 typedef struct OSMutexLink OSMutexLink, *POSMutexLink;
-
-
+
 struct OSAlarm {
     OSAlarmHandler handler;
     int tag;
@@ -1886,14 +1610,12 @@ struct OSAlarm {
     OSTime period;
     OSTime start;
 } __attribute__((packed));
-
-
+
 struct OSThreadQueue {
     struct OSThread *head;
     struct OSThread *tail;
 } __attribute__((packed));
-
-
+
 struct STRUCT_DSP_TASK {
     int state;
     int priority;
@@ -1915,8 +1637,7 @@ struct STRUCT_DSP_TASK {
     OSTime t_context;
     OSTime t_task;
 } __attribute__((packed));
-
-
+
 struct CARDControl {
     BOOL attached;
     s32 result;
@@ -1955,14 +1676,12 @@ struct CARDControl {
     CARDCallback unlockCallback;
     struct OSAlarm alarm;
 } __attribute__((packed));
-
-
+
 struct OSThreadLink {
     struct OSThread *next;
     struct OSThread *prev;
 } __attribute__((packed));
-
-
+
 struct CARDDir {
     byte gameName[4];
     byte company[2];
@@ -1980,28 +1699,24 @@ struct CARDDir {
     byte _padding1[2];
     int commentAddr;
 } __attribute__((packed));
-
-
+
 struct OSMutexLink {
     struct OSMutex *next;
     struct OSMutex *prev;
 } __attribute__((packed));
-
-
+
 struct OSMutex {
     struct OSThreadQueue queue;
     struct OSThread *thread;
     s32 count;
     struct OSMutexLink link;
 } __attribute__((packed));
-
-
+
 struct OSMutexQueue {
     struct OSMutex *head;
     struct OSMutex *tail;
 } __attribute__((packed));
-
-
+
 struct OSThread {
     struct OSContext context;
     short state;
@@ -2019,8 +1734,7 @@ struct OSThread {
     byte *stackBase;
     int *stackEnd;
 } __attribute__((packed));
-
-
+
 struct CARDFileInfo {
     s32 chan;
     s32 fileNo;
@@ -2028,22 +1742,18 @@ struct CARDFileInfo {
     s32 length;
     short iBlock;
 } __attribute__((packed));
-
-
+
 typedef struct CARDDecParam CARDDecParam, *PCARDDecParam;
-
-
+
 struct CARDDecParam {
     byte *inputAddr;
     int inputLength;
     int aramAddr;
     byte *outputAddr;
 } __attribute__((packed));
-
-
+
 typedef struct CARDDirCheck CARDDirCheck, *PCARDDirCheck;
-
-
+
 struct CARDDirCheck {
     byte padding0[56];
     short padding1;
@@ -2051,11 +1761,9 @@ struct CARDDirCheck {
     short checkSum;
     short checkSumInv;
 } __attribute__((packed));
-
-
+
 typedef struct CARDID CARDID, *PCARDID;
-
-
+
 struct CARDID {
     byte serial[32];
     short deviceID;
@@ -2065,11 +1773,9 @@ struct CARDID {
     short checkSum;
     short checkSumInv;
 } __attribute__((packed));
-
-
+
 typedef struct CARDStat CARDStat, *PCARDStat;
-
-
+
 struct CARDStat {
     char fileName[32];
     int length;
@@ -2087,11 +1793,9 @@ struct CARDStat {
     int offsetIconTlut;
     int offsetData;
 } __attribute__((packed));
-
-
+
 typedef struct CDRRelated CDRRelated, *PCDRRelated;
-
-
+
 struct CDRRelated {
     void * field0_0x0;
     int field1_0x4;
@@ -2100,53 +1804,40 @@ struct CDRRelated {
     int field4_0x10;
     int ptr;
 } __attribute__((packed));
-
-
+
 typedef struct CHANNEL_DEFAULTS CHANNEL_DEFAULTS, *PCHANNEL_DEFAULTS;
-
-
+
 struct CHANNEL_DEFAULTS {
     u8 pbRange;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /CLUTHeader - /sdk/texPalette.h/CLUTHeader */
-
-
-
+
+
+/* WARNING! conflicting data type names: /CLUTHeader - /sdk/texPalette.h/CLUTHeader */
+
 typedef struct CPAT CPAT, *PCPAT;
-
-
+
 typedef struct NOTE_DATA NOTE_DATA, *PNOTE_DATA;
-
-
+
 typedef struct TENTRY TENTRY, *PTENTRY;
-
-
+
 typedef struct SEQ_STREAM SEQ_STREAM, *PSEQ_STREAM;
-
-
+
 typedef char s8;
-
-
+
 struct SEQ_STREAM {
     u8 *nextAddr;
     u16 value;
     s16 nextDelta;
     u32 nextTime;
 } __attribute__((packed));
-
-
+
 struct NOTE_DATA {
     u16 time;
     u8 key;
     u8 velocity;
     u16 length;
 } __attribute__((packed));
-
-
+
 struct TENTRY {
     u32 time;
     u8 prgChange;
@@ -2156,8 +1847,7 @@ struct TENTRY {
     s8 transpose;
     s8 velocityAdd;
 } __attribute__((packed));
-
-
+
 struct CPAT {
     u32 lTime;
     u32 baseTime;
@@ -2167,42 +1857,32 @@ struct CPAT {
     struct SEQ_STREAM modulation;
     u8 midi;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /auto_structs/CTRLControl - /CTRLControl */
-
-
-
+
+
+/* WARNING! conflicting data type names: /auto_structs/CTRLControl - /CTRLControl */
+
 typedef struct CTRLMTXControl CTRLMTXControl, *PCTRLMTXControl;
-
-
+
 struct CTRLMTXControl {
     struct Mtx m;
 } __attribute__((packed));
-
-
+
 typedef struct CTRL_DEST CTRL_DEST, *PCTRL_DEST;
-
-
+
 typedef struct CTRL_SOURCE CTRL_SOURCE, *PCTRL_SOURCE;
-
-
+
 struct CTRL_SOURCE {
     u8 midiCtrl;
     u8 combine;
     s32 scale;
 } __attribute__((packed));
-
-
+
 struct CTRL_DEST {
     struct CTRL_SOURCE source[4];
     u16 oldValue;
     u8 numSource;
 } __attribute__((packed));
-
-
+
 enum {
     CatchAnimationType_noCatchAnimation=0,
     CatchAnimationType_catchBattedBall=1,
@@ -2215,17 +1895,13 @@ enum {
     CatchAnimationType_coverBaseLungingCatch=8
 };
 typedef unsigned char CatchAnimationType;
-
-
+
 typedef struct CharacterStats CharacterStats, *PCharacterStats;
-
-
+
 typedef struct StatTable StatTable, *PStatTable;
-
-
+
 typedef struct ChemistryTable ChemistryTable, *PChemistryTable;
-
-
+
 enum {
     EnumFieldingAbilities_WallSplat=1,
     EnumFieldingAbilities_WallJump=2,
@@ -2245,8 +1921,7 @@ enum {
     EnumFieldingAbilities_Unassigned2=32768
 };
 typedef unsigned int EnumFieldingAbilities;
-
-
+
 enum {
     EnumCharacterClass_Balanced=0,
     EnumCharacterClass_Power=1,
@@ -2254,8 +1929,7 @@ enum {
     EnumCharacterClass_Technique=3
 };
 typedef unsigned char EnumCharacterClass;
-
-
+
 struct StatTable {
     byte CurveBallSpeed;
     byte FastBallSpeed;
@@ -2287,8 +1961,7 @@ struct StatTable {
     byte RunningStatBar;
     byte FieldingStatBar;
 } __attribute__((packed));
-
-
+
 struct ChemistryTable {
     byte Mario;
     byte Luigi;
@@ -2345,25 +2018,20 @@ struct ChemistryTable {
     byte FireBro;
     byte BoomerangBro;
 } __attribute__((packed));
-
-
+
 struct CharacterStats {
     struct StatTable Stats;
     struct ChemistryTable Chemistry;
     byte BytesAfterChemistry[3];
     short UnusedShorts[22];
 } __attribute__((packed));
-
-
+
 typedef struct CollisionBox CollisionBox, *PCollisionBox;
-
-
+
 typedef struct TriangleGroup TriangleGroup, *PTriangleGroup;
-
-
+
 typedef struct CollisionTriangle CollisionTriangle, *PCollisionTriangle;
-
-
+
 enum {
     TriangleCollisionTypes_NO_COLLISION=0,
     TriangleCollisionTypes_GRASS=1,
@@ -2380,23 +2048,20 @@ enum {
     TriangleCollisionTypes_FOUL=128
 };
 typedef unsigned short TriangleCollisionTypes;
-
-
+
 struct CollisionTriangle {
     struct Vec3f trianglePoint;
     TriangleCollisionTypes collisionFlags;
     short pad;
 } __attribute__((packed));
-
-
+
 struct TriangleGroup {
     byte unk_0;
     bool IsTriangleList;
     short count;
     struct CollisionTriangle walls[1];
 } __attribute__((packed));
-
-
+
 struct CollisionBox {
     struct BoxCorners *boundingBox;
     struct TriangleGroup tris;
@@ -2418,29 +2083,24 @@ struct CollisionBox {
     undefined field17_0x86;
     undefined field18_0x87;
 } __attribute__((packed));
-
-
+
 typedef struct CollisionFileHeader CollisionFileHeader, *PCollisionFileHeader;
-
-
+
 struct CollisionFileHeader {
     short wallCount;
     short field1_0x2;
     struct CollisionBox collisionData;
 } __attribute__((packed));
-
-
+
 typedef struct CompressedDiskRead CompressedDiskRead, *PCompressedDiskRead;
-
-
+
 struct CompressedDiskRead {
     uint compressionConstant;
     uint OriginalSize_CompressedFlagInTopBits_;
     uint DiskLocation;
     uint CompressedSize;
 } __attribute__((packed));
-
-
+
 enum {
     Copy_1_of_EnumFieldingAbilities_WallSplat=1,
     Copy_1_of_EnumFieldingAbilities_WallJump=2,
@@ -2460,22 +2120,18 @@ enum {
     Copy_1_of_EnumFieldingAbilities_Unassigned2=32768
 };
 typedef unsigned int Copy_1_of_EnumFieldingAbilities;
-
-
+
 typedef struct Copy_1_of_vec4f Copy_1_of_vec4f, *PCopy_1_of_vec4f;
-
-
+
 struct Copy_1_of_vec4f {
     float X;
     float Y;
     float Z;
     float W;
 } __attribute__((packed));
-
-
+
 typedef struct CrowdAnimationStruct CrowdAnimationStruct, *PCrowdAnimationStruct;
-
-
+
 struct CrowdAnimationStruct {
     void *field0_0x0;
     void *field1_0x4;
@@ -2487,45 +2143,32 @@ struct CrowdAnimationStruct {
     ushort NumFramesPerLoop;
     ushort field8_0x1a;
 } __attribute__((packed));
-
-
+
 typedef struct DATA_TAB DATA_TAB, *PDATA_TAB;
-
-
+
 struct DATA_TAB {
     void *data;
     u16 id;
     u16 refCount;
 } __attribute__((packed));
-
-
+
 typedef struct DBInterface DBInterface, *PDBInterface;
-
-
+
 struct DBInterface {
     u8 filler0[4];
     u32 unk4;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/DBInterface.h/DBInterface - /decompHeaders/db.h/DBInterface */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/DBInterface - /decompHeaders/db.h/DBInterface */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/DBInterface.h/DBInterface - /decompHeaders/db.h/DBInterface */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/DBInterface - /decompHeaders/db.h/DBInterface */
+
 typedef struct DEMODMPad DEMODMPad, *PDEMODMPad;
-
-
+
 typedef struct PADStatus PADStatus, *PPADStatus;
-
-
+
 struct PADStatus {
     short button;
     s8 stickX;
@@ -2538,8 +2181,7 @@ struct PADStatus {
     byte analogB;
     s8 err;
 } __attribute__((packed));
-
-
+
 struct DEMODMPad {
     struct PADStatus pst;
     short buttonDown;
@@ -2552,8 +2194,7 @@ struct DEMODMPad {
     s16 substickDeltaX;
     s16 substickDeltaY;
 } __attribute__((packed));
-
-
+
 enum {
     DEMOWinItem_DEMOWIN_ITEM_CAP=0,
     DEMOWinItem_DEMOWIN_ITEM_BKGND=1,
@@ -2561,11 +2202,9 @@ enum {
     DEMOWinItem_DEMOWIN_ITEM_DEFAULT=3
 };
 typedef unsigned int DEMOWinItem;
-
-
+
 typedef struct DEMOWinPadInfo DEMOWinPadInfo, *PDEMOWinPadInfo;
-
-
+
 struct DEMOWinPadInfo {
     struct PADStatus pads[4];
     ulong button[4];
@@ -2574,8 +2213,7 @@ struct DEMOWinPadInfo {
     ulong repeat_button[4];
     ulong repeat_ctr[4];
 } __attribute__((packed));
-
-
+
 enum {
     enum_280_DEMO_STAT_TL=0,
     enum_280_DEMO_STAT_BL=1,
@@ -2584,11 +2222,9 @@ enum {
     enum_280_DEMO_STAT_IO=4
 };
 typedef unsigned int enum_280;
-
-
+
 typedef enum_280 DEMO_STAT_DISP;
-
-
+
 enum {
     DEMO_STAT_TYPE_DEMO_STAT_GP0=0,
     DEMO_STAT_TYPE_DEMO_STAT_GP1=1,
@@ -2602,29 +2238,24 @@ enum {
     DEMO_STAT_TYPE_DEMO_STAT_MYR=9
 };
 typedef unsigned int DEMO_STAT_TYPE;
-
-
+
 enum {
     enum_277_DM_FT_OPQ=0,
     enum_277_DM_FT_RVS=1,
     enum_277_DM_FT_XLU=2
 };
 typedef unsigned int enum_277;
-
-
+
 typedef enum_277 DMFontType;
-
-
+
 enum {
     enum_276_DMTF_POINTSAMPLE=0,
     enum_276_DMTF_BILERP=1
 };
 typedef unsigned int enum_276;
-
-
+
 typedef enum_276 DMTexFlt;
-
-
+
 enum {
     DOTextureSetting_DOTS_USEDEFAULT=-1,
     DOTextureSetting_DOTS_ANISO_1=0,
@@ -2648,8 +2279,7 @@ enum {
     DOTextureSetting_DOTS_LIN_MIP_LIN=5
 };
 typedef int DOTextureSetting;
-
-
+
 enum {
     DOTextureState_DOTS_WRAP_S=0,
     DOTextureState_DOTS_WRAP_T=1,
@@ -2664,20 +2294,15 @@ enum {
     DOTextureState_DOTS_MAX_ANISO=10
 };
 typedef unsigned int DOTextureState;
-
-
+
 typedef struct DSBranch *DSBranchPtr;
-
-
+
 typedef struct DSLink *DSLinkPtr;
-
-
+
 typedef struct DSList *DSListPtr;
-
-
+
 typedef struct DSPhostDPop DSPhostDPop, *PDSPhostDPop;
-
-
+
 struct DSPhostDPop {
     s32 l;
     s32 r;
@@ -2689,22 +2314,18 @@ struct DSPhostDPop {
     s32 rB;
     s32 sB;
 } __attribute__((packed));
-
-
+
 typedef struct DSPinput DSPinput, *PDSPinput;
-
-
+
 typedef struct SND_STUDIO_INPUT SND_STUDIO_INPUT, *PSND_STUDIO_INPUT;
-
-
+
 struct SND_STUDIO_INPUT {
     u8 vol;
     u8 volA;
     u8 volB;
     u8 srcStudio;
 } __attribute__((packed));
-
-
+
 struct DSPinput {
     u8 studio;
     u16 vol;
@@ -2712,17 +2333,13 @@ struct DSPinput {
     u16 volB;
     struct SND_STUDIO_INPUT *desc;
 } __attribute__((packed));
-
-
+
 typedef struct DSPstudioinfo DSPstudioinfo, *PDSPstudioinfo;
-
-
+
 typedef struct _SPB _SPB, *P_SPB;
-
-
+
 typedef struct DSPvoice DSPvoice, *PDSPvoice;
-
-
+
 enum {
     enum_27_SND_STUDIO_TYPE_STD=0,
     enum_27_SND_STUDIO_TYPE_RESERVED0=1,
@@ -2730,104 +2347,76 @@ enum {
     enum_27_SND_STUDIO_TYPE_RESERVED2=3
 };
 typedef unsigned int enum_27;
-
-
+
 typedef enum_27 SND_STUDIO_TYPE;
-
-
+
 typedef struct SND_AUX_INFO SND_AUX_INFO, *PSND_AUX_INFO;
-
-
-typedef void (*SND_AUX_CALLBACK)(u8, struct SND_AUX_INFO *, void *);
-
-
-
+
+typedef void (*SND_AUX_CALLBACK)(u8, struct SND_AUX_INFO *, void *);
+
 typedef struct _PB _PB, *P_PB;
-
-
+
 typedef struct SAMPLE_INFO SAMPLE_INFO, *PSAMPLE_INFO;
-
-
+
 typedef struct VSampleInfo VSampleInfo, *PVSampleInfo;
-
-
+
 typedef struct _struct_83 _struct_83, *P_struct_83;
-
-
+
 typedef struct _struct_84 _struct_84, *P_struct_84;
-
-
+
 typedef union SND_AUX_DATA SND_AUX_DATA, *PSND_AUX_DATA;
-
-
+
 typedef struct _PBMIX _PBMIX, *P_PBMIX;
-
-
+
 typedef struct _PBITD _PBITD, *P_PBITD;
-
-
+
 typedef struct _PBUPDATE _PBUPDATE, *P_PBUPDATE;
-
-
+
 typedef struct _PBDPOP _PBDPOP, *P_PBDPOP;
-
-
+
 typedef struct _PBVE _PBVE, *P_PBVE;
-
-
+
 typedef struct _PBFIR _PBFIR, *P_PBFIR;
-
-
+
 typedef struct _PBADDR _PBADDR, *P_PBADDR;
-
-
+
 typedef struct _PBADPCM _PBADPCM, *P_PBADPCM;
-
-
+
 typedef struct _PBSRC _PBSRC, *P_PBSRC;
-
-
+
 typedef struct _PBADPCMLOOP _PBADPCMLOOP, *P_PBADPCMLOOP;
-
-
+
 typedef struct SND_AUX_BUFFERUPDATE SND_AUX_BUFFERUPDATE, *PSND_AUX_BUFFERUPDATE;
-
-
+
 typedef struct SND_AUX_PARAMETERUPDATE SND_AUX_PARAMETERUPDATE, *PSND_AUX_PARAMETERUPDATE;
-
-
+
 struct _PBADPCMLOOP {
     u16 loop_pred_scale;
     u16 loop_yn1;
     u16 loop_yn2;
 } __attribute__((packed));
-
-
+
 struct VSampleInfo {
     void *loopBufferAddr;
     u32 loopBufferLength;
     u8 inLoopBuffer;
 } __attribute__((packed));
-
-
+
 struct SND_AUX_PARAMETERUPDATE {
     u16 para[4];
 } __attribute__((packed));
-
-
+
 struct SND_AUX_BUFFERUPDATE {
     s32 *left;
     s32 *right;
     s32 *surround;
 } __attribute__((packed));
-
-
+
 union SND_AUX_DATA {
     struct SND_AUX_BUFFERUPDATE bufferUpdate;
     struct SND_AUX_PARAMETERUPDATE parameterUpdate;
 } __attribute__((packed));
-
-
+
 struct _PBDPOP {
     u16 aL;
     u16 aAuxAL;
@@ -2839,21 +2428,18 @@ struct _PBDPOP {
     u16 aAuxAS;
     u16 aAuxBS;
 } __attribute__((packed));
-
-
+
 struct SND_AUX_INFO {
     union SND_AUX_DATA data;
 } __attribute__((packed));
-
-
+
 struct _PBSRC {
     u16 ratioHi;
     u16 ratioLo;
     u16 currentAddressFrac;
     u16 last_samples[4];
 } __attribute__((packed));
-
-
+
 struct _PBITD {
     u16 flag;
     u16 bufferHi;
@@ -2863,8 +2449,7 @@ struct _PBITD {
     u16 targetShiftL;
     u16 targetShiftR;
 } __attribute__((packed));
-
-
+
 struct _PBMIX {
     u16 vL;
     u16 vDeltaL;
@@ -2885,15 +2470,13 @@ struct _PBMIX {
     u16 vAuxAS;
     u16 vDeltaAuxAS;
 } __attribute__((packed));
-
-
+
 struct _PBFIR {
     u16 numCoefs;
     u16 coefsHi;
     u16 coefsLo;
 } __attribute__((packed));
-
-
+
 struct _PBADPCM {
     u16 a[8][2];
     u16 gain;
@@ -2901,21 +2484,18 @@ struct _PBADPCM {
     u16 yn1;
     u16 yn2;
 } __attribute__((packed));
-
-
+
 struct _PBUPDATE {
     u16 updNum[5];
     u16 dataHi;
     u16 dataLo;
 } __attribute__((packed));
-
-
+
 struct _PBVE {
     u16 currentVolume;
     u16 currentDelta;
 } __attribute__((packed));
-
-
+
 struct _PBADDR {
     u16 loopFlag;
     u16 format;
@@ -2926,8 +2506,7 @@ struct _PBADDR {
     u16 currentAddressHi;
     u16 currentAddressLo;
 } __attribute__((packed));
-
-
+
 struct _PB {
     u16 nextHi;
     u16 nextLo;
@@ -2950,8 +2529,7 @@ struct _PB {
     struct _PBADPCMLOOP adpcmLoop;
     u16 streamLoopCnt;
 } __attribute__((packed));
-
-
+
 struct DSPstudioinfo {
     struct _SPB *spb;
     struct DSPhostDPop hostDPopSum;
@@ -2970,8 +2548,7 @@ struct DSPstudioinfo {
     void *auxAUser;
     void *auxBUser;
 } __attribute__((packed));
-
-
+
 struct SAMPLE_INFO {
     u32 info;
     void *addr;
@@ -2982,23 +2559,20 @@ struct SAMPLE_INFO {
     u32 loopLength;
     u8 compType;
 } __attribute__((packed));
-
-
+
 struct _struct_84 {
     u8 pitch;
     u8 vol;
     u8 volA;
     u8 volB;
 } __attribute__((packed));
-
-
+
 struct _struct_83 {
     u32 posHi;
     u32 posLo;
     u32 pitch;
 } __attribute__((packed));
-
-
+
 struct DSPvoice {
     struct _PB *pb;
     void *patchData;
@@ -3050,8 +2624,7 @@ struct DSPvoice {
     u8 studio;
     u32 flags;
 } __attribute__((packed));
-
-
+
 struct _SPB {
     u16 dpopLHi;
     u16 dpopLLo;
@@ -3081,39 +2654,25 @@ struct _SPB {
     u16 dpopBSLo;
     u16 dpopBSDelta;
 } __attribute__((packed));
-
-
+
 typedef struct DSTree *DSTreePtr;
-
-
-typedef void (*DTKCallback)(int);
-
-
-
-typedef void (*DTKFlushCallback)(void);
-
-
-
+
+typedef void (*DTKCallback)(int);
+
+typedef void (*DTKFlushCallback)(void);
+
 typedef struct DTKTrack DTKTrack, *PDTKTrack;
-
-
+
 typedef struct DVDFileInfo DVDFileInfo, *PDVDFileInfo;
-
-
+
 typedef struct DVDCommandBlock DVDCommandBlock, *PDVDCommandBlock;
-
-
-typedef void (*DVDCallback)(s32, struct DVDFileInfo *);
-
-
-
+
+typedef void (*DVDCallback)(s32, struct DVDFileInfo *);
+
 typedef struct DVDDiskID DVDDiskID, *PDVDDiskID;
-
-
-typedef void (*DVDCBCallback)(s32, struct DVDCommandBlock *);
-
-
-
+
+typedef void (*DVDCBCallback)(s32, struct DVDCommandBlock *);
+
 struct DVDCommandBlock {
     struct DVDCommandBlock *next;
     struct DVDCommandBlock *prev;
@@ -3128,16 +2687,14 @@ struct DVDCommandBlock {
     DVDCBCallback callback;
     void *userData;
 } __attribute__((packed));
-
-
+
 struct DVDFileInfo {
     struct DVDCommandBlock cb;
     int startAddr;
     int length;
     DVDCallback callback;
 } __attribute__((packed));
-
-
+
 struct DVDDiskID {
     char gameName[4];
     char company[2];
@@ -3147,8 +2704,7 @@ struct DVDDiskID {
     byte streamingBufSize;
     byte padding[22];
 } __attribute__((packed));
-
-
+
 struct DTKTrack {
     struct DTKTrack *prev;
     struct DTKTrack *next;
@@ -3157,22 +2713,18 @@ struct DTKTrack {
     DTKCallback callback;
     struct DVDFileInfo dvdFileInfo;
 } __attribute__((packed));
-
-
+
 typedef struct DVDBB1 DVDBB1, *PDVDBB1;
-
-
+
 struct DVDBB1 {
     u32 appLoaderLength;
     void *appLoaderFunc1;
     void *appLoaderFunc2;
     void *appLoaderFunc3;
 } __attribute__((packed));
-
-
+
 typedef struct DVDBB2 DVDBB2, *PDVDBB2;
-
-
+
 struct DVDBB2 {
     u32 bootFilePosition;
     u32 FSTPosition;
@@ -3183,17 +2735,12 @@ struct DVDBB2 {
     u32 userLength;
     u32 reserved_1C;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDBB2 - /decompHeaders/dvd.h/DVDBB2 */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDBB2 - /decompHeaders/dvd.h/DVDBB2 */
+
 typedef struct DVDBanner DVDBanner, *PDVDBanner;
-
-
+
 struct DVDBanner {
     int id;
     int padding[7];
@@ -3204,135 +2751,83 @@ struct DVDBanner {
     byte longMaker[64];
     byte comment[128];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCBCallback - /sdk/dvd.h/DVDCBCallback */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCallback - /sdk/dvd.h/DVDCallback */
-
-
-
-
-
-/* WARNING! conflicting data type names: /DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCBCallback - /sdk/dvd.h/DVDCBCallback */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCallback - /sdk/dvd.h/DVDCallback */
+
+
+/* WARNING! conflicting data type names: /DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDCommandBlock - /sdk/dvd.h/DVDCommandBlock */
+
 typedef struct DVDDir DVDDir, *PDVDDir;
-
-
+
 struct DVDDir {
     u32 entryNum;
     u32 location;
     u32 next;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDir - /decompHeaders/dvd.h/DVDDir */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDir - /decompHeaders/dvd.h/DVDDir */
+
 typedef struct DVDDirEntry DVDDirEntry, *PDVDDirEntry;
-
-
+
 struct DVDDirEntry {
     u32 entryNum;
     BOOL isDir;
     char *name;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDirEntry - /decompHeaders/dvd.h/DVDDirEntry */
-
-
-
-
-
-/* WARNING! conflicting data type names: /DVDDiskID - /sdk/dvd.h/DVDDiskID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDDiskID - /sdk/dvd.h/DVDDiskID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/DVDDiskID - /sdk/dvd.h/DVDDiskID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
-
-
-
-typedef void (*DVDDoneReadCallback)(s32, struct DVDFileInfo *);
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDirEntry - /decompHeaders/dvd.h/DVDDirEntry */
+
+
+/* WARNING! conflicting data type names: /DVDDiskID - /sdk/dvd.h/DVDDiskID */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDDiskID - /sdk/dvd.h/DVDDiskID */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/DVDDiskID - /sdk/dvd.h/DVDDiskID */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/dvd.h/DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
+
+typedef void (*DVDDoneReadCallback)(s32, struct DVDFileInfo *);
+
 typedef struct DVDDriveInfo DVDDriveInfo, *PDVDDriveInfo;
-
-
+
 struct DVDDriveInfo {
     u16 revisionLevel;
     u16 deviceCode;
     u32 releaseDate;
     u8 padding[24];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDriveInfo - /decompHeaders/dvd.h/DVDDriveInfo */
-
-
-
-
-
-/* WARNING! conflicting data type names: /DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
-
-
-
-typedef void (*DVDLowCallback)(u32);
-
-
-
-typedef void (*DVDOptionalCommandChecker)(struct DVDCommandBlock *, DVDLowCallback);
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/DVDDriveInfo - /decompHeaders/dvd.h/DVDDriveInfo */
+
+
+/* WARNING! conflicting data type names: /DVDFileInfo - /sdk/dvd.h/DVDFileInfo */
+
+typedef void (*DVDLowCallback)(u32);
+
+typedef void (*DVDOptionalCommandChecker)(struct DVDCommandBlock *, DVDLowCallback);
+
 typedef struct DVDQueue DVDQueue, *PDVDQueue;
-
-
+
 struct DVDQueue {
     struct DVDQueue *mHead;
     struct DVDQueue *mTail;
 } __attribute__((packed));
-
-
+
 typedef struct DataDiskReader DataDiskReader, *PDataDiskReader;
-
-
+
 struct DataDiskReader {
     int BytesToRead;
     int SavedBytesToRead;
@@ -3352,31 +2847,24 @@ struct DataDiskReader {
     byte compressedFlag;
     byte maybeIsFinishedReading;
 } __attribute__((packed));
-
-
+
 typedef struct DemoStatData DemoStatData, *PDemoStatData;
-
-
+
 struct DemoStatData {
     char text[50];
     DEMO_STAT_TYPE stat_type;
     ulong stat;
     ulong count;
 } __attribute__((packed));
-
-
+
 typedef struct EOSPad EOSPad, *PEOSPad;
-
-
+
 struct EOSPad {
     byte pad[2];
 } __attribute__((packed));
-
-
-typedef void (*EXICallback)(s32, struct OSContext *);
-
-
-
+
+typedef void (*EXICallback)(s32, struct OSContext *);
+
 enum {
     EnumAtBatResult_byte_default_=0,
     EnumAtBatResult_byte_StrikeOut=1,
@@ -3397,8 +2885,7 @@ enum {
     EnumAtBatResult_byte_Unknown=16
 };
 typedef unsigned char EnumAtBatResult_byte;
-
-
+
 enum {
     EnumAtBatResult_short_default_=0,
     EnumAtBatResult_short_StrikeOut=1,
@@ -3419,8 +2906,7 @@ enum {
     EnumAtBatResult_short_caughtInfieldFly_=16
 };
 typedef unsigned short EnumAtBatResult_short;
-
-
+
 enum {
     EnumAtBatResult_word_default_=0,
     EnumAtBatResult_word_StrikeOut=1,
@@ -3441,8 +2927,7 @@ enum {
     EnumAtBatResult_word_Unknown=16
 };
 typedef unsigned int EnumAtBatResult_word;
-
-
+
 enum {
     EnumBatContactType_Slap_lineDriveStar_defaultVal_=0,
     EnumBatContactType_Charge_grounderStar_popStar=1,
@@ -3450,8 +2935,7 @@ enum {
     EnumBatContactType_Bunt=3
 };
 typedef unsigned char EnumBatContactType;
-
-
+
 enum {
     EnumBobbleType_n_a___Caught_FumbleCheck=0,
     EnumBobbleType_Caught_BobbleCheck=1,
@@ -3460,8 +2944,7 @@ enum {
     EnumBobbleType_Fireball=4
 };
 typedef unsigned char EnumBobbleType;
-
-
+
 enum {
     EnumCTRLXYZ_CTRL_XYZ_NONE=0,
     EnumCTRLXYZ_CTRL_X=1,
@@ -3469,8 +2952,7 @@ enum {
     EnumCTRLXYZ_CTRL_Z=4
 };
 typedef unsigned char EnumCTRLXYZ;
-
-
+
 enum {
     EnumCharacterAnimation_int_FielderStandStill=0,
     EnumCharacterAnimation_int_FielderHoldBallStill=1,
@@ -3581,8 +3063,7 @@ enum {
     EnumCharacterAnimation_int_WinningCelebration=107
 };
 typedef unsigned int EnumCharacterAnimation_int;
-
-
+
 enum {
     EnumChargePitchType_non_Charge=0,
     EnumChargePitchType_startingCharge_chargedStar=1,
@@ -3590,8 +3071,7 @@ enum {
     EnumChargePitchType_Perfect=3
 };
 typedef unsigned char EnumChargePitchType;
-
-
+
 enum {
     EnumContactResult_int_InAir=0,
     EnumContactResult_int_Landed=1,
@@ -3600,8 +3080,7 @@ enum {
     EnumContactResult_int_Foul=65535
 };
 typedef unsigned int EnumContactResult_int;
-
-
+
 enum {
     EnumContactResult_short_InAir=0,
     EnumContactResult_short_Landed=1,
@@ -3610,8 +3089,7 @@ enum {
     EnumContactResult_short_Foul=65535
 };
 typedef unsigned short EnumContactResult_short;
-
-
+
 enum {
     EnumFielderAction_None=0,
     EnumFielderAction_Bobble_=1,
@@ -3620,8 +3098,7 @@ enum {
     EnumFielderAction_stopMoving_=19
 };
 typedef unsigned char EnumFielderAction;
-
-
+
 enum {
     EnumFieldingAbilityBitLocation_WallSplat=0,
     EnumFieldingAbilityBitLocation_WallJump=1,
@@ -3641,8 +3118,7 @@ enum {
     EnumFieldingAbilityBitLocation_Unassigned2=15
 };
 typedef unsigned int EnumFieldingAbilityBitLocation;
-
-
+
 enum {
     EnumGameStatus_default_=0,
     EnumGameStatus_AtBat=1,
@@ -3672,8 +3148,7 @@ enum {
     EnumGameStatus_postMinigameMenu=34
 };
 typedef unsigned char EnumGameStatus;
-
-
+
 enum {
     EnumGameType_ExhibitionGame=0,
     EnumGameType_Practice=2,
@@ -3683,8 +3158,7 @@ enum {
     EnumGameType_Minigames=7
 };
 typedef unsigned char EnumGameType;
-
-
+
 enum {
     EnumHitType_SourSlap=0,
     EnumHitType_NiceSlap=1,
@@ -3707,16 +3181,14 @@ enum {
     EnumHitType_None=255
 };
 typedef unsigned char EnumHitType;
-
-
+
 enum {
     EnumInputDirection_None=0,
     EnumInputDirection_PullStickTowardsHitting=1,
     EnumInputDirection_PushStickAway=2
 };
 typedef unsigned char EnumInputDirection;
-
-
+
 enum {
     EnumMinigame_None=0,
     EnumMinigame_BobOmbDerby=1,
@@ -3728,16 +3200,14 @@ enum {
     EnumMinigame_MarioGrandPrix=7
 };
 typedef unsigned char EnumMinigame;
-
-
+
 enum {
     EnumNoswingSwingBunt_NoSwing=0,
     EnumNoswingSwingBunt_Swing=1,
     EnumNoswingSwingBunt_Bunt=2
 };
 typedef unsigned char EnumNoswingSwingBunt;
-
-
+
 enum {
     EnumPADInput_PAD_BUTTON_LEFT=1,
     EnumPADInput_PAD_BUTTON_RIGHT=2,
@@ -3756,8 +3226,7 @@ enum {
     EnumPADInput_PAD_DISCONNECTED=32768
 };
 typedef unsigned short EnumPADInput;
-
-
+
 enum {
     EnumPopupText_byte_Nothing=0,
     EnumPopupText_byte_Out=1,
@@ -3784,8 +3253,7 @@ enum {
     EnumPopupText_byte_foulBallAndOutOnBunt=22
 };
 typedef unsigned char EnumPopupText_byte;
-
-
+
 enum {
     EnumPopupText_word_Nothing=0,
     EnumPopupText_word_Out=1,
@@ -3812,8 +3280,7 @@ enum {
     EnumPopupText_word_foulBallAndOutOnBunt=22
 };
 typedef unsigned int EnumPopupText_word;
-
-
+
 enum {
     EnumSecondaryGameModes_BaseballMatch=0,
     EnumSecondaryGameModes_ToyField=1,
@@ -3836,8 +3303,7 @@ enum {
     EnumSecondaryGameModes_LoadPracticeScreen=18
 };
 typedef unsigned char EnumSecondaryGameModes;
-
-
+
 enum {
     EnumStadiumIDs_MarioStadium=0,
     EnumStadiumIDs_BowserCastle=1,
@@ -3848,8 +3314,7 @@ enum {
     EnumStadiumIDs_ToyField=6
 };
 typedef unsigned char EnumStadiumIDs;
-
-
+
 enum {
     EnumStadiumIDs4_MarioStadium=0,
     EnumStadiumIDs4_BowserCastle=1,
@@ -3860,8 +3325,7 @@ enum {
     EnumStadiumIDs4_ToyField=6
 };
 typedef unsigned int EnumStadiumIDs4;
-
-
+
 enum {
     EnumTypeOfContact_RightSour=0,
     EnumTypeOfContact_RightNice=1,
@@ -3871,8 +3335,7 @@ enum {
     EnumTypeOfContact_default_=255
 };
 typedef unsigned char EnumTypeOfContact;
-
-
+
 enum {
     EnumUpdateBatterStat_Strikeout=1,
     EnumUpdateBatterStat__4BallWalk=2,
@@ -3886,18 +3349,15 @@ enum {
     EnumUpdateBatterStat_Unknown=15
 };
 typedef unsigned int EnumUpdateBatterStat;
-
-
+
 enum {
     Enum_batting_hand_BATTING_HAND_RIGHT=0,
     Enum_batting_hand_BATTING_HAND_LEFT=1
 };
 typedef unsigned char Enum_batting_hand;
-
-
+
 typedef struct FILE FILE, *PFILE;
-
-
+
 struct FILE {
     int unk0;
     ushort unk4b0 :7;
@@ -3918,24 +3378,19 @@ struct FILE {
     uchar filler40[4];
     int unk44;
 } __attribute__((packed));
-
-
+
 typedef struct FSTEntry FSTEntry, *PFSTEntry;
-
-
+
 struct FSTEntry {
     int isDirAndStringOff;
     int parentOrPosition;
     int nextEntryOrLength;
 } __attribute__((packed));
-
-
+
 typedef struct FX_DATA FX_DATA, *PFX_DATA;
-
-
+
 typedef struct FX_TAB FX_TAB, *PFX_TAB;
-
-
+
 struct FX_TAB {
     u16 id;
     u16 macro;
@@ -3946,39 +3401,32 @@ struct FX_TAB {
     u8 key;
     u8 vGroup;
 } __attribute__((packed));
-
-
+
 struct FX_DATA {
     u16 num;
     u16 reserverd;
     struct FX_TAB fx[1];
 } __attribute__((packed));
-
-
+
 typedef struct FX_GROUP FX_GROUP, *PFX_GROUP;
-
-
+
 struct FX_GROUP {
     u16 gid;
     u16 fxNum;
     struct FX_TAB *fxTab;
 } __attribute__((packed));
-
-
+
 typedef struct Frame Frame, *PFrame;
-
-
+
 typedef struct PerfSample PerfSample, *PPerfSample;
-
-
+
 struct Frame {
     struct PerfSample *samples;
     long lastSample;
     ulong end;
     ulong cachemisscycles;
 } __attribute__((packed));
-
-
+
 struct PerfSample {
     byte id;
     int cpuTimeStampStart;
@@ -4005,38 +3453,30 @@ struct PerfSample {
     int rasBusy[2];
     int rasClocks[2];
 } __attribute__((packed));
-
-
+
 typedef struct GROUP_DATA GROUP_DATA, *PGROUP_DATA;
-
-
+
 typedef union _union_67 _union_67, *P_union_67;
-
-
+
 typedef struct fx fx, *Pfx;
-
-
+
 typedef struct song song, *Psong;
-
-
+
 struct fx {
     u32 tableOff;
 } __attribute__((packed));
-
-
+
 struct song {
     u32 normpageOff;
     u32 drumpageOff;
     u32 midiSetupOff;
 } __attribute__((packed));
-
-
+
 union _union_67 {
     struct fx fx;
     struct song song;
 } __attribute__((packed));
-
-
+
 struct GROUP_DATA {
     u32 nextOff;
     u16 id;
@@ -4048,32 +3488,26 @@ struct GROUP_DATA {
     u32 layerOff;
     union _union_67 data;
 } __attribute__((packed));
-
-
+
 typedef struct GSTACK GSTACK, *PGSTACK;
-
-
+
 typedef struct SDIR_DATA SDIR_DATA, *PSDIR_DATA;
-
-
+
 typedef struct SAMPLE_HEADER SAMPLE_HEADER, *PSAMPLE_HEADER;
-
-
+
 struct SAMPLE_HEADER {
     u32 info;
     u32 length;
     u32 loopOffset;
     u32 loopLength;
 } __attribute__((packed));
-
-
+
 struct GSTACK {
     struct GROUP_DATA *gAddr;
     struct SDIR_DATA *sdirAddr;
     void *prjAddr;
 } __attribute__((packed));
-
-
+
 struct SDIR_DATA {
     u16 id;
     u16 ref_cnt;
@@ -4082,8 +3516,7 @@ struct SDIR_DATA {
     struct SAMPLE_HEADER header;
     u32 extraData;
 } __attribute__((packed));
-
-
+
 enum {
     GXAlphaOp_GX_AOP_AND=0,
     GXAlphaOp_GX_AOP_OR=1,
@@ -4092,40 +3525,26 @@ enum {
     GXAlphaOp_GX_MAX_ALPHAOP=4
 };
 typedef unsigned int GXAlphaOp;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaOp - /GX/GXAlphaOp */
+
 enum {
     GXAlphaReadMode_GX_READ_00=0,
     GXAlphaReadMode_GX_READ_FF=1,
     GXAlphaReadMode_GX_READ_NONE=2
 };
 typedef unsigned int GXAlphaReadMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAlphaReadMode - /GX/GXAlphaReadMode */
+
 enum {
     GXAnisotropy_GX_ANISO_1=0,
     GXAnisotropy_GX_ANISO_2=1,
@@ -4133,40 +3552,26 @@ enum {
     GXAnisotropy_GX_MAX_ANISOTROPY=3
 };
 typedef unsigned int GXAnisotropy;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAnisotropy - /GX/GXAnisotropy */
+
 enum {
     GXAttnFn_GX_AF_SPEC=0,
     GXAttnFn_GX_AF_SPOT=1,
     GXAttnFn_GX_AF_NONE=2
 };
 typedef unsigned int GXAttnFn;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttnFn - /GX/GXAttnFn */
+
 enum {
     GXAttr_GX_VA_PNMTXIDX=0,
     GXAttr_GX_VA_TEX0MTXIDX=1,
@@ -4198,20 +3603,13 @@ enum {
     GXAttr_GX_VA_NULL=255
 };
 typedef unsigned int GXAttr;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttr - /GX/GXAttr */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttr - /GX/GXAttr */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttr - /GX/GXAttr */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttr - /GX/GXAttr */
+
 enum {
     GXAttrType_GX_NONE=0,
     GXAttrType_GX_DIRECT=1,
@@ -4219,20 +3617,13 @@ enum {
     GXAttrType_GX_INDEX16=3
 };
 typedef unsigned int GXAttrType;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttrType - /GX/GXAttrType */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttrType - /GX/GXAttrType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXAttrType - /GX/GXAttrType */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXAttrType - /GX/GXAttrType */
+
 enum {
     _GXBPBlendMode_GX_BP_BLENDMODE_LOGICMODE_ST=16,
     _GXBPBlendMode_GX_BP_BLENDMODE_LOGICMODE_END=19,
@@ -4254,11 +3645,9 @@ enum {
     _GXBPBlendMode_GX_BP_BLENDMODE_ENABLE_ST=31
 };
 typedef unsigned int _GXBPBlendMode;
-
-
+
 typedef _GXBPBlendMode GXBPBlendMode;
-
-
+
 enum {
     _GXBPDstAlpha_GX_BP_DSTALPHA_YUV_FMT_ST=21,
     _GXBPDstAlpha_GX_BP_DSTALPHA_YUV_FMT_END=22,
@@ -4268,11 +3657,9 @@ enum {
     _GXBPDstAlpha_GX_BP_DSTALPHA_ALPHA_END=31
 };
 typedef unsigned int _GXBPDstAlpha;
-
-
+
 typedef _GXBPDstAlpha GXBPDstAlpha;
-
-
+
 enum {
     _GXBPFieldMask_GX_BP_FIELDMASK_EVEN_END=30,
     _GXBPFieldMask_GX_BP_FIELDMASK_EVEN_ST=30,
@@ -4280,31 +3667,25 @@ enum {
     _GXBPFieldMask_GX_BP_FIELDMASK_ODD_ST=31
 };
 typedef unsigned int _GXBPFieldMask;
-
-
+
 typedef _GXBPFieldMask GXBPFieldMask;
-
-
+
 enum {
     _GXBPFieldMode_GX_BP_FIELDMODE_TEX_LOD_END=31,
     _GXBPFieldMode_GX_BP_FIELDMODE_TEX_LOD_ST=31
 };
 typedef unsigned int _GXBPFieldMode;
-
-
+
 typedef _GXBPFieldMode GXBPFieldMode;
-
-
+
 enum {
     _GXBPFogColor_GX_BP_FOGCOLOR_RGB_ST=8,
     _GXBPFogColor_GX_BP_FOGCOLOR_RGB_END=31
 };
 typedef unsigned int _GXBPFogColor;
-
-
+
 typedef _GXBPFogColor GXBPFogColor;
-
-
+
 enum {
     _GXBPFogParam0_GX_BP_FOGPARAM0_A_SIGN_END=12,
     _GXBPFogParam0_GX_BP_FOGPARAM0_A_SIGN_ST=12,
@@ -4314,31 +3695,25 @@ enum {
     _GXBPFogParam0_GX_BP_FOGPARAM0_A_MANT_END=31
 };
 typedef unsigned int _GXBPFogParam0;
-
-
+
 typedef _GXBPFogParam0 GXBPFogParam0;
-
-
+
 enum {
     _GXBPFogParam1_GX_BP_FOGPARAM1_B_MAG_ST=8,
     _GXBPFogParam1_GX_BP_FOGPARAM1_B_MAG_END=31
 };
 typedef unsigned int _GXBPFogParam1;
-
-
+
 typedef _GXBPFogParam1 GXBPFogParam1;
-
-
+
 enum {
     _GXBPFogParam2_GX_BP_FOGPARAM2_B_SHIFT_ST=27,
     _GXBPFogParam2_GX_BP_FOGPARAM2_B_SHIFT_END=31
 };
 typedef unsigned int _GXBPFogParam2;
-
-
+
 typedef _GXBPFogParam2 GXBPFogParam2;
-
-
+
 enum {
     _GXBPFogParam3_GX_BP_FOGPARAM3_FSEL_ST=8,
     _GXBPFogParam3_GX_BP_FOGPARAM3_FSEL_END=10,
@@ -4352,11 +3727,9 @@ enum {
     _GXBPFogParam3_GX_BP_FOGPARAM3_C_MANT_END=31
 };
 typedef unsigned int _GXBPFogParam3;
-
-
+
 typedef _GXBPFogParam3 GXBPFogParam3;
-
-
+
 enum {
     _GXBPFogRange_GX_BP_FOGRANGE_ENABLED_END=21,
     _GXBPFogRange_GX_BP_FOGRANGE_ENABLED_ST=21,
@@ -4364,11 +3737,9 @@ enum {
     _GXBPFogRange_GX_BP_FOGRANGE_CENTER_END=31
 };
 typedef unsigned int _GXBPFogRange;
-
-
+
 typedef _GXBPFogRange GXBPFogRange;
-
-
+
 enum {
     _GXBPFogRangeK_GX_BP_FOGRANGEK_LO_ST=8,
     _GXBPFogRangeK_GX_BP_FOGRANGEK_LO_END=19,
@@ -4376,11 +3747,9 @@ enum {
     _GXBPFogRangeK_GX_BP_FOGRANGEK_HI_END=31
 };
 typedef unsigned int _GXBPFogRangeK;
-
-
+
 typedef _GXBPFogRangeK GXBPFogRangeK;
-
-
+
 enum {
     _GXBPGenMode_GX_BP_GENMODE_COPLANAR_END=12,
     _GXBPGenMode_GX_BP_GENMODE_COPLANAR_ST=12,
@@ -4396,21 +3765,17 @@ enum {
     _GXBPGenMode_GX_BP_GENMODE_NUMTEX_END=31
 };
 typedef unsigned int _GXBPGenMode;
-
-
+
 typedef _GXBPGenMode GXBPGenMode;
-
-
+
 enum {
     _GXBPIndIMask_GX_BP_INDIMASK_ST=24,
     _GXBPIndIMask_GX_BP_INDIMASK_END=31
 };
 typedef unsigned int _GXBPIndIMask;
-
-
+
 typedef _GXBPIndIMask GXBPIndIMask;
-
-
+
 enum {
     _GXBPIndMtx_GX_BP_INDMTX_EXP_ST=8,
     _GXBPIndMtx_GX_BP_INDMTX_EXP_END=9,
@@ -4420,11 +3785,9 @@ enum {
     _GXBPIndMtx_GX_BP_INDMTX_M00_END=31
 };
 typedef unsigned int _GXBPIndMtx;
-
-
+
 typedef _GXBPIndMtx GXBPIndMtx;
-
-
+
 enum {
     _GXBPIndTevStage_GX_BP_INDTEV_ADDPREV_END=11,
     _GXBPIndTevStage_GX_BP_INDTEV_ADDPREV_ST=11,
@@ -4446,11 +3809,9 @@ enum {
     _GXBPIndTevStage_GX_BP_INDTEV_STAGE_END=31
 };
 typedef unsigned int _GXBPIndTevStage;
-
-
+
 typedef _GXBPIndTevStage GXBPIndTevStage;
-
-
+
 enum {
     _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_ADJUST_END=9,
     _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_ADJUST_ST=9,
@@ -4464,11 +3825,9 @@ enum {
     _GXBPLinePtWidth_GX_BP_LINEPTWIDTH_LINESZ_END=31
 };
 typedef unsigned int _GXBPLinePtWidth;
-
-
+
 typedef _GXBPLinePtWidth GXBPLinePtWidth;
-
-
+
 enum {
     _GXBPRas1SS0_GX_BP_RAS1_SS0_T1_ST=16,
     _GXBPRas1SS0_GX_BP_RAS1_SS0_T1_END=19,
@@ -4480,11 +3839,9 @@ enum {
     _GXBPRas1SS0_GX_BP_RAS1_SS0_S0_END=31
 };
 typedef unsigned int _GXBPRas1SS0;
-
-
+
 typedef _GXBPRas1SS0 GXBPRas1SS0;
-
-
+
 enum {
     _GXBPRas1SS1_GX_BP_RAS1_SS1_T3_ST=16,
     _GXBPRas1SS1_GX_BP_RAS1_SS1_T3_END=19,
@@ -4496,11 +3853,9 @@ enum {
     _GXBPRas1SS1_GX_BP_RAS1_SS1_S2_END=31
 };
 typedef unsigned int _GXBPRas1SS1;
-
-
+
 typedef _GXBPRas1SS1 GXBPRas1SS1;
-
-
+
 enum {
     _GXBPRasIRef_GX_BP_RAS1_IREF_TXC3_ST=8,
     _GXBPRasIRef_GX_BP_RAS1_IREF_TXC3_END=10,
@@ -4520,11 +3875,9 @@ enum {
     _GXBPRasIRef_GX_BP_RAS1_IREF_MAP0_END=31
 };
 typedef unsigned int _GXBPRasIRef;
-
-
+
 typedef _GXBPRasIRef GXBPRasIRef;
-
-
+
 enum {
     _GXBPRegs_GX_BP_REG_GENMODE=0,
     _GXBPRegs_GX_BP_REG_DISPCOPYFILTER0=1,
@@ -4740,11 +4093,9 @@ enum {
     _GXBPRegs_GX_BP_REG_SSMASK=254
 };
 typedef unsigned int _GXBPRegs;
-
-
+
 typedef _GXBPRegs GXBPRegs;
-
-
+
 enum {
     _GXBPSUSSize_GX_BP_SU_SSIZE_USEPTOFS_END=12,
     _GXBPSUSSize_GX_BP_SU_SSIZE_USEPTOFS_ST=12,
@@ -4752,11 +4103,9 @@ enum {
     _GXBPSUSSize_GX_BP_SU_SSIZE_USELINEOFS_ST=13
 };
 typedef unsigned int _GXBPSUSSize;
-
-
+
 typedef _GXBPSUSSize GXBPSUSSize;
-
-
+
 enum {
     _GXBPScissorBR_GX_BP_SCISSORBR_RIGHT_ST=9,
     _GXBPScissorBR_GX_BP_SCISSORBR_RIGHT_END=19,
@@ -4764,11 +4113,9 @@ enum {
     _GXBPScissorBR_GX_BP_SCISSORBR_BOT_END=31
 };
 typedef unsigned int _GXBPScissorBR;
-
-
+
 typedef _GXBPScissorBR GXBPScissorBR;
-
-
+
 enum {
     _GXBPScissorOffset_GX_BP_SCISSOROFS_OY_ST=12,
     _GXBPScissorOffset_GX_BP_SCISSOROFS_OY_END=21,
@@ -4776,11 +4123,9 @@ enum {
     _GXBPScissorOffset_GX_BP_SCISSOROFS_OX_END=31
 };
 typedef unsigned int _GXBPScissorOffset;
-
-
+
 typedef _GXBPScissorOffset GXBPScissorOffset;
-
-
+
 enum {
     _GXBPScissorTL_GX_BP_SCISSORTL_LEFT_ST=9,
     _GXBPScissorTL_GX_BP_SCISSORTL_LEFT_END=19,
@@ -4788,11 +4133,9 @@ enum {
     _GXBPScissorTL_GX_BP_SCISSORTL_TOP_END=31
 };
 typedef unsigned int _GXBPScissorTL;
-
-
+
 typedef _GXBPScissorTL GXBPScissorTL;
-
-
+
 enum {
     _GXBPZControl_GX_BP_ZCONTROL_BEFORE_TEX_END=25,
     _GXBPZControl_GX_BP_ZCONTROL_BEFORE_TEX_ST=25,
@@ -4802,11 +4145,9 @@ enum {
     _GXBPZControl_GX_BP_ZCONTROL_PIXEL_FMT_END=31
 };
 typedef unsigned int _GXBPZControl;
-
-
+
 typedef _GXBPZControl GXBPZControl;
-
-
+
 enum {
     _GXBPZMode_GX_BP_ZMODE_UPDATE_ENABLE_END=27,
     _GXBPZMode_GX_BP_ZMODE_UPDATE_ENABLE_ST=27,
@@ -4816,11 +4157,9 @@ enum {
     _GXBPZMode_GX_BP_ZMODE_TEST_ENABLE_ST=31
 };
 typedef unsigned int _GXBPZMode;
-
-
+
 typedef _GXBPZMode GXBPZMode;
-
-
+
 enum {
     GXBlendFactor_GX_BL_ZERO=0,
     GXBlendFactor_GX_BL_ONE=1,
@@ -4832,20 +4171,13 @@ enum {
     GXBlendFactor_GX_BL_INVDSTALPHA=7
 };
 typedef unsigned int GXBlendFactor;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendFactor - /GX/GXBlendFactor */
+
 enum {
     GXBlendMode_GX_BM_NONE=0,
     GXBlendMode_GX_BM_BLEND=1,
@@ -4854,20 +4186,13 @@ enum {
     GXBlendMode_GX_MAX_BLENDMODE=4
 };
 typedef unsigned int GXBlendMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBlendMode - /GX/GXBlendMode */
+
 enum {
     GXBool_GX_DISABLE=0,
     GXBool_GX_FALSE=0,
@@ -4875,64 +4200,44 @@ enum {
     GXBool_GX_TRUE=1
 };
 typedef unsigned char GXBool;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBool - /GX/GXBool */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBool - /GX/GXBool */
-
-
-
-typedef void (*GXBreakPtCallback)(void);
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXBool - /GX/GXBool */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXBool - /GX/GXBool */
+
+typedef void (*GXBreakPtCallback)(void);
+
 enum {
     GXCITexFmt_GX_TF_C4=8,
     GXCITexFmt_GX_TF_C8=9,
     GXCITexFmt_GX_TF_C14X2=10
 };
 typedef unsigned int GXCITexFmt;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCITexFmt - /GX/GXCITexFmt */
+
 enum {
     _GXCPArrayBase_GX_CP_ARRAYBASE_BASE_ST=6,
     _GXCPArrayBase_GX_CP_ARRAYBASE_BASE_END=31
 };
 typedef unsigned int _GXCPArrayBase;
-
-
+
 typedef _GXCPArrayBase GXCPArrayBase;
-
-
+
 enum {
     _GXCPArrayStride_GX_CP_ARRAYSTRIDE_STRIDE_ST=24,
     _GXCPArrayStride_GX_CP_ARRAYSTRIDE_STRIDE_END=31
 };
 typedef unsigned int _GXCPArrayStride;
-
-
+
 typedef _GXCPArrayStride GXCPArrayStride;
-
-
+
 enum {
     _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX3_ST=2,
     _GXCPMtxIdxA_GX_CP_MTXIDXA_TEX3_END=7,
@@ -4946,11 +4251,9 @@ enum {
     _GXCPMtxIdxA_GX_CP_MTXIDXA_GEOM_END=31
 };
 typedef unsigned int _GXCPMtxIdxA;
-
-
+
 typedef _GXCPMtxIdxA GXCPMtxIdxA;
-
-
+
 enum {
     _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX7_ST=8,
     _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX7_END=13,
@@ -4962,11 +4265,9 @@ enum {
     _GXCPMtxIdxB_GX_CP_MTXIDXB_TEX4_END=31
 };
 typedef unsigned int _GXCPMtxIdxB;
-
-
+
 typedef _GXCPMtxIdxB GXCPMtxIdxB;
-
-
+
 enum {
     _GXCPRegs_GX_CP_REG_MTXIDXA=48,
     _GXCPRegs_GX_CP_REG_MTXIDXB=64,
@@ -4979,11 +4280,9 @@ enum {
     _GXCPRegs_GX_CP_REG_ARRAYSTRIDE=176
 };
 typedef unsigned int _GXCPRegs;
-
-
+
 typedef _GXCPRegs GXCPRegs;
-
-
+
 enum {
     _GXCPVATGrp0_GX_CP_VAT_GRP0_NRMIDX3_END=0,
     _GXCPVATGrp0_GX_CP_VAT_GRP0_NRMIDX3_ST=0,
@@ -5015,11 +4314,9 @@ enum {
     _GXCPVATGrp0_GX_CP_VAT_GRP0_POS_CNT_ST=31
 };
 typedef unsigned int _GXCPVATGrp0;
-
-
+
 typedef _GXCPVATGrp0 GXCPVATGrp0;
-
-
+
 enum {
     _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_TYPE_ST=1,
     _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC4_TYPE_END=3,
@@ -5045,11 +4342,9 @@ enum {
     _GXCPVATGrp1_GX_CP_VAT_GRP1_TXC1_CNT_ST=31
 };
 typedef unsigned int _GXCPVATGrp1;
-
-
+
 typedef _GXCPVATGrp1 GXCPVATGrp1;
-
-
+
 enum {
     _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_SHIFT_ST=0,
     _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC7_SHIFT_END=4,
@@ -5073,11 +4368,9 @@ enum {
     _GXCPVATGrp2_GX_CP_VAT_GRP2_TXC4_SHIFT_END=31
 };
 typedef unsigned int _GXCPVATGrp2;
-
-
+
 typedef _GXCPVATGrp2 GXCPVATGrp2;
-
-
+
 enum {
     _GXCPVCDHi_GX_CP_VCD_HI_TEX7COORD_ST=16,
     _GXCPVCDHi_GX_CP_VCD_HI_TEX7COORD_END=17,
@@ -5097,11 +4390,9 @@ enum {
     _GXCPVCDHi_GX_CP_VCD_HI_TEX0COORD_END=31
 };
 typedef unsigned int _GXCPVCDHi;
-
-
+
 typedef _GXCPVCDHi GXCPVCDHi;
-
-
+
 enum {
     _GXCPVCDLo_GX_CP_VCD_LO_CLRSPEC_ST=15,
     _GXCPVCDLo_GX_CP_VCD_LO_CLRSPEC_END=16,
@@ -5131,11 +4422,9 @@ enum {
     _GXCPVCDLo_GX_CP_VCD_LO_POSMTXIDX_ST=31
 };
 typedef unsigned int _GXCPVCDLo;
-
-
+
 typedef _GXCPVCDLo GXCPVCDLo;
-
-
+
 enum {
     GXChannelID_GX_COLOR0=0,
     GXChannelID_GX_COLOR1=1,
@@ -5149,104 +4438,67 @@ enum {
     GXChannelID_GX_COLOR_NULL=255
 };
 typedef unsigned int GXChannelID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXChannelID - /GX/GXChannelID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXChannelID - /GX/GXChannelID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXChannelID - /GX/GXChannelID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXChannelID - /GX/GXChannelID */
+
 enum {
     GXClipMode_GX_CLIP_ENABLE=0,
     GXClipMode_GX_CLIP_DISABLE=1
 };
 typedef unsigned int GXClipMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXClipMode - /GX/GXClipMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXClipMode - /GX/GXClipMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXClipMode - /GX/GXClipMode */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXClipMode - /GX/GXClipMode */
+
 typedef struct GXColor GXColor, *PGXColor;
-
-
+
 struct GXColor {
     byte r;
     byte g;
     byte b;
     byte a;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColor - /GX/GXColor */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColor - /GX/GXColor */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColor - /GX/GXColor */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColor - /GX/GXColor */
+
 typedef struct GXColorS10 GXColorS10, *PGXColorS10;
-
-
+
 struct GXColorS10 {
     short r;
     short g;
     short b;
     short a;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColorS10 - /GX/GXColorS10 */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColorS10 - /GX/GXColorS10 */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXColorS10 - /GX/GXColorS10 */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXColorS10 - /GX/GXColorS10 */
+
 enum {
     GXColorSrc_GX_SRC_REG=0,
     GXColorSrc_GX_SRC_VTX=1
 };
 typedef unsigned int GXColorSrc;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXColorSrc - /GX/GXColorSrc */
+
 enum {
     _GXCommand_GX_CMD_NOP=0,
     _GXCommand_GX_CMD_LOAD_CP_REG=8,
@@ -5267,11 +4519,9 @@ enum {
     _GXCommand_GX_CMD_DRAW_POINTS=184
 };
 typedef unsigned int _GXCommand;
-
-
+
 typedef _GXCommand GXCommand;
-
-
+
 enum {
     GXCompCnt_GX_CLR_RGB=0,
     GXCompCnt_GX_NRM_XYZ=0,
@@ -5284,20 +4534,13 @@ enum {
     GXCompCnt_GX_NRM_NBT3=2
 };
 typedef unsigned int GXCompCnt;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompCnt - /GX/GXCompCnt */
+
 enum {
     GXCompType_GX_RGB565=0,
     GXCompType_GX_U8=0,
@@ -5312,20 +4555,13 @@ enum {
     GXCompType_GX_RGBA8=5
 };
 typedef unsigned int GXCompType;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompType - /GX/GXCompType */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompType - /GX/GXCompType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompType - /GX/GXCompType */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompType - /GX/GXCompType */
+
 enum {
     GXCompare_GX_NEVER=0,
     GXCompare_GX_LESS=1,
@@ -5337,40 +4573,26 @@ enum {
     GXCompare_GX_ALWAYS=7
 };
 typedef unsigned int GXCompare;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompare - /GX/GXCompare */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompare - /GX/GXCompare */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCompare - /GX/GXCompare */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCompare - /GX/GXCompare */
+
 enum {
     GXCopyMode_GX_COPY_PROGRESSIVE=0,
     GXCopyMode_GX_COPY_INTLC_EVEN=2,
     GXCopyMode_GX_COPY_INTLC_ODD=3
 };
 typedef unsigned int GXCopyMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCopyMode - /GX/GXCopyMode */
+
 enum {
     GXCullMode_GX_CULL_NONE=0,
     GXCullMode_GX_CULL_FRONT=1,
@@ -5378,40 +4600,26 @@ enum {
     GXCullMode_GX_CULL_ALL=3
 };
 typedef unsigned int GXCullMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCullMode - /GX/GXCullMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCullMode - /GX/GXCullMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXCullMode - /GX/GXCullMode */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXCullMode - /GX/GXCullMode */
+
 enum {
     GXDiffuseFn_GX_DF_NONE=0,
     GXDiffuseFn_GX_DF_SIGN=1,
     GXDiffuseFn_GX_DF_CLAMP=2
 };
 typedef unsigned int GXDiffuseFn;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDiffuseFn - /GX/GXDiffuseFn */
+
 enum {
     _GXDirtyFlag_GX_DIRTY_SU_TEX=1,
     _GXDirtyFlag_GX_DIRTY_BP_MASK=2,
@@ -5444,11 +4652,9 @@ enum {
     _GXDirtyFlag_GX_LIGHT_CHAN_MASK=268435458
 };
 typedef unsigned int _GXDirtyFlag;
-
-
+
 typedef _GXDirtyFlag GXDirtyFlag;
-
-
+
 enum {
     GXDistAttnFn_GX_DA_OFF=0,
     GXDistAttnFn_GX_DA_GENTLE=1,
@@ -5456,56 +4662,37 @@ enum {
     GXDistAttnFn_GX_DA_STEEP=3
 };
 typedef unsigned int GXDistAttnFn;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
-
-
-
-typedef void (*GXDrawDoneCallback)(void);
-
-
-
-typedef void (*GXDrawSyncCallback)(short);
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXDistAttnFn - /GX/GXDistAttnFn */
+
+typedef void (*GXDrawDoneCallback)(void);
+
+typedef void (*GXDrawSyncCallback)(short);
+
 enum {
     GXEvent_GX_VCACHE_MISS_ALL=0,
     GXEvent_GX_VCACHE_MISS_POS=1,
     GXEvent_GX_VCACHE_MISS_NRM=2
 };
 typedef unsigned int GXEvent;
-
-
+
 enum {
     GXFBClamp_GX_CLAMP_NONE=0,
     GXFBClamp_GX_CLAMP_TOP=1,
     GXFBClamp_GX_CLAMP_BOTTOM=2
 };
 typedef unsigned int GXFBClamp;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFBClamp - /GX/GXFBClamp */
+
 enum {
     _GXFifoCmd_GX_FIFO_CMD_NOOP=0,
     _GXFifoCmd_GX_FIFO_CMD_LOAD_CP_REG=8,
@@ -5519,45 +4706,30 @@ enum {
     _GXFifoCmd_GX_FIFO_CMD_LOAD_BP_REG=97
 };
 typedef unsigned int _GXFifoCmd;
-
-
+
 typedef _GXFifoCmd GXFifoCmd;
-
-
+
 typedef struct GXFifoObj GXFifoObj, *PGXFifoObj;
-
-
+
 struct GXFifoObj {
     byte pad[128];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXFifo.h/GXFifoObj - /GX/GXFifoObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXFifo.h/GXFifoObj - /GX/GXFifoObj */
+
 typedef struct GXFogAdjTable GXFogAdjTable, *PGXFogAdjTable;
-
-
+
 struct GXFogAdjTable {
     short r[10];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXFogAdjTable - /GX/GXFogAdjTable */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXFogAdjTable - /GX/GXFogAdjTable */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXFogAdjTable - /GX/GXFogAdjTable */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXFogAdjTable - /GX/GXFogAdjTable */
+
 enum {
     GXFogType_GX_FOG_NONE=0,
     GXFogType_GX_FOG_PERSP_LIN=2,
@@ -5572,40 +4744,26 @@ enum {
     GXFogType_GX_FOG_ORTHO_REVEXP2=15
 };
 typedef unsigned int GXFogType;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFogType - /GX/GXFogType */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFogType - /GX/GXFogType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXFogType - /GX/GXFogType */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXFogType - /GX/GXFogType */
+
 enum {
     GXGamma_GX_GM_1_0=0,
     GXGamma_GX_GM_1_7=1,
     GXGamma_GX_GM_2_2=2
 };
 typedef unsigned int GXGamma;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXGamma - /GX/GXGamma */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXGamma - /GX/GXGamma */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXGamma - /GX/GXGamma */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXGamma - /GX/GXGamma */
+
 enum {
     GXIndTexAlphaSel_GX_ITBA_OFF=0,
     GXIndTexAlphaSel_GX_ITBA_S=1,
@@ -5614,20 +4772,13 @@ enum {
     GXIndTexAlphaSel_GX_MAX_ITBALPHA=4
 };
 typedef unsigned int GXIndTexAlphaSel;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexAlphaSel - /GX/GXIndTexAlphaSel */
+
 enum {
     GXIndTexBiasSel_GX_ITB_NONE=0,
     GXIndTexBiasSel_GX_ITB_S=1,
@@ -5640,20 +4791,13 @@ enum {
     GXIndTexBiasSel_GX_MAX_ITBIAS=8
 };
 typedef unsigned int GXIndTexBiasSel;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexBiasSel - /GX/GXIndTexBiasSel */
+
 enum {
     GXIndTexFormat_GX_ITF_8=0,
     GXIndTexFormat_GX_ITF_5=1,
@@ -5662,20 +4806,13 @@ enum {
     GXIndTexFormat_GX_MAX_ITFORMAT=4
 };
 typedef unsigned int GXIndTexFormat;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexFormat - /GX/GXIndTexFormat */
+
 enum {
     GXIndTexMtxID_GX_ITM_OFF=0,
     GXIndTexMtxID_GX_ITM_0=1,
@@ -5689,20 +4826,13 @@ enum {
     GXIndTexMtxID_GX_ITM_T2=11
 };
 typedef unsigned int GXIndTexMtxID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexMtxID - /GX/GXIndTexMtxID */
+
 enum {
     GXIndTexScale_GX_ITS_1=0,
     GXIndTexScale_GX_ITS_2=1,
@@ -5716,20 +4846,13 @@ enum {
     GXIndTexScale_GX_MAX_ITSCALE=9
 };
 typedef unsigned int GXIndTexScale;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexScale - /GX/GXIndTexScale */
+
 enum {
     GXIndTexStageID_GX_INDTEXSTAGE0=0,
     GXIndTexStageID_GX_INDTEXSTAGE1=1,
@@ -5738,20 +4861,13 @@ enum {
     GXIndTexStageID_GX_MAX_INDTEXSTAGE=4
 };
 typedef unsigned int GXIndTexStageID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexStageID - /GX/GXIndTexStageID */
+
 enum {
     GXIndTexWrap_GX_ITW_OFF=0,
     GXIndTexWrap_GX_ITW_256=1,
@@ -5763,20 +4879,13 @@ enum {
     GXIndTexWrap_GX_MAX_ITWRAP=7
 };
 typedef unsigned int GXIndTexWrap;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXIndTexWrap - /GX/GXIndTexWrap */
+
 enum {
     GXLightID_GX_LIGHT_NULL=0,
     GXLightID_GX_LIGHT0=1,
@@ -5790,43 +4899,28 @@ enum {
     GXLightID_GX_MAX_LIGHT=256
 };
 typedef unsigned int GXLightID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLightID - /GX/GXLightID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLightID - /GX/GXLightID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLightID - /GX/GXLightID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLightID - /GX/GXLightID */
+
 typedef struct _GXLightObj _GXLightObj, *P_GXLightObj;
-
-
+
 typedef struct _GXLightObj GXLightObj;
-
-
+
 struct _GXLightObj {
     u8 padding[64];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXLightObj - /decompHeaders/GXTypes.h/GXLightObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXLightObj - /decompHeaders/GXTypes.h/GXLightObj */
+
 typedef struct __GXLightObjPriv __GXLightObjPriv, *P__GXLightObjPriv;
-
-
+
 typedef struct __GXLightObjPriv GXLightObjPriv;
-
-
+
 struct __GXLightObjPriv {
     u32 reserved[3];
     GXColor color;
@@ -5839,8 +4933,7 @@ struct __GXLightObjPriv {
     struct Vec3f lpos;
     struct Vec3f ldir;
 } __attribute__((packed));
-
-
+
 enum {
     GXLogicOp_GX_LO_CLEAR=0,
     GXLogicOp_GX_LO_AND=1,
@@ -5860,20 +4953,13 @@ enum {
     GXLogicOp_GX_LO_SET=15
 };
 typedef unsigned int GXLogicOp;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXLogicOp - /GX/GXLogicOp */
+
 enum {
     GXMiscToken_GX_MT_NULL=0,
     GXMiscToken_GX_MT_XF_FLUSH=1,
@@ -5881,20 +4967,13 @@ enum {
     GXMiscToken_GX_MT_ABORT_WAIT_COPYOUT=3
 };
 typedef unsigned int GXMiscToken;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXMiscToken - /GX/GXMiscToken */
+
 enum {
     GXPTTexMtx_GX_PTTEXMTX0=64,
     GXPTTexMtx_GX_PTTEXMTX1=67,
@@ -5919,20 +4998,13 @@ enum {
     GXPTTexMtx_GX_PTIDENTITY=125
 };
 typedef unsigned int GXPTTexMtx;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPTTexMtx - /GX/GXPTTexMtx */
+
 enum {
     GXPerf0_GX_PERF0_VERTICES=0,
     GXPerf0_GX_PERF0_CLIP_VTX=1,
@@ -5972,20 +5044,13 @@ enum {
     GXPerf0_GX_PERF0_NONE=35
 };
 typedef unsigned int GXPerf0;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf0 - /GX/GXPerf0 */
+
 enum {
     GXPerf1_GX_PERF1_TEXELS=0,
     GXPerf1_GX_PERF1_TX_IDLE=1,
@@ -6012,20 +5077,13 @@ enum {
     GXPerf1_GX_PERF1_NONE=22
 };
 typedef unsigned int GXPerf1;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPerf1 - /GX/GXPerf1 */
+
 enum {
     GXPixelFmt_GX_PF_RGB8_Z24=0,
     GXPixelFmt_GX_PF_RGBA6_Z24=1,
@@ -6037,20 +5095,13 @@ enum {
     GXPixelFmt_GX_PF_YUV420=7
 };
 typedef unsigned int GXPixelFmt;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPixelFmt - /GX/GXPixelFmt */
+
 enum {
     GXPosNrmMtx_GX_PNMTX0=0,
     GXPosNrmMtx_GX_PNMTX1=3,
@@ -6064,20 +5115,13 @@ enum {
     GXPosNrmMtx_GX_PNMTX9=27
 };
 typedef unsigned int GXPosNrmMtx;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPosNrmMtx - /GX/GXPosNrmMtx */
+
 enum {
     GXPrimitive_GX_QUADS=128,
     GXPrimitive_GX_TRIANGLES=144,
@@ -6088,42 +5132,27 @@ enum {
     GXPrimitive_GX_POINTS=184
 };
 typedef unsigned int GXPrimitive;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXPrimitive - /GX/GXPrimitive */
+
 enum {
     GXProjectionType_GX_PERSPECTIVE=0,
     GXProjectionType_GX_ORTHOGRAPHIC=1
 };
 typedef unsigned int GXProjectionType;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXProjectionType - /GX/GXProjectionType */
+
 typedef struct GXRenderModeObj GXRenderModeObj, *PGXRenderModeObj;
-
-
+
 enum {
     VITVMode_VI_TVMODE_NTSC_INT=0,
     VITVMode_VI_TVMODE_NTSC_DS=1,
@@ -6139,15 +5168,13 @@ enum {
     VITVMode_VI_TVMODE_EURGB60_DS=21
 };
 typedef unsigned int VITVMode;
-
-
+
 enum {
     VIXFBMode_VI_XFBMODE_SF=0,
     VIXFBMode_VI_XFBMODE_DF=1
 };
 typedef unsigned int VIXFBMode;
-
-
+
 struct GXRenderModeObj {
     VITVMode viTVmode;
     short fbWidth;  /* no xscale from efb to xfb */
@@ -6163,20 +5190,13 @@ struct GXRenderModeObj {
     byte sample_pattern[12][2];  /* aa sample pattern */
     byte vfilter[7];  /* vertical filter coefficients */
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXRenderModeObj - /GX/GXRenderModeObj */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXRenderModeObj - /GX/GXRenderModeObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXRenderModeObj - /GX/GXRenderModeObj */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXRenderModeObj - /GX/GXRenderModeObj */
+
 enum {
     GXSpotFn_GX_SP_OFF=0,
     GXSpotFn_GX_SP_FLAT=1,
@@ -6187,20 +5207,13 @@ enum {
     GXSpotFn_GX_SP_RING2=6
 };
 typedef unsigned int GXSpotFn;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXSpotFn - /GX/GXSpotFn */
+
 enum {
     GXTevAlphaArg_GX_CA_APREV=0,
     GXTevAlphaArg_GX_CA_A0=1,
@@ -6213,20 +5226,13 @@ enum {
     GXTevAlphaArg_GX_CA_ZERO=7
 };
 typedef unsigned int GXTevAlphaArg;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevAlphaArg - /GX/GXTevAlphaArg */
+
 enum {
     GXTevBias_GX_TB_ZERO=0,
     GXTevBias_GX_TB_ADDHALF=1,
@@ -6234,20 +5240,13 @@ enum {
     GXTevBias_GX_MAX_TEVBIAS=3
 };
 typedef unsigned int GXTevBias;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevBias - /GX/GXTevBias */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevBias - /GX/GXTevBias */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevBias - /GX/GXTevBias */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevBias - /GX/GXTevBias */
+
 enum {
     GXTevClampMode_GX_TC_LINEAR=0,
     GXTevClampMode_GX_TC_GE=1,
@@ -6256,20 +5255,13 @@ enum {
     GXTevClampMode_GX_MAX_TEVCLAMPMODE=4
 };
 typedef unsigned int GXTevClampMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevClampMode - /GX/GXTevClampMode */
+
 enum {
     GXTevColorArg_GX_CC_CPREV=0,
     GXTevColorArg_GX_CC_APREV=1,
@@ -6293,20 +5285,13 @@ enum {
     GXTevColorArg_GX_CC_TEXBBB=18
 };
 typedef unsigned int GXTevColorArg;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorArg - /GX/GXTevColorArg */
+
 enum {
     GXTevColorChan_GX_CH_RED=0,
     GXTevColorChan_GX_CH_GREEN=1,
@@ -6314,20 +5299,13 @@ enum {
     GXTevColorChan_GX_CH_ALPHA=3
 };
 typedef unsigned int GXTevColorChan;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevColorChan - /GX/GXTevColorChan */
+
 enum {
     GXTevKAlphaSel_GX_TEV_KASEL_8_8=0,
     GXTevKAlphaSel_GX_TEV_KASEL_7_8=1,
@@ -6355,20 +5333,13 @@ enum {
     GXTevKAlphaSel_GX_TEV_KASEL_K3_A=31
 };
 typedef unsigned int GXTevKAlphaSel;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKAlphaSel - /GX/GXTevKAlphaSel */
+
 enum {
     GXTevKColorID_GX_KCOLOR0=0,
     GXTevKColorID_GX_KCOLOR1=1,
@@ -6377,20 +5348,13 @@ enum {
     GXTevKColorID_GX_MAX_KCOLOR=4
 };
 typedef unsigned int GXTevKColorID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorID - /GX/GXTevKColorID */
+
 enum {
     GXTevKColorSel_GX_TEV_KCSEL_8_8=0,
     GXTevKColorSel_GX_TEV_KCSEL_7_8=1,
@@ -6422,20 +5386,13 @@ enum {
     GXTevKColorSel_GX_TEV_KCSEL_K3_A=31
 };
 typedef unsigned int GXTevKColorSel;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevKColorSel - /GX/GXTevKColorSel */
+
 enum {
     GXTevMode_GX_MODULATE=0,
     GXTevMode_GX_DECAL=1,
@@ -6444,20 +5401,13 @@ enum {
     GXTevMode_GX_PASSCLR=4
 };
 typedef unsigned int GXTevMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevMode - /GX/GXTevMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevMode - /GX/GXTevMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevMode - /GX/GXTevMode */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevMode - /GX/GXTevMode */
+
 enum {
     GXTevOp_GX_TEV_ADD=0,
     GXTevOp_GX_TEV_SUB=1,
@@ -6471,20 +5421,13 @@ enum {
     GXTevOp_GX_TEV_COMP_RGB8_EQ=15
 };
 typedef unsigned int GXTevOp;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevOp - /GX/GXTevOp */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevOp - /GX/GXTevOp */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevOp - /GX/GXTevOp */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevOp - /GX/GXTevOp */
+
 enum {
     GXTevRegID_GX_TEVPREV=0,
     GXTevRegID_GX_TEVREG0=1,
@@ -6493,20 +5436,13 @@ enum {
     GXTevRegID_GX_MAX_TEVREG=4
 };
 typedef unsigned int GXTevRegID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevRegID - /GX/GXTevRegID */
+
 enum {
     GXTevScale_GX_CS_SCALE_1=0,
     GXTevScale_GX_CS_SCALE_2=1,
@@ -6515,20 +5451,13 @@ enum {
     GXTevScale_GX_MAX_TEVSCALE=4
 };
 typedef unsigned int GXTevScale;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevScale - /GX/GXTevScale */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevScale - /GX/GXTevScale */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevScale - /GX/GXTevScale */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevScale - /GX/GXTevScale */
+
 enum {
     GXTevStageID_GX_TEVSTAGE0=0,
     GXTevStageID_GX_TEVSTAGE1=1,
@@ -6549,20 +5478,13 @@ enum {
     GXTevStageID_GX_MAX_TEVSTAGE=16
 };
 typedef unsigned int GXTevStageID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevStageID - /GX/GXTevStageID */
+
 enum {
     GXTevSwapSel_GX_TEV_SWAP0=0,
     GXTevSwapSel_GX_TEV_SWAP1=1,
@@ -6571,20 +5493,13 @@ enum {
     GXTevSwapSel_GX_MAX_TEVSWAP=4
 };
 typedef unsigned int GXTevSwapSel;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTevSwapSel - /GX/GXTevSwapSel */
+
 enum {
     GXTexCacheSize_GX_TEXCACHE_32K=0,
     GXTexCacheSize_GX_TEXCACHE_128K=1,
@@ -6592,20 +5507,13 @@ enum {
     GXTexCacheSize_GX_TEXCACHE_NONE=3
 };
 typedef unsigned int GXTexCacheSize;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCacheSize - /GX/GXTexCacheSize */
+
 enum {
     GXTexCoordID_GX_TEXCOORD0=0,
     GXTexCoordID_GX_TEXCOORD1=1,
@@ -6619,26 +5527,16 @@ enum {
     GXTexCoordID_GX_TEXCOORD_NULL=255
 };
 typedef unsigned int GXTexCoordID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /GX/GXTexFilter - /sdk/GXEnum.h/GXTexFilter */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexCoordID - /GX/GXTexCoordID */
+
+
+/* WARNING! conflicting data type names: /GX/GXTexFilter - /sdk/GXEnum.h/GXTexFilter */
+
 enum {
     GXTexFmt_GX_TF_I4=0,
     GXTexFmt_GX_TF_I8=1,
@@ -6667,20 +5565,13 @@ enum {
     GXTexFmt_GX_CTF_Z16L=60
 };
 typedef unsigned int GXTexFmt;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexFmt - /GX/GXTexFmt */
+
 enum {
     GXTexGenSrc_GX_TG_POS=0,
     GXTexGenSrc_GX_TG_NRM=1,
@@ -6705,20 +5596,13 @@ enum {
     GXTexGenSrc_GX_TG_COLOR1=20
 };
 typedef unsigned int GXTexGenSrc;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenSrc - /GX/GXTexGenSrc */
+
 enum {
     GXTexGenType_GX_TG_MTX3x4=0,
     GXTexGenType_GX_TG_MTX2x4=1,
@@ -6733,20 +5617,13 @@ enum {
     GXTexGenType_GX_TG_SRTG=10
 };
 typedef unsigned int GXTexGenType;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexGenType - /GX/GXTexGenType */
+
 enum {
     GXTexMapID_GX_TEXMAP0=0,
     GXTexMapID_GX_TEXMAP1=1,
@@ -6761,20 +5638,13 @@ enum {
     GXTexMapID_GX_TEX_DISABLE=256
 };
 typedef unsigned int GXTexMapID;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMapID - /GX/GXTexMapID */
+
 enum {
     GXTexMtx_GX_TEXMTX0=30,
     GXTexMtx_GX_TEXMTX1=33,
@@ -6789,65 +5659,41 @@ enum {
     GXTexMtx_GX_IDENTITY=60
 };
 typedef unsigned int GXTexMtx;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtx - /GX/GXTexMtx */
+
 enum {
     GXTexMtxType_GX_MTX3x4=0,
     GXTexMtxType_GX_MTX2x4=1
 };
 typedef unsigned int GXTexMtxType;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexMtxType - /GX/GXTexMtxType */
+
 typedef struct GXTexObj GXTexObj, *PGXTexObj;
-
-
+
 struct GXTexObj {
     int dummy[8];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexObj - /GX/GXTexObj */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexObj - /GX/GXTexObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexObj - /GX/GXTexObj */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexObj - /GX/GXTexObj */
+
 typedef struct _GXTexObjPriv _GXTexObjPriv, *P_GXTexObjPriv;
-
-
+
 typedef struct _GXTexObjPriv GXTexObjPriv;
-
-
+
 struct _GXTexObjPriv {
     u32 mode0;
     u32 mode1;
@@ -6860,8 +5706,7 @@ struct _GXTexObjPriv {
     u8 loadFormat;
     u8 flags;
 } __attribute__((packed));
-
-
+
 enum {
     GXTexOffset_GX_TO_ZERO=0,
     GXTexOffset_GX_TO_SIXTEENTH=1,
@@ -6872,50 +5717,31 @@ enum {
     GXTexOffset_GX_MAX_TEXOFFSET=6
 };
 typedef unsigned int GXTexOffset;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTexOffset - /GX/GXTexOffset */
+
 typedef struct GXTexRegion GXTexRegion, *PGXTexRegion;
-
-
+
 struct GXTexRegion {
     int dummy[4];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexRegion - /GX/GXTexRegion */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexRegion - /GX/GXTexRegion */
-
-
-
-typedef GXTexRegion * (*GXTexRegionCallback)(GXTexObj *, GXTexMapID);
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTexRegion - /GX/GXTexRegion */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTexRegion - /GX/GXTexRegion */
+
+typedef GXTexRegion * (*GXTexRegionCallback)(GXTexObj *, GXTexMapID);
+
 typedef struct _GXTexRegionPriv _GXTexRegionPriv, *P_GXTexRegionPriv;
-
-
+
 typedef struct _GXTexRegionPriv GXTexRegionPriv;
-
-
+
 struct _GXTexRegionPriv {
     u32 unk0;
     u32 unk4;
@@ -6924,20 +5750,13 @@ struct _GXTexRegionPriv {
     u8 unkD;
     u8 padding[2];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /GX/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /GX/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTexWrapMode - /sdk/GXEnum.h/GXTexWrapMode */
+
 enum {
     GXTlut_GX_TLUT0=0,
     GXTlut_GX_TLUT1=1,
@@ -6961,96 +5780,62 @@ enum {
     GXTlut_GX_BIGTLUT3=19
 };
 typedef unsigned int GXTlut;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlut - /GX/GXTlut */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlut - /GX/GXTlut */
-
-
-
-
-
-/* WARNING! conflicting data type names: /GX/GXTlutFmt - /sdk/GXEnum.h/GXTlutFmt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlut - /GX/GXTlut */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlut - /GX/GXTlut */
+
+
+/* WARNING! conflicting data type names: /GX/GXTlutFmt - /sdk/GXEnum.h/GXTlutFmt */
+
 typedef struct GXTlutObj GXTlutObj, *PGXTlutObj;
-
-
+
 struct GXTlutObj {
     int dummy[3];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutObj - /GX/GXTlutObj */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutObj - /GX/GXTlutObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutObj - /GX/GXTlutObj */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutObj - /GX/GXTlutObj */
+
 typedef struct _GXTlutObjPriv _GXTlutObjPriv, *P_GXTlutObjPriv;
-
-
+
 typedef struct _GXTlutObjPriv GXTlutObjPriv;
-
-
+
 struct _GXTlutObjPriv {
     u32 unk0;
     u32 unk4;
     u16 numEntries;
     u8 padding[2];
 } __attribute__((packed));
-
-
+
 typedef struct GXTlutRegion GXTlutRegion, *PGXTlutRegion;
-
-
+
 struct GXTlutRegion {
     int dummy[4];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutRegion - /GX/GXTlutRegion */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutRegion - /GX/GXTlutRegion */
-
-
-
-typedef GXTlutRegion * (*GXTlutRegionCallback)(int);
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXTlutRegion - /GX/GXTlutRegion */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXTlutRegion - /GX/GXTlutRegion */
+
+typedef GXTlutRegion * (*GXTlutRegionCallback)(int);
+
 typedef struct _GXTlutRegionPriv _GXTlutRegionPriv, *P_GXTlutRegionPriv;
-
-
+
 typedef struct _GXTlutRegionPriv GXTlutRegionPriv;
-
-
+
 struct _GXTlutRegionPriv {
     u32 unk0;
     GXTlutObjPriv tlutObj;
 } __attribute__((packed));
-
-
+
 enum {
     GXTlutSize_GX_TLUT_16=1,
     GXTlutSize_GX_TLUT_32=2,
@@ -7065,20 +5850,13 @@ enum {
     GXTlutSize_GX_TLUT_16K=1024
 };
 typedef unsigned int GXTlutSize;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXTlutSize - /GX/GXTlutSize */
+
 enum {
     GXVCachePerf_GX_VC_POS=0,
     GXVCachePerf_GX_VC_NRM=1,
@@ -7095,20 +5873,13 @@ enum {
     GXVCachePerf_GX_VC_ALL=15
 };
 typedef unsigned int GXVCachePerf;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVCachePerf - /GX/GXVCachePerf */
+
 enum {
     enum_216_GX_WARN_NONE=0,
     enum_216_GX_WARN_SEVERE=1,
@@ -7116,59 +5887,39 @@ enum {
     enum_216_GX_WARN_ALL=3
 };
 typedef unsigned int enum_216;
-
-
+
 typedef enum_216 GXWarningLevel;
-
-
-typedef void (*GXVerifyCallback)(GXWarningLevel, int, char *);
-
-
-
+
+typedef void (*GXVerifyCallback)(GXWarningLevel, int, char *);
+
 typedef struct GXVtxAttrFmtList GXVtxAttrFmtList, *PGXVtxAttrFmtList;
-
-
+
 struct GXVtxAttrFmtList {
     GXAttr attr;
     GXCompCnt cnt;
     GXCompType type;
     byte frac;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxAttrFmtList - /GX/GXVtxAttrFmtList */
+
 typedef struct GXVtxDescList GXVtxDescList, *PGXVtxDescList;
-
-
+
 struct GXVtxDescList {
     GXAttr attr;
     GXAttrType type;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxDescList - /GX/GXVtxDescList */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxDescList - /GX/GXVtxDescList */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/GXVtxDescList - /GX/GXVtxDescList */
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/GXVtxDescList - /GX/GXVtxDescList */
+
 enum {
     GXVtxFmt_GX_VTXFMT0=0,
     GXVtxFmt_GX_VTXFMT1=1,
@@ -7181,20 +5932,13 @@ enum {
     GXVtxFmt_GX_MAX_VTXFMT=8
 };
 typedef unsigned int GXVtxFmt;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXVtxFmt - /GX/GXVtxFmt */
+
 enum {
     _GXXFClipDisable_GX_XF_CLIPDISABLE_ACCEL_END=29,
     _GXXFClipDisable_GX_XF_CLIPDISABLE_ACCEL_ST=29,
@@ -7204,11 +5948,9 @@ enum {
     _GXXFClipDisable_GX_XF_CLIPDISABLE_DETECT_ST=31
 };
 typedef unsigned int _GXXFClipDisable;
-
-
+
 typedef _GXXFClipDisable GXXFClipDisable;
-
-
+
 enum {
     _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKLO_ST=17,
     _GXXFClr0Ctrl_GX_XF_CLR0CTRL_LMASKLO_END=20,
@@ -7228,11 +5970,9 @@ enum {
     _GXXFClr0Ctrl_GX_XF_CLR0CTRL_MTXSRC_ST=31
 };
 typedef unsigned int _GXXFClr0Ctrl;
-
-
+
 typedef _GXXFClr0Ctrl GXXFClr0Ctrl;
-
-
+
 enum {
     _GXXFDualTex_GX_XF_DUALTEX_NORMALISE_END=23,
     _GXXFDualTex_GX_XF_DUALTEX_NORMALISE_ST=23,
@@ -7240,18 +5980,15 @@ enum {
     _GXXFDualTex_GX_XF_DUALTEX_BASEROW_END=31
 };
 typedef unsigned int _GXXFDualTex;
-
-
+
 typedef _GXXFDualTex GXXFDualTex;
-
-
+
 enum {
     GXXFFlushVal_GX_XF_FLUSH_NONE=0,
     GXXFFlushVal_GX_XF_FLUSH_SAFE=8
 };
 typedef unsigned int GXXFFlushVal;
-
-
+
 enum {
     _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_TEX_ST=24,
     _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_TEX_END=27,
@@ -7261,11 +5998,9 @@ enum {
     _GXXFInVertexSpec_GX_XF_INVERTEXSPEC_CLR_END=31
 };
 typedef unsigned int _GXXFInVertexSpec;
-
-
+
 typedef _GXXFInVertexSpec GXXFInVertexSpec;
-
-
+
 enum {
     _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX3_ST=2,
     _GXXFMtxIdx0_GX_XF_MTXIDX0_TEX3_END=7,
@@ -7279,11 +6014,9 @@ enum {
     _GXXFMtxIdx0_GX_XF_MTXIDX0_GEOM_END=31
 };
 typedef unsigned int _GXXFMtxIdx0;
-
-
+
 typedef _GXXFMtxIdx0 GXXFMtxIdx0;
-
-
+
 enum {
     _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX7_ST=8,
     _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX7_END=13,
@@ -7295,11 +6028,9 @@ enum {
     _GXXFMtxIdx1_GX_XF_MTXIDX1_TEX4_END=31
 };
 typedef unsigned int _GXXFMtxIdx1;
-
-
+
 typedef _GXXFMtxIdx1 GXXFMtxIdx1;
-
-
+
 enum {
     _GXXFRegs_GX_XF_REG_ERROR=4096,
     _GXXFRegs_GX_XF_REG_DIAGNOSTICS=4097,
@@ -7354,11 +6085,9 @@ enum {
     _GXXFRegs_GX_XF_REG_DUALTEX7=4183
 };
 typedef unsigned int _GXXFRegs;
-
-
+
 typedef _GXXFRegs GXXFRegs;
-
-
+
 enum {
     _GXXFTex_GX_XF_TEX_BUMPSRCLIGHT_ST=14,
     _GXXFTex_GX_XF_TEX_BUMPSRCLIGHT_END=16,
@@ -7374,11 +6103,9 @@ enum {
     _GXXFTex_GX_XF_TEX_PROJTYPE_ST=30
 };
 typedef unsigned int _GXXFTex;
-
-
+
 typedef _GXXFTex GXXFTex;
-
-
+
 enum {
     _GXXfMem_GX_XF_MEM_POSMTX=0,
     _GXXfMem_GX_XF_MEM_NRMMTX=1024,
@@ -7386,11 +6113,9 @@ enum {
     _GXXfMem_GX_XF_MEM_LIGHTOBJ=1536
 };
 typedef unsigned int _GXXfMem;
-
-
+
 typedef _GXXfMem GXXfMem;
-
-
+
 enum {
     _GXXfTexGen_GX_XF_TG_REGULAR=0,
     _GXXfTexGen_GX_XF_TG_BUMP=1,
@@ -7398,11 +6123,9 @@ enum {
     _GXXfTexGen_GX_XF_TG_CLR1=3
 };
 typedef unsigned int _GXXfTexGen;
-
-
+
 typedef _GXXfTexGen GXXfTexGen;
-
-
+
 enum {
     _GXXfTexReg_GX_XF_TEX_FORM_AB11=0,
     _GXXfTexReg_GX_XF_TEX_PROJ_ST=0,
@@ -7410,11 +6133,9 @@ enum {
     _GXXfTexReg_GX_XF_TEX_PROJ_STQ=1
 };
 typedef unsigned int _GXXfTexReg;
-
-
+
 typedef _GXXfTexReg GXXfTexReg;
-
-
+
 enum {
     GXZFmt16_GX_ZC_LINEAR=0,
     GXZFmt16_GX_ZC_NEAR=1,
@@ -7422,20 +6143,13 @@ enum {
     GXZFmt16_GX_ZC_FAR=3
 };
 typedef unsigned int GXZFmt16;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZFmt16 - /GX/GXZFmt16 */
+
 enum {
     GXZTexOp_GX_ZT_DISABLE=0,
     GXZTexOp_GX_ZT_ADD=1,
@@ -7443,33 +6157,23 @@ enum {
     GXZTexOp_GX_MAX_ZTEXOP=3
 };
 typedef unsigned int GXZTexOp;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/GXZTexOp - /GX/GXZTexOp */
+
 typedef struct GameControlsStruct GameControlsStruct, *PGameControlsStruct;
-
-
+
 enum {
     enumP1_P2_int_P1=0,
     enumP1_P2_int_P2=1
 };
 typedef unsigned int enumP1_P2_int;
-
-
+
 typedef struct logoInfoStruct logoInfoStruct, *PlogoInfoStruct;
-
-
+
 enum {
     enumSceneID_atBat=1,
     enumSceneID_liveball=2,
@@ -7477,8 +6181,7 @@ enum {
     enumSceneID_replay_live=4
 };
 typedef unsigned char enumSceneID;
-
-
+
 enum {
     transitionCalculationType_normalState=0,
     transitionCalculationType_transitionScreen1=1,
@@ -7494,8 +6197,7 @@ enum {
     transitionCalculationType_postGameGoingToMainMenuLoadingScreen=11
 };
 typedef unsigned char transitionCalculationType;
-
-
+
 enum {
     enum_winTypeCd_nonWalfoff_away=1,
     enum_winTypeCd_nonWalkoff_home=2,
@@ -7505,8 +6207,7 @@ enum {
     enum_winTypeCd_homeMercy=6
 };
 typedef unsigned char enum_winTypeCd;
-
-
+
 enum {
     enumStarChanceCd_noStarChance=0,
     enumStarChanceCd_isStarChance=1,
@@ -7514,15 +6215,13 @@ enum {
     enumStarChanceCd_awardStarToBattingTeam=3
 };
 typedef unsigned char enumStarChanceCd;
-
-
+
 struct logoInfoStruct {
     int ID;
     int variationID;
     int captain_;
 } __attribute__((packed));
-
-
+
 struct GameControlsStruct {
     enumP1_P2_int firstBattingTeam_P1_P2_;
     int battingTeam_P1_P2_;
@@ -7602,14 +6301,11 @@ struct GameControlsStruct {
     byte rosterLoc_skippingCap_;
     byte pad5_[2];
 } __attribute__((packed));
-
-
+
 typedef struct GameScoresControlsStruct GameScoresControlsStruct, *PGameScoresControlsStruct;
-
-
+
 typedef struct ScoreStruct ScoreStruct, *PScoreStruct;
-
-
+
 enum {
     enumWinningTeam_short_tbd=-1,
     enumWinningTeam_short_away=0,
@@ -7617,8 +6313,7 @@ enum {
     enumWinningTeam_short_tie=2
 };
 typedef short enumWinningTeam_short;
-
-
+
 enum {
     inningUrgency_noUrgency=0,
     inningUrgency_beginningOfGame=1,
@@ -7628,14 +6323,12 @@ enum {
     inningUrgency_extras=5
 };
 typedef unsigned char inningUrgency;
-
-
+
 struct ScoreStruct {
     short total;
     short byInning[18];
 } __attribute__((packed));
-
-
+
 struct GameScoresControlsStruct {
     int Inning;
     struct ScoreStruct scores[2];
@@ -7669,59 +6362,45 @@ struct GameScoresControlsStruct {
     byte nBattersThisInning;
     byte mercyThreshold;
 } __attribute__((packed));
-
-
-typedef void (*HIOCallback)(void);
-
-
-
-typedef BOOL (*HIOEnumCallback)(s32);
-
-
-
+
+typedef void (*HIOCallback)(void);
+
+typedef BOOL (*HIOEnumCallback)(s32);
+
 typedef struct HeapCell HeapCell, *PHeapCell;
-
-
+
 struct HeapCell {
     struct HeapCell *prev;
     struct HeapCell *next;
     long size;
 } __attribute__((packed));
-
-
+
 typedef struct HeapDesc HeapDesc, *PHeapDesc;
-
-
+
 struct HeapDesc {
     long size;
     struct HeapCell *free;
     struct HeapCell *allocated;
 } __attribute__((packed));
-
-
+
 typedef struct HitQualityThresholdScaling HitQualityThresholdScaling, *PHitQualityThresholdScaling;
-
-
+
 typedef struct HitQualityThresholds HitQualityThresholds, *PHitQualityThresholds;
-
-
+
 struct HitQualityThresholds {
     byte LeftNice;
     byte LeftPerfect;
     byte RightPerfect;
     byte RightNice;
 } __attribute__((packed));
-
-
+
 struct HitQualityThresholdScaling {
     struct HitQualityThresholds UpperBounds;
     struct HitQualityThresholds LowerBounds;
 } __attribute__((packed));
-
-
+
 typedef struct Hitbox Hitbox, *PHitbox;
-
-
+
 struct Hitbox {
     float RadiusAirOrFast;
     float RadiusGround;
@@ -7733,11 +6412,9 @@ struct Hitbox {
     float DiveRange;
     float infieldDiveHeight;
 } __attribute__((packed));
-
-
+
 typedef struct HitboxConsts HitboxConsts, *PHitboxConsts;
-
-
+
 struct HitboxConsts {
     short Air_FastGroundRadius;
     short SlowGroundRadius;
@@ -7748,17 +6425,13 @@ struct HitboxConsts {
     short diveRange;
     short infieldDiveHeight;
 } __attribute__((packed));
-
-
+
 typedef struct InMemBall InMemBall, *PInMemBall;
-
-
+
 typedef struct pastAndFutureCoordsWallJumpRelated pastAndFutureCoordsWallJumpRelated, *PpastAndFutureCoordsWallJumpRelated;
-
-
+
 typedef struct Vec2f Vec2f, *PVec2f;
-
-
+
 enum {
     TriangleCollisionTypes_word_NO_COLLISION=0,
     TriangleCollisionTypes_word_GRASS=1,
@@ -7786,8 +6459,7 @@ enum {
     TriangleCollisionTypes_word_FOUL=128
 };
 typedef unsigned int TriangleCollisionTypes_word;
-
-
+
 enum {
     enumFielderShort_none=-1,
     enumFielderShort_pitcher=0,
@@ -7801,11 +6473,9 @@ enum {
     enumFielderShort_rf=8
 };
 typedef short enumFielderShort;
-
-
+
 typedef struct matchShorts matchShorts, *PmatchShorts;
-
-
+
 enum {
     zoneAwayFromHome_IFGrass=0,
     zoneAwayFromHome_IFDirt=1,
@@ -7815,8 +6485,7 @@ enum {
     zoneAwayFromHome_noValueSet=255
 };
 typedef unsigned char zoneAwayFromHome;
-
-
+
 enum {
     hitCat_nonFlyBallOrIFHit=0,
     hitCat_flyBall=2,
@@ -7825,8 +6494,7 @@ enum {
     hitCat_veryFoulPop=5
 };
 typedef unsigned char hitCat;
-
-
+
 enum {
     hitCat2_softHit_LandingCloseToHome=1,
     hitCat2_hardHitLineDrive=2,
@@ -7838,8 +6506,7 @@ enum {
     hitCat2_veryFoulToOutfield=8
 };
 typedef unsigned char hitCat2;
-
-
+
 enum {
     hitCat3_within3_5mFromHome=0,
     hitCat3_within8mFromHome=1,
@@ -7852,8 +6519,7 @@ enum {
     hitCat3_LFFoul=8
 };
 typedef unsigned char hitCat3;
-
-
+
 enum {
     ballState_hitBall=0,
     ballState_fielderHolding=1,
@@ -7861,8 +6527,7 @@ enum {
     ballState_bobble_knockedOut_loose=3
 };
 typedef unsigned char ballState;
-
-
+
 enum {
     homeRunClassification_n_a=0,
     homeRunClassification_longest=1,
@@ -7870,8 +6535,7 @@ enum {
     homeRunClassification__3rdlongest=3
 };
 typedef unsigned char homeRunClassification;
-
-
+
 enum {
     deadBallReason_n_a=0,
     deadBallReason_homeRun=1,
@@ -7880,8 +6544,7 @@ enum {
     deadBallReason_ballDead=4
 };
 typedef unsigned char deadBallReason;
-
-
+
 enum {
     captainStarType__0Default=0,
     captainStarType_Mario=1,
@@ -7898,17 +6561,14 @@ enum {
     captainStarType_Daisy=12
 };
 typedef unsigned char captainStarType;
-
-
+
 typedef struct coordsAndDist coordsAndDist, *PcoordsAndDist;
-
-
+
 struct Vec2f {
     float X;
     float Z;
 } __attribute__((packed));
-
-
+
 struct matchShorts {
     short framesAfterReceivingThrow_;
     short ballAndFielderOnBaseFrames;
@@ -7924,16 +6584,14 @@ struct matchShorts {
     short garlicHitFramesSinceSplit;
     short framesInsidePlant;
 } __attribute__((packed));
-
-
+
 struct coordsAndDist {
     float x;
     float y;
     float z;
     float groundDist;
 } __attribute__((packed));
-
-
+
 struct pastAndFutureCoordsWallJumpRelated {
     struct Vec3f startOfWallJumpChecksMaybe[33];
     undefined field1_0x18c;
@@ -7959,8 +6617,7 @@ struct pastAndFutureCoordsWallJumpRelated {
     float hitLandingSpotDistFromHome;
     struct coordsAndDist futureCoordsAndDist[360];
 } __attribute__((packed));
-
-
+
 struct InMemBall {
     struct Vec3f AtBat_Contact_BallPos;
     struct Vec3f offSetWhilePickedUpHistory[4];
@@ -8102,11 +6759,9 @@ struct InMemBall {
     byte frameCountdownAfterLeavingPlant;
     short endOfStructPadding;
 } __attribute__((packed));
-
-
+
 typedef struct InMemBatter InMemBatter, *PInMemBatter;
-
-
+
 enum {
     enumCharIDShort_none=-1,
     enumCharIDShort_mario=0,
@@ -8165,16 +6820,14 @@ enum {
     enumCharIDShort_broB=53
 };
 typedef short enumCharIDShort;
-
-
+
 enum {
     enumNonCapStarSwing_popFly=1,
     enumNonCapStarSwing_grounder=2,
     enumNonCapStarSwing_lineDrive=3
 };
 typedef unsigned char enumNonCapStarSwing;
-
-
+
 enum {
     enumBuntStatus_notBunting=0,
     enumBuntStatus_startingABunt=1,
@@ -8186,8 +6839,7 @@ enum {
     enumBuntStatus_releasedBuntEarlyInPitch_=7
 };
 typedef unsigned char enumBuntStatus;
-
-
+
 enum {
     enumHitTrajectory_noHit=0,
     enumHitTrajectory_grounder_=2,
@@ -8197,8 +6849,7 @@ enum {
     enumHitTrajectory_fairBunt__bOD_bunt_bB_bunt=6
 };
 typedef unsigned char enumHitTrajectory;
-
-
+
 enum {
     enumChargeStatus_noCharge=0,
     enumChargeStatus_charging_charged=1,
@@ -8206,16 +6857,14 @@ enum {
     enumChargeStatus_noSwingReleaseCharge=3
 };
 typedef unsigned char enumChargeStatus;
-
-
+
 enum {
     enumHittable_ballHasntReachedHittableZone=0,
     enumHittable_hittable=1,
     enumHittable_pre_post_pitch=2
 };
 typedef unsigned char enumHittable;
-
-
+
 struct InMemBatter {
     struct Vec2f batterPos;
     struct Vec3f batPosition_wXOffset_;
@@ -8299,11 +6948,9 @@ struct InMemBatter {
     byte swingMissThatWasHittable;
     enumNonCapStarSwing nonCaptainStarSwingActivated;
 } __attribute__((packed));
-
-
+
 typedef struct InMemFielder InMemFielder, *PInMemFielder;
-
-
+
 enum {
     enumCharacterID_short_mario=0,
     enumCharacterID_short_luigi=1,
@@ -8361,8 +7008,7 @@ enum {
     enumCharacterID_short_broB=53
 };
 typedef unsigned short enumCharacterID_short;
-
-
+
 enum {
     fielderLocationEnum_home=0,
     fielderLocationEnum__1st=1,
@@ -8382,24 +7028,21 @@ enum {
     fielderLocationEnum_none=65535
 };
 typedef unsigned short fielderLocationEnum;
-
-
+
 enum {
     presetLocationCategory_RFFoulTerritory=1,
     presetLocationCategory_outfieldChillSpots=2,
     presetLocationCategory_LFFoulTerritory=3
 };
 typedef unsigned short presetLocationCategory;
-
-
+
 enum {
     enumSpecialJump_wallSplat=1,
     enumSpecialJump_wallJump=2,
     enumSpecialJump_clamber=3
 };
 typedef unsigned char enumSpecialJump;
-
-
+
 enum {
     autoMovementFunctionIndex_nothingSet_StayStill=0,
     autoMovementFunctionIndex_coveringBase=1,
@@ -8424,8 +7067,7 @@ enum {
     autoMovementFunctionIndex_readyToInterceptThrownBall=25
 };
 typedef unsigned char autoMovementFunctionIndex;
-
-
+
 enum {
     presetFielderLocations_byte___0_0_=0,
     presetFielderLocations_byte___0_0__v2=1,
@@ -8440,8 +7082,7 @@ enum {
     presetFielderLocations_byte___28_53_=10
 };
 typedef unsigned char presetFielderLocations_byte_;
-
-
+
 enum {
     fielderVeloAdjCode_noAdjustment=0,
     fielderVeloAdjCode_subtact0_0005=1,
@@ -8459,8 +7100,7 @@ enum {
     fielderVeloAdjCode_setTo0_25_runOffFieldAfterInning=13
 };
 typedef unsigned char fielderVeloAdjCode;
-
-
+
 enum {
     catchStrategy_catchFlyBall=1,
     catchStrategy_potentialCatchFlyBall=2,
@@ -8468,16 +7108,14 @@ enum {
     catchStrategy_ballOutOfRange_=4
 };
 typedef unsigned char catchStrategy;
-
-
+
 enum {
     fielder0x1ffState_hasntCheckedIfOutfielderIsInitialCharacterSelected=0,
     fielder0x1ffState_checkedIfOutfielderIsInitialCharacterSelected=1,
     fielder0x1ffState_fielderCatchingBall=2
 };
 typedef unsigned char fielder0x1ffState;
-
-
+
 enum {
     clamberStatus_n_a=0,
     clamberStatus_jumpingOntoWall=1,
@@ -8487,8 +7125,7 @@ enum {
     clamberStatus_unknown2=5
 };
 typedef unsigned char clamberStatus;
-
-
+
 enum {
     wallSplatStatus_n_a=0,
     wallSplatStatus_goingOntoWall=1,
@@ -8497,24 +7134,21 @@ enum {
     wallSplatStatus_onGroundGroggy=4
 };
 typedef unsigned char wallSplatStatus;
-
-
+
 enum {
     knockOutStatus_notKnockedOut=0,
     knockOutStatus_knockedOut=1,
     knockOutStatus_knockOutEnded=2
 };
 typedef unsigned char knockOutStatus;
-
-
+
 enum {
     bodyCheckResult_n_a=0,
     bodyCheckResult_fail=1,
     bodyCheckResult_success=2
 };
 typedef unsigned char bodyCheckResult;
-
-
+
 enum {
     bodyCheckStatusFielder_n_a=0,
     bodyCheckStatusFielder_started=1,
@@ -8522,8 +7156,7 @@ enum {
     bodyCheckStatusFielder_successfulOneEnding=3
 };
 typedef unsigned char bodyCheckStatusFielder;
-
-
+
 enum {
     wallJumpStatus_n_a=0,
     wallJumpStatus_jumpingOntoWall=1,
@@ -8532,8 +7165,7 @@ enum {
     wallJumpStatus_landed=4
 };
 typedef unsigned char wallJumpStatus;
-
-
+
 struct InMemFielder {  /* in ram view of a fielder */
     struct Vec3f pos;
     float actionYOffset;
@@ -8761,11 +7393,9 @@ struct InMemFielder {  /* in ram view of a fielder */
     byte field223_0x266;
     byte field224_0x267;
 } __attribute__((packed));
-
-
+
 typedef struct InMemPitcher InMemPitcher, *PInMemPitcher;
-
-
+
 enum {
     pitchStatus_prePitchTransition=0,
     pitchStatus_prePitch=1,
@@ -8777,8 +7407,7 @@ enum {
     pitchStatus_hitBatter=7
 };
 typedef unsigned char pitchStatus;
-
-
+
 enum {
     enumNonCapStarPitch__0defaut=0,
     enumNonCapStarPitch_star_curve=1,
@@ -8786,8 +7415,7 @@ enum {
     enumNonCapStarPitch_star_changeup=3
 };
 typedef unsigned char enumNonCapStarPitch;
-
-
+
 enum {
     kOrBB_nonKOrBB=0,
     kOrBB_strikeOut=1,
@@ -8795,16 +7423,14 @@ enum {
     kOrBB_hitBatter=3
 };
 typedef unsigned char kOrBB;
-
-
+
 enum {
     enum_strikeZoneProcess_beforeStrikeZone=0,
     enum_strikeZoneProcess_checkingForStrike=1,
     enum_strikeZoneProcess_afterStrikeZone=2
 };
 typedef unsigned char enum_strikeZoneProcess;
-
-
+
 enum {
     enum_pitchSpecialType_curve_charge=1,
     enum_pitchSpecialType_changeUp=3,
@@ -8825,8 +7451,7 @@ enum {
     enum_pitchSpecialType_star_changeUp=18
 };
 typedef unsigned char enum_pitchSpecialType;
-
-
+
 struct InMemPitcher {
     struct Vec3f ballCurrentPosition;
     struct Vec3f ballLastPosition;
@@ -8954,11 +7579,9 @@ struct InMemPitcher {
     byte unused_pitcherIsFielder_;
     byte fillSpace;
 } __attribute__((packed));
-
-
+
 typedef struct InMemRunner InMemRunner, *PInMemRunner;
-
-
+
 enum {
     forceOutEnum__1_unknown_notPossible__=-1,
     forceOutEnum_notForcedToAdvance=0,
@@ -8966,8 +7589,7 @@ enum {
     forceOutEnum_outOnForce=2
 };
 typedef short forceOutEnum;
-
-
+
 enum {
     preventPassing_prevent_forward=1,
     preventPassing_prevent_backward=2,
@@ -8975,8 +7597,7 @@ enum {
     preventPassing_tagUpRelated=8
 };
 typedef unsigned short preventPassing;
-
-
+
 enum {
     runnerStatus_didntExistAtStartOfPlay=0,
     runnerStatus_onField=1,
@@ -8986,16 +7607,14 @@ enum {
     runnerStatus_walkWhileStealOccuring=5
 };
 typedef unsigned char runnerStatus;
-
-
+
 enum {
     tagUpInd_noTagUpNeeded=0,
     tagUpInd_ballInAir=1,
     tagUpInd_taggingUp=2
 };
 typedef unsigned char tagUpInd;
-
-
+
 enum {
     runner_stayInBattersBoxReason_n_a=0,
     runner_stayInBattersBoxReason_pickoff_steal=1,
@@ -9003,8 +7622,7 @@ enum {
     runner_stayInBattersBoxReason_reallyFoul_=3
 };
 typedef unsigned char runner_stayInBattersBoxReason;
-
-
+
 enum {
     enumOutType_noOut=0,
     enumOutType_caught=1,
@@ -9014,8 +7632,7 @@ enum {
     enumOutType_strikeOut=16
 };
 typedef unsigned char enumOutType;
-
-
+
 enum {
     enumLeadoffCode_default_noLeadoff=0,
     enumLeadoffCode_startingLeadoff=1,
@@ -9023,8 +7640,7 @@ enum {
     enumLeadoffCode_returningToBaseOnPickoff_=3
 };
 typedef unsigned char enumLeadoffCode;
-
-
+
 enum {
     runnerMovementType_none_batting_scored_=0,
     runnerMovementType_forwards=1,
@@ -9034,8 +7650,7 @@ enum {
     runnerMovementType__5_unknown=5
 };
 typedef unsigned char runnerMovementType;
-
-
+
 enum {
     runnerActionEnum_noAction=0,
     runnerActionEnum_slide=1,
@@ -9043,8 +7658,7 @@ enum {
     runnerActionEnum_bodyCheckFailed=3
 };
 typedef unsigned char runnerActionEnum;
-
-
+
 enum {
     runnerActionStage_n_a=0,
     runnerActionStage_sliding_bodyCheck=1,
@@ -9052,16 +7666,14 @@ enum {
     runnerActionStage_outOnForce_=3
 };
 typedef unsigned char runnerActionStage;
-
-
+
 enum {
     baseRoundingState_n_a=0,
     baseRoundingState_batter_runner_=1,
     baseRoundingState_rounding=2
 };
 typedef unsigned char baseRoundingState;
-
-
+
 enum {
     overrunning1B_n_a=0,
     overrunning1B_passing1B=1,
@@ -9069,8 +7681,7 @@ enum {
     overrunning1B_WalkingBackTo1B=3
 };
 typedef unsigned char overrunning1B;
-
-
+
 enum {
     overrunBaseStage_n_a=0,
     overrunBaseStage_startOverrun=1,
@@ -9078,8 +7689,7 @@ enum {
     overrunBaseStage_returningToBase=3
 };
 typedef unsigned char overrunBaseStage;
-
-
+
 enum {
     runnerGoingToDugoutCode_n_a=0,
     runnerGoingToDugoutCode_afterOut_=1,
@@ -9087,24 +7697,21 @@ enum {
     runnerGoingToDugoutCode_afterScoring_=3
 };
 typedef unsigned char runnerGoingToDugoutCode;
-
-
+
 enum {
     runningToDugoutStage_n_a_or_Start=0,
     runningToDugoutStage_running=2,
     runningToDugoutStage_at_Dugout=3
 };
 typedef unsigned char runningToDugoutStage;
-
-
+
 enum {
     runnerTurnaroundCode_notTurning=0,
     runnerTurnaroundCode_startingFromStop=1,
     runnerTurnaroundCode_turningAround=2
 };
 typedef unsigned char runnerTurnaroundCode;
-
-
+
 enum {
     enumStealStage_n_a=0,
     enumStealStage_wantsToSteal=1,
@@ -9112,8 +7719,7 @@ enum {
     enumStealStage_perfectStealStarted=3
 };
 typedef unsigned char enumStealStage;
-
-
+
 struct InMemRunner {
     struct Vec3f position;
     struct Vec3f position_stored;
@@ -9244,11 +7850,9 @@ struct InMemRunner {
     byte miniGamePlayerNum;
     byte scoredOnGRD_;
 } __attribute__((packed));
-
-
+
 typedef struct InputStruct InputStruct, *PInputStruct;
-
-
+
 struct InputStruct {
     short ControlStickAngle;
     short ControlStickMagnitude;
@@ -9261,11 +7865,9 @@ struct InputStruct {
     byte LeftTriggerHowFarPressed;
     short field9_0xe;
 } __attribute__((packed));
-
-
+
 typedef struct KEYMAP KEYMAP, *PKEYMAP;
-
-
+
 struct KEYMAP {
     u16 id;
     s8 transpose;
@@ -9273,11 +7875,9 @@ struct KEYMAP {
     s16 prioOffset;
     u8 reserved[2];
 } __attribute__((packed));
-
-
+
 typedef struct LAYER LAYER, *PLAYER;
-
-
+
 struct LAYER {
     u16 id;
     u8 keyLow;
@@ -9288,11 +7888,9 @@ struct LAYER {
     u8 panning;
     u8 reserved[3];
 } __attribute__((packed));
-
-
+
 typedef struct LAYER_TAB LAYER_TAB, *PLAYER_TAB;
-
-
+
 struct LAYER_TAB {
     void *data;
     u16 id;
@@ -9300,17 +7898,13 @@ struct LAYER_TAB {
     u16 refCount;
     u16 reserved;
 } __attribute__((packed));
-
-
+
 typedef struct LITLightList LITLightList, *PLITLightList;
-
-
+
 typedef struct LITLightPtr LITLightPtr, *PLITLightPtr;
-
-
+
 typedef float Mtx44Ptr[4];
-
-
+
 struct LITLightList {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -9346,8 +7940,7 @@ struct LITLightList {
     undefined field31_0x1f;
     struct LITLightPtr *LITLightPtr;
 } __attribute__((packed));
-
-
+
 struct LITLightPtr {
     GXLightObj lt_obj;
     struct Vec position;
@@ -9359,75 +7952,60 @@ struct LITLightPtr {
     Mtx44Ptr parent;
     struct ANIMPipe *animPipe;
 } __attribute__((packed));
-
-
+
 typedef struct MAC_MAINTAB MAC_MAINTAB, *PMAC_MAINTAB;
-
-
+
 struct MAC_MAINTAB {
     u16 num;
     u16 subTabIndex;
 } __attribute__((packed));
-
-
+
 enum {
     enum_88_MAC_STATE_RUNNABLE=0,
     enum_88_MAC_STATE_YIELDED=1,
     enum_88_MAC_STATE_STOPPED=2
 };
 typedef unsigned int enum_88;
-
-
+
 typedef enum_88 MAC_STATE;
-
-
+
 typedef struct MAC_SUBTAB MAC_SUBTAB, *PMAC_SUBTAB;
-
-
+
 struct MAC_SUBTAB {
     void *data;
     u16 id;
     u16 refCount;
 } __attribute__((packed));
-
-
+
 typedef struct MEM_DATA MEM_DATA, *PMEM_DATA;
-
-
+
 typedef union _union_115 _union_115, *P_union_115;
-
-
+
 typedef struct _struct_116 _struct_116, *P_struct_116;
-
-
+
 struct _struct_116 {
     u32 num;
     struct LAYER entry[1];
 } __attribute__((packed));
-
-
+
 union _union_115 {
     struct _struct_116 layer;
     struct KEYMAP map[128];
     u8 tab[1];
     struct MSTEP cmd[1][2];
 } __attribute__((packed));
-
-
+
 struct MEM_DATA {
     u32 nextOff;
     u16 id;
     u16 reserved;
     union _union_115 data;
 } __attribute__((packed));
-
-
+
 typedef struct MIDISETUP MIDISETUP, *PMIDISETUP;
-
-
+
 typedef struct MIDI_CHANNEL_SETUP MIDI_CHANNEL_SETUP, *PMIDI_CHANNEL_SETUP;
-
-
+
 struct MIDI_CHANNEL_SETUP {
     u8 program;
     u8 volume;
@@ -9435,93 +8013,68 @@ struct MIDI_CHANNEL_SETUP {
     u8 reverb;
     u8 chorus;
 } __attribute__((packed));
-
-
+
 struct MIDISETUP {
     u16 songId;
     u16 reserved;
     struct MIDI_CHANNEL_SETUP channel[16];
 } __attribute__((packed));
-
-
+
 typedef struct MTRACK MTRACK, *PMTRACK;
-
-
+
 typedef struct MTRACK_DATA MTRACK_DATA, *PMTRACK_DATA;
-
-
+
 struct MTRACK {
     struct MTRACK_DATA *base;
     struct MTRACK_DATA *addr;
 } __attribute__((packed));
-
-
+
 struct MTRACK_DATA {
     u32 time;
     u32 bpm;
 } __attribute__((packed));
-
-
+
 typedef struct MTXStack MTXStack, *PMTXStack;
-
-
+
 struct MTXStack {
     int numMtx;
     struct Mtx *stackBase;
     struct Mtx *stackPtr;
 } __attribute__((packed));
-
-
+
 typedef struct MemoryBlockHeader MemoryBlockHeader, *PMemoryBlockHeader;
-
-
+
 struct MemoryBlockHeader {
     int *previousBlock;
     int blockSize;
 } __attribute__((packed));
-
-
+
 typedef float f32;
-
-
+
 typedef f32 Mtx23[2][3];
-
-
+
 typedef f32 Mtx33[3][3];
-
-
+
 typedef f32 Mtx34[3][4];
-
-
+
 typedef f32 Mtx43[4][3];
-
-
+
 typedef struct Mtx44 Mtx44, *PMtx44;
-
-
+
 struct Mtx44 {
     float data[4][4];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Mtx44 - /Mtx44 */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/mtx.h/Mtx44 - /Mtx44 */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Mtx44 - /Mtx44 */
+
+
+/* WARNING! conflicting data type names: /sdk/mtx.h/Mtx44 - /Mtx44 */
+
 typedef f32 MtxP[4];
-
-
+
 typedef struct NOTE NOTE, *PNOTE;
-
-
+
 struct NOTE {
     struct NOTE *next;
     struct NOTE *prev;
@@ -9531,54 +8084,38 @@ struct NOTE {
     u8 timeIndex;
     u8 reserved[2];
 } __attribute__((packed));
-
-
+
 typedef struct NonCaptainStarVertRanges NonCaptainStarVertRanges, *PNonCaptainStarVertRanges;
-
-
+
 typedef struct vertRangeSwingTypes vertRangeSwingTypes, *PvertRangeSwingTypes;
-
-
+
 struct vertRangeSwingTypes {
     byte field0_0x0[2][5][2];
 } __attribute__((packed));
-
-
+
 struct NonCaptainStarVertRanges {
     struct vertRangeSwingTypes field0_0x0;
     struct vertRangeSwingTypes field1_0x14;
     struct vertRangeSwingTypes field2_0x28;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarm - /sdk/OSAlarm.h/OSAlarm */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarmHandler - /sdk/OSAlarm.h/OSAlarmHandler */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarm - /sdk/OSAlarm.h/OSAlarm */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSAlarm.h/OSAlarmHandler - /sdk/OSAlarm.h/OSAlarmHandler */
+
 typedef struct OSAlarmQueue OSAlarmQueue, *POSAlarmQueue;
-
-
+
 struct OSAlarmQueue {
     struct OSAlarm *head;
     struct OSAlarm *tail;
 } __attribute__((packed));
-
-
-typedef void (*OSAllocVisitor)(void *, u32);
-
-
-
+
+typedef void (*OSAllocVisitor)(void *, u32);
+
 typedef struct OSBootInfo OSBootInfo, *POSBootInfo;
-
-
+
 struct OSBootInfo {
     struct DVDDiskID DVDDiskID;
     u32 magic;
@@ -9590,23 +8127,15 @@ struct OSBootInfo {
     void *FSTLocation;
     u32 FSTMaxLength;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/os.h/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
+
+
+/* WARNING! conflicting data type names: /sdk/os.h/OSBootInfo - /decompHeaders/OSBootInfo.h/OSBootInfo */
+
 typedef struct OSBootInfo_s OSBootInfo_s, *POSBootInfo_s;
-
-
+
 struct OSBootInfo_s {
     struct DVDDiskID DVDDiskID;
     ulong magic;
@@ -9618,11 +8147,9 @@ struct OSBootInfo_s {
     void *FSTLocation;
     ulong FSTMaxLength;
 } __attribute__((packed));
-
-
+
 typedef struct OSCalendarTime OSCalendarTime, *POSCalendarTime;
-
-
+
 struct OSCalendarTime {
     int sec;
     int min;
@@ -9635,63 +8162,37 @@ struct OSCalendarTime {
     int msec;
     int usec;
 } __attribute__((packed));
-
-
+
 typedef struct OSCond OSCond, *POSCond;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
+
 struct OSCond {
     struct OSThreadQueue queue;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSCond - /decompHeaders/OSMutex.h/OSCond */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSMutex.h/OSCond - /decompHeaders/OSMutex.h/OSCond */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSContext - /decompHeaders/OSContext.h/OSContext */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSCond - /decompHeaders/OSMutex.h/OSCond */
+
+
+/* WARNING! conflicting data type names: /sdk/OSMutex.h/OSCond - /decompHeaders/OSMutex.h/OSCond */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSContext - /decompHeaders/OSContext.h/OSContext */
+
 typedef u16 OSError;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSError.h/OSError - /decompHeaders/OSError.h/OSError */
-
-
-
-typedef void (*OSErrorHandler)(OSError, struct OSContext *, ...);
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSError.h/OSErrorHandler - /decompHeaders/OSError.h/OSErrorHandler */
-
-
-
-typedef void (*OSErrorHandlerNoVARG)(OSError, struct OSContext *, u32, u32);
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSError.h/OSError - /decompHeaders/OSError.h/OSError */
+
+typedef void (*OSErrorHandler)(OSError, struct OSContext *, ...);
+
+
+/* WARNING! conflicting data type names: /sdk/OSError.h/OSErrorHandler - /decompHeaders/OSError.h/OSErrorHandler */
+
+typedef void (*OSErrorHandlerNoVARG)(OSError, struct OSContext *, u32, u32);
+
 enum {
     enum_57_OS_FONT_ENCODE_ANSI=0,
     enum_57_OS_FONT_ENCODE_SJIS=1,
@@ -9702,14 +8203,11 @@ enum {
     enum_57_OS_FONT_ENCODE_MAX=6
 };
 typedef unsigned int enum_57;
-
-
+
 typedef enum_57 OSFontEncode;
-
-
+
 typedef struct OSFontHeader OSFontHeader, *POSFontHeader;
-
-
+
 struct OSFontHeader {
     u16 fontType;
     u16 firstChar;
@@ -9735,63 +8233,42 @@ struct OSFontHeader {
     u8 c2;
     u8 c3;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSFont.h/OSFontHeader - /decompHeaders/OSFont.h/OSFontHeader */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSFont.h/OSFontHeader - /decompHeaders/OSFont.h/OSFontHeader */
+
 typedef int OSHeapHandle;
-
-
-typedef void (*OSIdleFunction)(void *);
-
-
-
+
+typedef void (*OSIdleFunction)(void *);
+
 typedef struct OSImportInfo OSImportInfo, *POSImportInfo;
-
-
+
 typedef u32 OSModuleID;
-
-
+
 struct OSImportInfo {
     OSModuleID id;
     u32 offset;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSImportInfo - /decompHeaders/OSModule.h/OSImportInfo */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSImportInfo - /decompHeaders/OSModule.h/OSImportInfo */
+
 typedef u32 OSInterruptMask;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/OSInterruptMask - /decompHeaders/OSInterrupt.h/OSInterruptMask */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/OSInterruptMask - /decompHeaders/OSInterrupt.h/OSInterruptMask */
+
 typedef void *OSMessage;
-
-
+
 enum {
     enum_60_OS_MSG_PERSISTENT=1
 };
 typedef unsigned int enum_60;
-
-
+
 typedef enum_60 OSMessageFlags;
-
-
+
 typedef struct OSMessageQueue OSMessageQueue, *POSMessageQueue;
-
-
+
 struct OSMessageQueue {
     struct OSThreadQueue queueSend;
     struct OSThreadQueue queueReceive;
@@ -9800,29 +8277,21 @@ struct OSMessageQueue {
     s32 firstIndex;
     s32 usedCount;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSMessage.h/OSMessageQueue - /decompHeaders/OSMessage.h/OSMessageQueue */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSMessage.h/OSMessageQueue - /decompHeaders/OSMessage.h/OSMessageQueue */
+
 typedef struct OSModuleHeader OSModuleHeader, *POSModuleHeader;
-
-
+
 typedef struct OSModuleInfo OSModuleInfo, *POSModuleInfo;
-
-
+
 typedef struct OSModuleLink OSModuleLink, *POSModuleLink;
-
-
+
 struct OSModuleLink {
     struct OSModuleInfo *next;
     struct OSModuleInfo *prev;
 } __attribute__((packed));
-
-
+
 struct OSModuleInfo {
     OSModuleID id;
     struct OSModuleLink link;
@@ -9832,8 +8301,7 @@ struct OSModuleInfo {
     u32 nameSize;
     u32 version;
 } __attribute__((packed));
-
-
+
 struct OSModuleHeader {
     struct OSModuleInfo info;
     u32 bssSize;
@@ -9851,212 +8319,129 @@ struct OSModuleHeader {
     u32 bssAlign;
     u32 fixSize;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleHeader - /decompHeaders/OSModule.h/OSModuleHeader */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleID - /decompHeaders/OSModule.h/OSModuleID */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleHeader - /decompHeaders/OSModule.h/OSModuleHeader */
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleID - /decompHeaders/OSModule.h/OSModuleID */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleInfo - /decompHeaders/OSModule.h/OSModuleInfo */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleLink - /decompHeaders/OSModule.h/OSModuleLink */
+
 typedef struct OSModuleQueue OSModuleQueue, *POSModuleQueue;
-
-
+
 struct OSModuleQueue {
     struct OSModuleInfo *head;
     struct OSModuleInfo *tail;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleQueue - /decompHeaders/OSModule.h/OSModuleQueue */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutex - /sdk/OSThread.h/OSMutex */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSMutex - /sdk/OSThread.h/OSMutex */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSPriority - /sdk/OSThread.h/OSPriority */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSModuleQueue - /decompHeaders/OSModule.h/OSModuleQueue */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutex - /sdk/OSThread.h/OSMutex */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSMutex - /sdk/OSThread.h/OSMutex */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSMutexLink - /sdk/OSThread.h/OSMutexLink */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSMutexQueue - /sdk/OSThread.h/OSMutexQueue */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSPriority - /sdk/OSThread.h/OSPriority */
+
 typedef struct OSRel OSRel, *POSRel;
-
-
+
 struct OSRel {
     u16 offset;
     u8 type;
     u8 section;
     u32 addend;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSRel - /decompHeaders/OSModule.h/OSRel */
-
-
-
-typedef void (*OSResetCallback)(void);
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSResetSW.h/OSResetCallback - /decompHeaders/OSReset.h/OSResetCallback */
-
-
-
-typedef BOOL (*OSResetFunction)(BOOL);
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunction - /decompHeaders/OSReset.h/OSResetFunction */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSRel - /decompHeaders/OSModule.h/OSRel */
+
+typedef void (*OSResetCallback)(void);
+
+
+/* WARNING! conflicting data type names: /sdk/OSResetSW.h/OSResetCallback - /decompHeaders/OSReset.h/OSResetCallback */
+
+typedef BOOL (*OSResetFunction)(BOOL);
+
+
+/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunction - /decompHeaders/OSReset.h/OSResetFunction */
+
 typedef struct OSResetFunctionInfo OSResetFunctionInfo, *POSResetFunctionInfo;
-
-
+
 struct OSResetFunctionInfo {
     OSResetFunction func;
     u32 priority;
     struct OSResetFunctionInfo *next;
     struct OSResetFunctionInfo *prev;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunctionInfo - /decompHeaders/OSReset.h/OSResetFunctionInfo */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSReset.h/OSResetFunctionInfo - /decompHeaders/OSReset.h/OSResetFunctionInfo */
+
 typedef struct OSResetFunctionQueue OSResetFunctionQueue, *POSResetFunctionQueue;
-
-
+
 struct OSResetFunctionQueue {
     struct OSResetFunctionInfo *head;
     struct OSResetFunctionInfo *tail;
 } __attribute__((packed));
-
-
+
 typedef struct OSResetQueue OSResetQueue, *POSResetQueue;
-
-
+
 struct OSResetQueue {
     struct OSResetFunctionInfo *head;
     struct OSResetFunctionInfo *tail;
 } __attribute__((packed));
-
-
+
 typedef struct OSSectionInfo OSSectionInfo, *POSSectionInfo;
-
-
+
 struct OSSectionInfo {
     u32 offset;
     u32 size;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/OSSectionInfo - /decompHeaders/OSModule.h/OSSectionInfo */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/OSSectionInfo - /decompHeaders/OSModule.h/OSSectionInfo */
+
 typedef struct OSSemaphore OSSemaphore, *POSSemaphore;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSThreadQueue - /sdk/OSThread.h/OSThreadQueue */
+
 struct OSSemaphore {
     int count;
     struct OSThreadQueue queue;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/os.h/OSSemaphore - /OSSemaphore */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/os.h/OSSemaphore - /OSSemaphore */
+
 typedef struct OSSram OSSram, *POSSram;
-
-
+
 struct OSSram {
     u16 checkSum;
     u16 checkSumInv;
@@ -10068,17 +8453,12 @@ struct OSSram {
     u8 language;
     u8 flags;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSram - /decompHeaders/os.h/OSSram */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSram - /decompHeaders/os.h/OSSram */
+
 typedef struct OSSramEx OSSramEx, *POSSramEx;
-
-
+
 struct OSSramEx {
     u8 flashID[2][12];
     u32 wirelessKeyboardID;
@@ -10089,17 +8469,12 @@ struct OSSramEx {
     u16 gbs;
     u8 reserved_2A[2];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSramEx - /decompHeaders/os.h/OSSramEx */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSRtc.h/OSSramEx - /decompHeaders/os.h/OSSramEx */
+
 typedef struct OSStopwatch OSStopwatch, *POSStopwatch;
-
-
+
 struct OSStopwatch {
     char *name;
     longlong total;
@@ -10109,49 +8484,28 @@ struct OSStopwatch {
     longlong last;
     int running;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThread - /sdk/OSThread.h/OSThread */
-
-
-
-typedef void (*OSSwitchThreadCallback)(struct OSThread *, struct OSThread *);
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSThread - /sdk/OSThread.h/OSThread */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OS/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
-
-
-
-typedef void * (*OSThreadStartFunction)(void *);
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThread - /sdk/OSThread.h/OSThread */
+
+typedef void (*OSSwitchThreadCallback)(struct OSThread *, struct OSThread *);
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSThread - /sdk/OSThread.h/OSThread */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/OSThread.h/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
+
+
+/* WARNING! conflicting data type names: /sdk/OS/OSThreadLink - /sdk/OSThread.h/OSThreadLink */
+
+typedef void * (*OSThreadStartFunction)(void *);
+
 typedef u32 OSTick;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/os.h/OSTick - /decompHeaders/OSUtil.h/OSTick */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/os.h/OSTick - /decompHeaders/OSUtil.h/OSTick */
+
 enum {
     OS_THREAD_STATE_OS_THREAD_STATE_NULL=0,
     OS_THREAD_STATE_OS_THREAD_STATE_READY=1,
@@ -10160,32 +8514,22 @@ enum {
     OS_THREAD_STATE_OS_THREAD_STATE_MORIBUND=8
 };
 typedef unsigned int OS_THREAD_STATE;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSThread.h/OS_THREAD_STATE - /decompHeaders/OSThread.h/OS_THREAD_STATE */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSThread.h/OS_THREAD_STATE - /decompHeaders/OSThread.h/OS_THREAD_STATE */
+
 typedef struct OutCollisionStruct OutCollisionStruct, *POutCollisionStruct;
-
-
+
 struct OutCollisionStruct {
     struct Vec3f Position;
     struct Vec3f Normal;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /PADStatus - /sdk/pad.h/PADStatus */
-
-
-
+
+
+/* WARNING! conflicting data type names: /PADStatus - /sdk/pad.h/PADStatus */
+
 typedef struct PAGE PAGE, *PPAGE;
-
-
+
 struct PAGE {
     u16 macro;
     u8 prio;
@@ -10193,48 +8537,35 @@ struct PAGE {
     u8 index;
     u8 reserved;
 } __attribute__((packed));
-
-
+
 enum {
     PARENT_TYPE_PARENT_BONE=0,
     PARENT_TYPE_PARENT_DISP_OBJ=1,
     PARENT_TYPE_PARENT_MTX=2
 };
 typedef unsigned int PARENT_TYPE;
-
-
-typedef void * (*PERFAllocator)(int);
-
-
-
-typedef void (*PERFDeallocator)(void *);
-
-
-
-typedef void (*PERFDrawCallback)(void);
-
-
-
+
+typedef void * (*PERFAllocator)(int);
+
+typedef void (*PERFDeallocator)(void *);
+
+typedef void (*PERFDrawCallback)(void);
+
 typedef byte PERFId;
-
-
+
 typedef struct POOL_DATA POOL_DATA, *PPOOL_DATA;
-
-
+
 struct POOL_DATA {
     u32 macroOff;
     u32 curveOff;
     u32 keymapOff;
     u32 layerOff;
 } __attribute__((packed));
-
-
+
 typedef union PPCWGPipe PPCWGPipe, *PPPCWGPipe;
-
-
+
 typedef ulonglong u64;
-
-
+
 union PPCWGPipe {
     byte u8;
     short u16;
@@ -10247,11 +8578,9 @@ union PPCWGPipe {
     float f32;
     f64 f64;
 } __attribute__((packed));
-
-
+
 typedef struct PPC_DMA_L_t PPC_DMA_L_t, *PPPC_DMA_L_t;
-
-
+
 struct PPC_DMA_L_t {
     int lcAddr :27;
     int dmaLd :1;
@@ -10259,38 +8588,30 @@ struct PPC_DMA_L_t {
     int dmaTrigger :1;
     int dmaFlush :1;
 } __attribute__((packed));
-
-
+
 typedef union PPC_DMA_L_u PPC_DMA_L_u, *PPPC_DMA_L_u;
-
-
+
 union PPC_DMA_L_u {
     int val;
     struct PPC_DMA_L_t f;
 } __attribute__((packed));
-
-
+
 typedef struct PPC_DMA_U_t PPC_DMA_U_t, *PPPC_DMA_U_t;
-
-
+
 struct PPC_DMA_U_t {
     int memAddr :27;
     int dmaLenU :5;
 } __attribute__((packed));
-
-
+
 typedef union PPC_DMA_U_u PPC_DMA_U_u, *PPPC_DMA_U_u;
-
-
+
 union PPC_DMA_U_u {
     int val;
     struct PPC_DMA_U_t f;
 } __attribute__((packed));
-
-
+
 typedef struct PPC_GQR_t PPC_GQR_t, *PPPC_GQR_t;
-
-
+
 struct PPC_GQR_t {
     int _pad0 :2;
     int loadScale :6;
@@ -10301,124 +8622,93 @@ struct PPC_GQR_t {
     int _pad3 :5;
     int storeType :3;
 } __attribute__((packed));
-
-
+
 typedef union PPC_GQR_u PPC_GQR_u, *PPPC_GQR_u;
-
-
+
 union PPC_GQR_u {
     int val;
     struct PPC_GQR_t f;
 } __attribute__((packed));
-
-
+
 typedef struct PRG_STATE PRG_STATE, *PPRG_STATE;
-
-
+
 struct PRG_STATE {
     u16 macId;
     u8 priority;
     u8 maxVoices;
     u8 program;
 } __attribute__((packed));
-
-
+
 typedef f32 PSQuaternion[4];
-
-
+
 typedef struct PerfEvent PerfEvent, *PPerfEvent;
-
-
+
 enum {
     enum_229_PERF_CPU_EVENT=0,
     enum_229_PERF_CPU_GP_EVENT=1,
     enum_229_PERF_GP_EVENT=2
 };
 typedef unsigned int enum_229;
-
-
+
 typedef enum_229 PerfType;
-
-
+
 typedef struct _GXColor _GXColor, *P_GXColor;
-
-
+
 struct _GXColor {
     byte r;
     byte g;
     byte b;
     byte a;
 } __attribute__((packed));
-
-
+
 struct PerfEvent {
     char *name;
     PerfType type;
     long currSample;
     struct _GXColor color;
 } __attribute__((packed));
-
-
+
 typedef struct Vec Point3d;
-
-
+
 typedef struct Vec *Point3dPtr;
-
-
+
 typedef struct Quaternion Qtrn;
-
-
+
 typedef struct Quaternion *QtrnPtr;
-
-
+
 typedef struct Quad Quad, *PQuad;
-
-
+
 typedef struct Vec4f Vec4f, *PVec4f;
-
-
+
 struct Vec4f {
     float X;
     float Y;
     float Z;
     float W;
 } __attribute__((packed));
-
-
+
 struct Quad {
     struct Vec4f br;
     struct Vec4f tr;
     struct Vec4f tl;
     struct Vec4f bl;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Quaternion - /Quaternion */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/mtx.h/Quaternion - /Quaternion */
+
 typedef struct Quaternion *QuaternionPtr;
-
-
-
-
-/* WARNING! conflicting data type names: /ROMtx - /sdk/mtx.h/ROMtx */
-
-
-
+
+
+/* WARNING! conflicting data type names: /ROMtx - /sdk/mtx.h/ROMtx */
+
 typedef float ROMtxPtr[3];
-
-
+
 typedef struct RawInputStruct RawInputStruct, *PRawInputStruct;
-
-
-
-
+
+
 typedef struct RebootParams RebootParams, *PRebootParams;
-
-
+
 struct RebootParams {
     s32 _00;
     u32 _04;
@@ -10429,24 +8719,19 @@ struct RebootParams {
     u32 _18;
     u32 _1C;
 } __attribute__((packed));
-
-
+
 typedef struct S16Vec S16Vec, *PS16Vec;
-
-
+
 struct S16Vec {
     s16 x;
     s16 y;
     s16 z;
 } __attribute__((packed));
-
-
+
 typedef struct S16Vec *S16VecPtr;
-
-
+
 typedef struct SAL_PANINFO SAL_PANINFO, *PSAL_PANINFO;
-
-
+
 struct SAL_PANINFO {
     u32 pan_i;
     u32 pan_im;
@@ -10461,11 +8746,9 @@ struct SAL_PANINFO {
     f32 rpan_f;
     f32 rpan_fm;
 } __attribute__((packed));
-
-
+
 typedef struct SAL_VOLINFO SAL_VOLINFO, *PSAL_VOLINFO;
-
-
+
 struct SAL_VOLINFO {
     f32 volL;
     f32 volR;
@@ -10477,40 +8760,32 @@ struct SAL_VOLINFO {
     f32 volAuxBR;
     f32 volAuxBS;
 } __attribute__((packed));
-
-
+
 typedef struct SDIR_TAB SDIR_TAB, *PSDIR_TAB;
-
-
+
 struct SDIR_TAB {
     struct SDIR_DATA *data;
     void *base;
     u16 numSmp;
     u16 res;
 } __attribute__((packed));
-
-
+
 typedef struct SEQ_EVENT SEQ_EVENT, *PSEQ_EVENT;
-
-
+
 typedef union evInfo evInfo, *PevInfo;
-
-
+
 typedef struct _struct_155 _struct_155, *P_struct_155;
-
-
+
 struct _struct_155 {
     struct NOTE_DATA *addr;
     struct CPAT *base;
 } __attribute__((packed));
-
-
+
 union evInfo {
     struct TENTRY *trackAddr;
     struct _struct_155 pattern;
 } __attribute__((packed));
-
-
+
 struct SEQ_EVENT {
     struct SEQ_EVENT *next;
     struct SEQ_EVENT *prev;
@@ -10519,38 +8794,28 @@ struct SEQ_EVENT {
     u8 type;
     u8 trackId;
 } __attribute__((packed));
-
-
+
 typedef struct SEQ_INSTANCE SEQ_INSTANCE, *PSEQ_INSTANCE;
-
-
+
 typedef struct TRACK TRACK, *PTRACK;
-
-
+
 typedef struct SND_CROSSFADE SND_CROSSFADE, *PSND_CROSSFADE;
-
-
+
 typedef struct SEQ_SECTION SEQ_SECTION, *PSEQ_SECTION;
-
-
+
 typedef u32 SND_SEQID;
-
-
+
 typedef u16 SND_GROUPID;
-
-
+
 typedef u16 SND_SONGID;
-
-
+
 typedef struct TICKS TICKS, *PTICKS;
-
-
+
 struct TRACK {
     struct TENTRY *base;
     struct TENTRY *addr;
 } __attribute__((packed));
-
-
+
 struct SND_CROSSFADE {
     SND_SEQID seqId1;
     u16 time1;
@@ -10565,14 +8830,12 @@ struct SND_CROSSFADE {
     u16 speed2;
     u8 flags;
 } __attribute__((packed));
-
-
+
 struct TICKS {
     u32 low;
     s32 high;
 } __attribute__((packed));
-
-
+
 struct SEQ_SECTION {
     struct MTRACK mTrack;
     u32 bpm;
@@ -10584,8 +8847,7 @@ struct SEQ_SECTION {
     u16 loopCnt;
     u8 loopDisable;
 } __attribute__((packed));
-
-
+
 struct SEQ_INSTANCE {
     struct SEQ_INSTANCE *next;
     struct SEQ_INSTANCE *prev;
@@ -10615,27 +8877,23 @@ struct SEQ_INSTANCE {
     u8 *trackSectionTab;
     struct SEQ_SECTION section[16];
 } __attribute__((packed));
-
-
+
 typedef struct SEQ_PATTERN SEQ_PATTERN, *PSEQ_PATTERN;
-
-
+
 struct SEQ_PATTERN {
     u32 headerLen;
     u32 pitchBend;
     u32 modulation;
     u32 noteData;
 } __attribute__((packed));
-
-
+
 enum {
     SHADER_BIAS_SHADER_BIAS_ZERO=0,
     SHADER_BIAS_SHADER_BIAS_ADDHALF=1,
     SHADER_BIAS_SHADER_BIAS_SUBHALF=2
 };
 typedef unsigned int SHADER_BIAS;
-
-
+
 enum {
     SHADER_CHANNEL_SHADER_CHANNEL_RGB=0,
     SHADER_CHANNEL_SHADER_CHANNEL_RRR=1,
@@ -10645,8 +8903,7 @@ enum {
     SHADER_CHANNEL_SHADER_CHANNEL_TRIVIAL=5
 };
 typedef unsigned int SHADER_CHANNEL;
-
-
+
 enum {
     SHADER_CLAMP_SHADER_CLAMP_LINEAR_1023=0,
     SHADER_CLAMP_SHADER_CLAMP_LINEAR_255=1,
@@ -10658,8 +8915,7 @@ enum {
     SHADER_CLAMP_SHADER_CLAMP_LE_0=7
 };
 typedef unsigned int SHADER_CLAMP;
-
-
+
 enum {
     SHADER_COLOR_SHADER_COLOR0=0,
     SHADER_COLOR_SHADER_COLOR1=1,
@@ -10668,8 +8924,7 @@ enum {
     SHADER_COLOR_SHADER_COLOR_NONE=4
 };
 typedef unsigned int SHADER_COLOR;
-
-
+
 enum {
     SHADER_COLOR_TYPE_SHADER_CPREV=0,
     SHADER_COLOR_TYPE_SHADER_C0=1,
@@ -10717,8 +8972,7 @@ enum {
     SHADER_COLOR_TYPE_SHADER_ZERO=201
 };
 typedef unsigned int SHADER_COLOR_TYPE;
-
-
+
 enum {
     SHADER_COMPLEX_SHADER_COMPLEX0=0,
     SHADER_COMPLEX_SHADER_COMPLEX1=1,
@@ -10730,16 +8984,14 @@ enum {
     SHADER_COMPLEX_SHADER_COMPLEX7=7
 };
 typedef unsigned int SHADER_COMPLEX;
-
-
+
 enum {
     SHADER_LERP_TYPE_SHADER_TRIVIAL=0,
     SHADER_LERP_TYPE_SHADER_SIMPLE=1,
     SHADER_LERP_TYPE_SHADER_LERP=2
 };
 typedef unsigned int SHADER_LERP_TYPE;
-
-
+
 enum {
     SHADER_MTX_SHADER_MTX0=0,
     SHADER_MTX_SHADER_MTX1=1,
@@ -10752,31 +9004,27 @@ enum {
     SHADER_MTX_SHADER_IDENTITY=8
 };
 typedef unsigned int SHADER_MTX;
-
-
+
 enum {
     SHADER_OP_SHADER_OP_ADD=0,
     SHADER_OP_SHADER_OP_SUB=1
 };
 typedef unsigned int SHADER_OP;
-
-
+
 enum {
     SHADER_RAS_SHADER_RAS0=0,
     SHADER_RAS_SHADER_RAS1=1,
     SHADER_RAS_SHADER_RASNONE=2
 };
 typedef unsigned int SHADER_RAS;
-
-
+
 enum {
     SHADER_REG_SHADER_REG_EMPTY=0,
     SHADER_REG_SHADER_REG_CONSTANTCOLOR=1,
     SHADER_REG_SHADER_REG_INUSE=2
 };
 typedef unsigned int SHADER_REG;
-
-
+
 enum {
     SHADER_SCALE_SHADER_SCALE_1=0,
     SHADER_SCALE_SHADER_SCALE_2=1,
@@ -10784,15 +9032,13 @@ enum {
     SHADER_SCALE_SHADER_SCALE_DIVIDE_2=3
 };
 typedef unsigned int SHADER_SCALE;
-
-
+
 enum {
     SHADER_TEV_SHADER_TEV_COLOR=0,
     SHADER_TEV_SHADER_TEV_ALPHA=1
 };
 typedef unsigned int SHADER_TEV;
-
-
+
 enum {
     SHADER_TEX_SHADER_TEX0=0,
     SHADER_TEX_SHADER_TEX1=1,
@@ -10805,8 +9051,7 @@ enum {
     SHADER_TEX_SHADER_TEXNONE=8
 };
 typedef unsigned int SHADER_TEX;
-
-
+
 enum {
     SHADER_TG_SRC_SHADER_TG_POS=0,
     SHADER_TG_SRC_SHADER_TG_NRM=1,
@@ -10824,8 +9069,7 @@ enum {
     SHADER_TG_SRC_SHADER_TG_COLOR1=20
 };
 typedef unsigned int SHADER_TG_SRC;
-
-
+
 enum {
     SHADER_TG_TYPE_SHADER_TG_MTX3x4=0,
     SHADER_TG_TYPE_SHADER_TG_MTX2x4=1,
@@ -10840,8 +9084,7 @@ enum {
     SHADER_TG_TYPE_SHADER_TG_SRTG=10
 };
 typedef unsigned int SHADER_TG_TYPE;
-
-
+
 enum {
     SHADER_TYPE_SHADER_TYPE_TEXTURE=0,
     SHADER_TYPE_SHADER_TYPE_COLOR=1,
@@ -10852,33 +9095,27 @@ enum {
     SHADER_TYPE_SHADER_TYPE_EMPTY=6
 };
 typedef unsigned int SHADER_TYPE;
-
-
+
 typedef struct SHDRExp SHDRExp, *PSHDRExp;
-
-
+
 typedef struct TexCoordExp TexCoordExp, *PTexCoordExp;
-
-
+
 struct SHDRExp {
     struct TexCoordExp *expressionArray;
     byte numExpressions;
     void *mtxArray[8];
     byte mtxUsed[8];
 } __attribute__((packed));
-
-
+
 struct TexCoordExp {
     SHADER_TG_SRC genSrc;
     byte srcShaderIdx;
     SHADER_TG_TYPE type;
     SHADER_MTX mtxInput;
 } __attribute__((packed));
-
-
+
 typedef struct SHDRInfo SHDRInfo, *PSHDRInfo;
-
-
+
 struct SHDRInfo {
     void *colorStages;
     void *alphaStages;
@@ -10886,11 +9123,9 @@ struct SHDRInfo {
     void *shaderResources;
     void *texGen;
 } __attribute__((packed));
-
-
+
 typedef struct SHDRRas SHDRRas, *PSHDRRas;
-
-
+
 struct SHDRRas {
     SHADER_COLOR regColor[4];
     SHADER_COLOR regAlpha[4];
@@ -10903,49 +9138,36 @@ struct SHDRRas {
     byte complexUsed[8];
     struct SHDRInfo *complexData[8];
 } __attribute__((packed));
-
-
+
 typedef struct SHDRResources SHDRResources, *PSHDRResources;
-
-
+
 typedef struct SHDRShader SHDRShader, *PSHDRShader;
-
-
+
 typedef union _union_354 _union_354, *P_union_354;
-
-
+
 typedef struct _struct_355 _struct_355, *P_struct_355;
-
-
+
 typedef struct _struct_356 _struct_356, *P_struct_356;
-
-
+
 typedef struct _struct_358 _struct_358, *P_struct_358;
-
-
+
 typedef struct _struct_359 _struct_359, *P_struct_359;
-
-
+
 typedef struct _struct_360 _struct_360, *P_struct_360;
-
-
+
 typedef struct _struct_365 _struct_365, *P_struct_365;
-
-
+
 typedef struct SHDRTexCoord SHDRTexCoord, *PSHDRTexCoord;
-
-
+
 struct _struct_359 {
     SHADER_RAS rasColor;
 } __attribute__((packed));
-
-
+
 struct _struct_356 {
     SHADER_TEX tex;
     struct SHDRTexCoord *texCoordShader;
 } __attribute__((packed));
-
-
+
 struct _struct_360 {
     struct SHDRShader *input1;
     struct SHDRShader *input2;
@@ -10956,23 +9178,19 @@ struct _struct_360 {
     SHADER_BIAS bias;
     SHADER_SCALE scale;
 } __attribute__((packed));
-
-
+
 struct _struct_355 {
     SHADER_COLOR_TYPE arg;
 } __attribute__((packed));
-
-
+
 struct _struct_365 {
     SHADER_COMPLEX input;
 } __attribute__((packed));
-
-
+
 struct _struct_358 {
     SHADER_COLOR color;
 } __attribute__((packed));
-
-
+
 union _union_354 {
     struct _struct_355 constantShader;
     struct _struct_356 textureShader;
@@ -10981,8 +9199,7 @@ union _union_354 {
     struct _struct_360 complexShader;
     struct _struct_365 complexInputShader;
 } __attribute__((packed));
-
-
+
 struct SHDRShader {
     SHADER_TYPE type;
     SHADER_CHANNEL channel;
@@ -10990,8 +9207,7 @@ struct SHDRShader {
     void *TEVStage;
     union _union_354 shaderParams;
 } __attribute__((packed));
-
-
+
 struct SHDRTexCoord {
     s16 referenceCount;
     SHADER_TG_SRC genSrc;
@@ -11000,8 +9216,7 @@ struct SHDRTexCoord {
     SHADER_MTX mtxInput;
     byte texCoordExpIdx;
 } __attribute__((packed));
-
-
+
 struct SHDRResources {
     SHADER_REG regColorState[4];
     SHADER_COLOR regColor[4];
@@ -11016,11 +9231,9 @@ struct SHDRResources {
     GXTexObj *texObj[8];
     GXTexMapID mapIdList[8];
 } __attribute__((packed));
-
-
+
 typedef struct SHDRStage SHDRStage, *PSHDRStage;
-
-
+
 struct SHDRStage {
     SHADER_COLOR_TYPE TEVArg[4];
     GXTevOp op;
@@ -11033,21 +9246,17 @@ struct SHDRStage {
     byte texGenIdx;
     SHADER_TEX texInput;
 } __attribute__((packed));
-
-
+
 typedef struct SHDRTCResources SHDRTCResources, *PSHDRTCResources;
-
-
+
 struct SHDRTCResources {
     GXTexCoordID coord[8];
     struct SHDRTexCoord *tcShader[8];
     struct SHDRShader *textureShader[8];
 } __attribute__((packed));
-
-
+
 typedef struct SIControl SIControl, *PSIControl;
-
-
+
 struct SIControl {
     long chan;
     ulong poll;
@@ -11055,11 +9264,9 @@ struct SIControl {
     void *input;
     void (*callback)(long, ulong, struct OSContext *);
 } __attribute__((packed));
-
-
+
 typedef struct SIPacket SIPacket, *PSIPacket;
-
-
+
 struct SIPacket {
     long chan;
     void *output;
@@ -11069,11 +9276,9 @@ struct SIPacket {
     void (*callback)(long, ulong, struct OSContext *);
     longlong time;
 } __attribute__((packed));
-
-
+
 typedef struct SK1ListHeader SK1ListHeader, *PSK1ListHeader;
-
-
+
 struct SK1ListHeader {
     struct Mtx matrixAtRuntime;
     void * positionNormalArray;
@@ -11083,11 +9288,9 @@ struct SK1ListHeader {
     byte offsetToCorrectStartOfPositionalArray;
     byte pad[3];
 } __attribute__((packed));
-
-
+
 typedef struct SK2ListHeader SK2ListHeader, *PSK2ListHeader;
-
-
+
 struct SK2ListHeader {
     struct Mtx mtx1;
     struct Mtx mtx2;
@@ -11100,21 +9303,17 @@ struct SK2ListHeader {
     byte offsetToCorrectPositionNormalArray;
     byte pad;
 } __attribute__((packed));
-
-
+
 typedef struct SKAccBuffer SKAccBuffer, *PSKAccBuffer;
-
-
+
 struct SKAccBuffer {
     s16 *src;
     short *indices;
     byte *weights;
 } __attribute__((packed));
-
-
+
 typedef struct SKAccListHeader SKAccListHeader, *PSKAccListHeader;
-
-
+
 struct SKAccListHeader {
     struct Mtx mtx;
     void * positionNormalArray;
@@ -11124,11 +9323,9 @@ struct SKAccListHeader {
     ushort boneIndexACT;
     ushort verticesInList;
 } __attribute__((packed));
-
-
+
 typedef struct SKNHeader SKNHeader, *PSKNHeader;
-
-
+
 struct SKNHeader {
     ushort numberOf1MTXLists;
     ushort numberOf2MTXLists;
@@ -11143,11 +9340,9 @@ struct SKNHeader {
     void * offsetToFlushIndexArray;
     uint numberOfFlushIndices;
 } __attribute__((packed));
-
-
+
 typedef struct SNDADPCMinfo SNDADPCMinfo, *PSNDADPCMinfo;
-
-
+
 struct SNDADPCMinfo {
     u16 numCoef;
     u8 initialPS;
@@ -11156,36 +9351,28 @@ struct SNDADPCMinfo {
     s16 loopY1;
     s16 coefTab[8][2];
 } __attribute__((packed));
-
-
+
 typedef struct SND_3DINFO SND_3DINFO, *PSND_3DINFO;
-
-
+
 struct SND_3DINFO {
     u8 vol;
     u8 pan;
     u8 span;
     u16 doppler;
 } __attribute__((packed));
-
-
+
 typedef struct SND_ADPCMSTREAM_INFO SND_ADPCMSTREAM_INFO, *PSND_ADPCMSTREAM_INFO;
-
-
+
 struct SND_ADPCMSTREAM_INFO {
     s16 coefTab[8][2];
 } __attribute__((packed));
-
-
+
 typedef struct SND_AUX_CHORUS SND_AUX_CHORUS, *PSND_AUX_CHORUS;
-
-
+
 typedef struct _SND_CHORUS_WORK _SND_CHORUS_WORK, *P_SND_CHORUS_WORK;
-
-
+
 typedef struct _SND_CHORUS_SRCINFO _SND_CHORUS_SRCINFO, *P_SND_CHORUS_SRCINFO;
-
-
+
 struct _SND_CHORUS_SRCINFO {
     s32 *dest;
     s32 *smpBase;
@@ -11197,8 +9384,7 @@ struct _SND_CHORUS_SRCINFO {
     u32 trigger;
     u32 target;
 } __attribute__((packed));
-
-
+
 struct _SND_CHORUS_WORK {
     s32 *lastLeft[3];
     s32 *lastRight[3];
@@ -11214,19 +9400,16 @@ struct _SND_CHORUS_WORK {
     u32 pitchOffsetPeriod;
     struct _SND_CHORUS_SRCINFO src;
 } __attribute__((packed));
-
-
+
 struct SND_AUX_CHORUS {
     struct _SND_CHORUS_WORK work;
     u32 baseDelay;
     u32 variation;
     u32 period;
 } __attribute__((packed));
-
-
+
 typedef struct SND_AUX_DELAY SND_AUX_DELAY, *PSND_AUX_DELAY;
-
-
+
 struct SND_AUX_DELAY {
     u32 currentSize[3];
     u32 currentPos[3];
@@ -11239,20 +9422,15 @@ struct SND_AUX_DELAY {
     u32 feedback[3];
     u32 output[3];
 } __attribute__((packed));
-
-
+
 typedef struct SND_AUX_REVERBHI SND_AUX_REVERBHI, *PSND_AUX_REVERBHI;
-
-
+
 typedef struct _SND_REVHI_WORK _SND_REVHI_WORK, *P_SND_REVHI_WORK;
-
-
+
 typedef uchar bool8;
-
-
+
 typedef struct _SND_REVHI_DELAYLINE _SND_REVHI_DELAYLINE, *P_SND_REVHI_DELAYLINE;
-
-
+
 struct _SND_REVHI_DELAYLINE {
     s32 inPoint;
     s32 outPoint;
@@ -11260,8 +9438,7 @@ struct _SND_REVHI_DELAYLINE {
     f32 *inputs;
     f32 lastOutput;
 } __attribute__((packed));
-
-
+
 struct _SND_REVHI_WORK {
     struct _SND_REVHI_DELAYLINE AP[9];
     struct _SND_REVHI_DELAYLINE C[9];
@@ -11275,8 +9452,7 @@ struct _SND_REVHI_WORK {
     f32 *preDelayLine[3];
     f32 *preDelayPtr[3];
 } __attribute__((packed));
-
-
+
 struct SND_AUX_REVERBHI {
     struct _SND_REVHI_WORK rv;
     bool8 tempDisableFX;
@@ -11287,17 +9463,13 @@ struct SND_AUX_REVERBHI {
     f32 preDelay;
     f32 crosstalk;
 } __attribute__((packed));
-
-
+
 typedef struct SND_AUX_REVERBSTD SND_AUX_REVERBSTD, *PSND_AUX_REVERBSTD;
-
-
+
 typedef struct _SND_REVSTD_WORK _SND_REVSTD_WORK, *P_SND_REVSTD_WORK;
-
-
+
 typedef struct _SND_REVSTD_DELAYLINE _SND_REVSTD_DELAYLINE, *P_SND_REVSTD_DELAYLINE;
-
-
+
 struct _SND_REVSTD_DELAYLINE {
     s32 inPoint;
     s32 outPoint;
@@ -11305,8 +9477,7 @@ struct _SND_REVSTD_DELAYLINE {
     f32 *inputs;
     f32 lastOutput;
 } __attribute__((packed));
-
-
+
 struct _SND_REVSTD_WORK {
     struct _SND_REVSTD_DELAYLINE AP[6];
     struct _SND_REVSTD_DELAYLINE C[6];
@@ -11319,8 +9490,7 @@ struct _SND_REVSTD_WORK {
     f32 *preDelayLine[3];
     f32 *preDelayPtr[3];
 } __attribute__((packed));
-
-
+
 struct SND_AUX_REVERBSTD {
     struct _SND_REVSTD_WORK rv;
     bool8 tempDisableFX;
@@ -11330,28 +9500,21 @@ struct SND_AUX_REVERBSTD {
     f32 damping;
     f32 preDelay;
 } __attribute__((packed));
-
-
-typedef s32 (*SND_COMPARE)(void *, void *);
-
-
-
+
+typedef s32 (*SND_COMPARE)(void *, void *);
+
 typedef struct SND_DOOR SND_DOOR, *PSND_DOOR;
-
-
+
 typedef struct SND_FVECTOR SND_FVECTOR, *PSND_FVECTOR;
-
-
+
 typedef struct SND_ROOM SND_ROOM, *PSND_ROOM;
-
-
+
 struct SND_FVECTOR {
     float x;
     float y;
     float z;
 } __attribute__((packed));
-
-
+
 struct SND_ROOM {
     struct SND_ROOM *next;
     struct SND_ROOM *prev;
@@ -11364,8 +9527,7 @@ struct SND_ROOM {
     void *user;
     u32 curMVol;
 } __attribute__((packed));
-
-
+
 struct SND_DOOR {
     struct SND_DOOR *next;
     struct SND_DOOR *prev;
@@ -11380,44 +9542,34 @@ struct SND_DOOR {
     s16 filterCoef[4];
     struct SND_STUDIO_INPUT input;
 } __attribute__((packed));
-
-
+
 typedef struct SND_EMITTER SND_EMITTER, *PSND_EMITTER;
-
-
+
 typedef struct SND_PARAMETER_INFO SND_PARAMETER_INFO, *PSND_PARAMETER_INFO;
-
-
+
 typedef u32 SND_VOICEID;
-
-
+
 typedef u16 SND_FXID;
-
-
+
 typedef struct SND_PARAMETER SND_PARAMETER, *PSND_PARAMETER;
-
-
+
 typedef union _union_12 _union_12, *P_union_12;
-
-
+
 union _union_12 {
     u8 value7;
     u16 value14;
 } __attribute__((packed));
-
-
+
 struct SND_PARAMETER_INFO {
     u8 numPara;
     struct SND_PARAMETER *paraArray;
 } __attribute__((packed));
-
-
+
 struct SND_PARAMETER {
     u8 ctrl;
     union _union_12 paraData;
 } __attribute__((packed));
-
-
+
 struct SND_EMITTER {
     struct SND_EMITTER *next;
     struct SND_EMITTER *prev;
@@ -11438,39 +9590,31 @@ struct SND_EMITTER {
     short VolLevelCnt;
     float fade;
 } __attribute__((packed));
-
-
+
 typedef struct SND_FMATRIX SND_FMATRIX, *PSND_FMATRIX;
-
-
+
 struct SND_FMATRIX {
     f32 m[3][3];
     f32 t[3];
 } __attribute__((packed));
-
-
+
 typedef struct SND_HOOKS SND_HOOKS, *PSND_HOOKS;
-
-
+
 struct SND_HOOKS {
     void * (*malloc)(u32);
     void (*free)(void *);
 } __attribute__((packed));
-
-
+
 typedef struct SND_HOOKS2 SND_HOOKS2, *PSND_HOOKS2;
-
-
+
 struct SND_HOOKS2 {
     void * (*malloc)(u32);
     void * (*mallocPhysical)(u32);
     void (*free)(void *);
 } __attribute__((packed));
-
-
+
 typedef struct SND_LISTENER SND_LISTENER, *PSND_LISTENER;
-
-
+
 struct SND_LISTENER {
     struct SND_LISTENER *next;
     struct SND_LISTENER *prev;
@@ -11488,26 +9632,20 @@ struct SND_LISTENER {
     f32 soundSpeed;
     f32 vol;
 } __attribute__((packed));
-
-
-typedef s32 (*SND_MESSAGE_CALLBACK)(u32, u32);
-
-
-
+
+typedef s32 (*SND_MESSAGE_CALLBACK)(u32, u32);
+
 enum {
     enum_2_SND_OUTPUTMODE_MONO=0,
     enum_2_SND_OUTPUTMODE_STEREO=1,
     enum_2_SND_OUTPUTMODE_SURROUND=2
 };
 typedef unsigned int enum_2;
-
-
+
 typedef enum_2 SND_OUTPUTMODE;
-
-
+
 typedef struct SND_PLAYBACKINFO SND_PLAYBACKINFO, *PSND_PLAYBACKINFO;
-
-
+
 struct SND_PLAYBACKINFO {
     u32 frq;
     u8 stereo;
@@ -11515,29 +9653,23 @@ struct SND_PLAYBACKINFO {
     s8 deviceName[256];
     s8 versionText[256];
 } __attribute__((packed));
-
-
+
 typedef struct SND_PLAYPARA SND_PLAYPARA, *PSND_PLAYPARA;
-
-
+
 typedef struct _struct_6 _struct_6, *P_struct_6;
-
-
+
 typedef struct SND_SEQVOLDEF SND_SEQVOLDEF, *PSND_SEQVOLDEF;
-
-
+
 struct SND_SEQVOLDEF {
     u8 track;
     u8 volGroup;
 } __attribute__((packed));
-
-
+
 struct _struct_6 {
     u16 time;
     u8 target;
 } __attribute__((packed));
-
-
+
 struct SND_PLAYPARA {
     u32 flags;
     u32 trackMute[2];
@@ -11548,11 +9680,9 @@ struct SND_PLAYPARA {
     u8 numFaded;
     u8 *faded;
 } __attribute__((packed));
-
-
+
 typedef struct SND_PROFILE_DATA SND_PROFILE_DATA, *PSND_PROFILE_DATA;
-
-
+
 struct SND_PROFILE_DATA {
     ulong loadStores;
     ulong missCycles;
@@ -11581,11 +9711,9 @@ struct SND_PROFILE_DATA {
     ulong cnt;
     ulong paused;
 } __attribute__((packed));
-
-
+
 typedef struct SND_PROFILE_INFO SND_PROFILE_INFO, *PSND_PROFILE_INFO;
-
-
+
 struct SND_PROFILE_INFO {
     struct SND_PROFILE_DATA dspCtrl;
     struct SND_PROFILE_DATA auxProcessing;
@@ -11596,55 +9724,40 @@ struct SND_PROFILE_INFO {
     uchar numMusicVoices;
     uchar numSFXVoices;
 } __attribute__((packed));
-
-
-typedef void (*SND_PROF_USERCALLBACK)(struct SND_PROFILE_INFO *);
-
-
-
-typedef void (*SND_SOME_CALLBACK)(void);
-
-
-
+
+typedef void (*SND_PROF_USERCALLBACK)(struct SND_PROFILE_INFO *);
+
+typedef void (*SND_SOME_CALLBACK)(void);
+
 typedef u32 SND_STREAMID;
-
-
-typedef s32 (*SND_STREAM_UPDATE_CALLBACK)(void *, u32, void *, u32, void *);
-
-
-
+
+typedef s32 (*SND_STREAM_UPDATE_CALLBACK)(void *, u32, void *, u32, void *);
+
 typedef struct SND_VIRTUALSAMPLE_INFO SND_VIRTUALSAMPLE_INFO, *PSND_VIRTUALSAMPLE_INFO;
-
-
+
 typedef union vsData vsData, *PvsData;
-
-
+
 typedef struct vsUpdate vsUpdate, *PvsUpdate;
-
-
+
 struct vsUpdate {
     u32 off1;
     u32 len1;
     u32 off2;
     u32 len2;
 } __attribute__((packed));
-
-
+
 union vsData {
     struct vsUpdate update;
 } __attribute__((packed));
-
-
+
 struct SND_VIRTUALSAMPLE_INFO {
     u16 smpID;
     u16 instID;
     union vsData data;
 } __attribute__((packed));
-
-
+
 typedef struct STREAM_INFO STREAM_INFO, *PSTREAM_INFO;
-
-
+
 struct STREAM_INFO {
     u32 nextStreamHandle;
     u32 stid;
@@ -11672,11 +9785,9 @@ struct STREAM_INFO {
     u8 orgSPan;
     u8 studio;
 } __attribute__((packed));
-
-
+
 typedef struct STRUCT_DEMOWIN STRUCT_DEMOWIN, *PSTRUCT_DEMOWIN;
-
-
+
 struct STRUCT_DEMOWIN {
     long x1;
     long y1;
@@ -11706,20 +9817,16 @@ struct STRUCT_DEMOWIN {
     struct STRUCT_DEMOWIN *prev;
     void *parent;
 } __attribute__((packed));
-
-
+
 typedef struct STRUCT_LISTBOX STRUCT_LISTBOX, *PSTRUCT_LISTBOX;
-
-
+
 typedef struct STRUCT_LISTBOX_ITEM STRUCT_LISTBOX_ITEM, *PSTRUCT_LISTBOX_ITEM;
-
-
+
 struct STRUCT_LISTBOX_ITEM {
     char *name;
     ulong flags;
 } __attribute__((packed));
-
-
+
 struct STRUCT_LISTBOX {
     char *title;
     struct STRUCT_DEMOWIN *handle;
@@ -11733,14 +9840,11 @@ struct STRUCT_LISTBOX {
     long display_pos;
     int cursor_state;
 } __attribute__((packed));
-
-
+
 typedef struct STRUCT_MENU STRUCT_MENU, *PSTRUCT_MENU;
-
-
+
 typedef struct STRUCT_MENU_ITEM STRUCT_MENU_ITEM, *PSTRUCT_MENU_ITEM;
-
-
+
 struct STRUCT_MENU {
     char *title;
     struct STRUCT_DEMOWIN *handle;
@@ -11757,29 +9861,24 @@ struct STRUCT_MENU {
     long curr_pos;
     long display_pos;
 } __attribute__((packed));
-
-
+
 struct STRUCT_MENU_ITEM {
     char *name;
     ulong flags;
     void (*function)(struct STRUCT_MENU *, ulong, ulong *);
     struct STRUCT_MENU *link;
 } __attribute__((packed));
-
-
+
 typedef struct SVec SVec, *PSVec;
-
-
+
 struct SVec {
     s16 x;
     s16 y;
     s16 z;
 } __attribute__((packed));
-
-
+
 typedef struct SYNTHMasterFader SYNTHMasterFader, *PSYNTHMasterFader;
-
-
+
 struct SYNTHMasterFader {
     f32 volume;
     f32 target;
@@ -11795,73 +9894,57 @@ struct SYNTHMasterFader {
     u8 seqMode;
     u8 type;
 } __attribute__((packed));
-
-
+
 typedef struct SYNTH_JOBTAB SYNTH_JOBTAB, *PSYNTH_JOBTAB;
-
-
+
 typedef struct SYNTH_QUEUE SYNTH_QUEUE, *PSYNTH_QUEUE;
-
-
+
 struct SYNTH_JOBTAB {
     struct SYNTH_QUEUE *lowPrecision;
     struct SYNTH_QUEUE *event;
     struct SYNTH_QUEUE *zeroOffset;
 } __attribute__((packed));
-
-
+
 struct SYNTH_QUEUE {
     struct SYNTH_QUEUE *next;
     struct SYNTH_QUEUE *prev;
     u8 voice;
     u8 jobTabIndex;
 } __attribute__((packed));
-
-
+
 enum {
     enum_94_SYNTH_JOBTYPE_LOW=0,
     enum_94_SYNTH_JOBTYPE_ZERO=1,
     enum_94_SYNTH_JOBTYPE_EVENT=2
 };
 typedef unsigned int enum_94;
-
-
+
 typedef enum_94 SYNTH_JOBTYPE;
-
-
+
 typedef struct SYNTH_LFO SYNTH_LFO, *PSYNTH_LFO;
-
-
+
 struct SYNTH_LFO {
     u32 time;
     u32 period;
     s16 value;
     s16 lastValue;
 } __attribute__((packed));
-
-
-typedef void (*SYNTH_MESSAGE_CALLBACK)(u32, s32);
-
-
-
+
+typedef void (*SYNTH_MESSAGE_CALLBACK)(u32, s32);
+
 typedef struct SYNTH_ROOTLIST SYNTH_ROOTLIST, *PSYNTH_ROOTLIST;
-
-
+
 struct SYNTH_ROOTLIST {
     u16 next;
     u16 prev;
 } __attribute__((packed));
-
-
+
 typedef struct SYNTH_VOICE SYNTH_VOICE, *PSYNTH_VOICE;
-
-
+
 typedef struct VID_LIST VID_LIST, *PVID_LIST;
-
-
+
 typedef struct setup setup, *Psetup;
-
-
+
 struct setup {
     u8 vol;
     u8 pan;
@@ -11873,8 +9956,7 @@ struct setup {
     u8 studio;
     u8 itdMode;
 } __attribute__((packed));
-
-
+
 struct SYNTH_VOICE {
     struct SYNTH_QUEUE lowPrecisionJob;
     struct SYNTH_QUEUE zeroOffsetJob;
@@ -11995,38 +10077,31 @@ struct SYNTH_VOICE {
     s32 mesgQueue[4];
     u16 curOutputVolume;
 } __attribute__((packed));
-
-
+
 struct VID_LIST {
     struct VID_LIST *next;
     struct VID_LIST *prev;
     u32 vid;
     u32 root;
 } __attribute__((packed));
-
-
+
 typedef struct SYNTH_VOICELIST SYNTH_VOICELIST, *PSYNTH_VOICELIST;
-
-
+
 struct SYNTH_VOICELIST {
     u8 prev;
     u8 next;
     u16 user;
 } __attribute__((packed));
-
-
+
 typedef struct ScreenText ScreenText, *PScreenText;
-
-
+
 typedef struct TextCharacter TextCharacter, *PTextCharacter;
-
-
+
 struct TextCharacter {
     byte flag_row_;
     byte character_col_;
 } __attribute__((packed));
-
-
+
 struct ScreenText {
     byte *field0_0x0;
     struct TextCharacter *currentCharPtr_;
@@ -12059,11 +10134,9 @@ struct ScreenText {
     byte field28_0x36;
     byte field29_0x37;
 } __attribute__((packed));
-
-
+
 typedef struct ShaderTEVStage ShaderTEVStage, *PShaderTEVStage;
-
-
+
 struct ShaderTEVStage {
     SHADER_TEV channel;
     SHADER_TYPE type;
@@ -12085,11 +10158,9 @@ struct ShaderTEVStage {
     byte outputIndex;
     SHADER_COLOR_TYPE outputArg;
 } __attribute__((packed));
-
-
+
 typedef struct SpritePos SpritePos, *PSpritePos;
-
-
+
 struct SpritePos {
     struct Mtx field0_0x0;
     float field1_0x30[7];
@@ -12111,26 +10182,20 @@ struct SpritePos {
     byte field17_0x8e;
     byte field18_0x8f;
 } __attribute__((packed));
-
-
+
 typedef struct SpritePositionStruct SpritePositionStruct, *PSpritePositionStruct;
-
-
+
 struct SpritePositionStruct {
     struct Vec3f pos;
     int field1_0xc;
     short field2_0x10;
     short field3_0x12;
 } __attribute__((packed));
-
-
-typedef void (*SramCallback)(void);
-
-
-
+
+typedef void (*SramCallback)(void);
+
 typedef struct SramControl SramControl, *PSramControl;
-
-
+
 struct SramControl {
     uchar sram[64];
     ulong offset;
@@ -12139,11 +10204,9 @@ struct SramControl {
     int sync;
     void (*callback)(void);
 } __attribute__((packed));
-
-
+
 typedef struct SramControlBlock SramControlBlock, *PSramControlBlock;
-
-
+
 struct SramControlBlock {
     u8 sram[64];
     u32 offset;
@@ -12152,17 +10215,13 @@ struct SramControlBlock {
     BOOL sync;
     SramCallback callback;
 } __attribute__((packed));
-
-
+
 typedef struct StadiumFileHeader StadiumFileHeader, *PStadiumFileHeader;
-
-
+
 typedef struct TextureArchiveHeader TextureArchiveHeader, *PTextureArchiveHeader;
-
-
+
 typedef struct TextureHeader TextureHeader, *PTextureHeader;
-
-
+
 struct TextureHeader {
     void * data;
     struct CLUTHeader *CLUTHeader;
@@ -12185,8 +10244,7 @@ struct TextureHeader {
     undefined *clutHeaderNumEntries;
     int field19_0x22;
 } __attribute__((packed));
-
-
+
 struct StadiumFileHeader {
     struct ACTActor *actor;
     struct ACTActor *actor2;
@@ -12201,8 +10259,7 @@ struct StadiumFileHeader {
     struct TextureArchiveHeader *textures2;
     struct CollisionFileHeader *collisionFilePointer2;
 } __attribute__((packed));
-
-
+
 struct TextureArchiveHeader {
     short count;
     short pad;
@@ -12210,17 +10267,13 @@ struct TextureArchiveHeader {
     undefined field3_0x2a;
     undefined field4_0x2b;
 } __attribute__((packed));
-
-
+
 typedef struct Static_MSSB_Data Static_MSSB_Data, *PStatic_MSSB_Data;
-
-
+
 typedef struct challengeRostersStruct challengeRostersStruct, *PchallengeRostersStruct;
-
-
+
 typedef struct controllerInputStruct controllerInputStruct, *PcontrollerInputStruct;
-
-
+
 enum {
     enumControllerInput_Left=1,
     enumControllerInput_Right=2,
@@ -12237,15 +10290,13 @@ enum {
     enumControllerInput_Start=4096
 };
 typedef unsigned short enumControllerInput;
-
-
+
 struct controllerInputStruct {
     enumControllerInput currentHeldInput;
     enumControllerInput newInput;
     enumControllerInput processedInput;
 } __attribute__((packed));
-
-
+
 struct challengeRostersStruct {
     byte charID[9];
     undefined field1_0x9;
@@ -12304,8 +10355,7 @@ struct challengeRostersStruct {
     undefined field54_0x46;
     undefined field55_0x47;
 } __attribute__((packed));
-
-
+
 struct Static_MSSB_Data {
     struct CharacterStats CharacterData[54];
     byte field1_0x21c0[8640];
@@ -12409,11 +10459,9 @@ struct Static_MSSB_Data {
     byte field99_0x48b3;
     byte field100_0x48b4[84];
 } __attribute__((packed));
-
-
+
 typedef struct StatisticsBatter StatisticsBatter, *PStatisticsBatter;
-
-
+
 struct StatisticsBatter {
     short field0_0x0;
     byte onFieldForAPitch;
@@ -12445,11 +10493,9 @@ struct StatisticsBatter {
     byte StarHitsActivated;
     byte field28_0x25;
 } __attribute__((packed));
-
-
+
 typedef struct StatisticsPitcher StatisticsPitcher, *PStatisticsPitcher;
-
-
+
 struct StatisticsPitcher {
     short BattersFaced;
     short RunsAllowed;
@@ -12473,14 +10519,11 @@ struct StatisticsPitcher {
     byte Strikeouts;
     byte starPitchesThrown;
 } __attribute__((packed));
-
-
+
 typedef struct synthInfo synthInfo, *PsynthInfo;
-
-
+
 typedef struct synthInfo SynthInfo;
-
-
+
 struct synthInfo {
     u32 mixFrq;
     u32 numSamples;
@@ -12490,29 +10533,18 @@ struct synthInfo {
     u8 maxSFX;
     u8 studioNum;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /TEXDescriptor - /sdk/texPalette.h/TEXDescriptor */
-
-
-
-
-
-/* WARNING! conflicting data type names: /TEXHeader - /sdk/texPalette.h/TEXHeader */
-
-
-
-
-
-/* WARNING! conflicting data type names: /TEXPalette - /sdk/texPalette.h/TEXPalette */
-
-
-
+
+
+/* WARNING! conflicting data type names: /TEXDescriptor - /sdk/texPalette.h/TEXDescriptor */
+
+
+/* WARNING! conflicting data type names: /TEXHeader - /sdk/texPalette.h/TEXHeader */
+
+
+/* WARNING! conflicting data type names: /TEXPalette - /sdk/texPalette.h/TEXPalette */
+
 typedef struct TEXPaletteData TEXPaletteData, *PTEXPaletteData;
-
-
+
 struct TEXPaletteData {
     int versionNumber;
     int userDataSize;
@@ -12520,14 +10552,11 @@ struct TEXPaletteData {
     int numDescriptors;
     TEXDescriptorPtr descriptorArray;
 } __attribute__((packed));
-
-
+
 typedef struct TEXPaletteData *TEXPaletteDataPtr;
-
-
+
 typedef struct TextureObj TextureObj, *PTextureObj;
-
-
+
 struct TextureObj {
     undefined *data;
     undefined *paletteData_;
@@ -12554,11 +10583,9 @@ struct TextureObj {
     undefined field22_0x1e;
     undefined field23_0x1f;
 } __attribute__((packed));
-
-
+
 typedef struct TriangleCollisionStruct TriangleCollisionStruct, *PTriangleCollisionStruct;
-
-
+
 struct TriangleCollisionStruct {
     struct Mtx mtx1;
     struct Mtx mtx2;
@@ -12567,35 +10594,25 @@ struct TriangleCollisionStruct {
     float maybeClosestCollisionDistance;
     TriangleCollisionTypes collisionType;
 } __attribute__((packed));
-
-
+
 typedef struct UnkPointerSDKFunc UnkPointerSDKFunc, *PUnkPointerSDKFunc;
-
-
+
 struct UnkPointerSDKFunc {
     int field0_0x0;
     int field1_0x4;
     byte *field2_0x8;
     byte *field3_0xc;
 } __attribute__((packed));
-
-
-typedef void (*VIPositionCallback)(s16, s16);
-
-
-
+
+typedef void (*VIPositionCallback)(s16, s16);
+
 typedef struct VIPositionInfo VIPositionInfo, *PVIPositionInfo;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vi.h/VIXFBMode - /GX/VIXFBMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vi.h/VIXFBMode - /GX/VIXFBMode */
+
 typedef struct VITimingInfo VITimingInfo, *PVITimingInfo;
-
-
+
 struct VITimingInfo {
     u8 equ;
     u16 acv;
@@ -12621,8 +10638,7 @@ struct VITimingInfo {
     u8 hbeCCIR656;
     u16 hbsCCIR656;
 } __attribute__((packed));
-
-
+
 struct VIPositionInfo {
     u16 dispPosX;
     u16 dispPosY;
@@ -12656,45 +10672,27 @@ struct VIPositionInfo {
     u32 rbfbb;
     struct VITimingInfo *timing;
 } __attribute__((packed));
-
-
-typedef void (*VIRetraceCallback)(u32);
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/vitypes.h/VIRetraceCallback - /decompHeaders/vi.h/VIRetraceCallback */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vi.h/VITVMode - /GX/VITVMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/vitypes.h/VITVMode - /GX/VITVMode */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/vitypes.h/VIXFBMode - /GX/VIXFBMode */
-
-
-
+
+typedef void (*VIRetraceCallback)(u32);
+
+
+/* WARNING! conflicting data type names: /sdk/vitypes.h/VIRetraceCallback - /decompHeaders/vi.h/VIRetraceCallback */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vi.h/VITVMode - /GX/VITVMode */
+
+
+/* WARNING! conflicting data type names: /sdk/vitypes.h/VITVMode - /GX/VITVMode */
+
+
+/* WARNING! conflicting data type names: /sdk/vitypes.h/VIXFBMode - /GX/VIXFBMode */
+
 typedef struct _VS _VS, *P_VS;
-
-
+
 typedef struct _VS VS;
-
-
+
 typedef struct VS_BUFFER VS_BUFFER, *PVS_BUFFER;
-
-
+
 struct VS_BUFFER {
     u8 state;
     u8 hwId;
@@ -12705,8 +10703,7 @@ struct VS_BUFFER {
     u32 finalLast;
     struct SND_VIRTUALSAMPLE_INFO info;
 } __attribute__((packed));
-
-
+
 struct _VS {
     u8 numBuffers;
     u32 bufferLength;
@@ -12715,73 +10712,56 @@ struct _VS {
     u16 nextInstID;
     u32 (*callback)(u8, struct SND_VIRTUALSAMPLE_INFO *);
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vec.h/Vec - /sdk/mtx.h/Vec */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vec.h/Vec - /sdk/mtx.h/Vec */
+
 typedef struct Vec2d Vec2d, *PVec2d;
-
-
+
 struct Vec2d {
     double X;
     double Y;
 } __attribute__((packed));
-
-
+
 typedef struct Vec2i Vec2i, *PVec2i;
-
-
+
 struct Vec2i {
     int X;
     int Y;
 } __attribute__((packed));
-
-
+
 typedef struct Vec2s Vec2s, *PVec2s;
-
-
+
 struct Vec2s {
     short X;
     short Y;
 } __attribute__((packed));
-
-
+
 typedef struct Vec3d Vec3d, *PVec3d;
-
-
+
 struct Vec3d {
     double X;
     double Y;
     double Z;
 } __attribute__((packed));
-
-
+
 typedef struct Vec3i Vec3i, *PVec3i;
-
-
+
 struct Vec3i {
     int X;
     int Y;
     int Z;
 } __attribute__((packed));
-
-
+
 typedef struct Vec *VecPtr;
-
-
+
 typedef struct VecSrcDst VecSrcDst, *PVecSrcDst;
-
-
+
 struct VecSrcDst {
     struct Vec3f src;
     struct Vec3f dst;
 } __attribute__((packed));
-
-
+
 enum {
     _GXAlphaOp_GX_AOP_AND=0,
     _GXAlphaOp_GX_AOP_OR=1,
@@ -12790,16 +10770,14 @@ enum {
     _GXAlphaOp_GX_MAX_ALPHAOP=4
 };
 typedef unsigned int _GXAlphaOp;
-
-
+
 enum {
     _GXAlphaReadMode_GX_READ_00=0,
     _GXAlphaReadMode_GX_READ_FF=1,
     _GXAlphaReadMode_GX_READ_NONE=2
 };
 typedef unsigned int _GXAlphaReadMode;
-
-
+
 enum {
     _GXAnisotropy_GX_ANISO_1=0,
     _GXAnisotropy_GX_ANISO_2=1,
@@ -12807,16 +10785,14 @@ enum {
     _GXAnisotropy_GX_MAX_ANISOTROPY=3
 };
 typedef unsigned int _GXAnisotropy;
-
-
+
 enum {
     _GXAttnFn_GX_AF_SPEC=0,
     _GXAttnFn_GX_AF_SPOT=1,
     _GXAttnFn_GX_AF_NONE=2
 };
 typedef unsigned int _GXAttnFn;
-
-
+
 enum {
     _GXAttr_GX_VA_PNMTXIDX=0,
     _GXAttr_GX_VA_TEX0MTXIDX=1,
@@ -12848,8 +10824,7 @@ enum {
     _GXAttr_GX_VA_NULL=255
 };
 typedef unsigned int _GXAttr;
-
-
+
 enum {
     _GXAttrType_GX_NONE=0,
     _GXAttrType_GX_DIRECT=1,
@@ -12857,8 +10832,7 @@ enum {
     _GXAttrType_GX_INDEX16=3
 };
 typedef unsigned int _GXAttrType;
-
-
+
 enum {
     _GXBlendFactor_GX_BL_ZERO=0,
     _GXBlendFactor_GX_BL_ONE=1,
@@ -12872,14 +10846,10 @@ enum {
     _GXBlendFactor_GX_BL_INVDSTALPHA=7
 };
 typedef unsigned int _GXBlendFactor;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXBlendFactor - /decompHeaders/GXEnum.h/_GXBlendFactor */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXBlendFactor - /decompHeaders/GXEnum.h/_GXBlendFactor */
+
 enum {
     _GXBlendMode_GX_BM_NONE=0,
     _GXBlendMode_GX_BM_BLEND=1,
@@ -12888,16 +10858,14 @@ enum {
     _GXBlendMode_GX_MAX_BLENDMODE=4
 };
 typedef unsigned int _GXBlendMode;
-
-
+
 enum {
     _GXCITexFmt_GX_TF_C4=8,
     _GXCITexFmt_GX_TF_C8=9,
     _GXCITexFmt_GX_TF_C14X2=10
 };
 typedef unsigned int _GXCITexFmt;
-
-
+
 enum {
     _GXChannelID_GX_COLOR0=0,
     _GXChannelID_GX_COLOR1=1,
@@ -12911,39 +10879,31 @@ enum {
     _GXChannelID_GX_COLOR_NULL=255
 };
 typedef unsigned int _GXChannelID;
-
-
+
 enum {
     _GXClipMode_GX_CLIP_ENABLE=0,
     _GXClipMode_GX_CLIP_DISABLE=1
 };
 typedef unsigned int _GXClipMode;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/_GXColor - /sdk/GXStruct.h/_GXColor */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXTypes.h/_GXColor - /sdk/GXStruct.h/_GXColor */
+
 typedef struct _GXColorS10 _GXColorS10, *P_GXColorS10;
-
-
+
 struct _GXColorS10 {
     s16 r;
     s16 g;
     s16 b;
     s16 a;
 } __attribute__((packed));
-
-
+
 enum {
     _GXColorSrc_GX_SRC_REG=0,
     _GXColorSrc_GX_SRC_VTX=1
 };
 typedef unsigned int _GXColorSrc;
-
-
+
 enum {
     _GXCompCnt_GX_CLR_RGB=0,
     _GXCompCnt_GX_COMPCNT_NULL=0,
@@ -12957,14 +10917,10 @@ enum {
     _GXCompCnt_GX_NRM_NBT3=2
 };
 typedef unsigned int _GXCompCnt;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompCnt - /decompHeaders/GXEnum.h/_GXCompCnt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompCnt - /decompHeaders/GXEnum.h/_GXCompCnt */
+
 enum {
     _GXCompType_GX_COMP_NULL=0,
     _GXCompType_GX_RGB565=0,
@@ -12980,14 +10936,10 @@ enum {
     _GXCompType_GX_RGBA8=5
 };
 typedef unsigned int _GXCompType;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompType - /decompHeaders/GXEnum.h/_GXCompType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXCompType - /decompHeaders/GXEnum.h/_GXCompType */
+
 enum {
     _GXCompare_GX_NEVER=0,
     _GXCompare_GX_LESS=1,
@@ -12999,16 +10951,14 @@ enum {
     _GXCompare_GX_ALWAYS=7
 };
 typedef unsigned int _GXCompare;
-
-
+
 enum {
     _GXCopyMode_GX_COPY_PROGRESSIVE=0,
     _GXCopyMode_GX_COPY_INTLC_EVEN=2,
     _GXCopyMode_GX_COPY_INTLC_ODD=3
 };
 typedef unsigned int _GXCopyMode;
-
-
+
 enum {
     _GXCullMode_GX_CULL_NONE=0,
     _GXCullMode_GX_CULL_FRONT=1,
@@ -13016,16 +10966,14 @@ enum {
     _GXCullMode_GX_CULL_ALL=3
 };
 typedef unsigned int _GXCullMode;
-
-
+
 enum {
     _GXDiffuseFn_GX_DF_NONE=0,
     _GXDiffuseFn_GX_DF_SIGN=1,
     _GXDiffuseFn_GX_DF_CLAMP=2
 };
 typedef unsigned int _GXDiffuseFn;
-
-
+
 enum {
     _GXDistAttnFn_GX_DA_OFF=0,
     _GXDistAttnFn_GX_DA_GENTLE=1,
@@ -13033,8 +10981,7 @@ enum {
     _GXDistAttnFn_GX_DA_STEEP=3
 };
 typedef unsigned int _GXDistAttnFn;
-
-
+
 enum {
     _GXFBClamp_GX_CLAMP_NONE=0,
     _GXFBClamp_GX_CLAMP_TOP=1,
@@ -13042,28 +10989,19 @@ enum {
     _GXFBClamp_GX_CLAMP_BOTH=3
 };
 typedef unsigned int _GXFBClamp;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFBClamp - /decompHeaders/GXEnum.h/_GXFBClamp */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFBClamp - /decompHeaders/GXEnum.h/_GXFBClamp */
+
 typedef struct _GXFogAdjTable _GXFogAdjTable, *P_GXFogAdjTable;
-
-
+
 struct _GXFogAdjTable {
     u16 fogVals[10];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXFogAdjTable - /decompHeaders/GXTypes.h/_GXFogAdjTable */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXFogAdjTable - /decompHeaders/GXTypes.h/_GXFogAdjTable */
+
 enum {
     _GXFogType_GX_FOG_NONE=0,
     _GXFogType_GX_FOG_LINEAR=2,
@@ -13073,22 +11011,17 @@ enum {
     _GXFogType_GX_FOG_REVERSEXP2=7
 };
 typedef unsigned int _GXFogType;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFogType - /decompHeaders/GXEnum.h/_GXFogType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXFogType - /decompHeaders/GXEnum.h/_GXFogType */
+
 enum {
     _GXGamma_GX_GM_1_0=0,
     _GXGamma_GX_GM_1_7=1,
     _GXGamma_GX_GM_2_2=2
 };
 typedef unsigned int _GXGamma;
-
-
+
 enum {
     _GXIndTexAlphaSel_GX_ITBA_OFF=0,
     _GXIndTexAlphaSel_GX_ITBA_S=1,
@@ -13097,8 +11030,7 @@ enum {
     _GXIndTexAlphaSel_GX_MAX_ITBALPHA=4
 };
 typedef unsigned int _GXIndTexAlphaSel;
-
-
+
 enum {
     _GXIndTexBiasSel_GX_ITB_NONE=0,
     _GXIndTexBiasSel_GX_ITB_S=1,
@@ -13111,8 +11043,7 @@ enum {
     _GXIndTexBiasSel_GX_MAX_ITBIAS=8
 };
 typedef unsigned int _GXIndTexBiasSel;
-
-
+
 enum {
     _GXIndTexFormat_GX_ITF_8=0,
     _GXIndTexFormat_GX_ITF_5=1,
@@ -13121,8 +11052,7 @@ enum {
     _GXIndTexFormat_GX_MAX_ITFORMAT=4
 };
 typedef unsigned int _GXIndTexFormat;
-
-
+
 enum {
     _GXIndTexMtxID_GX_ITM_OFF=0,
     _GXIndTexMtxID_GX_ITM_0=1,
@@ -13136,8 +11066,7 @@ enum {
     _GXIndTexMtxID_GX_ITM_T2=11
 };
 typedef unsigned int _GXIndTexMtxID;
-
-
+
 enum {
     _GXIndTexScale_GX_ITS_1=0,
     _GXIndTexScale_GX_ITS_2=1,
@@ -13151,8 +11080,7 @@ enum {
     _GXIndTexScale_GX_MAX_ITSCALE=9
 };
 typedef unsigned int _GXIndTexScale;
-
-
+
 enum {
     _GXIndTexStageID_GX_IND_TEX_STAGE_0=0,
     _GXIndTexStageID_GX_IND_TEX_STAGE_1=1,
@@ -13161,14 +11089,10 @@ enum {
     _GXIndTexStageID_GX_IND_MAX_TEX_STAGE_ID=4
 };
 typedef unsigned int _GXIndTexStageID;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXIndTexStageID - /decompHeaders/GXEnum.h/_GXIndTexStageID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXIndTexStageID - /decompHeaders/GXEnum.h/_GXIndTexStageID */
+
 enum {
     _GXIndTexWrap_GX_ITW_OFF=0,
     _GXIndTexWrap_GX_ITW_256=1,
@@ -13180,8 +11104,7 @@ enum {
     _GXIndTexWrap_GX_MAX_ITWRAP=7
 };
 typedef unsigned int _GXIndTexWrap;
-
-
+
 enum {
     _GXLightID_GX_LIGHT_NULL=0,
     _GXLightID_GX_LIGHT0=1,
@@ -13195,14 +11118,10 @@ enum {
     _GXLightID_GX_MAX_LIGHT=256
 };
 typedef unsigned int _GXLightID;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXLightObj - /decompHeaders/GXTypes.h/_GXLightObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXLightObj - /decompHeaders/GXTypes.h/_GXLightObj */
+
 enum {
     _GXLogicOp_GX_LO_CLEAR=0,
     _GXLogicOp_GX_LO_AND=1,
@@ -13222,8 +11141,7 @@ enum {
     _GXLogicOp_GX_LO_SET=15
 };
 typedef unsigned int _GXLogicOp;
-
-
+
 enum {
     _GXMiscToken_GX_MT_NULL=0,
     _GXMiscToken_GX_MT_XF_FLUSH=1,
@@ -13231,14 +11149,10 @@ enum {
     _GXMiscToken_GX_MT_ABORT_WAIT_COPYOUT=3
 };
 typedef unsigned int _GXMiscToken;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXMiscToken - /decompHeaders/GXEnum.h/_GXMiscToken */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXMiscToken - /decompHeaders/GXEnum.h/_GXMiscToken */
+
 enum {
     _GXPTTexMtx_GX_PTTEXMTX0=64,
     _GXPTTexMtx_GX_PTTEXMTX1=67,
@@ -13263,8 +11177,7 @@ enum {
     _GXPTTexMtx_GX_PTIDENTITY=125
 };
 typedef unsigned int _GXPTTexMtx;
-
-
+
 enum {
     _GXPerf0_GX_PERF0_VERTICES=0,
     _GXPerf0_GX_PERF0_CLIP_VTX=1,
@@ -13304,8 +11217,7 @@ enum {
     _GXPerf0_GX_PERF0_NONE=35
 };
 typedef unsigned int _GXPerf0;
-
-
+
 enum {
     _GXPerf1_GX_PERF1_TEXELS=0,
     _GXPerf1_GX_PERF1_TX_IDLE=1,
@@ -13332,8 +11244,7 @@ enum {
     _GXPerf1_GX_PERF1_NONE=22
 };
 typedef unsigned int _GXPerf1;
-
-
+
 enum {
     _GXPixelFmt_GX_PF_RGB8_Z24=0,
     _GXPixelFmt_GX_PF_RGBA6_Z24=1,
@@ -13346,14 +11257,10 @@ enum {
     _GXPixelFmt_GX_MAX_PIXELFMT=8
 };
 typedef unsigned int _GXPixelFmt;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXPixelFmt - /decompHeaders/GXEnum.h/_GXPixelFmt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXPixelFmt - /decompHeaders/GXEnum.h/_GXPixelFmt */
+
 enum {
     _GXPosNrmMtx_GX_PNMTX0=0,
     _GXPosNrmMtx_GX_PNMTX1=3,
@@ -13367,8 +11274,7 @@ enum {
     _GXPosNrmMtx_GX_PNMTX9=27
 };
 typedef unsigned int _GXPosNrmMtx;
-
-
+
 enum {
     _GXPrimitive_GX_QUADS=128,
     _GXPrimitive_GX_TRIANGLES=144,
@@ -13379,18 +11285,15 @@ enum {
     _GXPrimitive_GX_POINTS=184
 };
 typedef unsigned int _GXPrimitive;
-
-
+
 enum {
     _GXProjectionType_GX_PERSPECTIVE=0,
     _GXProjectionType_GX_ORTHOGRAPHIC=1
 };
 typedef unsigned int _GXProjectionType;
-
-
+
 typedef struct _GXRenderModeObj _GXRenderModeObj, *P_GXRenderModeObj;
-
-
+
 struct _GXRenderModeObj {
     VITVMode viTVmode;
     u16 fbWidth;
@@ -13406,14 +11309,10 @@ struct _GXRenderModeObj {
     u8 sample_pattern[12][2];
     u8 vfilter[7];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXRenderModeObj - /decompHeaders/vi.h/_GXRenderModeObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXRenderModeObj - /decompHeaders/vi.h/_GXRenderModeObj */
+
 enum {
     _GXSpotFn_GX_SP_OFF=0,
     _GXSpotFn_GX_SP_FLAT=1,
@@ -13424,8 +11323,7 @@ enum {
     _GXSpotFn_GX_SP_RING2=6
 };
 typedef unsigned int _GXSpotFn;
-
-
+
 enum {
     _GXTevAlphaArg_GX_CA_APREV=0,
     _GXTevAlphaArg_GX_CA_A0=1,
@@ -13437,14 +11335,10 @@ enum {
     _GXTevAlphaArg_GX_CA_ZERO=7
 };
 typedef unsigned int _GXTevAlphaArg;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevAlphaArg - /decompHeaders/GXEnum.h/_GXTevAlphaArg */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevAlphaArg - /decompHeaders/GXEnum.h/_GXTevAlphaArg */
+
 enum {
     _GXTevBias_GX_TB_ZERO=0,
     _GXTevBias_GX_TB_ADDHALF=1,
@@ -13452,8 +11346,7 @@ enum {
     _GXTevBias_GX_MAX_TEVBIAS=3
 };
 typedef unsigned int _GXTevBias;
-
-
+
 enum {
     _GXTevClampMode_GX_TC_LINEAR=0,
     _GXTevClampMode_GX_TC_GE=1,
@@ -13462,8 +11355,7 @@ enum {
     _GXTevClampMode_GX_MAX_TEVCLAMPMODE=4
 };
 typedef unsigned int _GXTevClampMode;
-
-
+
 enum {
     _GXTevColorArg_GX_CC_CPREV=0,
     _GXTevColorArg_GX_CC_APREV=1,
@@ -13483,14 +11375,10 @@ enum {
     _GXTevColorArg_GX_CC_ZERO=15
 };
 typedef unsigned int _GXTevColorArg;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevColorArg - /decompHeaders/GXEnum.h/_GXTevColorArg */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevColorArg - /decompHeaders/GXEnum.h/_GXTevColorArg */
+
 enum {
     _GXTevColorChan_GX_CH_RED=0,
     _GXTevColorChan_GX_CH_GREEN=1,
@@ -13498,8 +11386,7 @@ enum {
     _GXTevColorChan_GX_CH_ALPHA=3
 };
 typedef unsigned int _GXTevColorChan;
-
-
+
 enum {
     _GXTevKAlphaSel_GX_TEV_KASEL_1=0,
     _GXTevKAlphaSel_GX_TEV_KASEL_7_8=1,
@@ -13527,8 +11414,7 @@ enum {
     _GXTevKAlphaSel_GX_TEV_KASEL_K3_A=31
 };
 typedef unsigned int _GXTevKAlphaSel;
-
-
+
 enum {
     _GXTevKColorID_GX_KCOLOR0=0,
     _GXTevKColorID_GX_KCOLOR1=1,
@@ -13537,8 +11423,7 @@ enum {
     _GXTevKColorID_GX_MAX_KCOLOR=4
 };
 typedef unsigned int _GXTevKColorID;
-
-
+
 enum {
     _GXTevKColorSel_GX_TEV_KCSEL_1=0,
     _GXTevKColorSel_GX_TEV_KCSEL_7_8=1,
@@ -13570,8 +11455,7 @@ enum {
     _GXTevKColorSel_GX_TEV_KCSEL_K3_A=31
 };
 typedef unsigned int _GXTevKColorSel;
-
-
+
 enum {
     _GXTevMode_GX_MODULATE=0,
     _GXTevMode_GX_DECAL=1,
@@ -13580,8 +11464,7 @@ enum {
     _GXTevMode_GX_PASSCLR=4
 };
 typedef unsigned int _GXTevMode;
-
-
+
 enum {
     _GXTevOp_GX_TEV_ADD=0,
     _GXTevOp_GX_TEV_SUB=1,
@@ -13597,8 +11480,7 @@ enum {
     _GXTevOp_GX_TEV_COMP_A8_EQ=17
 };
 typedef unsigned int _GXTevOp;
-
-
+
 enum {
     _GXTevRegID_GX_TEVPREV=0,
     _GXTevRegID_GX_TEVREG0=1,
@@ -13607,8 +11489,7 @@ enum {
     _GXTevRegID_GX_MAX_TEVREG=4
 };
 typedef unsigned int _GXTevRegID;
-
-
+
 enum {
     _GXTevScale_GX_CS_SCALE_1=0,
     _GXTevScale_GX_CS_SCALE_2=1,
@@ -13617,8 +11498,7 @@ enum {
     _GXTevScale_GX_MAX_TEVSCALE=4
 };
 typedef unsigned int _GXTevScale;
-
-
+
 enum {
     _GXTevStageID_GX_TEVSTAGE0=0,
     _GXTevStageID_GX_TEVSTAGE1=1,
@@ -13639,14 +11519,10 @@ enum {
     _GXTevStageID_GX_MAXTEVSTAGE=16
 };
 typedef unsigned int _GXTevStageID;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevStageID - /decompHeaders/GXEnum.h/_GXTevStageID */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTevStageID - /decompHeaders/GXEnum.h/_GXTevStageID */
+
 enum {
     _GXTevSwapSel_GX_TEV_SWAP0=0,
     _GXTevSwapSel_GX_TEV_SWAP1=1,
@@ -13655,8 +11531,7 @@ enum {
     _GXTevSwapSel_GX_MAX_TEVSWAP=4
 };
 typedef unsigned int _GXTevSwapSel;
-
-
+
 enum {
     _GXTexCacheSize_GX_TEXCACHE_32K=0,
     _GXTexCacheSize_GX_TEXCACHE_128K=1,
@@ -13664,8 +11539,7 @@ enum {
     _GXTexCacheSize_GX_TEXCACHE_NONE=3
 };
 typedef unsigned int _GXTexCacheSize;
-
-
+
 enum {
     _GXTexCoordID_GX_TEXCOORD0=0,
     _GXTexCoordID_GX_TEXCOORD1=1,
@@ -13679,8 +11553,7 @@ enum {
     _GXTexCoordID_GX_TEXCOORD_NULL=255
 };
 typedef unsigned int _GXTexCoordID;
-
-
+
 enum {
     _GXTexFmt_GX_TF_I4=0,
     _GXTexFmt_GX_TF_I8=1,
@@ -13709,14 +11582,10 @@ enum {
     _GXTexFmt_GX_CTF_Z16L=60
 };
 typedef unsigned int _GXTexFmt;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexFmt - /decompHeaders/GXEnum.h/_GXTexFmt */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexFmt - /decompHeaders/GXEnum.h/_GXTexFmt */
+
 enum {
     _GXTexGenSrc_GX_TG_POS=0,
     _GXTexGenSrc_GX_TG_NRM=1,
@@ -13741,8 +11610,7 @@ enum {
     _GXTexGenSrc_GX_TG_COLOR1=20
 };
 typedef unsigned int _GXTexGenSrc;
-
-
+
 enum {
     _GXTexGenType_GX_TG_MTX2X4=0,
     _GXTexGenType_GX_TG_MTX3X4=1,
@@ -13757,14 +11625,10 @@ enum {
     _GXTexGenType_GX_TG_SRTG=10
 };
 typedef unsigned int _GXTexGenType;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexGenType - /decompHeaders/GXEnum.h/_GXTexGenType */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTexGenType - /decompHeaders/GXEnum.h/_GXTexGenType */
+
 enum {
     _GXTexMapID_GX_TEXMAP0=0,
     _GXTexMapID_GX_TEXMAP1=1,
@@ -13779,8 +11643,7 @@ enum {
     _GXTexMapID_GX_TEX_DISABLE=256
 };
 typedef unsigned int _GXTexMapID;
-
-
+
 enum {
     _GXTexMtx_GX_TEXMTX0=30,
     _GXTexMtx_GX_TEXMTX1=33,
@@ -13795,29 +11658,22 @@ enum {
     _GXTexMtx_GX_IDENTITY=60
 };
 typedef unsigned int _GXTexMtx;
-
-
+
 enum {
     _GXTexMtxType_GX_MTX3x4=0,
     _GXTexMtxType_GX_MTX2x4=1
 };
 typedef unsigned int _GXTexMtxType;
-
-
+
 typedef struct _GXTexObj _GXTexObj, *P_GXTexObj;
-
-
+
 struct _GXTexObj {
     u8 pad[32];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexObj - /decompHeaders/GXTypes.h/_GXTexObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexObj - /decompHeaders/GXTypes.h/_GXTexObj */
+
 enum {
     _GXTexOffset_GX_TO_ZERO=0,
     _GXTexOffset_GX_TO_SIXTEENTH=1,
@@ -13828,28 +11684,19 @@ enum {
     _GXTexOffset_GX_MAX_TEXOFFSET=6
 };
 typedef unsigned int _GXTexOffset;
-
-
+
 typedef struct _GXTexRegion _GXTexRegion, *P_GXTexRegion;
-
-
+
 struct _GXTexRegion {
     u8 padding[16];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexRegion - /decompHeaders/GXTypes.h/_GXTexRegion */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/_GXTexWrapMode - /sdk/GXEnum.h/_GXTexWrapMode */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTexRegion - /decompHeaders/GXTypes.h/_GXTexRegion */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/GXEnum.h/_GXTexWrapMode - /sdk/GXEnum.h/_GXTexWrapMode */
+
 enum {
     _GXTlut_GX_TLUT0=0,
     _GXTlut_GX_TLUT1=1,
@@ -13876,42 +11723,28 @@ enum {
     _GXTlut_GX_BIGTLUT3=19
 };
 typedef unsigned int _GXTlut;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTlut - /decompHeaders/GXEnum.h/_GXTlut */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXEnum.h/_GXTlut - /decompHeaders/GXEnum.h/_GXTlut */
+
 typedef struct _GXTlutObj _GXTlutObj, *P_GXTlutObj;
-
-
+
 struct _GXTlutObj {
     u8 padding[12];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutObj - /decompHeaders/GXTypes.h/_GXTlutObj */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutObj - /decompHeaders/GXTypes.h/_GXTlutObj */
+
 typedef struct _GXTlutRegion _GXTlutRegion, *P_GXTlutRegion;
-
-
+
 struct _GXTlutRegion {
     u8 padding[16];
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutRegion - /decompHeaders/GXTypes.h/_GXTlutRegion */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXTlutRegion - /decompHeaders/GXTypes.h/_GXTlutRegion */
+
 enum {
     _GXTlutSize_GX_TLUT_16=1,
     _GXTlutSize_GX_TLUT_32=2,
@@ -13926,8 +11759,7 @@ enum {
     _GXTlutSize_GX_TLUT_16K=1024
 };
 typedef unsigned int _GXTlutSize;
-
-
+
 enum {
     _GXVCachePerf_GX_VC_POS=0,
     _GXVCachePerf_GX_VC_NRM=1,
@@ -13944,40 +11776,29 @@ enum {
     _GXVCachePerf_GX_VC_ALL=15
 };
 typedef unsigned int _GXVCachePerf;
-
-
+
 typedef struct _GXVtxAttrFmtList _GXVtxAttrFmtList, *P_GXVtxAttrFmtList;
-
-
+
 struct _GXVtxAttrFmtList {
     GXAttr mAttr;
     GXCompCnt mCount;
     GXCompType mType;
     u8 mFrac;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxAttrFmtList - /decompHeaders/GXTypes.h/_GXVtxAttrFmtList */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxAttrFmtList - /decompHeaders/GXTypes.h/_GXVtxAttrFmtList */
+
 typedef struct _GXVtxDescList _GXVtxDescList, *P_GXVtxDescList;
-
-
+
 struct _GXVtxDescList {
     GXAttr mAttr;
     GXAttrType mType;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxDescList - /decompHeaders/GXTypes.h/_GXVtxDescList */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/GXStruct.h/_GXVtxDescList - /decompHeaders/GXTypes.h/_GXVtxDescList */
+
 enum {
     _GXVtxFmt_GX_VTXFMT0=0,
     _GXVtxFmt_GX_VTXFMT1=1,
@@ -13990,8 +11811,7 @@ enum {
     _GXVtxFmt_GX_MAX_VTXFMT=8
 };
 typedef unsigned int _GXVtxFmt;
-
-
+
 enum {
     _GXZFmt16_GX_ZC_LINEAR=0,
     _GXZFmt16_GX_ZC_NEAR=1,
@@ -13999,8 +11819,7 @@ enum {
     _GXZFmt16_GX_ZC_FAR=3
 };
 typedef unsigned int _GXZFmt16;
-
-
+
 enum {
     _GXZTexOp_GX_ZT_DISABLE=0,
     _GXZTexOp_GX_ZT_ADD=1,
@@ -14008,36 +11827,27 @@ enum {
     _GXZTexOp_GX_MAX_ZTEXOP=3
 };
 typedef unsigned int _GXZTexOp;
-
-
+
 typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
-
-
+
 typedef struct _IO_marker _IO_marker, *P_IO_marker;
-
-
+
 typedef long __off_t;
-
-
+
 typedef void _IO_lock_t;
-
-
+
 typedef longlong __quad_t;
-
-
+
 typedef __quad_t __off64_t;
-
-
+
 typedef uint size_t;
-
-
+
 struct _IO_marker {
     struct _IO_marker *_next;
     struct _IO_FILE *_sbuf;
     int _pos;
 } __attribute__((packed));
-
-
+
 struct _IO_FILE {
     int _flags;
     char *_IO_read_ptr;
@@ -14069,66 +11879,42 @@ struct _IO_FILE {
     int _mode;
     char _unused2[56];
 } __attribute__((packed));
-
-
+
 typedef GXBlendFactor _SDK_GXBlendFactor;
-
-
+
 typedef GXBlendMode _SDK_GXBlendMode;
-
-
+
 typedef GXCompare _SDK_GXCompare;
-
-
+
 typedef GXFogType _SDK_GXFogType;
-
-
+
 typedef GXLogicOp _SDK_GXLogicOp;
-
-
+
 typedef GXPixelFmt _SDK_GXPixelFmt;
-
-
+
 typedef GXZFmt16 _SDK_GXZFmt16;
-
-
+
 typedef struct _IO_FILE __FILE;
-
-
+
 typedef u8 __OSException;
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSException.h/__OSException - /decompHeaders/OSException.h/__OSException */
-
-
-
-typedef void (*__OSExceptionHandler)(__OSException, struct OSContext *);
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSException.h/__OSExceptionHandler - /decompHeaders/OSException.h/__OSExceptionHandler */
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/__OSInterruptHandler - /decompHeaders/OSInterrupt.h/__OSInterruptHandler */
-
-
-
+
+
+/* WARNING! conflicting data type names: /sdk/OSException.h/__OSException - /decompHeaders/OSException.h/__OSException */
+
+typedef void (*__OSExceptionHandler)(__OSException, struct OSContext *);
+
+
+/* WARNING! conflicting data type names: /sdk/OSException.h/__OSExceptionHandler - /decompHeaders/OSException.h/__OSExceptionHandler */
+
+
+/* WARNING! conflicting data type names: /sdk/OSInterrupt.h/__OSInterruptHandler - /decompHeaders/OSInterrupt.h/__OSInterruptHandler */
+
 typedef void *__gnuc_va_list;
-
-
+
 typedef uint __socklen_t;
-
-
+
 typedef struct _sStats _sStats, *P_sStats;
-
-
+
 struct _sStats {
     int cycles[2];
     int loadStores[2];
@@ -14140,14 +11926,11 @@ struct _sStats {
     int instructionTotal;
     int hits;
 } __attribute__((packed));
-
-
+
 typedef struct aIPosSwap aIPosSwap, *PaIPosSwap;
-
-
+
 typedef struct aiPosSwap2 aiPosSwap2, *PaiPosSwap2;
-
-
+
 struct aiPosSwap2 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -14159,25 +11942,19 @@ struct aiPosSwap2 {
     undefined field7_0x4e;
     undefined field8_0x4f;
 } __attribute__((packed));
-
-
+
 struct aIPosSwap {
     struct aiPosSwap2 field0_0x0[2];
 } __attribute__((packed));
-
-
+
 typedef struct addrinfo addrinfo, *Paddrinfo;
-
-
+
 typedef __socklen_t socklen_t;
-
-
+
 typedef struct sockaddr sockaddr, *Psockaddr;
-
-
+
 typedef ushort sa_family_t;
-
-
+
 struct addrinfo {
     int ai_flags;
     int ai_family;
@@ -14188,14 +11965,12 @@ struct addrinfo {
     char *ai_canonname;
     struct addrinfo *ai_next;
 } __attribute__((packed));
-
-
+
 struct sockaddr {
     sa_family_t sa_family;
     char sa_data[14];
 } __attribute__((packed));
-
-
+
 enum {
     aiPositionSwapState_navigateToPitcher=0,
     aiPositionSwapState_onPitcher=1,
@@ -14206,25 +11981,19 @@ enum {
     aiPositionSwapState_returnToGameSequence=6
 };
 typedef unsigned char aiPositionSwapState;
-
-
+
 typedef struct angleRange angleRange, *PangleRange;
-
-
+
 struct angleRange {
     byte lower;
     byte upper;
 } __attribute__((packed));
-
-
+
 typedef struct astruct astruct, *Pastruct;
-
-
-
-
+
+
 typedef struct astruct_1 astruct_1, *Pastruct_1;
-
-
+
 struct astruct_1 {
     struct Vec3f field0_0x0;
     struct Vec3f field1_0xc;
@@ -14420,11 +12189,9 @@ struct astruct_1 {
     undefined field191_0x353;
     struct Vec3f field192_0x354;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_10 astruct_10, *Pastruct_10;
-
-
+
 struct astruct_10 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -14549,11 +12316,9 @@ struct astruct_10 {
     short field120_0x7e;
     short field121_0x80;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_10_conflict astruct_10_conflict, *Pastruct_10_conflict;
-
-
+
 struct astruct_10_conflict {
     int *field0_0x0;
     undefined field1_0x4;
@@ -14756,11 +12521,9 @@ struct astruct_10_conflict {
     undefined field198_0xcc;
     char field199_0xcd;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_11 astruct_11, *Pastruct_11;
-
-
+
 struct astruct_11 {
     EnumCTRLControlType field0_0x0;
     undefined field1_0x1;
@@ -14918,11 +12681,9 @@ struct astruct_11 {
     undefined field153_0xa8;
     char field154_0xa9;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_12 astruct_12, *Pastruct_12;
-
-
+
 struct astruct_12 {
     byte field0_0x0;
     byte isTriangleStrip;  /* Created by retype action */
@@ -14933,11 +12694,9 @@ struct astruct_12 {
     short field6_0xa;
     float field7_0xc;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_13 astruct_13, *Pastruct_13;
-
-
+
 struct astruct_13 {
     struct Vec3f field0_0x0;
     struct Vec3f field1_0xc;
@@ -14946,11 +12705,9 @@ struct astruct_13 {
     struct Vec3f field4_0x30;
     struct Vec3f field5_0x3c;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_14 astruct_14, *Pastruct_14;
-
-
+
 struct astruct_14 {
     undefined field0_0x0;
     byte field1_0x1;
@@ -15001,11 +12758,9 @@ struct astruct_14 {
     undefined field46_0x2e;
     undefined field47_0x2f;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_2 astruct_2, *Pastruct_2;
-
-
+
 struct astruct_2 {
     int field0_0x0;
     int field1_0x4;
@@ -15024,11 +12779,9 @@ struct astruct_2 {
     int field14_0x38;
     int field15_0x3c;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_3 astruct_3, *Pastruct_3;
-
-
+
 struct astruct_3 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -15886,11 +13639,9 @@ struct astruct_3 {
     float field853_0x358;
     float field854_0x35c;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_4 astruct_4, *Pastruct_4;
-
-
+
 struct astruct_4 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -15911,11 +13662,9 @@ struct astruct_4 {
     undefined field16_0x13;
     short field17_0x14;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_5 astruct_5, *Pastruct_5;
-
-
+
 struct astruct_5 {
     struct Vec3f field0_0x0[72];
     undefined field1_0x360;
@@ -15923,11 +13672,9 @@ struct astruct_5 {
     undefined field3_0x362;
     undefined field4_0x363;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_6 astruct_6, *Pastruct_6;
-
-
+
 struct astruct_6 {
     undefined **field0_0x0;
     undefined field1_0x4;
@@ -16674,11 +14421,9 @@ struct astruct_6 {
     undefined field742_0x2fe;
     undefined field743_0x2ff;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_7 astruct_7, *Pastruct_7;
-
-
+
 struct astruct_7 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -16714,11 +14459,9 @@ struct astruct_7 {
     undefined field31_0x1f;
     struct LITLightPtr *LITLightPtr;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_8 astruct_8, *Pastruct_8;
-
-
+
 struct astruct_8 {
     void *imagePtr;
     void *CLUT;
@@ -16736,13 +14479,10 @@ struct astruct_8 {
     short field13_0x18;
     byte field14_0x1a;
 } __attribute__((packed));
-
-
+
 typedef struct astruct_9 astruct_9, *Pastruct_9;
-
-
-
-
+
+
 enum {
     atBatResult_grandSlam=1,
     atBatResult__3RunHR=2,
@@ -16785,18 +14525,15 @@ enum {
     atBatResult_foul=44
 };
 typedef unsigned short atBatResult;
-
-
+
 typedef struct atBatResultTracker atBatResultTracker, *PatBatResultTracker;
-
-
+
 struct atBatResultTracker {
     short bitCode;  /* bits1-3: RBIs, 4-7: relevantFielder (or closest outfielder on HRs), 8-11: batter roster ID 12-14: inning,  */
     byte batter;
     EnumAtBatResult_byte atBatResult;
 } __attribute__((packed));
-
-
+
 enum {
     autoMovementCodeEnum_nothingSet_StayStill=0,
     autoMovementCodeEnum_coveringBase=2,
@@ -16809,8 +14546,7 @@ enum {
     autoMovementCodeEnum_catchAThrowRelated=15
 };
 typedef unsigned char autoMovementCodeEnum;
-
-
+
 enum {
     autoMovementCodeEnumWord_nothingSet_StayStill=0,
     autoMovementCodeEnumWord_goTowardsHitBall_AITeam=1,
@@ -16826,20 +14562,16 @@ enum {
     autoMovementCodeEnumWord__1Unknown=4294967295
 };
 typedef unsigned int autoMovementCodeEnumWord;
-
-
+
 typedef struct autoMovementFunctions autoMovementFunctions, *PautoMovementFunctions;
-
-
+
 struct autoMovementFunctions {
     autoMovementCodeEnumWord autoMovementCode;
     void * functionAddr;
 } __attribute__((packed));
-
-
+
 typedef struct bB_barrelStruct_ bB_barrelStruct_, *PbB_barrelStruct_;
-
-
+
 enum {
     enum_bb_barrelState_switchToNewBarrel_=1,
     enum_bb_barrelState_neutral=2,
@@ -16847,8 +14579,7 @@ enum {
     enum_bb_barrelState_blownUp=4
 };
 typedef unsigned char enum_bb_barrelState;
-
-
+
 enum {
     enum_bb_barrelColour_red=0,
     enum_bb_barrelColour_blue=1,
@@ -16856,8 +14587,7 @@ enum {
     enum_bb_barrelColour_brown=3
 };
 typedef unsigned char enum_bb_barrelColour;
-
-
+
 struct bB_barrelStruct_ {
     struct Vec3f currentPos;
     struct Vec3f desiredPos;
@@ -16871,32 +14601,26 @@ struct bB_barrelStruct_ {
     byte replacingBarrelInd_;
     byte pad;
 } __attribute__((packed));
-
-
+
 typedef struct bB_unknownStruct2 bB_unknownStruct2, *PbB_unknownStruct2;
-
-
+
 struct bB_unknownStruct2 {
     short field0_0x0;
     short field1_0x2;
     struct bB_barrelStruct_ field2_0x4[15];
 } __attribute__((packed));
-
-
+
 typedef struct bJScenario bJScenario, *PbJScenario;
-
-
+
 struct bJScenario {
     short scoreDiff;
     short outs;
     short runnerStartingBase;
     short startingBatter;
 } __attribute__((packed));
-
-
+
 typedef struct bailTrailRelatedStruct bailTrailRelatedStruct, *PbailTrailRelatedStruct;
-
-
+
 struct bailTrailRelatedStruct {
     byte field0_0x0;
     byte field1_0x1;
@@ -16908,21 +14632,17 @@ struct bailTrailRelatedStruct {
     byte field7_0x7;
     byte field8_0x8;
 } __attribute__((packed));
-
-
+
 typedef struct ballScaleFactors ballScaleFactors, *PballScaleFactors;
-
-
+
 struct ballScaleFactors {
     float atBat;
     float liveBall;
     float replay;
 } __attribute__((packed));
-
-
+
 typedef struct ballStrikeOutStruct ballStrikeOutStruct, *PballStrikeOutStruct;
-
-
+
 struct ballStrikeOutStruct {
     int Strikes;
     uint Balls;
@@ -16936,11 +14656,9 @@ struct ballStrikeOutStruct {
     byte stateRelated;
     byte pad[2];
 } __attribute__((packed));
-
-
+
 typedef struct ballTrailRelatedStruct2 ballTrailRelatedStruct2, *PballTrailRelatedStruct2;
-
-
+
 struct ballTrailRelatedStruct2 {
     byte field0_0x0;
     byte field1_0x1;
@@ -16949,8 +14667,7 @@ struct ballTrailRelatedStruct2 {
     byte field4_0x4;
     byte field5_0x5;
 } __attribute__((packed));
-
-
+
 enum {
     barrelBatterPitchNum_byte_mushroom=0,
     barrelBatterPitchNum_byte_flower=1,
@@ -16959,8 +14676,7 @@ enum {
     barrelBatterPitchNum_byte_fire=4
 };
 typedef unsigned char barrelBatterPitchNum_byte;
-
-
+
 enum {
     barrelBatterPitchNum_int_mushroom=0,
     barrelBatterPitchNum_int_flower=1,
@@ -16969,8 +14685,7 @@ enum {
     barrelBatterPitchNum_int_fire=4
 };
 typedef unsigned int barrelBatterPitchNum_int;
-
-
+
 enum {
     barrelState_notFired_=0,
     barrelState_launching_=1,
@@ -16978,84 +14693,66 @@ enum {
     barrelState_launched_=3
 };
 typedef unsigned char barrelState;
-
-
+
 typedef struct baseCoordinates baseCoordinates, *PbaseCoordinates;
-
-
+
 struct baseCoordinates {
     float *field0_0x0[2];
     float *field1_0x8[2];
     float *field2_0x10[2];
     float *field3_0x18[2];
 } __attribute__((packed));
-
-
+
 enum {
     baseThrownToEnum_pitcherCutoff=5,
     baseThrownToEnum_outfieldCutoff=6
 };
 typedef unsigned short baseThrownToEnum;
-
-
+
 typedef struct bobbleOdds bobbleOdds, *PbobbleOdds;
-
-
+
 typedef struct bobbleOddsLocation bobbleOddsLocation, *PbobbleOddsLocation;
-
-
+
 struct bobbleOddsLocation {
     byte front;
     byte side;
     byte action;
 } __attribute__((packed));
-
-
+
 struct bobbleOdds {
     struct bobbleOddsLocation normalCatch;
     struct bobbleOddsLocation preBounceCatch;
 } __attribute__((packed));
-
-
+
 typedef struct bobbleStruct bobbleStruct, *PbobbleStruct;
-
-
+
 typedef struct charClassBobbleOdds charClassBobbleOdds, *PcharClassBobbleOdds;
-
-
+
 struct charClassBobbleOdds {
     struct bobbleOdds balanced;
     struct bobbleOdds power;
     struct bobbleOdds speed;
     struct bobbleOdds technique;
 } __attribute__((packed));
-
-
+
 struct bobbleStruct {
     struct charClassBobbleOdds nonToyField;
     struct charClassBobbleOdds toyField;
 } __attribute__((packed));
-
-
+
 typedef struct bodyCheckAngleConstants bodyCheckAngleConstants, *PbodyCheckAngleConstants;
-
-
+
 struct bodyCheckAngleConstants {
     short ballAngleLower;
     short ballAngleUpper;
     short fielderKnockoutAngle;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /musyx/musyx.h/bool - /bool */
-
-
-
+
+
+/* WARNING! conflicting data type names: /musyx/musyx.h/bool - /bool */
+
 typedef struct bounceConstants bounceConstants, *PbounceConstants;
-
-
+
 struct bounceConstants {
     float y1stBounceSpeedKept;
     float yOtherBouncesSpeedKept;
@@ -17063,20 +14760,16 @@ struct bounceConstants {
     float xOtherBouncesSpeedKept;
     float rollingSpeedKept;
 } __attribute__((packed));
-
-
+
 typedef struct boundingBox boundingBox, *PboundingBox;
-
-
+
 struct boundingBox {
     struct Vec min;
     struct Vec max;
 } __attribute__((packed));
-
-
+
 typedef struct bowserStadiumFireSpawners bowserStadiumFireSpawners, *PbowserStadiumFireSpawners;
-
-
+
 struct bowserStadiumFireSpawners {
     float x;
     float y;
@@ -17091,11 +14784,9 @@ struct bowserStadiumFireSpawners {
     byte directionRandomness;
     byte angleSpread;
 } __attribute__((packed));
-
-
+
 typedef struct bowserStadiumStarPads bowserStadiumStarPads, *PbowserStadiumStarPads;
-
-
+
 struct bowserStadiumStarPads {
     float x;
     float y;
@@ -17106,8 +14797,7 @@ struct bowserStadiumStarPads {
     byte field6_0x12;
     byte field7_0x13;
 } __attribute__((packed));
-
-
+
 enum {
     bufferedThrowLoc_home=0,
     bufferedThrowLoc__1st=1,
@@ -17118,37 +14808,30 @@ enum {
     bufferedThrowLoc_none=255
 };
 typedef unsigned short bufferedThrowLoc;
-
-
+
 typedef struct byteByteShort byteByteShort, *PbyteByteShort;
-
-
+
 struct byteByteShort {
     byte byte;
     byte byte2;
     short short_;
 } __attribute__((packed));
-
-
+
 typedef struct cameraData cameraData, *PcameraData;
-
-
+
 struct cameraData {
     struct Vec3f position;
     float zoom;
     struct Vec2s rotation;
 } __attribute__((packed));
-
-
+
 typedef struct cameraData2 cameraData2, *PcameraData2;
-
-
+
 struct cameraData2 {
     struct Vec3f field0_0x0;
     struct Vec2s field1_0xc;
 } __attribute__((packed));
-
-
+
 enum {
     cameraScene_atBat=1,
     cameraScene_liveBall=2,
@@ -17200,22 +14883,18 @@ enum {
     cameraScene_challenge_versus_scoutflag_=106
 };
 typedef unsigned int cameraScene;
-
-
+
 typedef struct cameraStruct cameraStruct, *PcameraStruct;
-
-
+
 typedef struct matchCam_targetCoords matchCam_targetCoords, *PmatchCam_targetCoords;
-
-
+
 struct matchCam_targetCoords {
     struct Vec3f field0_0x0;
     struct Vec3f currentMovement;
     struct Vec3f desired;
     struct Vec3f past[9];
 } __attribute__((packed));
-
-
+
 struct cameraStruct {
     byte presetCameraAngle;
     undefined field1_0x1;
@@ -17311,11 +14990,9 @@ struct cameraStruct {
     byte field91_0x11a;
     byte field92_0x11b;
 } __attribute__((packed));
-
-
+
 typedef struct cameraStruct_bOD_ cameraStruct_bOD_, *PcameraStruct_bOD_;
-
-
+
 struct cameraStruct_bOD_ {
     byte presetCameraAngle;
     undefined field1_0x1;
@@ -17460,8 +15137,7 @@ struct cameraStruct_bOD_ {
     byte field140_0x11a;
     byte field141_0x11b;
 } __attribute__((packed));
-
-
+
 enum {
     captainStarType_int__0Default=0,
     captainStarType_int_Mario=1,
@@ -17478,11 +15154,9 @@ enum {
     captainStarType_int_Daisy=12
 };
 typedef unsigned int captainStarType_int;
-
-
+
 typedef struct captainStarVertRanges captainStarVertRanges, *PcaptainStarVertRanges;
-
-
+
 struct captainStarVertRanges {
     struct vertRangeSwingTypes field0_0x0;
     struct vertRangeSwingTypes field1_0x14;
@@ -17497,19 +15171,15 @@ struct captainStarVertRanges {
     struct vertRangeSwingTypes field10_0xc8;
     struct vertRangeSwingTypes field11_0xdc;
 } __attribute__((packed));
-
-
+
 typedef struct captainVertAngleRange captainVertAngleRange, *PcaptainVertAngleRange;
-
-
+
 struct captainVertAngleRange {
     struct captainStarVertRanges field0_0x0;
 } __attribute__((packed));
-
-
+
 typedef struct castleFireObject castleFireObject, *PcastleFireObject;
-
-
+
 enum {
     fireObjectState_default_=0,
     fireObjectState_unk1=1,
@@ -17517,8 +15187,7 @@ enum {
     fireObjectState_fireEnded=3
 };
 typedef unsigned char fireObjectState;
-
-
+
 struct castleFireObject {
     struct CTRLControl control;
     byte pad[16];
@@ -17563,11 +15232,9 @@ struct castleFireObject {
     byte field40_0xcb;
     byte field41_0xcc[28];
 } __attribute__((packed));
-
-
+
 typedef struct castleThwompObj castleThwompObj, *PcastleThwompObj;
-
-
+
 enum {
     thwompState_regular=0,
     thwompState_startingSlam=1,
@@ -17576,8 +15243,7 @@ enum {
     thwompState_rising=4
 };
 typedef unsigned char thwompState;
-
-
+
 struct castleThwompObj {
     struct CTRLControl control;
     byte pad[16];
@@ -17619,8 +15285,7 @@ struct castleThwompObj {
     byte field37_0xcb;
     byte field38_0xcc[28];
 } __attribute__((packed));
-
-
+
 enum {
     chainChompState_sleeping_=0,
     chainChompState_awake_=1,
@@ -17629,8 +15294,7 @@ enum {
     chainChompState_returningHome=5
 };
 typedef unsigned char chainChompState;
-
-
+
 enum {
     challengeCheckStarsLoadingScreenNum_nothing=0,
     challengeCheckStarsLoadingScreenNum_loadCheckStars=1,
@@ -17641,14 +15305,11 @@ enum {
     challengeCheckStarsLoadingScreenNum_exitCharView=6
 };
 typedef unsigned char challengeCheckStarsLoadingScreenNum;
-
-
+
 typedef struct challengeTrackingStruct challengeTrackingStruct, *PchallengeTrackingStruct;
-
-
+
 typedef struct structScoutFlagQuantites structScoutFlagQuantites, *PstructScoutFlagQuantites;
-
-
+
 enum {
     enumChallengeCaptain_mario=0,
     enumChallengeCaptain_peach=1,
@@ -17658,8 +15319,7 @@ enum {
     enumChallengeCaptain_bowser=5
 };
 typedef unsigned char enumChallengeCaptain;
-
-
+
 enum {
     characterVariantClassification_primaryCaptain=0,
     characterVariantClassification_secondaryCaptain=1,
@@ -17668,19 +15328,16 @@ enum {
     characterVariantClassification_secondaryVariant=4
 };
 typedef unsigned char characterVariantClassification;
-
-
+
 typedef struct starMissionTrackingPair starMissionTrackingPair, *PstarMissionTrackingPair;
-
-
+
 enum {
     enumChallengeRecruitmentCd_notRecruited=0,
     enumChallengeRecruitmentCd_recruited=1,
     enumChallengeRecruitmentCd_onBJTeam=2
 };
 typedef unsigned char enumChallengeRecruitmentCd;
-
-
+
 enum {
     enumStarMissionTracking_Completed_notCompleted=0,
     enumStarMissionTracking_Completed_track1Completion=1,
@@ -17688,14 +15345,12 @@ enum {
     enumStarMissionTracking_Completed_completedConditionally=255  /* Mission requirement fulfilled but game needs to end to save */
 };
 typedef unsigned char enumStarMissionTracking_Completed;
-
-
+
 struct starMissionTrackingPair {
     enumStarMissionTracking_Completed completed_quantity;
     byte shownOnPauseMenu;
 } __attribute__((packed));
-
-
+
 struct challengeTrackingStruct {
     struct structScoutFlagQuantites *scoutFlagPointer;
     enumChallengeCaptain challengeCaptain;  /* Created by retype action */
@@ -17709,8 +15364,7 @@ struct challengeTrackingStruct {
     undefined field9_0x32;
     undefined field10_0x33;
 } __attribute__((packed));
-
-
+
 struct structScoutFlagQuantites {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -17718,11 +15372,9 @@ struct structScoutFlagQuantites {
     undefined field3_0x3;
     byte scoutFlagsRequired[4][6];
 } __attribute__((packed));
-
-
+
 typedef struct characterIndexTable characterIndexTable, *PcharacterIndexTable;
-
-
+
 struct characterIndexTable {
     byte multiCharacterGroup;
     enumCharacterID_byte noDupeCharID;
@@ -17731,11 +15383,9 @@ struct characterIndexTable {
     byte captainInd;
     byte variantNumber;
 } __attribute__((packed));
-
-
+
 typedef struct chaseRunnerStruct chaseRunnerStruct, *PchaseRunnerStruct;
-
-
+
 struct chaseRunnerStruct {
     float field0_0x0;
     float field1_0x4;
@@ -17765,57 +15415,46 @@ struct chaseRunnerStruct {
     short field25_0x13a;
     byte field26_0x13c[24];
 } __attribute__((packed));
-
-
+
 typedef struct collisionBoxHeader collisionBoxHeader, *PcollisionBoxHeader;
-
-
+
 enum {
     enumTriangleGroupType_nonStrip=0,
     enumTriangleGroupType_triangleStrip=1
 };
 typedef unsigned short enumTriangleGroupType;
-
-
+
 struct collisionBoxHeader {
     enumTriangleGroupType triangleGroupType;
     ushort triCount;
 } __attribute__((packed));
-
-
+
 typedef struct collisionHeader collisionHeader, *PcollisionHeader;
-
-
+
 struct collisionHeader {
     short count;
     short unk4300;
 } __attribute__((packed));
-
-
+
 typedef struct contactArray contactArray, *PcontactArray;
-
-
+
 struct contactArray {
     short powerLower;
     short powerUpper;
     short addedGravity;
 } __attribute__((packed));
-
-
+
 typedef struct controlOptions controlOptions, *PcontrolOptions;
-
-
+
 struct controlOptions {
     byte easyBatting;
     byte autoFielding;
     byte autoRunning;
     byte dropSpots;
 } __attribute__((packed));
-
-
+
 typedef struct dKStadiumGharials dKStadiumGharials, *PdKStadiumGharials;
-
-
+
 struct dKStadiumGharials {
     float xTrans_;
     float yTrans_;
@@ -17830,11 +15469,9 @@ struct dKStadiumGharials {
     byte field10_0x16;
     byte field11_0x17;
 } __attribute__((packed));
-
-
+
 typedef struct dKStadiumObject dKStadiumObject, *PdKStadiumObject;
-
-
+
 struct dKStadiumObject {
     float x;
     float y;
@@ -17845,8 +15482,7 @@ struct dKStadiumObject {
     byte field6_0x12;
     byte field7_0x13;
 } __attribute__((packed));
-
-
+
 enum {
     dashState_noDash=0,
     dashState_accelerating=1,
@@ -17855,5358 +15491,2690 @@ enum {
     dashState_decelerating_noBOrStickInput_=4
 };
 typedef unsigned char dashState;
-
-
-#define AI_CONTROL 0
-
-
-
-#define AI_CONTROL_DSP_SAMPLE_COUNT 4
-
-
-
-#define AI_CONTROL_DSP_SAMPLE_RATE 64
-
-
-
-#define AI_CONTROL_PLAY_STATE 1
-
-
-
-#define AI_CONTROL_STREAM_SAMPLE_COUNT 32
-
-
-
-#define AI_CONTROL_STREAM_SAMPLE_RATE 2
-
-
-
-#define AI_CONTROL_UNKNOWN8 8
-
-
-
-#define AI_INTRPT_TIMING 3
-
-
-
-#define AI_SAMPLERATE_32KHZ 0
-
-
-
-#define AI_SAMPLERATE_48KHZ 1
-
-
-
-#define AI_SAMPLE_COUNTER 2
-
-
-
-#define AI_STREAM_START 1
-
-
-
-#define AI_STREAM_STOP 0
-
-
-
-#define AI_VOLUME 1
-
-
-
-#define ARAM_DIR_ARAM_TO_MRAM 1
-
-
-
-#define ARAM_DIR_MRAM_TO_ARAM 0
-
-
-
-#define ARENAHI_ADDR 2147483700
-
-
-
-#define ARQ_DMA_ALIGNMENT 32
-
-
-
-#define ARQ_PRIORITY_HIGH 1
-
-
-
-#define ARQ_PRIORITY_LOW 0
-
-
-
-#define ARQ_TYPE_ARAM_TO_MRAM 1
-
-
-
-#define ARQ_TYPE_MRAM_TO_ARAM 0
-
-
-
-#define BIAS 730485
-
-
-
-#define BOOTINFO2_ADDR 2147483892
-
-
-
-#define BSD 199103
-
-
-
-#define CARD_ATTR_COMPANY 64
-
-
-
-#define CARD_ATTR_GLOBAL 32
-
-
-
-#define CARD_ATTR_NO_COPY 8
-
-
-
-#define CARD_ATTR_NO_MOVE 16
-
-
-
-#define CARD_ATTR_PUBLIC 4
-
-
-
-#define CARD_BANNER_HEIGHT 32
-
-
-
-#define CARD_BANNER_WIDTH 96
-
-
-
-#define CARD_COMMENT_SIZE 64
-
-
-
-#define CARD_ENCODE_ANSI 0
-
-
-
-#define CARD_ENCODE_SJIS 1
-
-
-
-#define CARD_FAT_AVAIL 0
-
-
-
-#define CARD_FAT_CHECKCODE 2
-
-
-
-#define CARD_FAT_CHECKSUM 0
-
-
-
-#define CARD_FAT_CHECKSUMINV 1
-
-
-
-#define CARD_FAT_FREEBLOCKS 3
-
-
-
-#define CARD_FAT_LASTSLOT 4
-
-
-
-#define CARD_FILENAME_MAX 32
-
-
-
-#define CARD_ICON_HEIGHT 32
-
-
-
-#define CARD_ICON_MAX 8
-
-
-
-#define CARD_ICON_WIDTH 32
-
-
-
-#define CARD_MAX_FILE 127
-
-
-
-#define CARD_MAX_MOUNT_STEP 7
-
-
-
-#define CARD_MAX_SIZE 16777216
-
-
-
-#define CARD_MODE_FAST 1
-
-
-
-#define CARD_MODE_NORMAL 0
-
-
-
-#define CARD_NUM_SYSTEM_BLOCK 5
-
-
-
-#define CARD_PAGE_SIZE 128
-
-
-
-#define CARD_READ_SIZE 512
-
-
-
-#define CARD_RESULT_BROKEN -6
-
-
-
-#define CARD_RESULT_BUSY -1
-
-
-
-#define CARD_RESULT_CANCELED -14
-
-
-
-#define CARD_RESULT_ENCODING -13
-
-
-
-#define CARD_RESULT_EXIST -7
-
-
-
-#define CARD_RESULT_FATAL_ERROR -128
-
-
-
-#define CARD_RESULT_INSSPACE -9
-
-
-
-#define CARD_RESULT_IOERROR -5
-
-
-
-#define CARD_RESULT_LIMIT -11
-
-
-
-#define CARD_RESULT_NAMETOOLONG -12
-
-
-
-#define CARD_RESULT_NOCARD -3
-
-
-
-#define CARD_RESULT_NOENT -8
-
-
-
-#define CARD_RESULT_NOFILE -4
-
-
-
-#define CARD_RESULT_NOPERM -10
-
-
-
-#define CARD_RESULT_READY 0
-
-
-
-#define CARD_RESULT_UNLOCKED 1
-
-
-
-#define CARD_RESULT_WRONGDEVICE -2
-
-
-
-#define CARD_SEG_SIZE 512
-
-
-
-#define CARD_STAT_ANIM_BOUNCE 4
-
-
-
-#define CARD_STAT_ANIM_LOOP 0
-
-
-
-#define CARD_STAT_ANIM_MASK 4
-
-
-
-#define CARD_STAT_BANNER_C8 1
-
-
-
-#define CARD_STAT_BANNER_MASK 3
-
-
-
-#define CARD_STAT_BANNER_NONE 0
-
-
-
-#define CARD_STAT_BANNER_RGB5A3 2
-
-
-
-#define CARD_STAT_ICON_C8 1
-
-
-
-#define CARD_STAT_ICON_MASK 3
-
-
-
-#define CARD_STAT_ICON_NONE 0
-
-
-
-#define CARD_STAT_ICON_RGB5A3 2
-
-
-
-#define CARD_STAT_SPEED_END 0
-
-
-
-#define CARD_STAT_SPEED_FAST 1
-
-
-
-#define CARD_STAT_SPEED_MASK 3
-
-
-
-#define CARD_STAT_SPEED_MIDDLE 2
-
-
-
-#define CARD_STAT_SPEED_SLOW 3
-
-
-
-#define CARD_SYSTEM_BLOCK_SIZE 8192
-
-
-
-#define CARD_WORKAREA_SIZE 40960
-
-
-
-#define CHAN_NONE -1
-
-
-
-#define CHAR_BIT 8
-
-
-
-#define CHAR_MAX 127
-
-
-
-#define CHAR_MIN -128
-
-
-
-#define CTR 9
-
-
-
-#define CTRL_MTX 16
-
-
-
-#define CTRL_ROT_EULER 2
-
-
-
-#define CTRL_ROT_QUAT 4
-
-
-
-#define CTRL_SCALE 1
-
-
-
-#define CTRL_TRANS 8
-
-
-
-#define DABR 1013
-
-
-
-#define DAR 19
-
-
-
-#define DBAT0L 537
-
-
-
-#define DBAT0U 536
-
-
-
-#define DBAT1L 539
-
-
-
-#define DBAT1U 538
-
-
-
-#define DBAT2L 541
-
-
-
-#define DBAT2U 540
-
-
-
-#define DBAT3L 3
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3L - /decompHeaders/PPCArch.h/defines/define_DBAT3L */
-
-
-
-#define DBAT3U 3
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3U - /decompHeaders/PPCArch.h/defines/define_DBAT3U */
-
-
-
-#define DEBUGFLAG_ADDR 2147496168
-
-
-
-#define DEC 22
-
-
-
-#define DEMOWIN_FLAGS_INIT 1
-
-
-
-#define DEMOWIN_FLAGS_OPENED 2
-
-
-
-#define DI_CMD_BUF_0 2
-
-
-
-#define DI_CMD_BUF_1 3
-
-
-
-#define DI_CMD_BUF_2 4
-
-
-
-#define DI_CONFIG 9
-
-
-
-#define DI_CONTROL 7
-
-
-
-#define DI_COVER_STATUS 1
-
-
-
-#define DI_DMA_LENGTH 6
-
-
-
-#define DI_DMA_MEM_ADDR 5
-
-
-
-#define DI_MM_BUF 8
-
-
-
-#define DI_STATUS 0
-
-
-
-#define DMA_L 923
-
-
-
-#define DMA_L_FLUSH 1
-
-
-
-#define DMA_L_LC_ADDR_MASK 4294967264
-
-
-
-#define DMA_L_LEN_MASK 12
-
-
-
-#define DMA_L_LOAD 16
-
-
-
-#define DMA_L_STORE 0
-
-
-
-#define DMA_L_TRIGGER 2
-
-
-
-#define DMA_U 922
-
-
-
-#define DMA_U_ADDR_MASK 4294967264
-
-
-
-#define DMA_U_LEN_U_MASK 31
-
-
-
-#define DOL_ADDR_LIMIT 2154823680
-
-
-
-#define DOMAIN 1
-
-
-
-#define DSISR 18
-
-
-
-#define DSP_ARAM_DMA_ARAM_HI 18
-
-
-
-#define DSP_ARAM_DMA_ARAM_LO 19
-
-
-
-#define DSP_ARAM_DMA_MM_HI 16
-
-
-
-#define DSP_ARAM_DMA_MM_LO 17
-
-
-
-#define DSP_ARAM_DMA_SIZE_HI 20
-
-
-
-#define DSP_ARAM_DMA_SIZE_LO 21
-
-
-
-#define DSP_ARAM_MODE 11
-
-
-
-#define DSP_ARAM_REFRESH 13
-
-
-
-#define DSP_ARAM_SIZE 9
-
-
-
-#define DSP_CONTROL_STATUS 5
-
-
-
-#define DSP_DMA_BYTES_LEFT 29
-
-
-
-#define DSP_DMA_CONTROL_LEN 27
-
-
-
-#define DSP_DMA_START_FLAG 32768
-
-
-
-#define DSP_DMA_START_HI 24
-
-
-
-#define DSP_DMA_START_LO 25
-
-
-
-#define DSP_MAILBOX_IN_HI 0
-
-
-
-#define DSP_MAILBOX_IN_LO 1
-
-
-
-#define DSP_MAILBOX_OUT_HI 2
-
-
-
-#define DSP_MAILBOX_OUT_LO 3
-
-
-
-#define DSP_TASK_FLAG_ATTACHED 1
-
-
-
-#define DSP_TASK_FLAG_CANCEL 2
-
-
-
-#define DSP_TASK_FLAG_CLEARALL 0
-
-
-
-#define DSP_TASK_STATE_DONE 3
-
-
-
-#define DSP_TASK_STATE_INIT 0
-
-
-
-#define DSP_TASK_STATE_RUN 1
-
-
-
-#define DSP_TASK_STATE_YIELD 2
-
-
-
-#define DTK_MODE_ALLREPEAT 1
-
-
-
-#define DTK_MODE_NOREPEAT 0
-
-
-
-#define DTK_MODE_REPEAT1 2
-
-
-
-#define DTK_STATE_BUSY 3
-
-
-
-#define DTK_STATE_PAUSE 2
-
-
-
-#define DTK_STATE_PREPARE 4
-
-
-
-#define DTK_STATE_RUN 1
-
-
-
-#define DTK_STATE_STOP 0
-
-
-
-#define DVD_AIS_SUCCESS 0
-
-
-
-#define DVD_COMMAND_AUDIO_BUFFER_CONFIG 13
-
-
-
-#define DVD_COMMAND_BSREAD 4
-
-
-
-#define DVD_COMMAND_BS_CHANGE_DISK 15
-
-
-
-#define DVD_COMMAND_CANCELSTREAM 7
-
-
-
-#define DVD_COMMAND_CHANGE_DISK 3
-
-
-
-#define DVD_COMMAND_INITSTREAM 6
-
-
-
-#define DVD_COMMAND_INQUIRY 14
-
-
-
-#define DVD_COMMAND_NONE 0
-
-
-
-#define DVD_COMMAND_READ 1
-
-
-
-#define DVD_COMMAND_READID 5
-
-
-
-#define DVD_COMMAND_REQUEST_AUDIO_ERROR 9
-
-
-
-#define DVD_COMMAND_REQUEST_LENGTH 12
-
-
-
-#define DVD_COMMAND_REQUEST_PLAY_ADDR 10
-
-
-
-#define DVD_COMMAND_REQUEST_START_ADDR 11
-
-
-
-#define DVD_COMMAND_SEEK 2
-
-
-
-#define DVD_COMMAND_STOP_STREAM_AT_END 8
-
-
-
-#define DVD_DEVICECODE_ADDR 2147496166
-
-
-
-#define DVD_FILEINFO_BUSY 1
-
-
-
-#define DVD_FILEINFO_READY 0
-
-
-
-#define DVD_INTTYPE_CVR 4
-
-
-
-#define DVD_INTTYPE_DE 2
-
-
-
-#define DVD_INTTYPE_TC 1
-
-
-
-#define DVD_MIN_TRANSFER_SIZE 32
-
-
-
-#define DVD_RESULT_CANCELED -3
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/dvd.h/defines/define_DVD_RESULT_CANCELED - /decompHeaders/dvd.h/defines/define_DVD_RESULT_CANCELED */
-
-
-
-#define DVD_RESULT_FATAL_ERROR -1
-
-
-
-#define DVD_RESULT_GOOD 0
-
-
-
-#define DVD_RESULT_IGNORED -2
-
-
-
-#define DVD_STATE_BUSY 1
-
-
-
-#define DVD_STATE_CANCELED 10
-
-
-
-#define DVD_STATE_COVER_CLOSED 3
-
-
-
-#define DVD_STATE_COVER_OPEN 5
-
-
-
-#define DVD_STATE_END 0
-
-
-
-#define DVD_STATE_FATAL_ERROR -1
-
-
-
-#define DVD_STATE_IGNORED 9
-
-
-
-#define DVD_STATE_MOTOR_STOPPED 7
-
-
-
-#define DVD_STATE_NO_DISK 4
-
-
-
-#define DVD_STATE_PAUSING 8
-
-
-
-#define DVD_STATE_RETRY 11
-
-
-
-#define DVD_STATE_WAITING 2
-
-
-
-#define DVD_STATE_WRONG_DISK 6
-
-
-
-#define EAR 282
-
-
-
-#define EXCEPTIONMASK_ADDR 2147483716
-
-
-
-#define EXIT_FAILURE -1
-
-
-
-#define EXIT_SUCCESS 0
-
-
-
-#define EXI_CHAN_0_CONTROL 3
-
-
-
-#define EXI_CHAN_0_DMA_ADDR 1
-
-
-
-#define EXI_CHAN_0_IMM 4
-
-
-
-#define EXI_CHAN_0_LEN 2
-
-
-
-#define EXI_CHAN_0_STAT 0
-
-
-
-#define EXI_CHAN_1_CONTROL 8
-
-
-
-#define EXI_CHAN_1_DMA_ADDR 6
-
-
-
-#define EXI_CHAN_1_IMM 9
-
-
-
-#define EXI_CHAN_1_LEN 7
-
-
-
-#define EXI_CHAN_1_STAT 5
-
-
-
-#define EXI_CHAN_2_CONTROL 13
-
-
-
-#define EXI_CHAN_2_DMA_ADDR 11
-
-
-
-#define EXI_CHAN_2_IMM 14
-
-
-
-#define EXI_CHAN_2_LEN 12
-
-
-
-#define EXI_CHAN_2_STAT 10
-
-
-
-#define EXI_ETHER 67240448
-
-
-
-#define EXI_ETHER_VIEWER 69337089
-
-
-
-#define EXI_FREQ_16M 4
-
-
-
-#define EXI_FREQ_1M 0
-
-
-
-#define EXI_FREQ_2M 1
-
-
-
-#define EXI_FREQ_32M 5
-
-
-
-#define EXI_FREQ_4M 2
-
-
-
-#define EXI_FREQ_8M 3
-
-
-
-#define EXI_IS_VIEWER 84344832
-
-
-
-#define EXI_MAGIC 2784952410
-
-
-
-#define EXI_MARLIN 50397184
-
-
-
-#define EXI_MAX_CHAN 3
-
-
-
-#define EXI_MAX_DEV 3
-
-
-
-#define EXI_MEMORY_CARD_1019 64
-
-
-
-#define EXI_MEMORY_CARD_1019A 320
-
-
-
-#define EXI_MEMORY_CARD_1019B 576
-
-
-
-#define EXI_MEMORY_CARD_1019C 832
-
-
-
-#define EXI_MEMORY_CARD_1019D 1088
-
-
-
-#define EXI_MEMORY_CARD_1019E 1344
-
-
-
-#define EXI_MEMORY_CARD_1019F 1600
-
-
-
-#define EXI_MEMORY_CARD_1019G 1856
-
-
-
-#define EXI_MEMORY_CARD_123 8
-
-
-
-#define EXI_MEMORY_CARD_2043 128
-
-
-
-#define EXI_MEMORY_CARD_2043A 384
-
-
-
-#define EXI_MEMORY_CARD_2043B 640
-
-
-
-#define EXI_MEMORY_CARD_2043C 896
-
-
-
-#define EXI_MEMORY_CARD_2043D 1152
-
-
-
-#define EXI_MEMORY_CARD_2043E 1408
-
-
-
-#define EXI_MEMORY_CARD_2043F 1664
-
-
-
-#define EXI_MEMORY_CARD_2043G 1920
-
-
-
-#define EXI_MEMORY_CARD_251 16
-
-
-
-#define EXI_MEMORY_CARD_507 32
-
-
-
-#define EXI_MEMORY_CARD_59 4
-
-
-
-#define EXI_MODEM 33685504
-
-
-
-#define EXI_NPDP_GDEV 16908288
-
-
-
-#define EXI_READ 0
-
-
-
-#define EXI_REG_MAX 5
-
-
-
-#define EXI_STATE_ATTACHED 8
-
-
-
-#define EXI_STATE_BUSY 3
-
-
-
-#define EXI_STATE_DMA 1
-
-
-
-#define EXI_STATE_IDLE 0
-
-
-
-#define EXI_STATE_IMM 2
-
-
-
-#define EXI_STATE_LOCKED 16
-
-
-
-#define EXI_STATE_SELECTED 4
-
-
-
-#define EXI_STREAM_HANGER 68354048
-
-
-
-#define EXI_TX 8389632
-
-
-
-#define EXI_USB_ADAPTER 16842752
-
-
-
-#define EXI_WRITE 1
-
-
-
-#define ExceptionHookDestination 2147483720
-
-
-
-#define FALSE 0
-
-
-
-#define FPSCR_FEX 1073741824
-
-
-
-#define FPSCR_FEX_BIT 1
-
-
-
-#define FPSCR_FI 131072
-
-
-
-#define FPSCR_FI_BIT 14
-
-
-
-#define FPSCR_FR 262144
-
-
-
-#define FPSCR_FR_BIT 13
-
-
-
-#define FPSCR_FX 2147483648
-
-
-
-#define FPSCR_FX_BIT 0
-
-
-
-#define FPSCR_NI 4
-
-
-
-#define FPSCR_NI_BIT 29
-
-
-
-#define FPSCR_OE 64
-
-
-
-#define FPSCR_OE_BIT 25
-
-
-
-#define FPSCR_OX 268435456
-
-
-
-#define FPSCR_OX_BIT 3
-
-
-
-#define FPSCR_UE 32
-
-
-
-#define FPSCR_UE_BIT 26
-
-
-
-#define FPSCR_UX 134217728
-
-
-
-#define FPSCR_UX_BIT 4
-
-
-
-#define FPSCR_VE 128
-
-
-
-#define FPSCR_VE_BIT 24
-
-
-
-#define FPSCR_VX 536870912
-
-
-
-#define FPSCR_VXCVI 256
-
-
-
-#define FPSCR_VXCVI_BIT 23
-
-
-
-#define FPSCR_VXIDI 4194304
-
-
-
-#define FPSCR_VXIDI_BIT 9
-
-
-
-#define FPSCR_VXIMZ 1048576
-
-
-
-#define FPSCR_VXIMZ_BIT 11
-
-
-
-#define FPSCR_VXISI 8388608
-
-
-
-#define FPSCR_VXISI_BIT 8
-
-
-
-#define FPSCR_VXSNAN 16777216
-
-
-
-#define FPSCR_VXSNAN_BIT 7
-
-
-
-#define FPSCR_VXSOFT 1024
-
-
-
-#define FPSCR_VXSOFT_BIT 21
-
-
-
-#define FPSCR_VXSQRT 512
-
-
-
-#define FPSCR_VXSQRT_BIT 22
-
-
-
-#define FPSCR_VXVC 524288
-
-
-
-#define FPSCR_VXVC_BIT 12
-
-
-
-#define FPSCR_VXZDZ 2097152
-
-
-
-#define FPSCR_VXZDZ_BIT 10
-
-
-
-#define FPSCR_VX_BIT 2
-
-
-
-#define FPSCR_XE 8
-
-
-
-#define FPSCR_XE_BIT 28
-
-
-
-#define FPSCR_XX 33554432
-
-
-
-#define FPSCR_XX_BIT 6
-
-
-
-#define FPSCR_ZE 16
-
-
-
-#define FPSCR_ZE_BIT 27
-
-
-
-#define FPSCR_ZX 67108864
-
-
-
-#define FPSCR_ZX_BIT 5
-
-
-
-#define GQR0 912
-
-
-
-#define GQR1 913
-
-
-
-#define GQR2 914
-
-
-
-#define GQR3 915
-
-
-
-#define GQR4 916
-
-
-
-#define GQR5 917
-
-
-
-#define GQR6 918
-
-
-
-#define GQR7 919
-
-
-
-#define GQR_LOAD_SCALE_MASK 1056964608
-
-
-
-#define GQR_LOAD_TYPE_MASK 458752
-
-
-
-#define GQR_SCALE_MAX 32
-
-
-
-#define GQR_STORE_SCALE_MASK 16128
-
-
-
-#define GQR_STORE_TYPE_MASK 7
-
-
-
-#define GXFIFO_ADDR 3422584832
-
-
-
-#define GX_CP_ADDR 201326592
-
-
-
-#define GX_DISABLE 0
-
-
-
-#define GX_DRAW_LINES 168
-
-
-
-#define GX_DRAW_LINE_STRIP 176
-
-
-
-#define GX_DRAW_POINTS 184
-
-
-
-#define GX_DRAW_QUADS 128
-
-
-
-#define GX_DRAW_TRIANGLES 144
-
-
-
-#define GX_DRAW_TRIANGLE_FAN 160
-
-
-
-#define GX_DRAW_TRIANGLE_STRIP 152
-
-
-
-#define GX_ENABLE 1
-
-
-
-#define GX_FALSE 0
-
-
-
-#define GX_FIFO_MINSIZE 65536
-
-
-
-#define GX_FIFO_OBJ_SIZE 128
-
-
-
-#define GX_LOAD_BP_REG 97
-
-
-
-#define GX_LOAD_CP_REG 8
-
-
-
-#define GX_LOAD_INDX_A 32
-
-
-
-#define GX_LOAD_INDX_B 40
-
-
-
-#define GX_LOAD_INDX_C 48
-
-
-
-#define GX_LOAD_INDX_D 56
-
-
-
-#define GX_LOAD_XF_REG 16
-
-
-
-#define GX_MAX_VTXARRAY 16
-
-
-
-#define GX_MAX_Z24 16777215
-
-
-
-#define GX_MEM_ADDR 201342976
-
-
-
-#define GX_NOP 0
-
-
-
-#define GX_OPCODE_MASK 248
-
-
-
-#define GX_PE_ADDR 201330688
-
-
-
-#define GX_PI_ADDR 201338880
-
-
-
-#define GX_PROJECTION_SZ 7
-
-
-
-#define GX_TRUE 1
-
-
-
-#define GX_VAT_MASK 7
-
-
-
-#define GX_VIEWPORT_SZ 6
-
-
-
-#define HID0 1008
-
-
-
-#define HID0_ABE 8
-
-
-
-#define HID0_BCLK 134217728
-
-
-
-#define HID0_BHT 4
-
-
-
-#define HID0_BTIC 32
-
-
-
-#define HID0_DBP 1073741824
-
-
-
-#define HID0_DCE 16384
-
-
-
-#define HID0_DCE_BIT 17
-
-
-
-#define HID0_DCFA 64
-
-
-
-#define HID0_DCFI 1024
-
-
-
-#define HID0_DLOCK 4096
-
-
-
-#define HID0_DLOCK_BIT 19
-
-
-
-#define HID0_DOZE 8388608
-
-
-
-#define HID0_DPM 1048576
-
-
-
-#define HID0_EBA 536870912
-
-
-
-#define HID0_EBD 268435456
-
-
-
-#define HID0_ECLK 33554432
-
-
-
-#define HID0_EMCP 2147483648
-
-
-
-#define HID0_ICE 32768
-
-
-
-#define HID0_ICE_BIT 16
-
-
-
-#define HID0_ICFI 2048
-
-
-
-#define HID0_IFEM 256
-
-
-
-#define HID0_ILOCK 8192
-
-
-
-#define HID0_ILOCK_BIT 18
-
-
-
-#define HID0_NAP 4194304
-
-
-
-#define HID0_NHR 65536
-
-
-
-#define HID0_NOOPTI 1
-
-
-
-#define HID0_PAR 16777216
-
-
-
-#define HID0_SGE 128
-
-
-
-#define HID0_SLEEP 2097152
-
-
-
-#define HID0_SPD 512
-
-
-
-#define HID1 1009
-
-
-
-#define HID2 920
-
-
-
-#define HID2_DCHEE 524288
-
-
-
-#define HID2_DCHEE_BIT 12
-
-
-
-#define HID2_DCHERR 8388608
-
-
-
-#define HID2_DCHERR_BIT 8
-
-
-
-#define HID2_DCMEE 131072
-
-
-
-#define HID2_DCMEE_BIT 14
-
-
-
-#define HID2_DCMERR 2097152
-
-
-
-#define HID2_DCMERR_BIT 10
-
-
-
-#define HID2_DMAQL_MASK 251658240
-
-
-
-#define HID2_DMAQL_SHIFT 24
-
-
-
-#define HID2_DNCEE 262144
-
-
-
-#define HID2_DNCEE_BIT 13
-
-
-
-#define HID2_DNCERR 4194304
-
-
-
-#define HID2_DNCERR_BIT 9
-
-
-
-#define HID2_DQOEE 65536
-
-
-
-#define HID2_DQOEE_BIT 15
-
-
-
-#define HID2_DQOERR 1048576
-
-
-
-#define HID2_DQOERR_BIT 11
-
-
-
-#define HID2_LCE 268435456
-
-
-
-#define HID2_LCE_BIT 3
-
-
-
-#define HID2_LSQE 2147483648
-
-
-
-#define HID2_LSQE_BIT 0
-
-
-
-#define HID2_PSE 536870912
-
-
-
-#define HID2_PSE_BIT 2
-
-
-
-#define HID2_WPE 1073741824
-
-
-
-#define HID2_WPE_BIT 1
-
-
-
-#define IABR 1010
-
-
-
-#define IBAT0L 529
-
-
-
-#define IBAT0U 528
-
-
-
-#define IBAT1L 531
-
-
-
-#define IBAT1U 530
-
-
-
-#define IBAT2L 533
-
-
-
-#define IBAT2U 532
-
-
-
-#define IBAT3L 535
-
-
-
-#define IBAT3U 534
-
-
-
-#define ICTC 1019
-
-
-
-#define INT_MAX 2147483647
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/types.h/defines/define_INT_MAX - /decompHeaders/limits.h/defines/define_INT_MAX */
-
-
-
-#define INT_MIN -2147483648
-
-
-
-#define IsDebuggerPresent 2147483712
-
-
-
-#define KILOBYTE_BYTECOUNT 1024
-
-
-
-#define L2CR 1017
-
-
-
-#define L2CR_L2BYP 8192
-
-
-
-#define L2CR_L2CLK_1_0 33554432
-
-
-
-#define L2CR_L2CLK_1_5 67108864
-
-
-
-#define L2CR_L2CLK_2_0 134217728
-
-
-
-#define L2CR_L2CLK_2_5 167772160
-
-
-
-#define L2CR_L2CLK_3_0 201326592
-
-
-
-#define L2CR_L2CS 512
-
-
-
-#define L2CR_L2CTL 1048576
-
-
-
-#define L2CR_L2CTR_MASK 254
-
-
-
-#define L2CR_L2DF 16384
-
-
-
-#define L2CR_L2DO 4194304
-
-
-
-#define L2CR_L2DRO 256
-
-
-
-#define L2CR_L2E 2147483648
-
-
-
-#define L2CR_L2I 2097152
-
-
-
-#define L2CR_L2IP 1
-
-
-
-#define L2CR_L2OH_0_5 0
-
-
-
-#define L2CR_L2OH_1_0 65536
-
-
-
-#define L2CR_L2PE 1073741824
-
-
-
-#define L2CR_L2SIZ_1M 805306368
-
-
-
-#define L2CR_L2SIZ_256K 268435456
-
-
-
-#define L2CR_L2SIZ_512K 536870912
-
-
-
-#define L2CR_L2SL 32768
-
-
-
-#define L2CR_L2TS 262144
-
-
-
-#define L2CR_L2WT 524288
-
-
-
-#define L2CR_RAM_FLOW_THRU_BURST 0
-
-
-
-#define L2CR_RAM_PIPELINE_BURST 16777216
-
-
-
-#define L2CR_RAM_PIPELINE_LATE 25165824
-
-
-
-#define LC_BASE 3758096384
-
-
-
-#define LC_BASE_PREFIX 57344
-
-
-
-#define LC_MAX_DMA_BLOCKS 128
-
-
-
-#define LC_MAX_DMA_BYTES 4096
-
-
-
-#define LLONG_MAX 9223372036854775807
-
-
-
-#define LLONG_MIN -9223372036854775808
-
-
-
-#define LONG_MAX 2147483647
-
-
-
-#define LONG_MIN -2147483648
-
-
-
-#define LR 8
-
-
-
-#define MEM_INTRPT_ADDR_HI 18
-
-
-
-#define MEM_INTRPT_ADDR_LO 17
-
-
-
-#define MEM_INTRPT_FLAG 16
-
-
-
-#define MEM_INTRPT_MASK 14
-
-
-
-#define MEM_INTRPT_SRC 15
-
-
-
-#define MEM_PROT_1 0
-
-
-
-#define MEM_PROT_2 2
-
-
-
-#define MEM_PROT_3 4
-
-
-
-#define MEM_PROT_4 6
-
-
-
-#define MEM_PROT_TYPE 8
-
-
-
-#define MEM_UNK_FLAG 20
-
-
-
-#define MMCR0 952
-
-
-
-#define MMCR0_DIS 2147483648
-
-
-
-#define MMCR0_DISCOUNT 33554432
-
-
-
-#define MMCR0_DMR 134217728
-
-
-
-#define MMCR0_DMS 268435456
-
-
-
-#define MMCR0_DP 1073741824
-
-
-
-#define MMCR0_DU 536870912
-
-
-
-#define MMCR0_ENINT 67108864
-
-
-
-#define MMCR0_INTONBITTRANS 4194304
-
-
-
-#define MMCR0_PMC1INTCONTROL 32768
-
-
-
-#define MMCR0_PMC1SELECT_MASK 8128
-
-
-
-#define MMCR0_PMC1_Bx_STALL_CYCLE 768
-
-
-
-#define MMCR0_PMC1_Bx_UNRESOLVED 704
-
-
-
-#define MMCR0_PMC1_CYCLE 64
-
-
-
-#define MMCR0_PMC1_DISPATCHED 256
-
-
-
-#define MMCR0_PMC1_EA 512
-
-
-
-#define MMCR0_PMC1_EIEIO 320
-
-
-
-#define MMCR0_PMC1_HOLD 0
-
-
-
-#define MMCR0_PMC1_IABR 576
-
-
-
-#define MMCR0_PMC1_IC_FETCH_MISS 832
-
-
-
-#define MMCR0_PMC1_INSTRUCTION 128
-
-
-
-#define MMCR0_PMC1_ITLB_CYCLE 384
-
-
-
-#define MMCR0_PMC1_L1_MISS 640
-
-
-
-#define MMCR0_PMC1_L2_HIT 448
-
-
-
-#define MMCR0_PMC1_TRANSITION 192
-
-
-
-#define MMCR0_PMC2INTCONTROL 16384
-
-
-
-#define MMCR0_PMC2SELECT_MASK 63
-
-
-
-#define MMCR0_PMC2_Bx_FALL_TROUGH 8
-
-
-
-#define MMCR0_PMC2_Bx_OUT_OF_ORDER 16
-
-
-
-#define MMCR0_PMC2_CYCLE 1
-
-
-
-#define MMCR0_PMC2_DISPATCHED 4
-
-
-
-#define MMCR0_PMC2_HOLD 0
-
-
-
-#define MMCR0_PMC2_IC_FETCH_MISS 15
-
-
-
-#define MMCR0_PMC2_IC_MISS 5
-
-
-
-#define MMCR0_PMC2_INSTRUCTION 2
-
-
-
-#define MMCR0_PMC2_ITLB_MISS 6
-
-
-
-#define MMCR0_PMC2_L1_CASTOUT 13
-
-
-
-#define MMCR0_PMC2_L2_I_MISS 7
-
-
-
-#define MMCR0_PMC2_LOAD_STORE 11
-
-
-
-#define MMCR0_PMC2_PR_SWITCH 9
-
-
-
-#define MMCR0_PMC2_RESERVED_LOAD 10
-
-
-
-#define MMCR0_PMC2_SNOOP 12
-
-
-
-#define MMCR0_PMC2_SYSTEM 14
-
-
-
-#define MMCR0_PMC2_TRANSITION 3
-
-
-
-#define MMCR0_PMCTRIGGER 8192
-
-
-
-#define MMCR0_RTCSELECT_47 25165824
-
-
-
-#define MMCR0_RTCSELECT_51 16777216
-
-
-
-#define MMCR0_RTCSELECT_55 8388608
-
-
-
-#define MMCR0_RTCSELECT_63 0
-
-
-
-#define MMCR0_RTCSELECT_MASK 25165824
-
-
-
-#define MMCR0_THRESHOLD_MASK 4128768
-
-
-
-#define MMCR1 956
-
-
-
-#define MMCR1_PMC3SELECT_MASK 4160749568
-
-
-
-#define MMCR1_PMC3_BPU_LR_CR 2281701376
-
-
-
-#define MMCR1_PMC3_Bx_SECOND 2147483648
-
-
-
-#define MMCR1_PMC3_Bx_TAKEN 1073741824
-
-
-
-#define MMCR1_PMC3_COND_STORE 1342177280
-
-
-
-#define MMCR1_PMC3_CYCLE 134217728
-
-
-
-#define MMCR1_PMC3_DC_MISS 671088640
-
-
-
-#define MMCR1_PMC3_DISPATCHED 536870912
-
-
-
-#define MMCR1_PMC3_DTLB_MISS 805306368
-
-
-
-#define MMCR1_PMC3_FPU 1476395008
-
-
-
-#define MMCR1_PMC3_HOLD 0
-
-
-
-#define MMCR1_PMC3_INSTRUCTION 268435456
-
-
-
-#define MMCR1_PMC3_L1_MISS_CYCLE 2013265920
-
-
-
-#define MMCR1_PMC3_L2_D_MISS 939524096
-
-
-
-#define MMCR1_PMC3_L2_HIT 1744830464
-
-
-
-#define MMCR1_PMC3_L2_SNOOP_CASTOUT 1610612736
-
-
-
-#define MMCR1_PMC3_PM_SWITCH 1207959552
-
-
-
-#define MMCR1_PMC3_TRANSITION 402653184
-
-
-
-#define MMCR1_PMC4SELECT_MASK 130023424
-
-
-
-#define MMCR1_PMC4_BPU_THIRD 58720256
-
-
-
-#define MMCR1_PMC4_Bx_MISSED 33554432
-
-
-
-#define MMCR1_PMC4_COND_STORE_INT 41943040
-
-
-
-#define MMCR1_PMC4_CYCLE 4194304
-
-
-
-#define MMCR1_PMC4_DC_MISS 130023424
-
-
-
-#define MMCR1_PMC4_DISPATCHED 16777216
-
-
-
-#define MMCR1_PMC4_DTLB_CYCLE 25165824
-
-
-
-#define MMCR1_PMC4_HOLD 0
-
-
-
-#define MMCR1_PMC4_INSTRUCTION 8388608
-
-
-
-#define MMCR1_PMC4_INTEGER 54525952
-
-
-
-#define MMCR1_PMC4_L2_CASTOUT 20971520
-
-
-
-#define MMCR1_PMC4_SNOOP_RETRY 50331648
-
-
-
-#define MMCR1_PMC4_SYNC 46137344
-
-
-
-#define MMCR1_PMC4_TRANSITION 12582912
-
-
-
-#define MONTH_MAX 12
-
-
-
-#define MSEC_MAX 1000
-
-
-
-#define MSR_BE 512
-
-
-
-#define MSR_BE_BIT 22
-
-
-
-#define MSR_DR 16
-
-
-
-#define MSR_DR_BIT 27
-
-
-
-#define MSR_EE 32768
-
-
-
-#define MSR_EE_BIT 16
-
-
-
-#define MSR_FE0 2048
-
-
-
-#define MSR_FE0_BIT 20
-
-
-
-#define MSR_FE1 256
-
-
-
-#define MSR_FE1_BIT 23
-
-
-
-#define MSR_FP 8192
-
-
-
-#define MSR_FP_BIT 18
-
-
-
-#define MSR_ILE 65536
-
-
-
-#define MSR_ILE_BIT 15
-
-
-
-#define MSR_IP 64
-
-
-
-#define MSR_IP_BIT 25
-
-
-
-#define MSR_IR 32
-
-
-
-#define MSR_IR_BIT 26
-
-
-
-#define MSR_LE 1
-
-
-
-#define MSR_LE_BIT 31
-
-
-
-#define MSR_ME 4096
-
-
-
-#define MSR_ME_BIT 19
-
-
-
-#define MSR_PM 4
-
-
-
-#define MSR_PM_BIT 29
-
-
-
-#define MSR_POW 262144
-
-
-
-#define MSR_POW_BIT 13
-
-
-
-#define MSR_PR 16384
-
-
-
-#define MSR_PR_BIT 17
-
-
-
-#define MSR_RI 2
-
-
-
-#define MSR_RI_BIT 30
-
-
-
-#define MSR_SE 1024
-
-
-
-#define MSR_SE_BIT 21
-
-
-
-#define MUSY_VERSION 131075
-
-
-
-#define MUSY_VERSION_MAJOR 2
-
-
-
-#define MUSY_VERSION_MINOR 0
-
-
-
-#define MUSY_VERSION_PATCH 3
-
-
-
-#define NULL 0
-
-
-
-#define OS_BASE_CACHED 2147483648
-
-
-
-#define OS_BASE_UNCACHED 3221225472
-
-
-
-#define OS_BI2_DEBUGFLAG_OFFSET 12
-
-
-
-#define OS_BOOTINFO_MAGIC 219540062
-
-
-
-#define OS_BOOTINFO_MAGIC_JTAG 3844111394
-
-
-
-#define OS_BOOTROM_ADDR 2167406592
-
-
-
-#define OS_CACHED_REGION_PREFIX 32768
-
-
-
-#define OS_CONSOLE_ARTHUR 268435458
-
-
-
-#define OS_CONSOLE_DEVELOPMENT 268435456
-
-
-
-#define OS_CONSOLE_DEVHW1 268435460
-
-
-
-#define OS_CONSOLE_DEVHW2 268435461
-
-
-
-#define OS_CONSOLE_DEVHW3 268435462
-
-
-
-#define OS_CONSOLE_DEVHW4 268435463
-
-
-
-#define OS_CONSOLE_DEVKIT 268435456
-
-
-
-#define OS_CONSOLE_EMULATOR 268435456
-
-
-
-#define OS_CONSOLE_MASK 4026531840
-
-
-
-#define OS_CONSOLE_MINNOW 268435459
-
-
-
-#define OS_CONSOLE_PC_EMULATOR 268435457
-
-
-
-#define OS_CONSOLE_RETAIL 0
-
-
-
-#define OS_CONSOLE_RETAIL1 1
-
-
-
-#define OS_CONSOLE_RETAIL2 2
-
-
-
-#define OS_CONSOLE_RETAIL3 3
-
-
-
-#define OS_CONSOLE_RETAIL4 4
-
-
-
-#define OS_CONSOLE_TDEV 536870912
-
-
-
-#define OS_CONSOLE_TDEVHW1 536870916
-
-
-
-#define OS_CONSOLE_TDEVHW2 536870917
-
-
-
-#define OS_CONSOLE_TDEVHW3 536870918
-
-
-
-#define OS_CONSOLE_TDEVHW4 536870919
-
-
-
-#define OS_CONSOLE_TDEVKIT 536870912
-
-
-
-#define OS_CONTEXT_CR 128
-
-
-
-#define OS_CONTEXT_CTR 136
-
-
-
-#define OS_CONTEXT_FPR0 144
-
-
-
-#define OS_CONTEXT_FPR1 152
-
-
-
-#define OS_CONTEXT_FPR10 224
-
-
-
-#define OS_CONTEXT_FPR11 232
-
-
-
-#define OS_CONTEXT_FPR12 240
-
-
-
-#define OS_CONTEXT_FPR13 248
-
-
-
-#define OS_CONTEXT_FPR14 256
-
-
-
-#define OS_CONTEXT_FPR15 264
-
-
-
-#define OS_CONTEXT_FPR16 272
-
-
-
-#define OS_CONTEXT_FPR17 280
-
-
-
-#define OS_CONTEXT_FPR18 288
-
-
-
-#define OS_CONTEXT_FPR19 296
-
-
-
-#define OS_CONTEXT_FPR2 160
-
-
-
-#define OS_CONTEXT_FPR20 304
-
-
-
-#define OS_CONTEXT_FPR21 312
-
-
-
-#define OS_CONTEXT_FPR22 320
-
-
-
-#define OS_CONTEXT_FPR23 328
-
-
-
-#define OS_CONTEXT_FPR24 336
-
-
-
-#define OS_CONTEXT_FPR25 344
-
-
-
-#define OS_CONTEXT_FPR26 352
-
-
-
-#define OS_CONTEXT_FPR27 360
-
-
-
-#define OS_CONTEXT_FPR28 368
-
-
-
-#define OS_CONTEXT_FPR29 376
-
-
-
-#define OS_CONTEXT_FPR3 168
-
-
-
-#define OS_CONTEXT_FPR30 384
-
-
-
-#define OS_CONTEXT_FPR31 392
-
-
-
-#define OS_CONTEXT_FPR4 176
-
-
-
-#define OS_CONTEXT_FPR5 184
-
-
-
-#define OS_CONTEXT_FPR6 192
-
-
-
-#define OS_CONTEXT_FPR7 200
-
-
-
-#define OS_CONTEXT_FPR8 208
-
-
-
-#define OS_CONTEXT_FPR9 216
-
-
-
-#define OS_CONTEXT_FPSCR 400
-
-
-
-#define OS_CONTEXT_GQR0 420
-
-
-
-#define OS_CONTEXT_GQR1 424
-
-
-
-#define OS_CONTEXT_GQR2 428
-
-
-
-#define OS_CONTEXT_GQR3 432
-
-
-
-#define OS_CONTEXT_GQR4 436
-
-
-
-#define OS_CONTEXT_GQR5 440
-
-
-
-#define OS_CONTEXT_GQR6 444
-
-
-
-#define OS_CONTEXT_GQR7 448
-
-
-
-#define OS_CONTEXT_LR 132
-
-
-
-#define OS_CONTEXT_MODE 416
-
-
-
-#define OS_CONTEXT_MODE_FPU 1
-
-
-
-#define OS_CONTEXT_MODE_PSFP 2
-
-
-
-#define OS_CONTEXT_PSF0 456
-
-
-
-#define OS_CONTEXT_PSF1 464
-
-
-
-#define OS_CONTEXT_PSF10 536
-
-
-
-#define OS_CONTEXT_PSF11 544
-
-
-
-#define OS_CONTEXT_PSF12 552
-
-
-
-#define OS_CONTEXT_PSF13 560
-
-
-
-#define OS_CONTEXT_PSF14 568
-
-
-
-#define OS_CONTEXT_PSF15 576
-
-
-
-#define OS_CONTEXT_PSF16 584
-
-
-
-#define OS_CONTEXT_PSF17 592
-
-
-
-#define OS_CONTEXT_PSF18 600
-
-
-
-#define OS_CONTEXT_PSF19 608
-
-
-
-#define OS_CONTEXT_PSF2 472
-
-
-
-#define OS_CONTEXT_PSF20 616
-
-
-
-#define OS_CONTEXT_PSF21 624
-
-
-
-#define OS_CONTEXT_PSF22 632
-
-
-
-#define OS_CONTEXT_PSF23 640
-
-
-
-#define OS_CONTEXT_PSF24 648
-
-
-
-#define OS_CONTEXT_PSF25 656
-
-
-
-#define OS_CONTEXT_PSF26 664
-
-
-
-#define OS_CONTEXT_PSF27 672
-
-
-
-#define OS_CONTEXT_PSF28 680
-
-
-
-#define OS_CONTEXT_PSF29 688
-
-
-
-#define OS_CONTEXT_PSF3 480
-
-
-
-#define OS_CONTEXT_PSF30 696
-
-
-
-#define OS_CONTEXT_PSF31 704
-
-
-
-#define OS_CONTEXT_PSF4 488
-
-
-
-#define OS_CONTEXT_PSF5 496
-
-
-
-#define OS_CONTEXT_PSF6 504
-
-
-
-#define OS_CONTEXT_PSF7 512
-
-
-
-#define OS_CONTEXT_PSF8 520
-
-
-
-#define OS_CONTEXT_PSF9 528
-
-
-
-#define OS_CONTEXT_R0 0
-
-
-
-#define OS_CONTEXT_R1 4
-
-
-
-#define OS_CONTEXT_R10 40
-
-
-
-#define OS_CONTEXT_R11 44
-
-
-
-#define OS_CONTEXT_R12 48
-
-
-
-#define OS_CONTEXT_R13 52
-
-
-
-#define OS_CONTEXT_R14 56
-
-
-
-#define OS_CONTEXT_R15 60
-
-
-
-#define OS_CONTEXT_R16 64
-
-
-
-#define OS_CONTEXT_R17 68
-
-
-
-#define OS_CONTEXT_R18 72
-
-
-
-#define OS_CONTEXT_R19 76
-
-
-
-#define OS_CONTEXT_R2 8
-
-
-
-#define OS_CONTEXT_R20 80
-
-
-
-#define OS_CONTEXT_R21 84
-
-
-
-#define OS_CONTEXT_R22 88
-
-
-
-#define OS_CONTEXT_R23 92
-
-
-
-#define OS_CONTEXT_R24 96
-
-
-
-#define OS_CONTEXT_R25 100
-
-
-
-#define OS_CONTEXT_R26 104
-
-
-
-#define OS_CONTEXT_R27 108
-
-
-
-#define OS_CONTEXT_R28 112
-
-
-
-#define OS_CONTEXT_R29 116
-
-
-
-#define OS_CONTEXT_R3 12
-
-
-
-#define OS_CONTEXT_R30 120
-
-
-
-#define OS_CONTEXT_R31 124
-
-
-
-#define OS_CONTEXT_R4 16
-
-
-
-#define OS_CONTEXT_R5 20
-
-
-
-#define OS_CONTEXT_R6 24
-
-
-
-#define OS_CONTEXT_R7 28
-
-
-
-#define OS_CONTEXT_R8 32
-
-
-
-#define OS_CONTEXT_R9 36
-
-
-
-#define OS_CONTEXT_SRR0 408
-
-
-
-#define OS_CONTEXT_SRR1 412
-
-
-
-#define OS_CONTEXT_STATE 418
-
-
-
-#define OS_CONTEXT_STATE_EXC 2
-
-
-
-#define OS_CONTEXT_STATE_FPSAVED 1
-
-
-
-#define OS_CONTEXT_XER 140
-
-
-
-#define OS_CURRENTCONTEXT_PADDR 192
-
-
-
-#define OS_DBINTERFACE_ADDR 64
-
-
-
-#define OS_DVD_MAGIC_NINTENDO 3258163005
-
-
-
-#define OS_ERROR_ALIGNMENT 5
-
-
-
-#define OS_ERROR_BREAKPOINT 12
-
-
-
-#define OS_ERROR_DECREMENTER 8
-
-
-
-#define OS_ERROR_DSI 2
-
-
-
-#define OS_ERROR_EXTERNAL_INTERRUPT 4
-
-
-
-#define OS_ERROR_FLOATING_POINT 7
-
-
-
-#define OS_ERROR_ISI 3
-
-
-
-#define OS_ERROR_MACHINE_CHECK 1
-
-
-
-#define OS_ERROR_MAX 16
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSError.h/defines/define_OS_ERROR_MAX - /decompHeaders/OSError.h/defines/define_OS_ERROR_MAX */
-
-
-
-#define OS_ERROR_PERFORMACE_MONITOR 11
-
-
-
-#define OS_ERROR_PROGRAM 6
-
-
-
-#define OS_ERROR_PROTECTION 15
-
-
-
-#define OS_ERROR_SYSTEM_CALL 9
-
-
-
-#define OS_ERROR_SYSTEM_INTERRUPT 13
-
-
-
-#define OS_ERROR_SYSTEM_RESET 0
-
-
-
-#define OS_ERROR_THERMAL_INTERRUPT 14
-
-
-
-#define OS_ERROR_TRACE 10
-
-
-
-#define OS_EURGB60_OFF 0
-
-
-
-#define OS_EURGB60_ON 1
-
-
-
-#define OS_FASTCAST_S16 5
-
-
-
-#define OS_FASTCAST_S8 4
-
-
-
-#define OS_FASTCAST_U16 3
-
-
-
-#define OS_FASTCAST_U8 2
-
-
-
-#define OS_FONT_DATA_SIZE_ANSI 65824
-
-
-
-#define OS_FONT_DATA_SIZE_SJIS 593636
-
-
-
-#define OS_FONT_ENCODE_ANSI 0
-
-
-
-#define OS_FONT_ENCODE_NULL -1
-
-
-
-#define OS_FONT_ENCODE_SJIS 1
-
-
-
-#define OS_FONT_ROM_SIZE_ANSI 12288
-
-
-
-#define OS_FONT_ROM_SIZE_SJIS 315392
-
-
-
-#define OS_FONT_SIZE_ANSI 131360
-
-
-
-#define OS_FONT_SIZE_SJIS 1183488
-
-
-
-#define OS_GQR_S16 7
-
-
-
-#define OS_GQR_S8 6
-
-
-
-#define OS_GQR_U16 5
-
-
-
-#define OS_GQR_U8 4
-
-
-
-#define OS_HANDLER_SLOT_SIZE 256
-
-
-
-#define OS_INTERRUPTMASK_AI 8388608
-
-
-
-#define OS_INTERRUPTMASK_AI_AI 8388608
-
-
-
-#define OS_INTERRUPTMASK_DSP 117440512
-
-
-
-#define OS_INTERRUPTMASK_DSP_AI 67108864
-
-
-
-#define OS_INTERRUPTMASK_DSP_ARAM 33554432
-
-
-
-#define OS_INTERRUPTMASK_DSP_DSP 16777216
-
-
-
-#define OS_INTERRUPTMASK_EXI 8355840
-
-
-
-#define OS_INTERRUPTMASK_EXI_0 7340032
-
-
-
-#define OS_INTERRUPTMASK_EXI_0_EXI 4194304
-
-
-
-#define OS_INTERRUPTMASK_EXI_0_EXT 1048576
-
-
-
-#define OS_INTERRUPTMASK_EXI_0_TC 2097152
-
-
-
-#define OS_INTERRUPTMASK_EXI_1 917504
-
-
-
-#define OS_INTERRUPTMASK_EXI_1_EXI 524288
-
-
-
-#define OS_INTERRUPTMASK_EXI_1_EXT 131072
-
-
-
-#define OS_INTERRUPTMASK_EXI_1_TC 262144
-
-
-
-#define OS_INTERRUPTMASK_EXI_2 98304
-
-
-
-#define OS_INTERRUPTMASK_EXI_2_EXI 65536
-
-
-
-#define OS_INTERRUPTMASK_EXI_2_TC 32768
-
-
-
-#define OS_INTERRUPTMASK_MEM 4160749568
-
-
-
-#define OS_INTERRUPTMASK_MEM_0 2147483648
-
-
-
-#define OS_INTERRUPTMASK_MEM_1 1073741824
-
-
-
-#define OS_INTERRUPTMASK_MEM_2 536870912
-
-
-
-#define OS_INTERRUPTMASK_MEM_3 268435456
-
-
-
-#define OS_INTERRUPTMASK_MEM_ADDRESS 134217728
-
-
-
-#define OS_INTERRUPTMASK_MEM_RESET 4026531840
-
-
-
-#define OS_INTERRUPTMASK_PI 32736
-
-
-
-#define OS_INTERRUPTMASK_PI_CP 16384
-
-
-
-#define OS_INTERRUPTMASK_PI_DEBUG 64
-
-
-
-#define OS_INTERRUPTMASK_PI_DI 1024
-
-
-
-#define OS_INTERRUPTMASK_PI_ERROR 256
-
-
-
-#define OS_INTERRUPTMASK_PI_HSP 32
-
-
-
-#define OS_INTERRUPTMASK_PI_PE 12288
-
-
-
-#define OS_INTERRUPTMASK_PI_PE_FINISH 4096
-
-
-
-#define OS_INTERRUPTMASK_PI_PE_TOKEN 8192
-
-
-
-#define OS_INTERRUPTMASK_PI_RSW 512
-
-
-
-#define OS_INTERRUPTMASK_PI_SI 2048
-
-
-
-#define OS_INTERRUPTMASK_PI_VI 128
-
-
-
-#define OS_LANG_DUTCH 5
-
-
-
-#define OS_LANG_ENGLISH 0
-
-
-
-#define OS_LANG_FRENCH 2
-
-
-
-#define OS_LANG_GERMAN 1
-
-
-
-#define OS_LANG_ITALIAN 4
-
-
-
-#define OS_LANG_SPANISH 3
-
-
-
-#define OS_MESSAGE_BLOCK 1
-
-
-
-#define OS_MESSAGE_NOBLOCK 0
-
-
-
-#define OS_MODULE_VERSION 3
-
-
-
-
-
-/* WARNING! conflicting data type names: /sdk/OSModule.h/defines/define_OS_MODULE_VERSION - /decompHeaders/OSModule.h/defines/define_OS_MODULE_VERSION */
-
-
-
-#define OS_PHYSICAL_MASK 16383
-
-
-
-#define OS_PRIORITY_IDLE 31
-
-
-
-#define OS_PRIORITY_MAX 31
-
-
-
-#define OS_PRIORITY_MIN 0
-
-
-
-#define OS_PROGRESSIVE_MODE_OFF 0
-
-
-
-#define OS_PROGRESSIVE_MODE_ON 1
-
-
-
-#define OS_PROTECT0_BIT 1
-
-
-
-#define OS_PROTECT1_BIT 2
-
-
-
-#define OS_PROTECT2_BIT 4
-
-
-
-#define OS_PROTECT3_BIT 8
-
-
-
-#define OS_PROTECT_ADDRERR_BIT 16
-
-
-
-#define OS_PROTECT_CHAN0 0
-
-
-
-#define OS_PROTECT_CHAN1 1
-
-
-
-#define OS_PROTECT_CHAN2 2
-
-
-
-#define OS_PROTECT_CHAN3 3
-
-
-
-#define OS_PROTECT_CONTROL_NONE 0
-
-
-
-#define OS_PROTECT_CONTROL_RDWR 3
-
-
-
-#define OS_PROTECT_CONTROL_READ 1
-
-
-
-#define OS_PROTECT_CONTROL_WRITE 2
-
-
-
-#define OS_RESETCODE_EXEC 3221225472
-
-
-
-#define OS_RESETCODE_NETCONFIG 3221291008
-
-
-
-#define OS_RESETCODE_RESTART 2147483648
-
-
-
-#define OS_RESETCODE_SYSTEM 1073741824
-
-
-
-#define OS_RESET_HOTRESET 1
-
-
-
-#define OS_RESET_PRIO_ALARM 4294967295
-
-
-
-#define OS_RESET_PRIO_CARD 127
-
-
-
-#define OS_RESET_PRIO_GX 127
-
-
-
-#define OS_RESET_PRIO_IP 111
-
-
-
-#define OS_RESET_PRIO_MEM 127
-
-
-
-#define OS_RESET_PRIO_PAD 127
-
-
-
-#define OS_RESET_PRIO_SO 110
-
-
-
-#define OS_RESET_RESTART 0
-
-
-
-#define OS_RESET_SHUTDOWN 2
-
-
-
-#define OS_SECTIONINFO_EXEC 1
-
-
-
-#define OS_SOUND_MODE_MONO 0
-
-
-
-#define OS_SOUND_MODE_STEREO 1
-
-
-
-#define OS_SYS_CALL_HANDLER 2147486720
-
-
-
-#define OS_THREAD_ATTR_DETACH 1
-
-
-
-#define OS_THREAD_STACK_MAGIC 3735927486
-
-
-
-#define OS_UNCACHED_REGION_PREFIX 49152
-
-
-
-#define OS_VIDEO_MODE_MPAL 2
-
-
-
-#define OS_VIDEO_MODE_NTSC 0
-
-
-
-#define OVERFLOW 3
-
-
-
-#define PAD3_BUTTON_ADDR 2147496164
-
-
-
-#define PAD_BUTTON_A 256
-
-
-
-#define PAD_BUTTON_B 512
-
-
-
-#define PAD_BUTTON_DOWN 4
-
-
-
-#define PAD_BUTTON_LEFT 1
-
-
-
-#define PAD_BUTTON_MENU 4096
-
-
-
-#define PAD_BUTTON_RIGHT 2
-
-
-
-#define PAD_BUTTON_START 4096
-
-
-
-#define PAD_BUTTON_UP 8
-
-
-
-#define PAD_BUTTON_X 1024
-
-
-
-#define PAD_BUTTON_Y 2048
-
-
-
-#define PAD_CHAN0 0
-
-
-
-#define PAD_CHAN0_BIT 2147483648
-
-
-
-#define PAD_CHAN1 1
-
-
-
-#define PAD_CHAN1_BIT 1073741824
-
-
-
-#define PAD_CHAN2 2
-
-
-
-#define PAD_CHAN2_BIT 536870912
-
-
-
-#define PAD_CHAN3 3
-
-
-
-#define PAD_CHAN3_BIT 268435456
-
-
-
-#define PAD_CHANMAX 4
-
-
-
-#define PAD_ERR_NONE 0
-
-
-
-#define PAD_ERR_NOT_READY -2
-
-
-
-#define PAD_ERR_NO_CONTROLLER -1
-
-
-
-#define PAD_ERR_TRANSFER -3
-
-
-
-#define PAD_MAX_CONTROLLERS 4
-
-
-
-#define PAD_MODE_0 0
-
-
-
-#define PAD_MODE_1 1
-
-
-
-#define PAD_MODE_2 2
-
-
-
-#define PAD_MODE_3 3
-
-
-
-#define PAD_MODE_4 4
-
-
-
-#define PAD_MODE_5 5
-
-
-
-#define PAD_MODE_6 6
-
-
-
-#define PAD_MODE_7 7
-
-
-
-#define PAD_MOTOR_RUMBLE 1
-
-
-
-#define PAD_MOTOR_STOP 0
-
-
-
-#define PAD_MOTOR_STOP_HARD 2
-
-
-
-#define PAD_SPEC_0 0
-
-
-
-#define PAD_SPEC_1 1
-
-
-
-#define PAD_SPEC_2 2
-
-
-
-#define PAD_SPEC_3 3
-
-
-
-#define PAD_SPEC_4 4
-
-
-
-#define PAD_SPEC_5 5
-
-
-
-#define PAD_TRIGGER_L 64
-
-
-
-#define PAD_TRIGGER_R 32
-
-
-
-#define PAD_TRIGGER_Z 16
-
-
-
-#define PI_FIFO_END 4
-
-
-
-#define PI_FIFO_PTR 5
-
-
-
-#define PI_FIFO_START 3
-
-
-
-#define PI_INTRPT_AI 32
-
-
-
-#define PI_INTRPT_CP 2048
-
-
-
-#define PI_INTRPT_DEBUG 4096
-
-
-
-#define PI_INTRPT_DSP 64
-
-
-
-#define PI_INTRPT_DVD 4
-
-
-
-#define PI_INTRPT_ERR 1
-
-
-
-#define PI_INTRPT_EXI 16
-
-
-
-#define PI_INTRPT_HSP 8192
-
-
-
-#define PI_INTRPT_MASK 1
-
-
-
-#define PI_INTRPT_MEM 128
-
-
-
-#define PI_INTRPT_PE_FINISH 1024
-
-
-
-#define PI_INTRPT_PE_TOKEN 512
-
-
-
-#define PI_INTRPT_RSW 2
-
-
-
-#define PI_INTRPT_RSWST 65536
-
-
-
-#define PI_INTRPT_SI 8
-
-
-
-#define PI_INTRPT_SRC 0
-
-
-
-#define PI_INTRPT_VI 256
-
-
-
-#define PI_RESETCODE 9
-
-
-
-#define PLOSS 6
-
-
-
-#define PMC1 953
-
-
-
-#define PMC1_COUNTER 2147483647
-
-
-
-#define PMC1_OV 2147483648
-
-
-
-#define PMC2 954
-
-
-
-#define PMC2_COUNTER 2147483647
-
-
-
-#define PMC2_OV 2147483648
-
-
-
-#define PMC3 957
-
-
-
-#define PMC3_COUNTER 2147483647
-
-
-
-#define PMC3_OV 2147483648
-
-
-
-#define PMC4 958
-
-
-
-#define PMC4_COUNTER 2147483647
-
-
-
-#define PMC4_OV 2147483648
-
-
-
-#define PVR 287
-
-
-
-#define RES_WIRELESS_LITE 262144
-
-
-
-#define RTC_CHAN 0
-
-
-
-#define RTC_CMD_READ 536870912
-
-
-
-#define RTC_CMD_WRITE 2684354560
-
-
-
-#define RTC_DEV 1
-
-
-
-#define RTC_FREQ 3
-
-
-
-#define RTC_SRAM_ADDR 256
-
-
-
-#define RTC_SRAM_SIZE 64
-
-
-
-#define R_DOLPHIN_END 203
-
-
-
-#define R_DOLPHIN_MRKREF 204
-
-
-
-#define R_DOLPHIN_NOP 201
-
-
-
-#define R_DOLPHIN_SECTION 202
-
-
-
-#define SAL_MAX_STUDIONUM 8
-
-
-
-#define SCHAR_MAX 127
-
-
-
-#define SCHAR_MIN -128
-
-
-
-#define SDR1 25
-
-
-
-#define SECS_IN_DAY 86400
-
-
-
-#define SECS_IN_HOUR 3600
-
-
-
-#define SECS_IN_MIN 60
-
-
-
-#define SECS_IN_YEAR 31536000
-
-
-
-#define SHRT_MAX 32767
-
-
-
-#define SHRT_MIN -32768
-
-
-
-#define SIA 955
-
-
-
-#define SING 2
-
-
-
-#define SI_CC_STAT 13
-
-
-
-#define SI_CHAN0 0
-
-
-
-#define SI_CHAN0_BIT 2147483648
-
-
-
-#define SI_CHAN1 1
-
-
-
-#define SI_CHAN1_BIT 1073741824
-
-
-
-#define SI_CHAN2 2
-
-
-
-#define SI_CHAN2_BIT 536870912
-
-
-
-#define SI_CHAN3 3
-
-
-
-#define SI_CHAN3_BIT 268435456
-
-
-
-#define SI_CHAN_0_BTN_1 1
-
-
-
-#define SI_CHAN_0_BTN_2 2
-
-
-
-#define SI_CHAN_0_BUF 0
-
-
-
-#define SI_CHAN_1_BTN_1 4
-
-
-
-#define SI_CHAN_1_BTN_2 5
-
-
-
-#define SI_CHAN_1_BUF 3
-
-
-
-#define SI_CHAN_2_BTN_1 7
-
-
-
-#define SI_CHAN_2_BTN_2 8
-
-
-
-#define SI_CHAN_2_BUF 6
-
-
-
-#define SI_CHAN_3_BTN_1 10
-
-
-
-#define SI_CHAN_3_BTN_2 11
-
-
-
-#define SI_CHAN_3_BUF 9
-
-
-
-#define SI_COMCSR_CHANNEL_MASK 6
-
-
-
-#define SI_COMCSR_COMERR_MASK 536870912
-
-
-
-#define SI_COMCSR_IDX 13
-
-
-
-#define SI_COMCSR_INLNGTH_MASK 32512
-
-
-
-#define SI_COMCSR_OUTLNGTH_MASK 8323072
-
-
-
-#define SI_COMCSR_RDSTINTMSK_MASK 134217728
-
-
-
-#define SI_COMCSR_RDSTINT_MASK 268435456
-
-
-
-#define SI_COMCSR_TCINTMSK_MASK 1073741824
-
-
-
-#define SI_COMCSR_TCINT_MASK 2147483648
-
-
-
-#define SI_COMCSR_TSTART_MASK 1
-
-
-
-#define SI_ERROR_BUSY 128
-
-
-
-#define SI_ERROR_COLLISION 4
-
-
-
-#define SI_ERROR_NO_RESPONSE 8
-
-
-
-#define SI_ERROR_OVER_RUN 2
-
-
-
-#define SI_ERROR_RDST 32
-
-
-
-#define SI_ERROR_UNDER_RUN 1
-
-
-
-#define SI_ERROR_UNKNOWN 64
-
-
-
-#define SI_ERROR_WRST 16
-
-
-
-#define SI_EXI_LOCK 15
-
-
-
-#define SI_GBA 262144
-
-
-
-#define SI_GC_CONTROLLER 150994944
-
-
-
-#define SI_GC_KEYBOARD 136314880
-
-
-
-#define SI_GC_NOMOTOR 536870912
-
-
-
-#define SI_GC_RECEIVER 2281701376
-
-
-
-#define SI_GC_STANDARD 16777216
-
-
-
-#define SI_GC_STEERING 134217728
-
-
-
-#define SI_GC_WAVEBIRD 2333081600
-
-
-
-#define SI_GC_WIRELESS 2147483648
-
-
-
-#define SI_IO_BUFFER 32
-
-
-
-#define SI_MAX_CHAN 4
-
-
-
-#define SI_MAX_COMCSR_INLNGTH 128
-
-
-
-#define SI_MAX_COMCSR_OUTLNGTH 128
-
-
-
-#define SI_N64_CONTROLLER 83886080
-
-
-
-#define SI_N64_KEYBOARD 131072
-
-
-
-#define SI_N64_MIC 65536
-
-
-
-#define SI_N64_MOUSE 33554432
-
-
-
-#define SI_POLL 12
-
-
-
-#define SI_STAT 14
-
-
-
-#define SI_STATUS_IDX 14
-
-
-
-#define SI_TYPE_DOLPHIN 134217728
-
-
-
-#define SI_TYPE_GC 134217728
-
-
-
-#define SI_TYPE_MASK 402653184
-
-
-
-#define SI_TYPE_N64 0
-
-
-
-#define SI_WIRELESS_CONT 0
-
-
-
-#define SI_WIRELESS_CONT_MASK 524288
-
-
-
-#define SI_WIRELESS_FIX_ID 1048576
-
-
-
-#define SI_WIRELESS_ID 12648192
-
-
-
-#define SI_WIRELESS_IR 67108864
-
-
-
-#define SI_WIRELESS_LITE 262144
-
-
-
-#define SI_WIRELESS_LITE_MASK 786432
-
-
-
-#define SI_WIRELESS_ORIGIN 2097152
-
-
-
-#define SI_WIRELESS_RECEIVED 1073741824
-
-
-
-#define SI_WIRELESS_STATE 33554432
-
-
-
-#define SI_WIRELESS_TYPE 983040
-
-
-
-#define SI_WIRELESS_TYPE_ID 13631232
-
-
-
-#define SND_ALL_VOLGROUPS 255
-
-
-
-#define SND_AUX_NUMPARAMETERS 4
-
-
-
-#define SND_AUX_REASON_BUFFERUPDATE 0
-
-
-
-#define SND_AUX_REASON_PARAMETERUPDATE 1
-
-
-
-#define SND_CROSSFADE_CONTINUE 2
-
-
-
-#define SND_CROSSFADE_DEFAULT 0
-
-
-
-#define SND_CROSSFADE_MUTE 64
-
-
-
-#define SND_CROSSFADE_MUTENEW 128
-
-
-
-#define SND_CROSSFADE_PAUSE 1
-
-
-
-#define SND_CROSSFADE_PAUSENEW 8
-
-
-
-#define SND_CROSSFADE_SPEED 32
-
-
-
-#define SND_CROSSFADE_START 0
-
-
-
-#define SND_CROSSFADE_STOP 0
-
-
-
-#define SND_CROSSFADE_SYNC 4
-
-
-
-#define SND_CROSSFADE_TRACKMUTE 16
-
-
-
-#define SND_DOOR_A2B 0
-
-
-
-#define SND_DOOR_B2A 1
-
-
-
-#define SND_DOOR_DEFAULT 0
-
-
-
-#define SND_EMITTER_CONTINOUS 1
-
-
-
-#define SND_EMITTER_CONTINUOUS 1
-
-
-
-#define SND_EMITTER_DEFAULT 0
-
-
-
-#define SND_EMITTER_DEFAULTKEY 255
-
-
-
-#define SND_EMITTER_DEFAULTVOL 255
-
-
-
-#define SND_EMITTER_DOPPLERFX 8
-
-
-
-#define SND_EMITTER_HARDSTART 32
-
-
-
-#define SND_EMITTER_ITD 16
-
-
-
-#define SND_EMITTER_NOSILENTSTART 64
-
-
-
-#define SND_EMITTER_PAUSABLE 4
-
-
-
-#define SND_EMITTER_RESTARTABLE 2
-
-
-
-#define SND_FX_VOLGROUPS 254
-
-
-
-#define SND_ID_ERROR 4294967295
-
-
-
-#define SND_LISTENER_DEFAULT 0
-
-
-
-#define SND_LISTENER_DOPPLERFX 1
-
-
-
-#define SND_MAX_SEQINSTANCES 8
-
-
-
-#define SND_MAX_USER_VOLGROUP 20
-
-
-
-#define SND_MIDICTRL_CHORUS 93
-
-
-
-#define SND_MIDICTRL_DOPPLER 132
-
-
-
-#define SND_MIDICTRL_MODULATION 1
-
-
-
-#define SND_MIDICTRL_PANNING 10
-
-
-
-#define SND_MIDICTRL_PEDAL 64
-
-
-
-#define SND_MIDICTRL_PITCHBEND 128
-
-
-
-#define SND_MIDICTRL_PORTAMENTO 65
-
-
-
-#define SND_MIDICTRL_REVERB 91
-
-
-
-#define SND_MIDICTRL_SPANNING 131
-
-
-
-#define SND_MIDICTRL_VOLUME 7
-
-
-
-#define SND_MUSIC_VOLGROUPS 253
-
-
-
-#define SND_PAUSEVOL_NORMAL 127
-
-
-
-#define SND_PLAYPARA_DEFAULT 0
-
-
-
-#define SND_PLAYPARA_PAUSE 16
-
-
-
-#define SND_PLAYPARA_SEQVOLDEF 8
-
-
-
-#define SND_PLAYPARA_SPEED 2
-
-
-
-#define SND_PLAYPARA_TRACKMUTE 1
-
-
-
-#define SND_PLAYPARA_VOLUME 4
-
-
-
-#define SND_SEQVOL_CONTINUE 0
-
-
-
-#define SND_SEQVOL_MODEMASK 15
-
-
-
-#define SND_SEQVOL_MUTE 3
-
-
-
-#define SND_SEQVOL_PAUSE 2
-
-
-
-#define SND_SEQVOL_STOP 1
-
-
-
-#define SND_SEQ_CROSSFADE_ID 2147483648
-
-
-
-#define SND_SEQ_ERROR_ID 4294967295
-
-
-
-#define SND_STUDIO_DEFAULT 0
-
-
-
-#define SND_STUDIO_MAXNUM 8
-
-
-
-#define SND_STUDIO_NONE 255
-
-
-
-#define SND_USERALL_VOLGROUPS 252
-
-
-
-#define SND_USERFX_VOLGROUPS 251
-
-
-
-#define SND_USERMUSIC_VOLGROUPS 250
-
-
-
-#define SPRG0 272
-
-
-
-#define SPRG1 273
-
-
-
-#define SPRG2 274
-
-
-
-#define SPRG3 275
-
-
-
-#define SRR0 26
-
-
-
-#define SRR1 27
-
-
-
-#define SRR1_DMA_BIT 2097152
-
-
-
-#define SRR1_L2DP_BIT 1048576
-
-
-
-#define SYNTH_MAX_VOICES 64
-
-
-
-#define TBL 284
-
-
-
-#define TBU 285
-
-
-
-#define THRM1 1020
-
-
-
-#define THRM2 1021
-
-
-
-#define THRM3 1022
-
-
-
-#define TLOSS 5
-
-
-
-#define TRUE 1
-
-
-
-#define UCHAR_MAX 255
-
-
-
-#define UINT_MAX 4294967295
-
-
-
-#define ULLONG_MAX -1
-
-
-
-#define ULONG_MAX 4294967295
-
-
-
-#define UMMCR0 936
-
-
-
-#define UMMCR1 940
-
-
-
-#define UNDERFLOW 4
-
-
-
-#define UPMC1 937
-
-
-
-#define UPMC2 938
-
-
-
-#define UPMC3 941
-
-
-
-#define UPMC4 942
-
-
-
-#define USEC_MAX 1000
-
-
-
-#define USHRT_MAX 65535
-
-
-
-#define USIA 939
-
-
-
-#define VI_3D 3
-
-
-
-#define VI_BBI_EVEN 12
-
-
-
-#define VI_BBI_EVEN_U 13
-
-
-
-#define VI_BBI_ODD 10
-
-
-
-#define VI_BBI_ODD_U 11
-
-
-
-#define VI_BTTM_FIELD_BASE_LEFT 18
-
-
-
-#define VI_BTTM_FIELD_BASE_LEFT_U 19
-
-
-
-#define VI_BTTM_FIELD_BASE_RIGHT 20
-
-
-
-#define VI_BTTM_FIELD_BASE_RIGHT_U 21
-
-
-
-#define VI_CLOCK_SEL 54
-
-
-
-#define VI_DEBUG 3
-
-
-
-#define VI_DEBUG_PAL 4
-
-
-
-#define VI_DISPLAY_PIX_SZ 2
-
-
-
-#define VI_DISP_CONFIG 1
-
-
-
-#define VI_DISP_INT_0 24
-
-
-
-#define VI_DISP_INT_0U 25
-
-
-
-#define VI_DISP_INT_1 26
-
-
-
-#define VI_DISP_INT_1U 27
-
-
-
-#define VI_DISP_INT_2 28
-
-
-
-#define VI_DISP_INT_2U 29
-
-
-
-#define VI_DISP_INT_3 30
-
-
-
-#define VI_DISP_INT_3U 31
-
-
-
-#define VI_DTV_STAT 55
-
-
-
-#define VI_EURGB60 5
-
-
-
-#define VI_FCT_0 38
-
-
-
-#define VI_FCT_0U 39
-
-
-
-#define VI_FCT_1 40
-
-
-
-#define VI_FCT_1U 41
-
-
-
-#define VI_FCT_2 42
-
-
-
-#define VI_FCT_2U 43
-
-
-
-#define VI_FCT_3 44
-
-
-
-#define VI_FCT_3U 45
-
-
-
-#define VI_FCT_4 46
-
-
-
-#define VI_FCT_4U 47
-
-
-
-#define VI_FCT_5 48
-
-
-
-#define VI_FCT_5U 49
-
-
-
-#define VI_FCT_6 50
-
-
-
-#define VI_FCT_6U 51
-
-
-
-#define VI_FIELD_ABOVE 1
-
-
-
-#define VI_FIELD_BELOW 0
-
-
-
-#define VI_GCA 6
-
-
-
-#define VI_HORIZ_COUNT 23
-
-
-
-#define VI_HORIZ_TIMING_0L 2
-
-
-
-#define VI_HORIZ_TIMING_0U 3
-
-
-
-#define VI_HORIZ_TIMING_1L 4
-
-
-
-#define VI_HORIZ_TIMING_1U 5
-
-
-
-#define VI_HSR 37
-
-
-
-#define VI_HSW 36
-
-
-
-#define VI_INTERLACE 0
-
-
-
-#define VI_MAX_HEIGHT_EURGB60 480
-
-
-
-#define VI_MAX_HEIGHT_MPAL 480
-
-
-
-#define VI_MAX_HEIGHT_NTSC 480
-
-
-
-#define VI_MAX_HEIGHT_PAL 574
-
-
-
-#define VI_MAX_WIDTH_EURGB60 720
-
-
-
-#define VI_MAX_WIDTH_MPAL 720
-
-
-
-#define VI_MAX_WIDTH_NTSC 720
-
-
-
-#define VI_MAX_WIDTH_PAL 720
-
-
-
-#define VI_MPAL 2
-
-
-
-#define VI_NON_INTERLACE 1
-
-
-
-#define VI_NTSC 0
-
-
-
-#define VI_PAL 1
-
-
-
-#define VI_PROGRESSIVE 2
-
-
-
-#define VI_TOP_FIELD_BASE_LEFT 14
-
-
-
-#define VI_TOP_FIELD_BASE_LEFT_U 15
-
-
-
-#define VI_TOP_FIELD_BASE_RIGHT 16
-
-
-
-#define VI_TOP_FIELD_BASE_RIGHT_U 17
-
-
-
-#define VI_VERT_COUNT 22
-
-
-
-#define VI_VERT_TIMING 0
-
-
-
-#define VI_VERT_TIMING_EVEN 8
-
-
-
-#define VI_VERT_TIMING_EVEN_U 9
-
-
-
-#define VI_VERT_TIMING_ODD 6
-
-
-
-#define VI_VERT_TIMING_ODD_U 7
-
-
-
-#define VI_WIDTH 56
-
-
-
-#define WEEK_DAY_MAX 7
-
-
-
-#define WPAR 921
-
-
-
-#define WPAR_ADDR 4294967264
-
-
-
-#define WPAR_BNE 1
-
-
-
-#define XER 1
-
-
-
-#define YEAR_DAY_MAX 365
-
-
-
-#define _GX_TF_CTF 32
-
-
-
-#define _GX_TF_ZTF 16
-
-
-
-#define _INTEGRAL_MAX_BITS 32
-
-
-
-#define _SND_CHORUS_NUM_BLOCKS 3
-
-
-
-#define __AIRegs 3422579712
-
-
-
-#define __DIRegs 3422576640
-
-
-
-#define __DSPRegs 3422572544
-
-
-
-#define __EXIRegs 3422578688
-
-
-
-#define __MEMRegs 3422568448
-
-
-
-#define __OSCONTEXT_PADDING 452
-
-
-
-#define __OS_CONTEXT_FRAME 768
-
-
-
-#define __OS_EXCEPTION_ALIGNMENT 5
-
-
-
-#define __OS_EXCEPTION_BREAKPOINT 12
-
-
-
-#define __OS_EXCEPTION_DECREMENTER 8
-
-
-
-#define __OS_EXCEPTION_DSI 2
-
-
-
-#define __OS_EXCEPTION_EXTERNAL_INTERRUPT 4
-
-
-
-#define __OS_EXCEPTION_FLOATING_POINT 7
-
-
-
-#define __OS_EXCEPTION_ISI 3
-
-
-
-#define __OS_EXCEPTION_MACHINE_CHECK 1
-
-
-
-#define __OS_EXCEPTION_MAX 15
-
-
-
-#define __OS_EXCEPTION_PERFORMACE_MONITOR 11
-
-
-
-#define __OS_EXCEPTION_PROGRAM 6
-
-
-
-#define __OS_EXCEPTION_SYSTEM_CALL 9
-
-
-
-#define __OS_EXCEPTION_SYSTEM_INTERRUPT 13
-
-
-
-#define __OS_EXCEPTION_SYSTEM_RESET 0
-
-
-
-#define __OS_EXCEPTION_THERMAL_INTERRUPT 14
-
-
-
-#define __OS_EXCEPTION_TRACE 10
-
-
-
-#define __OS_INTERRUPT_AI_AI 8
-
-
-
-#define __OS_INTERRUPT_DSP_AI 5
-
-
-
-#define __OS_INTERRUPT_DSP_ARAM 6
-
-
-
-#define __OS_INTERRUPT_DSP_DSP 7
-
-
-
-#define __OS_INTERRUPT_EXI_0_EXI 9
-
-
-
-#define __OS_INTERRUPT_EXI_0_EXT 11
-
-
-
-#define __OS_INTERRUPT_EXI_0_TC 10
-
-
-
-#define __OS_INTERRUPT_EXI_1_EXI 12
-
-
-
-#define __OS_INTERRUPT_EXI_1_EXT 14
-
-
-
-#define __OS_INTERRUPT_EXI_1_TC 13
-
-
-
-#define __OS_INTERRUPT_EXI_2_EXI 15
-
-
-
-#define __OS_INTERRUPT_EXI_2_TC 16
-
-
-
-#define __OS_INTERRUPT_MAX 32
-
-
-
-#define __OS_INTERRUPT_MEM_0 0
-
-
-
-#define __OS_INTERRUPT_MEM_1 1
-
-
-
-#define __OS_INTERRUPT_MEM_2 2
-
-
-
-#define __OS_INTERRUPT_MEM_3 3
-
-
-
-#define __OS_INTERRUPT_MEM_ADDRESS 4
-
-
-
-#define __OS_INTERRUPT_PI_CP 17
-
-
-
-#define __OS_INTERRUPT_PI_DEBUG 25
-
-
-
-#define __OS_INTERRUPT_PI_DI 21
-
-
-
-#define __OS_INTERRUPT_PI_ERROR 23
-
-
-
-#define __OS_INTERRUPT_PI_HSP 26
-
-
-
-#define __OS_INTERRUPT_PI_PE_FINISH 19
-
-
-
-#define __OS_INTERRUPT_PI_PE_TOKEN 18
-
-
-
-#define __OS_INTERRUPT_PI_RSW 22
-
-
-
-#define __OS_INTERRUPT_PI_SI 20
-
-
-
-#define __OS_INTERRUPT_PI_VI 24
-
-
-
-#define __PIRegs 3422564352
-
-
-
-#define __SIRegs 3422577664
-
-
-
-#define __STDC_VERSION__ 199900
-
-
-
-#define __VIRegs 3422560256
-
-
-
-#define __alphanumeric 208
-
-
-
-#define __control 3
-
-
-
-#define __control_char 1
-
-
-
-#define __digit 16
-
-
-
-#define __graphic 216
-
-
-
-#define __hex_digit 32
-
-
-
-#define __letter 192
-
-
-
-#define __lower_case 64
-
-
-
-#define __motion_char 2
-
-
-
-#define __printable 220
-
-
-
-#define __punctuation 8
-
-
-
-#define __space_char 4
-
-
-
-#define __upper_case 128
-
-
-
-#define __whitespace 6
-
-
-
-#define nullptr 0
-
-
-
+
+#define AI_CONTROL 0
+
+#define AI_CONTROL_DSP_SAMPLE_COUNT 4
+
+#define AI_CONTROL_DSP_SAMPLE_RATE 64
+
+#define AI_CONTROL_PLAY_STATE 1
+
+#define AI_CONTROL_STREAM_SAMPLE_COUNT 32
+
+#define AI_CONTROL_STREAM_SAMPLE_RATE 2
+
+#define AI_CONTROL_UNKNOWN8 8
+
+#define AI_INTRPT_TIMING 3
+
+#define AI_SAMPLERATE_32KHZ 0
+
+#define AI_SAMPLERATE_48KHZ 1
+
+#define AI_SAMPLE_COUNTER 2
+
+#define AI_STREAM_START 1
+
+#define AI_STREAM_STOP 0
+
+#define AI_VOLUME 1
+
+#define ARAM_DIR_ARAM_TO_MRAM 1
+
+#define ARAM_DIR_MRAM_TO_ARAM 0
+
+#define ARENAHI_ADDR 2147483700
+
+#define ARQ_DMA_ALIGNMENT 32
+
+#define ARQ_PRIORITY_HIGH 1
+
+#define ARQ_PRIORITY_LOW 0
+
+#define ARQ_TYPE_ARAM_TO_MRAM 1
+
+#define ARQ_TYPE_MRAM_TO_ARAM 0
+
+#define BIAS 730485
+
+#define BOOTINFO2_ADDR 2147483892
+
+#define BSD 199103
+
+#define CARD_ATTR_COMPANY 64
+
+#define CARD_ATTR_GLOBAL 32
+
+#define CARD_ATTR_NO_COPY 8
+
+#define CARD_ATTR_NO_MOVE 16
+
+#define CARD_ATTR_PUBLIC 4
+
+#define CARD_BANNER_HEIGHT 32
+
+#define CARD_BANNER_WIDTH 96
+
+#define CARD_COMMENT_SIZE 64
+
+#define CARD_ENCODE_ANSI 0
+
+#define CARD_ENCODE_SJIS 1
+
+#define CARD_FAT_AVAIL 0
+
+#define CARD_FAT_CHECKCODE 2
+
+#define CARD_FAT_CHECKSUM 0
+
+#define CARD_FAT_CHECKSUMINV 1
+
+#define CARD_FAT_FREEBLOCKS 3
+
+#define CARD_FAT_LASTSLOT 4
+
+#define CARD_FILENAME_MAX 32
+
+#define CARD_ICON_HEIGHT 32
+
+#define CARD_ICON_MAX 8
+
+#define CARD_ICON_WIDTH 32
+
+#define CARD_MAX_FILE 127
+
+#define CARD_MAX_MOUNT_STEP 7
+
+#define CARD_MAX_SIZE 16777216
+
+#define CARD_MODE_FAST 1
+
+#define CARD_MODE_NORMAL 0
+
+#define CARD_NUM_SYSTEM_BLOCK 5
+
+#define CARD_PAGE_SIZE 128
+
+#define CARD_READ_SIZE 512
+
+#define CARD_RESULT_BROKEN -6
+
+#define CARD_RESULT_BUSY -1
+
+#define CARD_RESULT_CANCELED -14
+
+#define CARD_RESULT_ENCODING -13
+
+#define CARD_RESULT_EXIST -7
+
+#define CARD_RESULT_FATAL_ERROR -128
+
+#define CARD_RESULT_INSSPACE -9
+
+#define CARD_RESULT_IOERROR -5
+
+#define CARD_RESULT_LIMIT -11
+
+#define CARD_RESULT_NAMETOOLONG -12
+
+#define CARD_RESULT_NOCARD -3
+
+#define CARD_RESULT_NOENT -8
+
+#define CARD_RESULT_NOFILE -4
+
+#define CARD_RESULT_NOPERM -10
+
+#define CARD_RESULT_READY 0
+
+#define CARD_RESULT_UNLOCKED 1
+
+#define CARD_RESULT_WRONGDEVICE -2
+
+#define CARD_SEG_SIZE 512
+
+#define CARD_STAT_ANIM_BOUNCE 4
+
+#define CARD_STAT_ANIM_LOOP 0
+
+#define CARD_STAT_ANIM_MASK 4
+
+#define CARD_STAT_BANNER_C8 1
+
+#define CARD_STAT_BANNER_MASK 3
+
+#define CARD_STAT_BANNER_NONE 0
+
+#define CARD_STAT_BANNER_RGB5A3 2
+
+#define CARD_STAT_ICON_C8 1
+
+#define CARD_STAT_ICON_MASK 3
+
+#define CARD_STAT_ICON_NONE 0
+
+#define CARD_STAT_ICON_RGB5A3 2
+
+#define CARD_STAT_SPEED_END 0
+
+#define CARD_STAT_SPEED_FAST 1
+
+#define CARD_STAT_SPEED_MASK 3
+
+#define CARD_STAT_SPEED_MIDDLE 2
+
+#define CARD_STAT_SPEED_SLOW 3
+
+#define CARD_SYSTEM_BLOCK_SIZE 8192
+
+#define CARD_WORKAREA_SIZE 40960
+
+#define CHAN_NONE -1
+
+#define CHAR_BIT 8
+
+#define CHAR_MAX 127
+
+#define CHAR_MIN -128
+
+#define CTR 9
+
+#define CTRL_MTX 16
+
+#define CTRL_ROT_EULER 2
+
+#define CTRL_ROT_QUAT 4
+
+#define CTRL_SCALE 1
+
+#define CTRL_TRANS 8
+
+#define DABR 1013
+
+#define DAR 19
+
+#define DBAT0L 537
+
+#define DBAT0U 536
+
+#define DBAT1L 539
+
+#define DBAT1U 538
+
+#define DBAT2L 541
+
+#define DBAT2U 540
+
+#define DBAT3L 3
+
+
+/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3L - /decompHeaders/PPCArch.h/defines/define_DBAT3L */
+
+#define DBAT3U 3
+
+
+/* WARNING! conflicting data type names: /sdk/PPCArch.h/defines/define_DBAT3U - /decompHeaders/PPCArch.h/defines/define_DBAT3U */
+
+#define DEBUGFLAG_ADDR 2147496168
+
+#define DEC 22
+
+#define DEMOWIN_FLAGS_INIT 1
+
+#define DEMOWIN_FLAGS_OPENED 2
+
+#define DI_CMD_BUF_0 2
+
+#define DI_CMD_BUF_1 3
+
+#define DI_CMD_BUF_2 4
+
+#define DI_CONFIG 9
+
+#define DI_CONTROL 7
+
+#define DI_COVER_STATUS 1
+
+#define DI_DMA_LENGTH 6
+
+#define DI_DMA_MEM_ADDR 5
+
+#define DI_MM_BUF 8
+
+#define DI_STATUS 0
+
+#define DMA_L 923
+
+#define DMA_L_FLUSH 1
+
+#define DMA_L_LC_ADDR_MASK 4294967264
+
+#define DMA_L_LEN_MASK 12
+
+#define DMA_L_LOAD 16
+
+#define DMA_L_STORE 0
+
+#define DMA_L_TRIGGER 2
+
+#define DMA_U 922
+
+#define DMA_U_ADDR_MASK 4294967264
+
+#define DMA_U_LEN_U_MASK 31
+
+#define DOL_ADDR_LIMIT 2154823680
+
+#define DOMAIN 1
+
+#define DSISR 18
+
+#define DSP_ARAM_DMA_ARAM_HI 18
+
+#define DSP_ARAM_DMA_ARAM_LO 19
+
+#define DSP_ARAM_DMA_MM_HI 16
+
+#define DSP_ARAM_DMA_MM_LO 17
+
+#define DSP_ARAM_DMA_SIZE_HI 20
+
+#define DSP_ARAM_DMA_SIZE_LO 21
+
+#define DSP_ARAM_MODE 11
+
+#define DSP_ARAM_REFRESH 13
+
+#define DSP_ARAM_SIZE 9
+
+#define DSP_CONTROL_STATUS 5
+
+#define DSP_DMA_BYTES_LEFT 29
+
+#define DSP_DMA_CONTROL_LEN 27
+
+#define DSP_DMA_START_FLAG 32768
+
+#define DSP_DMA_START_HI 24
+
+#define DSP_DMA_START_LO 25
+
+#define DSP_MAILBOX_IN_HI 0
+
+#define DSP_MAILBOX_IN_LO 1
+
+#define DSP_MAILBOX_OUT_HI 2
+
+#define DSP_MAILBOX_OUT_LO 3
+
+#define DSP_TASK_FLAG_ATTACHED 1
+
+#define DSP_TASK_FLAG_CANCEL 2
+
+#define DSP_TASK_FLAG_CLEARALL 0
+
+#define DSP_TASK_STATE_DONE 3
+
+#define DSP_TASK_STATE_INIT 0
+
+#define DSP_TASK_STATE_RUN 1
+
+#define DSP_TASK_STATE_YIELD 2
+
+#define DTK_MODE_ALLREPEAT 1
+
+#define DTK_MODE_NOREPEAT 0
+
+#define DTK_MODE_REPEAT1 2
+
+#define DTK_STATE_BUSY 3
+
+#define DTK_STATE_PAUSE 2
+
+#define DTK_STATE_PREPARE 4
+
+#define DTK_STATE_RUN 1
+
+#define DTK_STATE_STOP 0
+
+#define DVD_AIS_SUCCESS 0
+
+#define DVD_COMMAND_AUDIO_BUFFER_CONFIG 13
+
+#define DVD_COMMAND_BSREAD 4
+
+#define DVD_COMMAND_BS_CHANGE_DISK 15
+
+#define DVD_COMMAND_CANCELSTREAM 7
+
+#define DVD_COMMAND_CHANGE_DISK 3
+
+#define DVD_COMMAND_INITSTREAM 6
+
+#define DVD_COMMAND_INQUIRY 14
+
+#define DVD_COMMAND_NONE 0
+
+#define DVD_COMMAND_READ 1
+
+#define DVD_COMMAND_READID 5
+
+#define DVD_COMMAND_REQUEST_AUDIO_ERROR 9
+
+#define DVD_COMMAND_REQUEST_LENGTH 12
+
+#define DVD_COMMAND_REQUEST_PLAY_ADDR 10
+
+#define DVD_COMMAND_REQUEST_START_ADDR 11
+
+#define DVD_COMMAND_SEEK 2
+
+#define DVD_COMMAND_STOP_STREAM_AT_END 8
+
+#define DVD_DEVICECODE_ADDR 2147496166
+
+#define DVD_FILEINFO_BUSY 1
+
+#define DVD_FILEINFO_READY 0
+
+#define DVD_INTTYPE_CVR 4
+
+#define DVD_INTTYPE_DE 2
+
+#define DVD_INTTYPE_TC 1
+
+#define DVD_MIN_TRANSFER_SIZE 32
+
+#define DVD_RESULT_CANCELED -3
+
+
+/* WARNING! conflicting data type names: /sdk/dvd.h/defines/define_DVD_RESULT_CANCELED - /decompHeaders/dvd.h/defines/define_DVD_RESULT_CANCELED */
+
+#define DVD_RESULT_FATAL_ERROR -1
+
+#define DVD_RESULT_GOOD 0
+
+#define DVD_RESULT_IGNORED -2
+
+#define DVD_STATE_BUSY 1
+
+#define DVD_STATE_CANCELED 10
+
+#define DVD_STATE_COVER_CLOSED 3
+
+#define DVD_STATE_COVER_OPEN 5
+
+#define DVD_STATE_END 0
+
+#define DVD_STATE_FATAL_ERROR -1
+
+#define DVD_STATE_IGNORED 9
+
+#define DVD_STATE_MOTOR_STOPPED 7
+
+#define DVD_STATE_NO_DISK 4
+
+#define DVD_STATE_PAUSING 8
+
+#define DVD_STATE_RETRY 11
+
+#define DVD_STATE_WAITING 2
+
+#define DVD_STATE_WRONG_DISK 6
+
+#define EAR 282
+
+#define EXCEPTIONMASK_ADDR 2147483716
+
+#define EXIT_FAILURE -1
+
+#define EXIT_SUCCESS 0
+
+#define EXI_CHAN_0_CONTROL 3
+
+#define EXI_CHAN_0_DMA_ADDR 1
+
+#define EXI_CHAN_0_IMM 4
+
+#define EXI_CHAN_0_LEN 2
+
+#define EXI_CHAN_0_STAT 0
+
+#define EXI_CHAN_1_CONTROL 8
+
+#define EXI_CHAN_1_DMA_ADDR 6
+
+#define EXI_CHAN_1_IMM 9
+
+#define EXI_CHAN_1_LEN 7
+
+#define EXI_CHAN_1_STAT 5
+
+#define EXI_CHAN_2_CONTROL 13
+
+#define EXI_CHAN_2_DMA_ADDR 11
+
+#define EXI_CHAN_2_IMM 14
+
+#define EXI_CHAN_2_LEN 12
+
+#define EXI_CHAN_2_STAT 10
+
+#define EXI_ETHER 67240448
+
+#define EXI_ETHER_VIEWER 69337089
+
+#define EXI_FREQ_16M 4
+
+#define EXI_FREQ_1M 0
+
+#define EXI_FREQ_2M 1
+
+#define EXI_FREQ_32M 5
+
+#define EXI_FREQ_4M 2
+
+#define EXI_FREQ_8M 3
+
+#define EXI_IS_VIEWER 84344832
+
+#define EXI_MAGIC 2784952410
+
+#define EXI_MARLIN 50397184
+
+#define EXI_MAX_CHAN 3
+
+#define EXI_MAX_DEV 3
+
+#define EXI_MEMORY_CARD_1019 64
+
+#define EXI_MEMORY_CARD_1019A 320
+
+#define EXI_MEMORY_CARD_1019B 576
+
+#define EXI_MEMORY_CARD_1019C 832
+
+#define EXI_MEMORY_CARD_1019D 1088
+
+#define EXI_MEMORY_CARD_1019E 1344
+
+#define EXI_MEMORY_CARD_1019F 1600
+
+#define EXI_MEMORY_CARD_1019G 1856
+
+#define EXI_MEMORY_CARD_123 8
+
+#define EXI_MEMORY_CARD_2043 128
+
+#define EXI_MEMORY_CARD_2043A 384
+
+#define EXI_MEMORY_CARD_2043B 640
+
+#define EXI_MEMORY_CARD_2043C 896
+
+#define EXI_MEMORY_CARD_2043D 1152
+
+#define EXI_MEMORY_CARD_2043E 1408
+
+#define EXI_MEMORY_CARD_2043F 1664
+
+#define EXI_MEMORY_CARD_2043G 1920
+
+#define EXI_MEMORY_CARD_251 16
+
+#define EXI_MEMORY_CARD_507 32
+
+#define EXI_MEMORY_CARD_59 4
+
+#define EXI_MODEM 33685504
+
+#define EXI_NPDP_GDEV 16908288
+
+#define EXI_READ 0
+
+#define EXI_REG_MAX 5
+
+#define EXI_STATE_ATTACHED 8
+
+#define EXI_STATE_BUSY 3
+
+#define EXI_STATE_DMA 1
+
+#define EXI_STATE_IDLE 0
+
+#define EXI_STATE_IMM 2
+
+#define EXI_STATE_LOCKED 16
+
+#define EXI_STATE_SELECTED 4
+
+#define EXI_STREAM_HANGER 68354048
+
+#define EXI_TX 8389632
+
+#define EXI_USB_ADAPTER 16842752
+
+#define EXI_WRITE 1
+
+#define ExceptionHookDestination 2147483720
+
+#define FALSE 0
+
+#define FPSCR_FEX 1073741824
+
+#define FPSCR_FEX_BIT 1
+
+#define FPSCR_FI 131072
+
+#define FPSCR_FI_BIT 14
+
+#define FPSCR_FR 262144
+
+#define FPSCR_FR_BIT 13
+
+#define FPSCR_FX 2147483648
+
+#define FPSCR_FX_BIT 0
+
+#define FPSCR_NI 4
+
+#define FPSCR_NI_BIT 29
+
+#define FPSCR_OE 64
+
+#define FPSCR_OE_BIT 25
+
+#define FPSCR_OX 268435456
+
+#define FPSCR_OX_BIT 3
+
+#define FPSCR_UE 32
+
+#define FPSCR_UE_BIT 26
+
+#define FPSCR_UX 134217728
+
+#define FPSCR_UX_BIT 4
+
+#define FPSCR_VE 128
+
+#define FPSCR_VE_BIT 24
+
+#define FPSCR_VX 536870912
+
+#define FPSCR_VXCVI 256
+
+#define FPSCR_VXCVI_BIT 23
+
+#define FPSCR_VXIDI 4194304
+
+#define FPSCR_VXIDI_BIT 9
+
+#define FPSCR_VXIMZ 1048576
+
+#define FPSCR_VXIMZ_BIT 11
+
+#define FPSCR_VXISI 8388608
+
+#define FPSCR_VXISI_BIT 8
+
+#define FPSCR_VXSNAN 16777216
+
+#define FPSCR_VXSNAN_BIT 7
+
+#define FPSCR_VXSOFT 1024
+
+#define FPSCR_VXSOFT_BIT 21
+
+#define FPSCR_VXSQRT 512
+
+#define FPSCR_VXSQRT_BIT 22
+
+#define FPSCR_VXVC 524288
+
+#define FPSCR_VXVC_BIT 12
+
+#define FPSCR_VXZDZ 2097152
+
+#define FPSCR_VXZDZ_BIT 10
+
+#define FPSCR_VX_BIT 2
+
+#define FPSCR_XE 8
+
+#define FPSCR_XE_BIT 28
+
+#define FPSCR_XX 33554432
+
+#define FPSCR_XX_BIT 6
+
+#define FPSCR_ZE 16
+
+#define FPSCR_ZE_BIT 27
+
+#define FPSCR_ZX 67108864
+
+#define FPSCR_ZX_BIT 5
+
+#define GQR0 912
+
+#define GQR1 913
+
+#define GQR2 914
+
+#define GQR3 915
+
+#define GQR4 916
+
+#define GQR5 917
+
+#define GQR6 918
+
+#define GQR7 919
+
+#define GQR_LOAD_SCALE_MASK 1056964608
+
+#define GQR_LOAD_TYPE_MASK 458752
+
+#define GQR_SCALE_MAX 32
+
+#define GQR_STORE_SCALE_MASK 16128
+
+#define GQR_STORE_TYPE_MASK 7
+
+#define GXFIFO_ADDR 3422584832
+
+#define GX_CP_ADDR 201326592
+
+#define GX_DISABLE 0
+
+#define GX_DRAW_LINES 168
+
+#define GX_DRAW_LINE_STRIP 176
+
+#define GX_DRAW_POINTS 184
+
+#define GX_DRAW_QUADS 128
+
+#define GX_DRAW_TRIANGLES 144
+
+#define GX_DRAW_TRIANGLE_FAN 160
+
+#define GX_DRAW_TRIANGLE_STRIP 152
+
+#define GX_ENABLE 1
+
+#define GX_FALSE 0
+
+#define GX_FIFO_MINSIZE 65536
+
+#define GX_FIFO_OBJ_SIZE 128
+
+#define GX_LOAD_BP_REG 97
+
+#define GX_LOAD_CP_REG 8
+
+#define GX_LOAD_INDX_A 32
+
+#define GX_LOAD_INDX_B 40
+
+#define GX_LOAD_INDX_C 48
+
+#define GX_LOAD_INDX_D 56
+
+#define GX_LOAD_XF_REG 16
+
+#define GX_MAX_VTXARRAY 16
+
+#define GX_MAX_Z24 16777215
+
+#define GX_MEM_ADDR 201342976
+
+#define GX_NOP 0
+
+#define GX_OPCODE_MASK 248
+
+#define GX_PE_ADDR 201330688
+
+#define GX_PI_ADDR 201338880
+
+#define GX_PROJECTION_SZ 7
+
+#define GX_TRUE 1
+
+#define GX_VAT_MASK 7
+
+#define GX_VIEWPORT_SZ 6
+
+#define HID0 1008
+
+#define HID0_ABE 8
+
+#define HID0_BCLK 134217728
+
+#define HID0_BHT 4
+
+#define HID0_BTIC 32
+
+#define HID0_DBP 1073741824
+
+#define HID0_DCE 16384
+
+#define HID0_DCE_BIT 17
+
+#define HID0_DCFA 64
+
+#define HID0_DCFI 1024
+
+#define HID0_DLOCK 4096
+
+#define HID0_DLOCK_BIT 19
+
+#define HID0_DOZE 8388608
+
+#define HID0_DPM 1048576
+
+#define HID0_EBA 536870912
+
+#define HID0_EBD 268435456
+
+#define HID0_ECLK 33554432
+
+#define HID0_EMCP 2147483648
+
+#define HID0_ICE 32768
+
+#define HID0_ICE_BIT 16
+
+#define HID0_ICFI 2048
+
+#define HID0_IFEM 256
+
+#define HID0_ILOCK 8192
+
+#define HID0_ILOCK_BIT 18
+
+#define HID0_NAP 4194304
+
+#define HID0_NHR 65536
+
+#define HID0_NOOPTI 1
+
+#define HID0_PAR 16777216
+
+#define HID0_SGE 128
+
+#define HID0_SLEEP 2097152
+
+#define HID0_SPD 512
+
+#define HID1 1009
+
+#define HID2 920
+
+#define HID2_DCHEE 524288
+
+#define HID2_DCHEE_BIT 12
+
+#define HID2_DCHERR 8388608
+
+#define HID2_DCHERR_BIT 8
+
+#define HID2_DCMEE 131072
+
+#define HID2_DCMEE_BIT 14
+
+#define HID2_DCMERR 2097152
+
+#define HID2_DCMERR_BIT 10
+
+#define HID2_DMAQL_MASK 251658240
+
+#define HID2_DMAQL_SHIFT 24
+
+#define HID2_DNCEE 262144
+
+#define HID2_DNCEE_BIT 13
+
+#define HID2_DNCERR 4194304
+
+#define HID2_DNCERR_BIT 9
+
+#define HID2_DQOEE 65536
+
+#define HID2_DQOEE_BIT 15
+
+#define HID2_DQOERR 1048576
+
+#define HID2_DQOERR_BIT 11
+
+#define HID2_LCE 268435456
+
+#define HID2_LCE_BIT 3
+
+#define HID2_LSQE 2147483648
+
+#define HID2_LSQE_BIT 0
+
+#define HID2_PSE 536870912
+
+#define HID2_PSE_BIT 2
+
+#define HID2_WPE 1073741824
+
+#define HID2_WPE_BIT 1
+
+#define IABR 1010
+
+#define IBAT0L 529
+
+#define IBAT0U 528
+
+#define IBAT1L 531
+
+#define IBAT1U 530
+
+#define IBAT2L 533
+
+#define IBAT2U 532
+
+#define IBAT3L 535
+
+#define IBAT3U 534
+
+#define ICTC 1019
+
+#define INT_MAX 2147483647
+
+
+/* WARNING! conflicting data type names: /sdk/types.h/defines/define_INT_MAX - /decompHeaders/limits.h/defines/define_INT_MAX */
+
+#define INT_MIN -2147483648
+
+#define IsDebuggerPresent 2147483712
+
+#define KILOBYTE_BYTECOUNT 1024
+
+#define L2CR 1017
+
+#define L2CR_L2BYP 8192
+
+#define L2CR_L2CLK_1_0 33554432
+
+#define L2CR_L2CLK_1_5 67108864
+
+#define L2CR_L2CLK_2_0 134217728
+
+#define L2CR_L2CLK_2_5 167772160
+
+#define L2CR_L2CLK_3_0 201326592
+
+#define L2CR_L2CS 512
+
+#define L2CR_L2CTL 1048576
+
+#define L2CR_L2CTR_MASK 254
+
+#define L2CR_L2DF 16384
+
+#define L2CR_L2DO 4194304
+
+#define L2CR_L2DRO 256
+
+#define L2CR_L2E 2147483648
+
+#define L2CR_L2I 2097152
+
+#define L2CR_L2IP 1
+
+#define L2CR_L2OH_0_5 0
+
+#define L2CR_L2OH_1_0 65536
+
+#define L2CR_L2PE 1073741824
+
+#define L2CR_L2SIZ_1M 805306368
+
+#define L2CR_L2SIZ_256K 268435456
+
+#define L2CR_L2SIZ_512K 536870912
+
+#define L2CR_L2SL 32768
+
+#define L2CR_L2TS 262144
+
+#define L2CR_L2WT 524288
+
+#define L2CR_RAM_FLOW_THRU_BURST 0
+
+#define L2CR_RAM_PIPELINE_BURST 16777216
+
+#define L2CR_RAM_PIPELINE_LATE 25165824
+
+#define LC_BASE 3758096384
+
+#define LC_BASE_PREFIX 57344
+
+#define LC_MAX_DMA_BLOCKS 128
+
+#define LC_MAX_DMA_BYTES 4096
+
+#define LLONG_MAX 9223372036854775807
+
+#define LLONG_MIN -9223372036854775808
+
+#define LONG_MAX 2147483647
+
+#define LONG_MIN -2147483648
+
+#define LR 8
+
+#define MEM_INTRPT_ADDR_HI 18
+
+#define MEM_INTRPT_ADDR_LO 17
+
+#define MEM_INTRPT_FLAG 16
+
+#define MEM_INTRPT_MASK 14
+
+#define MEM_INTRPT_SRC 15
+
+#define MEM_PROT_1 0
+
+#define MEM_PROT_2 2
+
+#define MEM_PROT_3 4
+
+#define MEM_PROT_4 6
+
+#define MEM_PROT_TYPE 8
+
+#define MEM_UNK_FLAG 20
+
+#define MMCR0 952
+
+#define MMCR0_DIS 2147483648
+
+#define MMCR0_DISCOUNT 33554432
+
+#define MMCR0_DMR 134217728
+
+#define MMCR0_DMS 268435456
+
+#define MMCR0_DP 1073741824
+
+#define MMCR0_DU 536870912
+
+#define MMCR0_ENINT 67108864
+
+#define MMCR0_INTONBITTRANS 4194304
+
+#define MMCR0_PMC1INTCONTROL 32768
+
+#define MMCR0_PMC1SELECT_MASK 8128
+
+#define MMCR0_PMC1_Bx_STALL_CYCLE 768
+
+#define MMCR0_PMC1_Bx_UNRESOLVED 704
+
+#define MMCR0_PMC1_CYCLE 64
+
+#define MMCR0_PMC1_DISPATCHED 256
+
+#define MMCR0_PMC1_EA 512
+
+#define MMCR0_PMC1_EIEIO 320
+
+#define MMCR0_PMC1_HOLD 0
+
+#define MMCR0_PMC1_IABR 576
+
+#define MMCR0_PMC1_IC_FETCH_MISS 832
+
+#define MMCR0_PMC1_INSTRUCTION 128
+
+#define MMCR0_PMC1_ITLB_CYCLE 384
+
+#define MMCR0_PMC1_L1_MISS 640
+
+#define MMCR0_PMC1_L2_HIT 448
+
+#define MMCR0_PMC1_TRANSITION 192
+
+#define MMCR0_PMC2INTCONTROL 16384
+
+#define MMCR0_PMC2SELECT_MASK 63
+
+#define MMCR0_PMC2_Bx_FALL_TROUGH 8
+
+#define MMCR0_PMC2_Bx_OUT_OF_ORDER 16
+
+#define MMCR0_PMC2_CYCLE 1
+
+#define MMCR0_PMC2_DISPATCHED 4
+
+#define MMCR0_PMC2_HOLD 0
+
+#define MMCR0_PMC2_IC_FETCH_MISS 15
+
+#define MMCR0_PMC2_IC_MISS 5
+
+#define MMCR0_PMC2_INSTRUCTION 2
+
+#define MMCR0_PMC2_ITLB_MISS 6
+
+#define MMCR0_PMC2_L1_CASTOUT 13
+
+#define MMCR0_PMC2_L2_I_MISS 7
+
+#define MMCR0_PMC2_LOAD_STORE 11
+
+#define MMCR0_PMC2_PR_SWITCH 9
+
+#define MMCR0_PMC2_RESERVED_LOAD 10
+
+#define MMCR0_PMC2_SNOOP 12
+
+#define MMCR0_PMC2_SYSTEM 14
+
+#define MMCR0_PMC2_TRANSITION 3
+
+#define MMCR0_PMCTRIGGER 8192
+
+#define MMCR0_RTCSELECT_47 25165824
+
+#define MMCR0_RTCSELECT_51 16777216
+
+#define MMCR0_RTCSELECT_55 8388608
+
+#define MMCR0_RTCSELECT_63 0
+
+#define MMCR0_RTCSELECT_MASK 25165824
+
+#define MMCR0_THRESHOLD_MASK 4128768
+
+#define MMCR1 956
+
+#define MMCR1_PMC3SELECT_MASK 4160749568
+
+#define MMCR1_PMC3_BPU_LR_CR 2281701376
+
+#define MMCR1_PMC3_Bx_SECOND 2147483648
+
+#define MMCR1_PMC3_Bx_TAKEN 1073741824
+
+#define MMCR1_PMC3_COND_STORE 1342177280
+
+#define MMCR1_PMC3_CYCLE 134217728
+
+#define MMCR1_PMC3_DC_MISS 671088640
+
+#define MMCR1_PMC3_DISPATCHED 536870912
+
+#define MMCR1_PMC3_DTLB_MISS 805306368
+
+#define MMCR1_PMC3_FPU 1476395008
+
+#define MMCR1_PMC3_HOLD 0
+
+#define MMCR1_PMC3_INSTRUCTION 268435456
+
+#define MMCR1_PMC3_L1_MISS_CYCLE 2013265920
+
+#define MMCR1_PMC3_L2_D_MISS 939524096
+
+#define MMCR1_PMC3_L2_HIT 1744830464
+
+#define MMCR1_PMC3_L2_SNOOP_CASTOUT 1610612736
+
+#define MMCR1_PMC3_PM_SWITCH 1207959552
+
+#define MMCR1_PMC3_TRANSITION 402653184
+
+#define MMCR1_PMC4SELECT_MASK 130023424
+
+#define MMCR1_PMC4_BPU_THIRD 58720256
+
+#define MMCR1_PMC4_Bx_MISSED 33554432
+
+#define MMCR1_PMC4_COND_STORE_INT 41943040
+
+#define MMCR1_PMC4_CYCLE 4194304
+
+#define MMCR1_PMC4_DC_MISS 130023424
+
+#define MMCR1_PMC4_DISPATCHED 16777216
+
+#define MMCR1_PMC4_DTLB_CYCLE 25165824
+
+#define MMCR1_PMC4_HOLD 0
+
+#define MMCR1_PMC4_INSTRUCTION 8388608
+
+#define MMCR1_PMC4_INTEGER 54525952
+
+#define MMCR1_PMC4_L2_CASTOUT 20971520
+
+#define MMCR1_PMC4_SNOOP_RETRY 50331648
+
+#define MMCR1_PMC4_SYNC 46137344
+
+#define MMCR1_PMC4_TRANSITION 12582912
+
+#define MONTH_MAX 12
+
+#define MSEC_MAX 1000
+
+#define MSR_BE 512
+
+#define MSR_BE_BIT 22
+
+#define MSR_DR 16
+
+#define MSR_DR_BIT 27
+
+#define MSR_EE 32768
+
+#define MSR_EE_BIT 16
+
+#define MSR_FE0 2048
+
+#define MSR_FE0_BIT 20
+
+#define MSR_FE1 256
+
+#define MSR_FE1_BIT 23
+
+#define MSR_FP 8192
+
+#define MSR_FP_BIT 18
+
+#define MSR_ILE 65536
+
+#define MSR_ILE_BIT 15
+
+#define MSR_IP 64
+
+#define MSR_IP_BIT 25
+
+#define MSR_IR 32
+
+#define MSR_IR_BIT 26
+
+#define MSR_LE 1
+
+#define MSR_LE_BIT 31
+
+#define MSR_ME 4096
+
+#define MSR_ME_BIT 19
+
+#define MSR_PM 4
+
+#define MSR_PM_BIT 29
+
+#define MSR_POW 262144
+
+#define MSR_POW_BIT 13
+
+#define MSR_PR 16384
+
+#define MSR_PR_BIT 17
+
+#define MSR_RI 2
+
+#define MSR_RI_BIT 30
+
+#define MSR_SE 1024
+
+#define MSR_SE_BIT 21
+
+#define MUSY_VERSION 131075
+
+#define MUSY_VERSION_MAJOR 2
+
+#define MUSY_VERSION_MINOR 0
+
+#define MUSY_VERSION_PATCH 3
+
+#define NULL 0
+
+#define OS_BASE_CACHED 2147483648
+
+#define OS_BASE_UNCACHED 3221225472
+
+#define OS_BI2_DEBUGFLAG_OFFSET 12
+
+#define OS_BOOTINFO_MAGIC 219540062
+
+#define OS_BOOTINFO_MAGIC_JTAG 3844111394
+
+#define OS_BOOTROM_ADDR 2167406592
+
+#define OS_CACHED_REGION_PREFIX 32768
+
+#define OS_CONSOLE_ARTHUR 268435458
+
+#define OS_CONSOLE_DEVELOPMENT 268435456
+
+#define OS_CONSOLE_DEVHW1 268435460
+
+#define OS_CONSOLE_DEVHW2 268435461
+
+#define OS_CONSOLE_DEVHW3 268435462
+
+#define OS_CONSOLE_DEVHW4 268435463
+
+#define OS_CONSOLE_DEVKIT 268435456
+
+#define OS_CONSOLE_EMULATOR 268435456
+
+#define OS_CONSOLE_MASK 4026531840
+
+#define OS_CONSOLE_MINNOW 268435459
+
+#define OS_CONSOLE_PC_EMULATOR 268435457
+
+#define OS_CONSOLE_RETAIL 0
+
+#define OS_CONSOLE_RETAIL1 1
+
+#define OS_CONSOLE_RETAIL2 2
+
+#define OS_CONSOLE_RETAIL3 3
+
+#define OS_CONSOLE_RETAIL4 4
+
+#define OS_CONSOLE_TDEV 536870912
+
+#define OS_CONSOLE_TDEVHW1 536870916
+
+#define OS_CONSOLE_TDEVHW2 536870917
+
+#define OS_CONSOLE_TDEVHW3 536870918
+
+#define OS_CONSOLE_TDEVHW4 536870919
+
+#define OS_CONSOLE_TDEVKIT 536870912
+
+#define OS_CONTEXT_CR 128
+
+#define OS_CONTEXT_CTR 136
+
+#define OS_CONTEXT_FPR0 144
+
+#define OS_CONTEXT_FPR1 152
+
+#define OS_CONTEXT_FPR10 224
+
+#define OS_CONTEXT_FPR11 232
+
+#define OS_CONTEXT_FPR12 240
+
+#define OS_CONTEXT_FPR13 248
+
+#define OS_CONTEXT_FPR14 256
+
+#define OS_CONTEXT_FPR15 264
+
+#define OS_CONTEXT_FPR16 272
+
+#define OS_CONTEXT_FPR17 280
+
+#define OS_CONTEXT_FPR18 288
+
+#define OS_CONTEXT_FPR19 296
+
+#define OS_CONTEXT_FPR2 160
+
+#define OS_CONTEXT_FPR20 304
+
+#define OS_CONTEXT_FPR21 312
+
+#define OS_CONTEXT_FPR22 320
+
+#define OS_CONTEXT_FPR23 328
+
+#define OS_CONTEXT_FPR24 336
+
+#define OS_CONTEXT_FPR25 344
+
+#define OS_CONTEXT_FPR26 352
+
+#define OS_CONTEXT_FPR27 360
+
+#define OS_CONTEXT_FPR28 368
+
+#define OS_CONTEXT_FPR29 376
+
+#define OS_CONTEXT_FPR3 168
+
+#define OS_CONTEXT_FPR30 384
+
+#define OS_CONTEXT_FPR31 392
+
+#define OS_CONTEXT_FPR4 176
+
+#define OS_CONTEXT_FPR5 184
+
+#define OS_CONTEXT_FPR6 192
+
+#define OS_CONTEXT_FPR7 200
+
+#define OS_CONTEXT_FPR8 208
+
+#define OS_CONTEXT_FPR9 216
+
+#define OS_CONTEXT_FPSCR 400
+
+#define OS_CONTEXT_GQR0 420
+
+#define OS_CONTEXT_GQR1 424
+
+#define OS_CONTEXT_GQR2 428
+
+#define OS_CONTEXT_GQR3 432
+
+#define OS_CONTEXT_GQR4 436
+
+#define OS_CONTEXT_GQR5 440
+
+#define OS_CONTEXT_GQR6 444
+
+#define OS_CONTEXT_GQR7 448
+
+#define OS_CONTEXT_LR 132
+
+#define OS_CONTEXT_MODE 416
+
+#define OS_CONTEXT_MODE_FPU 1
+
+#define OS_CONTEXT_MODE_PSFP 2
+
+#define OS_CONTEXT_PSF0 456
+
+#define OS_CONTEXT_PSF1 464
+
+#define OS_CONTEXT_PSF10 536
+
+#define OS_CONTEXT_PSF11 544
+
+#define OS_CONTEXT_PSF12 552
+
+#define OS_CONTEXT_PSF13 560
+
+#define OS_CONTEXT_PSF14 568
+
+#define OS_CONTEXT_PSF15 576
+
+#define OS_CONTEXT_PSF16 584
+
+#define OS_CONTEXT_PSF17 592
+
+#define OS_CONTEXT_PSF18 600
+
+#define OS_CONTEXT_PSF19 608
+
+#define OS_CONTEXT_PSF2 472
+
+#define OS_CONTEXT_PSF20 616
+
+#define OS_CONTEXT_PSF21 624
+
+#define OS_CONTEXT_PSF22 632
+
+#define OS_CONTEXT_PSF23 640
+
+#define OS_CONTEXT_PSF24 648
+
+#define OS_CONTEXT_PSF25 656
+
+#define OS_CONTEXT_PSF26 664
+
+#define OS_CONTEXT_PSF27 672
+
+#define OS_CONTEXT_PSF28 680
+
+#define OS_CONTEXT_PSF29 688
+
+#define OS_CONTEXT_PSF3 480
+
+#define OS_CONTEXT_PSF30 696
+
+#define OS_CONTEXT_PSF31 704
+
+#define OS_CONTEXT_PSF4 488
+
+#define OS_CONTEXT_PSF5 496
+
+#define OS_CONTEXT_PSF6 504
+
+#define OS_CONTEXT_PSF7 512
+
+#define OS_CONTEXT_PSF8 520
+
+#define OS_CONTEXT_PSF9 528
+
+#define OS_CONTEXT_R0 0
+
+#define OS_CONTEXT_R1 4
+
+#define OS_CONTEXT_R10 40
+
+#define OS_CONTEXT_R11 44
+
+#define OS_CONTEXT_R12 48
+
+#define OS_CONTEXT_R13 52
+
+#define OS_CONTEXT_R14 56
+
+#define OS_CONTEXT_R15 60
+
+#define OS_CONTEXT_R16 64
+
+#define OS_CONTEXT_R17 68
+
+#define OS_CONTEXT_R18 72
+
+#define OS_CONTEXT_R19 76
+
+#define OS_CONTEXT_R2 8
+
+#define OS_CONTEXT_R20 80
+
+#define OS_CONTEXT_R21 84
+
+#define OS_CONTEXT_R22 88
+
+#define OS_CONTEXT_R23 92
+
+#define OS_CONTEXT_R24 96
+
+#define OS_CONTEXT_R25 100
+
+#define OS_CONTEXT_R26 104
+
+#define OS_CONTEXT_R27 108
+
+#define OS_CONTEXT_R28 112
+
+#define OS_CONTEXT_R29 116
+
+#define OS_CONTEXT_R3 12
+
+#define OS_CONTEXT_R30 120
+
+#define OS_CONTEXT_R31 124
+
+#define OS_CONTEXT_R4 16
+
+#define OS_CONTEXT_R5 20
+
+#define OS_CONTEXT_R6 24
+
+#define OS_CONTEXT_R7 28
+
+#define OS_CONTEXT_R8 32
+
+#define OS_CONTEXT_R9 36
+
+#define OS_CONTEXT_SRR0 408
+
+#define OS_CONTEXT_SRR1 412
+
+#define OS_CONTEXT_STATE 418
+
+#define OS_CONTEXT_STATE_EXC 2
+
+#define OS_CONTEXT_STATE_FPSAVED 1
+
+#define OS_CONTEXT_XER 140
+
+#define OS_CURRENTCONTEXT_PADDR 192
+
+#define OS_DBINTERFACE_ADDR 64
+
+#define OS_DVD_MAGIC_NINTENDO 3258163005
+
+#define OS_ERROR_ALIGNMENT 5
+
+#define OS_ERROR_BREAKPOINT 12
+
+#define OS_ERROR_DECREMENTER 8
+
+#define OS_ERROR_DSI 2
+
+#define OS_ERROR_EXTERNAL_INTERRUPT 4
+
+#define OS_ERROR_FLOATING_POINT 7
+
+#define OS_ERROR_ISI 3
+
+#define OS_ERROR_MACHINE_CHECK 1
+
+#define OS_ERROR_MAX 16
+
+
+/* WARNING! conflicting data type names: /sdk/OSError.h/defines/define_OS_ERROR_MAX - /decompHeaders/OSError.h/defines/define_OS_ERROR_MAX */
+
+#define OS_ERROR_PERFORMACE_MONITOR 11
+
+#define OS_ERROR_PROGRAM 6
+
+#define OS_ERROR_PROTECTION 15
+
+#define OS_ERROR_SYSTEM_CALL 9
+
+#define OS_ERROR_SYSTEM_INTERRUPT 13
+
+#define OS_ERROR_SYSTEM_RESET 0
+
+#define OS_ERROR_THERMAL_INTERRUPT 14
+
+#define OS_ERROR_TRACE 10
+
+#define OS_EURGB60_OFF 0
+
+#define OS_EURGB60_ON 1
+
+#define OS_FASTCAST_S16 5
+
+#define OS_FASTCAST_S8 4
+
+#define OS_FASTCAST_U16 3
+
+#define OS_FASTCAST_U8 2
+
+#define OS_FONT_DATA_SIZE_ANSI 65824
+
+#define OS_FONT_DATA_SIZE_SJIS 593636
+
+#define OS_FONT_ENCODE_ANSI 0
+
+#define OS_FONT_ENCODE_NULL -1
+
+#define OS_FONT_ENCODE_SJIS 1
+
+#define OS_FONT_ROM_SIZE_ANSI 12288
+
+#define OS_FONT_ROM_SIZE_SJIS 315392
+
+#define OS_FONT_SIZE_ANSI 131360
+
+#define OS_FONT_SIZE_SJIS 1183488
+
+#define OS_GQR_S16 7
+
+#define OS_GQR_S8 6
+
+#define OS_GQR_U16 5
+
+#define OS_GQR_U8 4
+
+#define OS_HANDLER_SLOT_SIZE 256
+
+#define OS_INTERRUPTMASK_AI 8388608
+
+#define OS_INTERRUPTMASK_AI_AI 8388608
+
+#define OS_INTERRUPTMASK_DSP 117440512
+
+#define OS_INTERRUPTMASK_DSP_AI 67108864
+
+#define OS_INTERRUPTMASK_DSP_ARAM 33554432
+
+#define OS_INTERRUPTMASK_DSP_DSP 16777216
+
+#define OS_INTERRUPTMASK_EXI 8355840
+
+#define OS_INTERRUPTMASK_EXI_0 7340032
+
+#define OS_INTERRUPTMASK_EXI_0_EXI 4194304
+
+#define OS_INTERRUPTMASK_EXI_0_EXT 1048576
+
+#define OS_INTERRUPTMASK_EXI_0_TC 2097152
+
+#define OS_INTERRUPTMASK_EXI_1 917504
+
+#define OS_INTERRUPTMASK_EXI_1_EXI 524288
+
+#define OS_INTERRUPTMASK_EXI_1_EXT 131072
+
+#define OS_INTERRUPTMASK_EXI_1_TC 262144
+
+#define OS_INTERRUPTMASK_EXI_2 98304
+
+#define OS_INTERRUPTMASK_EXI_2_EXI 65536
+
+#define OS_INTERRUPTMASK_EXI_2_TC 32768
+
+#define OS_INTERRUPTMASK_MEM 4160749568
+
+#define OS_INTERRUPTMASK_MEM_0 2147483648
+
+#define OS_INTERRUPTMASK_MEM_1 1073741824
+
+#define OS_INTERRUPTMASK_MEM_2 536870912
+
+#define OS_INTERRUPTMASK_MEM_3 268435456
+
+#define OS_INTERRUPTMASK_MEM_ADDRESS 134217728
+
+#define OS_INTERRUPTMASK_MEM_RESET 4026531840
+
+#define OS_INTERRUPTMASK_PI 32736
+
+#define OS_INTERRUPTMASK_PI_CP 16384
+
+#define OS_INTERRUPTMASK_PI_DEBUG 64
+
+#define OS_INTERRUPTMASK_PI_DI 1024
+
+#define OS_INTERRUPTMASK_PI_ERROR 256
+
+#define OS_INTERRUPTMASK_PI_HSP 32
+
+#define OS_INTERRUPTMASK_PI_PE 12288
+
+#define OS_INTERRUPTMASK_PI_PE_FINISH 4096
+
+#define OS_INTERRUPTMASK_PI_PE_TOKEN 8192
+
+#define OS_INTERRUPTMASK_PI_RSW 512
+
+#define OS_INTERRUPTMASK_PI_SI 2048
+
+#define OS_INTERRUPTMASK_PI_VI 128
+
+#define OS_LANG_DUTCH 5
+
+#define OS_LANG_ENGLISH 0
+
+#define OS_LANG_FRENCH 2
+
+#define OS_LANG_GERMAN 1
+
+#define OS_LANG_ITALIAN 4
+
+#define OS_LANG_SPANISH 3
+
+#define OS_MESSAGE_BLOCK 1
+
+#define OS_MESSAGE_NOBLOCK 0
+
+#define OS_MODULE_VERSION 3
+
+
+/* WARNING! conflicting data type names: /sdk/OSModule.h/defines/define_OS_MODULE_VERSION - /decompHeaders/OSModule.h/defines/define_OS_MODULE_VERSION */
+
+#define OS_PHYSICAL_MASK 16383
+
+#define OS_PRIORITY_IDLE 31
+
+#define OS_PRIORITY_MAX 31
+
+#define OS_PRIORITY_MIN 0
+
+#define OS_PROGRESSIVE_MODE_OFF 0
+
+#define OS_PROGRESSIVE_MODE_ON 1
+
+#define OS_PROTECT0_BIT 1
+
+#define OS_PROTECT1_BIT 2
+
+#define OS_PROTECT2_BIT 4
+
+#define OS_PROTECT3_BIT 8
+
+#define OS_PROTECT_ADDRERR_BIT 16
+
+#define OS_PROTECT_CHAN0 0
+
+#define OS_PROTECT_CHAN1 1
+
+#define OS_PROTECT_CHAN2 2
+
+#define OS_PROTECT_CHAN3 3
+
+#define OS_PROTECT_CONTROL_NONE 0
+
+#define OS_PROTECT_CONTROL_RDWR 3
+
+#define OS_PROTECT_CONTROL_READ 1
+
+#define OS_PROTECT_CONTROL_WRITE 2
+
+#define OS_RESETCODE_EXEC 3221225472
+
+#define OS_RESETCODE_NETCONFIG 3221291008
+
+#define OS_RESETCODE_RESTART 2147483648
+
+#define OS_RESETCODE_SYSTEM 1073741824
+
+#define OS_RESET_HOTRESET 1
+
+#define OS_RESET_PRIO_ALARM 4294967295
+
+#define OS_RESET_PRIO_CARD 127
+
+#define OS_RESET_PRIO_GX 127
+
+#define OS_RESET_PRIO_IP 111
+
+#define OS_RESET_PRIO_MEM 127
+
+#define OS_RESET_PRIO_PAD 127
+
+#define OS_RESET_PRIO_SO 110
+
+#define OS_RESET_RESTART 0
+
+#define OS_RESET_SHUTDOWN 2
+
+#define OS_SECTIONINFO_EXEC 1
+
+#define OS_SOUND_MODE_MONO 0
+
+#define OS_SOUND_MODE_STEREO 1
+
+#define OS_SYS_CALL_HANDLER 2147486720
+
+#define OS_THREAD_ATTR_DETACH 1
+
+#define OS_THREAD_STACK_MAGIC 3735927486
+
+#define OS_UNCACHED_REGION_PREFIX 49152
+
+#define OS_VIDEO_MODE_MPAL 2
+
+#define OS_VIDEO_MODE_NTSC 0
+
+#define OVERFLOW 3
+
+#define PAD3_BUTTON_ADDR 2147496164
+
+#define PAD_BUTTON_A 256
+
+#define PAD_BUTTON_B 512
+
+#define PAD_BUTTON_DOWN 4
+
+#define PAD_BUTTON_LEFT 1
+
+#define PAD_BUTTON_MENU 4096
+
+#define PAD_BUTTON_RIGHT 2
+
+#define PAD_BUTTON_START 4096
+
+#define PAD_BUTTON_UP 8
+
+#define PAD_BUTTON_X 1024
+
+#define PAD_BUTTON_Y 2048
+
+#define PAD_CHAN0 0
+
+#define PAD_CHAN0_BIT 2147483648
+
+#define PAD_CHAN1 1
+
+#define PAD_CHAN1_BIT 1073741824
+
+#define PAD_CHAN2 2
+
+#define PAD_CHAN2_BIT 536870912
+
+#define PAD_CHAN3 3
+
+#define PAD_CHAN3_BIT 268435456
+
+#define PAD_CHANMAX 4
+
+#define PAD_ERR_NONE 0
+
+#define PAD_ERR_NOT_READY -2
+
+#define PAD_ERR_NO_CONTROLLER -1
+
+#define PAD_ERR_TRANSFER -3
+
+#define PAD_MAX_CONTROLLERS 4
+
+#define PAD_MODE_0 0
+
+#define PAD_MODE_1 1
+
+#define PAD_MODE_2 2
+
+#define PAD_MODE_3 3
+
+#define PAD_MODE_4 4
+
+#define PAD_MODE_5 5
+
+#define PAD_MODE_6 6
+
+#define PAD_MODE_7 7
+
+#define PAD_MOTOR_RUMBLE 1
+
+#define PAD_MOTOR_STOP 0
+
+#define PAD_MOTOR_STOP_HARD 2
+
+#define PAD_SPEC_0 0
+
+#define PAD_SPEC_1 1
+
+#define PAD_SPEC_2 2
+
+#define PAD_SPEC_3 3
+
+#define PAD_SPEC_4 4
+
+#define PAD_SPEC_5 5
+
+#define PAD_TRIGGER_L 64
+
+#define PAD_TRIGGER_R 32
+
+#define PAD_TRIGGER_Z 16
+
+#define PI_FIFO_END 4
+
+#define PI_FIFO_PTR 5
+
+#define PI_FIFO_START 3
+
+#define PI_INTRPT_AI 32
+
+#define PI_INTRPT_CP 2048
+
+#define PI_INTRPT_DEBUG 4096
+
+#define PI_INTRPT_DSP 64
+
+#define PI_INTRPT_DVD 4
+
+#define PI_INTRPT_ERR 1
+
+#define PI_INTRPT_EXI 16
+
+#define PI_INTRPT_HSP 8192
+
+#define PI_INTRPT_MASK 1
+
+#define PI_INTRPT_MEM 128
+
+#define PI_INTRPT_PE_FINISH 1024
+
+#define PI_INTRPT_PE_TOKEN 512
+
+#define PI_INTRPT_RSW 2
+
+#define PI_INTRPT_RSWST 65536
+
+#define PI_INTRPT_SI 8
+
+#define PI_INTRPT_SRC 0
+
+#define PI_INTRPT_VI 256
+
+#define PI_RESETCODE 9
+
+#define PLOSS 6
+
+#define PMC1 953
+
+#define PMC1_COUNTER 2147483647
+
+#define PMC1_OV 2147483648
+
+#define PMC2 954
+
+#define PMC2_COUNTER 2147483647
+
+#define PMC2_OV 2147483648
+
+#define PMC3 957
+
+#define PMC3_COUNTER 2147483647
+
+#define PMC3_OV 2147483648
+
+#define PMC4 958
+
+#define PMC4_COUNTER 2147483647
+
+#define PMC4_OV 2147483648
+
+#define PVR 287
+
+#define RES_WIRELESS_LITE 262144
+
+#define RTC_CHAN 0
+
+#define RTC_CMD_READ 536870912
+
+#define RTC_CMD_WRITE 2684354560
+
+#define RTC_DEV 1
+
+#define RTC_FREQ 3
+
+#define RTC_SRAM_ADDR 256
+
+#define RTC_SRAM_SIZE 64
+
+#define R_DOLPHIN_END 203
+
+#define R_DOLPHIN_MRKREF 204
+
+#define R_DOLPHIN_NOP 201
+
+#define R_DOLPHIN_SECTION 202
+
+#define SAL_MAX_STUDIONUM 8
+
+#define SCHAR_MAX 127
+
+#define SCHAR_MIN -128
+
+#define SDR1 25
+
+#define SECS_IN_DAY 86400
+
+#define SECS_IN_HOUR 3600
+
+#define SECS_IN_MIN 60
+
+#define SECS_IN_YEAR 31536000
+
+#define SHRT_MAX 32767
+
+#define SHRT_MIN -32768
+
+#define SIA 955
+
+#define SING 2
+
+#define SI_CC_STAT 13
+
+#define SI_CHAN0 0
+
+#define SI_CHAN0_BIT 2147483648
+
+#define SI_CHAN1 1
+
+#define SI_CHAN1_BIT 1073741824
+
+#define SI_CHAN2 2
+
+#define SI_CHAN2_BIT 536870912
+
+#define SI_CHAN3 3
+
+#define SI_CHAN3_BIT 268435456
+
+#define SI_CHAN_0_BTN_1 1
+
+#define SI_CHAN_0_BTN_2 2
+
+#define SI_CHAN_0_BUF 0
+
+#define SI_CHAN_1_BTN_1 4
+
+#define SI_CHAN_1_BTN_2 5
+
+#define SI_CHAN_1_BUF 3
+
+#define SI_CHAN_2_BTN_1 7
+
+#define SI_CHAN_2_BTN_2 8
+
+#define SI_CHAN_2_BUF 6
+
+#define SI_CHAN_3_BTN_1 10
+
+#define SI_CHAN_3_BTN_2 11
+
+#define SI_CHAN_3_BUF 9
+
+#define SI_COMCSR_CHANNEL_MASK 6
+
+#define SI_COMCSR_COMERR_MASK 536870912
+
+#define SI_COMCSR_IDX 13
+
+#define SI_COMCSR_INLNGTH_MASK 32512
+
+#define SI_COMCSR_OUTLNGTH_MASK 8323072
+
+#define SI_COMCSR_RDSTINTMSK_MASK 134217728
+
+#define SI_COMCSR_RDSTINT_MASK 268435456
+
+#define SI_COMCSR_TCINTMSK_MASK 1073741824
+
+#define SI_COMCSR_TCINT_MASK 2147483648
+
+#define SI_COMCSR_TSTART_MASK 1
+
+#define SI_ERROR_BUSY 128
+
+#define SI_ERROR_COLLISION 4
+
+#define SI_ERROR_NO_RESPONSE 8
+
+#define SI_ERROR_OVER_RUN 2
+
+#define SI_ERROR_RDST 32
+
+#define SI_ERROR_UNDER_RUN 1
+
+#define SI_ERROR_UNKNOWN 64
+
+#define SI_ERROR_WRST 16
+
+#define SI_EXI_LOCK 15
+
+#define SI_GBA 262144
+
+#define SI_GC_CONTROLLER 150994944
+
+#define SI_GC_KEYBOARD 136314880
+
+#define SI_GC_NOMOTOR 536870912
+
+#define SI_GC_RECEIVER 2281701376
+
+#define SI_GC_STANDARD 16777216
+
+#define SI_GC_STEERING 134217728
+
+#define SI_GC_WAVEBIRD 2333081600
+
+#define SI_GC_WIRELESS 2147483648
+
+#define SI_IO_BUFFER 32
+
+#define SI_MAX_CHAN 4
+
+#define SI_MAX_COMCSR_INLNGTH 128
+
+#define SI_MAX_COMCSR_OUTLNGTH 128
+
+#define SI_N64_CONTROLLER 83886080
+
+#define SI_N64_KEYBOARD 131072
+
+#define SI_N64_MIC 65536
+
+#define SI_N64_MOUSE 33554432
+
+#define SI_POLL 12
+
+#define SI_STAT 14
+
+#define SI_STATUS_IDX 14
+
+#define SI_TYPE_DOLPHIN 134217728
+
+#define SI_TYPE_GC 134217728
+
+#define SI_TYPE_MASK 402653184
+
+#define SI_TYPE_N64 0
+
+#define SI_WIRELESS_CONT 0
+
+#define SI_WIRELESS_CONT_MASK 524288
+
+#define SI_WIRELESS_FIX_ID 1048576
+
+#define SI_WIRELESS_ID 12648192
+
+#define SI_WIRELESS_IR 67108864
+
+#define SI_WIRELESS_LITE 262144
+
+#define SI_WIRELESS_LITE_MASK 786432
+
+#define SI_WIRELESS_ORIGIN 2097152
+
+#define SI_WIRELESS_RECEIVED 1073741824
+
+#define SI_WIRELESS_STATE 33554432
+
+#define SI_WIRELESS_TYPE 983040
+
+#define SI_WIRELESS_TYPE_ID 13631232
+
+#define SND_ALL_VOLGROUPS 255
+
+#define SND_AUX_NUMPARAMETERS 4
+
+#define SND_AUX_REASON_BUFFERUPDATE 0
+
+#define SND_AUX_REASON_PARAMETERUPDATE 1
+
+#define SND_CROSSFADE_CONTINUE 2
+
+#define SND_CROSSFADE_DEFAULT 0
+
+#define SND_CROSSFADE_MUTE 64
+
+#define SND_CROSSFADE_MUTENEW 128
+
+#define SND_CROSSFADE_PAUSE 1
+
+#define SND_CROSSFADE_PAUSENEW 8
+
+#define SND_CROSSFADE_SPEED 32
+
+#define SND_CROSSFADE_START 0
+
+#define SND_CROSSFADE_STOP 0
+
+#define SND_CROSSFADE_SYNC 4
+
+#define SND_CROSSFADE_TRACKMUTE 16
+
+#define SND_DOOR_A2B 0
+
+#define SND_DOOR_B2A 1
+
+#define SND_DOOR_DEFAULT 0
+
+#define SND_EMITTER_CONTINOUS 1
+
+#define SND_EMITTER_CONTINUOUS 1
+
+#define SND_EMITTER_DEFAULT 0
+
+#define SND_EMITTER_DEFAULTKEY 255
+
+#define SND_EMITTER_DEFAULTVOL 255
+
+#define SND_EMITTER_DOPPLERFX 8
+
+#define SND_EMITTER_HARDSTART 32
+
+#define SND_EMITTER_ITD 16
+
+#define SND_EMITTER_NOSILENTSTART 64
+
+#define SND_EMITTER_PAUSABLE 4
+
+#define SND_EMITTER_RESTARTABLE 2
+
+#define SND_FX_VOLGROUPS 254
+
+#define SND_ID_ERROR 4294967295
+
+#define SND_LISTENER_DEFAULT 0
+
+#define SND_LISTENER_DOPPLERFX 1
+
+#define SND_MAX_SEQINSTANCES 8
+
+#define SND_MAX_USER_VOLGROUP 20
+
+#define SND_MIDICTRL_CHORUS 93
+
+#define SND_MIDICTRL_DOPPLER 132
+
+#define SND_MIDICTRL_MODULATION 1
+
+#define SND_MIDICTRL_PANNING 10
+
+#define SND_MIDICTRL_PEDAL 64
+
+#define SND_MIDICTRL_PITCHBEND 128
+
+#define SND_MIDICTRL_PORTAMENTO 65
+
+#define SND_MIDICTRL_REVERB 91
+
+#define SND_MIDICTRL_SPANNING 131
+
+#define SND_MIDICTRL_VOLUME 7
+
+#define SND_MUSIC_VOLGROUPS 253
+
+#define SND_PAUSEVOL_NORMAL 127
+
+#define SND_PLAYPARA_DEFAULT 0
+
+#define SND_PLAYPARA_PAUSE 16
+
+#define SND_PLAYPARA_SEQVOLDEF 8
+
+#define SND_PLAYPARA_SPEED 2
+
+#define SND_PLAYPARA_TRACKMUTE 1
+
+#define SND_PLAYPARA_VOLUME 4
+
+#define SND_SEQVOL_CONTINUE 0
+
+#define SND_SEQVOL_MODEMASK 15
+
+#define SND_SEQVOL_MUTE 3
+
+#define SND_SEQVOL_PAUSE 2
+
+#define SND_SEQVOL_STOP 1
+
+#define SND_SEQ_CROSSFADE_ID 2147483648
+
+#define SND_SEQ_ERROR_ID 4294967295
+
+#define SND_STUDIO_DEFAULT 0
+
+#define SND_STUDIO_MAXNUM 8
+
+#define SND_STUDIO_NONE 255
+
+#define SND_USERALL_VOLGROUPS 252
+
+#define SND_USERFX_VOLGROUPS 251
+
+#define SND_USERMUSIC_VOLGROUPS 250
+
+#define SPRG0 272
+
+#define SPRG1 273
+
+#define SPRG2 274
+
+#define SPRG3 275
+
+#define SRR0 26
+
+#define SRR1 27
+
+#define SRR1_DMA_BIT 2097152
+
+#define SRR1_L2DP_BIT 1048576
+
+#define SYNTH_MAX_VOICES 64
+
+#define TBL 284
+
+#define TBU 285
+
+#define THRM1 1020
+
+#define THRM2 1021
+
+#define THRM3 1022
+
+#define TLOSS 5
+
+#define TRUE 1
+
+#define UCHAR_MAX 255
+
+#define UINT_MAX 4294967295
+
+#define ULLONG_MAX -1
+
+#define ULONG_MAX 4294967295
+
+#define UMMCR0 936
+
+#define UMMCR1 940
+
+#define UNDERFLOW 4
+
+#define UPMC1 937
+
+#define UPMC2 938
+
+#define UPMC3 941
+
+#define UPMC4 942
+
+#define USEC_MAX 1000
+
+#define USHRT_MAX 65535
+
+#define USIA 939
+
+#define VI_3D 3
+
+#define VI_BBI_EVEN 12
+
+#define VI_BBI_EVEN_U 13
+
+#define VI_BBI_ODD 10
+
+#define VI_BBI_ODD_U 11
+
+#define VI_BTTM_FIELD_BASE_LEFT 18
+
+#define VI_BTTM_FIELD_BASE_LEFT_U 19
+
+#define VI_BTTM_FIELD_BASE_RIGHT 20
+
+#define VI_BTTM_FIELD_BASE_RIGHT_U 21
+
+#define VI_CLOCK_SEL 54
+
+#define VI_DEBUG 3
+
+#define VI_DEBUG_PAL 4
+
+#define VI_DISPLAY_PIX_SZ 2
+
+#define VI_DISP_CONFIG 1
+
+#define VI_DISP_INT_0 24
+
+#define VI_DISP_INT_0U 25
+
+#define VI_DISP_INT_1 26
+
+#define VI_DISP_INT_1U 27
+
+#define VI_DISP_INT_2 28
+
+#define VI_DISP_INT_2U 29
+
+#define VI_DISP_INT_3 30
+
+#define VI_DISP_INT_3U 31
+
+#define VI_DTV_STAT 55
+
+#define VI_EURGB60 5
+
+#define VI_FCT_0 38
+
+#define VI_FCT_0U 39
+
+#define VI_FCT_1 40
+
+#define VI_FCT_1U 41
+
+#define VI_FCT_2 42
+
+#define VI_FCT_2U 43
+
+#define VI_FCT_3 44
+
+#define VI_FCT_3U 45
+
+#define VI_FCT_4 46
+
+#define VI_FCT_4U 47
+
+#define VI_FCT_5 48
+
+#define VI_FCT_5U 49
+
+#define VI_FCT_6 50
+
+#define VI_FCT_6U 51
+
+#define VI_FIELD_ABOVE 1
+
+#define VI_FIELD_BELOW 0
+
+#define VI_GCA 6
+
+#define VI_HORIZ_COUNT 23
+
+#define VI_HORIZ_TIMING_0L 2
+
+#define VI_HORIZ_TIMING_0U 3
+
+#define VI_HORIZ_TIMING_1L 4
+
+#define VI_HORIZ_TIMING_1U 5
+
+#define VI_HSR 37
+
+#define VI_HSW 36
+
+#define VI_INTERLACE 0
+
+#define VI_MAX_HEIGHT_EURGB60 480
+
+#define VI_MAX_HEIGHT_MPAL 480
+
+#define VI_MAX_HEIGHT_NTSC 480
+
+#define VI_MAX_HEIGHT_PAL 574
+
+#define VI_MAX_WIDTH_EURGB60 720
+
+#define VI_MAX_WIDTH_MPAL 720
+
+#define VI_MAX_WIDTH_NTSC 720
+
+#define VI_MAX_WIDTH_PAL 720
+
+#define VI_MPAL 2
+
+#define VI_NON_INTERLACE 1
+
+#define VI_NTSC 0
+
+#define VI_PAL 1
+
+#define VI_PROGRESSIVE 2
+
+#define VI_TOP_FIELD_BASE_LEFT 14
+
+#define VI_TOP_FIELD_BASE_LEFT_U 15
+
+#define VI_TOP_FIELD_BASE_RIGHT 16
+
+#define VI_TOP_FIELD_BASE_RIGHT_U 17
+
+#define VI_VERT_COUNT 22
+
+#define VI_VERT_TIMING 0
+
+#define VI_VERT_TIMING_EVEN 8
+
+#define VI_VERT_TIMING_EVEN_U 9
+
+#define VI_VERT_TIMING_ODD 6
+
+#define VI_VERT_TIMING_ODD_U 7
+
+#define VI_WIDTH 56
+
+#define WEEK_DAY_MAX 7
+
+#define WPAR 921
+
+#define WPAR_ADDR 4294967264
+
+#define WPAR_BNE 1
+
+#define XER 1
+
+#define YEAR_DAY_MAX 365
+
+#define _GX_TF_CTF 32
+
+#define _GX_TF_ZTF 16
+
+#define _INTEGRAL_MAX_BITS 32
+
+#define _SND_CHORUS_NUM_BLOCKS 3
+
+#define __AIRegs 3422579712
+
+#define __DIRegs 3422576640
+
+#define __DSPRegs 3422572544
+
+#define __EXIRegs 3422578688
+
+#define __MEMRegs 3422568448
+
+#define __OSCONTEXT_PADDING 452
+
+#define __OS_CONTEXT_FRAME 768
+
+#define __OS_EXCEPTION_ALIGNMENT 5
+
+#define __OS_EXCEPTION_BREAKPOINT 12
+
+#define __OS_EXCEPTION_DECREMENTER 8
+
+#define __OS_EXCEPTION_DSI 2
+
+#define __OS_EXCEPTION_EXTERNAL_INTERRUPT 4
+
+#define __OS_EXCEPTION_FLOATING_POINT 7
+
+#define __OS_EXCEPTION_ISI 3
+
+#define __OS_EXCEPTION_MACHINE_CHECK 1
+
+#define __OS_EXCEPTION_MAX 15
+
+#define __OS_EXCEPTION_PERFORMACE_MONITOR 11
+
+#define __OS_EXCEPTION_PROGRAM 6
+
+#define __OS_EXCEPTION_SYSTEM_CALL 9
+
+#define __OS_EXCEPTION_SYSTEM_INTERRUPT 13
+
+#define __OS_EXCEPTION_SYSTEM_RESET 0
+
+#define __OS_EXCEPTION_THERMAL_INTERRUPT 14
+
+#define __OS_EXCEPTION_TRACE 10
+
+#define __OS_INTERRUPT_AI_AI 8
+
+#define __OS_INTERRUPT_DSP_AI 5
+
+#define __OS_INTERRUPT_DSP_ARAM 6
+
+#define __OS_INTERRUPT_DSP_DSP 7
+
+#define __OS_INTERRUPT_EXI_0_EXI 9
+
+#define __OS_INTERRUPT_EXI_0_EXT 11
+
+#define __OS_INTERRUPT_EXI_0_TC 10
+
+#define __OS_INTERRUPT_EXI_1_EXI 12
+
+#define __OS_INTERRUPT_EXI_1_EXT 14
+
+#define __OS_INTERRUPT_EXI_1_TC 13
+
+#define __OS_INTERRUPT_EXI_2_EXI 15
+
+#define __OS_INTERRUPT_EXI_2_TC 16
+
+#define __OS_INTERRUPT_MAX 32
+
+#define __OS_INTERRUPT_MEM_0 0
+
+#define __OS_INTERRUPT_MEM_1 1
+
+#define __OS_INTERRUPT_MEM_2 2
+
+#define __OS_INTERRUPT_MEM_3 3
+
+#define __OS_INTERRUPT_MEM_ADDRESS 4
+
+#define __OS_INTERRUPT_PI_CP 17
+
+#define __OS_INTERRUPT_PI_DEBUG 25
+
+#define __OS_INTERRUPT_PI_DI 21
+
+#define __OS_INTERRUPT_PI_ERROR 23
+
+#define __OS_INTERRUPT_PI_HSP 26
+
+#define __OS_INTERRUPT_PI_PE_FINISH 19
+
+#define __OS_INTERRUPT_PI_PE_TOKEN 18
+
+#define __OS_INTERRUPT_PI_RSW 22
+
+#define __OS_INTERRUPT_PI_SI 20
+
+#define __OS_INTERRUPT_PI_VI 24
+
+#define __PIRegs 3422564352
+
+#define __SIRegs 3422577664
+
+#define __STDC_VERSION__ 199900
+
+#define __VIRegs 3422560256
+
+#define __alphanumeric 208
+
+#define __control 3
+
+#define __control_char 1
+
+#define __digit 16
+
+#define __graphic 216
+
+#define __hex_digit 32
+
+#define __letter 192
+
+#define __lower_case 64
+
+#define __motion_char 2
+
+#define __printable 220
+
+#define __punctuation 8
+
+#define __space_char 4
+
+#define __upper_case 128
+
+#define __whitespace 6
+
+#define nullptr 0
+
 enum {
     demoStatus_n_a=0,
     demoStatus_demoPlaying=1,
     demoStatus_endDemo=2
 };
 typedef unsigned char demoStatus;
-
-
+
 typedef struct diveFrame diveFrame, *PdiveFrame;
-
-
+
 struct diveFrame {
     short maxFrame;
     short initialFrame;
     short minNearMissFrame;
 } __attribute__((packed));
-
-
+
 typedef struct eightVec eightVec, *PeightVec;
-
-
+
 struct eightVec {
     struct Vec3f pastCoordinates[8];
 } __attribute__((packed));
-
-
+
 enum {
     enumARAMLoadType_regularReadWithDecompression=0,
     enumARAMLoadType_New_Name=1,
@@ -23215,8 +18183,7 @@ enum {
     enumARAMLoadType_ARAMtoRAMwithoutDecompression=4
 };
 typedef unsigned char enumARAMLoadType;
-
-
+
 enum {
     enumAnimationCoordinatesType_chargeAnimation_=4,
     enumAnimationCoordinatesType_heldBall_petey_chem_antiChemGraphics=9,
@@ -23230,21 +18197,18 @@ enum {
     enumAnimationCoordinatesType_heldBall_rightyMag=79
 };
 typedef unsigned int enumAnimationCoordinatesType;
-
-
+
 enum {
     enumAwayHome_int_away=0,
     enumAwayHome_int_home=1
 };
 typedef unsigned int enumAwayHome_int;
-
-
+
 enum {
     enumBallCollision_fielder=9
 };
 typedef unsigned char enumBallCollision;
-
-
+
 enum {
     enumBallTrailTypes_nonChargePitch=1,
     enumBallTrailTypes_perfectChargePitch=2,
@@ -23254,14 +18218,12 @@ enum {
     enumBallTrailTypes_default_=16
 };
 typedef unsigned int enumBallTrailTypes;
-
-
+
 enum {
     enumBodyCheckCd_determiningBodyCheck_=1
 };
 typedef unsigned char enumBodyCheckCd;
-
-
+
 enum {
     enumCTRLControlTypeWord_CTRL_NONE=0,
     enumCTRLControlTypeWord_CTRL_SCALE=1,
@@ -23271,8 +18233,7 @@ enum {
     enumCTRLControlTypeWord_CTRL_MTX=16
 };
 typedef unsigned int enumCTRLControlTypeWord;
-
-
+
 enum {
     enumChallengeDifficulty_mushroom=0,
     enumChallengeDifficulty_flower=1,
@@ -23280,8 +18241,7 @@ enum {
     enumChallengeDifficulty_special=3
 };
 typedef unsigned char enumChallengeDifficulty;
-
-
+
 enum {
     enumCharIDWord_none=-1,
     enumCharIDWord_mario=0,
@@ -23340,8 +18300,7 @@ enum {
     enumCharIDWord_broB=53
 };
 typedef int enumCharIDWord;
-
-
+
 enum {
     enumCharacterID_int_mario=0,
     enumCharacterID_int_luigi=1,
@@ -23399,22 +18358,19 @@ enum {
     enumCharacterID_int_broB=53
 };
 typedef unsigned int enumCharacterID_int;
-
-
+
 enum {
     enumCharacterSounds_chemistryThrow=0,
     enumCharacterSounds_regularThrow=5,
     enumCharacterSounds_antiChemThrow=10
 };
 typedef unsigned int enumCharacterSounds;
-
-
+
 enum {
     enumDiskLocations_MarioStadium=114282496
 };
 typedef unsigned int enumDiskLocations;
-
-
+
 enum {
     enumErrorType_noError=0,
     enumErrorType_droppedFlyBall_=1,
@@ -23422,8 +18378,7 @@ enum {
     enumErrorType_falliedRundown_=3
 };
 typedef unsigned char enumErrorType;
-
-
+
 enum {
     enumFielder_none=-1,
     enumFielder_pitcher=0,
@@ -23437,8 +18392,7 @@ enum {
     enumFielder_rf=8
 };
 typedef int enumFielder;
-
-
+
 enum {
     enumFieldingStarMissionCodes_noteBlock=0,
     enumFieldingStarMissionCodes_catches=1,
@@ -23455,8 +18409,7 @@ enum {
     enumFieldingStarMissionCodes_bodyCheck=12
 };
 typedef unsigned int enumFieldingStarMissionCodes;
-
-
+
 enum {
     enumGameSetUpStep_captainSelect=1,
     enumGameSetUpStep_rosterSelect=2,
@@ -23464,8 +18417,7 @@ enum {
     enumGameSetUpStep_stadium_matchSettings=4
 };
 typedef unsigned char enumGameSetUpStep;
-
-
+
 enum {
     enumGameSettingScreenProcess_stadiumSelect=0,
     enumGameSettingScreenProcess_loadMatchSettings=1,
@@ -23474,15 +18426,13 @@ enum {
     enumGameSettingScreenProcess_okOrReturnToStadSelect=5
 };
 typedef unsigned short enumGameSettingScreenProcess;
-
-
+
 enum {
     enumInGameEventID_doublePlay=23,
     enumInGameEventID_triplePlay=24
 };
 typedef unsigned short enumInGameEventID;
-
-
+
 enum {
     enumMenuNumber_mainMenu_exhibition_capSelect=0,
     enumMenuNumber_exhibition_charSelect=2,
@@ -23521,8 +18471,7 @@ enum {
     enumMenuNumber_options=91
 };
 typedef unsigned char enumMenuNumber;
-
-
+
 enum {
     enumObjTypeInFile__none=0,
     enumObjTypeInFile__texture=1,
@@ -23536,8 +18485,7 @@ enum {
     enumObjTypeInFile__anim3=9
 };
 typedef unsigned char enumObjTypeInFile_;
-
-
+
 enum {  /* State for all things practice. First is the main menu, second is the sub menu, third is on the field */
     enumPracticeState__0_switchToTopMenu4_switchToSubMenu_loadfield_goTo1_newAB_=0,
     enumPracticeState__1__checkSomething_delay_goTo2=1,
@@ -23550,8 +18498,7 @@ enum {  /* State for all things practice. First is the main menu, second is the 
     enumPracticeState__8_exitToMainMenu=8
 };
 typedef unsigned char enumPracticeState;
-
-
+
 enum {
     enumPracticeType_pitching=0,
     enumPracticeType_batting=1,
@@ -23560,8 +18507,7 @@ enum {
     enumPracticeType_freePlay=4
 };
 typedef unsigned char enumPracticeType;
-
-
+
 enum {
     enumQuantTypeColor_GX_RGB565=0,
     enumQuantTypeColor_GX_RGB8=1,
@@ -23571,8 +18517,7 @@ enum {
     enumQuantTypeColor_GX_RGBA8=5
 };
 typedef unsigned char enumQuantTypeColor;
-
-
+
 enum {
     enumReplayID_noReplay=0,
     enumReplayID_fieldingRelated_=1,
@@ -23588,8 +18533,7 @@ enum {
     enumReplayID_homerun_moonshot_=13
 };
 typedef unsigned char enumReplayID;
-
-
+
 enum {
     enumScoutFlagMissions_N_A_=0,
     enumScoutFlagMissions_getPlayerOut=1,
@@ -23606,8 +18550,7 @@ enum {
     enumScoutFlagMissions_winTheGame=12
 };
 typedef unsigned char enumScoutFlagMissions;
-
-
+
 enum {
     enumSituationTracker_none=0,
     enumSituationTracker_LFTraj1=1,
@@ -23626,8 +18569,7 @@ enum {
     enumSituationTracker_sacFlyAttempt=14
 };
 typedef unsigned short enumSituationTracker;
-
-
+
 enum {
     enumSomeRunnerResultCd_sacFlyScoredARun=1,
     enumSomeRunnerResultCd_outfieldCatchForOut=2,
@@ -23637,8 +18579,7 @@ enum {
     enumSomeRunnerResultCd_foulBuntWith2Strikes=14
 };
 typedef unsigned char enumSomeRunnerResultCd;
-
-
+
 enum {
     enumSoundEffect_int_moveCursor1=4,
     enumSoundEffect_int_moveCursor2=8,
@@ -23688,8 +18629,7 @@ enum {
     enumSoundEffect_int_chainChompBark=734
 };
 typedef unsigned int enumSoundEffect_int;
-
-
+
 enum {
     enumSoundEffect_short_moveCursor1=4,
     enumSoundEffect_short_moveCursor2=8,
@@ -23739,16 +18679,14 @@ enum {
     enumSoundEffect_short_chainChompBark=734
 };
 typedef unsigned short enumSoundEffect_short;
-
-
+
 enum {
     enumStarChanceAnimationControl_dontShowHUDElement=0,
     enumStarChanceAnimationControl_initHUDElement=1,
     enumStarChanceAnimationControl_hUDElementShowing=2
 };
 typedef unsigned char enumStarChanceAnimationControl;
-
-
+
 enum {
     enumStarMissionBitInfo_winRequirement=1,
     enumStarMissionBitInfo_flowerDifficulty=2,
@@ -23763,8 +18701,7 @@ enum {
     enumStarMissionBitInfo_LGMVP=2048
 };
 typedef unsigned short enumStarMissionBitInfo;
-
-
+
 enum {
     enumStarMissions_MVP=1,
     enumStarMissions_teamStar=2,
@@ -23822,8 +18759,7 @@ enum {
     enumStarMissions_none=65535
 };
 typedef unsigned short enumStarMissions;
-
-
+
 enum {
     enumStickDirection_neutral=0,
     enumStickDirection_right=1,
@@ -23832,8 +18768,7 @@ enum {
     enumStickDirection_down=4
 };
 typedef unsigned char enumStickDirection;
-
-
+
 enum {
     enumSwapMenuType_regular_fielderSwapLeft=0,
     enumSwapMenuType_batterSwapLeft=1,
@@ -23841,14 +18776,12 @@ enum {
     enumSwapMenuType_starMissions=3
 };
 typedef unsigned char enumSwapMenuType;
-
-
+
 enum {
     enumTextObject_special_char=16384
 };
 typedef unsigned short enumTextObject;
-
-
+
 enum {
     enumTutorialState_menu_na=0,
     enumTutorialState_givingInstruction=1,
@@ -23856,15 +18789,13 @@ enum {
     enumTutorialState_playerHasControl=3
 };
 typedef unsigned char enumTutorialState;
-
-
+
 enum {
     enumVersionNumber_GPL_VERSION_NUMBER=6012001,
     enumVersionNumber_ACT_VERSION_NUMBER=8092000
 };
 typedef unsigned int enumVersionNumber;
-
-
+
 enum {
     enumWinningTeam_int_tbd=-1,
     enumWinningTeam_int_away=0,
@@ -23872,8 +18803,7 @@ enum {
     enumWinningTeam_int_tie=2
 };
 typedef int enumWinningTeam_int;
-
-
+
 enum {
     enum_1_VI_TVMODE_NTSC_INT=0,
     enum_1_VI_TVMODE_NTSC_DS=1,
@@ -23893,14 +18823,10 @@ enum {
     enum_1_VI_TVMODE_GCA_PROG=26
 };
 typedef unsigned int enum_1;
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/vi.h/enum_2 - /musyx/musyx.h/enum_2 */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/vi.h/enum_2 - /musyx/musyx.h/enum_2 */
+
 enum {
     enum_201_VI_TVMODE_NTSC_INT=0,
     enum_201_VI_TVMODE_NTSC_DS=1,
@@ -23916,37 +18842,32 @@ enum {
     enum_201_VI_TVMODE_EURGB60_DS=21
 };
 typedef unsigned int enum_201;
-
-
+
 enum {
     enum_202_VI_XFBMODE_SF=0,
     enum_202_VI_XFBMODE_DF=1
 };
 typedef unsigned int enum_202;
-
-
+
 enum {
     enum_atBatTracker_bitCode_rbis=7
 };
 typedef unsigned char enum_atBatTracker_bitCode;
-
-
+
 enum {
     enum_baserunnerTrackingState_notStarted_=0,
     enum_baserunnerTrackingState_waiting_=1,
     enum_baserunnerTrackingState_complete=2
 };
 typedef unsigned char enum_baserunnerTrackingState;
-
-
+
 enum {
     enum_bigPlayCode__0_none=0,
     enum_bigPlayCode__1_potentialBigPlay_SufficientDistance=1,
     enum_bigPlayCode__2_bigPlayConfirmed=2
 };
 typedef unsigned char enum_bigPlayCode;
-
-
+
 enum {
     enum_fielding0x113__0_noError=0,
     enum_fielding0x113__1_droppedFlyBall_=1,
@@ -23957,8 +18878,7 @@ enum {
     enum_fielding0x113__9_errorProcessed=9
 };
 typedef unsigned char enum_fielding0x113;
-
-
+
 enum {
     enum_fielding0x127__0_ongoingTargeting_=0,
     enum_fielding0x127__1_pickedOffRunnerSuccessfullyAdvanced_=1,
@@ -23966,39 +18886,34 @@ enum {
     enum_fielding0x127__1_noTargeting=255
 };
 typedef unsigned char enum_fielding0x127;
-
-
+
 enum {
     enum_forceOutStatus_noForceThisPlay=0,
     enum_forceOutStatus_forceStillPossible=1,
     enum_forceOutStatus_forceHappened=2
 };
 typedef unsigned char enum_forceOutStatus;
-
-
+
 enum {
     enum_highLevelMenuScene_mainMenu_ExGame_Chal_Rec_Opt=1,
     enum_highLevelMenuScene_in_game_TF_MG_Prac=2
 };
 typedef unsigned char enum_highLevelMenuScene;
-
-
+
 enum {
     enum_nRunnersForcedOutCd_nonForceOutOnPlay=-1,
     enum_nRunnersForcedOutCd__0_default=0,
     enum_nRunnersForcedOutCd_unknown=3
 };
 typedef signed char enum_nRunnersForcedOutCd;
-
-
+
 enum {
     enum_noHitter_none=0,
     enum_noHitter_perfectGame=1,
     enum_noHitter_noHitter=2
 };
 typedef unsigned char enum_noHitter;
-
-
+
 enum {
     enum_p2_CPU_code__1PlayerGame=0,
     enum_p2_CPU_code__2PlayerGame=1,
@@ -24006,67 +18921,56 @@ enum {
     enum_p2_CPU_code__3_unknown=3
 };
 typedef unsigned char enum_p2_CPU_code;
-
-
+
 enum {
     enum_pitchCodeForReplays_noPitch=0,
     enum_pitchCodeForReplays_realPitch=1,
     enum_pitchCodeForReplays_replayPitch=2
 };
 typedef unsigned char enum_pitchCodeForReplays;
-
-
+
 enum {
     enum_rosterView_battingOrder=0,
     enum_rosterView_defensiveAlignment=1
 };
 typedef unsigned char enum_rosterView;
-
-
+
 enum {
     enum_runnerForceCode_n_a=0,
     enum_runnerForceCode_forcedToAdvance=1,
     enum_runnerForceCode_reachedNextBase=2
 };
 typedef unsigned char enum_runnerForceCode;
-
-
+
 enum {
     enum_runnersTargettedWThrow__1_uninitialized=-1,
     enum_runnersTargettedWThrow__0_noOtherRunnersBeingTargeted=0,
     enum_runnersTargettedWThrow__5_notThrownToABase=5
 };
 typedef short enum_runnersTargettedWThrow;
-
-
+
 typedef double f128;
-
-
+
 typedef struct fanAnimationPointerStruct fanAnimationPointerStruct, *PfanAnimationPointerStruct;
-
-
+
 typedef struct fanAnimations fanAnimations, *PfanAnimations;
-
-
-// struct fanAnimationPointerStruct {
-//     void * field0_0x0;
-//     void * field1_0x4;
-//     void * field2_0x8;
-//     void * field3_0xc;
-//     struct fanAnimations (*field4_0x10)[32];
-// } __attribute__((packed));
-
-
+
+struct fanAnimationPointerStruct {
+    void * field0_0x0;
+    void * field1_0x4;
+    void * field2_0x8;
+    void * field3_0xc;
+    struct fanAnimations *field4_0x10;
+} __attribute__((packed));
+
 struct fanAnimations {
     byte fanType;
     byte currentAnimation;
     byte framesUntilNextAnimaiton;
 } __attribute__((packed));
-
-
+
 typedef struct fielderActionConstants fielderActionConstants, *PfielderActionConstants;
-
-
+
 struct fielderActionConstants {
     float _12_0_secondaryFielderDistToStandWhileSupporting;
     float _7_0;
@@ -24108,11 +19012,9 @@ struct fielderActionConstants {
     float _15_0_ballInPlantSomeThreshold_;
     float _1_5;
 } __attribute__((packed));
-
-
+
 typedef struct fielderDash fielderDash, *PfielderDash;
-
-
+
 struct fielderDash {
     int const0_;
     int const_0_0_;
@@ -24126,22 +19028,18 @@ struct fielderDash {
     short postSprintSlowdownTimer;
     dashState sprintingState;
 } __attribute__((packed));
-
-
+
 typedef struct fielderDashStruct fielderDashStruct, *PfielderDashStruct;
-
-
+
 typedef struct unkInputRelated unkInputRelated, *PunkInputRelated;
-
-
+
 struct unkInputRelated {
     short stickAngleWhenPressingA;
     byte aPressed_decidingWhatActionToTake;
     byte aiOutfieldFielderAction_;
     byte aiFieldingDashIndicator__[4];
 } __attribute__((packed));
-
-
+
 struct fielderDashStruct {
     struct fielderDash fielderDashByPort[4];
     short pad;
@@ -24195,8 +19093,7 @@ struct fielderDashStruct {
     autoMovementCodeEnum fielderAutoMovementCode[9];
     byte baseCoveredInd[4];
 } __attribute__((packed));
-
-
+
 enum {
     fielderTagAnimation_n_a=0,
     fielderTagAnimation_regularTag=1,
@@ -24206,11 +19103,9 @@ enum {
     fielderTagAnimation_gotBodychecked=7
 };
 typedef unsigned char fielderTagAnimation;
-
-
+
 typedef struct fieldersAutoMovementEnums fieldersAutoMovementEnums, *PfieldersAutoMovementEnums;
-
-
+
 struct fieldersAutoMovementEnums {
     autoMovementCodeEnum P;
     autoMovementCodeEnum C;
@@ -24222,16 +19117,14 @@ struct fieldersAutoMovementEnums {
     autoMovementCodeEnum CF;
     autoMovementCodeEnum RF;
 } __attribute__((packed));
-
-
+
 enum {
     forceOutSubResults_default_=0,
     forceOutSubResults_forceOutDidNotHappen=1,
     forceOutSubResults_forceOutHappened=2
 };
 typedef unsigned int forceOutSubResults;
-
-
+
 enum {
     futureCoordsAndDist_x=0,
     futureCoordsAndDist_y=1,
@@ -24239,11 +19132,9 @@ enum {
     futureCoordsAndDist_groundDist=3
 };
 typedef unsigned char futureCoordsAndDist;
-
-
+
 typedef struct gameSetUpStruct gameSetUpStruct, *PgameSetUpStruct;
-
-
+
 struct gameSetUpStruct {
     enumGameSetUpStep gameSetUpStep;
     byte field1_0x1[14][6];
@@ -24258,11 +19149,9 @@ struct gameSetUpStruct {
     undefined field10_0x62;
     undefined field11_0x63;
 } __attribute__((packed));
-
-
+
 typedef struct gameSettings gameSettings, *PgameSettings;
-
-
+
 struct gameSettings {
     byte startGameButton;
     byte firstBattingTeam;
@@ -24270,11 +19159,9 @@ struct gameSettings {
     byte inningSelectionMenuIndex;
     byte mercyRule;
 } __attribute__((packed));
-
-
+
 typedef struct globalFielding globalFielding, *PglobalFielding;
-
-
+
 enum {
     throwSpeedType_x1_3=0,
     throwSpeedType_x1_2=1,
@@ -24288,8 +19175,7 @@ enum {
     throwSpeedType_setTo0_55=9
 };
 typedef unsigned char throwSpeedType;
-
-
+
 enum {
     pickOffSteal_nonPickOffOrSteal=0,
     pickOffSteal_pickOff=1,
@@ -24297,15 +19183,13 @@ enum {
     pickOffSteal__4_can_tOccur_=4
 };
 typedef unsigned char pickOffSteal;
-
-
+
 enum {
     throwSPeedAlgoInd_throwSpeedAlgo=0,
     throwSPeedAlgoInd_setThrowSpeed9=1
 };
 typedef unsigned char throwSPeedAlgoInd;
-
-
+
 struct globalFielding {
     struct fielderDashStruct fielderControl;
     byte playerAtMoundCutoffLocation;
@@ -24381,11 +19265,9 @@ struct globalFielding {
     undefined field71_0x14e;
     undefined field72_0x14f;
 } __attribute__((packed));
-
-
+
 typedef struct graphicDataEntry graphicDataEntry, *PgraphicDataEntry;
-
-
+
 struct graphicDataEntry {
     short entryType;
     short short_;
@@ -24404,21 +19286,17 @@ struct graphicDataEntry {
     short textureID;
     struct graphicDataEntry *dataEntryPtr;
 } __attribute__((packed));
-
-
+
 typedef struct hitByPitchHitbox hitByPitchHitbox, *PhitByPitchHitbox;
-
-
+
 struct hitByPitchHitbox {
     byte zDepth;
     byte xOutsideWidth;
     byte xInsideWidth;
 } __attribute__((packed));
-
-
+
 typedef struct hitContants_shorts hitContants_shorts, *PhitContants_shorts;
-
-
+
 struct hitContants_shorts {
     short _180_frameChargeDownEnds;
     short _12_framesUntilChargeIsEnabled;
@@ -24437,8 +19315,7 @@ struct hitContants_shorts {
     short _50_captainStarHitGamePause;
     short _50_moonshotGamePause;
 } __attribute__((packed));
-
-
+
 enum {
     hitDistFromHomeEnum_withinBasepaths=0,
     hitDistFromHomeEnum___38_8m=1,
@@ -24447,11 +19324,9 @@ enum {
     hitDistFromHomeEnum____61_2m=4
 };
 typedef unsigned int hitDistFromHomeEnum;
-
-
+
 typedef struct hitFloatConstants hitFloatConstants, *PhitFloatConstants;
-
-
+
 struct hitFloatConstants {
     float _0_05_minStarHitVelo;
     float _0_008_DKStarAngleDelta;
@@ -24466,17 +19341,13 @@ struct hitFloatConstants {
     float _3_0_centeringBoxSpeedMult;
     float _1_5_moonshotMult;
 } __attribute__((packed));
-
-
+
 typedef struct hugeAnimStruct hugeAnimStruct, *PhugeAnimStruct;
-
-
+
 typedef struct unkAnimSubstruct unkAnimSubstruct, *PunkAnimSubstruct;
-
-
+
 typedef struct starAnimationRelated starAnimationRelated, *PstarAnimationRelated;
-
-
+
 struct unkAnimSubstruct {
     void * field0_0x0[4];
     undefined field1_0x10[28];
@@ -24496,8 +19367,7 @@ struct unkAnimSubstruct {
     byte field15_0xd0;
     byte field16_0xd1;
 } __attribute__((packed));
-
-
+
 struct hugeAnimStruct {
     byte field0_0x0[4];
     struct StadiumFileHeader *stadiumFileHeaderPointer;
@@ -24793,8 +19663,7 @@ struct hugeAnimStruct {
     void * field291_0x3124[2];
     undefined field292_0x312c[40];
 } __attribute__((packed));
-
-
+
 struct starAnimationRelated {
     float field0_0x0;
     struct Vec3f magHoldingBallTrail_;
@@ -24816,31 +19685,25 @@ struct starAnimationRelated {
     undefined field17_0x2a;
     undefined field18_0x2b;
 } __attribute__((packed));
-
-
+
 typedef struct jumpStruct jumpStruct, *PjumpStruct;
-
-
+
 typedef struct jumpSubstruct jumpSubstruct, *PjumpSubstruct;
-
-
+
 struct jumpSubstruct {
     float initialVerticalVelocity;
     float jumpGravity;
     float horizontalJumpFactor;
     float addedFrames;
 } __attribute__((packed));
-
-
+
 struct jumpStruct {
     struct jumpSubstruct normalJump;
     struct jumpSubstruct superDuperJump;
 } __attribute__((packed));
-
-
+
 typedef struct jungleBarrelObj jungleBarrelObj, *PjungleBarrelObj;
-
-
+
 struct jungleBarrelObj {
     struct CTRLControl control;
     byte pad[16];
@@ -24879,31 +19742,25 @@ struct jungleBarrelObj {
     byte field34_0xcb;
     byte field35_0xcc[28];
 } __attribute__((packed));
-
-
+
 typedef struct keyframeInterpolationInfo keyframeInterpolationInfo, *PkeyframeInterpolationInfo;
-
-
+
 struct keyframeInterpolationInfo {
     int placeholder;
     int placeholder2;
     int placeholder3;
     int placeholder4;
 } __attribute__((packed));
-
-
+
 typedef struct keyframeSetting keyframeSetting, *PkeyframeSetting;
-
-
+
 struct keyframeSetting {
     int placeholder;
     int placeholder2;
 } __attribute__((packed));
-
-
+
 typedef struct lightPtrs lightPtrs, *PlightPtrs;
-
-
+
 struct lightPtrs {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -24936,11 +19793,9 @@ struct lightPtrs {
     undefined field28_0x1f;
     struct LITLightPtr *field29_0x20;
 } __attribute__((packed));
-
-
+
 typedef struct marioStadiumCollisionStrip0 marioStadiumCollisionStrip0, *PmarioStadiumCollisionStrip0;
-
-
+
 struct marioStadiumCollisionStrip0 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle LF2ndDeckBackWallCorner[10];
@@ -24952,11 +19807,9 @@ struct marioStadiumCollisionStrip0 {
     struct CollisionTriangle leftovers[7][3];
     struct collisionBoxHeader field8_0x2e0;
 } __attribute__((packed));
-
-
+
 typedef struct marioStadiumCollisionStrip1 marioStadiumCollisionStrip1, *PmarioStadiumCollisionStrip1;
-
-
+
 struct marioStadiumCollisionStrip1 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle field1_0x4[14];
@@ -24972,11 +19825,9 @@ struct marioStadiumCollisionStrip1 {
     struct CollisionTriangle leftovers[66];
     byte padding[4];
 } __attribute__((packed));
-
-
+
 typedef struct marioStadiumCollisionStrip2 marioStadiumCollisionStrip2, *PmarioStadiumCollisionStrip2;
-
-
+
 struct marioStadiumCollisionStrip2 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle field1_0x4[19];
@@ -25002,11 +19853,9 @@ struct marioStadiumCollisionStrip2 {
     struct CollisionTriangle leftovers[78];
     byte padding[4];
 } __attribute__((packed));
-
-
+
 typedef struct marioStadiumCollisionStrip23 marioStadiumCollisionStrip23, *PmarioStadiumCollisionStrip23;
-
-
+
 struct marioStadiumCollisionStrip23 {
     struct collisionBoxHeader field0_0x0;
     struct CollisionTriangle _3BBleachers2ndDeckTopCorner[13];
@@ -25021,11 +19870,9 @@ struct marioStadiumCollisionStrip23 {
     struct collisionBoxHeader field10_0x2a4;
     struct CollisionTriangle field11_0x2a8[11][3];
 } __attribute__((packed));
-
-
+
 typedef struct marioStadiumCollisions marioStadiumCollisions, *PmarioStadiumCollisions;
-
-
+
 struct marioStadiumCollisions {
     void * pBoundingBox;
     void * triangleCollectionPtrs[24];
@@ -25037,11 +19884,9 @@ struct marioStadiumCollisions {
     struct marioStadiumCollisionStrip23 triSet23;
     byte padding[24];
 } __attribute__((packed));
-
-
+
 typedef struct maybeGraphicsManager maybeGraphicsManager, *PmaybeGraphicsManager;
-
-
+
 struct maybeGraphicsManager {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -25066,11 +19911,9 @@ struct maybeGraphicsManager {
     ushort maybeStartIndex;
     ushort maybeEntryCount;
 } __attribute__((packed));
-
-
+
 typedef struct maybeWallBallStruct maybeWallBallStruct, *PmaybeWallBallStruct;
-
-
+
 struct maybeWallBallStruct {
     float field0_0x0;  /* start of wall ball struct? */
     float field1_0x4;
@@ -25087,11 +19930,9 @@ struct maybeWallBallStruct {
     byte coinGenerationCategory;
     byte coinRelated[26];
 } __attribute__((packed));
-
-
+
 typedef struct miniGameControlStruct miniGameControlStruct, *PminiGameControlStruct;
-
-
+
 struct miniGameControlStruct {
     byte characterIndex[4];
     byte field1_0x4;
@@ -25104,8 +19945,7 @@ struct miniGameControlStruct {
     byte field8_0x14;
     byte field9_0x15;
 } __attribute__((packed));
-
-
+
 enum {
     miniGameDifficulty_multiplayer_ChallengeEasy=0,
     miniGameDifficulty_ChallengeNormal=1,
@@ -25113,37 +19953,28 @@ enum {
     miniGameDifficulty_soloNonChallenge=3
 };
 typedef unsigned char miniGameDifficulty;
-
-
+
 typedef struct minigameLinkedListNode minigameLinkedListNode, *PminigameLinkedListNode;
-
-
+
 struct minigameLinkedListNode {
     struct minigameLinkedListNode **next;
     byte data[92];
 } __attribute__((packed));
-
-
+
 typedef struct minigamePtrStruct minigamePtrStruct, *PminigamePtrStruct;
-
-
+
 struct minigamePtrStruct {
     struct minigameLinkedListNode nodes[8];
 } __attribute__((packed));
-
-
+
 typedef struct minigameStruct minigameStruct, *PminigameStruct;
-
-
+
 typedef struct someStarDashStruct someStarDashStruct, *PsomeStarDashStruct;
-
-
+
 typedef struct unkStarDashFloatStruct unkStarDashFloatStruct, *PunkStarDashFloatStruct;
-
-
+
 typedef struct unkStructMinigame_ unkStructMinigame_, *PunkStructMinigame_;
-
-
+
 enum {
     toyFieldResult_foul=1,
     toyFieldResult_caught=2,
@@ -25151,16 +19982,14 @@ enum {
     toyFieldResult_homerun=6
 };
 typedef unsigned char toyFieldResult;
-
-
+
 enum {
     wallBallGameState_calculateNewWalls=0,
     wallBallGameState_dropInNewWalls=1,
     wallBallGameState_pitchOrWaitingForPitch=2
 };
 typedef unsigned char wallBallGameState;
-
-
+
 enum {
     wallBallAIThrowType_perfect=0,
     wallBallAIThrowType_overcharge=1,
@@ -25168,8 +19997,7 @@ enum {
     wallBallAIThrowType_curveBall=3
 };
 typedef unsigned char wallBallAIThrowType;
-
-
+
 enum {
     wallBallAISwitch_calculatePitch=0,
     wallBallAISwitch_waitForPitch=1,
@@ -25183,8 +20011,7 @@ enum {
     wallBallAISwitch_unknown4=9
 };
 typedef unsigned char wallBallAISwitch;
-
-
+
 struct unkStructMinigame_ {
     struct Vec3f field0_0x0;
     struct Vec3f field1_0xc;
@@ -25197,16 +20024,14 @@ struct unkStructMinigame_ {
     struct Vec3f field8_0x50;
     struct Vec3f field9_0x5c;
 } __attribute__((packed));
-
-
+
 struct someStarDashStruct {
     short field0_0x0[2];
     byte field1_0x4[6];
     float field2_0xa;
     byte pad[26];
 } __attribute__((packed));
-
-
+
 struct unkStarDashFloatStruct {
     float field0_0x0;
     float field1_0x4;
@@ -25218,8 +20043,7 @@ struct unkStarDashFloatStruct {
     float field7_0x1c;
     short field8_0x20;
 } __attribute__((packed));
-
-
+
 struct minigameStruct {
     byte field0_0x0;
     byte field1_0x1;
@@ -26262,11 +21086,9 @@ struct minigameStruct {
     undefined field1038_0x1e29;
     undefined field1039_0x1e2a;
 } __attribute__((packed));
-
-
+
 typedef struct noteBlocks noteBlocks, *PnoteBlocks;
-
-
+
 struct noteBlocks {
     float X;
     float Y;
@@ -26277,21 +21099,17 @@ struct noteBlocks {
     byte blockTypeIndex_;
     byte maybeRelatedToRandomBlockType;
 } __attribute__((packed));
-
-
+
 typedef struct offsetStruct offsetStruct, *PoffsetStruct;
-
-
+
 struct offsetStruct {
     int currentOffset;
     int nextOffset;
     int next;
 } __attribute__((packed));
-
-
+
 typedef struct palaceChompObj palaceChompObj, *PpalaceChompObj;
-
-
+
 struct palaceChompObj {
     struct CTRLControl control;
     byte pad[16];
@@ -26363,8 +21181,7 @@ struct palaceChompObj {
     undefined field67_0xe6;
     undefined field68_0xe7;
 } __attribute__((packed));
-
-
+
 enum {
     pauseMenuButtonTransitionState_unloadingGame=0,
     pauseMenuButtonTransitionState_loadingPauseMenuAndSelectionHighlight=1,
@@ -26372,8 +21189,7 @@ enum {
     pauseMenuButtonTransitionState_unloadPauseMenu=3
 };
 typedef unsigned char pauseMenuButtonTransitionState;
-
-
+
 enum {
     pauseMenuTransitionState_unloadingPlayingField=0,
     pauseMenuTransitionState_betweenPlayingFieldAndMenu=1,
@@ -26382,8 +21198,7 @@ enum {
     pauseMenuTransitionState_offencePauseMenu_=9
 };
 typedef unsigned char pauseMenuTransitionState;
-
-
+
 enum {
     pauseMenuTypes_defenceExhibition=0,
     pauseMenuTypes_ofenceExhibition=1,
@@ -26391,11 +21206,9 @@ enum {
     pauseMenuTypes_offenceChallenge=3
 };
 typedef unsigned char pauseMenuTypes;
-
-
+
 typedef struct pauseRelatedStruct pauseRelatedStruct, *PpauseRelatedStruct;
-
-
+
 struct pauseRelatedStruct {
     int playerWhoPaused;
     short controllerInput;
@@ -26731,19 +21544,15 @@ struct pauseRelatedStruct {
     undefined field331_0x262;
     undefined field332_0x263;
 } __attribute__((packed));
-
-
+
 typedef struct pc pc, *Ppc;
-
-
+
 struct pc {
     struct Vec3f pastCoordinates[7][8];
 } __attribute__((packed));
-
-
+
 typedef struct pitchingStatStruct pitchingStatStruct, *PpitchingStatStruct;
-
-
+
 struct pitchingStatStruct {
     byte outsAsPitcherWhileLeading;
     byte winningPitcher;  /* Created by retype action */
@@ -26751,11 +21560,9 @@ struct pitchingStatStruct {
     undefined1 unused2;  /* Created by retype action */
     undefined1 unused3;  /* Created by retype action */
 } __attribute__((packed));
-
-
+
 typedef struct practiceStruct practiceStruct, *PpracticeStruct;
-
-
+
 struct practiceStruct {
     struct InputStruct inputs[2];
     void * ptr_commandList;
@@ -26894,8 +21701,7 @@ struct practiceStruct {
     byte bunt_;
     byte maybeRosterID_;
 } __attribute__((packed));
-
-
+
 enum {
     presetFielderLocations_int__goingTowardsBall=0,
     presetFielderLocations_int__goingToSupportPosition=1,
@@ -26910,52 +21716,42 @@ enum {
     presetFielderLocations_int___28_53_=10
 };
 typedef unsigned int presetFielderLocations_int_;
-
-
+
 typedef struct ptr2Short ptr2Short, *Pptr2Short;
-
-
+
 struct ptr2Short {
     void * ptr;
     short short_;
     short short2;
 } __attribute__((packed));
-
-
+
 typedef struct ptrPtr8Byte ptrPtr8Byte, *PptrPtr8Byte;
-
-
+
 struct ptrPtr8Byte {
     struct ptrPtr8Byte *ptrNext;
     struct ptrPtr8Byte *ptrPrev;
     byte bytes[8];
 } __attribute__((packed));
-
-
+
 typedef struct rgba rgba, *Prgba;
-
-
+
 struct rgba {
     byte r;
     byte g;
     byte b;
     byte a;
 } __attribute__((packed));
-
-
+
 typedef struct runnerAngleConstants runnerAngleConstants, *PrunnerAngleConstants;
-
-
+
 struct runnerAngleConstants {
     float stoppedFacingAngle;
     float field1_0x4;
     float field2_0x8;
 } __attribute__((packed));
-
-
+
 typedef struct runnerConstants runnerConstants, *PrunnerConstants;
-
-
+
 struct runnerConstants {
     byte slideStartLatestFrame;
     byte slideStartEarliestFrame;
@@ -26963,21 +21759,17 @@ struct runnerConstants {
     undefined1 actionStage2Frames;  /* Created by retype action */
     undefined field4_0x4;
 } __attribute__((packed));
-
-
+
 typedef struct sAccBuffers sAccBuffers, *PsAccBuffers;
-
-
+
 struct sAccBuffers {
     s16 *src;
     short *indices;
     byte *weights;
 } __attribute__((packed));
-
-
+
 typedef struct sBatterAIConstants sBatterAIConstants, *PsBatterAIConstants;
-
-
+
 struct sBatterAIConstants {
     byte difficultyArray[4];
     byte padding1[4];
@@ -27034,32 +21826,20 @@ struct sBatterAIConstants {
     undefined field52_0x2d3;
     byte buntingProbabilities[4][4];
 } __attribute__((packed));
-
-
+
 typedef struct _sStats sStats;
-
-
-
-
-/* WARNING! conflicting data type names: /auto_structs/short - /short */
-
-
-
-
-
-/* WARNING! conflicting data type names: /types.h/size_t - /sdk/stddef.h/size_t */
-
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/types.h/size_t - /sdk/stddef.h/size_t */
-
-
-
+
+
+/* WARNING! conflicting data type names: /auto_structs/short - /short */
+
+
+/* WARNING! conflicting data type names: /types.h/size_t - /sdk/stddef.h/size_t */
+
+
+/* WARNING! conflicting data type names: /decompHeaders/types.h/size_t - /sdk/stddef.h/size_t */
+
 typedef struct sndEmitterRelated sndEmitterRelated, *PsndEmitterRelated;
-
-
+
 struct sndEmitterRelated {
     struct sndEmitterRelated *sndEmitterPtr;
     int field1_0x4;
@@ -27086,11 +21866,9 @@ struct sndEmitterRelated {
     struct SND_EMITTER emitter;
     struct SND_EMITTER emitter2;
 } __attribute__((packed));
-
-
+
 typedef struct someJungleBarrelStruct someJungleBarrelStruct, *PsomeJungleBarrelStruct;
-
-
+
 struct someJungleBarrelStruct {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -27150,11 +21928,9 @@ struct someJungleBarrelStruct {
     undefined field55_0x37;
     undefined field56_0x38;
 } __attribute__((packed));
-
-
+
 typedef struct someJungleBarrelStruct_2 someJungleBarrelStruct_2, *PsomeJungleBarrelStruct_2;
-
-
+
 struct someJungleBarrelStruct_2 {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -27637,11 +22413,9 @@ struct someJungleBarrelStruct_2 {
     struct someJungleBarrelStruct field478_0x366;
     undefined field479_0x39f;
 } __attribute__((packed));
-
-
+
 typedef struct someScoreStruct someScoreStruct, *PsomeScoreStruct;
-
-
+
 struct someScoreStruct {
     byte field0_0x0;
     byte field1_0x1;
@@ -27655,8 +22429,7 @@ struct someScoreStruct {
     struct ScoreStruct hits[2];
     byte homeRunHittersRosterIDs[30];
 } __attribute__((packed));
-
-
+
 enum {
     someStadCollisionCode_marioStadium_nonGrass=0,
     someStadCollisionCode_marioStadium_grass=1,
@@ -27673,11 +22446,9 @@ enum {
     someStadCollisionCode_toyField=12
 };
 typedef unsigned int someStadCollisionCode;
-
-
+
 typedef struct someStadiumStruct2 someStadiumStruct2, *PsomeStadiumStruct2;
-
-
+
 struct someStadiumStruct2 {
     int field0_0x0;
     int field1_0x4;
@@ -27686,11 +22457,9 @@ struct someStadiumStruct2 {
     byte field4_0xd;
     short field5_0xe;
 } __attribute__((packed));
-
-
+
 typedef struct specialFieldingActionStruct specialFieldingActionStruct, *PspecialFieldingActionStruct;
-
-
+
 struct specialFieldingActionStruct {
     short const_6;
     short WJFrameLimitFar_50;
@@ -27734,21 +22503,17 @@ struct specialFieldingActionStruct {
     ghidra_word const_12;
     short const_20_;
 } __attribute__((packed));
-
-
+
 typedef struct stadiumCDRStruct stadiumCDRStruct, *PstadiumCDRStruct;
-
-
+
 struct stadiumCDRStruct {
     struct CompressedDiskRead minigame____0;
     struct CompressedDiskRead minigame____1;
     struct CompressedDiskRead minigame____2;
 } __attribute__((packed));
-
-
+
 typedef struct stadiumCompressedDiskReads stadiumCompressedDiskReads, *PstadiumCompressedDiskReads;
-
-
+
 struct stadiumCompressedDiskReads {
     struct stadiumCDRStruct marioStadium;
     struct stadiumCDRStruct bowserCastle;
@@ -27758,46 +22523,42 @@ struct stadiumCompressedDiskReads {
     struct stadiumCDRStruct dkJungle;
     struct stadiumCDRStruct toyField;
 } __attribute__((packed));
-
-
+
 typedef struct stadiumObjectCollision stadiumObjectCollision, *PstadiumObjectCollision;
-
-
-// struct stadiumObjectCollision {
-//     struct castleThwompObj *objectArrayPointer;
-//     void *stadiumObjRelatedPtr;
-//     struct CrowdAnimationStruct *crowdAnimationPtr;
-//     void * field3_0xc;
-//     void * crowdAnimRelatedPtr;
-//     void *unkFloatStructPtr;
-//     void (*functionPtr)(void *);
-//     void (*functionPtr2(sounds_))(void *);
-//     struct LITLightPtr *LITLightPtr;
-//     void * field9_0x24;
-//     void * field10_0x28;
-//     void * field11_0x2c;
-//     int objCount;
-//     enumObjTypeInFile_ *objTypeArrayPtr;
-//     void * ptrToObjDataInfo;
-//     void * vertexDataArrayEndPtr;
-//     void * vertexDataOffset;
-//     void * vertexDataElementEndPtr;
-//     void * vertexDataArray;
-//     struct Vec3f vec;
-//     struct Vec3f vec2;
-//     short field21_0x64;
-//     short currentRNGConfig_;
-//     short rngBasedConfig;
-//     byte unkLoadingFlag;
-//     byte field25_0x6b;
-//     byte gameStatusRelated;
-//     byte objectsLoaded_5_;
-// } __attribute__((packed));
-
-
+
+struct stadiumObjectCollision {
+    struct castleThwompObj *objectArrayPointer;
+    void *stadiumObjRelatedPtr;
+    struct CrowdAnimationStruct *crowdAnimationPtr;
+    void * field3_0xc;
+    void * crowdAnimRelatedPtr;
+    void *unkFloatStructPtr;
+    void (*functionPtr)(void *);
+    void (*functionPtr2_sounds_)(void *);
+    struct LITLightPtr *LITLightPtr;
+    void * field9_0x24;
+    void * field10_0x28;
+    void * field11_0x2c;
+    int objCount;
+    enumObjTypeInFile_ *objTypeArrayPtr;
+    void * ptrToObjDataInfo;
+    void * vertexDataArrayEndPtr;
+    void * vertexDataOffset;
+    void * vertexDataElementEndPtr;
+    void * vertexDataArray;
+    struct Vec3f vec;
+    struct Vec3f vec2;
+    short field21_0x64;
+    short currentRNGConfig_;
+    short rngBasedConfig;
+    byte unkLoadingFlag;
+    byte field25_0x6b;
+    byte gameStatusRelated;
+    byte objectsLoaded_5_;
+} __attribute__((packed));
+
 typedef struct stadiumObjectStruct stadiumObjectStruct, *PstadiumObjectStruct;
-
-
+
 struct stadiumObjectStruct {
     int maybeType_;
     struct CTRLControl ctrl;
@@ -28230,11 +22991,9 @@ struct stadiumObjectStruct {
     undefined field428_0x2b6;
     undefined field429_0x2b7;
 } __attribute__((packed));
-
-
+
 typedef struct stadiumObjects stadiumObjects, *PstadiumObjects;
-
-
+
 struct stadiumObjects {
     float xTrans;
     float yTrans;
@@ -28248,14 +23007,11 @@ struct stadiumObjects {
     byte field9_0x1e;
     byte field10_0x1f;
 } __attribute__((packed));
-
-
+
 typedef struct stadiumSunStruct stadiumSunStruct, *PstadiumSunStruct;
-
-
+
 typedef struct stadiumSunSubStruct stadiumSunSubStruct, *PstadiumSunSubStruct;
-
-
+
 struct stadiumSunSubStruct {
     float movementSpeed_;
     float unknown;
@@ -28265,8 +23021,7 @@ struct stadiumSunSubStruct {
     byte layerType_4ForCoords;
     byte baseLayerInd_;
 } __attribute__((packed));
-
-
+
 struct stadiumSunStruct {
     struct stadiumSunSubStruct layer1_;
     struct stadiumSunSubStruct layer2_;
@@ -28279,11 +23034,9 @@ struct stadiumSunStruct {
     struct stadiumSunSubStruct sunPosition;
     struct stadiumSunSubStruct field9_0x90;
 } __attribute__((packed));
-
-
+
 typedef struct starChanceVsStruct starChanceVsStruct, *PstarChanceVsStruct;
-
-
+
 struct starChanceVsStruct {
     int field0_0x0;
     short field1_0x4;
@@ -28335,11 +23088,9 @@ struct starChanceVsStruct {
     short field47_0x60;
     short field48_0x62;
 } __attribute__((packed));
-
-
+
 typedef struct starMissionStruct starMissionStruct, *PstarMissionStruct;
-
-
+
 struct starMissionStruct {
     enumStarMissions missionType;
     short qty_CharID_points_ability__other;
@@ -28347,8 +23098,7 @@ struct starMissionStruct {
     short difficultyForMatchMissions;
     short chellangeCoins;
 } __attribute__((packed));
-
-
+
 enum {
     stealing_BasesOccupiedStatus_stealNotStarted=0,
     stealing_BasesOccupiedStatus_R2OrR3Stealing_NotAllPriorBasesOccipied=1,
@@ -28357,21 +23107,17 @@ enum {
     stealing_BasesOccupiedStatus_R3Stealing_R1_R2Exist=4
 };
 typedef unsigned char stealing_BasesOccupiedStatus;
-
-
+
 typedef struct storedGameInfoStruct storedGameInfoStruct, *PstoredGameInfoStruct;
-
-
+
 typedef struct trackCatchesDuringPlay trackCatchesDuringPlay, *PtrackCatchesDuringPlay;
-
-
+
 struct trackCatchesDuringPlay {
     byte fielderIndex;
     byte outsDuringThisPosession;  /* Counts number of outs that occured due to this catch. */
     byte baseStandingOnWithRunnerOrForOut;  /* If ball was caught while on the base, this is the base index. */
 } __attribute__((packed));
-
-
+
 struct storedGameInfoStruct {
     atBatResult abResultFinal;
     atBatResult abResultTemporary;
@@ -28435,7 +23181,7 @@ struct storedGameInfoStruct {
     byte nBattersThisInning2_;
     byte nBattersThisInning2_stored;
     enum_noHitter noHitterTracker[2];
-    byte consecutiveStrikeouts[2][2];
+    byte consecutiveStrikeouts_A_H_[2];
     byte consecutiveABsWithOuts[2];
     byte field64_0x69[2][10];
     byte inningOfFirstRun;
@@ -28454,11 +23200,9 @@ struct storedGameInfoStruct {
     byte goAheadRunsOccurances;
     undefined field79_0x8b;
 } __attribute__((packed));
-
-
+
 typedef struct struct_ struct_, *Pstruct;
-
-
+
 struct struct_ {  /* bases */
     float field0_0x0;
     float field1_0x4;
@@ -28469,22 +23213,18 @@ struct struct_ {  /* bases */
     float field6_0x18;
     float field7_0x1c;
 } __attribute__((packed));
-
-
+
 typedef struct structBattingHit structBattingHit, *PstructBattingHit;
-
-
+
 struct structBattingHit {
     uint field0_0x0;
     uint field1_0x4;
     uint field2_0x8[2];
     uint field3_0x10;
 } __attribute__((packed));
-
-
+
 typedef struct structCharSelect structCharSelect, *PstructCharSelect;
-
-
+
 struct structCharSelect {
     byte rosterCharID[2][9];
     byte positionSwapMapping[2][9];
@@ -28492,11 +23232,9 @@ struct structCharSelect {
     byte unused[2][9];
     byte rosterSpotFilledInd[2][9];
 } __attribute__((packed));
-
-
+
 typedef struct structScoutMissionProbabilities structScoutMissionProbabilities, *PstructScoutMissionProbabilities;
-
-
+
 struct structScoutMissionProbabilities {
     byte field0_0x0[4];
     byte field1_0x4[4];
@@ -28508,11 +23246,9 @@ struct structScoutMissionProbabilities {
     undefined field7_0xd;
     undefined field8_0xe;
 } __attribute__((packed));
-
-
+
 typedef struct struct_GraphicsObject struct_GraphicsObject, *Pstruct_GraphicsObject;
-
-
+
 struct struct_GraphicsObject {
     void * next;
     void * prev;
@@ -28544,11 +23280,9 @@ struct struct_GraphicsObject {
     undefined field27_0xab;
     short paletteSlots[10];
 } __attribute__((packed));
-
-
+
 typedef struct struct_challenge_matchCoinsAwarded struct_challenge_matchCoinsAwarded, *Pstruct_challenge_matchCoinsAwarded;
-
-
+
 struct struct_challenge_matchCoinsAwarded {
     short win_tie_loss_bonus[3];
     short marginOfVictoryBonus;
@@ -28561,11 +23295,9 @@ struct struct_challenge_matchCoinsAwarded {
     short bjNetWinIncrement[3];
     short toyfieldLoss;
 } __attribute__((packed));
-
-
+
 typedef struct struct_chompConstsSubStruct struct_chompConstsSubStruct, *Pstruct_chompConstsSubStruct;
-
-
+
 struct struct_chompConstsSubStruct {
     struct Vec3f basePosition_;
     byte field1_0xc;
@@ -28581,11 +23313,9 @@ struct struct_chompConstsSubStruct {
     byte field11_0x32;
     byte field12_0x33;
 } __attribute__((packed));
-
-
+
 typedef struct struct_controlOptions struct_controlOptions, *Pstruct_controlOptions;
-
-
+
 struct struct_controlOptions {
     bool autoRunning;
     bool autoFielding;
@@ -28595,11 +23325,9 @@ struct struct_controlOptions {
     bool field5_0x5;
     bool field6_0x6;
 } __attribute__((packed));
-
-
+
 typedef struct struct_eggConstants struct_eggConstants, *Pstruct_eggConstants;
-
-
+
 struct struct_eggConstants {
     float _0_35_targetY;
     float _7_0_firstBounceZLower;
@@ -28615,11 +23343,9 @@ struct struct_eggConstants {
     short _60_vParabolaUpper;
     short bounceSpeedLerpValues[4];
 } __attribute__((packed));
-
-
+
 typedef struct struct_gameSettingRelated struct_gameSettingRelated, *Pstruct_gameSettingRelated;
-
-
+
 struct struct_gameSettingRelated {
     undefined field0_0x0;
     undefined field1_0x1;
@@ -28719,30 +23445,24 @@ struct struct_gameSettingRelated {
     undefined field95_0x6e;
     undefined field96_0x6f;
 } __attribute__((packed));
-
-
+
 typedef struct struct_graphicsObjectPtr struct_graphicsObjectPtr, *Pstruct_graphicsObjectPtr;
-
-
+
 struct struct_graphicsObjectPtr {
     void * next;
     void * field1_0x4;
     void * prev;
 } __attribute__((packed));
-
-
+
 typedef struct struct_graphicsRelated struct_graphicsRelated, *Pstruct_graphicsRelated;
-
-
+
 struct struct_graphicsRelated {
     struct struct_GraphicsObject *graphicsObjectPtr;
     void * ownerScenePtr;
 } __attribute__((packed));
-
-
+
 typedef struct struct_graphicsRelatedSubStruct struct_graphicsRelatedSubStruct, *Pstruct_graphicsRelatedSubStruct;
-
-
+
 struct struct_graphicsRelatedSubStruct {
     int next;
     int field1_0x4;
@@ -28793,11 +23513,9 @@ struct struct_graphicsRelatedSubStruct {
     int field46_0xb8;
     int field47_0xbc;
 } __attribute__((packed));
-
-
+
 typedef struct struct_hitTrajOptions struct_hitTrajOptions, *Pstruct_hitTrajOptions;
-
-
+
 struct struct_hitTrajOptions {
     uint field0_0x0;
     uint field1_0x4;
@@ -28805,11 +23523,9 @@ struct struct_hitTrajOptions {
     uint nonEasyBattingBitOptions;  /* 8th position is traj override */
     uint ballTailAnimationCode;
 } __attribute__((packed));
-
-
+
 typedef struct struct_pitchConstants struct_pitchConstants, *Pstruct_pitchConstants;
-
-
+
 struct struct_pitchConstants {
     short field0_0x0;
     short curve_lerp_lower;
@@ -28819,11 +23535,9 @@ struct struct_pitchConstants {
     short verticalParabolicConstant;
     short horizontalParabolaConstant;
 } __attribute__((packed));
-
-
+
 typedef struct struct_someChompConstants struct_someChompConstants, *Pstruct_someChompConstants;
-
-
+
 struct struct_someChompConstants {
     struct struct_chompConstsSubStruct byChomp[2];
     float field1_0x68;
@@ -28870,22 +23584,18 @@ struct struct_someChompConstants {
     undefined field42_0x9a;
     undefined field43_0x9b;
 } __attribute__((packed));
-
-
+
 typedef struct struct_strikeZone struct_strikeZone, *Pstruct_strikeZone;
-
-
+
 struct struct_strikeZone {
     float _0_53_left;
     float _0_53_right;
     float _1_05_front;
     float _0_5_back;
 } __attribute__((packed));
-
-
+
 typedef struct struct_vsSituations struct_vsSituations, *Pstruct_vsSituations;
-
-
+
 struct struct_vsSituations {
     int urgencyRelated;
     int field1_0x4;
@@ -28904,14 +23614,11 @@ struct struct_vsSituations {
     int trackIf0x28Triggered;
     int charComboAreAlsoCaptains_;
 } __attribute__((packed));
-
-
+
 typedef struct subStruct subStruct, *PsubStruct;
-
-
+
 typedef struct unkSubstr unkSubstr, *PunkSubstr;
-
-
+
 struct unkSubstr {
     int field0_0x0;
     int field1_0x4;
@@ -28932,8 +23639,7 @@ struct unkSubstr {
     int field16_0x40;
     int field17_0x44;
 } __attribute__((packed));
-
-
+
 struct subStruct {
     void * field0_0x0;
     int field1_0x4;
@@ -29097,11 +23803,9 @@ struct subStruct {
     byte field159_0x9b9;
     byte pad[2];
 } __attribute__((packed));
-
-
+
 typedef struct subSubStruct subSubStruct, *PsubSubStruct;
-
-
+
 struct subSubStruct {
     byte field0_0x0[140];
     int field1_0x8c;
@@ -29191,17 +23895,14 @@ struct subSubStruct {
     byte field85_0x11d;
     byte pad[2];
 } __attribute__((packed));
-
-
+
 typedef struct synthITDInfo synthITDInfo, *PsynthITDInfo;
-
-
+
 struct synthITDInfo {
     u8 music;
     u8 sfx;
 } __attribute__((packed));
-
-
+
 enum {
     tagAnimSonething_n_a=0,
     tagAnimSonething_regularTag=1,
@@ -29209,8 +23910,7 @@ enum {
     tagAnimSonething_tagOnRunnerTaggingUpAtDifferentBase_=5
 };
 typedef unsigned char tagAnimSonething;
-
-
+
 enum {
     teamManagementMenuProcesses_initialize=0,
     teamManagementMenuProcesses_loadTeamManagement=1,
@@ -29224,8 +23924,7 @@ enum {
     teamManagementMenuProcesses_unloadMenu1=14
 };
 typedef unsigned short teamManagementMenuProcesses;
-
-
+
 enum {
     throwYType_default_=0,
     throwYType_hitGround=1,
@@ -29234,11 +23933,9 @@ enum {
     throwYType_aboveCharY=4
 };
 typedef unsigned int throwYType;
-
-
+
 typedef struct thwompConstants thwompConstants, *PthwompConstants;
-
-
+
 struct thwompConstants {
     float _12_0_smoke0;
     float _10_928572_smoke1;
@@ -29255,11 +23952,9 @@ struct thwompConstants {
     byte pad2[4];
     double _0_2_raisingSpeed;
 } __attribute__((packed));
-
-
+
 typedef struct thwompStructure thwompStructure, *PthwompStructure;
-
-
+
 struct thwompStructure {
     struct Vec3f basePosition;
     float rotation;
@@ -29268,11 +23963,9 @@ struct thwompStructure {
     byte field4_0x12;
     byte field5_0x13;
 } __attribute__((packed));
-
-
+
 typedef struct toyFieldConstants toyFieldConstants, *PtoyFieldConstants;
-
-
+
 struct toyFieldConstants {
     short field0_0x0;
     short field1_0x2;
@@ -29285,19 +23978,16 @@ struct toyFieldConstants {
     short field8_0x10;
     short field9_0x12;
 } __attribute__((packed));
-
-
+
 enum {
     toyField_batterRank_firstPlace=0,
     toyField_batterRank_middlePlace=1,
     toyField_batterRank_lastPlace=2
 };
 typedef unsigned int toyField_batterRank;
-
-
+
 typedef struct trajMultZones trajMultZones, *PtrajMultZones;
-
-
+
 struct trajMultZones {
     float zone1;
     float zone2;
@@ -29305,21 +23995,17 @@ struct trajMultZones {
     float zone4;
     float zone5;
 } __attribute__((packed));
-
-
+
 typedef struct trajStruct trajStruct, *PtrajStruct;
-
-
+
 struct trajStruct {
     struct trajMultZones Mid;
     struct trajMultZones Pull;
     struct trajMultZones Push;
 } __attribute__((packed));
-
-
+
 typedef struct trajZones trajZones, *PtrajZones;
-
-
+
 struct trajZones {
     byte bottom;
     byte low;
@@ -29327,11 +24013,9 @@ struct trajZones {
     byte high;
     byte top;
 } __attribute__((packed));
-
-
+
 typedef struct trajZonesContact trajZonesContact, *PtrajZonesContact;
-
-
+
 struct trajZonesContact {
     struct trajZones Right_Sour;
     struct trajZones Right_Nice;
@@ -29339,44 +24023,32 @@ struct trajZonesContact {
     struct trajZones Left_Nice;
     struct trajZones Left_Sour;
 } __attribute__((packed));
-
-
+
 typedef struct trajZonesOvr trajZonesOvr, *PtrajZonesOvr;
-
-
+
 typedef struct trajZonesSwing trajZonesSwing, *PtrajZonesSwing;
-
-
+
 struct trajZonesSwing {
     struct trajZonesContact Slap;
     struct trajZonesContact Slap2;
     struct trajZonesContact Charge;
     struct trajZonesContact Charge2;
 } __attribute__((packed));
-
-
+
 struct trajZonesOvr {
     struct trajZonesSwing Mid;
     struct trajZonesSwing High;
     struct trajZonesSwing Low;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /decompHeaders/types.h/uint - /uint */
-
-
-
-
-
-/* WARNING! conflicting data type names: /types.h/ulong - /ulong */
-
-
-
+
+
+/* WARNING! conflicting data type names: /decompHeaders/types.h/uint - /uint */
+
+
+/* WARNING! conflicting data type names: /types.h/ulong - /ulong */
+
 typedef struct unk807b0000 unk807b0000, *Punk807b0000;
-
-
+
 struct unk807b0000 {
     char TEVSettingComment[51];  /* the display state to be displayed is not part of the tev setting */
     undefined field1_0x33;
@@ -29471,11 +24143,9 @@ struct unk807b0000 {
     undefined8 field90_0x98;
     float field91_0xa0[20];
 } __attribute__((packed));
-
-
+
 typedef struct unkAnimRelatedStruct unkAnimRelatedStruct, *PunkAnimRelatedStruct;
-
-
+
 struct unkAnimRelatedStruct {
     float fielderVelo_[4];
     float field1_0x10;
@@ -29520,37 +24190,29 @@ struct unkAnimRelatedStruct {
     byte field40_0x294[84];
     byte field41_0x2e8[12];
 } __attribute__((packed));
-
-
+
 typedef struct unkAnimSub unkAnimSub, *PunkAnimSub;
-
-
+
 struct unkAnimSub {
     float field0_0x0;
     float field1_0x4;
     byte field2_0x8[9];
     byte field3_0x11[15];
 } __attribute__((packed));
-
-
-typedef void * (*unkCB)(void *, struct DODisplayObj *, int, void *, int, char *);
-
-
-
+
+typedef void * (*unkCB)(void *, struct DODisplayObj *, int, void *, int, char *);
+
 typedef struct unkGraphicStruct unkGraphicStruct, *PunkGraphicStruct;
-
-
+
 struct unkGraphicStruct {
     struct Mtx mtx;
     struct Mtx mtx2;
     float field2_0x60;
     float field3_0x64;
 } __attribute__((packed));
-
-
+
 typedef struct unkSimulationRelatedStruct unkSimulationRelatedStruct, *PunkSimulationRelatedStruct;
-
-
+
 struct unkSimulationRelatedStruct {
     int frameCountRelated;
     byte loadingStateRelated_;
@@ -29562,11 +24224,9 @@ struct unkSimulationRelatedStruct {
     undefined field7_0xa;
     undefined field8_0xb;
 } __attribute__((packed));
-
-
+
 typedef struct unkSoundStruct unkSoundStruct, *PunkSoundStruct;
-
-
+
 struct unkSoundStruct {
     void * field0_0x0;
     int field1_0x4;
@@ -29598,11 +24258,9 @@ struct unkSoundStruct {
     undefined field27_0x36;
     undefined field28_0x37;
 } __attribute__((packed));
-
-
+
 typedef struct unkStateRelatedStruct unkStateRelatedStruct, *PunkStateRelatedStruct;
-
-
+
 struct unkStateRelatedStruct {
     struct DODisplayObj *DODisplayListPtr_;
     struct GEOPalette *field1_0x4;
@@ -29692,11 +24350,9 @@ struct unkStateRelatedStruct {
     byte field85_0xdb;
     byte field86_0xdc[72];
 } __attribute__((packed));
-
-
+
 typedef struct unkStruct unkStruct, *PunkStruct;
-
-
+
 struct unkStruct {
     short field0_0x0;
     short field1_0x2;
@@ -29827,11 +24483,9 @@ struct unkStruct {
     int field126_0xbf8[2];
     int field127_0xc00;
 } __attribute__((packed));
-
-
+
 typedef struct unkStructAutoFielderRelatedMaybe unkStructAutoFielderRelatedMaybe, *PunkStructAutoFielderRelatedMaybe;
-
-
+
 struct unkStructAutoFielderRelatedMaybe {
     byte field0_0x0[4];
     byte field1_0x4[4];
@@ -29912,14 +24566,11 @@ struct unkStructAutoFielderRelatedMaybe {
     undefined field76_0x6e;
     undefined field77_0x6f;
 } __attribute__((packed));
-
-
+
 typedef struct unkStructMatrix_ unkStructMatrix_, *PunkStructMatrix_;
-
-
+
 typedef struct unkSubstruct unkSubstruct, *PunkSubstruct;
-
-
+
 struct unkSubstruct {
     void * unkPtr;
     int field1_0x4;
@@ -29953,8 +24604,7 @@ struct unkSubstruct {
     int field29_0x9c;
     float unkFloats[18];
 } __attribute__((packed));
-
-
+
 struct unkStructMatrix_ {
     struct unkStructMatrix_ *ptr;
     short field1_0x4;
@@ -30040,11 +24690,9 @@ struct unkStructMatrix_ {
     byte field81_0x120[4];
     struct unkSubstruct unkSubStruct;
 } __attribute__((packed));
-
-
+
 typedef struct unkStruct_80892bac unkStruct_80892bac, *PunkStruct_80892bac;
-
-
+
 struct unkStruct_80892bac {
     struct Vec3f field0_0x0;
     short maybeFielderIndex;
@@ -31027,20 +25675,16 @@ struct unkStruct_80892bac {
     undefined field978_0x3de;
     undefined field979_0x3df;
 } __attribute__((packed));
-
-
+
 typedef struct unkWallBallSubstruct unkWallBallSubstruct, *PunkWallBallSubstruct;
-
-
+
 struct unkWallBallSubstruct {
     short field0_0x0;
     byte field1_0x2[42];
 } __attribute__((packed));
-
-
+
 typedef struct unk_0x807B2948 unk_0x807B2948, *Punk_0x807B2948;
-
-
+
 struct unk_0x807B2948 {
     float field0_0x0;
     float field1_0x4;
@@ -31055,14 +25699,11 @@ struct unk_0x807B2948 {
     float field10_0x28;
     float unkFloatArr[133];
 } __attribute__((packed));
-
-
+
 typedef u32 unknown;
-
-
+
 typedef struct unknownLoadingStruct unknownLoadingStruct, *PunknownLoadingStruct;
-
-
+
 struct unknownLoadingStruct {
     byte maybeBaseAddr;  /* Created by retype action */
     undefined field1_0x1;
@@ -31074,16 +25715,12 @@ struct unknownLoadingStruct {
     int unkField;
     int unkFlagOrState;
 } __attribute__((packed));
-
-
+
 typedef struct unknownStatStruct unknownStatStruct, *PunknownStatStruct;
-
-
-
-
+
+
 typedef struct unknownStruct unknownStruct, *PunknownStruct;
-
-
+
 struct unknownStruct {
     void * field0_0x0;
     byte field1_0x4;
@@ -31094,20 +25731,16 @@ struct unknownStruct {
     byte field6_0x9;
     byte pad[6];
 } __attribute__((packed));
-
-
+
 typedef struct us80893310 us80893310, *Pus80893310;
-
-
+
 struct us80893310 {
     short field0_0x0;
     byte field1_0x2[2];
 } __attribute__((packed));
-
-
+
 typedef struct us80893314 us80893314, *Pus80893314;
-
-
+
 struct us80893314 {
     byte field0_0x0;
     byte field1_0x1;
@@ -31117,11 +25750,9 @@ struct us80893314 {
     byte field5_0x5[7];
     float field6_0xc[310];
 } __attribute__((packed));
-
-
+
 typedef struct us808937f8 us808937f8, *Pus808937f8;
-
-
+
 struct us808937f8 {
     short field0_0x0;
     EnumPopupText_byte queuedText_[5];
@@ -31131,11 +25762,9 @@ struct us808937f8 {
     undefined field5_0xa;
     undefined field6_0xb;
 } __attribute__((packed));
-
-
+
 typedef struct us_80893280 us_80893280, *Pus_80893280;
-
-
+
 struct us_80893280 {
     float field0_0x0[4];
     short field1_0x10[3];
@@ -31161,11 +25790,9 @@ struct us_80893280 {
     byte field21_0x78;
     byte field22_0x79[7];
 } __attribute__((packed));
-
-
+
 typedef struct us_80893300 us_80893300, *Pus_80893300;
-
-
+
 struct us_80893300 {
     short field0_0x0;
     short field1_0x2;
@@ -31178,30 +25805,22 @@ struct us_80893300 {
     byte field8_0xc;
     byte field9_0xd;
 } __attribute__((packed));
-
-
-
-
-/* WARNING! conflicting data type names: /types.h/ushort - /ushort */
-
-
-
+
+
+/* WARNING! conflicting data type names: /types.h/ushort - /ushort */
+
 typedef void *va_list;
-
-
+
 typedef struct veloByContact veloByContact, *PveloByContact;
-
-
+
 typedef struct veloContact veloContact, *PveloContact;
-
-
+
 struct veloContact {
     ghidra_word min;
     ghidra_word max;
     s16 gravFactor;
 } __attribute__((packed));
-
-
+
 struct veloByContact {
     struct veloContact Right_Sour;
     struct veloContact Right_Nice;
@@ -31209,22 +25828,18 @@ struct veloByContact {
     struct veloContact Left_Nice;
     struct veloContact Left_Sour;
 } __attribute__((packed));
-
-
+
 typedef struct veloBySwing veloBySwing, *PveloBySwing;
-
-
+
 struct veloBySwing {
     struct veloByContact field0_0x0;
     struct veloByContact field1_0x1e;
     struct veloByContact field2_0x3c;
     struct veloByContact field3_0x5a;
 } __attribute__((packed));
-
-
+
 typedef struct vertRangeByContact vertRangeByContact, *PvertRangeByContact;
-
-
+
 struct vertRangeByContact {
     struct angleRange Right_Sour;
     struct angleRange Right_Nice;
@@ -31232,55 +25847,40 @@ struct vertRangeByContact {
     struct angleRange Left_Nice;
     struct angleRange Left_Sour;
 } __attribute__((packed));
-
-
+
 typedef struct vertStruct_Collision__ vertStruct_Collision__, *PvertStruct_Collision__;
-
-
+
 struct vertStruct_Collision__ {
     undefined field0_0x0;
     bool triangleStrip;
     short numVerts;
     struct Vec3f vec;
 } __attribute__((packed));
-
-
+
 typedef f128 vf128;
-
-
+
 typedef f32 vf32;
-
-
+
 typedef f64 vf64;
-
-
+
 typedef s16 vs16;
-
-
+
 typedef s32 vs32;
-
-
+
 typedef s64 vs64;
-
-
+
 typedef s8 vs8;
-
-
+
 typedef u16 vu16;
-
-
+
 typedef u32 vu32;
-
-
+
 typedef u64 vu64;
-
-
+
 typedef u8 vu8;
-
-
+
 typedef struct wallBallConstants1 wallBallConstants1, *PwallBallConstants1;
-
-
+
 struct wallBallConstants1 {
     float const_0_1_pitchVeloMult;
     float const_0_1_wallBreakOffset;
@@ -31292,11 +25892,9 @@ struct wallBallConstants1 {
     byte field7_0x12;
     byte field8_0x13;
 } __attribute__((packed));
-
-
+
 typedef struct wallBallConstants2 wallBallConstants2, *PwallBallConstants2;
-
-
+
 struct wallBallConstants2 {
     float const_0_1;
     float const_0_3;
@@ -31305,11 +25903,9 @@ struct wallBallConstants2 {
     byte randomBounds[4][2];
     byte perfect__OverchargeProb[4];
 } __attribute__((packed));
-
-
+
 typedef struct wallBallStruct2 wallBallStruct2, *PwallBallStruct2;
-
-
+
 struct wallBallStruct2 {
     short wallHealth;
     short field1_0x2;
@@ -31323,21 +25919,17 @@ struct wallBallStruct2 {
     short field9_0x12;
     short field10_0x14;
 } __attribute__((packed));
-
-
+
 typedef struct wallBallStruct3 wallBallStruct3, *PwallBallStruct3;
-
-
+
 struct wallBallStruct3 {
     float field0_0x0[7];
     float field1_0x1c[7];
     float field2_0x38[7];
 } __attribute__((packed));
-
-
+
 typedef struct warioStadiumObject warioStadiumObject, *PwarioStadiumObject;
-
-
+
 struct warioStadiumObject {
     float field0_0x0;
     float field1_0x4;
@@ -31347,11 +25939,9 @@ struct warioStadiumObject {
     byte field5_0xe;
     byte field6_0xf;
 } __attribute__((packed));
-
-
+
 typedef struct warioStadiumSandStars warioStadiumSandStars, *PwarioStadiumSandStars;
-
-
+
 struct warioStadiumSandStars {
     float field0_0x0;
     float field1_0x4;
@@ -31361,11 +25951,9 @@ struct warioStadiumSandStars {
     byte field5_0xe;
     byte field6_0xf;
 } __attribute__((packed));
-
-
+
 typedef struct warioStadiumTrees warioStadiumTrees, *PwarioStadiumTrees;
-
-
+
 struct warioStadiumTrees {
     float field0_0x0;
     float field1_0x4;
@@ -31379,14 +25967,11 @@ struct warioStadiumTrees {
     byte field9_0x1e;
     byte field10_0x1f;
 } __attribute__((packed));
-
-
+
 typedef struct weightStruct weightStruct, *PweightStruct;
-
-
+
 typedef struct weightsStruct weightsStruct, *PweightsStruct;
-
-
+
 struct weightsStruct {
     float field0_0x0;
     float field1_0x4;
@@ -31394,8 +25979,7 @@ struct weightsStruct {
     float baseCoveringRangeModifier;
     float diveStartOffset;
 } __attribute__((packed));
-
-
+
 struct weightStruct {
     struct weightsStruct field0_0x0;
     struct weightsStruct field1_0x14;
@@ -31404,11 +25988,9 @@ struct weightStruct {
     struct weightsStruct field4_0x50;
     struct weightsStruct field5_0x64;
 } __attribute__((packed));
-
-
+
 typedef struct yoshiStadiumPlants_ yoshiStadiumPlants_, *PyoshiStadiumPlants_;
-
-
+
 struct yoshiStadiumPlants_ {
     float x;
     float y;
@@ -31421,8 +26003,7 @@ struct yoshiStadiumPlants_ {
     float field8_0x14;
     float spitAngle_;
 } __attribute__((packed));
-
-
+
 
 
 // =============================================================================
@@ -31708,7 +26289,7 @@ struct yoshiStadiumPlants_ {
 #define INT_800e81d0 VAR_ADDRESS(int, 0x800E81D0)
 #define INT_800e82e4 VAR_ADDRESS(int, 0x800E82E4)
 #define INT_800e82f0 VAR_ADDRESS(int, 0x800E82F0)
-#define CharSizeMultipliers VAR_ADDRESS(float_2_, 54, 0x800E8300)
+#define CharSizeMultipliers VAR_ADDRESS(float, 54, 2, 0x800E8300)
 #define ballScaleFactors_800e84b0 VAR_ADDRESS(ballScaleFactors, 13, 0x800E84B0)
 #define BYTE_800e854c VAR_ADDRESS(byte, 0x800E854C)
 #define BYTE_800e854d VAR_ADDRESS(byte, 0x800E854D)
@@ -31761,7 +26342,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_800e8714 VAR_ADDRESS(byte, 0x800E8714)
 #define BYTE_800e8715 VAR_ADDRESS(byte, 0x800E8715)
 #define BYTE_800e8716 VAR_ADDRESS(byte, 0x800E8716)
-#define SHORT_ARRAY_ARRAY_800e871c VAR_ADDRESS(short_2_, 4, 0x800E871C)
+#define SHORT_ARRAY_ARRAY_800e871c VAR_ADDRESS(short, 4, 2, 0x800E871C)
 #define challengeMinigame_baseCoinsEarned VAR_ADDRESS(short, 0x800E872C)
 #define unused_netWinsVsBJ VAR_ADDRESS(byte, 0x800E872E)
 #define BYTE_800e872f VAR_ADDRESS(byte, 0x800E872F)
@@ -31941,7 +26522,7 @@ struct yoshiStadiumPlants_ {
 #define CompressedDiskRead_800f1d68 VAR_ADDRESS(CompressedDiskRead, 0x800F1D68)
 #define CompressedDiskRead_800f1d78 VAR_ADDRESS(CompressedDiskRead, 0x800F1D78)
 #define BYTE_ARRAY_800f743c VAR_ADDRESS(byte, 60, 0x800F743C)
-#define inputParams VAR_ADDRESS(byte_44_, 14, 0x800F7478)
+#define inputParams VAR_ADDRESS(byte, 14, 44, 0x800F7478)
 #define nullTex VAR_ADDRESS(TEXDescriptor *, 0x800F7700)
 #define INT_800f7704 VAR_ADDRESS(int, 0x800F7704)
 #define SHORT_800f7708 VAR_ADDRESS(short, 0x800F7708)
@@ -32018,7 +26599,7 @@ struct yoshiStadiumPlants_ {
 #define INT_800fc000 VAR_ADDRESS(int, 0x800FC000)
 #define INT_800fc054 VAR_ADDRESS(int, 0x800FC054)
 #define INT_800fc0a8 VAR_ADDRESS(int, 0x800FC0A8)
-#define BYTE_ARRAY_ARRAY_800fc0fc VAR_ADDRESS(byte_3_, 13, 0x800FC0FC)
+#define BYTE_ARRAY_ARRAY_800fc0fc VAR_ADDRESS(byte, 13, 3, 0x800FC0FC)
 #define switchdataD_800fc2e4 VAR_ADDRESS(void *, 0x800FC2E4)
 #define switchdataD_800fc318 VAR_ADDRESS(void *, 0x800FC318)
 #define INT_800fc398 VAR_ADDRESS(int, 0x800FC398)
@@ -32184,7 +26765,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_80108ffd VAR_ADDRESS(byte, 0x80108FFD)
 #define BYTE_8010902c VAR_ADDRESS(byte, 0x8010902C)
 #define CompressedDiskRead_80109044 VAR_ADDRESS(CompressedDiskRead, 0x80109044)
-#define battingOrderPriorityPositions VAR_ADDRESS(byte_5_, 4, 0x80109054)
+#define battingOrderPriorityPositions VAR_ADDRESS(byte, 4, 5, 0x80109054)
 #define switchdataD_8010907c VAR_ADDRESS(void *, 0x8010907C)
 #define switchdataD_801090ac VAR_ADDRESS(void *, 0x801090AC)
 #define switchdataD_801090e8 VAR_ADDRESS(void *, 0x801090E8)
@@ -32200,11 +26781,11 @@ struct yoshiStadiumPlants_ {
 #define SHORT_80109402 VAR_ADDRESS(short, 0x80109402)
 #define scoutMissionProbabilities VAR_ADDRESS(structScoutMissionProbabilities, 13, 0x80109420)
 #define scoutFlagQuantity VAR_ADDRESS(structScoutFlagQuantites, 54, 0x801094E4)
-#define starMissionRequirementsTable VAR_ADDRESS(starMissionStruct_10_, 32, 0x80109AE8)
+#define starMissionRequirementsTable VAR_ADDRESS(starMissionStruct, 32, 10, 0x80109AE8)
 #define starMenuSizes VAR_ADDRESS(short, 4, 0x8010B42C)
-#define starMissionsUnlockedDifficulty_ VAR_ADDRESS(short_11_, 4, 0x8010B444)
-#define FLOAT_ARRAY_ARRAY_8010b4b4 VAR_ADDRESS(float_11_, 5, 0x8010B4B4)
-#define challengeInnings VAR_ADDRESS(byte_3_, 4, 0x8010B600)
+#define starMissionsUnlockedDifficulty_ VAR_ADDRESS(short, 4, 11, 0x8010B444)
+#define FLOAT_ARRAY_ARRAY_8010b4b4 VAR_ADDRESS(float, 5, 11, 0x8010B4B4)
+#define challengeInnings VAR_ADDRESS(byte, 4, 3, 0x8010B600)
 #define INT_8010b734 VAR_ADDRESS(int, 0x8010B734)
 #define INT_8010b810 VAR_ADDRESS(int, 0x8010B810)
 #define switchdataD_8010bf7c VAR_ADDRESS(void *, 0x8010BF7C)
@@ -34906,7 +29487,7 @@ struct yoshiStadiumPlants_ {
 #define SHORT_ARRAY_8031c3fa VAR_ADDRESS(short, 2, 0x8031C3FA)
 #define SHORT_ARRAY_8031c3fe VAR_ADDRESS(short, 2, 0x8031C3FE)
 #define SHORT_ARRAY_8031c402 VAR_ADDRESS(short, 2, 0x8031C402)
-#define SHORT_ARRAY_ARRAY_8031c406 VAR_ADDRESS(short_2_, 48, 0x8031C406)
+#define SHORT_ARRAY_ARRAY_8031c406 VAR_ADDRESS(short, 48, 2, 0x8031C406)
 #define voicePrioSortVoicesRoot VAR_ADDRESS(byte, 0x8031C4C8)
 #define BYTE_8031c4c9 VAR_ADDRESS(byte, 0x8031C4C9)
 #define BYTE_8031c4ca VAR_ADDRESS(byte, 0x8031C4CA)
@@ -34972,7 +29553,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_8031c506 VAR_ADDRESS(byte, 0x8031C506)
 #define BYTE_ARRAY_8031c507 VAR_ADDRESS(byte, 193, 0x8031C507)
 #define SHORT_8031c5c8 VAR_ADDRESS(short, 0x8031C5C8)
-#define SHORT_ARRAY_ARRAY_8031c5ca VAR_ADDRESS(short_2_, 39, 0x8031C5CA)
+#define SHORT_ARRAY_ARRAY_8031c5ca VAR_ADDRESS(short, 39, 2, 0x8031C5CA)
 #define SHORT_8031c668 VAR_ADDRESS(short, 0x8031C668)
 #define SHORT_ARRAY_8031c66a VAR_ADDRESS(short, 430, 0x8031C66A)
 #define voiceList VAR_ADDRESS(byte, 0x8031C9C8)
@@ -35585,12 +30166,12 @@ struct yoshiStadiumPlants_ {
 #define BYTE_8034e99e VAR_ADDRESS(byte, 0x8034E99E)
 #define BYTE_8034e99f VAR_ADDRESS(byte, 0x8034E99F)
 #define Static_Stats_Tables VAR_ADDRESS(Static_MSSB_Data, 0x8034E9A0)
-#define atBatResultTracker_ VAR_ADDRESS(atBatResultTracker_100_, 2, 0x803532A8)
-#define PitcherStats_P1_P2_ VAR_ADDRESS(StatisticsPitcher_9_, 2, 0x803535C8)
-#define BatterStats_P1_P2_ VAR_ADDRESS(StatisticsBatter_9_, 2, 0x803537E4)
+#define atBatResultTracker_ VAR_ADDRESS(atBatResultTracker, 2, 100, 0x803532A8)
+#define PitcherStats_P1_P2_ VAR_ADDRESS(StatisticsPitcher, 2, 9, 0x803535C8)
+#define BatterStats_P1_P2_ VAR_ADDRESS(StatisticsBatter, 2, 9, 0x803537E4)
 #define someScoreStruct_80353a90 VAR_ADDRESS(someScoreStruct, 0x80353A90)
-#define pitcherList_rosterID__inningStartedPitching_ VAR_ADDRESS(byte_20_, 2, 0x80353B4E)
-#define listOfCatchers VAR_ADDRESS(byte_5_, 2, 0x80353B76)
+#define pitcherList_rosterID__inningStartedPitching_ VAR_ADDRESS(byte, 2, 20, 0x80353B4E)
+#define listOfCatchers VAR_ADDRESS(byte, 2, 5, 0x80353B76)
 #define stealsAgainst_ VAR_ADDRESS(byte, 2, 0x80353B80)
 #define teamWhoWon_A_H_ VAR_ADDRESS(byte, 0x80353B82)
 #define winningPitcherRosterID VAR_ADDRESS(byte, 0x80353B83)
@@ -35610,8 +30191,8 @@ struct yoshiStadiumPlants_ {
 #define battingLocOfMVP VAR_ADDRESS(byte, 2, 0x80353B91)
 #define rosterLocOfWinningCapt_ VAR_ADDRESS(byte, 0x80353B93)
 #define BYTE_ARRAY_80353b94 VAR_ADDRESS(byte, 76, 0x80353B94)
-#define inMemRoster_P1_P2_ VAR_ADDRESS(CharacterStats_9_, 2, 0x80353BE0)
-#define lineUpInfoStruct VAR_ADDRESS(byte_9__4_, 8, 0x80354720)
+#define inMemRoster_P1_P2_ VAR_ADDRESS(CharacterStats, 2, 9, 0x80353BE0)
+#define lineUpInfoStruct VAR_ADDRESS(byte, 288, 0x80354720)
 #define BYTE_ARRAY_80354ddb VAR_ADDRESS(byte, 12945, 0x80354DDB)
 #define BYTE_ARRAY_8035806c VAR_ADDRESS(byte, 3076, 0x8035806C)
 #define BYTE_ARRAY_80358c70 VAR_ADDRESS(byte, 29584, 0x80358C70)
@@ -35979,7 +30560,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_ARRAY_803ab7ac VAR_ADDRESS(byte, 192, 0x803AB7AC)
 #define BYTE_ARRAY_803ab86c VAR_ADDRESS(byte, 192, 0x803AB86C)
 #define BYTE_ARRAY_803ab92c VAR_ADDRESS(byte, 192, 0x803AB92C)
-#define BYTE_ARRAY_ARRAY_803ab9ec VAR_ADDRESS(byte_192_, 434, 0x803AB9EC)
+#define BYTE_ARRAY_ARRAY_803ab9ec VAR_ADDRESS(byte, 434, 192, 0x803AB9EC)
 #define BYTE_ARRAY_803c0000 VAR_ADDRESS(byte, 19424, 0x803C0000)
 #define Mtx_803c4be0 VAR_ADDRESS(Mtx, 0x803C4BE0)
 #define INT_ARRAY_803c4c4c VAR_ADDRESS(int, 60, 0x803C4C4C)
@@ -36180,7 +30761,7 @@ struct yoshiStadiumPlants_ {
 #define INT_803c60e8 VAR_ADDRESS(int, 0x803C60E8)
 #define BYTE_803c60f8 VAR_ADDRESS(byte, 0x803C60F8)
 #define BYTE_803c60f9 VAR_ADDRESS(byte, 0x803C60F9)
-#define FLOAT_ARRAY_ARRAY_803c639c VAR_ADDRESS(float_4_, 4, 0x803C639C)
+#define FLOAT_ARRAY_ARRAY_803c639c VAR_ADDRESS(float, 4, 4, 0x803C639C)
 #define FLOAT_803c63dc VAR_ADDRESS(float, 0x803C63DC)
 #define Vec3f_803c640c VAR_ADDRESS(Vec3f, 0x803C640C)
 #define Vec3f_803c6418 VAR_ADDRESS(Vec3f, 0x803C6418)
@@ -36192,7 +30773,7 @@ struct yoshiStadiumPlants_ {
 #define Vec3f_803c64c0 VAR_ADDRESS(Vec3f, 0x803C64C0)
 #define Vec3f_803c64cc VAR_ADDRESS(Vec3f, 0x803C64CC)
 #define INT_803c64e8 VAR_ADDRESS(int, 0x803C64E8)
-#define FLOAT_ARRAY_ARRAY_803c64ec VAR_ADDRESS(float_42_, 2, 0x803C64EC)
+#define FLOAT_ARRAY_ARRAY_803c64ec VAR_ADDRESS(float, 2, 42, 0x803C64EC)
 #define INT_803c663c VAR_ADDRESS(int, 0x803C663C)
 #define INT_803c6640 VAR_ADDRESS(int, 0x803C6640)
 #define INT_803c6644 VAR_ADDRESS(int, 0x803C6644)
@@ -36266,7 +30847,7 @@ struct yoshiStadiumPlants_ {
 #define AtBat_ButtonInput2 VAR_ADDRESS(ghidra_word, 0x803C77BE)
 #define BYTE_803c77c0 VAR_ADDRESS(byte, 0x803C77C0)
 #define BYTE_803c77c1 VAR_ADDRESS(byte, 0x803C77C1)
-#define BYTE_ARRAY_ARRAY_803c77c2 VAR_ADDRESS(byte_2_, 2, 0x803C77C2)
+#define BYTE_ARRAY_ARRAY_803c77c2 VAR_ADDRESS(byte, 2, 2, 0x803C77C2)
 #define BYTE_803c77c8 VAR_ADDRESS(byte, 0x803C77C8)
 #define BYTE_803c77c9 VAR_ADDRESS(byte, 0x803C77C9)
 #define BYTE_803c77ca VAR_ADDRESS(byte, 0x803C77CA)
@@ -39286,17 +33867,17 @@ struct yoshiStadiumPlants_ {
 #define switchdataD_807b2e48 VAR_ADDRESS(void *, 0x807B2E48)
 #define switchdataD_807b2e64 VAR_ADDRESS(void *, 0x807B2E64)
 #define invertAILevels VAR_ADDRESS(byte, 4, 0x807B2E80)
-#define chargePitchProb VAR_ADDRESS(byte_4__4_, 2, 0x807B2E88)
-#define perfectPitchProb VAR_ADDRESS(byte_4_, 3, 0x807B2EA8)
-#define changeUpProb VAR_ADDRESS(byte_4_, 2, 0x807B2EB4)
-#define starLikelihoodArray VAR_ADDRESS(byte_4_, 5, 0x807B2EC0)
+#define chargePitchProb VAR_ADDRESS(byte, 32, 0x807B2E88)
+#define perfectPitchProb VAR_ADDRESS(byte, 3, 4, 0x807B2EA8)
+#define changeUpProb VAR_ADDRESS(byte, 2, 4, 0x807B2EB4)
+#define starLikelihoodArray VAR_ADDRESS(byte, 5, 4, 0x807B2EC0)
 #define const_236_ VAR_ADDRESS(byte, 0x807B2ED8)
 #define const_10_0_807b2ed9 VAR_ADDRESS(byte, 0x807B2ED9)
 #define aiPitchWeakCurveProbabilities VAR_ADDRESS(byte, 4, 0x807B2EDC)
-#define pitchAIDelayPitchStartProbabilities VAR_ADDRESS(byte_4_, 4, 0x807B2EE0)
+#define pitchAIDelayPitchStartProbabilities VAR_ADDRESS(byte, 4, 4, 0x807B2EE0)
 #define aIPitchCurveEndingXConstants VAR_ADDRESS(float, 7, 0x807B2EF0)
-#define aIMoundLocationProbabilities VAR_ADDRESS(byte_6_, 4, 0x807B2F0C)
-#define pickOffProb VAR_ADDRESS(byte_4_, 4, 0x807B2F24)
+#define aIMoundLocationProbabilities VAR_ADDRESS(byte, 4, 6, 0x807B2F0C)
+#define pickOffProb VAR_ADDRESS(byte, 4, 4, 0x807B2F24)
 #define const_60 VAR_ADDRESS(short, 0x807B2F34)
 #define const_75 VAR_ADDRESS(short, 0x807B2F36)
 #define const_90_0_807b2f38 VAR_ADDRESS(short, 0x807B2F38)
@@ -39310,20 +33891,20 @@ struct yoshiStadiumPlants_ {
 #define INT_807b324c VAR_ADDRESS(int, 0x807B324C)
 #define SHORT_807b3254 VAR_ADDRESS(short, 0x807B3254)
 #define SHORT_807b3256 VAR_ADDRESS(short, 0x807B3256)
-#define SHORT_ARRAY_ARRAY_807b3258 VAR_ADDRESS(short_4_, 4, 0x807B3258)
+#define SHORT_ARRAY_ARRAY_807b3258 VAR_ADDRESS(short, 4, 4, 0x807B3258)
 #define neg20ForRunningAI VAR_ADDRESS(short, 2, 0x807B3288)
 #define batterAIPerfectStealProb VAR_ADDRESS(byte, 4, 0x807B3290)
-#define batterAIStealingProb VAR_ADDRESS(byte_3__4_, 4, 0x807B32D4)
+#define batterAIStealingProb VAR_ADDRESS(byte, 48, 0x807B32D4)
 #define batterAIBatterClassMultOnStealing VAR_ADDRESS(float, 4, 0x807B3310)
 #define const_0_0_807b3320 VAR_ADDRESS(int, 0x807B3320)
 #define const_0_1_807b3324 VAR_ADDRESS(float, 0x807B3324)
 #define BYTE_807b354f VAR_ADDRESS(byte, 0x807B354F)
 #define INT_807b3570 VAR_ADDRESS(int, 0x807B3570)
 #define homerun_cameraSceneIDs VAR_ADDRESS(int, 54, 0x807B35F8)
-#define BYTE_ARRAY_ARRAY_807b3968 VAR_ADDRESS(byte_4_, 6, 0x807B3968)
+#define BYTE_ARRAY_ARRAY_807b3968 VAR_ADDRESS(byte, 6, 4, 0x807B3968)
 #define INT_ARRAY_807b3980 VAR_ADDRESS(int, 6, 0x807B3980)
 #define vsSituations_ VAR_ADDRESS(struct_vsSituations, 33, 0x807B3998)
-#define VsCharCombos VAR_ADDRESS(byte_55_, 55, 0x807B41D8)
+#define VsCharCombos VAR_ADDRESS(byte, 55, 55, 0x807B41D8)
 #define INT_807b4dc4 VAR_ADDRESS(int, 0x807B4DC4)
 #define INT_807b4ea0 VAR_ADDRESS(int, 0x807B4EA0)
 #define INT_807b4f7c VAR_ADDRESS(int, 0x807B4F7C)
@@ -39348,8 +33929,8 @@ struct yoshiStadiumPlants_ {
 #define switchdataD_807b57f4 VAR_ADDRESS(void *, 0x807B57F4)
 #define switchdataD_807b5840 VAR_ADDRESS(void *, 0x807B5840)
 #define INT_807b588c VAR_ADDRESS(int, 0x807B588C)
-#define dugoutCoordinates VAR_ADDRESS(float_2__2_, 7, 0x807B5890)
-#define FLOAT_ARRAY_ARRAY_807b5900 VAR_ADDRESS(float_2_, 9, 0x807B5900)
+#define dugoutCoordinates VAR_ADDRESS(float, 28, 0x807B5890)
+#define FLOAT_ARRAY_ARRAY_807b5900 VAR_ADDRESS(float, 9, 2, 0x807B5900)
 #define stadiumHitAngleCFOffsets VAR_ADDRESS(byte, 7, 0x807B5980)
 #define ballBounceConstants VAR_ADDRESS(bounceConstants, 7, 0x807B5988)
 #define const_0_35_807b5a14 VAR_ADDRESS(float, 0x807B5A14)
@@ -39365,10 +33946,10 @@ struct yoshiStadiumPlants_ {
 #define const_0_4_moundRightLimit VAR_ADDRESS(float, 0x807B5A78)
 #define const_0_08_pitcherHorizontalMoundMovementSpeed VAR_ADDRESS(float, 0x807B5A7C)
 #define const_0_16 VAR_ADDRESS(float, 0x807B5A80)
-#define extendedLocationCoordinates VAR_ADDRESS(float_2_, 6, 0x807B5A84)
-#define presetFielderLocations VAR_ADDRESS(float_2_, 11, 0x807B5AB4)
+#define extendedLocationCoordinates VAR_ADDRESS(float, 6, 2, 0x807B5A84)
+#define presetFielderLocations VAR_ADDRESS(float, 11, 2, 0x807B5AB4)
 #define fieldingStartingCoords_regular VAR_ADDRESS(Vec2f, 9, 0x807B5B0C)
-#define fielderStartingCoords_holdRunners VAR_ADDRESS(Vec2f_3_, 4, 0x807B5B54)
+#define fielderStartingCoords_holdRunners VAR_ADDRESS(Vec2f, 4, 3, 0x807B5B54)
 #define fielderStartingCoords_bunt VAR_ADDRESS(Vec2f, 7, 0x807B5BB4)
 #define const_0_15_807b5bf4 VAR_ADDRESS(float, 0x807B5BF4)
 #define const_0_35_807b5bf8 VAR_ADDRESS(float, 0x807B5BF8)
@@ -39390,7 +33971,7 @@ struct yoshiStadiumPlants_ {
 #define ToyFieldSpeedArray VAR_ADDRESS(float, 22, 0x807B5C98)
 #define ballDashEffect_1_5 VAR_ADDRESS(float, 0x807B5CF0)
 #define const_0_7_807b5cf4 VAR_ADDRESS(float, 0x807B5CF4)
-#define fielderLockout VAR_ADDRESS(byte_9_, 2, 0x807B5CF8)
+#define fielderLockout VAR_ADDRESS(byte, 2, 9, 0x807B5CF8)
 #define const_10_807b5d0c VAR_ADDRESS(byte, 0x807B5D0C)
 #define const_30_807b5d0d VAR_ADDRESS(byte, 0x807B5D0D)
 #define const_4_0_807b5d10 VAR_ADDRESS(byte, 0x807B5D10)
@@ -39426,15 +34007,15 @@ struct yoshiStadiumPlants_ {
 #define SHORT_ARRAY_807b5eb8 VAR_ADDRESS(short, 4, 0x807B5EB8)
 #define const_0_5_807b5ec4 VAR_ADDRESS(float, 0x807B5EC4)
 #define _0x18aArray VAR_ADDRESS(byte, 4, 0x807B5EF8)
-#define throwWindUpFrames_ VAR_ADDRESS(byte_3_, 2, 0x807B5F00)
+#define throwWindUpFrames_ VAR_ADDRESS(byte, 2, 3, 0x807B5F00)
 #define const_20_antiChemLerpLower VAR_ADDRESS(byte, 0x807B5F08)
 #define const_20_antiChemLerpUpper VAR_ADDRESS(byte, 0x807B5F09)
-#define slidingCatchMultipliers VAR_ADDRESS(float_3_, 2, 0x807B5F0C)
+#define slidingCatchMultipliers VAR_ADDRESS(float, 2, 3, 0x807B5F0C)
 #define slidingCatchArray VAR_ADDRESS(diveFrame, 2, 0x807B5F24)
 #define fielderActionConstants_807b5f30 VAR_ADDRESS(fielderActionConstants, 0x807B5F30)
-#define peachDaisyStarHitConstants VAR_ADDRESS(float_2_, 2, 0x807B5FCC)
+#define peachDaisyStarHitConstants VAR_ADDRESS(float, 2, 2, 0x807B5FCC)
 #define specialFielderActionConstants VAR_ADDRESS(specialFieldingActionStruct, 0x807B5FDC)
-#define baseCoordsForRunning VAR_ADDRESS(float_2_, 4, 0x807B6034)
+#define baseCoordsForRunning VAR_ADDRESS(float, 4, 2, 0x807B6034)
 #define const_0_012 VAR_ADDRESS(float, 0x807B6124)
 #define FLOAT_807b6128 VAR_ADDRESS(float, 0x807B6128)
 #define const_60_overrun1BSprintDuration VAR_ADDRESS(short, 0x807B6140)
@@ -39459,7 +34040,7 @@ struct yoshiStadiumPlants_ {
 #define const_3_807b61a2 VAR_ADDRESS(short, 0x807B61A2)
 #define sprintSlowdownDuration_30 VAR_ADDRESS(short, 0x807B61A4)
 #define altSprintSlowdownDuration_20 VAR_ADDRESS(short, 0x807B61A6)
-#define bodyCheckProbabiliities VAR_ADDRESS(byte_5_, 5, 0x807B61A8)
+#define bodyCheckProbabiliities VAR_ADDRESS(byte, 5, 5, 0x807B61A8)
 #define const_0_01_807b61c4 VAR_ADDRESS(float, 0x807B61C4)
 #define const_0_005_807b61c8 VAR_ADDRESS(float, 0x807B61C8)
 #define const_0_005_807b61cc VAR_ADDRESS(float, 0x807B61CC)
@@ -39487,38 +34068,38 @@ struct yoshiStadiumPlants_ {
 #define const_1_807b6268 VAR_ADDRESS(short, 0x807B6268)
 #define const_3_807b626a VAR_ADDRESS(short, 0x807B626A)
 #define maybeInitialBatPos VAR_ADDRESS(Vec3f, 0x807B626C)
-#define batContactRange VAR_ADDRESS(float_2_, 2, 0x807B6278)
+#define batContactRange VAR_ADDRESS(float, 2, 2, 0x807B6278)
 #define FLOAT_807b6288 VAR_ADDRESS(float, 0x807B6288)
 #define const_1_3_807b6290 VAR_ADDRESS(float, 0x807B6290)
-#define BallContactArray_807b6294 VAR_ADDRESS(byte_5__2__2__4_, 2, 0x807B6294)
-#define ContactPerfectThresholds VAR_ADDRESS(float_3_, 3, 0x807B6334)
-#define hittableFrameInd VAR_ADDRESS(short_15_, 2, 0x807B6358)
-#define BattingAngleRanges VAR_ADDRESS(short_2__15__2_, 3, 0x807B6394)
-#define BarrelBatterBattingAngleRanges VAR_ADDRESS(short_2__15__2_, 3, 0x807B64FC)
-#define ToyFieldBattingAngleRanges VAR_ADDRESS(short_2__15__2_, 3, 0x807B6664)
-#define HitVertTrajRanges VAR_ADDRESS(short_5__5__2_, 2, 0x807B67CC)
-#define toyFieldHitVertTraj VAR_ADDRESS(short_5__5__2_, 2, 0x807B6894)
-#define CaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short_5__2_, 12, 0x807B695C)
-#define NonCaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short_5__2_, 3, 0x807B6A4C)
-#define bODHitVertTraj VAR_ADDRESS(short_5__2_, 5, 0x807B6A88)
+#define BallContactArray_807b6294 VAR_ADDRESS(byte, 160, 0x807B6294)
+#define ContactPerfectThresholds VAR_ADDRESS(float, 3, 3, 0x807B6334)
+#define hittableFrameInd VAR_ADDRESS(short, 2, 15, 0x807B6358)
+#define BattingAngleRanges VAR_ADDRESS(short, 180, 0x807B6394)
+#define BarrelBatterBattingAngleRanges VAR_ADDRESS(short, 180, 0x807B64FC)
+#define ToyFieldBattingAngleRanges VAR_ADDRESS(short, 180, 0x807B6664)
+#define HitVertTrajRanges VAR_ADDRESS(short, 100, 0x807B67CC)
+#define toyFieldHitVertTraj VAR_ADDRESS(short, 100, 0x807B6894)
+#define CaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short, 120, 0x807B695C)
+#define NonCaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short, 30, 0x807B6A4C)
+#define bODHitVertTraj VAR_ADDRESS(short, 50, 0x807B6A88)
 #define bB_launchAngles VAR_ADDRESS(short, 4, 0x807B6AEC)
-#define autoPopUpHitVertTraj VAR_ADDRESS(short_2_, 3, 0x807B6AF4)
-#define BattingVerticalAngleRangeProbabilities VAR_ADDRESS(byte_2__2__5__5_, 3, 0x807B6B00)
+#define autoPopUpHitVertTraj VAR_ADDRESS(short, 3, 2, 0x807B6AF4)
+#define BattingVerticalAngleRangeProbabilities VAR_ADDRESS(byte, 300, 0x807B6B00)
 #define ToyFieldBattingVerticalAngleRanges VAR_ADDRESS(trajZonesOvr, 0x807B6C2C)
 #define bODTrajProbabilities VAR_ADDRESS(trajZones, 5, 0x807B6D58)
-#define BallHitArray VAR_ADDRESS(short_5__3_, 2, 0x807B6D74)
-#define ToyFieldExitVelocityContactArray VAR_ADDRESS(short_5__3_, 4, 0x807B6DB0)
-#define BobOmbDerbyExitVelocityContactArray VAR_ADDRESS(short_5__3_, 2, 0x807B6E28)
-#define BarrelBatterExitVelocityContactArray VAR_ADDRESS(short_5__3_, 2, 0x807B6E64)
-#define CaptainStarSwingExitVelocityArray VAR_ADDRESS(short_5__3_, 12, 0x807B6EA0)
-#define StarSwingExitVelocityArray VAR_ADDRESS(short_5__3_, 2, 0x807B7008)
-#define buntHorizontalAngles0OnRight VAR_ADDRESS(short_2__2_, 5, 0x807B7064)
-#define buntVerticalAngles VAR_ADDRESS(short_2__2__2_, 5, 0x807B708C)
-#define buntPower VAR_ADDRESS(byte_2_, 5, 0x807B70DC)
-#define swingSoundFrame VAR_ADDRESS(byte_4_, 2, 0x807B70E8)
+#define BallHitArray VAR_ADDRESS(short, 30, 0x807B6D74)
+#define ToyFieldExitVelocityContactArray VAR_ADDRESS(short, 60, 0x807B6DB0)
+#define BobOmbDerbyExitVelocityContactArray VAR_ADDRESS(short, 30, 0x807B6E28)
+#define BarrelBatterExitVelocityContactArray VAR_ADDRESS(short, 30, 0x807B6E64)
+#define CaptainStarSwingExitVelocityArray VAR_ADDRESS(short, 180, 0x807B6EA0)
+#define StarSwingExitVelocityArray VAR_ADDRESS(short, 30, 0x807B7008)
+#define buntHorizontalAngles0OnRight VAR_ADDRESS(short, 20, 0x807B7064)
+#define buntVerticalAngles VAR_ADDRESS(short, 40, 0x807B708C)
+#define buntPower VAR_ADDRESS(byte, 5, 2, 0x807B70DC)
+#define swingSoundFrame VAR_ADDRESS(byte, 2, 4, 0x807B70E8)
 #define const_0_8_power_nonContactQualityRelated VAR_ADDRESS(float, 0x807B70F0)
 #define _1_0_807b70f4 VAR_ADDRESS(float, 0x807B70F4)
-#define horizTrajPowerMultipliers VAR_ADDRESS(float_5_, 3, 0x807B70F8)
+#define horizTrajPowerMultipliers VAR_ADDRESS(float, 3, 5, 0x807B70F8)
 #define hitTrajOptions VAR_ADDRESS(struct_hitTrajOptions, 19, 0x807B7134)
 #define const_60_807b72d4 VAR_ADDRESS(short, 0x807B72D4)
 #define const_90 VAR_ADDRESS(short, 0x807B72D6)
@@ -39529,12 +34110,12 @@ struct yoshiStadiumPlants_ {
 #define const_0_85_knockbackDecayPerBounce VAR_ADDRESS(float, 0x807B72E4)
 #define const_0_3_knockbackConvertEnergyToFrames VAR_ADDRESS(float, 0x807B72E8)
 #define bobbleStunFramesModConst VAR_ADDRESS(float, 0x807B72EC)
-#define bobbleSlowDownFactors VAR_ADDRESS(float_3_, 2, 0x807B72F0)
+#define bobbleSlowDownFactors VAR_ADDRESS(float, 2, 3, 0x807B72F0)
 #define knockbackFrameMultiplier VAR_ADDRESS(float, 5, 0x807B7308)
 #define const_hitFloats VAR_ADDRESS(hitFloatConstants, 0x807B731C)
 #define hitShortConst VAR_ADDRESS(hitContants_shorts, 0x807B734C)
 #define pitchConstantsArray VAR_ADDRESS(struct_pitchConstants, 19, 0x807B736C)
-#define curveControlFrames_CursedBallMult VAR_ADDRESS(float_2_, 4, 0x807B7478)
+#define curveControlFrames_CursedBallMult VAR_ADDRESS(float, 4, 2, 0x807B7478)
 #define strikeZone VAR_ADDRESS(struct_strikeZone, 0x807B7498)
 #define const_0_7_807b74a8 VAR_ADDRESS(float, 0x807B74A8)
 #define const__0_4 VAR_ADDRESS(float, 0x807B74B0)
@@ -39565,7 +34146,7 @@ struct yoshiStadiumPlants_ {
 #define pitchOverChargeUpper VAR_ADDRESS(float, 0x807B7538)
 #define const_16 VAR_ADDRESS(short, 0x807B753C)
 #define const_15_807b7540 VAR_ADDRESS(short, 0x807B7540)
-#define bulletBallConstants VAR_ADDRESS(byte_5_, 2, 0x807B7550)
+#define bulletBallConstants VAR_ADDRESS(byte, 2, 5, 0x807B7550)
 #define eggConstants VAR_ADDRESS(struct_eggConstants, 0x807B755C)
 #define pitchSpeedScaler VAR_ADDRESS(float, 0x807B7590)
 #define const_0_998_airResistanceFactor VAR_ADDRESS(float, 0x807B7594)
@@ -39583,8 +34164,8 @@ struct yoshiStadiumPlants_ {
 #define const_50_challengeChemAdjustment VAR_ADDRESS(float, 0x807B75EC)
 #define SHORT_ARRAY_807b7674 VAR_ADDRESS(short, 4, 0x807B7674)
 #define challenge_baseCoinsAwarded VAR_ADDRESS(struct_challenge_matchCoinsAwarded, 0x807B767C)
-#define challenge_minigames_opponentCharIDs_ VAR_ADDRESS(byte_3__6_, 4, 0x807B769C)
-#define BYTE_ARRAY_ARRAY_807b76e4 VAR_ADDRESS(byte_2_, 6, 0x807B76E4)
+#define challenge_minigames_opponentCharIDs_ VAR_ADDRESS(byte, 72, 0x807B769C)
+#define BYTE_ARRAY_ARRAY_807b76e4 VAR_ADDRESS(byte, 6, 2, 0x807B76E4)
 #define const_30_0starChance_ VAR_ADDRESS(byte, 0x807B76F0)
 #define const_5_maxStars VAR_ADDRESS(byte, 0x807B76F4)
 #define const_1_starSpentForCaptainStarSwingOrPitch VAR_ADDRESS(byte, 0x807B76F5)
@@ -39606,11 +34187,11 @@ struct yoshiStadiumPlants_ {
 #define const_8 VAR_ADDRESS(byte, 0x807B7C00)
 #define BYTE_807b7c30 VAR_ADDRESS(byte, 0x807B7C30)
 #define BYTE_807b7c31 VAR_ADDRESS(byte, 0x807B7C31)
-#define catchZoneAnimations VAR_ADDRESS(short_3_, 3, 0x807B7C44)
+#define catchZoneAnimations VAR_ADDRESS(short, 3, 3, 0x807B7C44)
 #define const_20_807b7c58 VAR_ADDRESS(byte, 0x807B7C58)
 #define const_5_807b7c5c VAR_ADDRESS(short, 0x807B7C5C)
 #define SHORT_807b7c5e VAR_ADDRESS(short, 0x807B7C5E)
-#define SHORT_ARRAY_ARRAY_807b7c60 VAR_ADDRESS(short_2_, 54, 0x807B7C60)
+#define SHORT_ARRAY_ARRAY_807b7c60 VAR_ADDRESS(short, 54, 2, 0x807B7C60)
 #define starBallOffsets VAR_ADDRESS(byte, 14, 0x807B7E20)
 #define const_2_5_807b7e30 VAR_ADDRESS(float, 0x807B7E30)
 #define const_5_0_807b7e34 VAR_ADDRESS(float, 0x807B7E34)
@@ -39630,13 +34211,13 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807b7fc0 VAR_ADDRESS(byte, 0x807B7FC0)
 #define BYTE_807b84f0 VAR_ADDRESS(byte, 0x807B84F0)
 #define BatterHitbox VAR_ADDRESS(BatterReaches, 54, 0x807B84F8)
-#define ChargePowerConstants VAR_ADDRESS(byte_2_, 54, 0x807B8C90)
+#define ChargePowerConstants VAR_ADDRESS(byte, 54, 2, 0x807B8C90)
 #define hitByPitchHitboxes VAR_ADDRESS(hitByPitchHitbox, 32, 0x807B8CFC)
 #define const_30_delayBeforeStartingToRun VAR_ADDRESS(byte, 0x807B8D5C)
 #define runnerConstants_ VAR_ADDRESS(runnerConstants, 54, 0x807B8D60)
 #define FielderHitboxConsts VAR_ADDRESS(HitboxConsts, 54, 0x807B8FB4)
 #define minimumHitboxConstants VAR_ADDRESS(short, 6, 0x807B9314)
-#define bodyCheckFrameRelatedConstants VAR_ADDRESS(byte_4_, 54, 0x807B9434)
+#define bodyCheckFrameRelatedConstants VAR_ADDRESS(byte, 54, 4, 0x807B9434)
 #define barrelCollisionHitboxes VAR_ADDRESS(short, 54, 0x807B9510)
 #define SHORT_ARRAY_807b957c VAR_ADDRESS(short, 56, 0x807B957C)
 #define SHORT_807b9680 VAR_ADDRESS(short, 0x807B9680)
@@ -39649,7 +34230,7 @@ struct yoshiStadiumPlants_ {
 #define unkCharacterArray VAR_ADDRESS(enumCharacterID_byte, 32, 0x807B9748)
 #define characterSoundArray VAR_ADDRESS(short, 54, 0x807B9768)
 #define BYTE_807b97da VAR_ADDRESS(byte, 0x807B97DA)
-#define stadiumHazardSoundIDs_ VAR_ADDRESS(short_7_, 2, 0x807B97DC)
+#define stadiumHazardSoundIDs_ VAR_ADDRESS(short, 2, 7, 0x807B97DC)
 #define SHORT_807b97fc VAR_ADDRESS(short, 0x807B97FC)
 #define SHORT_807b97fe VAR_ADDRESS(short, 0x807B97FE)
 #define SHORT_807b9800 VAR_ADDRESS(short, 0x807B9800)
@@ -39856,7 +34437,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807b99f5 VAR_ADDRESS(byte, 0x807B99F5)
 #define BYTE_807b99f6 VAR_ADDRESS(byte, 0x807B99F6)
 #define BYTE_807b99f7 VAR_ADDRESS(byte, 0x807B99F7)
-#define stadiumHazardSoundFxRelated VAR_ADDRESS(byte_30_, 7, 0x807B9A04)
+#define stadiumHazardSoundFxRelated VAR_ADDRESS(byte, 7, 30, 0x807B9A04)
 #define BYTE_807b9b10 VAR_ADDRESS(byte, 0x807B9B10)
 #define charSoundFxVol VAR_ADDRESS(byte, 12, 0x807B9B30)
 #define BYTE_ARRAY_807b9cb0 VAR_ADDRESS(byte, 12, 0x807B9CB0)
@@ -40035,12 +34616,12 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807c10b6 VAR_ADDRESS(byte, 0x807C10B6)
 #define BYTE_807c10ba VAR_ADDRESS(byte, 0x807C10BA)
 #define BYTE_ARRAY_807c10c4 VAR_ADDRESS(byte, 5, 0x807C10C4)
-#define practice_subMenu_length VAR_ADDRESS(byte_5_, 5, 0x807C10CC)
+#define practice_subMenu_length VAR_ADDRESS(byte, 5, 5, 0x807C10CC)
 #define BYTE_807c10e8 VAR_ADDRESS(byte, 0x807C10E8)
 #define BYTE_807c10ed VAR_ADDRESS(byte, 0x807C10ED)
-#define guidedPracticeThresholds VAR_ADDRESS(byte_4_, 4, 0x807C10F4)
+#define guidedPracticeThresholds VAR_ADDRESS(byte, 4, 4, 0x807C10F4)
 #define c_90_807c1104 VAR_ADDRESS(short, 0x807C1104)
-#define hitVarsForFieldingPractice VAR_ADDRESS(short_10__3_, 4, 0x807C1108)
+#define hitVarsForFieldingPractice VAR_ADDRESS(short, 120, 0x807C1108)
 #define const_60_807c11f8 VAR_ADDRESS(short, 0x807C11F8)
 #define const_120_807c11fa VAR_ADDRESS(short, 0x807C11FA)
 #define const_90_807c11fc VAR_ADDRESS(short, 0x807C11FC)
@@ -40116,7 +34697,7 @@ struct yoshiStadiumPlants_ {
 #define INT_807c3304 VAR_ADDRESS(int, 0x807C3304)
 #define INT_807c3308 VAR_ADDRESS(int, 0x807C3308)
 #define INT_807c3950 VAR_ADDRESS(int, 0x807C3950)
-#define sunLayers VAR_ADDRESS(stadiumSunStruct_7_, 2, 0x807C3954)
+#define sunLayers VAR_ADDRESS(stadiumSunStruct, 2, 7, 0x807C3954)
 #define INT_807c42b4 VAR_ADDRESS(int, 0x807C42B4)
 #define BYTE_ARRAY_807c8083 VAR_ADDRESS(byte, 973, 0x807C8083)
 #define INT_807c8564 VAR_ADDRESS(int, 0x807C8564)
@@ -40257,7 +34838,7 @@ struct yoshiStadiumPlants_ {
 #define SHORT_807c9fe8 VAR_ADDRESS(short, 0x807C9FE8)
 #define SHORT_807c9fea VAR_ADDRESS(short, 0x807C9FEA)
 #define SHORT_807c9fec VAR_ADDRESS(short, 0x807C9FEC)
-#define BYTE_ARRAY_ARRAY_ARRAY_ARRAY_807c9ff0 VAR_ADDRESS(byte_3__3__8_, 2, 0x807C9FF0)
+#define BYTE_ARRAY_ARRAY_ARRAY_ARRAY_807c9ff0 VAR_ADDRESS(byte, 144, 0x807C9FF0)
 #define const_20_0_807ca108 VAR_ADDRESS(float, 0x807CA108)
 #define const_71_0 VAR_ADDRESS(float, 0x807CA10C)
 #define const_14_0_807ca114 VAR_ADDRESS(float, 0x807CA114)
@@ -40464,7 +35045,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807d2870 VAR_ADDRESS(byte, 0x807D2870)
 #define const_30_807d2878 VAR_ADDRESS(byte, 0x807D2878)
 #define const_60_807d2879 VAR_ADDRESS(byte, 0x807D2879)
-#define regular_minigames_opponentCharIDs_ VAR_ADDRESS(byte_4__6_, 4, 0x807D289E)
+#define regular_minigames_opponentCharIDs_ VAR_ADDRESS(byte, 96, 0x807D289E)
 #define INT_807d290c VAR_ADDRESS(int, 0x807D290C)
 #define INT_807d2914 VAR_ADDRESS(int, 0x807D2914)
 #define INT_807d2918 VAR_ADDRESS(int, 0x807D2918)
@@ -40494,7 +35075,7 @@ struct yoshiStadiumPlants_ {
 #define _18_0 VAR_ADDRESS(float, 0x807D2988)
 #define bOD_bB_maxMovement VAR_ADDRESS(float, 4, 0x807D298C)
 #define minigamePitchSpeeds_base VAR_ADDRESS(byte, 5, 0x807D299C)
-#define soloBODPitchSelectionType VAR_ADDRESS(byte_2_, 3, 0x807D29D4)
+#define soloBODPitchSelectionType VAR_ADDRESS(byte, 3, 2, 0x807D29D4)
 #define bODMultiplayerTurnPitchVeriety VAR_ADDRESS(byte, 4, 0x807D29DB)
 #define const_25 VAR_ADDRESS(byte, 0x807D29E0)
 #define const_55 VAR_ADDRESS(byte, 0x807D29E1)
@@ -40502,11 +35083,11 @@ struct yoshiStadiumPlants_ {
 #define const_30_807d29e3 VAR_ADDRESS(byte, 0x807D29E3)
 #define const_200_kingBombBonus VAR_ADDRESS(short, 0x807D29FA)
 #define const_15_bOD_ComboBonus VAR_ADDRESS(short, 0x807D29FC)
-#define bOD_challenge_nPitches_Points VAR_ADDRESS(short_2_, 3, 0x807D2A00)
+#define bOD_challenge_nPitches_Points VAR_ADDRESS(short, 3, 2, 0x807D2A00)
 #define bODPowerThresholdsForVertAngles VAR_ADDRESS(short, 5, 0x807D2A10)
 #define const_0_bOD_nonCharged_vAngle_lower VAR_ADDRESS(short, 0x807D2A1C)
 #define const_150_bOD_nonCharged_vAngle_upper VAR_ADDRESS(short, 0x807D2A1E)
-#define bODVertAngles VAR_ADDRESS(short_2_, 6, 0x807D2A20)
+#define bODVertAngles VAR_ADDRESS(short, 6, 2, 0x807D2A20)
 #define const_0_001BobOmbDerbyGravity VAR_ADDRESS(float, 0x807D2A38)
 #define _1_5_807d2a40 VAR_ADDRESS(float, 0x807D2A40)
 #define const_130_0 VAR_ADDRESS(float, 0x807D2A44)
@@ -40520,10 +35101,10 @@ struct yoshiStadiumPlants_ {
 #define SHORT_807d2a56 VAR_ADDRESS(short, 0x807D2A56)
 #define const_30_807d2a58 VAR_ADDRESS(short, 0x807D2A58)
 #define const_90_807d2a5a VAR_ADDRESS(short, 0x807D2A5A)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2a88 VAR_ADDRESS(byte_4__3_, 2, 0x807D2A88)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2ab8 VAR_ADDRESS(byte_4__3_, 2, 0x807D2AB8)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2ad0 VAR_ADDRESS(byte_4__3_, 2, 0x807D2AD0)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2ae8 VAR_ADDRESS(byte_4__3_, 2, 0x807D2AE8)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2a88 VAR_ADDRESS(byte, 24, 0x807D2A88)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2ab8 VAR_ADDRESS(byte, 24, 0x807D2AB8)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2ad0 VAR_ADDRESS(byte, 24, 0x807D2AD0)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2ae8 VAR_ADDRESS(byte, 24, 0x807D2AE8)
 #define FLOAT_807d2b00 VAR_ADDRESS(float, 0x807D2B00)
 #define FLOAT_807d2b04 VAR_ADDRESS(float, 0x807D2B04)
 #define FLOAT_807d2b74 VAR_ADDRESS(float, 0x807D2B74)
@@ -40535,7 +35116,7 @@ struct yoshiStadiumPlants_ {
 #define const_0_0_807d2bd4 VAR_ADDRESS(float, 0x807D2BD4)
 #define const_0_0_807d2bd8 VAR_ADDRESS(float, 0x807D2BD8)
 #define const_0_2_807d2bdc VAR_ADDRESS(float, 0x807D2BDC)
-#define FLOAT_ARRAY_ARRAY_807d2be0 VAR_ADDRESS(float_3_, 3, 0x807D2BE0)
+#define FLOAT_ARRAY_ARRAY_807d2be0 VAR_ADDRESS(float, 3, 3, 0x807D2BE0)
 #define const_0_2_807d2c34 VAR_ADDRESS(float, 0x807D2C34)
 #define const_0_1_807d2c38 VAR_ADDRESS(float, 0x807D2C38)
 #define const_0_44_wallBallCoinInitialYVelocityDecay VAR_ADDRESS(float, 0x807D2C3C)
@@ -41249,7 +35830,7 @@ struct yoshiStadiumPlants_ {
 #define INT_80861124 VAR_ADDRESS(int, 0x80861124)
 #define INT_8086117c VAR_ADDRESS(int, 0x8086117C)
 #define INT_80861180 VAR_ADDRESS(int, 0x80861180)
-#define storeControlStickInputs_ VAR_ADDRESS(short_20_, 2, 0x808611AC)
+#define storeControlStickInputs_ VAR_ADDRESS(short, 2, 20, 0x808611AC)
 #define currentStickDirection_ VAR_ADDRESS(short, 0x8086124C)
 #define fielderControlStick_continuousAngleHistory VAR_ADDRESS(short, 20, 0x80861250)
 #define SHORT_80861278 VAR_ADDRESS(short, 0x80861278)
@@ -41349,7 +35930,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_8086aec4 VAR_ADDRESS(byte, 0x8086AEC4)
 #define nThwompsLoaded VAR_ADDRESS(byte, 0x8086AEC5)
 #define BYTE_8086aec7 VAR_ADDRESS(byte, 0x8086AEC7)
-#define INT_ARRAY_ARRAY_8086aec8 VAR_ADDRESS(int_3_, 2, 0x8086AEC8)
+#define INT_ARRAY_ARRAY_8086aec8 VAR_ADDRESS(int, 2, 3, 0x8086AEC8)
 #define BYTE_8086af28 VAR_ADDRESS(byte, 0x8086AF28)
 #define BYTE_8086af29 VAR_ADDRESS(byte, 0x8086AF29)
 #define INT_8086af30 VAR_ADDRESS(int, 0x8086AF30)
@@ -41702,8 +36283,8 @@ struct yoshiStadiumPlants_ {
 #define us_80893300_808785ba VAR_ADDRESS(us_80893300, 0x808785BA)
 #define unkAnimRelatedStruct_808785dc VAR_ADDRESS(unkAnimRelatedStruct, 0x808785DC)
 #define us_80893280_808788d0 VAR_ADDRESS(us_80893280, 0x808788D0)
-#define StatisticsBatter_ARRAY_ARRAY_80878950 VAR_ADDRESS(StatisticsBatter_9_, 2, 0x80878950)
-#define StatisticsPitcher_ARRAY_ARRAY_80878bfc VAR_ADDRESS(StatisticsPitcher_9_, 2, 0x80878BFC)
+#define StatisticsBatter_ARRAY_ARRAY_80878950 VAR_ADDRESS(StatisticsBatter, 2, 9, 0x80878950)
+#define StatisticsPitcher_ARRAY_ARRAY_80878bfc VAR_ADDRESS(StatisticsPitcher, 2, 9, 0x80878BFC)
 #define ReplayInputs VAR_ADDRESS(BothTeamInputStruct, 1200, 0x80885CE4)
 #define lastPitchStats VAR_ADDRESS(float, 7, 0x8088A7E4)
 #define lastPitchHitAngles VAR_ADDRESS(short, 4, 0x8088A800)
@@ -41744,8 +36325,8 @@ struct yoshiStadiumPlants_ {
 #define dest_us80893300 VAR_ADDRESS(us_80893300, 0x8088E5BA)
 #define destUnkAnimRelatedStruct VAR_ADDRESS(unkAnimRelatedStruct, 0x8088E5DC)
 #define destUS_80893280 VAR_ADDRESS(us_80893280, 0x8088E8D0)
-#define destBatterStatsArray VAR_ADDRESS(StatisticsBatter_9_, 2, 0x8088E950)
-#define destPitcherStatsArray VAR_ADDRESS(StatisticsPitcher_9_, 2, 0x8088EBFC)
+#define destBatterStatsArray VAR_ADDRESS(StatisticsBatter, 2, 9, 0x8088E950)
+#define destPitcherStatsArray VAR_ADDRESS(StatisticsPitcher, 2, 9, 0x8088EBFC)
 #define inMemRunners VAR_ADDRESS(InMemRunner, 4, 0x8088EE18)
 #define inMemFielders VAR_ADDRESS(InMemFielder, 9, 0x8088F368)
 #define inMemBatter VAR_ADDRESS(InMemBatter, 0x80890910)
@@ -41767,10 +36348,10 @@ struct yoshiStadiumPlants_ {
 #define textRelated VAR_ADDRESS(us808937f8, 0x808937F8)
 #define animRelated VAR_ADDRESS(unkStateRelatedStruct, 0x80893804)
 #define inMemControls VAR_ADDRESS(InputStruct, 4, 0x80893928)
-#define abResultList VAR_ADDRESS(byte_100_, 2, 0x80893968)
+#define abResultList VAR_ADDRESS(byte, 2, 100, 0x80893968)
 #define BYTE_ARRAY_80893aeb VAR_ADDRESS(byte, 41, 0x80893AEB)
 #define BYTE_ARRAY_80893b14 VAR_ADDRESS(byte, 4, 0x80893B14)
-#define pitchingInfo_A_H_ VAR_ADDRESS(pitchingStatStruct_9_, 2, 0x80893B18)
+#define pitchingInfo_A_H_ VAR_ADDRESS(pitchingStatStruct, 2, 9, 0x80893B18)
 #define BYTE_80893b72 VAR_ADDRESS(byte, 0x80893B72)
 #define BYTE_80893b73 VAR_ADDRESS(byte, 0x80893B73)
 #define storedInningInfo VAR_ADDRESS(storedGameInfoStruct, 0x80893B74)
