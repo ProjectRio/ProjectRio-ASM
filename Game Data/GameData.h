@@ -38371,2728 +38371,2728 @@ struct yoshiStadiumPlants_ {
 
 // =============================================================================
 
-#define system_reset_exception_handler FUNCTION_ADDRESS(void, 0x80000100)
-#define machine_check_exception_handler FUNCTION_ADDRESS(void, 0x80000200)
-#define dsi_exception_handler FUNCTION_ADDRESS(void, 0x80000300)
-#define isi_exception_handler FUNCTION_ADDRESS(void, 0x80000400)
-#define external_interrupt_exception_handler FUNCTION_ADDRESS(void, 0x80000500)
-#define alignment_exception_handler FUNCTION_ADDRESS(void, 0x80000600)
-#define program_exception_handler FUNCTION_ADDRESS(void, 0x80000700)
-#define floating_point_unavailable_exception_handler FUNCTION_ADDRESS(void, 0x80000800)
-#define decrementer_exception_handler FUNCTION_ADDRESS(void, 0x80000900)
-#define system_call_exception_handler FUNCTION_ADDRESS(void, 0x80000C00)
-#define trace_exception_handler FUNCTION_ADDRESS(void, 0x80000D00)
-#define performance_monitor_interrupt_handler FUNCTION_ADDRESS(void, 0x80000F00)
-#define instruction_address_breakpoint_exception_handler FUNCTION_ADDRESS(void, 0x80001300)
-#define thermal_management_interrupt_exception_handler FUNCTION_ADDRESS(void, 0x80001700)
-#define __check_pad3 FUNCTION_ADDRESS(void, 0x80003100)
-#define __check_pad3_ FUNCTION_ADDRESS(void, 0x80003110, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int)
-#define __set_debug_bba FUNCTION_ADDRESS(void, 0x80003140)
-#define __get_debug_bba FUNCTION_ADDRESS(void, 0x8000314C)
-#define __start FUNCTION_ADDRESS(void, 0x80003154)
-#define __init_registers FUNCTION_ADDRESS(void, 0x800032B0)
-#define __init_data FUNCTION_ADDRESS(void, 0x80003340)
-#define __init_hardware FUNCTION_ADDRESS(void, 0x80003400)
-#define __flush_cache FUNCTION_ADDRESS(void, 0x80003424)
-#define TRK_memset FUNCTION_ADDRESS(void, 0x80003458)
-#define TRK_memcpy FUNCTION_ADDRESS(void, 0x80003488)
-#define __TRK_reset FUNCTION_ADDRESS(void, 0x800053E0)
-#define memset FUNCTION_ADDRESS(int, 0x8000540C, void * /*ptr*/, uint /*val*/, uint /*Count*/)
-#define TRK_fill_mem FUNCTION_ADDRESS(void, 0x8000543C, undefined *, int, int)
-#define memcpy FUNCTION_ADDRESS(void, 0x800054F4, void * /*dst*/, void * /*src*/, uint /*byteCount*/)
-#define PostRetraceCallback FUNCTION_ADDRESS(void, 0x80008FD0)
-#define main FUNCTION_ADDRESS(void, 0x80009180, int, int)
-#define PrepFilesToBeLoaded FUNCTION_ADDRESS(void, 0x800096DC)
-#define handleLoadingProcess FUNCTION_ADDRESS(void, 0x800097A0)
-#define interpolatePointsUnknown FUNCTION_ADDRESS(void, 0x80009E94, int /*count*/, Vec2f * /*src*/, BOOL, BOOL)
-#define BezierInterpolate FUNCTION_ADDRESS(void, 0x8000A00C, float /*percentage*/, Vec2f * /*out*/, Vec2f * /*p1*/, Vec2f * /*p2*/, Vec2f * /*p3*/, Vec2f * /*p4*/)
-#define interpolatePointsBezier_Vec2s FUNCTION_ADDRESS(void, 0x8000A1E8, undefined8 /*percentage*/, int /*out*/, Vec2s *, Vec2s *, Vec2s *, Vec2s *, int)
-#define updateMenuOrBackgroundUI FUNCTION_ADDRESS(void, 0x8000BA3C)
-#define updateHUDRelatedUI FUNCTION_ADDRESS(void, 0x8000C194)
-#define triggerDefaultHUDAction_ FUNCTION_ADDRESS(void, 0x8000D164)
-#define handleUIAction FUNCTION_ADDRESS(void, 0x8000D838)
-#define SetSpriteRect FUNCTION_ADDRESS(void, 0x8000E900, byte *, TextureObj *, int /*mat*/, Vec2i * /*addition*/, short)
-#define AddVec2iToQuad FUNCTION_ADDRESS(void, 0x8000EF1C, Quad * /*orig*/, Mtx * /*mat*/, Vec2i * /*addition*/)
-#define somethingSetTexturePointer FUNCTION_ADDRESS(void, 0x8000F48C)
-#define text_initializeNewChannel FUNCTION_ADDRESS(void, 0x8000F988)
-#define calculateTextBlockWidth FUNCTION_ADDRESS(int, 0x8000FA9C, uint /*textIndex*/)
-#define practiceTextRelated FUNCTION_ADDRESS(void, 0x8000FD9C, undefined4 /*textChannel*/, undefined4, undefined4 /*letterBeingDrawn*/)
-#define text_setPtrToWhereCharsAreStored FUNCTION_ADDRESS(void, 0x8000FE08, undefined4 /*r3_channelNumber*/, undefined4 /*r4_param_2*/, undefined4 /*r5_textOffset*/)
-#define setText0x2aTo0 FUNCTION_ADDRESS(void, 0x8000FEE8, undefined4 /*textChannel*/)
-#define initializeTextParameters FUNCTION_ADDRESS(void, 0x8000FF04, undefined4, undefined4, undefined2 /*xPos*/, undefined2 /*yPos*/, undefined1, undefined4 /*color*/, undefined1 /*textStyle*/)
-#define drawTransformedSprite FUNCTION_ADDRESS(void, 0x800100A4, int /*xPos*/, int /*yPos*/, int, int, short /*width*/, int /*texture*/, int /*spriteType*/, int /*transformMtx*/)
-#define DrawText FUNCTION_ADDRESS(void, 0x80010498, int /*textBlockIndex*/)
-#define DrawTextOnCondition FUNCTION_ADDRESS(void, 0x80010F2C, int)
-#define initTextRendering_ FUNCTION_ADDRESS(void, 0x80010FA0)
-#define animationRelated FUNCTION_ADDRESS(void, 0x800111FC, int /*animStruct*/, int)
-#define LoadModel FUNCTION_ADDRESS(void, 0x800127F8, AnimationStruct * /*animStructPtr*/)
-#define animateModelArmsGlovesBats FUNCTION_ADDRESS(void, 0x80013680, AnimationStruct * /*animStruct*/)
-#define loadSomethingFromDiskAtBeginningOfAB1 FUNCTION_ADDRESS(void, 0x80014D4C)
-#define loadSomethingFromDiskAtBeginningOfAB2 FUNCTION_ADDRESS(void, 0x80014E50)
-#define loadBatterModelFromDisk_ FUNCTION_ADDRESS(void, 0x80014F40)
-#define practice_loadAllGraphics_ FUNCTION_ADDRESS(void, 0x8001594C, undefined4 /*team*/)
-#define setupAnimationModelMemory FUNCTION_ADDRESS(void, 0x80018024)
-#define animationInitializationRunnerRelated FUNCTION_ADDRESS(void, 0x80018270, int, undefined *)
-#define challengeMapRelated FUNCTION_ADDRESS(void, 0x8001A6B0)
-#define copyAnimationStructures FUNCTION_ADDRESS(void, 0x8001B2D0)
-#define getAnimationCollisionOffset FUNCTION_ADDRESS(int, 0x8001B728, int /*fielderIndex*/, int /*offsetType*/, float * /*collisionOffset*/)
-#define getAnimRelatedCoordinates FUNCTION_ADDRESS(bool, 0x8001B80C, int /*character*/, enumAnimationCoordinatesType /*animationCode*/, Vec3f * /*coords*/)
-#define QueueCharacterAnimation FUNCTION_ADDRESS(void, 0x8001B918, int /*character*/, EnumCharacterAnimation_int /*animation*/, byte, byte, short, bool /*flip*/, int)
-#define AnimateCharacter FUNCTION_ADDRESS(void, 0x8001B990, int /*character*/, EnumCharacterAnimation_int /*animationIndex*/, bool /*loop*/, byte, byte, short, byte, int)
-#define loadFielderActors FUNCTION_ADDRESS(void, 0x8001C588)
-#define loadAndAnimateCharacter FUNCTION_ADDRESS(bool, 0x8001C67C, int /*charID*/, int /*charIndexIfMinigame*/)
-#define loadCharacterAnimation FUNCTION_ADDRESS(int, 0x8001C920, int /*character*/)
-#define initStadiumLighting FUNCTION_ADDRESS(void, 0x8001CBD4)
-#define stadiumSetupRelated FUNCTION_ADDRESS(void, 0x8001CE74)
-#define applyUniformScaleToObject FUNCTION_ADDRESS(void, 0x8001D0D0, float /*scaleFactor*/, int /*index*/)
-#define applyNonUniformScaleToObject FUNCTION_ADDRESS(void, 0x8001D110, float /*xScale*/, float /*yScale*/, float /*zScale*/, int /*index*/)
-#define baseballCTRLSetScale FUNCTION_ADDRESS(void, 0x8001D148, float /*xS*/, float /*yS*/, float /*zS*/, int /*index*/)
-#define updateAnimationAction FUNCTION_ADDRESS(void, 0x8001D180, int /*animIndex*/, int /*bitFlag*/, int /*actionFlag*/)
-#define animRelated_8001db74 FUNCTION_ADDRESS(void, 0x8001DB74)
-#define setNullPtrForStadiumObjs FUNCTION_ADDRESS(void, 0x8001E474)
-#define resetGameStadiumStateOnExit FUNCTION_ADDRESS(void, 0x8001F228)
-#define challengeMapMaybe_ FUNCTION_ADDRESS(void, 0x8001F4C0)
-#define somethingFileHandlingLoadingRelated FUNCTION_ADDRESS(void, 0x8001F5E8)
-#define initShortsHandleCompressedDiskReads FUNCTION_ADDRESS(void, 0x8001FC4C, int /*baseAddress*/)
-#define calledWhenStartingMatch FUNCTION_ADDRESS(void, 0x80020048)
-#define challenge_setTransitionScreenCharacterPortrait FUNCTION_ADDRESS(void, 0x800203E0, undefined1, undefined1 /*captain*/)
-#define changeScene_ FUNCTION_ADDRESS(void, 0x800204CC)
-#define soundOrMusicRelated FUNCTION_ADDRESS(void, 0x80021308)
-#define initSound FUNCTION_ADDRESS(void, 0x800219B4)
-#define loadCharacterDataRelated FUNCTION_ADDRESS(undefined *, 0x80021CA4, enumCharIDWord /*charID*/, uint /*charTypes?Range1To6*/, int * /*charData*/)
-#define maybe_somethingAnimRelated FUNCTION_ADDRESS(void, 0x80022634)
-#define InitBone FUNCTION_ADDRESS(DODisplayObj *, 0x80022DAC, ACTBone * /*parent*/, ACTBoneLayout * /*layout*/, ACTActor * /*actor*/, short * /*numBones*/)
-#define InitActorWithLayout FUNCTION_ADDRESS(void, 0x800232E0, ActLayout * /*layout*/, ACTActor * /*act*/)
-#define BuildBoneSkinOrientationMatrix FUNCTION_ADDRESS(void, 0x8002360C)
-#define characterAndBallDisplayRelated FUNCTION_ADDRESS(void, 0x8002399C, int /*ptr*/, int /*mayberosterIndex*/, short /*maybeRosterIndex*/, int /*act*/, int, int)
-#define initActorArray FUNCTION_ADDRESS(void, 0x80023B04, int /*numActors*/)
-#define characterLightingRelated FUNCTION_ADDRESS(void, 0x80023B90, int /*inputParams*/, int /*outputParams*/)
-#define gOz_GXSetTexture FUNCTION_ADDRESS(void, 0x80024184)
-#define SetDisplayStateTexture FUNCTION_ADDRESS(void, 0x80024404, TextureHeader * /*tex*/, int /*texMap*/, int /*tlutName*/)
-#define endOfGame_Campaign_starRelated_ FUNCTION_ADDRESS(void, 0x80024840, int /*playerIndex*/, int /*challengeIndex*/)
-#define multBottomBits_asFloat FUNCTION_ADDRESS(void, 0x80024974)
-#define byteWiseMultiply FUNCTION_ADDRESS(void, 0x800249D8, int /*scalar*/, int /*bytes*/)
-#define LERPToNewRange_Float FUNCTION_ADDRESS(int, 0x80024B00, int /*input*/, int /*inLow*/, int /*inHigh*/, int /*outLow*/, int /*outHigh*/)
-#define LinearInterpolateToNewRange FUNCTION_ADDRESS(double, 0x80024BB4, double /*value*/, double /*prevMin*/, double /*prevMax*/, double /*nextMin*/, double /*nextMax*/)
-#define ACTActorRelated FUNCTION_ADDRESS(void, 0x80025C58, ACTActor * /*ACTActor*/, GEOPalette * /*gpl*/, int, int *)
-#define adjustInternalPointers FUNCTION_ADDRESS(void, 0x80025DDC, ACTActor * /*baseAddr*/)
-#define actorRelated FUNCTION_ADDRESS(void, 0x80025EEC, ActLayout *, int, int)
-#define actRelated FUNCTION_ADDRESS(void, 0x80025FFC, ACTActor * /*actor*/, ActLayout * /*act2*/)
-#define maybeTexOrSpriteRelated FUNCTION_ADDRESS(void, 0x800263FC)
-#define pitchingMachinePitching_ FUNCTION_ADDRESS(void, 0x8003385C)
-#define initMinigamePointers FUNCTION_ADDRESS(void, 0x80034220)
-#define configureMinigameGX FUNCTION_ADDRESS(void, 0x8003452C)
-#define setupMinigamePointerStruct FUNCTION_ADDRESS(void, 0x800348C8)
-#define removeGraphicsElementFromScene FUNCTION_ADDRESS(void, 0x80034CEC, DrawingSceneStruct * /*drawingItem*/)
-#define addGraphicsElementToScene FUNCTION_ADDRESS(void, 0x80034E20, DrawingSceneStruct * /*scene*/, graphicDataEntry * /*elementData*/)
-#define allocateGraphicsSlot_ FUNCTION_ADDRESS(void, 0x80034F50, graphicDataEntry * /*elementData*/)
-#define maybeProcessUIUpdates FUNCTION_ADDRESS(void, 0x80035168)
-#define diskReadRelated FUNCTION_ADDRESS(int, 0x80035838, CompressedDiskRead *, uint)
-#define load_Icon_ FUNCTION_ADDRESS(void, 0x800363D8, int /*pointer*/, int /*drawingItemNumber?*/, int /*menuOptionIndexNum*/, int /*iconGroup?*/, int /*offset?*/)
-#define setIndicatorSlotState FUNCTION_ADDRESS(void, 0x8003649C, DrawingSceneStruct *, int, int, int, int)
-#define GetUITexture FUNCTION_ADDRESS(undefined *, 0x80039AA8)
-#define returnTexture_ FUNCTION_ADDRESS(TextureHeader *, 0x80039AB4)
-#define updateFunctionPtr FUNCTION_ADDRESS(void, 0x8003A548)
-#define GXTexObjRelated FUNCTION_ADDRESS(void, 0x8003AD84, TextureArchiveHeader * /*header*/)
-#define sceneDrawingLogic FUNCTION_ADDRESS(void, 0x8003C00C)
-#define capApplicationFunction_ FUNCTION_ADDRESS(void, 0x8004207C)
-#define lineupOrderChangeRelated FUNCTION_ADDRESS(void, 0x80042598)
-#define adjustStatsForSuperstar FUNCTION_ADDRESS(void, 0x800426DC, int /*playerNumber*/)
-#define randRange_FUN_80042bf0 FUNCTION_ADDRESS(void, 0x80042BF0, int /*high*/, int /*low*/)
-#define sndFXRelated FUNCTION_ADDRESS(void, 0x80042C44)
-#define maybeCheckAndResetGrapicsElement FUNCTION_ADDRESS(void, 0x80042DA8)
-#define challengeStarMenu FUNCTION_ADDRESS(void, 0x80042DE8)
-#define viewStarMenuOverTeamManagementScreen_unused FUNCTION_ADDRESS(void, 0x8004338C)
-#define swapPosMenu_left_rightPress FUNCTION_ADDRESS(void, 0x80043880, undefined1 /*left/right*/, undefined1)
-#define swapPosMenu_up_downPress FUNCTION_ADDRESS(void, 0x80044C98, byte /*up/down*/, undefined1 /*player*/)
-#define teamManagement_takeInputs FUNCTION_ADDRESS(void, 0x8004617C, undefined4 /*playerNumber*/)
-#define initTeamManagementScreen FUNCTION_ADDRESS(void, 0x80047CE0)
-#define teamManagementMenuControl FUNCTION_ADDRESS(void, 0x80047FE4)
-#define createTeamManagementScreen_inGame FUNCTION_ADDRESS(void, 0x800486E0, undefined2, undefined1 /*teamThatPaused*/, undefined1 /*playerWhoPaused*/)
-#define createTeamManagementScreen_preGame FUNCTION_ADDRESS(void, 0x80048764)
-#define startGameRelated FUNCTION_ADDRESS(void, 0x80048EB8)
-#define possiblyTransferDataBetweenDifferentRels FUNCTION_ADDRESS(void, 0x80049878)
-#define setTransitionVariable FUNCTION_ADDRESS(void, 0x8004ABD8)
-#define marioHandOnFire_endFireAnimation_ FUNCTION_ADDRESS(void, 0x8004ABE8)
-#define newPitcherEnteringGame_ FUNCTION_ADDRESS(void, 0x8004AC00)
-#define stadiumCollisionRelated FUNCTION_ADDRESS(someStadCollisionCode, 0x8004AD54, EnumStadiumIDs4 /*stadiumID*/, TriangleCollisionTypes_word /*collisionType*/)
-#define processCharacterStateBasedOnGameMode FUNCTION_ADDRESS(void, 0x8004B7F4)
-#define exitMenu FUNCTION_ADDRESS(void, 0x8004CA6C, EnumControllerInput)
-#define returnsCurrentMode FUNCTION_ADDRESS(void, 0x8005268C)
-#define setScissorAndProjection FUNCTION_ADDRESS(void, 0x80052694, int /*mode*/)
-#define returnFloatFromModeIndex FUNCTION_ADDRESS(float *, 0x80052734, int /*mode*/)
-#define setScissorMode FUNCTION_ADDRESS(void, 0x80052798)
-#define returnScissorMode FUNCTION_ADDRESS(void, 0x800527BC)
-#define graphics_relatedToVsScreen FUNCTION_ADDRESS(void, 0x80052968)
-#define possiblyTransitionBlackScreen FUNCTION_ADDRESS(void, 0x80052F98)
-#define drawStarProgressionMenu_ FUNCTION_ADDRESS(void, 0x80056AE4)
-#define someChallengeStarFunction FUNCTION_ADDRESS(void, 0x80056F70)
-#define someChallengeStarFunction2 FUNCTION_ADDRESS(void, 0x800572C0)
-#define challengeCheckStarsMenuLoading FUNCTION_ADDRESS(void, 0x800576F0)
-#define starMissionMenu FUNCTION_ADDRESS(void, 0x80057C08)
-#define scoutFlagMenu FUNCTION_ADDRESS(void, 0x80058050)
-#define zMenuLoadGraphics FUNCTION_ADDRESS(void, 0x80058394)
-#define starMissionRelated FUNCTION_ADDRESS(void, 0x80059B38)
-#define battingOrderProcessInputs FUNCTION_ADDRESS(void, 0x8005A350, maybeGraphicsManager *, undefined4 /*playerNum*/)
-#define teamManagementGraphics_fieldingAlignmentScreen FUNCTION_ADDRESS(void, 0x8005AF68, undefined4 /*drawingItem*/)
-#define teamManagementGraphics_battingOrderScreen FUNCTION_ADDRESS(void, 0x8005B298, undefined4 /*drawingItem*/)
-#define teamManagementGraphics_fieldingAlignmentInfo FUNCTION_ADDRESS(void, 0x8005BF40)
-#define teamManagementGraphics_battingOrderInfo FUNCTION_ADDRESS(void, 0x8005C2B0)
-#define teamManagementGraphics_steadyState FUNCTION_ADDRESS(void, 0x80060184)
-#define teamManagementGraphics_initialLoad FUNCTION_ADDRESS(void, 0x80061B9C)
-#define SetMenuNumber FUNCTION_ADDRESS(void, 0x8006236C)
-#define updateCharacterSelectProcessCode FUNCTION_ADDRESS(void, 0x800625A4, undefined4 /*player*/, undefined1)
-#define makeCursorMovable FUNCTION_ADDRESS(void, 0x80062674)
-#define initializeUnknown FUNCTION_ADDRESS(void, 0x80062A50)
-#define relatedToReturningToPracticeMenu FUNCTION_ADDRESS(void, 0x80062A94)
-#define maybeUpdateFielderTerrainStatus FUNCTION_ADDRESS(void, 0x80063958, byte /*fielderIndex*/)
-#define handleBallRollInWater FUNCTION_ADDRESS(void, 0x80064344, Vec3f * /*ballPos*/, Vec3f * /*velocity*/)
-#define translateStarPitchHitIndex FUNCTION_ADDRESS(int, 0x80064754, byte /*starHitType*/)
-#define translateStarPitch FUNCTION_ADDRESS(byte, 0x800647E0, byte)
-#define translateStarSwing FUNCTION_ADDRESS(byte, 0x8006487C, byte)
-#define challengeSetCPURoster2 FUNCTION_ADDRESS(void, 0x80064A04, int /*player*/)
-#define setInitialBattingOrder FUNCTION_ADDRESS(void, 0x80065DEC)
-#define teamClassTypeLogos FUNCTION_ADDRESS(void, 0x80067264)
-#define teamCompositionLogos FUNCTION_ADDRESS(void, 0x800675C4, int /*team*/, int /*CaptainCharacterID*/)
-#define teamLogoDetermination FUNCTION_ADDRESS(void, 0x800678CC, int /*team*/)
-#define unknownSettingTeamValues FUNCTION_ADDRESS(void, 0x8006885C, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, byte, byte, byte, byte, byte, int, int, int)
-#define setCaptainLocInRoster_ FUNCTION_ADDRESS(void, 0x80069854)
-#define findCharacterID FUNCTION_ADDRESS(void, 0x800698F8, enumCharIDWord /*charID*/)
-#define endDemo_ FUNCTION_ADDRESS(void, 0x80069A98)
-#define challengeDrawStarsOnMissionMenu_ FUNCTION_ADDRESS(void, 0x8006C48C)
-#define starMissionRelated_assignPlayersToBJTeamAfterBeatingBowser_ FUNCTION_ADDRESS(void, 0x8006C7C4)
-#define challenge_checkRecruitment FUNCTION_ADDRESS(void, 0x8006C9D8)
-#define intermediateStatBuffForScoutFlags_ FUNCTION_ADDRESS(void, 0x8006CA9C)
-#define intermediateStatBuffForCompletedMissions FUNCTION_ADDRESS(void, 0x8006CAC8)
-#define challengeRelated FUNCTION_ADDRESS(void, 0x8006CBE4)
-#define determineIfMissionDescriptionIsShown_ FUNCTION_ADDRESS(void, 0x8006CCA4)
-#define PPCMfmsr FUNCTION_ADDRESS(void, 0x8006D024)
-#define PPCMtmsr FUNCTION_ADDRESS(void, 0x8006D02C)
-#define PPCMfhid0 FUNCTION_ADDRESS(void, 0x8006D034)
-#define PPCMthid0 FUNCTION_ADDRESS(void, 0x8006D03C)
-#define PPCMfl2cr FUNCTION_ADDRESS(void, 0x8006D044)
-#define PPCMtl2cr FUNCTION_ADDRESS(void, 0x8006D04C)
-#define PPCMtdec FUNCTION_ADDRESS(void, 0x8006D054)
-#define PPCSync FUNCTION_ADDRESS(void, 0x8006D05C)
-#define PPCHalt FUNCTION_ADDRESS(void, 0x8006D064)
-#define PPCMtmmcr0 FUNCTION_ADDRESS(void, 0x8006D078)
-#define PPCMtmmcr1 FUNCTION_ADDRESS(void, 0x8006D080)
-#define PPCMtpmc1 FUNCTION_ADDRESS(void, 0x8006D088)
-#define PPCMtpmc2 FUNCTION_ADDRESS(void, 0x8006D090)
-#define PPCMtpmc3 FUNCTION_ADDRESS(void, 0x8006D098)
-#define PPCMtpmc4 FUNCTION_ADDRESS(void, 0x8006D0A0)
-#define PPCMffpscr FUNCTION_ADDRESS(void, 0x8006D0A8)
-#define PPCMtfpscr FUNCTION_ADDRESS(void, 0x8006D0C8)
-#define PPCMfhid2 FUNCTION_ADDRESS(void, 0x8006D0F0)
-#define PPCMthid2 FUNCTION_ADDRESS(void, 0x8006D0F8)
-#define PPCMtwpar FUNCTION_ADDRESS(void, 0x8006D100)
-#define PPCDisableSpeculation FUNCTION_ADDRESS(void, 0x8006D108)
-#define PPCSetFpNonIEEEMode FUNCTION_ADDRESS(void, 0x8006D130)
-#define __OSFPRInit FUNCTION_ADDRESS(void, 0x8006D138)
-#define GetConsoleType FUNCTION_ADDRESS(void, 0x8006D260)
-#define InquiryCallback FUNCTION_ADDRESS(void, 0x8006D288)
-#define OSInit FUNCTION_ADDRESS(void, 0x8006D2C4)
-#define OSExceptionInit FUNCTION_ADDRESS(void, 0x8006D7A4)
-#define __OSDBIntegrator FUNCTION_ADDRESS(void, 0x8006DA24)
-#define __OSSetExceptionHandler FUNCTION_ADDRESS(void, 0x8006DA4C)
-#define __OSGetExceptionHandler FUNCTION_ADDRESS(void, 0x8006DA68)
-#define OSExceptionVector FUNCTION_ADDRESS(void, 0x8006DA7C)
-#define __DBVECTOR FUNCTION_ADDRESS(void, 0x8006DAD4)
-#define __OSEVSetNumber FUNCTION_ADDRESS(void, 0x8006DAE4)
-#define __OSEVEnd FUNCTION_ADDRESS(void, 0x8006DB14)
-#define OSDefaultExceptionHandler FUNCTION_ADDRESS(void, 0x8006DB18)
-#define __OSPSInit FUNCTION_ADDRESS(void, 0x8006DB70)
-#define __OSGetDIConfig FUNCTION_ADDRESS(void, 0x8006DBC4)
-#define OSRegisterVersion FUNCTION_ADDRESS(void, 0x8006DBD8)
-#define OSInitAlarm FUNCTION_ADDRESS(void, 0x8006DC04)
-#define OSCreateAlarm FUNCTION_ADDRESS(void, 0x8006DC5C)
-#define InsertAlarm FUNCTION_ADDRESS(void, 0x8006DC6C)
-#define OSSetAlarm FUNCTION_ADDRESS(void, 0x8006DEBC)
-#define OSCancelAlarm FUNCTION_ADDRESS(void, 0x8006DF24)
-#define OnReset FUNCTION_ADDRESS(void, 0x8006E2C0)
-#define DLInsert FUNCTION_ADDRESS(void, 0x8006E360)
-#define OSFreeToHeap FUNCTION_ADDRESS(void, 0x8006E40C)
-#define OSSetCurrentHeap FUNCTION_ADDRESS(void, 0x8006E488)
-#define OSInitAlloc FUNCTION_ADDRESS(void, 0x8006E498)
-#define OSCreateHeap FUNCTION_ADDRESS(void, 0x8006E508, void * /*low*/, void * /*high*/)
-#define OSGetArenaHi FUNCTION_ADDRESS(void, 0x8006E574)
-#define OSGetArenaLo FUNCTION_ADDRESS(void, 0x8006E57C)
-#define OSSetArenaHi FUNCTION_ADDRESS(void, 0x8006E584, void * /*newHi*/)
-#define OSSetArenaLo FUNCTION_ADDRESS(void, 0x8006E58C, void * /*newLo*/)
-#define OSAllocFromArenaLo FUNCTION_ADDRESS(void *, 0x8006E594, int /*size*/, int /*align*/)
-#define __OSInitAudioSystem FUNCTION_ADDRESS(void, 0x8006E5C0)
-#define __OSStopAudioSystem FUNCTION_ADDRESS(void, 0x8006E77C)
-#define DCEnable FUNCTION_ADDRESS(void, 0x8006E854)
-#define DCInvalidateRange FUNCTION_ADDRESS(void, 0x8006E868, void * /*addr*/, int /*numBytes*/)
-#define DCFlushRange FUNCTION_ADDRESS(void, 0x8006E894)
-#define DCStoreRange FUNCTION_ADDRESS(void, 0x8006E8C4)
-#define DCFlushRangeNoSync FUNCTION_ADDRESS(void, 0x8006E8F4)
-#define DVStoreRangeNoSync FUNCTION_ADDRESS(void, 0x8006E920)
-#define ICInvalidateRange FUNCTION_ADDRESS(void, 0x8006E94C)
-#define ICFlashInvalidate FUNCTION_ADDRESS(void, 0x8006E980)
-#define ICEnable FUNCTION_ADDRESS(void, 0x8006E990)
-#define __LCEnable FUNCTION_ADDRESS(void, 0x8006E9A4)
-#define LCEnable FUNCTION_ADDRESS(void, 0x8006EA70)
-#define LCDisable FUNCTION_ADDRESS(void, 0x8006EAA8)
-#define LCLoadBlocks FUNCTION_ADDRESS(void, 0x8006EAD0)
-#define LCStoreBlocks FUNCTION_ADDRESS(void, 0x8006EAF4)
-#define LCLoadData FUNCTION_ADDRESS(void, 0x8006EB18)
-#define LCStoreData FUNCTION_ADDRESS(void, 0x8006EBC4)
-#define LCQueueWait FUNCTION_ADDRESS(void, 0x8006EC70)
-#define L2GlobalInvalidate FUNCTION_ADDRESS(void, 0x8006EC84)
-#define __OSCacheInit FUNCTION_ADDRESS(void, 0x8006EE7C)
-#define __OSLoadFPUContext FUNCTION_ADDRESS(void, 0x8006EF70)
-#define __OSSaveFPUContext FUNCTION_ADDRESS(void, 0x8006F094)
-#define OSLoadFPUContext FUNCTION_ADDRESS(void, 0x8006F1BC)
-#define OSSetCurrentContext FUNCTION_ADDRESS(void, 0x8006F1C4)
-#define OSGetCurrentContext FUNCTION_ADDRESS(void, 0x8006F220)
-#define OSSaveContext FUNCTION_ADDRESS(void, 0x8006F22C)
-#define OSLoadContext FUNCTION_ADDRESS(void, 0x8006F2AC)
-#define OSGetStackPointer FUNCTION_ADDRESS(void, 0x8006F384)
-#define OSClearContext FUNCTION_ADDRESS(void, 0x8006F38C)
-#define OSInitContext FUNCTION_ADDRESS(void, 0x8006F3B0)
-#define OSDumpContext FUNCTION_ADDRESS(void, 0x8006F46C)
-#define __OSContextInit FUNCTION_ADDRESS(void, 0x8006F798)
+static inline void system_reset_exception_handler(void) { ((void(*)(void))0x80000100)(); }
+static inline void machine_check_exception_handler(void) { ((void(*)(void))0x80000200)(); }
+static inline void dsi_exception_handler(void) { ((void(*)(void))0x80000300)(); }
+static inline void isi_exception_handler(void) { ((void(*)(void))0x80000400)(); }
+static inline void external_interrupt_exception_handler(void) { ((void(*)(void))0x80000500)(); }
+static inline void alignment_exception_handler(void) { ((void(*)(void))0x80000600)(); }
+static inline void program_exception_handler(void) { ((void(*)(void))0x80000700)(); }
+static inline void floating_point_unavailable_exception_handler(void) { ((void(*)(void))0x80000800)(); }
+static inline void decrementer_exception_handler(void) { ((void(*)(void))0x80000900)(); }
+static inline void system_call_exception_handler(void) { ((void(*)(void))0x80000C00)(); }
+static inline void trace_exception_handler(void) { ((void(*)(void))0x80000D00)(); }
+static inline void performance_monitor_interrupt_handler(void) { ((void(*)(void))0x80000F00)(); }
+static inline void instruction_address_breakpoint_exception_handler(void) { ((void(*)(void))0x80001300)(); }
+static inline void thermal_management_interrupt_exception_handler(void) { ((void(*)(void))0x80001700)(); }
+static inline void __check_pad3(void) { ((void(*)(void))0x80003100)(); }
+static inline void __check_pad3_(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, int param_10) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int))0x80003110)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10); }
+static inline void __set_debug_bba(void) { ((void(*)(void))0x80003140)(); }
+static inline void __get_debug_bba(void) { ((void(*)(void))0x8000314C)(); }
+static inline void __start(void) { ((void(*)(void))0x80003154)(); }
+static inline void __init_registers(void) { ((void(*)(void))0x800032B0)(); }
+static inline void __init_data(void) { ((void(*)(void))0x80003340)(); }
+static inline void __init_hardware(void) { ((void(*)(void))0x80003400)(); }
+static inline void __flush_cache(void) { ((void(*)(void))0x80003424)(); }
+static inline void TRK_memset(void) { ((void(*)(void))0x80003458)(); }
+static inline void TRK_memcpy(void) { ((void(*)(void))0x80003488)(); }
+static inline void __TRK_reset(void) { ((void(*)(void))0x800053E0)(); }
+static inline int memset(void * ptr, uint val, uint Count) { return ((int(*)(void *, uint, uint))0x8000540C)(ptr, val, Count); }
+static inline void TRK_fill_mem(undefined * param_1, int param_2, int param_3) { ((void(*)(undefined *, int, int))0x8000543C)(param_1, param_2, param_3); }
+static inline void memcpy(void * dst, void * src, uint byteCount) { ((void(*)(void *, void *, uint))0x800054F4)(dst, src, byteCount); }
+static inline void PostRetraceCallback(void) { ((void(*)(void))0x80008FD0)(); }
+static inline void main(int param_1, int param_2) { ((void(*)(int, int))0x80009180)(param_1, param_2); }
+static inline void PrepFilesToBeLoaded(void) { ((void(*)(void))0x800096DC)(); }
+static inline void handleLoadingProcess(void) { ((void(*)(void))0x800097A0)(); }
+static inline void interpolatePointsUnknown(int count, Vec2f * src, BOOL param_3, BOOL param_4) { ((void(*)(int, Vec2f *, BOOL, BOOL))0x80009E94)(count, src, param_3, param_4); }
+static inline void BezierInterpolate(float percentage, Vec2f * out_, Vec2f * p1, Vec2f * p2, Vec2f * p3, Vec2f * p4) { ((void(*)(float, Vec2f *, Vec2f *, Vec2f *, Vec2f *, Vec2f *))0x8000A00C)(percentage, out_, p1, p2, p3, p4); }
+static inline void interpolatePointsBezier_Vec2s(undefined8 percentage, int out_, Vec2s * param_3, Vec2s * param_4, Vec2s * param_5, Vec2s * param_6, int param_7) { ((void(*)(undefined8, int, Vec2s *, Vec2s *, Vec2s *, Vec2s *, int))0x8000A1E8)(percentage, out_, param_3, param_4, param_5, param_6, param_7); }
+static inline void updateMenuOrBackgroundUI(void) { ((void(*)(void))0x8000BA3C)(); }
+static inline void updateHUDRelatedUI(void) { ((void(*)(void))0x8000C194)(); }
+static inline void triggerDefaultHUDAction_(void) { ((void(*)(void))0x8000D164)(); }
+static inline void handleUIAction(void) { ((void(*)(void))0x8000D838)(); }
+static inline void SetSpriteRect(byte * param_1, TextureObj * param_2, int mat, Vec2i * addition, short param_5) { ((void(*)(byte *, TextureObj *, int, Vec2i *, short))0x8000E900)(param_1, param_2, mat, addition, param_5); }
+static inline void AddVec2iToQuad(Quad * orig, Mtx * mat, Vec2i * addition) { ((void(*)(Quad *, Mtx *, Vec2i *))0x8000EF1C)(orig, mat, addition); }
+static inline void somethingSetTexturePointer(void) { ((void(*)(void))0x8000F48C)(); }
+static inline void text_initializeNewChannel(void) { ((void(*)(void))0x8000F988)(); }
+static inline int calculateTextBlockWidth(uint textIndex) { return ((int(*)(uint))0x8000FA9C)(textIndex); }
+static inline void practiceTextRelated(undefined4 textChannel, undefined4 param_2, undefined4 letterBeingDrawn) { ((void(*)(undefined4, undefined4, undefined4))0x8000FD9C)(textChannel, param_2, letterBeingDrawn); }
+static inline void text_setPtrToWhereCharsAreStored(undefined4 r3_channelNumber, undefined4 r4_param_2, undefined4 r5_textOffset) { ((void(*)(undefined4, undefined4, undefined4))0x8000FE08)(r3_channelNumber, r4_param_2, r5_textOffset); }
+static inline void setText0x2aTo0(undefined4 textChannel) { ((void(*)(undefined4))0x8000FEE8)(textChannel); }
+static inline void initializeTextParameters(undefined4 param_1, undefined4 param_2, undefined2 xPos, undefined2 yPos, undefined1 param_5, undefined4 color, undefined1 textStyle) { ((void(*)(undefined4, undefined4, undefined2, undefined2, undefined1, undefined4, undefined1))0x8000FF04)(param_1, param_2, xPos, yPos, param_5, color, textStyle); }
+static inline void drawTransformedSprite(int xPos, int yPos, int param_3, int param_4, short width, int texture_, int spriteType, int transformMtx) { ((void(*)(int, int, int, int, short, int, int, int))0x800100A4)(xPos, yPos, param_3, param_4, width, texture_, spriteType, transformMtx); }
+static inline void DrawText(int textBlockIndex) { ((void(*)(int))0x80010498)(textBlockIndex); }
+static inline void DrawTextOnCondition(int param_1) { ((void(*)(int))0x80010F2C)(param_1); }
+static inline void initTextRendering_(void) { ((void(*)(void))0x80010FA0)(); }
+static inline void animationRelated(int animStruct, int param_2) { ((void(*)(int, int))0x800111FC)(animStruct, param_2); }
+static inline void LoadModel(AnimationStruct * animStructPtr) { ((void(*)(AnimationStruct *))0x800127F8)(animStructPtr); }
+static inline void animateModelArmsGlovesBats(AnimationStruct * animStruct) { ((void(*)(AnimationStruct *))0x80013680)(animStruct); }
+static inline void loadSomethingFromDiskAtBeginningOfAB1(void) { ((void(*)(void))0x80014D4C)(); }
+static inline void loadSomethingFromDiskAtBeginningOfAB2(void) { ((void(*)(void))0x80014E50)(); }
+static inline void loadBatterModelFromDisk_(void) { ((void(*)(void))0x80014F40)(); }
+static inline void practice_loadAllGraphics_(undefined4 team) { ((void(*)(undefined4))0x8001594C)(team); }
+static inline void setupAnimationModelMemory(void) { ((void(*)(void))0x80018024)(); }
+static inline void animationInitializationRunnerRelated(int param_1, undefined * param_2) { ((void(*)(int, undefined *))0x80018270)(param_1, param_2); }
+static inline void challengeMapRelated(void) { ((void(*)(void))0x8001A6B0)(); }
+static inline void copyAnimationStructures(void) { ((void(*)(void))0x8001B2D0)(); }
+static inline int getAnimationCollisionOffset(int fielderIndex, int offsetType, float * collisionOffset) { return ((int(*)(int, int, float *))0x8001B728)(fielderIndex, offsetType, collisionOffset); }
+static inline bool getAnimRelatedCoordinates(int character, enumAnimationCoordinatesType animationCode, Vec3f * coords) { return ((bool(*)(int, enumAnimationCoordinatesType, Vec3f *))0x8001B80C)(character, animationCode, coords); }
+static inline void QueueCharacterAnimation(int character, EnumCharacterAnimation_int animation, byte param_3, byte param_4, short param_5, bool flip, int param_7) { ((void(*)(int, EnumCharacterAnimation_int, byte, byte, short, bool, int))0x8001B918)(character, animation, param_3, param_4, param_5, flip, param_7); }
+static inline void AnimateCharacter(int character, EnumCharacterAnimation_int animationIndex, bool loop, byte param_4, byte param_5, short param_6, byte param_7, int param_8) { ((void(*)(int, EnumCharacterAnimation_int, bool, byte, byte, short, byte, int))0x8001B990)(character, animationIndex, loop, param_4, param_5, param_6, param_7, param_8); }
+static inline void loadFielderActors(void) { ((void(*)(void))0x8001C588)(); }
+static inline bool loadAndAnimateCharacter(int charID, int charIndexIfMinigame) { return ((bool(*)(int, int))0x8001C67C)(charID, charIndexIfMinigame); }
+static inline int loadCharacterAnimation(int character) { return ((int(*)(int))0x8001C920)(character); }
+static inline void initStadiumLighting(void) { ((void(*)(void))0x8001CBD4)(); }
+static inline void stadiumSetupRelated(void) { ((void(*)(void))0x8001CE74)(); }
+static inline void applyUniformScaleToObject(float scaleFactor, int index) { ((void(*)(float, int))0x8001D0D0)(scaleFactor, index); }
+static inline void applyNonUniformScaleToObject(float xScale, float yScale, float zScale, int index) { ((void(*)(float, float, float, int))0x8001D110)(xScale, yScale, zScale, index); }
+static inline void baseballCTRLSetScale(float xS, float yS, float zS, int index) { ((void(*)(float, float, float, int))0x8001D148)(xS, yS, zS, index); }
+static inline void updateAnimationAction(int animIndex, int bitFlag, int actionFlag) { ((void(*)(int, int, int))0x8001D180)(animIndex, bitFlag, actionFlag); }
+static inline void animRelated_8001db74(void) { ((void(*)(void))0x8001DB74)(); }
+static inline void setNullPtrForStadiumObjs(void) { ((void(*)(void))0x8001E474)(); }
+static inline void resetGameStadiumStateOnExit(void) { ((void(*)(void))0x8001F228)(); }
+static inline void challengeMapMaybe_(void) { ((void(*)(void))0x8001F4C0)(); }
+static inline void somethingFileHandlingLoadingRelated(void) { ((void(*)(void))0x8001F5E8)(); }
+static inline void initShortsHandleCompressedDiskReads(int baseAddress) { ((void(*)(int))0x8001FC4C)(baseAddress); }
+static inline void calledWhenStartingMatch(void) { ((void(*)(void))0x80020048)(); }
+static inline void challenge_setTransitionScreenCharacterPortrait(undefined1 param_1, undefined1 captain) { ((void(*)(undefined1, undefined1))0x800203E0)(param_1, captain); }
+static inline void changeScene_(void) { ((void(*)(void))0x800204CC)(); }
+static inline void soundOrMusicRelated(void) { ((void(*)(void))0x80021308)(); }
+static inline void initSound(void) { ((void(*)(void))0x800219B4)(); }
+static inline undefined * loadCharacterDataRelated(enumCharIDWord charID, uint charTypes_Range1To6, int * charData) { return ((undefined *(*)(enumCharIDWord, uint, int *))0x80021CA4)(charID, charTypes_Range1To6, charData); }
+static inline void maybe_somethingAnimRelated(void) { ((void(*)(void))0x80022634)(); }
+static inline DODisplayObj * InitBone(ACTBone * parent, ACTBoneLayout * layout, ACTActor * actor, short * numBones) { return ((DODisplayObj *(*)(ACTBone *, ACTBoneLayout *, ACTActor *, short *))0x80022DAC)(parent, layout, actor, numBones); }
+static inline void InitActorWithLayout(ActLayout * layout, ACTActor * act_) { ((void(*)(ActLayout *, ACTActor *))0x800232E0)(layout, act_); }
+static inline void BuildBoneSkinOrientationMatrix(void) { ((void(*)(void))0x8002360C)(); }
+static inline void characterAndBallDisplayRelated(int ptr, int mayberosterIndex, short maybeRosterIndex, int act_, int param_5, int param_6) { ((void(*)(int, int, short, int, int, int))0x8002399C)(ptr, mayberosterIndex, maybeRosterIndex, act_, param_5, param_6); }
+static inline void initActorArray(int numActors) { ((void(*)(int))0x80023B04)(numActors); }
+static inline void characterLightingRelated(int inputParams_, int outputParams) { ((void(*)(int, int))0x80023B90)(inputParams_, outputParams); }
+static inline void gOz_GXSetTexture(void) { ((void(*)(void))0x80024184)(); }
+static inline void SetDisplayStateTexture(TextureHeader * tex, int texMap, int tlutName) { ((void(*)(TextureHeader *, int, int))0x80024404)(tex, texMap, tlutName); }
+static inline void endOfGame_Campaign_starRelated_(int playerIndex, int challengeIndex) { ((void(*)(int, int))0x80024840)(playerIndex, challengeIndex); }
+static inline void multBottomBits_asFloat(void) { ((void(*)(void))0x80024974)(); }
+static inline void byteWiseMultiply(int scalar, int bytes) { ((void(*)(int, int))0x800249D8)(scalar, bytes); }
+static inline int LERPToNewRange_Float(int input, int inLow, int inHigh, int outLow, int outHigh) { return ((int(*)(int, int, int, int, int))0x80024B00)(input, inLow, inHigh, outLow, outHigh); }
+static inline double LinearInterpolateToNewRange(double value, double prevMin, double prevMax, double nextMin, double nextMax) { return ((double(*)(double, double, double, double, double))0x80024BB4)(value, prevMin, prevMax, nextMin, nextMax); }
+static inline void ACTActorRelated(ACTActor * ACTActor_, GEOPalette * gpl, int param_3, int * param_4) { ((void(*)(ACTActor *, GEOPalette *, int, int *))0x80025C58)(ACTActor_, gpl, param_3, param_4); }
+static inline void adjustInternalPointers(ACTActor * baseAddr) { ((void(*)(ACTActor *))0x80025DDC)(baseAddr); }
+static inline void actorRelated(ActLayout * param_1, int param_2, int param_3) { ((void(*)(ActLayout *, int, int))0x80025EEC)(param_1, param_2, param_3); }
+static inline void actRelated(ACTActor * actor, ActLayout * act2_) { ((void(*)(ACTActor *, ActLayout *))0x80025FFC)(actor, act2_); }
+static inline void maybeTexOrSpriteRelated(void) { ((void(*)(void))0x800263FC)(); }
+static inline void pitchingMachinePitching_(void) { ((void(*)(void))0x8003385C)(); }
+static inline void initMinigamePointers(void) { ((void(*)(void))0x80034220)(); }
+static inline void configureMinigameGX(void) { ((void(*)(void))0x8003452C)(); }
+static inline void setupMinigamePointerStruct(void) { ((void(*)(void))0x800348C8)(); }
+static inline void removeGraphicsElementFromScene(DrawingSceneStruct * drawingItem) { ((void(*)(DrawingSceneStruct *))0x80034CEC)(drawingItem); }
+static inline void addGraphicsElementToScene(DrawingSceneStruct * scene, graphicDataEntry * elementData) { ((void(*)(DrawingSceneStruct *, graphicDataEntry *))0x80034E20)(scene, elementData); }
+static inline void allocateGraphicsSlot_(graphicDataEntry * elementData) { ((void(*)(graphicDataEntry *))0x80034F50)(elementData); }
+static inline void maybeProcessUIUpdates(void) { ((void(*)(void))0x80035168)(); }
+static inline int diskReadRelated(CompressedDiskRead * param_1, uint param_2) { return ((int(*)(CompressedDiskRead *, uint))0x80035838)(param_1, param_2); }
+static inline void load_Icon_(int pointer, int drawingItemNumber_, int menuOptionIndexNum, int iconGroup_, int offset_) { ((void(*)(int, int, int, int, int))0x800363D8)(pointer, drawingItemNumber_, menuOptionIndexNum, iconGroup_, offset_); }
+static inline void setIndicatorSlotState(DrawingSceneStruct * param_1, int param_2, int param_3, int param_4, int param_5) { ((void(*)(DrawingSceneStruct *, int, int, int, int))0x8003649C)(param_1, param_2, param_3, param_4, param_5); }
+static inline undefined * GetUITexture(void) { return ((undefined *(*)(void))0x80039AA8)(); }
+static inline TextureHeader * returnTexture_(void) { return ((TextureHeader *(*)(void))0x80039AB4)(); }
+static inline void updateFunctionPtr(void) { ((void(*)(void))0x8003A548)(); }
+static inline void GXTexObjRelated(TextureArchiveHeader * header_) { ((void(*)(TextureArchiveHeader *))0x8003AD84)(header_); }
+static inline void sceneDrawingLogic(void) { ((void(*)(void))0x8003C00C)(); }
+static inline void capApplicationFunction_(void) { ((void(*)(void))0x8004207C)(); }
+static inline void lineupOrderChangeRelated(void) { ((void(*)(void))0x80042598)(); }
+static inline void adjustStatsForSuperstar(int playerNumber) { ((void(*)(int))0x800426DC)(playerNumber); }
+static inline void randRange_FUN_80042bf0(int high, int low) { ((void(*)(int, int))0x80042BF0)(high, low); }
+static inline void sndFXRelated(void) { ((void(*)(void))0x80042C44)(); }
+static inline void maybeCheckAndResetGrapicsElement(void) { ((void(*)(void))0x80042DA8)(); }
+static inline void challengeStarMenu(void) { ((void(*)(void))0x80042DE8)(); }
+static inline void viewStarMenuOverTeamManagementScreen_unused(void) { ((void(*)(void))0x8004338C)(); }
+static inline void swapPosMenu_left_rightPress(undefined1 left_right, undefined1 param_2) { ((void(*)(undefined1, undefined1))0x80043880)(left_right, param_2); }
+static inline void swapPosMenu_up_downPress(byte up_down, undefined1 player) { ((void(*)(byte, undefined1))0x80044C98)(up_down, player); }
+static inline void teamManagement_takeInputs(undefined4 playerNumber) { ((void(*)(undefined4))0x8004617C)(playerNumber); }
+static inline void initTeamManagementScreen(void) { ((void(*)(void))0x80047CE0)(); }
+static inline void teamManagementMenuControl(void) { ((void(*)(void))0x80047FE4)(); }
+static inline void createTeamManagementScreen_inGame(undefined2 param_1, undefined1 teamThatPaused, undefined1 playerWhoPaused) { ((void(*)(undefined2, undefined1, undefined1))0x800486E0)(param_1, teamThatPaused, playerWhoPaused); }
+static inline void createTeamManagementScreen_preGame(void) { ((void(*)(void))0x80048764)(); }
+static inline void startGameRelated(void) { ((void(*)(void))0x80048EB8)(); }
+static inline void possiblyTransferDataBetweenDifferentRels(void) { ((void(*)(void))0x80049878)(); }
+static inline void setTransitionVariable(void) { ((void(*)(void))0x8004ABD8)(); }
+static inline void marioHandOnFire_endFireAnimation_(void) { ((void(*)(void))0x8004ABE8)(); }
+static inline void newPitcherEnteringGame_(void) { ((void(*)(void))0x8004AC00)(); }
+static inline someStadCollisionCode stadiumCollisionRelated(EnumStadiumIDs4 stadiumID, TriangleCollisionTypes_word collisionType) { return ((someStadCollisionCode(*)(EnumStadiumIDs4, TriangleCollisionTypes_word))0x8004AD54)(stadiumID, collisionType); }
+static inline void processCharacterStateBasedOnGameMode(void) { ((void(*)(void))0x8004B7F4)(); }
+static inline void exitMenu(EnumControllerInput param_1) { ((void(*)(EnumControllerInput))0x8004CA6C)(param_1); }
+static inline void returnsCurrentMode(void) { ((void(*)(void))0x8005268C)(); }
+static inline void setScissorAndProjection(int mode) { ((void(*)(int))0x80052694)(mode); }
+static inline float * returnFloatFromModeIndex(int mode) { return ((float *(*)(int))0x80052734)(mode); }
+static inline void setScissorMode(void) { ((void(*)(void))0x80052798)(); }
+static inline void returnScissorMode(void) { ((void(*)(void))0x800527BC)(); }
+static inline void graphics_relatedToVsScreen(void) { ((void(*)(void))0x80052968)(); }
+static inline void possiblyTransitionBlackScreen(void) { ((void(*)(void))0x80052F98)(); }
+static inline void drawStarProgressionMenu_(void) { ((void(*)(void))0x80056AE4)(); }
+static inline void someChallengeStarFunction(void) { ((void(*)(void))0x80056F70)(); }
+static inline void someChallengeStarFunction2(void) { ((void(*)(void))0x800572C0)(); }
+static inline void challengeCheckStarsMenuLoading(void) { ((void(*)(void))0x800576F0)(); }
+static inline void starMissionMenu(void) { ((void(*)(void))0x80057C08)(); }
+static inline void scoutFlagMenu(void) { ((void(*)(void))0x80058050)(); }
+static inline void zMenuLoadGraphics(void) { ((void(*)(void))0x80058394)(); }
+static inline void starMissionRelated(void) { ((void(*)(void))0x80059B38)(); }
+static inline void battingOrderProcessInputs(maybeGraphicsManager * param_1, undefined4 playerNum) { ((void(*)(maybeGraphicsManager *, undefined4))0x8005A350)(param_1, playerNum); }
+static inline void teamManagementGraphics_fieldingAlignmentScreen(undefined4 drawingItem) { ((void(*)(undefined4))0x8005AF68)(drawingItem); }
+static inline void teamManagementGraphics_battingOrderScreen(undefined4 drawingItem) { ((void(*)(undefined4))0x8005B298)(drawingItem); }
+static inline void teamManagementGraphics_fieldingAlignmentInfo(void) { ((void(*)(void))0x8005BF40)(); }
+static inline void teamManagementGraphics_battingOrderInfo(void) { ((void(*)(void))0x8005C2B0)(); }
+static inline void teamManagementGraphics_steadyState(void) { ((void(*)(void))0x80060184)(); }
+static inline void teamManagementGraphics_initialLoad(void) { ((void(*)(void))0x80061B9C)(); }
+static inline void SetMenuNumber(void) { ((void(*)(void))0x8006236C)(); }
+static inline void updateCharacterSelectProcessCode(undefined4 player, undefined1 param_2) { ((void(*)(undefined4, undefined1))0x800625A4)(player, param_2); }
+static inline void makeCursorMovable(void) { ((void(*)(void))0x80062674)(); }
+static inline void initializeUnknown(void) { ((void(*)(void))0x80062A50)(); }
+static inline void relatedToReturningToPracticeMenu(void) { ((void(*)(void))0x80062A94)(); }
+static inline void maybeUpdateFielderTerrainStatus(byte fielderIndex) { ((void(*)(byte))0x80063958)(fielderIndex); }
+static inline void handleBallRollInWater(Vec3f * ballPos, Vec3f * velocity) { ((void(*)(Vec3f *, Vec3f *))0x80064344)(ballPos, velocity); }
+static inline int translateStarPitchHitIndex(byte starHitType) { return ((int(*)(byte))0x80064754)(starHitType); }
+static inline byte translateStarPitch(byte param_1) { return ((byte(*)(byte))0x800647E0)(param_1); }
+static inline byte translateStarSwing(byte param_1) { return ((byte(*)(byte))0x8006487C)(param_1); }
+static inline void challengeSetCPURoster2(int player) { ((void(*)(int))0x80064A04)(player); }
+static inline void setInitialBattingOrder(void) { ((void(*)(void))0x80065DEC)(); }
+static inline void teamClassTypeLogos(void) { ((void(*)(void))0x80067264)(); }
+static inline void teamCompositionLogos(int team, int CaptainCharacterID) { ((void(*)(int, int))0x800675C4)(team, CaptainCharacterID); }
+static inline void teamLogoDetermination(int team) { ((void(*)(int))0x800678CC)(team); }
+static inline void unknownSettingTeamValues(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, byte param_11, byte param_12, byte param_13, byte param_14, byte param_15, byte param_16, byte param_17, int param_18, int param_19, int param_20) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, byte, byte, byte, byte, byte, int, int, int))0x8006885C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16, param_17, param_18, param_19, param_20); }
+static inline void setCaptainLocInRoster_(void) { ((void(*)(void))0x80069854)(); }
+static inline void findCharacterID(enumCharIDWord charID) { ((void(*)(enumCharIDWord))0x800698F8)(charID); }
+static inline void endDemo_(void) { ((void(*)(void))0x80069A98)(); }
+static inline void challengeDrawStarsOnMissionMenu_(void) { ((void(*)(void))0x8006C48C)(); }
+static inline void starMissionRelated_assignPlayersToBJTeamAfterBeatingBowser_(void) { ((void(*)(void))0x8006C7C4)(); }
+static inline void challenge_checkRecruitment(void) { ((void(*)(void))0x8006C9D8)(); }
+static inline void intermediateStatBuffForScoutFlags_(void) { ((void(*)(void))0x8006CA9C)(); }
+static inline void intermediateStatBuffForCompletedMissions(void) { ((void(*)(void))0x8006CAC8)(); }
+static inline void challengeRelated(void) { ((void(*)(void))0x8006CBE4)(); }
+static inline void determineIfMissionDescriptionIsShown_(void) { ((void(*)(void))0x8006CCA4)(); }
+static inline void PPCMfmsr(void) { ((void(*)(void))0x8006D024)(); }
+static inline void PPCMtmsr(void) { ((void(*)(void))0x8006D02C)(); }
+static inline void PPCMfhid0(void) { ((void(*)(void))0x8006D034)(); }
+static inline void PPCMthid0(void) { ((void(*)(void))0x8006D03C)(); }
+static inline void PPCMfl2cr(void) { ((void(*)(void))0x8006D044)(); }
+static inline void PPCMtl2cr(void) { ((void(*)(void))0x8006D04C)(); }
+static inline void PPCMtdec(void) { ((void(*)(void))0x8006D054)(); }
+static inline void PPCSync(void) { ((void(*)(void))0x8006D05C)(); }
+static inline void PPCHalt(void) { ((void(*)(void))0x8006D064)(); }
+static inline void PPCMtmmcr0(void) { ((void(*)(void))0x8006D078)(); }
+static inline void PPCMtmmcr1(void) { ((void(*)(void))0x8006D080)(); }
+static inline void PPCMtpmc1(void) { ((void(*)(void))0x8006D088)(); }
+static inline void PPCMtpmc2(void) { ((void(*)(void))0x8006D090)(); }
+static inline void PPCMtpmc3(void) { ((void(*)(void))0x8006D098)(); }
+static inline void PPCMtpmc4(void) { ((void(*)(void))0x8006D0A0)(); }
+static inline void PPCMffpscr(void) { ((void(*)(void))0x8006D0A8)(); }
+static inline void PPCMtfpscr(void) { ((void(*)(void))0x8006D0C8)(); }
+static inline void PPCMfhid2(void) { ((void(*)(void))0x8006D0F0)(); }
+static inline void PPCMthid2(void) { ((void(*)(void))0x8006D0F8)(); }
+static inline void PPCMtwpar(void) { ((void(*)(void))0x8006D100)(); }
+static inline void PPCDisableSpeculation(void) { ((void(*)(void))0x8006D108)(); }
+static inline void PPCSetFpNonIEEEMode(void) { ((void(*)(void))0x8006D130)(); }
+static inline void __OSFPRInit(void) { ((void(*)(void))0x8006D138)(); }
+static inline void GetConsoleType(void) { ((void(*)(void))0x8006D260)(); }
+static inline void InquiryCallback(void) { ((void(*)(void))0x8006D288)(); }
+static inline void OSInit(void) { ((void(*)(void))0x8006D2C4)(); }
+static inline void OSExceptionInit(void) { ((void(*)(void))0x8006D7A4)(); }
+static inline void __OSDBIntegrator(void) { ((void(*)(void))0x8006DA24)(); }
+static inline void __OSSetExceptionHandler(void) { ((void(*)(void))0x8006DA4C)(); }
+static inline void __OSGetExceptionHandler(void) { ((void(*)(void))0x8006DA68)(); }
+static inline void OSExceptionVector(void) { ((void(*)(void))0x8006DA7C)(); }
+static inline void __DBVECTOR(void) { ((void(*)(void))0x8006DAD4)(); }
+static inline void __OSEVSetNumber(void) { ((void(*)(void))0x8006DAE4)(); }
+static inline void __OSEVEnd(void) { ((void(*)(void))0x8006DB14)(); }
+static inline void OSDefaultExceptionHandler(void) { ((void(*)(void))0x8006DB18)(); }
+static inline void __OSPSInit(void) { ((void(*)(void))0x8006DB70)(); }
+static inline void __OSGetDIConfig(void) { ((void(*)(void))0x8006DBC4)(); }
+static inline void OSRegisterVersion(void) { ((void(*)(void))0x8006DBD8)(); }
+static inline void OSInitAlarm(void) { ((void(*)(void))0x8006DC04)(); }
+static inline void OSCreateAlarm(void) { ((void(*)(void))0x8006DC5C)(); }
+static inline void InsertAlarm(void) { ((void(*)(void))0x8006DC6C)(); }
+static inline void OSSetAlarm(void) { ((void(*)(void))0x8006DEBC)(); }
+static inline void OSCancelAlarm(void) { ((void(*)(void))0x8006DF24)(); }
+static inline void OnReset(void) { ((void(*)(void))0x8006E2C0)(); }
+static inline void DLInsert(void) { ((void(*)(void))0x8006E360)(); }
+static inline void OSFreeToHeap(void) { ((void(*)(void))0x8006E40C)(); }
+static inline void OSSetCurrentHeap(void) { ((void(*)(void))0x8006E488)(); }
+static inline void OSInitAlloc(void) { ((void(*)(void))0x8006E498)(); }
+static inline void OSCreateHeap(void * low, void * high) { ((void(*)(void *, void *))0x8006E508)(low, high); }
+static inline void OSGetArenaHi(void) { ((void(*)(void))0x8006E574)(); }
+static inline void OSGetArenaLo(void) { ((void(*)(void))0x8006E57C)(); }
+static inline void OSSetArenaHi(void * newHi) { ((void(*)(void *))0x8006E584)(newHi); }
+static inline void OSSetArenaLo(void * newLo) { ((void(*)(void *))0x8006E58C)(newLo); }
+static inline void * OSAllocFromArenaLo(int size, int align) { return ((void *(*)(int, int))0x8006E594)(size, align); }
+static inline void __OSInitAudioSystem(void) { ((void(*)(void))0x8006E5C0)(); }
+static inline void __OSStopAudioSystem(void) { ((void(*)(void))0x8006E77C)(); }
+static inline void DCEnable(void) { ((void(*)(void))0x8006E854)(); }
+static inline void DCInvalidateRange(void * addr, int numBytes) { ((void(*)(void *, int))0x8006E868)(addr, numBytes); }
+static inline void DCFlushRange(void) { ((void(*)(void))0x8006E894)(); }
+static inline void DCStoreRange(void) { ((void(*)(void))0x8006E8C4)(); }
+static inline void DCFlushRangeNoSync(void) { ((void(*)(void))0x8006E8F4)(); }
+static inline void DVStoreRangeNoSync(void) { ((void(*)(void))0x8006E920)(); }
+static inline void ICInvalidateRange(void) { ((void(*)(void))0x8006E94C)(); }
+static inline void ICFlashInvalidate(void) { ((void(*)(void))0x8006E980)(); }
+static inline void ICEnable(void) { ((void(*)(void))0x8006E990)(); }
+static inline void __LCEnable(void) { ((void(*)(void))0x8006E9A4)(); }
+static inline void LCEnable(void) { ((void(*)(void))0x8006EA70)(); }
+static inline void LCDisable(void) { ((void(*)(void))0x8006EAA8)(); }
+static inline void LCLoadBlocks(void) { ((void(*)(void))0x8006EAD0)(); }
+static inline void LCStoreBlocks(void) { ((void(*)(void))0x8006EAF4)(); }
+static inline void LCLoadData(void) { ((void(*)(void))0x8006EB18)(); }
+static inline void LCStoreData(void) { ((void(*)(void))0x8006EBC4)(); }
+static inline void LCQueueWait(void) { ((void(*)(void))0x8006EC70)(); }
+static inline void L2GlobalInvalidate(void) { ((void(*)(void))0x8006EC84)(); }
+static inline void __OSCacheInit(void) { ((void(*)(void))0x8006EE7C)(); }
+static inline void __OSLoadFPUContext(void) { ((void(*)(void))0x8006EF70)(); }
+static inline void __OSSaveFPUContext(void) { ((void(*)(void))0x8006F094)(); }
+static inline void OSLoadFPUContext(void) { ((void(*)(void))0x8006F1BC)(); }
+static inline void OSSetCurrentContext(void) { ((void(*)(void))0x8006F1C4)(); }
+static inline void OSGetCurrentContext(void) { ((void(*)(void))0x8006F220)(); }
+static inline void OSSaveContext(void) { ((void(*)(void))0x8006F22C)(); }
+static inline void OSLoadContext(void) { ((void(*)(void))0x8006F2AC)(); }
+static inline void OSGetStackPointer(void) { ((void(*)(void))0x8006F384)(); }
+static inline void OSClearContext(void) { ((void(*)(void))0x8006F38C)(); }
+static inline void OSInitContext(void) { ((void(*)(void))0x8006F3B0)(); }
+static inline void OSDumpContext(void) { ((void(*)(void))0x8006F46C)(); }
+static inline void __OSContextInit(void) { ((void(*)(void))0x8006F798)(); }
 #define OSReport FUNCTION_ADDRESS(void, 0x8006F7E0, char *, ...)
-#define OSPanic FUNCTION_ADDRESS(void, 0x8006F860, char * /*fileName*/, uint /*line*/, char * /*message*/, ...)
-#define OSSetErrorHandler FUNCTION_ADDRESS(void, 0x8006F98C)
-#define __OSUnhandledException FUNCTION_ADDRESS(void, 0x8006FBA4)
-#define PackArgs FUNCTION_ADDRESS(void, 0x8006FE8C, int *, int, int *)
-#define Run FUNCTION_ADDRESS(void, 0x80070014)
-#define ReadDisc FUNCTION_ADDRESS(void, 0x80070050)
-#define Callback FUNCTION_ADDRESS(void, 0x800700BC)
-#define __OSGetExecParams FUNCTION_ADDRESS(void, 0x800700C8)
-#define GetApploaderPosition FUNCTION_ADDRESS(void, 0x80070108)
-#define __OSBootDolSimple FUNCTION_ADDRESS(void, 0x800701CC)
-#define __OSBootDol FUNCTION_ADDRESS(void, 0x80070650)
-#define GetFontCode FUNCTION_ADDRESS(void, 0x800707EC)
-#define OSGetFontEncode FUNCTION_ADDRESS(void, 0x80070960)
-#define ParseStringS FUNCTION_ADDRESS(void, 0x800709C4)
-#define OSDisableInterrupts FUNCTION_ADDRESS(void, 0x80070B00)
-#define OSEnableInterrupts FUNCTION_ADDRESS(void, 0x80070B14)
-#define OSRestoreInterrupts FUNCTION_ADDRESS(void, 0x80070B28)
-#define __OSSetInterruptHandler FUNCTION_ADDRESS(void, 0x80070B4C)
-#define __OSGetInterruptHandler FUNCTION_ADDRESS(void, 0x80070B68)
-#define __OSInterruptInit FUNCTION_ADDRESS(void, 0x80070B7C)
-#define SetInterruptMask FUNCTION_ADDRESS(void, 0x80070BF0)
-#define __OSMaskInterrupts FUNCTION_ADDRESS(void, 0x80070EC8)
-#define __OSUnmaskInterrupts FUNCTION_ADDRESS(void, 0x80070F50)
-#define __OSDispatchHandler FUNCTION_ADDRESS(void, 0x80070FD8)
-#define ExternalInterruptHandler FUNCTION_ADDRESS(void, 0x8007131C)
-#define OSNotifyLink FUNCTION_ADDRESS(void, 0x8007136C)
-#define OSNotifyUnlink FUNCTION_ADDRESS(void, 0x80071370)
-#define Relocate FUNCTION_ADDRESS(void, 0x80071374)
-#define Link FUNCTION_ADDRESS(void, 0x80071630, OSModuleInfo *, int /*bss*/, int)
-#define OSLink FUNCTION_ADDRESS(void, 0x80071910, OSModuleInfo * /*newModule*/, byte * /*bss*/)
-#define Undo FUNCTION_ADDRESS(void, 0x80071934, OSModuleInfo *, int)
-#define OSUnlink FUNCTION_ADDRESS(void, 0x80071B6C, OSModuleInfo * /*oldModule*/)
-#define __OSModuleInit FUNCTION_ADDRESS(void, 0x80071D40)
-#define OSInitMessageQueue FUNCTION_ADDRESS(void, 0x80071D58)
-#define OSSendMessage FUNCTION_ADDRESS(void, 0x80071DB8)
-#define OSReceiveMessage FUNCTION_ADDRESS(void, 0x80071E80)
-#define OnReset_80071f5c FUNCTION_ADDRESS(void, 0x80071F5C)
-#define MEMIntrruptHandler FUNCTION_ADDRESS(void, 0x80071F98)
-#define Config24MB FUNCTION_ADDRESS(void, 0x80072004)
-#define RealMode FUNCTION_ADDRESS(void, 0x80072104)
-#define __OSInitMemoryProtection FUNCTION_ADDRESS(void, 0x8007211C)
-#define __OSUnlockAllMutex FUNCTION_ADDRESS(void, 0x80072234)
-#define __OSReboot FUNCTION_ADDRESS(void, 0x800722A4)
-#define OSGetSaveRegion FUNCTION_ADDRESS(void, 0x80072314)
-#define OSRegisterResetFunction FUNCTION_ADDRESS(void, 0x80072328)
-#define __OSCallResetFunctions FUNCTION_ADDRESS(void, 0x800723AC)
-#define KillThreads FUNCTION_ADDRESS(void, 0x800724C4)
-#define __OSDoHotReset FUNCTION_ADDRESS(void, 0x8007252C)
-#define ResetSystem FUNCTION_ADDRESS(void, 0x80072574)
-#define OSGetResetCode FUNCTION_ADDRESS(void, 0x80072774)
-#define OSGetResetButtonState FUNCTION_ADDRESS(void, 0x800728A0)
-#define WriteSramCallback FUNCTION_ADDRESS(void, 0x80072B38)
-#define WriteSram FUNCTION_ADDRESS(void, 0x80072B98)
-#define __OSInitSram FUNCTION_ADDRESS(void, 0x80072CB0)
-#define __OSLockSram FUNCTION_ADDRESS(void, 0x80072DEC)
-#define __OSLockSramEx FUNCTION_ADDRESS(void, 0x80072E48)
-#define UnlockSram FUNCTION_ADDRESS(void, 0x80072EA4)
-#define __OSUnlockSram FUNCTION_ADDRESS(void, 0x800731E0)
-#define __OSUnlockSramEx FUNCTION_ADDRESS(void, 0x80073204)
-#define __OSSyncSram FUNCTION_ADDRESS(void, 0x80073228)
-#define OSGetSoundMode FUNCTION_ADDRESS(void, 0x80073238)
-#define OSSetSoundMode FUNCTION_ADDRESS(void, 0x800732B8)
-#define OSGetProgressiveMode FUNCTION_ADDRESS(void, 0x8007335C)
-#define OSSetProgressiveMode FUNCTION_ADDRESS(void, 0x800733CC)
-#define OSGetWirelessID FUNCTION_ADDRESS(void, 0x80073470)
-#define OSSetWirelessID FUNCTION_ADDRESS(void, 0x800734F4)
-#define OSGetGbsMode FUNCTION_ADDRESS(void, 0x800735A0)
-#define OSSetGbsMode FUNCTION_ADDRESS(void, 0x80073610)
-#define OSInitSemaphore FUNCTION_ADDRESS(void, 0x800736C8)
-#define OSWaitSemaphore FUNCTION_ADDRESS(void, 0x80073720)
-#define OSSignalSemaphore FUNCTION_ADDRESS(void, 0x80073790)
-#define __OSInitSystemCall FUNCTION_ADDRESS(void, 0x80073810)
-#define DefaultSwitchThreadCallback FUNCTION_ADDRESS(void, 0x80073874)
-#define __OSThreadInit FUNCTION_ADDRESS(void, 0x80073878)
-#define OSInitThreadQueue FUNCTION_ADDRESS(void, 0x800739D0)
-#define OSGetCurrentThread FUNCTION_ADDRESS(OSThread *, 0x800739E0)
-#define OSIsThreadSuspended FUNCTION_ADDRESS(void, 0x800739EC)
-#define OSDisableScheduler FUNCTION_ADDRESS(void, 0x80073A08)
-#define OSEnableScheduler FUNCTION_ADDRESS(void, 0x80073A48)
-#define UnsetRun FUNCTION_ADDRESS(void, 0x80073A88)
-#define __OSGetEffectivePriority FUNCTION_ADDRESS(void, 0x80073AF0)
-#define SetEffectiovePriority FUNCTION_ADDRESS(void, 0x80073B2C)
-#define SelectThread FUNCTION_ADDRESS(void, 0x80073CEC)
-#define __OSReschedule FUNCTION_ADDRESS(void, 0x80073F14)
-#define OSCreateThread FUNCTION_ADDRESS(bool, 0x80073F44, OSThread * /*thread*/, void * /*func*/, void * /*param*/, void * /*stack*/, uint /*stackSize*/, OSPriority /*priority*/, ushort /*attr*/)
-#define OSExitThread FUNCTION_ADDRESS(void, 0x8007412C)
-#define OSCancelThread FUNCTION_ADDRESS(void, 0x80074210)
-#define OSResumeThread FUNCTION_ADDRESS(void, 0x800743CC, OSThread *)
-#define OSSuspendThread FUNCTION_ADDRESS(void, 0x80074654, OSThread *)
-#define OSSleepThread FUNCTION_ADDRESS(void, 0x800747C4)
-#define OSWakeupThread FUNCTION_ADDRESS(void, 0x800748B0)
-#define OSClearStack FUNCTION_ADDRESS(void, 0x800749B4)
-#define OSGetTime FUNCTION_ADDRESS(void, 0x80074A60)
-#define OSGetTick FUNCTION_ADDRESS(void, 0x80074A78)
-#define __OSGetSystemTime FUNCTION_ADDRESS(void, 0x80074A80)
-#define GetDates FUNCTION_ADDRESS(void, 0x80074AE4)
-#define OSTicksToCalendarTime FUNCTION_ADDRESS(void, 0x80074C80)
-#define __init_user FUNCTION_ADDRESS(void, 0x80074E84)
-#define __init_cpp FUNCTION_ADDRESS(void, 0x80074EA4)
-#define abort FUNCTION_ADDRESS(void, 0x80074EF8)
-#define DBInit FUNCTION_ADDRESS(void, 0x80074F18)
-#define __DBExceptionDestinationAux FUNCTION_ADDRESS(void, 0x80074F40)
-#define __DBIsExceptionMarked FUNCTION_ADDRESS(void, 0x80074F98)
-#define DBPrintf FUNCTION_ADDRESS(void, 0x80074FB4)
-#define PSMTXIdentity FUNCTION_ADDRESS(void, 0x80075004, Mtx * /*m*/)
-#define PSMTXCopy FUNCTION_ADDRESS(void, 0x80075030, Mtx * /*source*/, Mtx * /*dst*/)
-#define PSMTXConcat FUNCTION_ADDRESS(void, 0x80075064, Mtx * /*a*/, Mtx * /*b*/, Mtx * /*ab*/)
-#define PSMTXTranspose FUNCTION_ADDRESS(void, 0x80075130, Mtx * /*src*/, Mtx * /*xPose*/)
-#define PSMTXInverse FUNCTION_ADDRESS(uint, 0x80075180, Mtx * /*src*/, Mtx * /*inv*/)
-#define PSMTXRotRad FUNCTION_ADDRESS(void, 0x80075278, Mtx * /*m*/, char /*axis*/, float /*rad*/)
-#define PSMTXRotTrig FUNCTION_ADDRESS(void, 0x800752E8, Mtx * /*m*/, char /*axis*/, float /*sinA*/, float /*cosA*/)
-#define ___PSMTXRotAxisRadInternal FUNCTION_ADDRESS(double, 0x80075398, double, double, int, int)
-#define PSMTXRotAxisRad FUNCTION_ADDRESS(void, 0x80075448, Mtx * /*m*/, Vec3f * /*axis*/, float /*rad*/)
-#define PSMTXTrans FUNCTION_ADDRESS(void, 0x800754B8, Mtx * /*m*/, float /*xT*/, float /*yT*/, float /*zT*/)
-#define PSMTXTransApply FUNCTION_ADDRESS(void, 0x800754EC, Mtx * /*src*/, Mtx * /*dst*/, float /*xT*/, float /*yT*/, float /*zT*/)
-#define PSMTXScale FUNCTION_ADDRESS(void, 0x80075538, Mtx * /*m*/, float /*xS*/, float /*yS*/, float /*zS*/)
-#define PSMTXScaleApply FUNCTION_ADDRESS(void, 0x80075560, Mtx * /*src*/, Mtx * /*dst*/, float /*xS*/, float /*yS*/, float /*zS*/)
-#define PSMTXQuat FUNCTION_ADDRESS(void, 0x800755B8, Mtx * /*m*/, Quaternion * /*q*/)
-#define C_MTXLookAt FUNCTION_ADDRESS(void, 0x8007565C, Mtx * /*m*/, Vec3f * /*camPos*/, Vec3f * /*camUp*/, Vec3f * /*target*/)
-#define C_MTXLightOrtho FUNCTION_ADDRESS(void, 0x800757E8, Mtx * /*m*/, float /*t*/, float /*b*/, float /*l*/, float /*r*/, float /*n*/, float /*scaleS*/, float /*scaleT*/, float /*transS*/, float /*transT*/)
-#define PSMTXMultVec FUNCTION_ADDRESS(void, 0x80075870, Mtx * /*m*/, Vec3f * /*src*/, Vec3f * /*dst*/)
-#define PSMTXMultVecArray FUNCTION_ADDRESS(void, 0x800758C4, Mtx * /*m*/, Vec3f * /*srcBase*/, Vec3f * /*dstBase*/, uint /*count*/)
-#define PSMTXMultVecSR FUNCTION_ADDRESS(void, 0x80075950, Mtx * /*m*/, Vec3f * /*src*/, Vec3f * /*dst*/)
-#define C_MTXFrustum FUNCTION_ADDRESS(void, 0x800759A4, Mtx44 * /*m*/, float /*t*/, float /*b*/, float /*l*/, float /*r*/, float /*n*/, float /*f*/)
-#define C_MTXLightOrtho_80075a40 FUNCTION_ADDRESS(void, 0x80075A40, Mtx44 * /*m*/, float /*t*/, float /*b*/, float /*l*/, float /*r*/, float /*n*/, float /*f*/)
-#define PSMTX44Identity FUNCTION_ADDRESS(void, 0x80075AD8, Mtx44 * /*m*/)
-#define PSMTX44Copy FUNCTION_ADDRESS(void, 0x80075B0C, Mtx44 * /*src*/, Mtx44 * /*dst*/)
-#define PSMTX44Concat FUNCTION_ADDRESS(void, 0x80075B50, Mtx44 * /*a*/, Mtx44 * /*b*/, Mtx44 * /*ab*/)
-#define C_MTX44Inverse FUNCTION_ADDRESS(uint, 0x80075C54, Mtx44 * /*src*/, Mtx44 * /*inv*/)
-#define PSMTX44RotRad FUNCTION_ADDRESS(void, 0x80076044, Mtx44 * /*m*/, char /*axis*/, float /*rad*/)
-#define PSMTX44RotTrig FUNCTION_ADDRESS(void, 0x800760B4, Mtx44 * /*m*/, char /*axis*/, float /*sinA*/, float /*cosA*/)
-#define PSMTX44MultVec FUNCTION_ADDRESS(void, 0x80076188, Mtx44 * /*m*/, Vec3f * /*src*/, Vec3f * /*dst*/)
-#define PSMTX44MultVecArray FUNCTION_ADDRESS(void, 0x80076200, Mtx44 * /*m*/, Vec3f * /*srcBase*/, Vec3f * /*dstBase*/, uint /*count*/)
-#define PSVECAdd FUNCTION_ADDRESS(void, 0x800762F0, Vec3f * /*a*/, Vec3f * /*b*/, Vec3f * /*ab*/)
-#define PSVECSubtract FUNCTION_ADDRESS(void, 0x80076314, Vec3f * /*a*/, Vec3f * /*b*/, Vec3f * /*a_b*/)
-#define PSVECScale FUNCTION_ADDRESS(void, 0x80076338, Vec3f * /*src*/, Vec3f * /*dst*/, float /*scale*/)
-#define PSVECNormalize FUNCTION_ADDRESS(void, 0x80076354, Vec3f * /*src*/, Vec3f * /*unit*/)
-#define PSVECMag FUNCTION_ADDRESS(float, 0x80076398, Vec3f * /*v*/)
-#define PSVECDotProduct FUNCTION_ADDRESS(float, 0x800763DC, Vec3f * /*a*/, Vec3f * /*b*/)
-#define PSVECCrossProduct FUNCTION_ADDRESS(void, 0x800763FC, Vec3f * /*a*/, Vec3f * /*b*/, Vec3f * /*axb*/)
-#define PSVECSquareDistance FUNCTION_ADDRESS(float, 0x80076438, Vec3f * /*a*/, Vec3f * /*b*/)
-#define PSVECDistance FUNCTION_ADDRESS(float, 0x80076460, Vec3f * /*a*/, Vec3f * /*b*/)
-#define PSQUATAdd FUNCTION_ADDRESS(void, 0x800764B4, Quaternion * /*p*/, Quaternion * /*q*/, Quaternion * /*r*/)
-#define PSQUATMultiply FUNCTION_ADDRESS(void, 0x800764D8, Quaternion * /*p*/, Quaternion * /*q*/, Quaternion * /*pq*/)
-#define PSQUATScale FUNCTION_ADDRESS(void, 0x80076534, Quaternion * /*q*/, Quaternion * /*r*/, float /*scale*/)
-#define PSQUATDotProduct FUNCTION_ADDRESS(float, 0x80076550, Quaternion * /*p*/, Quaternion * /*q*/)
-#define PSQUATNormalize FUNCTION_ADDRESS(void, 0x80076570, Quaternion * /*src*/, Quaternion * /*unit*/)
-#define C_QUATRotAxisRad FUNCTION_ADDRESS(void, 0x800765C4, Quaternion * /*r*/, Vec3f * /*axis*/, float /*rad*/)
-#define C_QUATMtx FUNCTION_ADDRESS(void, 0x80076650, Quaternion * /*r*/, Mtx * /*m*/)
-#define C_QUATSlerp FUNCTION_ADDRESS(void, 0x800768A8, Quaternion * /*p*/, Quaternion * /*q*/, Quaternion * /*r*/, float /*t*/)
-#define PSMTXReorder FUNCTION_ADDRESS(void, 0x80076A1C, Mtx * /*src*/, ROMtx * /*dest*/)
-#define __DVDInitWA FUNCTION_ADDRESS(void, 0x80076A68)
-#define __DVDInterruptHandler FUNCTION_ADDRESS(void, 0x80076AA8)
-#define AlarmHandler FUNCTION_ADDRESS(void, 0x80076D88)
-#define AlarmHandlerForTimeout FUNCTION_ADDRESS(void, 0x80076E0C)
-#define Read FUNCTION_ADDRESS(void, 0x80076E7C)
-#define SeekTwiceBeforeRead FUNCTION_ADDRESS(void, 0x80076F8C)
-#define DVDLowRead FUNCTION_ADDRESS(void, 0x8007700C)
-#define DVDLowSeek FUNCTION_ADDRESS(void, 0x800772A4)
-#define DVDLowWaitCoverClose FUNCTION_ADDRESS(void, 0x80077338)
-#define DVDLowReadDiskID FUNCTION_ADDRESS(void, 0x80077364)
-#define DVDLowStopMotor FUNCTION_ADDRESS(void, 0x80077408)
-#define DVDLowRequestError FUNCTION_ADDRESS(void, 0x80077494)
-#define DVDLowInquiry FUNCTION_ADDRESS(void, 0x80077520)
-#define DVDLowAudioStatus FUNCTION_ADDRESS(void, 0x800775BC)
-#define DVDLowRequestAudioStatus FUNCTION_ADDRESS(void, 0x80077654)
-#define DVDLowAudioBufferConfig FUNCTION_ADDRESS(void, 0x800776E0)
-#define DVDLowReset FUNCTION_ADDRESS(void, 0x8007777C)
-#define DVDLowBreak FUNCTION_ADDRESS(void, 0x80077838)
-#define DVDLowClearCallback FUNCTION_ADDRESS(void, 0x8007784C)
-#define __DVDLowSetWAType FUNCTION_ADDRESS(void, 0x80077868)
-#define __DVDLowTestAlarm FUNCTION_ADDRESS(void, 0x800778AC)
-#define __DVDFSInit FUNCTION_ADDRESS(void, 0x800778E4)
-#define DVDConvertPathToEntrynum FUNCTION_ADDRESS(s32, 0x8007791C, char * /*fileName*/)
-#define DVDFastOpen FUNCTION_ADDRESS(BOOL, 0x80077C10, int /*entryNum*/, DVDFileInfo * /*fileInfo*/)
-#define DVDOpen FUNCTION_ADDRESS(BOOL, 0x80077C84, char * /*fileName*/, DVDFileInfo * /*fileInfo*/)
-#define DVDClose FUNCTION_ADDRESS(bool, 0x80077D4C, DVDFileInfo * /*fileInfo*/)
-#define entryToPath FUNCTION_ADDRESS(void, 0x80077D70, int /*entry*/, int, int)
-#define DVDGetCurrentDir FUNCTION_ADDRESS(bool, 0x80077ED0, char * /*path*/, int /*maxlen*/)
-#define DVDReadAsyncPrio FUNCTION_ADDRESS(bool, 0x80077F94, DVDFileInfo * /*fileInfo*/, void * /*addr*/, int /*length*/, int /*offset*/, DVDCallback /*callback*/, int /*prio*/)
-#define cbForReadAsync FUNCTION_ADDRESS(void, 0x80078054)
-#define DVDReadPrio FUNCTION_ADDRESS(s32, 0x80078084, DVDFileInfo * /*fileInfo*/, void * /*addr*/, s32 /*length*/, s32 /*offset*/, s32 /*prio*/)
-#define cbForReadSync FUNCTION_ADDRESS(void, 0x8007819C)
-#define DVDPrepareStreamAsync FUNCTION_ADDRESS(BOOL, 0x800781C0, int, uint, uint, int)
-#define cbForPrepareStreamAsync FUNCTION_ADDRESS(void, 0x800782AC)
-#define defaultOptionalCommandChecker FUNCTION_ADDRESS(void, 0x800782DC)
-#define DVDInit FUNCTION_ADDRESS(void, 0x800782E0)
-#define stateReadingFST FUNCTION_ADDRESS(void, 0x800783AC)
-#define cbForStateReadingFST FUNCTION_ADDRESS(void, 0x80078440)
-#define cbForStateError FUNCTION_ADDRESS(void, 0x800784CC)
-#define stateTimeout FUNCTION_ADDRESS(void, 0x80078578)
-#define stateGettingError FUNCTION_ADDRESS(void, 0x800785AC)
-#define CategorizeError FUNCTION_ADDRESS(void, 0x800785D4)
-#define cbForStateGettingError FUNCTION_ADDRESS(void, 0x80078688)
-#define cbForUnrecoveredError FUNCTION_ADDRESS(void, 0x8007891C)
-#define cbForUnrecoveredErrorRetry FUNCTION_ADDRESS(void, 0x80078984)
-#define stateGoToRetry FUNCTION_ADDRESS(void, 0x80078A1C)
-#define cbForStateGoToRetry FUNCTION_ADDRESS(void, 0x80078A44)
-#define stateCheckID FUNCTION_ADDRESS(void, 0x80078B9C)
-#define stateCheckID3 FUNCTION_ADDRESS(void, 0x80078C7C)
-#define stateCheckID2a FUNCTION_ADDRESS(void, 0x80078CB0)
-#define cbForStateCheckID2a FUNCTION_ADDRESS(void, 0x80078CE4)
-#define stateCheckID2 FUNCTION_ADDRESS(void, 0x80078D58)
-#define cbForStateCheckID1 FUNCTION_ADDRESS(void, 0x80078D90)
-#define cbForStateCheckID2 FUNCTION_ADDRESS(void, 0x80078EA4)
-#define cbForStatecheckID3 FUNCTION_ADDRESS(void, 0x80078F88)
-#define AlarmHandler_80079084 FUNCTION_ADDRESS(void, 0x80079084)
-#define stateCoverClosed FUNCTION_ADDRESS(void, 0x800790C8)
-#define stateCoverClosed_CMD FUNCTION_ADDRESS(void, 0x80079194)
-#define cbForStateCoverClosed FUNCTION_ADDRESS(void, 0x800791C4)
-#define stateMotorStopped FUNCTION_ADDRESS(void, 0x80079234)
-#define cbForStateMotorStopped FUNCTION_ADDRESS(void, 0x8007925C)
-#define stateReady FUNCTION_ADDRESS(void, 0x80079340)
-#define stateBusy FUNCTION_ADDRESS(void, 0x80079570)
-#define cbForStateBusy FUNCTION_ADDRESS(void, 0x80079890)
-#define DVDReadAbsAsyncPrio FUNCTION_ADDRESS(bool, 0x80079EC8, DVDCommandBlock * /*block*/, void * /*addr*/, int /*length*/, int /*offset*/, DVDCBCallback /*callback*/, int /*prio*/)
-#define DVDReadAbsAsyncForBS FUNCTION_ADDRESS(void, 0x80079FA4)
-#define DVDReadDiskID FUNCTION_ADDRESS(void, 0x8007A074)
-#define DVDPrepareStreamAbsAsync FUNCTION_ADDRESS(void, 0x8007A148)
-#define DVDCancelStreamAsync FUNCTION_ADDRESS(void, 0x8007A20C)
-#define DVDStopSteramAtEndAsync FUNCTION_ADDRESS(void, 0x8007A2C8)
-#define DVDGetStreamErrorStatusAsync FUNCTION_ADDRESS(void, 0x8007A384)
-#define DVDGetSteramPlayAddrAsync FUNCTION_ADDRESS(void, 0x8007A440)
-#define DVDInquiryAsync FUNCTION_ADDRESS(void, 0x8007A4FC)
-#define DVDReset FUNCTION_ADDRESS(void, 0x8007A5CC)
-#define DVDGetCommandBlockStatus FUNCTION_ADDRESS(void, 0x8007A610)
-#define DVDGetDriveStatus FUNCTION_ADDRESS(void, 0x8007A65C)
-#define DVDSetAutoInvalidation FUNCTION_ADDRESS(void, 0x8007A708)
-#define DVDResume FUNCTION_ADDRESS(void, 0x8007A718)
-#define DVDCancelAsync FUNCTION_ADDRESS(bool, 0x8007A768, DVDCommandBlock * /*block*/, DVDCBCallback /*callback*/)
-#define DVDCancel FUNCTION_ADDRESS(void, 0x8007A9E4)
-#define DVDGetCurrentDiskID FUNCTION_ADDRESS(char *, 0x8007AAB4)
-#define DVDCheckDisk FUNCTION_ADDRESS(void, 0x8007AABC)
-#define __DVDPrepareResetAsync FUNCTION_ADDRESS(void, 0x8007ABB4)
-#define __DVDTestAlarm FUNCTION_ADDRESS(void, 0x8007ACD0)
-#define __DVDClearWaitingQueue FUNCTION_ADDRESS(void, 0x8007AD08)
-#define __DVDPushWaitingQueue FUNCTION_ADDRESS(void, 0x8007AD40)
-#define __DVDPopWaitingQueue FUNCTION_ADDRESS(void, 0x8007ADA8)
-#define __DVDCheckWaitingQueue FUNCTION_ADDRESS(void, 0x8007AE48)
-#define __DVDDequeueWaitingQueue FUNCTION_ADDRESS(void, 0x8007AEA0)
-#define DVDDumpWaitingQueue FUNCTION_ADDRESS(void, 0x8007AF00)
-#define ErrorCode2Num FUNCTION_ADDRESS(void, 0x8007B00C)
-#define __DVDStoreErrorCode FUNCTION_ADDRESS(void, 0x8007B128)
-#define DVDCompareDiskID FUNCTION_ADDRESS(void, 0x8007B1A4)
-#define __DVDPrintFatalMessage FUNCTION_ADDRESS(void, 0x8007B29C)
-#define __fstLoad FUNCTION_ADDRESS(void, 0x8007B3A4)
-#define VISetPreRetraceCallback FUNCTION_ADDRESS(void, 0x8007B780)
-#define VISetPostRetraceCallback FUNCTION_ADDRESS(void, 0x8007B7C4)
-#define getTiming FUNCTION_ADDRESS(void, 0x8007B808)
-#define __VIInit FUNCTION_ADDRESS(void, 0x8007B8A8)
-#define VIInit FUNCTION_ADDRESS(void, 0x8007BAA8)
-#define VIWaitForRetrace FUNCTION_ADDRESS(void, 0x8007BF58)
-#define setFbbRegs FUNCTION_ADDRESS(void, 0x8007BFAC)
-#define setVerticalRegs FUNCTION_ADDRESS(void, 0x8007C280, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int)
-#define VIConfigure FUNCTION_ADDRESS(void, 0x8007C420)
-#define VIFlush FUNCTION_ADDRESS(void, 0x8007CC48)
-#define VISetNextFrameBuffer FUNCTION_ADDRESS(void, 0x8007CD78)
-#define VISetNextRightFrameBuffer FUNCTION_ADDRESS(void, 0x8007CDE4)
-#define GetCurrentDisplayPosition FUNCTION_ADDRESS(void, 0x8007CE60)
-#define getCurrentFieldEvenOdd FUNCTION_ADDRESS(void, 0x8007CE9C)
-#define VIGetNextField FUNCTION_ADDRESS(void, 0x8007CF04)
-#define VIGetCurrentLine FUNCTION_ADDRESS(void, 0x8007CFA0)
-#define VIGetTvFormat FUNCTION_ADDRESS(void, 0x8007D038)
-#define VIGetDTVStatus FUNCTION_ADDRESS(void, 0x8007D0A0)
-#define __VIDisplayPositionToXY FUNCTION_ADDRESS(void, 0x8007D0DC)
-#define __VIGetCurrentPosition FUNCTION_ADDRESS(void, 0x8007D2F8)
-#define ClampStick FUNCTION_ADDRESS(void, 0x8007D358)
-#define PADClamp FUNCTION_ADDRESS(void, 0x8007D488)
-#define UpdateOrigin FUNCTION_ADDRESS(void, 0x8007D59C)
-#define PadOriginCallback FUNCTION_ADDRESS(void, 0x8007D740)
-#define PADOriginUpdateCallback FUNCTION_ADDRESS(void, 0x8007D804)
-#define PADProbeCallback FUNCTION_ADDRESS(void, 0x8007D8D0)
-#define PADTypeAndStatusCallback FUNCTION_ADDRESS(void, 0x8007D9A8)
-#define PADReceiveCheckCallback FUNCTION_ADDRESS(void, 0x8007DCD4)
-#define PADReset FUNCTION_ADDRESS(void, 0x8007DE14)
-#define PADRecalibrate FUNCTION_ADDRESS(void, 0x8007DF24)
-#define PADInit FUNCTION_ADDRESS(void, 0x8007E038)
-#define PADRead FUNCTION_ADDRESS(void, 0x8007E188)
-#define PadControlMotor FUNCTION_ADDRESS(void, 0x8007E488)
-#define PADSetSpec FUNCTION_ADDRESS(void, 0x8007E540)
-#define SPEC0_MakeStatus FUNCTION_ADDRESS(void, 0x8007E5A0)
-#define SPEC1_MakeStatus FUNCTION_ADDRESS(void, 0x8007E714)
-#define SPEC2_MakeStatus FUNCTION_ADDRESS(void, 0x8007E888)
-#define OnReset_8007ecf8 FUNCTION_ADDRESS(void, 0x8007ECF8)
-#define SamplingHandler FUNCTION_ADDRESS(void, 0x8007EDB4)
-#define PADSetSamplingCallback FUNCTION_ADDRESS(void, 0x8007EE14)
-#define __PADDisableRecalibration FUNCTION_ADDRESS(void, 0x8007EE68)
-#define AIRegisterDMACallback FUNCTION_ADDRESS(void, 0x8007EEE4)
-#define AIInitDMA FUNCTION_ADDRESS(void, 0x8007EF28)
-#define AIStartDMA FUNCTION_ADDRESS(void, 0x8007EFB0)
-#define AIGetDMABytesLeft FUNCTION_ADDRESS(void, 0x8007EFC8)
-#define AIGetDMAStartAddr FUNCTION_ADDRESS(void, 0x8007EFE0)
-#define AIRegisterStreamCallback FUNCTION_ADDRESS(void, 0x8007EFFC)
-#define AIResetStreamSampleCount FUNCTION_ADDRESS(void, 0x8007F040)
-#define AISetStreamTrigger FUNCTION_ADDRESS(void, 0x8007F058)
-#define AISetStreamPlayState FUNCTION_ADDRESS(void, 0x8007F064)
-#define AIGetStreamPlayState FUNCTION_ADDRESS(void, 0x8007F13C)
-#define AISetDSPSampleRate FUNCTION_ADDRESS(void, 0x8007F14C)
-#define AIGetDSPSampleRate FUNCTION_ADDRESS(void, 0x8007F22C)
-#define __AI_set_stream_sample_rate FUNCTION_ADDRESS(void, 0x8007F240)
-#define AIGetStreamSampleRate FUNCTION_ADDRESS(void, 0x8007F314)
-#define AISetStreamVolLeft FUNCTION_ADDRESS(void, 0x8007F324)
-#define AIGetStreamVolLeft FUNCTION_ADDRESS(void, 0x8007F340)
-#define AISetStreamVolRight FUNCTION_ADDRESS(void, 0x8007F350)
-#define AIGetStreamVolRight FUNCTION_ADDRESS(void, 0x8007F36C)
-#define AIInit FUNCTION_ADDRESS(void, 0x8007F37C)
-#define __AICallbackStackSwitch FUNCTION_ADDRESS(void, 0x8007F610)
-#define __AI_SRC_INIT FUNCTION_ADDRESS(void, 0x8007F668)
-#define ARRegisterDMACallback FUNCTION_ADDRESS(void, 0x8007F84C)
-#define ARGetDMAStatus FUNCTION_ADDRESS(void, 0x8007F890)
-#define ARStartDMA FUNCTION_ADDRESS(void, 0x8007F8CC, int /*type*/, int /*mainmem_addr*/, int /*aram_addr*/, int /*length*/)
-#define ARInit FUNCTION_ADDRESS(void, 0x8007F9BC)
-#define ARGetBaseAddress FUNCTION_ADDRESS(void, 0x8007FA80)
-#define ARGetSize FUNCTION_ADDRESS(void, 0x8007FA88)
-#define __ARHandler FUNCTION_ADDRESS(void, 0x8007FA90)
-#define __ARClearInterrupt FUNCTION_ADDRESS(void, 0x8007FB08)
-#define __ARGetInterruptStatus FUNCTION_ADDRESS(void, 0x8007FB28)
-#define __ARChecksize FUNCTION_ADDRESS(void, 0x8007FB38)
-#define __ARQServiceQueueLo FUNCTION_ADDRESS(void, 0x8008132C)
-#define __ARQCallbackHack FUNCTION_ADDRESS(void, 0x8008142C)
-#define __ARQInterruptServiceRoutine FUNCTION_ADDRESS(void, 0x80081430)
-#define ARQInit FUNCTION_ADDRESS(void, 0x800814FC)
-#define ARQPostRequest FUNCTION_ADDRESS(void, 0x8008156C, ARQRequest * /*task*/, int /*owner*/, int /*type*/, int /*priority*/, int /*source*/, int /*dest*/, int /*length*/, func * /*callback*/)
-#define ARQRemoveOwnerRequest FUNCTION_ADDRESS(void, 0x800816C8)
-#define ARQFlushQueue FUNCTION_ADDRESS(void, 0x800817B8)
-#define ARQSetChunkSize FUNCTION_ADDRESS(void, 0x800817F0)
-#define DSPCheckMailToDSP FUNCTION_ADDRESS(void, 0x80081810)
-#define DSPCheckMailFromDSP FUNCTION_ADDRESS(void, 0x80081820)
-#define DSPReadMailFromDSP FUNCTION_ADDRESS(void, 0x80081830)
-#define DSPSendMailToDSP FUNCTION_ADDRESS(void, 0x80081848)
-#define DSPInit FUNCTION_ADDRESS(void, 0x8008185C)
-#define DSPAddTask FUNCTION_ADDRESS(void, 0x80081920)
-#define DSPCancelTask FUNCTION_ADDRESS(void, 0x80081990)
-#define __DSP_debug_printf FUNCTION_ADDRESS(void, 0x800819D0)
-#define __DSPHandler FUNCTION_ADDRESS(void, 0x80081A20)
-#define __DSP_exec_task FUNCTION_ADDRESS(void, 0x80081E44)
-#define __DSP_boot_task FUNCTION_ADDRESS(void, 0x80081FE4)
-#define __DSP_insert_task FUNCTION_ADDRESS(void, 0x80082170)
-#define __DSP_remove_task FUNCTION_ADDRESS(void, 0x80082210)
-#define __CARDDefaultApiCallback FUNCTION_ADDRESS(void, 0x800822A4)
-#define __CARDSyncCallback FUNCTION_ADDRESS(void, 0x800822A8)
-#define __CARDExtHandler FUNCTION_ADDRESS(void, 0x800822DC)
-#define __CARDExiHandler FUNCTION_ADDRESS(void, 0x800823B4)
-#define __CARDTxHandler FUNCTION_ADDRESS(void, 0x800824CC)
-#define __CARDUnlockHandler FUNCTION_ADDRESS(void, 0x80082574)
-#define __CardEnableInterrupt FUNCTION_ADDRESS(void, 0x800825F8)
-#define __CARDReadStatus FUNCTION_ADDRESS(void, 0x800826B8)
-#define __CARDClearStatus FUNCTION_ADDRESS(void, 0x800827A8)
-#define TimeoutHandler FUNCTION_ADDRESS(void, 0x80082854)
-#define Retry FUNCTION_ADDRESS(void, 0x800828F8)
-#define UnlockedCallback FUNCTION_ADDRESS(void, 0x80082B24)
-#define __CARDStart FUNCTION_ADDRESS(void, 0x80082C34)
-#define __CARDReadSegment FUNCTION_ADDRESS(void, 0x80082DE8)
-#define __CARDWritePage FUNCTION_ADDRESS(void, 0x80082F1C)
-#define __CARDEraseSector FUNCTION_ADDRESS(void, 0x80083038)
-#define CARDInit FUNCTION_ADDRESS(void, 0x80083118)
-#define __CARDGetFontEncode FUNCTION_ADDRESS(void, 0x800831C4)
-#define __CARDSetDiskID FUNCTION_ADDRESS(void, 0x800831CC)
-#define __CARDGetControlBlock FUNCTION_ADDRESS(void, 0x80083204)
-#define __CARDPutControlBlock FUNCTION_ADDRESS(void, 0x800832BC)
-#define CARDGetResultCode FUNCTION_ADDRESS(void, 0x80083320)
-#define CARDFreeBlocks FUNCTION_ADDRESS(void, 0x80083350)
-#define __CARDSync FUNCTION_ADDRESS(void, 0x800834A0)
-#define OnReset_80083538 FUNCTION_ADDRESS(void, 0x80083538)
-#define bitrev FUNCTION_ADDRESS(void, 0x80083588)
-#define ReadArrayUnlock FUNCTION_ADDRESS(void, 0x800836F4)
-#define DummyLen FUNCTION_ADDRESS(void, 0x80083838)
-#define __CARDUnlock FUNCTION_ADDRESS(void, 0x800838FC)
-#define InitCallback FUNCTION_ADDRESS(void, 0x80084454)
-#define DoneCallback FUNCTION_ADDRESS(void, 0x800844C4)
-#define BlockReadCallback FUNCTION_ADDRESS(void, 0x800847E8)
-#define __CARDRead FUNCTION_ADDRESS(void, 0x800848C4)
-#define BlockWriteCallback FUNCTION_ADDRESS(void, 0x80084928)
-#define __CARDWrite FUNCTION_ADDRESS(void, 0x80084A04)
-#define CARDGetXferredBytes FUNCTION_ADDRESS(void, 0x80084A68)
-#define __CARDGetFatBlock FUNCTION_ADDRESS(void, 0x80084A80)
-#define WriteCallback FUNCTION_ADDRESS(void, 0x80084A88)
-#define EraseCallback FUNCTION_ADDRESS(void, 0x80084B5C)
-#define __CARDAllocBlock FUNCTION_ADDRESS(void, 0x80084C24)
-#define __CARDFreeBlock FUNCTION_ADDRESS(void, 0x80084D3C)
-#define __CARDUpdateFatBlock FUNCTION_ADDRESS(void, 0x80084DD8)
-#define __CARDGetDirBlock FUNCTION_ADDRESS(void, 0x80084E84)
-#define WriteCallback_80084e8c FUNCTION_ADDRESS(void, 0x80084E8C)
-#define EraseCallback_80084f5c FUNCTION_ADDRESS(void, 0x80084F5C)
-#define __CARDUpdateDir FUNCTION_ADDRESS(void, 0x80085024)
-#define __CARDCheckSum FUNCTION_ADDRESS(void, 0x800850E8)
-#define VerifyID FUNCTION_ADDRESS(void, 0x80085298)
-#define VerifyDir FUNCTION_ADDRESS(void, 0x8008551C)
-#define VerifyFat FUNCTION_ADDRESS(void, 0x8008575C)
-#define __CARDVerify FUNCTION_ADDRESS(void, 0x800859E0)
-#define CARDCheckExAsync FUNCTION_ADDRESS(void, 0x80085A6C)
-#define CARDCheckAsync FUNCTION_ADDRESS(void, 0x80085FFC)
-#define CARDCheckEx FUNCTION_ADDRESS(void, 0x80086024)
-#define IsCard FUNCTION_ADDRESS(void, 0x80086078)
-#define CARDProbeEx FUNCTION_ADDRESS(void, 0x80086144)
-#define DoMount FUNCTION_ADDRESS(void, 0x800862C0)
-#define __CARDMountCallback FUNCTION_ADDRESS(void, 0x800866D0)
-#define CARDMountAsync FUNCTION_ADDRESS(void, 0x80086808)
-#define CARDMount FUNCTION_ADDRESS(void, 0x800869A8)
-#define DoUnmount FUNCTION_ADDRESS(void, 0x800869F0)
-#define CARDUnmount FUNCTION_ADDRESS(void, 0x80086A8C)
-#define __CARDFormatRegionAsync FUNCTION_ADDRESS(void, 0x80086C7C)
-#define CARDFormatAsync FUNCTION_ADDRESS(void, 0x800872D4)
-#define CARDFormat FUNCTION_ADDRESS(void, 0x8008731C)
-#define __CARDCompareFileName FUNCTION_ADDRESS(void, 0x80087370)
-#define __CARDAccess FUNCTION_ADDRESS(void, 0x800873D8)
-#define __CARDIsWritable FUNCTION_ADDRESS(void, 0x8008746C)
-#define __CARDIsReadable FUNCTION_ADDRESS(void, 0x800875A0)
-#define __CARDGetFileNo FUNCTION_ADDRESS(void, 0x80087694)
-#define CARDOpen FUNCTION_ADDRESS(void, 0x800877E4)
-#define CARDClose FUNCTION_ADDRESS(void, 0x80087900)
-#define __CARDIsOpened FUNCTION_ADDRESS(void, 0x80087954)
-#define CreateCallbackFat FUNCTION_ADDRESS(void, 0x8008795C)
-#define CARDCreateAsync FUNCTION_ADDRESS(void, 0x80087A8C)
-#define CARDCreate FUNCTION_ADDRESS(void, 0x80087CAC)
-#define __CARDSeek FUNCTION_ADDRESS(void, 0x80087CF4)
-#define ReadCallback FUNCTION_ADDRESS(void, 0x80087EAC)
-#define CARDReadAsync FUNCTION_ADDRESS(void, 0x80087FDC)
-#define CARDRead FUNCTION_ADDRESS(void, 0x80088120)
-#define WriteCallback_80088168 FUNCTION_ADDRESS(void, 0x80088168)
-#define EraseCallback_800882d8 FUNCTION_ADDRESS(void, 0x800882D8)
-#define CARDWriteAsync FUNCTION_ADDRESS(void, 0x80088388)
-#define CARDWrite FUNCTION_ADDRESS(void, 0x8008849C)
-#define DeleteCallback FUNCTION_ADDRESS(void, 0x800884E4)
-#define CARDFastDeleteAsync FUNCTION_ADDRESS(void, 0x80088588)
-#define CARDFastDelete FUNCTION_ADDRESS(void, 0x80088698)
-#define UpdateIconOffsets FUNCTION_ADDRESS(void, 0x800886E0)
-#define CARDGetStatus FUNCTION_ADDRESS(void, 0x800888D8)
-#define CARDSetStatusAsync FUNCTION_ADDRESS(void, 0x800889EC)
-#define CARDSetStatus FUNCTION_ADDRESS(void, 0x80088B60)
-#define __CARDGetStatusEx FUNCTION_ADDRESS(void, 0x80088BA8)
-#define __CARDSetStatusExAsync FUNCTION_ADDRESS(void, 0x80088C4C, int /*chan*/, int /*cardFile*/, int /*dst*/, int)
-#define CARDGetSerialNo FUNCTION_ADDRESS(void, 0x80088EE8)
-#define CARDSetAttributesAsync FUNCTION_ADDRESS(void, 0x80088FAC)
-#define CARDSetAttributes FUNCTION_ADDRESS(void, 0x80089090)
-#define __GXDefaultTexRegionCallback FUNCTION_ADDRESS(void, 0x800890D8)
-#define __GXDefaultTlutRegionCallback FUNCTION_ADDRESS(void, 0x800891D4)
-#define __GXShutdown FUNCTION_ADDRESS(void, 0x800891F8)
-#define __GXInitRevisionBits FUNCTION_ADDRESS(void, 0x80089388)
-#define GXInit FUNCTION_ADDRESS(void, 0x8008952C)
-#define __GXInitGX FUNCTION_ADDRESS(void, 0x80089B2C)
-#define GXCPInterruptHandler FUNCTION_ADDRESS(void, 0x8008A464)
-#define GXGetFifoBase FUNCTION_ADDRESS(void *, 0x8008A598, GXFifoObj * /*fifo*/)
-#define GXInitFifoPtrs FUNCTION_ADDRESS(void, 0x8008A604, GXFifoObj * /*fifo*/, void * /*readPtr*/, void * /*writePtr*/)
-#define GXInitFifoLimits FUNCTION_ADDRESS(void, 0x8008A674, GXFifoObj * /*fifo*/, int /*hiWaterMark*/, int /*loWaterMark*/)
-#define GXSetCPUFifo FUNCTION_ADDRESS(void, 0x8008A680, GXFifoObj * /*fifo*/)
-#define GXSetGPFifo FUNCTION_ADDRESS(void, 0x8008A7A8, GXFifoObj * /*fifo*/)
-#define GXSetBreakPtCallback FUNCTION_ADDRESS(void, 0x8008A948)
-#define __GXFifoInit FUNCTION_ADDRESS(void, 0x8008A98C)
-#define __GXFifoReadEnable FUNCTION_ADDRESS(void, 0x8008A9D8)
-#define __GXFifoReadDisable FUNCTION_ADDRESS(void, 0x8008A9FC)
-#define __GXFifoLink FUNCTION_ADDRESS(void, 0x8008AA20)
-#define __GXWriteFifoIntEnable FUNCTION_ADDRESS(void, 0x8008AA54)
-#define __GXWriteFifoIntReset FUNCTION_ADDRESS(void, 0x8008AA84)
-#define GXSetCurrentGXThread FUNCTION_ADDRESS(OSThread *, 0x8008AAB4)
-#define GXGetCurrentGXThread FUNCTION_ADDRESS(OSThread *, 0x8008AB00)
-#define GXGetGPFifo FUNCTION_ADDRESS(GXFifoObj *, 0x8008AB08)
-#define GXSetVtxDesc FUNCTION_ADDRESS(void, 0x8008AB10, GXAttr /*attr*/, GXAttrType /*type*/)
-#define GXSetVtxDescv FUNCTION_ADDRESS(void, 0x8008AD7C, GXVtxDescList * /*attrPtr*/)
-#define __GXSetVCD FUNCTION_ADDRESS(void, 0x8008B004)
-#define __GXCalculateVLim FUNCTION_ADDRESS(void, 0x8008B0C0)
-#define GXGetVtxDesc FUNCTION_ADDRESS(void, 0x8008B1E4, GXAttr /*attr*/, GXAttrType * /*type*/)
-#define GXGetVtxDescv FUNCTION_ADDRESS(void, 0x8008B398, GXVtxDescList * /*vcd*/)
-#define GXClearVtxDesc FUNCTION_ADDRESS(void, 0x8008B428)
-#define GXSetVtxAttrFmt FUNCTION_ADDRESS(void, 0x8008B460, GXVtxFmt /*vtxfmt*/, GXAttr /*attr*/, GXCompCnt /*cnt*/, GXCompType /*type*/, byte /*frac*/)
-#define GXSetVtxAttrFmtv FUNCTION_ADDRESS(void, 0x8008B6BC, GXVtxFmt /*vtxfmt*/, GXVtxAttrFmtList * /*list*/)
-#define __GXSetVAT FUNCTION_ADDRESS(void, 0x8008B93C)
-#define GXGetVtxAttrFmt FUNCTION_ADDRESS(void, 0x8008B9C4, GXVtxFmt /*idx*/, GXAttr /*attr*/, GXCompCnt * /*compCnt*/, GXCompType * /*compType*/, byte * /*shift*/)
-#define GXGetVtxAttrFmtv FUNCTION_ADDRESS(void, 0x8008BC44, GXVtxFmt /*fmt*/, GXVtxAttrFmtList * /*vat*/)
-#define GXSetArray FUNCTION_ADDRESS(void, 0x8008BCB8, GXAttr /*attr*/, void * /*base_ptr*/, byte /*stride*/)
-#define GxInvalidateVtxCache FUNCTION_ADDRESS(void, 0x8008BCFC)
-#define GXSetTexCoordGen2 FUNCTION_ADDRESS(void, 0x8008BD0C, GXTexCoordID /*dst_coord*/, GXTexGenType /*func*/, GXTexGenSrc /*src_param*/, int /*mtx*/, GXBool /*normalize*/, int /*postmtx*/)
-#define GXSetNumTexGens FUNCTION_ADDRESS(void, 0x8008BF8C, byte /*nTexGens*/)
-#define GXSetMisc FUNCTION_ADDRESS(void, 0x8008BFC8, GXMiscToken /*token*/, int /*val*/)
-#define GXFlush FUNCTION_ADDRESS(void, 0x8008C05C)
-#define __GXAbort FUNCTION_ADDRESS(void, 0x8008C0B8)
-#define GXSetDrawSync FUNCTION_ADDRESS(void, 0x8008C224, short /*token*/)
-#define GXReadDrawSync FUNCTION_ADDRESS(short, 0x8008C2D8)
-#define GXDrawDone FUNCTION_ADDRESS(void, 0x8008C2E4)
-#define GXPixModeSync FUNCTION_ADDRESS(void, 0x8008C364)
-#define GXPokeAlphaMode FUNCTION_ADDRESS(void, 0x8008C388, GXCompare /*func*/, byte /*threshold*/)
-#define GXPokeAlphaRead FUNCTION_ADDRESS(void, 0x8008C39C, GXAlphaReadMode /*mode*/)
-#define GXPokeAlphaUpdate FUNCTION_ADDRESS(void, 0x8008C3BC, GXBool /*update_enable*/)
-#define GXPokeBlendMode FUNCTION_ADDRESS(void, 0x8008C3D4, GXBlendMode /*type*/, GXBlendFactor /*src_factor*/, GXBlendFactor /*dst_factor*/, GXLogicOp /*op*/)
-#define GXPokeColorUpdate FUNCTION_ADDRESS(void, 0x8008C438, GXBool /*update_enable*/)
-#define GXPokeDstAlpha FUNCTION_ADDRESS(void, 0x8008C450, GXBool /*enable*/, byte /*alpha*/)
-#define GXPokeDither FUNCTION_ADDRESS(void, 0x8008C474, GXBool /*dither*/)
-#define GXPokeZMode FUNCTION_ADDRESS(void, 0x8008C48C, GXBool /*compare_enable*/, GXCompare /*func*/, GXBool /*update_enable*/)
-#define GXSetDrawSyncCallback FUNCTION_ADDRESS(void, 0x8008C4AC)
-#define GXSetDrawDoneCallback FUNCTION_ADDRESS(void, 0x8008C578)
-#define __GXPEInit FUNCTION_ADDRESS(void, 0x8008C63C)
-#define __GXSetDirtyState FUNCTION_ADDRESS(void, 0x8008C6B0)
-#define GXBegin FUNCTION_ADDRESS(void, 0x8008C730, GXPrimitive /*type*/, GXVtxFmt /*vtxfmt*/, short /*nverts*/)
-#define __GXSendFlushPrim FUNCTION_ADDRESS(void, 0x8008C800)
-#define GXSetLineWidth FUNCTION_ADDRESS(void, 0x8008C888, byte /*width*/, GXTexOffset /*texOffsets*/)
-#define GXGetLineWidth FUNCTION_ADDRESS(void, 0x8008C8C8, byte * /*width*/, GXTexOffset * /*texOffsets*/)
-#define GXSetPointSize FUNCTION_ADDRESS(void, 0x8008C8E4, byte /*pointSize*/, GXTexOffset /*texOffsets*/)
-#define GXEnableTexOffsets FUNCTION_ADDRESS(void, 0x8008C924, GXTexCoordID /*coord*/, GXBool /*line_enable*/, GXBool /*point_enable*/)
-#define GXSetCullMode FUNCTION_ADDRESS(void, 0x8008C96C, GXCullMode /*mode*/)
-#define GXGetCullMode FUNCTION_ADDRESS(void, 0x8008C994, GXCullMode * /*mode*/)
-#define GXSetCoPlanar FUNCTION_ADDRESS(void, 0x8008C9B0, GXBool /*enable*/)
-#define __GXSetGenMode FUNCTION_ADDRESS(void, 0x8008C9E4)
-#define GXAdjustForOverscan FUNCTION_ADDRESS(void, 0x8008CA08, GXRenderModeObj * /*rmin*/, GXRenderModeObj * /*rmout*/, short /*hor*/, short /*ver*/)
-#define GXSetDispCopySrc FUNCTION_ADDRESS(void, 0x8008CB4C, short /*left*/, short /*top*/, short /*wd*/, short /*ht*/)
-#define GXSetTexCopySrc FUNCTION_ADDRESS(void, 0x8008CBC8, short /*left*/, short /*top*/, short /*wd*/, short /*ht*/)
-#define GXSetDispCopyDst FUNCTION_ADDRESS(void, 0x8008CC44, short /*wd*/, short /*ht*/)
-#define GXSetTexCopyDst FUNCTION_ADDRESS(void, 0x8008CC78, short /*wd*/, short /*ht*/, GXTexFmt /*fmt*/, GXBool /*mipmap*/)
-#define GXSetDispCopyFrame2Field FUNCTION_ADDRESS(void, 0x8008CDA8, GXCopyMode /*mode*/)
-#define GXSetCopyClamp FUNCTION_ADDRESS(void, 0x8008CDCC, GXFBClamp /*clamp*/)
-#define GXSetDispCopyYScale FUNCTION_ADDRESS(int, 0x8008CE24, f64 /*vscale*/)
-#define GXSetCopyClear FUNCTION_ADDRESS(void, 0x8008CEF0, GXColor /*clear_clr*/, int /*clear_z*/)
-#define GXSetCopyFilter FUNCTION_ADDRESS(void, 0x8008CF68, GXBool /*aa*/, byte_12__2_ * /*sample_pattern*/, GXBool /*vf*/, byte_7_ /*vfilter*/)
-#define GXSetDispCopyGamma FUNCTION_ADDRESS(void, 0x8008D170, GXGamma /*gamma*/)
-#define GXCopyDisp FUNCTION_ADDRESS(void, 0x8008D184, void * /*dest*/, GXBool /*clear*/)
-#define GXCopyTex FUNCTION_ADDRESS(void, 0x8008D2EC, void * /*dest*/, GXBool /*clear*/)
-#define GXClearBoundingBox FUNCTION_ADDRESS(void, 0x8008D478)
-#define GXInitLightAttn FUNCTION_ADDRESS(void, 0x8008D4B0, undefined /*lt_obj*/, float /*a0*/, float /*a1*/, float /*a2*/, float /*k0*/, float /*k1*/, float /*k2*/)
-#define GXInitLightPos FUNCTION_ADDRESS(void, 0x8008D4CC, GXLightObjPriv * /*lt_obj*/, float /*x*/, float /*y*/, float /*z*/)
-#define GXInitLightDir FUNCTION_ADDRESS(void, 0x8008D4DC, GXLightObjPriv * /*lt_obj*/, float /*nx*/, float /*ny*/, float /*nz*/)
-#define GXInitLightColor FUNCTION_ADDRESS(void, 0x8008D4F8, undefined /*lt_obj*/, GXColor /*color*/)
-#define GXLoadLightObjImm FUNCTION_ADDRESS(void, 0x8008D504, undefined /*lt_obj*/, GXLightID /*light*/)
-#define GXSetChanAmbColor FUNCTION_ADDRESS(void, 0x8008D580, GXChannelID /*chan*/, GXColor /*amb_color*/)
-#define GXSetChanMatColor FUNCTION_ADDRESS(void, 0x8008D668, GXChannelID /*chan*/, GXColor /*mat_color*/)
-#define GXSetNumChans FUNCTION_ADDRESS(void, 0x8008D750, byte /*nChans*/)
-#define GXSetChanCtrl FUNCTION_ADDRESS(void, 0x8008D78C, GXChannelID /*chan*/, GXBool /*enable*/, GXColorSrc /*amb_src*/, GXColorSrc /*mat_src*/, int /*light_mask*/, GXDiffuseFn /*diff_fn*/, GXAttnFn /*attn_fn*/)
-#define GXGetTexBufferSize FUNCTION_ADDRESS(int, 0x8008D83C, short /*width*/, short /*height*/, int /*format*/, GXBool /*mipmap*/, byte /*max_lod*/)
-#define __GetImageTileCount FUNCTION_ADDRESS(void, 0x8008D998)
-#define GXInitTexObj FUNCTION_ADDRESS(void, 0x8008DA60, GXTexObj * /*obj*/, void * /*image_ptr*/, short /*width*/, short /*height*/, GXTexFmt /*format*/, GXTexWrapMode /*wrap_s*/, GXTexWrapMode /*wrap_t*/, GXBool /*mipmap*/)
-#define GXInitTexObjCI FUNCTION_ADDRESS(void, 0x8008DCAC, GXTexObj * /*obj*/, void * /*image_ptr*/, short /*width*/, short /*height*/, GXCITexFmt /*format*/, GXTexWrapMode /*wrap_s*/, GXTexWrapMode /*wrap_t*/, GXBool /*mipmap*/, int /*tlut_name*/)
-#define GXInitTexObjLOD FUNCTION_ADDRESS(void, 0x8008DCF4, GXTexObj * /*obj*/, GXTexFilter /*min_filt*/, GXTexFilter /*mag_filt*/, float /*min_lod*/, float /*max_lod*/, float /*lod_bias*/, GXBool /*bias_clamp*/, GXBool /*do_edge_lod*/, GXAnisotropy /*max_aniso*/)
-#define GXGetTexObjWidth FUNCTION_ADDRESS(short, 0x8008DE58, GXTexObj * /*tex_obj*/)
-#define GXGetTexObjHeight FUNCTION_ADDRESS(short, 0x8008DE68, GXTexObj * /*tex_obj*/)
-#define GXGetTexObjFmt FUNCTION_ADDRESS(GXTexFmt, 0x8008DE78, GXTexObj * /*tex_obj*/)
-#define GXGetTexObjMipMap FUNCTION_ADDRESS(GXBool, 0x8008DE80, GXTexObj * /*tex_obj*/)
-#define GXLoadTexObjPreLoaded FUNCTION_ADDRESS(void, 0x8008DE98, GXTexObj * /*obj*/, GXTexRegion * /*region*/, GXTexMapID /*id*/)
-#define GXLoadTexObj FUNCTION_ADDRESS(void, 0x8008E014, GXTexObj * /*obj*/, GXTexMapID /*id*/)
-#define GXInitTlutObj FUNCTION_ADDRESS(void, 0x8008E068, GXTlutObj * /*tlut_obj*/, void * /*lut*/, GXTlutFmt /*fmt*/, short /*n_entries*/)
-#define GXLoadTlut FUNCTION_ADDRESS(void, 0x8008E0A0, GXTlutObj * /*tlut_obj*/, int /*tlut_name*/)
-#define GXInitTexCacheRegion FUNCTION_ADDRESS(void, 0x8008E138, GXTexRegion * /*region*/, GXBool /*is_32b_mipmap*/, int /*tmem_even*/, GXTexCacheSize /*size_even*/, int /*tmem_odd*/, GXTexCacheSize /*size_odd*/)
-#define GXInitTlutRegion FUNCTION_ADDRESS(void, 0x8008E22C, GXTlutRegion * /*region*/, int /*tmem_addr*/, GXTlutSize /*tlut_size*/)
-#define GXInvalidateTexAll FUNCTION_ADDRESS(void, 0x8008E264)
-#define GXSetTexRegionCallback FUNCTION_ADDRESS(void, 0x8008E2AC)
-#define GXSetTlutRegionCallback FUNCTION_ADDRESS(void, 0x8008E2C0)
-#define GXSetTexCoordScaleManually FUNCTION_ADDRESS(void, 0x8008E2D4, GXTexCoordID /*coord*/, GXBool /*enable*/, short /*ss*/, short /*ts*/)
-#define __SetSURegs FUNCTION_ADDRESS(void, 0x8008E350)
-#define __GXSetSuTexRegs FUNCTION_ADDRESS(void, 0x8008E3F0)
-#define __GXSetTmemConfig FUNCTION_ADDRESS(void, 0x8008E56C)
-#define GXSetTevIndirect FUNCTION_ADDRESS(void, 0x8008E8C0, GXTevStageID /*tev_stage*/, GXIndTexStageID /*ind_stage*/, GXIndTexFormat /*format*/, GXIndTexBiasSel /*bias_sel*/, GXIndTexMtxID /*matrix_sel*/, GXIndTexWrap /*wrap_s*/, GXIndTexWrap /*wrap_t*/, GXBool /*add_prev*/, GXBool /*ind_lod*/, GXIndTexAlphaSel /*alpha_sel*/)
-#define GXSetIndTexMtx FUNCTION_ADDRESS(void, 0x8008E92C, GXIndTexMtxID /*mtx_sel*/, float_2__3_ * /*offset*/, s8 /*scale_exp*/)
-#define GXSetIndTexCoordScale FUNCTION_ADDRESS(void, 0x8008EAA4, GXIndTexStageID /*ind_state*/, GXIndTexScale /*scale_s*/, GXIndTexScale /*scale_t*/)
-#define GXSetIndTexOrder FUNCTION_ADDRESS(void, 0x8008EBE8, GXIndTexStageID /*ind_stage*/, GXTexCoordID /*tex_coord*/, GXTexMapID /*tex_map*/)
-#define GXSetNumIndStages FUNCTION_ADDRESS(void, 0x8008ECD4, byte /*nIndStages*/)
-#define GXSetTevDirect FUNCTION_ADDRESS(void, 0x8008ECF8, GXTevStageID /*tev_stage*/)
-#define GXSetTevIndWarp FUNCTION_ADDRESS(void, 0x8008ED40, GXTevStageID /*tev_stage*/, GXIndTexStageID /*ind_stage*/, GXBool /*signed_offset*/, GXBool /*replace_mode*/, GXIndTexMtxID /*matrix_sel*/)
-#define __GXUpdateBPMask FUNCTION_ADDRESS(void, 0x8008EDA4)
-#define __GXSetIndirectMask FUNCTION_ADDRESS(void, 0x8008EDA8)
-#define __GXFlushTextureState FUNCTION_ADDRESS(void, 0x8008EDD8)
-#define GXSetTevOp FUNCTION_ADDRESS(void, 0x8008EDFC, GXTevStageID /*id*/, GXTevMode /*mode*/)
-#define GXSetTevColorIn FUNCTION_ADDRESS(void, 0x8008EE88, GXTevStageID /*stage*/, GXTevColorArg /*a*/, GXTevColorArg /*b*/, GXTevColorArg /*c*/, GXTevColorArg /*d*/)
-#define GXSetTevAlphaIn FUNCTION_ADDRESS(void, 0x8008EECC, GXTevStageID /*stage*/, GXTevAlphaArg /*a*/, GXTevAlphaArg /*b*/, GXTevAlphaArg /*c*/, GXTevAlphaArg /*d*/)
-#define GXSetTevColorOp FUNCTION_ADDRESS(void, 0x8008EF10, GXTevStageID /*stage*/, GXTevOp /*op*/, GXTevBias /*bias*/, GXTevScale /*scale*/, GXBool /*clamp*/, GXTevRegID /*out_reg*/)
-#define GXSetTevAlphaOp FUNCTION_ADDRESS(void, 0x8008EF78, GXTevStageID /*stage*/, GXTevOp /*op*/, GXTevBias /*bias*/, GXTevScale /*scale*/, GXBool /*clamp*/, GXTevRegID /*out_reg*/)
-#define GXSetTevColor FUNCTION_ADDRESS(void, 0x8008EFE0, GXTevRegID /*id*/, GXColor /*color*/)
-#define GXSetTevKColor FUNCTION_ADDRESS(void, 0x8008F040, GXTevKColorID /*id*/, GXColor /*color*/)
-#define GXSetTevKColorSel FUNCTION_ADDRESS(void, 0x8008F0A4, GXTevStageID /*stage*/, GXTevKColorSel /*sel*/)
-#define GXSetTevKAlphaSel FUNCTION_ADDRESS(void, 0x8008F100, GXTevStageID /*stage*/, GXTevKAlphaSel /*sel*/)
-#define GXSetTevSwapMode FUNCTION_ADDRESS(void, 0x8008F15C, GXTevStageID /*stage*/, GXTevSwapSel /*ras_sel*/, GXTevSwapSel /*tex_sel*/)
-#define GXSetTevSwapModeTable FUNCTION_ADDRESS(void, 0x8008F1A4, GXTevSwapSel /*table*/, GXTevColorChan /*red*/, GXTevColorChan /*green*/, GXTevColorChan /*blue*/, GXTevColorChan /*alpha*/)
-#define GXSetAlphaCompare FUNCTION_ADDRESS(void, 0x8008F224, GXCompare /*comp0*/, byte /*ref0*/, GXAlphaOp /*op*/, GXCompare /*comp1*/, byte /*ref1*/)
-#define GXSetZTexture FUNCTION_ADDRESS(void, 0x8008F268, GXZTexOp /*op*/, GXTexFmt /*fmt*/, int /*bias*/)
-#define GXSetTevOrder FUNCTION_ADDRESS(void, 0x8008F2F4, GXTevStageID /*stage*/, GXTexCoordID /*coord*/, GXTexMapID /*map*/, GXChannelID /*color*/)
-#define GXSetNumTevStages FUNCTION_ADDRESS(void, 0x8008F490, byte /*nStages*/)
-#define GXSetFog FUNCTION_ADDRESS(void, 0x8008F4B8, GXFogType /*type*/, float /*startz*/, float /*endz*/, float /*nearz*/, float /*farz*/, GXColor /*color*/)
-#define GXInitFogAdjTable FUNCTION_ADDRESS(void, 0x8008F6CC, GXFogAdjTable * /*table*/, short /*width*/, float_4__4_ * /*projmtx*/)
-#define GXSetBlendMode FUNCTION_ADDRESS(void, 0x8008F7F0, GXBlendMode /*type*/, GXBlendFactor /*src_factor*/, GXBlendFactor /*dst_factor*/, GXLogicOp /*op*/)
-#define GXSetColorUpdate FUNCTION_ADDRESS(void, 0x8008F844, GXBool /*update_enable*/)
-#define GXSetAlphaUpdate FUNCTION_ADDRESS(void, 0x8008F870, GXBool /*update_enable*/)
-#define GXSetZMode FUNCTION_ADDRESS(void, 0x8008F89C, GXBool /*compare_enable*/, GXCompare /*func*/, GXBool /*update_enable*/)
-#define GXSetZCompLoc FUNCTION_ADDRESS(void, 0x8008F8D0, GXBool /*before_tex*/)
-#define GXSetPixelFmt FUNCTION_ADDRESS(void, 0x8008F904, GXPixelFmt /*pix_fmt*/, GXZFmt16 /*z_fmt*/)
-#define GXSetDither FUNCTION_ADDRESS(void, 0x8008F9D8, GXBool /*dither*/)
-#define GXSetDstAlpha FUNCTION_ADDRESS(void, 0x8008FA04, GXBool /*enable*/, byte /*alpha*/)
-#define GXSetFieldMask FUNCTION_ADDRESS(void, 0x8008FA40, GXBool /*odd_mask*/, GXBool /*even_mask*/)
-#define GXSetFieldMode FUNCTION_ADDRESS(void, 0x8008FA78, GXBool /*field_mode*/, GXBool /*half_aspect_ratio*/)
-#define Subdivide FUNCTION_ADDRESS(void, 0x8008FAF0)
-#define GXDrawSphere1 FUNCTION_ADDRESS(void, 0x8008FEA4, byte /*depth*/)
-#define GXCallDisplayList FUNCTION_ADDRESS(void, 0x8008FFB8, void * /*list*/, int /*nbytes*/)
-#define GXProject FUNCTION_ADDRESS(void, 0x80090028, float /*x*/, float /*y*/, float /*z*/, Mtx * /*mtx*/, float * /*pm*/, float * /*vp*/, float * /*sx*/, float * /*sy*/, float * /*sz*/)
-#define GXSetProjection FUNCTION_ADDRESS(void, 0x8009019C, Mtx * /*mtx*/, GXProjectionType /*type*/)
-#define GXSetProjectionv FUNCTION_ADDRESS(void, 0x80090240, float * /*ptr*/)
-#define GXGetProjectionv FUNCTION_ADDRESS(void, 0x800902CC, float * /*p*/)
-#define GXLoadPosMtxImm FUNCTION_ADDRESS(void, 0x80090314, Mtx * /*mtx*/, GXPosNrmMtx /*id*/)
-#define GXLoadNrmMtxImm FUNCTION_ADDRESS(void, 0x80090364, Mtx * /*mtx*/, int /*id*/)
-#define GXSetCurrentMtx FUNCTION_ADDRESS(void, 0x800903B4, GXPosNrmMtx /*id*/)
-#define GXLoadTexMtxImm FUNCTION_ADDRESS(void, 0x800903E8, Mtx * /*mtx*/, uint /*id*/, GXTexMtxType /*type*/)
-#define __GXSetViewport FUNCTION_ADDRESS(void, 0x8009049C)
-#define GXSetViewportJitter FUNCTION_ADDRESS(void, 0x8009052C, float /*left*/, float /*top*/, float /*wd*/, float /*ht*/, float /*nearz*/, float /*farz*/, int /*field*/)
-#define GXSetViewport FUNCTION_ADDRESS(void, 0x80090584, float /*left*/, float /*top*/, float /*wd*/, float /*ht*/, float /*nearz*/, float /*farz*/)
-#define GXGetViewportv FUNCTION_ADDRESS(void, 0x800905CC, float * /*viewport*/)
-#define GXSetScissor FUNCTION_ADDRESS(void, 0x800905F0, int /*left*/, int /*top*/, int /*wd*/, int /*ht*/)
-#define GXGetScissor FUNCTION_ADDRESS(void, 0x80090668, int * /*left*/, int * /*top*/, int * /*width*/, int * /*height*/)
-#define GXSetScissorBoxOffset FUNCTION_ADDRESS(void, 0x800906B0, s32 /*x_off*/, s32 /*y_off*/)
-#define GXSetClipMode FUNCTION_ADDRESS(void, 0x800906F0, GXClipMode /*mode*/)
-#define __GXSetMatrixIndex FUNCTION_ADDRESS(void, 0x80090718)
-#define GXSetGPMetric FUNCTION_ADDRESS(void, 0x8009079C, GXPerf0 /*perf0*/, GXPerf1 /*perf1*/)
-#define GXReadGPMetric FUNCTION_ADDRESS(void, 0x80090FE4, int * /*cnt0*/, int * /*cnt1*/)
-#define GXClearGPMetric FUNCTION_ADDRESS(void, 0x8009118C)
-#define GXReadGP0Metric FUNCTION_ADDRESS(void, 0x8009119C)
-#define GXReadGP1Metric FUNCTION_ADDRESS(void, 0x800911C8)
-#define GXReadPixMetric FUNCTION_ADDRESS(void, 0x800911F4, int * /*top_pixels_in*/, int * /*top_pixels_out*/, int * /*bot_pixels_in*/, int * /*bot_pixels_out*/, int * /*clr_pixels_in*/, int * /*copy_clks*/)
-#define GXClearPixMetric FUNCTION_ADDRESS(void, 0x8009132C)
-#define GXSetVCacheMetric FUNCTION_ADDRESS(void, 0x8009135C, GXVCachePerf /*attr*/)
-#define GXReadVCacheMetric FUNCTION_ADDRESS(void, 0x800913A0, int * /*check*/, int * /*miss*/, int * /*stall*/)
-#define GXClearVCacheMetric FUNCTION_ADDRESS(void, 0x80091434)
-#define TEXGet FUNCTION_ADDRESS(TEXDescriptor *, 0x80091450, TEXPalette * /*pal*/, int /*id*/)
-#define DSInitList FUNCTION_ADDRESS(void, 0x80091460, DSList * /*DSList*/, int /*maybeStartAddr*/, int /*maybeEndAddr*/)
-#define DSInsertListObject FUNCTION_ADDRESS(void, 0x80091478, DSList *, int, int)
-#define Strcmp FUNCTION_ADDRESS(int, 0x8009150C, char *, char *)
-#define DSInitTree FUNCTION_ADDRESS(void, 0x8009155C)
-#define DSInsertBranchBelow FUNCTION_ADDRESS(void, 0x80091570)
-#define TRKNubMainLoop FUNCTION_ADDRESS(void, 0x80091608)
-#define TRKDestructEvent FUNCTION_ADDRESS(void, 0x80091700)
-#define TRKConstructEvent FUNCTION_ADDRESS(void, 0x80091724)
-#define TRKPostEvent FUNCTION_ADDRESS(void, 0x8009173C)
-#define TRKGetNextEvent FUNCTION_ADDRESS(void, 0x8009181C)
-#define TRKInitializeEventQueue FUNCTION_ADDRESS(void, 0x800918D0)
-#define TRKNubWelcome FUNCTION_ADDRESS(void, 0x80091928)
-#define TRKTerminateNub FUNCTION_ADDRESS(void, 0x80091950)
-#define TRKInitializeNub FUNCTION_ADDRESS(void, 0x80091974)
-#define TRKMessageSend FUNCTION_ADDRESS(void, 0x80091AC0)
-#define TRKReadBuffer_ui32 FUNCTION_ADDRESS(void, 0x80091B04)
-#define TRKReadBuffer_ui8 FUNCTION_ADDRESS(void, 0x80091BF4)
-#define TRKReadBuffer1_ui64 FUNCTION_ADDRESS(void, 0x80091C8C)
-#define TRKAppendBuffer_ui32 FUNCTION_ADDRESS(void, 0x80091D74)
-#define TRKAppendBuffer_ui8 FUNCTION_ADDRESS(void, 0x80091E70)
-#define TRKAppendBuffer1_ui64 FUNCTION_ADDRESS(void, 0x80091ED8)
-#define TRKReadBuffer FUNCTION_ADDRESS(void, 0x80091FD4)
-#define TRKAppendBuffer FUNCTION_ADDRESS(void, 0x80092060)
-#define TRKSetBufferPosition FUNCTION_ADDRESS(void, 0x80092104)
-#define TRKResetBuffer FUNCTION_ADDRESS(void, 0x80092134)
-#define TRKReleaseBuffer FUNCTION_ADDRESS(void, 0x80092174)
-#define TRKGetBuffer FUNCTION_ADDRESS(void, 0x800921D8)
-#define TRKGetFreeBuffer FUNCTION_ADDRESS(void, 0x80092204)
-#define TRKIntializeMessageBuffers FUNCTION_ADDRESS(void, 0x800922CC)
-#define TRKTerminateSerialHandler FUNCTION_ADDRESS(void, 0x80092340)
-#define TRKInitializeProgramEndTrap FUNCTION_ADDRESS(void, 0x80092348)
-#define TRKProcessInput FUNCTION_ADDRESS(void, 0x8009240C)
-#define TRKGetInput FUNCTION_ADDRESS(void, 0x8009245C)
-#define TRKTestForPacket FUNCTION_ADDRESS(void, 0x800924BC)
-#define usr_put_initialize FUNCTION_ADDRESS(void, 0x800925F8)
-#define usr_puts_serial FUNCTION_ADDRESS(void, 0x800925FC)
-#define TRKDispatchMessage FUNCTION_ADDRESS(void, 0x80092684)
-#define TRKInitializeDispatcher FUNCTION_ADDRESS(void, 0x800927F4)
-#define TRKDoSetOption FUNCTION_ADDRESS(void, 0x800927FC)
-#define TRKDoStop FUNCTION_ADDRESS(void, 0x800928A4)
-#define TRKDoStep FUNCTION_ADDRESS(void, 0x8009294C)
-#define TRKDoContinue FUNCTION_ADDRESS(void, 0x80092B6C)
-#define TRKDoWriteRegisters FUNCTION_ADDRESS(void, 0x80092C1C)
-#define TRKDoReadRegisters FUNCTION_ADDRESS(void, 0x80092EAC)
-#define TRKDoWriteMemory FUNCTION_ADDRESS(void, 0x8009318C)
-#define TRKDoReadMemory FUNCTION_ADDRESS(void, 0x800933C8)
-#define TRKDoSupportMask FUNCTION_ADDRESS(void, 0x8009360C)
-#define TRKDoVersions FUNCTION_ADDRESS(void, 0x80093614)
-#define TRKDoOverride FUNCTION_ADDRESS(void, 0x8009361C)
-#define TRKDoReset FUNCTION_ADDRESS(void, 0x80093674)
-#define TRKDoDisconnect FUNCTION_ADDRESS(void, 0x800936CC)
-#define TRKDoConnect FUNCTION_ADDRESS(void, 0x80093744)
-#define SetTRKConnected FUNCTION_ADDRESS(void, 0x800937A8)
-#define GetTRKConnected FUNCTION_ADDRESS(void, 0x800937B4)
-#define OutputData FUNCTION_ADDRESS(void, 0x800937C4)
-#define HandlePositionFileSupportRequest FUNCTION_ADDRESS(void, 0x8009386C)
-#define HandleCloseFileSupportRequest FUNCTION_ADDRESS(void, 0x8009397C)
-#define HandleOpenFileSupportRequest FUNCTION_ADDRESS(void, 0x80093A64)
-#define TRKRequestSend FUNCTION_ADDRESS(void, 0x80093B80)
-#define TRKSuppAccessFile FUNCTION_ADDRESS(void, 0x80093D60)
-#define TRKReleaseMutex FUNCTION_ADDRESS(void, 0x80093F80)
-#define TRKAcquireMutex FUNCTION_ADDRESS(void, 0x80093F88)
-#define TRKInitializeMutex FUNCTION_ADDRESS(void, 0x80093F90)
-#define TRKDoNotifyStopped FUNCTION_ADDRESS(void, 0x80093F98)
-#define TRK_flushCache FUNCTION_ADDRESS(void, 0x80094030)
-#define TRK_fill_mem_80094068 FUNCTION_ADDRESS(void, 0x80094068)
-#define __TRK_get_MSR FUNCTION_ADDRESS(void, 0x80094120)
-#define __TRK_set_MSR FUNCTION_ADDRESS(void, 0x80094128)
-#define TRK_ppc_memcpy FUNCTION_ADDRESS(void, 0x80094130)
-#define TRKSwapAndGo FUNCTION_ADDRESS(void, 0x8009439C)
-#define ReadFPSCR FUNCTION_ADDRESS(void, 0x800944B4)
-#define WriteFPSCR FUNCTION_ADDRESS(void, 0x800944D8)
-#define TRKTargetAccessARAM FUNCTION_ADDRESS(void, 0x800944FC)
-#define TRKTargetSetInputPendingPtr FUNCTION_ADDRESS(void, 0x800945C0)
-#define TRKTargetStop FUNCTION_ADDRESS(void, 0x800945D0)
-#define TRKTargetSetStopped FUNCTION_ADDRESS(void, 0x800945E8)
-#define TRKTargetStopped FUNCTION_ADDRESS(void, 0x800945F8)
-#define TRKTargetSupportRequest FUNCTION_ADDRESS(void, 0x80094608)
-#define TRKTargetGetPC FUNCTION_ADDRESS(void, 0x80094808)
-#define TRKTargetStopOutOfRange FUNCTION_ADDRESS(void, 0x80094818)
-#define TRKTargetSingleStep FUNCTION_ADDRESS(void, 0x800948D0)
-#define TRKTargetAddExceptionInfo FUNCTION_ADDRESS(void, 0x8009497C)
-#define TRKTargetAddStopInfo FUNCTION_ADDRESS(void, 0x80094A00)
-#define TRKTargetInterrupt FUNCTION_ADDRESS(void, 0x80094A8C)
-#define TRKPostInterruptEvent FUNCTION_ADDRESS(void, 0x80094C1C)
-#define TRKTargetAccessExtended2 FUNCTION_ADDRESS(void, 0x80094CC8)
-#define TRKTargetAccessExtended1 FUNCTION_ADDRESS(void, 0x80095100)
-#define TRKTargetAccessFP FUNCTION_ADDRESS(void, 0x80095270)
-#define TRKTargetAccessDefault FUNCTION_ADDRESS(void, 0x8009577C)
-#define TRKTargetReadInstruction FUNCTION_ADDRESS(void, 0x80095870)
-#define TRKTargetAccessMemory FUNCTION_ADDRESS(void, 0x800958BC)
-#define TRKValidMemory32 FUNCTION_ADDRESS(void, 0x80095A08)
-#define TRKAccessFile FUNCTION_ADDRESS(void, 0x80095CB0)
-#define TRKOpenFile FUNCTION_ADDRESS(void, 0x80095CB8)
-#define TRKCloseFile FUNCTION_ADDRESS(void, 0x80095CC0)
-#define TRKPositionFile FUNCTION_ADDRESS(void, 0x80095CC8)
-#define TRKSaveExtended1Block FUNCTION_ADDRESS(void, 0x80095CD0)
-#define TRKSaveExtended1Block_1 FUNCTION_ADDRESS(void, 0x80095DDC)
-#define TRKSaveExtended1Block_2 FUNCTION_ADDRESS(void, 0x80095E20)
-#define TRKSaveExtended1Block_3 FUNCTION_ADDRESS(void, 0x80095E5C)
-#define TRKRestoreExtended1Block FUNCTION_ADDRESS(void, 0x80095E88)
-#define TRKRestoreExtended1Block_1 FUNCTION_ADDRESS(void, 0x80095EF8)
-#define TRKRestoreExtended1Block_2 FUNCTION_ADDRESS(void, 0x80095F5C)
-#define InitMetroTRK FUNCTION_ADDRESS(void, 0x80096040)
-#define InitMetroTRK_BBA FUNCTION_ADDRESS(void, 0x800960D8)
-#define TRK__write_aram FUNCTION_ADDRESS(void, 0x8009616C)
-#define TRK__read_aram FUNCTION_ADDRESS(void, 0x80096358)
-#define TRKInitializeTarget FUNCTION_ADDRESS(void, 0x8009648C)
-#define __TRK_copy_vectors FUNCTION_ADDRESS(void, 0x800964D8)
-#define TRKTargetTranslate FUNCTION_ADDRESS(void, 0x80096604)
-#define EnableMetroTRKInterrupts FUNCTION_ADDRESS(void, 0x8009665C)
-#define TRK_main FUNCTION_ADDRESS(void, 0x8009667C)
-#define TRKLoadContext FUNCTION_ADDRESS(void, 0x800966D4)
-#define TRKUARTInterruptHandler FUNCTION_ADDRESS(void, 0x8009675C)
-#define InitializeProgramEndTrap FUNCTION_ADDRESS(void, 0x80096760)
-#define TRK_board_display FUNCTION_ADDRESS(void, 0x800967B8)
-#define UnreserveEXI2Port FUNCTION_ADDRESS(void, 0x800967E8)
-#define ReserveEXI2Port FUNCTION_ADDRESS(void, 0x80096818)
-#define TRKWriteUARTN FUNCTION_ADDRESS(void, 0x80096848)
-#define TRKReadUARTN FUNCTION_ADDRESS(void, 0x80096884)
-#define TRKPollUART FUNCTION_ADDRESS(void, 0x800968C0)
-#define EnableExi2Interrupts FUNCTION_ADDRESS(void, 0x800968F0)
-#define TRKInitializeIntDriverUART FUNCTION_ADDRESS(void, 0x80096938)
-#define InitMetroTRKCommTable FUNCTION_ADDRESS(void, 0x80096988)
-#define TRKEXICallBack FUNCTION_ADDRESS(void, 0x80096BF4)
-#define TRKTargetContinue FUNCTION_ADDRESS(void, 0x80096C2C)
-#define GetUseSerialIO FUNCTION_ADDRESS(void, 0x80096C60)
-#define SetUseSerialIO FUNCTION_ADDRESS(void, 0x80096C70)
-#define __close_console FUNCTION_ADDRESS(void, 0x80096C7C)
-#define __TRK_write_console FUNCTION_ADDRESS(void, 0x80096D00)
-#define __read_console FUNCTION_ADDRESS(void, 0x80096DBC)
-#define udp_cc_post_stop FUNCTION_ADDRESS(void, 0x80096E78)
-#define udp_cc_pre_continue FUNCTION_ADDRESS(void, 0x80096E80)
-#define udp_cc_peek FUNCTION_ADDRESS(void, 0x80096E88)
-#define udp_cc_write FUNCTION_ADDRESS(void, 0x80096E90)
-#define udp_cc_read FUNCTION_ADDRESS(void, 0x80096E98)
-#define udp_cc_close FUNCTION_ADDRESS(void, 0x80096EA0)
-#define udp_cc_open FUNCTION_ADDRESS(void, 0x80096EA8)
-#define udp_cc_shutdown FUNCTION_ADDRESS(void, 0x80096EB0)
-#define udp_cc_initialize FUNCTION_ADDRESS(void, 0x80096EB8)
-#define ddh_cc_initinterrupts FUNCTION_ADDRESS(void, 0x80096EC0)
-#define ddh_cc_peek FUNCTION_ADDRESS(void, 0x80096EE4)
-#define ddh_cc_post_stop FUNCTION_ADDRESS(void, 0x80096F54)
-#define ddh_cc_pre_continue FUNCTION_ADDRESS(void, 0x80096F78)
-#define ddh_cc_write FUNCTION_ADDRESS(void, 0x80096F9C)
-#define ddh_cc_read FUNCTION_ADDRESS(void, 0x8009705C)
-#define ddh_cc_close FUNCTION_ADDRESS(void, 0x80097148)
-#define ddh_cc_open FUNCTION_ADDRESS(void, 0x80097150)
-#define ddh_cc_shutdown FUNCTION_ADDRESS(void, 0x80097174)
-#define ddh_cc_initialize FUNCTION_ADDRESS(void, 0x8009717C)
-#define CircleBufferReadBytes FUNCTION_ADDRESS(void, 0x80097204)
-#define CircleBufferWriteBytes FUNCTION_ADDRESS(void, 0x8009730C)
-#define CircleBufferInitialize FUNCTION_ADDRESS(void, 0x80097414)
-#define CBGetBytesAvailableForRead FUNCTION_ADDRESS(void, 0x80097464)
-#define gdev_cc_initinterrupts FUNCTION_ADDRESS(void, 0x8009746C)
-#define gdev_cc_peek FUNCTION_ADDRESS(void, 0x80097490)
-#define gdev_cc_post_stop FUNCTION_ADDRESS(void, 0x80097500)
-#define gdev_cc_pre_continue FUNCTION_ADDRESS(void, 0x80097524)
-#define gdev_cc_write FUNCTION_ADDRESS(void, 0x80097548)
-#define gdev_cc_read FUNCTION_ADDRESS(void, 0x80097608)
-#define gdev_cc_close FUNCTION_ADDRESS(void, 0x800976FC)
-#define gdev_cc_open FUNCTION_ADDRESS(void, 0x80097704)
-#define gdev_cc_shutdown FUNCTION_ADDRESS(void, 0x80097728)
-#define gdev_cc_initalize FUNCTION_ADDRESS(void, 0x80097730, int /*inputPendingPtrRef*/, int /*monitorCallback*/)
-#define MWTRACE FUNCTION_ADDRESS(void, 0x800977B8)
-#define MWExitCriticalSection FUNCTION_ADDRESS(void, 0x80097808)
-#define MWEnterCriticalSection FUNCTION_ADDRESS(void, 0x8009782C)
-#define MWInitializeCriticalSection FUNCTION_ADDRESS(void, 0x8009785C)
-#define __va_arg FUNCTION_ADDRESS(void, 0x80097860)
-#define __destroy_global_chain FUNCTION_ADDRESS(void, 0x80097928)
-#define __cvt_fp2unsigned FUNCTION_ADDRESS(void, 0x80097970)
-#define __save_fpr FUNCTION_ADDRESS(void, 0x800979CC)
-#define __save_fpr_2 FUNCTION_ADDRESS(void, 0x800979F8)
-#define __restore_fpr FUNCTION_ADDRESS(void, 0x80097A18)
-#define __restore_fpr_2 FUNCTION_ADDRESS(void, 0x80097A44)
-#define _savegpr_14 FUNCTION_ADDRESS(void, 0x80097A64)
-#define _savegpr_15 FUNCTION_ADDRESS(void, 0x80097A68)
-#define _savegpr_18 FUNCTION_ADDRESS(void, 0x80097A74)
-#define _savegpr_20 FUNCTION_ADDRESS(void, 0x80097A7C)
-#define _savegpr_21 FUNCTION_ADDRESS(void, 0x80097A80)
-#define _savegpr_22 FUNCTION_ADDRESS(void, 0x80097A84)
-#define _savegpr_23 FUNCTION_ADDRESS(void, 0x80097A88)
-#define _savegpr_24 FUNCTION_ADDRESS(void, 0x80097A8C)
-#define _savegpr_25 FUNCTION_ADDRESS(void, 0x80097A90)
-#define _savegpr_26 FUNCTION_ADDRESS(void, 0x80097A94)
-#define _savegpr_27 FUNCTION_ADDRESS(void, 0x80097A98)
-#define _restgpr_14 FUNCTION_ADDRESS(void, 0x80097AB0)
-#define _restgpr_15 FUNCTION_ADDRESS(void, 0x80097AB4)
-#define _restgpr_18 FUNCTION_ADDRESS(void, 0x80097AC0)
-#define _restgpr_20 FUNCTION_ADDRESS(void, 0x80097AC8)
-#define _restgpr_21 FUNCTION_ADDRESS(void, 0x80097ACC)
-#define _restgpr_22 FUNCTION_ADDRESS(void, 0x80097AD0)
-#define _restgpr_23 FUNCTION_ADDRESS(void, 0x80097AD4)
-#define _restgpr_24 FUNCTION_ADDRESS(void, 0x80097AD8)
-#define _restgpr_25 FUNCTION_ADDRESS(void, 0x80097ADC)
-#define _restgpr_26 FUNCTION_ADDRESS(void, 0x80097AE0)
-#define _restgpr_27 FUNCTION_ADDRESS(void, 0x80097AE4)
-#define __div2u FUNCTION_ADDRESS(void, 0x80097AFC)
-#define __div2i FUNCTION_ADDRESS(void, 0x80097BE8)
-#define __mod2u FUNCTION_ADDRESS(void, 0x80097D20)
-#define __mod2i FUNCTION_ADDRESS(void, 0x80097E04)
-#define __shl2i FUNCTION_ADDRESS(void, 0x80097F10)
-#define __shr2u FUNCTION_ADDRESS(void, 0x80097F34)
-#define __shr2i FUNCTION_ADDRESS(void, 0x80097F58)
-#define __cvt_dbl_usll FUNCTION_ADDRESS(void, 0x80097F80)
-#define GetR2 FUNCTION_ADDRESS(void, 0x8009804C)
-#define __fini_cpp_exceptions FUNCTION_ADDRESS(void, 0x80098054)
-#define __init_cpp_exceptions FUNCTION_ADDRESS(void, 0x80098088)
-#define __unregister_fragment FUNCTION_ADDRESS(void, 0x800980C8)
-#define __register_fragment FUNCTION_ADDRESS(void, 0x800980FC)
-#define __sys_free FUNCTION_ADDRESS(void, 0x80098130, int)
-#define exit FUNCTION_ADDRESS(void, 0x800981E8, int /*__status*/)
-#define free FUNCTION_ADDRESS(void, 0x800982D8, void * /*__ptr*/)
-#define __pool_free FUNCTION_ADDRESS(void, 0x80098348)
-#define deallocate_from_fixed_pools FUNCTION_ADDRESS(void, 0x800983A0)
-#define deallocate_from_var_pools FUNCTION_ADDRESS(void, 0x800984F8)
-#define __flsuh_all FUNCTION_ADDRESS(void, 0x8009878C)
-#define __close_all FUNCTION_ADDRESS(void, 0x800987FC)
-#define __num2dec FUNCTION_ADDRESS(void, 0x800988A4)
-#define __num2dec_internal FUNCTION_ADDRESS(void, 0x80098A48)
-#define __two_exp FUNCTION_ADDRESS(void, 0x80098DFC)
-#define __timesdec FUNCTION_ADDRESS(void, 0x8009A580)
-#define __flush_buffer FUNCTION_ADDRESS(void, 0x8009A7F8)
-#define __prep_buffer FUNCTION_ADDRESS(void, 0x8009A8BC)
-#define __end_critical_region FUNCTION_ADDRESS(void, 0x8009A8F0)
-#define __begin_critical_region FUNCTION_ADDRESS(void, 0x8009A8F4)
-#define __kill_critical_regions FUNCTION_ADDRESS(void, 0x8009A8F8)
-#define tolower FUNCTION_ADDRESS(int, 0x8009A8FC, int /*__c*/)
-#define __fwrite FUNCTION_ADDRESS(void, 0x8009A920)
-#define fwrite FUNCTION_ADDRESS(size_t, 0x8009AC2C, void * /*__ptr*/, size_t /*__size*/, size_t /*__n*/, FILE * /*__s*/)
-#define fflush FUNCTION_ADDRESS(int, 0x8009ACA8, FILE * /*__stream*/)
-#define fclose FUNCTION_ADDRESS(int, 0x8009ADE0, FILE * /*__stream*/)
-#define fseek FUNCTION_ADDRESS(int, 0x8009AF9C, FILE * /*__stream*/, long /*__off*/, int /*__whence*/)
-#define _fseek FUNCTION_ADDRESS(void, 0x8009B008)
-#define ftell FUNCTION_ADDRESS(long, 0x8009B278, FILE * /*__stream*/)
-#define wcstombs FUNCTION_ADDRESS(size_t, 0x8009B35C, char * /*__s*/, wchar_t * /*__pwcs*/, size_t /*__n*/)
-#define memcmp FUNCTION_ADDRESS(int, 0x8009B474, byte * /*array1*/, byte * /*array2*/, int /*byteCount*/)
-#define __memrchr FUNCTION_ADDRESS(void, 0x8009B4C0)
-#define memchr FUNCTION_ADDRESS(void *, 0x8009B4EC, void * /*__s*/, int /*__c*/, size_t /*__n*/)
-#define memmove FUNCTION_ADDRESS(void *, 0x8009B518, void * /*__dest*/, void * /*__src*/, size_t /*__n*/)
-#define __copy_longs_rev_unaligned FUNCTION_ADDRESS(void, 0x8009B5E4, long *, long *, uint)
-#define __copy_longs_unaligned FUNCTION_ADDRESS(void, 0x8009B690, long *, long *, uint)
-#define __copy_longs_rev_aligned FUNCTION_ADDRESS(void, 0x8009B750, long *, long *, uint)
-#define __copy_longs_aligned FUNCTION_ADDRESS(void, 0x8009B7F8, long *, long *, uint)
-#define __stdio_atexit FUNCTION_ADDRESS(void, 0x8009B8B4)
-#define sprintf FUNCTION_ADDRESS(int, 0x8009B8C4, char * /*__s*/, char * /*__format*/, ...)
-#define vprintf FUNCTION_ADDRESS(int, 0x8009B9A4, char * /*__format*/, __gnuc_va_list /*__arg*/)
-#define __StringWrite FUNCTION_ADDRESS(void, 0x8009BA3C)
-#define __FileWrite FUNCTION_ADDRESS(void, 0x8009BAA8)
-#define __pformatter FUNCTION_ADDRESS(int, 0x8009BB00, undefined *, int, char *, int)
-#define float2str FUNCTION_ADDRESS(char *, 0x8009C274, double, int, int)
-#define round_decimal FUNCTION_ADDRESS(void, 0x8009C990)
-#define double2hex FUNCTION_ADDRESS(void, 0x8009CABC)
-#define longlong2str FUNCTION_ADDRESS(void, 0x8009CDF4)
-#define long2str FUNCTION_ADDRESS(void, 0x8009D108)
-#define parse_format FUNCTION_ADDRESS(void, 0x8009D360)
-#define rand FUNCTION_ADDRESS(int, 0x8009D864)
-#define strchr FUNCTION_ADDRESS(char *, 0x8009D884, char * /*__s*/, int /*__c*/)
-#define strcnmp FUNCTION_ADDRESS(void, 0x8009D8B4)
-#define strncpy FUNCTION_ADDRESS(char *, 0x8009D8F4, char * /*__dest*/, char * /*__src*/, size_t /*__n*/)
-#define strcpy FUNCTION_ADDRESS(char *, 0x8009D938, char * /*__dest*/, char * /*__src*/)
-#define strlen FUNCTION_ADDRESS(size_t, 0x8009D9F0, char * /*__s*/)
-#define fwide FUNCTION_ADDRESS(int, 0x8009DA0C, __FILE * /*__fp*/, int /*__mode*/)
-#define __write_console FUNCTION_ADDRESS(void, 0x8009DA94)
-#define __ieee754_acos FUNCTION_ADDRESS(double, 0x8009DB64, double)
-#define __ieee754_asin FUNCTION_ADDRESS(double, 0x8009DDA0, double /*x*/)
-#define __ieee754_atan2 FUNCTION_ADDRESS(double, 0x8009DFD8, double /*y*/, double /*x*/)
-#define __ieee754_fmod FUNCTION_ADDRESS(void, 0x8009E268)
-#define __ieee754_pow FUNCTION_ADDRESS(double, 0x8009E5A4, double /*x*/, double /*y*/)
-#define __ieee754_rem_pio2 FUNCTION_ADDRESS(double, 0x8009EDD4, double, double *)
-#define __kernel_cos FUNCTION_ADDRESS(double, 0x8009F174, double, double)
-#define __kernel_rem_pio2 FUNCTION_ADDRESS(int, 0x8009F268, double * /*x*/, double * /*y*/, int /*e0*/, int /*nx*/, int /*prec*/, int * /*ipio2*/)
-#define __kernel_sin FUNCTION_ADDRESS(double, 0x800A00BC, double, double, int)
-#define __kernel_tan FUNCTION_ADDRESS(void, 0x800A015C)
-#define atan FUNCTION_ADDRESS(double, 0x800A0370, double /*__x*/)
-#define copysign FUNCTION_ADDRESS(double, 0x800A0588, double /*__x*/, double /*__y*/)
-#define cos FUNCTION_ADDRESS(double, 0x800A05B0, double /*__x*/)
-#define floor FUNCTION_ADDRESS(double, 0x800A0684, double /*__x*/)
-#define frexp FUNCTION_ADDRESS(double, 0x800A07CC, double /*__x*/, int * /*__exponent*/)
-#define ldexp FUNCTION_ADDRESS(double, 0x800A0858, double /*__x*/, int /*__exponent*/)
-#define modf FUNCTION_ADDRESS(double, 0x800A0A1C, double /*__x*/, double * /*__iptr*/)
-#define sin FUNCTION_ADDRESS(double, 0x800A0B18, double /*__x*/)
-#define tan FUNCTION_ADDRESS(double, 0x800A0BF0, double /*__x*/)
-#define acosf FUNCTION_ADDRESS(float, 0x800A0C68, float /*__x*/)
-#define asin FUNCTION_ADDRESS(double, 0x800A0C88, double /*__x*/)
-#define atan_800a0ca8 FUNCTION_ADDRESS(double, 0x800A0CA8, double /*y*/, double /*x*/)
-#define fmod FUNCTION_ADDRESS(double, 0x800A0CC8, double /*__x*/, double /*__y*/)
-#define pow FUNCTION_ADDRESS(double, 0x800A0CE8, double /*__x*/, double /*__y*/)
-#define __ieee754_sqrt FUNCTION_ADDRESS(double, 0x800A0D08, double)
-#define sinf FUNCTION_ADDRESS(float, 0x800A0F2C, float /*__x*/)
-#define cosf FUNCTION_ADDRESS(float, 0x800A0F50, float /*__x*/)
-#define acosf_800a0f74 FUNCTION_ADDRESS(float, 0x800A0F74, float /*__x*/)
-#define sqrt FUNCTION_ADDRESS(double, 0x800A0F98, double /*__x*/)
-#define EXI2_Init FUNCTION_ADDRESS(void, 0x800A0FB8)
-#define EXI2_EnableInterrupts FUNCTION_ADDRESS(void, 0x800A0FBC)
-#define EXI2_Poll FUNCTION_ADDRESS(void, 0x800A0FC0)
-#define EXI2_ReadN FUNCTION_ADDRESS(void, 0x800A0FC8)
-#define EXI2_WriteN FUNCTION_ADDRESS(void, 0x800A0FD0)
-#define EXI2_Reserve FUNCTION_ADDRESS(void, 0x800A0FD8)
-#define EXI2_Unreserve FUNCTION_ADDRESS(void, 0x800A0FDC)
-#define AMC_IsStub FUNCTION_ADDRESS(void, 0x800A0FE0)
-#define Hu_IsStub FUNCTION_ADDRESS(void, 0x800A0FE8)
-#define DBGEXIImm FUNCTION_ADDRESS(void, 0x800A0FF0)
-#define DBGReadMailbox FUNCTION_ADDRESS(void, 0x800A1288)
-#define DBGRead FUNCTION_ADDRESS(void, 0x800A1334)
-#define DBGWrite FUNCTION_ADDRESS(void, 0x800A1410)
-#define DBGReadStatus FUNCTION_ADDRESS(void, 0x800A14EC)
-#define MWCallback FUNCTION_ADDRESS(void, 0x800A1598)
-#define DBGHandler FUNCTION_ADDRESS(void, 0x800A15D4)
-#define DBInitComm FUNCTION_ADDRESS(void, 0x800A1614)
-#define DBInitInterrupts FUNCTION_ADDRESS(void, 0x800A168C)
-#define DBQueryData FUNCTION_ADDRESS(void, 0x800A16E0)
-#define DBRead FUNCTION_ADDRESS(void, 0x800A177C)
-#define DBWrite FUNCTION_ADDRESS(void, 0x800A1808)
-#define DBOpen FUNCTION_ADDRESS(void, 0x800A1A68)
-#define DBClose FUNCTION_ADDRESS(void, 0x800A1A6C)
-#define SetExiInterruptMask FUNCTION_ADDRESS(void, 0x800A2B5C)
-#define EXIImm FUNCTION_ADDRESS(void, 0x800A2C50)
-#define EXIImmEx FUNCTION_ADDRESS(void, 0x800A2EAC)
-#define EXIDma FUNCTION_ADDRESS(void, 0x800A2F4C)
-#define EXISync FUNCTION_ADDRESS(void, 0x800A3038)
-#define EXIClearInterrupts FUNCTION_ADDRESS(void, 0x800A3284)
-#define EXISetExiCallback FUNCTION_ADDRESS(void, 0x800A32CC)
-#define __EXIProbe FUNCTION_ADDRESS(void, 0x800A3348)
-#define EXIProbe FUNCTION_ADDRESS(void, 0x800A34BC)
-#define EXIProbeEx FUNCTION_ADDRESS(void, 0x800A353C)
-#define EXIAttach FUNCTION_ADDRESS(void, 0x800A35F0)
-#define EXIDetach FUNCTION_ADDRESS(void, 0x800A36FC)
-#define EXISelect FUNCTION_ADDRESS(void, 0x800A37B8)
-#define EXIDeselect FUNCTION_ADDRESS(void, 0x800A38E4)
-#define EXIIntrruptHandler FUNCTION_ADDRESS(void, 0x800A39F4)
-#define TCIIntrruptHandler FUNCTION_ADDRESS(void, 0x800A3ABC)
-#define EXTIntrruptHandler FUNCTION_ADDRESS(void, 0x800A3CD4)
-#define EXIInit FUNCTION_ADDRESS(void, 0x800A3DA4)
-#define EXILock FUNCTION_ADDRESS(void, 0x800A3F78)
-#define EXIUnlock FUNCTION_ADDRESS(void, 0x800A406C)
-#define EXIGetState FUNCTION_ADDRESS(void, 0x800A4148)
-#define UnlockedHandler FUNCTION_ADDRESS(void, 0x800A4160)
-#define EXIGetID FUNCTION_ADDRESS(void, 0x800A4188)
-#define ProbeBarnacle FUNCTION_ADDRESS(void, 0x800A4538)
-#define __OSEnableBarnacle FUNCTION_ADDRESS(void, 0x800A46C4)
-#define InitializeUART FUNCTION_ADDRESS(void, 0x800A4880)
-#define WriteUARTN FUNCTION_ADDRESS(void, 0x800A48F0)
-#define SIBusy FUNCTION_ADDRESS(void, 0x800A4B0C)
-#define SIIsChanBusy FUNCTION_ADDRESS(void, 0x800A4B2C)
-#define CompleteTransfer FUNCTION_ADDRESS(void, 0x800A4B68)
-#define SIInterruptHandler FUNCTION_ADDRESS(void, 0x800A4E64)
-#define SIEnablePollingInterrupt FUNCTION_ADDRESS(void, 0x800A51A8)
-#define SIRegisterPollingHandle FUNCTION_ADDRESS(void, 0x800A5240)
-#define SIUnregisterPollingHandle FUNCTION_ADDRESS(void, 0x800A530C)
-#define SIInit FUNCTION_ADDRESS(void, 0x800A5400)
-#define __SITransfer FUNCTION_ADDRESS(void, 0x800A54B4)
-#define SIGetStatus FUNCTION_ADDRESS(void, 0x800A56C0)
-#define SISetCommand FUNCTION_ADDRESS(void, 0x800A573C)
-#define SITransferCommands FUNCTION_ADDRESS(void, 0x800A5750)
-#define SISetXY FUNCTION_ADDRESS(void, 0x800A5760)
-#define SIEnablePolling FUNCTION_ADDRESS(void, 0x800A57CC)
-#define SIDisablePolling FUNCTION_ADDRESS(void, 0x800A5868)
-#define SIGetResponseRaw FUNCTION_ADDRESS(void, 0x800A58D4)
-#define SIGetResponse FUNCTION_ADDRESS(void, 0x800A59A8)
-#define AlarmHandler_800a5a6c FUNCTION_ADDRESS(void, 0x800A5A6C)
-#define SITransfer FUNCTION_ADDRESS(void, 0x800A5AF8)
-#define GetTypeCallback FUNCTION_ADDRESS(void, 0x800A5C64)
-#define SIGetType FUNCTION_ADDRESS(void, 0x800A5EFC)
-#define SIGetTypeAsync FUNCTION_ADDRESS(void, 0x800A60C0)
-#define SISetSamplingRate FUNCTION_ADDRESS(void, 0x800A61FC)
-#define SIRefreshSamplingRate FUNCTION_ADDRESS(void, 0x800A62E0)
-#define SetReadParameters FUNCTION_ADDRESS(void, 0x800A64E0, CompressedDiskRead * /*cdr*/, undefined * /*readBuffer*/, undefined * /*dst*/, int /*isSegmentedRead*/)
-#define StartThreadForReadingFromDisk FUNCTION_ADDRESS(void, 0x800A65A0)
-#define ReadDataFromDisk FUNCTION_ADDRESS(void, 0x800A65F8)
-#define DecompressDiskData FUNCTION_ADDRESS(void, 0x800A6654)
-#define ReadBits FUNCTION_ADDRESS(void, 0x800A673C, int /*bits*/)
-#define manageFileReadingProcess FUNCTION_ADDRESS(void, 0x800A6900)
-#define ARAMTransfer FUNCTION_ADDRESS(void, 0x800A70DC, CompressedDiskRead * /*compressedStruct*/, undefined * /*readDestination*/, byte /*loadInfo*/, undefined * /*aramAddress*/)
-#define ConvertPathToEntryNum FUNCTION_ADDRESS(uint, 0x800A7544, char * *)
-#define handleDVDCancelAndARQRemoval FUNCTION_ADDRESS(void, 0x800A7568)
-#define cancelReadCallback1 FUNCTION_ADDRESS(void, 0x800A75EC)
-#define cancelReadCallback2 FUNCTION_ADDRESS(void, 0x800A7670)
-#define initializeDVDSystem FUNCTION_ADDRESS(void, 0x800A76BC)
-#define someGFXRenderingFn FUNCTION_ADDRESS(void, 0x800A7C08)
-#define initRenderMode FUNCTION_ADDRESS(void, 0x800A80E8)
-#define LoadFile FUNCTION_ADDRESS(void, 0x800A8CBC, int /*fileName*/, int, int, int, int)
-#define initInputDevices FUNCTION_ADDRESS(void, 0x800A983C)
-#define memoryCardRelatedFunction FUNCTION_ADDRESS(void, 0x800AAEE4)
-#define processBannerImage FUNCTION_ADDRESS(void, 0x800AC508, int, astruct_9 * /*textureData*/, int /*texSize*/, int, int, int, byte, int, int, int /*maybeSize*/)
-#define unkLoadingCleanupRelated FUNCTION_ADDRESS(void, 0x800ACF14, int *)
-#define allocateAlignedMemoryBlock FUNCTION_ADDRESS(void, 0x800ACF34, int /*alignment*/, int /*size*/)
-#define OSAllocFromHeap FUNCTION_ADDRESS(void *, 0x800ACFD0, OSHeapHandle /*heapHandle*/, int /*size*/)
-#define YUV2RGB FUNCTION_ADDRESS(void, 0x800ADF60, int /*src*/, byte * /*dst*/, int, int)
-#define YUV2RGB_ FUNCTION_ADDRESS(void, 0x800AE298, int /*src*/, byte * /*dst*/, int, int)
-#define MovStreamThread FUNCTION_ADDRESS(void, 0x800AEB18)
-#define MovDecodeThread FUNCTION_ADDRESS(void, 0x800AED34)
-#define makeLookAtMatrix FUNCTION_ADDRESS(void, 0x800B0724, Mtx * /*m*/, Vec3f * /*coordinate*/, Vec3f * /*up*/, Vec3f * /*target*/)
-#define soundQuit FUNCTION_ADDRESS(void, 0x800B07FC)
-#define initSound_800b0834 FUNCTION_ADDRESS(void, 0x800B0834)
-#define SndFree FUNCTION_ADDRESS(void, 0x800B0938)
-#define SndAlloc FUNCTION_ADDRESS(void, 0x800B099C)
-#define removeCurrentDrawingItem FUNCTION_ADDRESS(void, 0x800B0A14)
-#define insertGraphicDrawingFunction FUNCTION_ADDRESS(DrawingSceneStruct *, 0x800B0A5C, func * /*paramFuncPtr*/, short /*priority*/)
-#define resetAllDrawingStructs_tonop FUNCTION_ADDRESS(void, 0x800B0B2C)
-#define resetAllDrawingStructs FUNCTION_ADDRESS(void, 0x800B0BE8)
-#define nop_function FUNCTION_ADDRESS(void, 0x800B0CB4)
-#define RunDrawScripts_with_stack_variables FUNCTION_ADDRESS(void, 0x800B0CB8)
-#define AllocateSprite_ FUNCTION_ADDRESS(void, 0x800B0D68)
-#define DrawNullSprite FUNCTION_ADDRESS(void, 0x800B12A4, SpritePositionStruct * /*position*/, int /*count*/)
-#define renderSprite FUNCTION_ADDRESS(void, 0x800B1314, int, int /*tex*/, int /*width*/, int /*height*/)
-#define DrawSprite_TexObj FUNCTION_ADDRESS(void, 0x800B1350, SpritePositionStruct *, TextureObj * /*tex*/)
-#define DrawSprite FUNCTION_ADDRESS(void, 0x800B1500, int /*drawSpriteEnum*/, SpritePositionStruct * /*position*/, int /*positionStructCount*/, TextureObj * /*texture*/, int /*width*/, int /*height*/)
-#define setTextRenderingMode_ FUNCTION_ADDRESS(void, 0x800B2160)
-#define ProcessActorBonesForShadows FUNCTION_ADDRESS(void, 0x800B2AC8, ACTActor * /*actor*/)
-#define Set_FUN_800b2b6c FUNCTION_ADDRESS(void, 0x800B2B6C, undefined *, int)
-#define callDSInsertListObject FUNCTION_ADDRESS(void, 0x800B2B74)
-#define maybeTransformVectorByAnimationMatrix FUNCTION_ADDRESS(void, 0x800B2C44, int, uint, int /*vec*/)
-#define ACTSort FUNCTION_ADDRESS(void, 0x800B2CBC, ACTActor * /*actor*/)
-#define actorBoneRelated FUNCTION_ADDRESS(void, 0x800B34B4, ACTActor *, int, int, int)
-#define BuildBoneSkinOrientationMatrix_800b37a4 FUNCTION_ADDRESS(void, 0x800B37A4, ACTBone * /*actBone*/, int /*mtx*/)
-#define maybeBallRelated FUNCTION_ADDRESS(int, 0x800B4048, ACTActor * * /*actor*/, ActLayout * /*actLayout*/, short /*actorID*/)
-#define InitBone_800b4084 FUNCTION_ADDRESS(void, 0x800B4084)
-#define maybeProcessActLayout FUNCTION_ADDRESS(void, 0x800B43A0, ACTActor * /*act*/, ActLayout * /*layout*/)
-#define renderingRelated FUNCTION_ADDRESS(void, 0x800B472C)
-#define PointActorToGEOPalette FUNCTION_ADDRESS(void, 0x800B4908, ACTActor * /*actor*/, GEOPalette * /*gPalette*/)
-#define LoadActorLayout FUNCTION_ADDRESS(void, 0x800B4910, ActLayout * /*actLayout*/)
-#define AdjustActorPointers FUNCTION_ADDRESS(void, 0x800B49E4, ACTActor * /*actor*/)
-#define calledByHazardLogic FUNCTION_ADDRESS(void, 0x800B4A94)
-#define updateBoneParam FUNCTION_ADDRESS(void, 0x800B4AFC, ActLayout * /*act*/, byte)
-#define AnimateActorBones FUNCTION_ADDRESS(void, 0x800B4B38, ACTActor * /*actor*/)
-#define ACTSetAnimation FUNCTION_ADDRESS(void, 0x800B4D64, ACTActor * /*actor*/, AnimBank * /*animBank*/, char * /*sequenceName*/, short /*seqNum*/, float /*time*/)
-#define ANIMGetKeyFrameFromTrack FUNCTION_ADDRESS(void, 0x800B4E9C, ANIMTrack * /*animTrack*/, float /*time*/, ANIMKeyFrame * /*currentFrame*/, ANIMKeyFrame * /*nextFrame*/)
-#define ANIMGetTrackFromSequence FUNCTION_ADDRESS(void, 0x800B4F9C, AnimSequence * /*animSeq*/, short /*animTrackID*/)
-#define ANIMGetSequence FUNCTION_ADDRESS(AnimSequence *, 0x800B4FEC, AnimBank * /*animBank*/, char * /*sequenceName*/, short /*seqNum*/)
-#define ANIMGet FUNCTION_ADDRESS(void, 0x800B508C, AnimBank * /*animBank*/, char * /*name*/)
-#define Squad FUNCTION_ADDRESS(void, 0x800B516C)
-#define GetData FUNCTION_ADDRESS(void, 0x800B560C)
-#define DoTranslationAnimation FUNCTION_ADDRESS(void, 0x800B5DA8)
-#define DoScaleAnimation FUNCTION_ADDRESS(void, 0x800B63DC, ANIMPipe * /*animPipe*/, ANIMKeyFrame * /*startFrame*/, ANIMKeyFrame * /*endFrame*/)
-#define DoEulerAnimation FUNCTION_ADDRESS(void, 0x800B6E0C)
-#define DoQuatAnimation FUNCTION_ADDRESS(void, 0x800B71C0)
-#define ANIMTick FUNCTION_ADDRESS(void, 0x800B7718, ANIMPipe * /*animPipe*/)
-#define ANIMBind FUNCTION_ADDRESS(void, 0x800B79A0, ANIMPipe * /*animPipe*/, CTRLControl * /*control*/, ANIMTrack * /*animTrack*/, float /*time*/)
-#define ACTSetBoneTrack FUNCTION_ADDRESS(void, 0x800B79D0, ACTBone * /*bone*/, ANIMTrack * /*track*/, float /*time*/)
-#define checkObjectVisibility FUNCTION_ADDRESS(int, 0x800B7D3C, int /*objIndex*/, Vec3f * /*SrcVec*/, Mtx * /*transformationMtx*/)
-#define checkPlaneIntersection FUNCTION_ADDRESS(int, 0x800B81C0, Vec3f * /*planePoints*/, Vec3f * /*testPoints*/)
-#define CTRL_GetQuatUnk FUNCTION_ADDRESS(void, 0x800B845C, int /*ctrl*/, float * /*x*/, float * /*y*/, float * /*z*/, float * /*w*/)
-#define CTRL_SetQuatUnk FUNCTION_ADDRESS(void, 0x800B8480, undefined8 /*x*/, undefined8 /*y*/, undefined8 /*z*/, undefined8 /*w*/, byte *)
-#define CTRLBuildInverseMatrix FUNCTION_ADDRESS(void, 0x800B87F4, CTRLControl * /*src*/, int /*dst*/)
-#define CTRLBuildMatrix_Flip FUNCTION_ADDRESS(void, 0x800B8BF0, CTRLControl * /*src*/, int /*dst*/, EnumCTRLXYZ /*flip*/)
-#define CTRLBuildMatrix_FlipX FUNCTION_ADDRESS(void, 0x800B8F20, CTRLControl *, int)
-#define CTRLBuildMatrix_FlipY FUNCTION_ADDRESS(void, 0x800B9214, CTRLControl *, int)
-#define CTRLBuildMatrix FUNCTION_ADDRESS(void, 0x800B9508, CTRLControl * /*control*/, Mtx * /*m*/)
-#define CTRLGetTranslation FUNCTION_ADDRESS(void, 0x800B97D4, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/)
-#define CTRLGetQuat FUNCTION_ADDRESS(void, 0x800B97F0, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/, float * /*w*/)
-#define CTRLGetRotation FUNCTION_ADDRESS(void, 0x800B9814, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/)
-#define CTRLGetScale FUNCTION_ADDRESS(void, 0x800B9830, CTRLControl * /*control*/, float * /*x*/, float * /*y*/, float * /*z*/)
-#define CTRLSetMatrix FUNCTION_ADDRESS(void, 0x800B984C, CTRLControl * /*control*/, Mtx * /*m*/)
-#define CTRLSetTranslation FUNCTION_ADDRESS(void, 0x800B9880, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/)
-#define CTRLSetQuat FUNCTION_ADDRESS(void, 0x800B98A8, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/, float /*w*/)
-#define CTRLSetRotation FUNCTION_ADDRESS(void, 0x800B98E0, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/)
-#define CTRLSetScale FUNCTION_ADDRESS(void, 0x800B9914, CTRLControl * /*control*/, float /*x*/, float /*y*/, float /*z*/)
-#define SetFogNone FUNCTION_ADDRESS(void, 0x800B9974)
-#define SetFog FUNCTION_ADDRESS(void, 0x800B99C4)
-#define SetFogNoneAgain FUNCTION_ADDRESS(void, 0x800B9A30)
-#define setLITLightPtr FUNCTION_ADDRESS(void, 0x800B9AA8, LITLightPtr * /*lit*/)
-#define DODefaultUserTevMode FUNCTION_ADDRESS(void, 0x800BA44C, int, int, int, int, GXTexCoordID /*GXTexCoordID*/)
-#define CustomSetState FUNCTION_ADDRESS(void, 0x800BA848, DODisplayObj * /*DODisplayObj*/, DODisplayState * /*state*/, int /*cameraMtx*/)
-#define SetState FUNCTION_ADDRESS(void, 0x800BBB2C, DODisplayState * /*state*/, DODisplayObj * /*dispObj*/, int /*camera*/)
-#define GetColorFromQuant FUNCTION_ADDRESS(void, 0x800BBF5C, int /*src*/, byte /*srcCode*/, int /*r*/, int /*g*/, int /*b*/, int /*a*/)
-#define DOVARender FUNCTION_ADDRESS(void, 0x800BC0C4, DODisplayObj * /*displayObj*/, int /*camera*/, byte /*numLights*/, va_list * /*list*/)
-#define DOVARenderSkin FUNCTION_ADDRESS(void, 0x800BC7E8, int, int, Mtx * /*mtxArray*/, int /*invTransposeMtxArray*/, int, int)
-#define updateMemoryLocation FUNCTION_ADDRESS(void, 0x800BC824, int /*memoryAddress*/, int /*value*/)
-#define DOSetWorldMatrix FUNCTION_ADDRESS(void, 0x800BC834, DODisplayObj * /*dispObj*/, int /*m*/)
-#define InitDisplayObjWithLayout FUNCTION_ADDRESS(void, 0x800BC860, DODisplayObj * /*dispObj*/, DOLayout * /*layout*/)
-#define DOGet FUNCTION_ADDRESS(void, 0x800BCAB8, DODisplayObj * /*dispObj*/, GEOPalette * /*pal*/, short /*id*/)
-#define LoadGeoPalette FUNCTION_ADDRESS(void, 0x800BCB44, GEOPalette * /*geoPal*/, char * /*name*/)
-#define convertGeometryAndSknHeader FUNCTION_ADDRESS(void, 0x800BCD60, GEOPalette * /*geo*/, SKNHeader * /*skn*/)
-#define AdjustGEOPalettePointers FUNCTION_ADDRESS(void, 0x800BCE38, GEOPalette * /*palette*/)
-#define AdjustGPLDataPointers FUNCTION_ADDRESS(void, 0x800BCEF8, GEOPalette * /*inputData*/, DODisplayObj * /*outputData*/)
-#define UpdateTexturePalettePointers FUNCTION_ADDRESS(void, 0x800BD190, GEOPalette * /*palette*/, int /*newPalettePointer*/)
-#define __MTGQR5 FUNCTION_ADDRESS(void, 0x800BD1F0)
-#define __MTGQR6 FUNCTION_ADDRESS(void, 0x800BD1F8)
-#define __MTGQR7 FUNCTION_ADDRESS(void, 0x800BD200)
-#define GQRSetup7 FUNCTION_ADDRESS(void, 0x800BD208)
-#define GQRSetup6 FUNCTION_ADDRESS(void, 0x800BD240)
-#define GQRSetup5 FUNCTION_ADDRESS(void, 0x800BD278)
-#define lightingRelated FUNCTION_ADDRESS(void, 0x800BD2B0)
-#define adjustLightingParams FUNCTION_ADDRESS(void, 0x800BD2CC)
-#define LITXForm FUNCTION_ADDRESS(void, 0x800BD300)
-#define LITInitColor FUNCTION_ADDRESS(void, 0x800BD3A0, LITLightPtr * /*light*/, GXColor /*color*/)
-#define LITInitDir FUNCTION_ADDRESS(void, 0x800BD3AC)
-#define LITInitPos FUNCTION_ADDRESS(void, 0x800BD3BC, LITLightPtr * /*light*/, float /*x*/, float /*y*/, float /*z*/)
-#define LITInitAttn FUNCTION_ADDRESS(void, 0x800BD3CC, LITLightPtr * /*light*/, float /*a0*/, float /*a1*/, float /*a2*/, float /*k0*/, float /*k1*/, float /*k2*/)
-#define LITAlloc FUNCTION_ADDRESS(void, 0x800BD3EC, LITLightPtr * /*light*/)
-#define sknRelated FUNCTION_ADDRESS(void, 0x800BDA94, ACTActor *, int)
-#define animateBallRelated FUNCTION_ADDRESS(void, 0x800BDC88)
-#define ActorObjectInitTable FUNCTION_ADDRESS(void, 0x800BDD74, ushort /*functionArguments*/)
-#define setVectors FUNCTION_ADDRESS(void, 0x800BEA04)
-#define returnMtxPtr FUNCTION_ADDRESS(Mtx *, 0x800BEB80, uint)
-#define returnDrawShadows FUNCTION_ADDRESS(void, 0x800BEBA0)
-#define GetDrawShadows FUNCTION_ADDRESS(bool, 0x800BEBB0)
-#define DrawShadows FUNCTION_ADDRESS(void, 0x800BEBC0, bool /*shadowsOn*/)
-#define updateVectorInArray FUNCTION_ADDRESS(void, 0x800BEBCC, int /*index*/, Vec3f * /*vector*/)
-#define loadTlutRelated FUNCTION_ADDRESS(void, 0x800BF008)
-#define maybeUpdateFunctionPointer FUNCTION_ADDRESS(void, 0x800BF038)
-#define ShouldDrawShadows FUNCTION_ADDRESS(void, 0x800BF068)
-#define SKNLoadFile FUNCTION_ADDRESS(void, 0x800BF074, SKHeader * /*skHeader*/)
-#define SKNFlushByIndex FUNCTION_ADDRESS(void, 0x800BF1A4)
-#define SKNFlushByIndex_800bf1c0 FUNCTION_ADDRESS(void, 0x800BF1C0)
-#define SKNBzero32B FUNCTION_ADDRESS(void, 0x800BF1E8)
-#define SKNInit FUNCTION_ADDRESS(void, 0x800BF204)
-#define processModelDataRelated FUNCTION_ADDRESS(void, 0x800BF2A8, int, int /*params*/, int)
-#define SKNIt FUNCTION_ADDRESS(void, 0x800BF89C, ACTBone * /*bones*/, SKHeader *, int)
-#define SKN1Vecs16Norms16 FUNCTION_ADDRESS(void, 0x800BFE90)
-#define SKN2Vecs16Norms16NoTouch FUNCTION_ADDRESS(void, 0x800C00A8)
-#define SKNAccVecs16Norms16Iu16 FUNCTION_ADDRESS(void, 0x800C04E8)
-#define SKNAccVecs16Norms16Iu16_800c0630 FUNCTION_ADDRESS(void, 0x800C0630)
-#define AdjustTextureHeaderPointers FUNCTION_ADDRESS(void, 0x800C0770, TextureArchiveHeader * /*textureArchive*/)
-#define seqGetPrivateId FUNCTION_ADDRESS(void, 0x800C0A8C)
-#define seqStartPlay FUNCTION_ADDRESS(void, 0x800C0AF4)
-#define StartPause FUNCTION_ADDRESS(void, 0x800C15C0)
-#define seqPause FUNCTION_ADDRESS(void, 0x800C1624)
-#define seqStop FUNCTION_ADDRESS(void, 0x800C18A0)
-#define seqKillAllInstances FUNCTION_ADDRESS(void, 0x800C1B50)
-#define seqKillInstancesByGroupID FUNCTION_ADDRESS(void, 0x800C1BAC)
-#define seqSpeed FUNCTION_ADDRESS(void, 0x800C1C3C)
-#define seqContinue FUNCTION_ADDRESS(void, 0x800C1D20)
-#define seqMute FUNCTION_ADDRESS(void, 0x800C1E28)
-#define seqVolume FUNCTION_ADDRESS(void, 0x800C1EE4)
-#define seqCrossFade FUNCTION_ADDRESS(void, 0x800C20B0)
-#define GenerateNextTrackEvent FUNCTION_ADDRESS(void, 0x800C2C08)
-#define HandleEvent FUNCTION_ADDRESS(void, 0x800C2E20)
-#define InitTrackEvents FUNCTION_ADDRESS(void, 0x800C38E0)
-#define HandleTrackEvents FUNCTION_ADDRESS(void, 0x800C3A54)
-#define seqHandle FUNCTION_ADDRESS(void, 0x800C3EF0)
-#define seqInit FUNCTION_ADDRESS(void, 0x800C490C)
-#define synthSetBpm FUNCTION_ADDRESS(void, 0x800C4AB4)
-#define synthGetTicksPerSecond FUNCTION_ADDRESS(void, 0x800C4AF8)
-#define synthInitPortamento FUNCTION_ADDRESS(void, 0x800C4B2C)
-#define do_voice_portamento FUNCTION_ADDRESS(void, 0x800C4BA4)
-#define StartLayer FUNCTION_ADDRESS(void, 0x800C4E44, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int)
-#define StartKeymap FUNCTION_ADDRESS(void, 0x800C5204, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int)
-#define synthStartSound FUNCTION_ADDRESS(enumSoundEffect_int, 0x800C5460, undefined4, undefined4, undefined4, undefined4, uint, undefined4, uint, undefined4, undefined, undefined, undefined2, undefined2, undefined, short, undefined, undefined4)
-#define LowPrecisionHandler FUNCTION_ADDRESS(void, 0x800C58C0)
-#define ZeroOffsetHandler FUNCTION_ADDRESS(void, 0x800C6004)
-#define synthAddJob FUNCTION_ADDRESS(void, 0x800C67B4)
-#define synthStartSynthJobHandling FUNCTION_ADDRESS(void, 0x800C6904)
-#define synthForceLowPrecisionUpdate FUNCTION_ADDRESS(void, 0x800C6968)
-#define synthKeyStateUpdate FUNCTION_ADDRESS(void, 0x800C69AC)
-#define synthHandle FUNCTION_ADDRESS(void, 0x800C69D4)
-#define synthFXGetMaxVoices FUNCTION_ADDRESS(void, 0x800C6EE4)
-#define synthFXStart FUNCTION_ADDRESS(enumSoundEffect_int, 0x800C6F18, short /*fid*/, byte /*unk*/, byte /*vol*/, byte /*pan*/, byte /*studio*/, int /*itd*/)
-#define synthCheckFXRealloc FUNCTION_ADDRESS(void, 0x800C6FFC)
-#define synthFXSetCtrl FUNCTION_ADDRESS(bool, 0x800C7078, enumSoundEffect_short /*vid*/, byte /*ctrl*/, byte /*value*/)
-#define synthFXSetCtrl14 FUNCTION_ADDRESS(bool, 0x800C715C, int /*vid*/, byte /*ctrl*/, short /*value*/)
-#define synthFXCloneMidiSetup FUNCTION_ADDRESS(void, 0x800C7240)
-#define synthSendKeyOff FUNCTION_ADDRESS(void, 0x800C72C4)
-#define synthVolume FUNCTION_ADDRESS(void, 0x800C734C)
-#define synthIsFadeOutActive FUNCTION_ADDRESS(void, 0x800C787C)
-#define synthSetMusicVolumeType FUNCTION_ADDRESS(void, 0x800C78D0)
-#define synthHWMessageHandler FUNCTION_ADDRESS(void, 0x800C78F8)
-#define synthInit FUNCTION_ADDRESS(void, 0x800C79C8)
-#define synthExit FUNCTION_ADDRESS(void, 0x800C7F3C)
-#define sndSeqGetValid FUNCTION_ADDRESS(void, 0x800C7F60)
-#define sndSeqStop FUNCTION_ADDRESS(void, 0x800C7F90)
-#define sndSeqLoop FUNCTION_ADDRESS(void, 0x800C7FC8)
-#define sndSeqSpeed FUNCTION_ADDRESS(void, 0x800C806C)
-#define sndSeqContinue FUNCTION_ADDRESS(void, 0x800C80B4)
-#define sndSeqMute FUNCTION_ADDRESS(void, 0x800C80EC)
-#define sndSeqVolume FUNCTION_ADDRESS(void, 0x800C8144)
-#define seqGetMidiPriority FUNCTION_ADDRESS(void, 0x800C81AC)
-#define seqGetInstancesForVoice FUNCTION_ADDRESS(void, 0x800C81C8)
-#define sndFXCtrl FUNCTION_ADDRESS(bool, 0x800C826C, enumSoundEffect_short /*soundID*/, byte /*ctrl*/, byte /*value*/)
-#define sndFXCtrl14 FUNCTION_ADDRESS(bool, 0x800C82CC, SND_VOICEID /*vid*/, byte /*ctrl*/, short /*value*/)
-#define sndFXKeyOff FUNCTION_ADDRESS(int, 0x800C832C, int)
-#define sndFXStartEx FUNCTION_ADDRESS(enumSoundEffect_int, 0x800C836C, enumSoundEffect_short /*sfx*/, int /*vol*/, int /*pan*/, int /*studio*/)
-#define sndFXCheck FUNCTION_ADDRESS(void, 0x800C83F4)
-#define sndSilence FUNCTION_ADDRESS(void, 0x800C8440)
-#define sndVolume FUNCTION_ADDRESS(void, 0x800C8474, uint /*volume*/, uint /*time*/, uint /*volGroup*/)
-#define sndMasterVolume FUNCTION_ADDRESS(void, 0x800C84D4, int /*volume*/, int /*time*/, byte /*music*/, byte /*fx*/)
-#define sndOutputMode FUNCTION_ADDRESS(void, 0x800C8568)
-#define sndSetAuxProcessing FUNCTION_ADDRESS(void, 0x800C8654, byte /*studio*/, SND_AUX_CALLBACK /*auxA*/, void * /*userA*/, byte /*midiA*/, SND_SEQID /*seqIDA*/, SND_AUX_CALLBACK /*auxB*/, void * /*userB*/, byte /*midiB*/, SND_SEQID /*seqIDB*/)
-#define streamInit FUNCTION_ADDRESS(void, 0x800C87AC)
-#define streamHandle FUNCTION_ADDRESS(void, 0x800C8874)
-#define streamCorrectLoops FUNCTION_ADDRESS(void, 0x800C9158)
-#define streamKill FUNCTION_ADDRESS(void, 0x800C915C)
-#define streamOutputModeChanged FUNCTION_ADDRESS(void, 0x800C91F4)
-#define dataInsertKeymap FUNCTION_ADDRESS(void, 0x800C9324)
-#define dataRemoveKeymap FUNCTION_ADDRESS(void, 0x800C9514)
-#define dataInsertLayer FUNCTION_ADDRESS(void, 0x800C9690)
-#define dataRemoveLayer FUNCTION_ADDRESS(void, 0x800C98D8)
-#define dataInsertCurve FUNCTION_ADDRESS(void, 0x800C9A9C)
-#define dataRemoveCurve FUNCTION_ADDRESS(void, 0x800C9CA0)
-#define dataInsertSDir FUNCTION_ADDRESS(bool, 0x800C9E1C, SDIR_DATA * /*sdir*/, void * /*smp_data*/)
-#define dataRemoveSDir FUNCTION_ADDRESS(void, 0x800C9F84)
-#define dataAddSampleReference FUNCTION_ADDRESS(void, 0x800CA160)
-#define dataRemoveSampleReference FUNCTION_ADDRESS(void, 0x800CA238)
-#define dataInsertFX FUNCTION_ADDRESS(bool, 0x800CA2D4, short /*gid*/, FX_TAB * /*fx*/, short /*fxNum*/)
-#define dataRemoveFX FUNCTION_ADDRESS(void, 0x800CA414)
-#define dataInsertMacro FUNCTION_ADDRESS(void, 0x800CA5E0)
-#define dataRemoveMacro FUNCTION_ADDRESS(void, 0x800CA8CC)
-#define dataGetMacro FUNCTION_ADDRESS(void, 0x800CAB60)
-#define dataGetSample FUNCTION_ADDRESS(void, 0x800CABFC)
-#define dataGetCurve FUNCTION_ADDRESS(void, 0x800CAD3C)
-#define dataGetKeymap FUNCTION_ADDRESS(void, 0x800CAD98)
-#define dataGetLayer FUNCTION_ADDRESS(void, 0x800CAE04)
-#define dataGetFX FUNCTION_ADDRESS(void, 0x800CAE90)
-#define dataInit FUNCTION_ADDRESS(void, 0x800CAF2C)
-#define dataExit FUNCTION_ADDRESS(void, 0x800CB010)
-#define mcmdWait FUNCTION_ADDRESS(void, 0x800CB030)
-#define mcmdGosub FUNCTION_ADDRESS(void, 0x800CB320)
-#define mcmdLoop FUNCTION_ADDRESS(void, 0x800CB3F0)
-#define mcmdPlayMacro FUNCTION_ADDRESS(void, 0x800CB544)
-#define mcmdAddKey FUNCTION_ADDRESS(void, 0x800CB6D0)
-#define mcmdStartSample FUNCTION_ADDRESS(void, 0x800CB7A8)
-#define mcmdVibrato FUNCTION_ADDRESS(void, 0x800CB9A8)
-#define DoSetPitch FUNCTION_ADDRESS(void, 0x800CBB24)
-#define mcmdSetADSR FUNCTION_ADDRESS(void, 0x800CBCC4)
-#define mcmdSetADSRFromCtrl FUNCTION_ADDRESS(void, 0x800CBF1C)
-#define mcmdSetPitchADSR FUNCTION_ADDRESS(void, 0x800CC048)
-#define mcmdSetPanning FUNCTION_ADDRESS(void, 0x800CC2C4)
-#define mcmdSetSurroundPanning FUNCTION_ADDRESS(void, 0x800CC360)
-#define mcmdScaleVolume FUNCTION_ADDRESS(void, 0x800CC3FC)
-#define mcmdEnvelope FUNCTION_ADDRESS(void, 0x800CC530)
-#define mcmdFadeIn FUNCTION_ADDRESS(void, 0x800CC660)
-#define mcmdRandomKey FUNCTION_ADDRESS(void, 0x800CC79C)
-#define mcmdVolumeSelect FUNCTION_ADDRESS(void, 0x800CC938)
-#define mcmdPanningSelect FUNCTION_ADDRESS(void, 0x800CCA3C)
-#define mcmdPitchWheelSelect FUNCTION_ADDRESS(void, 0x800CCB40)
-#define mcmdModWheelSelect FUNCTION_ADDRESS(void, 0x800CCC44)
-#define mcmdPedalSelect FUNCTION_ADDRESS(void, 0x800CCD48)
-#define mcmdPortamentoSelect FUNCTION_ADDRESS(void, 0x800CCE4C)
-#define mcmdReverbSelect FUNCTION_ADDRESS(void, 0x800CCF50)
-#define mcmdPreAuxASelect FUNCTION_ADDRESS(void, 0x800CD054)
-#define mcmdPreAuxBSelect FUNCTION_ADDRESS(void, 0x800CD158)
-#define mcmdPostAuxBSelect FUNCTION_ADDRESS(void, 0x800CD25C)
-#define mcmdSurroundPanningSelect FUNCTION_ADDRESS(void, 0x800CD360)
-#define mcmdDopplerSelect FUNCTION_ADDRESS(void, 0x800CD464)
-#define mcmdTremoloSelect FUNCTION_ADDRESS(void, 0x800CD568)
-#define mcmdFilterSwitchSelect FUNCTION_ADDRESS(void, 0x800CD66C)
-#define mcmdFilterParameterSelect FUNCTION_ADDRESS(void, 0x800CD770)
-#define mcmdAuxAFXSelect FUNCTION_ADDRESS(void, 0x800CD874)
-#define mcmdAuxBFXSelect FUNCTION_ADDRESS(void, 0x800CD9F0)
-#define mcmdPortamento FUNCTION_ADDRESS(void, 0x800CDB6C)
-#define varGet FUNCTION_ADDRESS(void, 0x800CDCD0)
-#define mcmdVarCalculation FUNCTION_ADDRESS(void, 0x800CDD38)
-#define mcmdIfVarCompare FUNCTION_ADDRESS(void, 0x800CDF58)
-#define mcmdSendMessage FUNCTION_ADDRESS(void, 0x800CE0A4)
-#define mcmdGetVID FUNCTION_ADDRESS(void, 0x800CE2E8)
-#define mcmdSetKeyGroup FUNCTION_ADDRESS(void, 0x800CE368)
-#define macHandleActive FUNCTION_ADDRESS(void, 0x800CE444)
-#define macHandle FUNCTION_ADDRESS(void, 0x800CF3D8)
-#define macSampleEndNotify FUNCTION_ADDRESS(void, 0x800CF52C)
-#define macSetExternalKeyoff FUNCTION_ADDRESS(void, 0x800CF5D8)
-#define maxSetPedalState FUNCTION_ADDRESS(void, 0x800CF6C8)
-#define TimeQueueAdd FUNCTION_ADDRESS(void, 0x800CF7D0)
-#define macMakeActive FUNCTION_ADDRESS(void, 0x800CF874)
-#define macMakeInactive FUNCTION_ADDRESS(void, 0x800CF97C)
-#define macStart FUNCTION_ADDRESS(void, 0x800CFA78, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, byte, byte, byte, int)
-#define macInit FUNCTION_ADDRESS(void, 0x800CFEB0)
-#define vidInit FUNCTION_ADDRESS(void, 0x800CFF18)
-#define vidRemoveVoiceReferences FUNCTION_ADDRESS(void, 0x800CFFF8)
-#define vidMakeRoot FUNCTION_ADDRESS(void, 0x800D0360)
-#define vidMakeNew FUNCTION_ADDRESS(void, 0x800D0374)
-#define vidGetInternalId FUNCTION_ADDRESS(void, 0x800D0488, int /*vid*/)
-#define vidGetPublicId FUNCTION_ADDRESS(void, 0x800D04D8)
-#define voiceSetPrioriety FUNCTION_ADDRESS(void, 0x800D052C)
-#define voiceAllocateFind FUNCTION_ADDRESS(void, 0x800D0778)
-#define voiceAllocate FUNCTION_ADDRESS(void, 0x800D0B00)
-#define voiceAllocatePeek FUNCTION_ADDRESS(void, 0x800D0C10)
-#define voiceFree FUNCTION_ADDRESS(void, 0x800D0C88)
-#define synthInitAllocationAids FUNCTION_ADDRESS(void, 0x800D0E4C)
-#define voiceUnblock FUNCTION_ADDRESS(void, 0x800D10EC)
-#define voiceKill FUNCTION_ADDRESS(void, 0x800D1304)
-#define voiceKillSound FUNCTION_ADDRESS(void, 0x800D1538)
-#define synthKillAllVoices FUNCTION_ADDRESS(void, 0x800D15FC)
-#define synthKillVoicesByMacroReferences FUNCTION_ADDRESS(void, 0x800D16A4)
-#define synthKillVoicesBySampleReferences FUNCTION_ADDRESS(void, 0x800D1800)
-#define voiceIsLastStarted FUNCTION_ADDRESS(void, 0x800D195C)
-#define voiceSetLastStarted FUNCTION_ADDRESS(void, 0x800D19D0)
-#define voiceResetLastStarted FUNCTION_ADDRESS(void, 0x800D1A24)
-#define voiceInitLastStarted FUNCTION_ADDRESS(void, 0x800D1A98)
-#define sndPitchUpOne FUNCTION_ADDRESS(void, 0x800D1BDC)
-#define sndGetPitch FUNCTION_ADDRESS(void, 0x800D1C18)
-#define adsrConvertTimeCents FUNCTION_ADDRESS(void, 0x800D1CFC)
-#define salChangeADSRState FUNCTION_ADDRESS(void, 0x800D1D54)
-#define adsrSetup FUNCTION_ADDRESS(void, 0x800D1FC0)
-#define adsrStartRelease FUNCTION_ADDRESS(void, 0x800D1FE8)
-#define adsrRelease FUNCTION_ADDRESS(void, 0x800D2138)
-#define adsrHandle FUNCTION_ADDRESS(void, 0x800D22A0)
-#define adsrHandleLowPrecision FUNCTION_ADDRESS(void, 0x800D2438)
-#define vsInit FUNCTION_ADDRESS(void, 0x800D24BC)
-#define vsSampleStartNotify FUNCTION_ADDRESS(void, 0x800D2578)
-#define vsSampleEndNotify FUNCTION_ADDRESS(void, 0x800D2844)
-#define vsUpdateBuffer FUNCTION_ADDRESS(void, 0x800D28EC)
-#define vsSampleUpdates FUNCTION_ADDRESS(void, 0x800D2C44)
-#define dataInitStack FUNCTION_ADDRESS(void, 0x800D2E54)
-#define InsertData FUNCTION_ADDRESS(void, 0x800D2E94, int /*id*/, void * /*data*/, byte /*dataType*/, int /*remove*/)
-#define sndPushGroup FUNCTION_ADDRESS(int, 0x800D3120, void * /*prj_data*/, int /*gid*/, void * /*samples*/, void * /*sdir*/, void * /*pool*/)
-#define sndPopGroup FUNCTION_ADDRESS(void, 0x800D346C)
-#define seqPlaySong FUNCTION_ADDRESS(void, 0x800D37BC)
-#define sndSeqPlayEx FUNCTION_ADDRESS(void, 0x800D3910)
-#define salInitDspCtrl FUNCTION_ADDRESS(void, 0x800D3A34)
-#define salInitHRTFBuffer FUNCTION_ADDRESS(void, 0x800D3DE8)
-#define salExitDspCtrl FUNCTION_ADDRESS(void, 0x800D3E20)
-#define salActivateStudio FUNCTION_ADDRESS(void, 0x800D3F00)
-#define salCheckVolErrorAndResetDelta FUNCTION_ADDRESS(void, 0x800D4050)
-#define sal_setup_dspvol FUNCTION_ADDRESS(void, 0x800D4144)
-#define sal_update_hostplayinfo FUNCTION_ADDRESS(void, 0x800D418C)
-#define DoDepopFade FUNCTION_ADDRESS(void, 0x800D4200)
-#define HandleDepopVoice FUNCTION_ADDRESS(void, 0x800D42AC)
-#define SortVoices FUNCTION_ADDRESS(void, 0x800D45B8)
-#define salBuildCommandList FUNCTION_ADDRESS(void, 0x800D4810)
-#define salSynthSendMessage FUNCTION_ADDRESS(void, 0x800D6E08)
-#define salActivateVoice FUNCTION_ADDRESS(void, 0x800D6E4C)
-#define salDeactivateVoice FUNCTION_ADDRESS(void, 0x800D6EEC)
-#define salHandleAuxProcessing FUNCTION_ADDRESS(void, 0x800D6F4C)
-#define salCalcVolume FUNCTION_ADDRESS(void, 0x800D70A4)
-#define CalcEmitter FUNCTION_ADDRESS(void, 0x800D7794)
-#define sndUpdateEmitter FUNCTION_ADDRESS(bool, 0x800D7E10, SND_EMITTER * /*em*/, SND_FVECTOR * /*pos*/, SND_FVECTOR * /*dir*/, byte /*maxVol*/, SND_ROOM * /*room*/)
-#define sndCheckEmitter FUNCTION_ADDRESS(bool, 0x800D7EE8, SND_EMITTER * /*em*/)
-#define AddEmitter FUNCTION_ADDRESS(SND_VOICEID, 0x800D7F08, SND_EMITTER * /*em_buffer*/, SND_FVECTOR * /*pos*/, SND_FVECTOR * /*dir*/, float /*maxDis*/, float /*comp*/, int /*flags*/, short /*fxid*/, int /*groupid*/, byte /*maxVol*/, byte /*minVol*/, SND_ROOM * /*room*/, SND_PARAMETER_INFO * /*para*/, byte /*studio*/)
-#define sndAddEmitter FUNCTION_ADDRESS(int, 0x800D83B0, SND_EMITTER * /*em_buffer*/, SND_FVECTOR * /*pos*/, SND_FVECTOR * /*dir*/, float /*maxDis*/, float /*comp*/, int /*flags*/, ushort /*fxid*/, byte /*maxVol*/, byte /*minVol*/, SND_ROOM * /*room*/)
-#define sndRemoveEmitter FUNCTION_ADDRESS(void, 0x800D8408)
-#define s3dKillAllEmitter FUNCTION_ADDRESS(void, 0x800D84B0)
-#define s3dKillEmitterByFXID FUNCTION_ADDRESS(void, 0x800D8568)
-#define sndUpdateListener FUNCTION_ADDRESS(void, 0x800D8664)
-#define sndAddListener FUNCTION_ADDRESS(void, 0x800D87D8)
-#define sndRemoveListener FUNCTION_ADDRESS(void, 0x800D89E8)
-#define AddStartingEmitter FUNCTION_ADDRESS(void, 0x800D8A64)
-#define StartContinousEmitters FUNCTION_ADDRESS(void, 0x800D8BB8)
-#define s3dHandle FUNCTION_ADDRESS(void, 0x800D94AC)
-#define s3dInit FUNCTION_ADDRESS(void, 0x800D9BD4)
-#define s3dExit FUNCTION_ADDRESS(void, 0x800D9C0C)
-#define sndInit FUNCTION_ADDRESS(int, 0x800D9C10, byte /*voices*/, byte /*music*/, byte /*sfx*/, byte /*studios*/, int /*flags*/, int /*aramSize*/)
-#define sndQuit FUNCTION_ADDRESS(void, 0x800D9D48)
-#define salApplyMatrix FUNCTION_ADDRESS(void, 0x800D9D7C, Mtx *, Vec3f *, Vec3f *)
-#define salNormalizeVector FUNCTION_ADDRESS(void, 0x800D9E28, Vec3f *)
-#define salCrossProduct FUNCTION_ADDRESS(void, 0x800D9EDC, Vec3f *, Vec3f *, Vec3f *)
-#define salInvertMatrix FUNCTION_ADDRESS(void, 0x800D9F40, Mtx *, Mtx *)
-#define inpSetGlobalMIDIDirtyFlag FUNCTION_ADDRESS(void, 0x800DA13C)
-#define inpSetRPNHi FUNCTION_ADDRESS(void, 0x800DA160)
-#define inpSetRPNDec FUNCTION_ADDRESS(void, 0x800DA340)
-#define inpSetRPNInc FUNCTION_ADDRESS(void, 0x800DA564)
-#define inpSetMidiCtrl FUNCTION_ADDRESS(void, 0x800DA788, byte /*ctrl*/, byte /*channel*/, byte /*set*/, byte /*value*/)
-#define inpSetMidiCtrl14 FUNCTION_ADDRESS(void, 0x800DACA4, byte /*ctrl*/, byte /*channel*/, byte /*set*/, ushort /*value*/)
-#define inpResetMidiCtrl FUNCTION_ADDRESS(void, 0x800DADC8)
-#define inpGetMidiCtrl FUNCTION_ADDRESS(void, 0x800DAEB8)
-#define inpGetChannelDefaults FUNCTION_ADDRESS(void, 0x800DB17C)
-#define inpResetChannelDefaults FUNCTION_ADDRESS(void, 0x800DB1C0)
-#define inpAddCtrl FUNCTION_ADDRESS(void, 0x800DB21C)
-#define inpFXCopyCtrl FUNCTION_ADDRESS(void, 0x800DB2B4)
-#define inpSetMidiLastNote FUNCTION_ADDRESS(void, 0x800DB3C8)
-#define inpGetMidiLastNote FUNCTION_ADDRESS(void, 0x800DB404)
-#define _GetInputValue FUNCTION_ADDRESS(void, 0x800DB440)
-#define inpGetVolume FUNCTION_ADDRESS(void, 0x800DB8E0)
-#define inpGetPanning FUNCTION_ADDRESS(void, 0x800DB928)
-#define inpGetSurPanning FUNCTION_ADDRESS(void, 0x800DB970)
-#define inpGetPitchBend FUNCTION_ADDRESS(void, 0x800DB9B8)
-#define inpGetDoppler FUNCTION_ADDRESS(void, 0x800DBA00)
-#define inpGetModulation FUNCTION_ADDRESS(void, 0x800DBA48)
-#define inpGetPedal FUNCTION_ADDRESS(void, 0x800DBA90)
-#define inpGetPreAuxA FUNCTION_ADDRESS(void, 0x800DBAD8)
-#define inpGetReverb FUNCTION_ADDRESS(void, 0x800DBB20)
-#define inpGetPreAuxB FUNCTION_ADDRESS(void, 0x800DBB68)
-#define inpGetPostAuxB FUNCTION_ADDRESS(void, 0x800DBBB0)
-#define inpGetTremolo FUNCTION_ADDRESS(void, 0x800DBBF8)
-#define inpGetFilterSwitch FUNCTION_ADDRESS(void, 0x800DBC40)
-#define inpGetFilterParameter FUNCTION_ADDRESS(void, 0x800DBC88)
-#define inpGetAuxA FUNCTION_ADDRESS(void, 0x800DBCD0)
-#define inpGetAuxB FUNCTION_ADDRESS(void, 0x800DBD84)
-#define inpInit FUNCTION_ADDRESS(void, 0x800DBE38)
-#define inpTranslateExCtrl FUNCTION_ADDRESS(void, 0x800DC0FC)
-#define inpGetExCtrl FUNCTION_ADDRESS(void, 0x800DC16C)
-#define inpSetExCtrl FUNCTION_ADDRESS(void, 0x800DC268)
-#define sndRand FUNCTION_ADDRESS(void, 0x800DC44C)
-#define sndSin FUNCTION_ADDRESS(void, 0x800DC468)
-#define sndBSearch FUNCTION_ADDRESS(void, 0x800DC4F4)
-#define sndSqrt FUNCTION_ADDRESS(void, 0x800DC598)
-#define sndCos FUNCTION_ADDRESS(void, 0x800DC5EC)
-#define sndConvertMs FUNCTION_ADDRESS(void, 0x800DC6C0)
-#define sndConvertTicks FUNCTION_ADDRESS(void, 0x800DC6D0)
-#define sndConvert2Ms FUNCTION_ADDRESS(void, 0x800DC718)
-#define snd_handle_irq FUNCTION_ADDRESS(void, 0x800DC720)
-#define hwInit FUNCTION_ADDRESS(void, 0x800DC874)
-#define hwExit FUNCTION_ADDRESS(void, 0x800DC938)
-#define hwSetTimeOffset FUNCTION_ADDRESS(void, 0x800DC96C)
-#define hwGetTimeOffset FUNCTION_ADDRESS(void, 0x800DC974)
-#define hwIsActive FUNCTION_ADDRESS(void, 0x800DC97C)
-#define hwSetMesgCallback FUNCTION_ADDRESS(void, 0x800DC99C)
-#define hwSetPriority FUNCTION_ADDRESS(void, 0x800DC9A4)
-#define hwInitSamplePlayback FUNCTION_ADDRESS(void, 0x800DC9B8)
-#define hwBreak FUNCTION_ADDRESS(void, 0x800DCB6C)
-#define hwSetADSR FUNCTION_ADDRESS(void, 0x800DCBBC)
-#define hwSetVirtualSampleLoopBuffer FUNCTION_ADDRESS(void, 0x800DCD68)
-#define hwGetVirtualSampleState FUNCTION_ADDRESS(void, 0x800DCD88)
-#define hwGetSampleType FUNCTION_ADDRESS(void, 0x800DCD9C)
-#define hwGetSampleID FUNCTION_ADDRESS(void, 0x800DCDB0)
-#define hwGetSampleExtraData FUNCTION_ADDRESS(void, 0x800DCDC4)
-#define hwSetStreamLoopPS FUNCTION_ADDRESS(void, 0x800DCDD8)
-#define hwStart FUNCTION_ADDRESS(void, 0x800DCDEC)
-#define hwKeyOff FUNCTION_ADDRESS(void, 0x800DCE28)
-#define hwSetPitch FUNCTION_ADDRESS(void, 0x800DCE50)
-#define hwSetSRCType FUNCTION_ADDRESS(void, 0x800DCEC8)
-#define hwSetPolyPhaseFilter FUNCTION_ADDRESS(void, 0x800DCEF4)
-#define hwLowPassFrqToCoef FUNCTION_ADDRESS(void, 0x800DCF20)
-#define hwSetFilter FUNCTION_ADDRESS(void, 0x800DD018)
-#define hwSetITDMode FUNCTION_ADDRESS(void, 0x800DD098)
-#define hwSetVolume FUNCTION_ADDRESS(void, 0x800DD0F4)
-#define hwSetAuxProcessingCallbacks FUNCTION_ADDRESS(void, 0x800DD3B4, byte /*studio*/, SND_AUX_CALLBACK /*auxA*/, SND_AUX_CALLBACK /*auxB*/, void * /*userB*/)
-#define hwGetPos FUNCTION_ADDRESS(void, 0x800DD3DC)
-#define hwFlushStream FUNCTION_ADDRESS(void, 0x800DD488)
-#define hwGetStreamPlayBuffer FUNCTION_ADDRESS(void, 0x800DD518)
-#define hwTransAddr FUNCTION_ADDRESS(void *, 0x800DD53C, void * /*samples*/)
-#define hwFrqPitch FUNCTION_ADDRESS(void, 0x800DD540)
-#define hwInitSampleMem FUNCTION_ADDRESS(void, 0x800DD59C)
-#define hwExitSampleMem FUNCTION_ADDRESS(void, 0x800DD5C0)
-#define hwSaveSample FUNCTION_ADDRESS(void, 0x800DD5E0)
-#define hwRemoveSample FUNCTION_ADDRESS(void, 0x800DD678)
-#define hwSyncSampleMem FUNCTION_ADDRESS(void, 0x800DD700)
-#define hwFrameDone FUNCTION_ADDRESS(void, 0x800DD720)
-#define sndSetHooks FUNCTION_ADDRESS(void, 0x800DD724)
-#define hwDisableHRTF FUNCTION_ADDRESS(void, 0x800DD740)
-#define hwEnableCompressor FUNCTION_ADDRESS(void, 0x800DD74C)
-#define hwGetVirtualSampleID FUNCTION_ADDRESS(void, 0x800DD758)
-#define hwVoiceInStartup FUNCTION_ADDRESS(void, 0x800DD780)
-#define aramQueueCallback FUNCTION_ADDRESS(ulong, 0x800DD7A0)
-#define aramUploadData FUNCTION_ADDRESS(void, 0x800DD840)
-#define aramSyncTransferQueue FUNCTION_ADDRESS(void, 0x800DDA1C)
-#define aramInit FUNCTION_ADDRESS(void, 0x800DDA34)
-#define aramExit FUNCTION_ADDRESS(void, 0x800DDD18)
-#define aramGetZeroBuffer FUNCTION_ADDRESS(void, 0x800DDD1C)
-#define aramGetFirstUserAddress FUNCTION_ADDRESS(void, 0x800DDD3C)
-#define aramGetUserBytes FUNCTION_ADDRESS(void, 0x800DDD60)
-#define aramStoreData FUNCTION_ADDRESS(void, 0x800DDD68)
-#define aramRemoveData FUNCTION_ADDRESS(void, 0x800DE18C)
-#define InitStreamBuffers FUNCTION_ADDRESS(void, 0x800DE1A4)
-#define aramGetStreamBufferAddress FUNCTION_ADDRESS(void, 0x800DE268)
-#define salCallback FUNCTION_ADDRESS(void, 0x800DE2A0)
-#define dspInitCallback FUNCTION_ADDRESS(void, 0x800DE348)
-#define dspResumeCallback FUNCTION_ADDRESS(void, 0x800DE358)
-#define dspDoneCallback FUNCTION_ADDRESS(void, 0x800DE3BC)
-#define salInitAi FUNCTION_ADDRESS(void, 0x800DE3E0)
-#define salStartAi FUNCTION_ADDRESS(void, 0x800DE4A8)
-#define salExitAi FUNCTION_ADDRESS(void, 0x800DE4C8)
-#define salAIGetDest FUNCTION_ADDRESS(void, 0x800DE4FC)
-#define salInitDsp FUNCTION_ADDRESS(void, 0x800DE52C)
-#define salExitDsp FUNCTION_ADDRESS(void, 0x800DE600)
-#define salCtrlDsp FUNCTION_ADDRESS(void, 0x800DE650)
-#define salGetStartDelay FUNCTION_ADDRESS(void, 0x800DE6C4)
-#define hwInitIrq FUNCTION_ADDRESS(void, 0x800DE710)
-#define hwExitIeq FUNCTION_ADDRESS(void, 0x800DE73C)
-#define hwEnableIrq FUNCTION_ADDRESS(void, 0x800DE740)
-#define hwDisableIrq FUNCTION_ADDRESS(void, 0x800DE778)
-#define hwIRQEnterCritical FUNCTION_ADDRESS(void, 0x800DE7B0)
-#define hwIRQLeaveCritical FUNCTION_ADDRESS(void, 0x800DE7D0)
-#define salMalloc FUNCTION_ADDRESS(void, 0x800DE7F0)
-#define salMallocPhysical FUNCTION_ADDRESS(void, 0x800DE81C)
-#define salFree FUNCTION_ADDRESS(void, 0x800DE84C)
-#define sndAuxCallbackReverbHI FUNCTION_ADDRESS(void, 0x800DE87C)
-#define sndAuxCallbackPrepareReverbHI FUNCTION_ADDRESS(void, 0x800DE8D8)
-#define ReverbHICreate FUNCTION_ADDRESS(void, 0x800DE918)
-#define DoCrossTalk FUNCTION_ADDRESS(void, 0x800DEE24)
-#define HandleReverb FUNCTION_ADDRESS(void, 0x800DEFA8)
-#define ReverbHICallback FUNCTION_ADDRESS(void, 0x800DF4B4)
-#define do_src1 FUNCTION_ADDRESS(void, 0x800DF594)
-#define do_src2 FUNCTION_ADDRESS(void, 0x800DF72C)
-#define sndAuxCallbackChorus FUNCTION_ADDRESS(void, 0x800DF918)
-#define sndAuxCallbackPrepareChorus FUNCTION_ADDRESS(void, 0x800DFBD4)
-#define maybeProcessTeamData FUNCTION_ADDRESS(void, 0x8063F094)
-#define unreferenced FUNCTION_ADDRESS(void, 0x8063F2EC)
-#define manageStadiumLoading FUNCTION_ADDRESS(void, 0x8063F588)
-#define manageLoadingState FUNCTION_ADDRESS(void, 0x8063F6F0)
-#define checkCollision FUNCTION_ADDRESS(TriangleCollisionTypes, 0x8063F9A8, VecSrcDst * /*inVec*/, OutCollisionStruct * /*outCollisionStruct*/, int /*collisionCheckType*/, BOOL /*useBallCoords*/)
-#define checkStadiumHazardCollisions FUNCTION_ADDRESS(TriangleCollisionTypes, 0x8063FB00, VecSrcDst * /*in*/, VecSrcDst * /*out*/, stadiumObjectCollision * /*mstadiumObj*/)
-#define DidCollideWithBoundingBoxes FUNCTION_ADDRESS(TriangleCollisionTypes, 0x8063FE84, VecSrcDst * /*inCoord*/, OutCollisionStruct * /*outVecs*/, CollisionBox * /*inBoxes*/, short /*inCount*/)
-#define checkTriangleCollisions FUNCTION_ADDRESS(BOOL, 0x80640174, TriangleCollisionStruct * /*collisionData*/, TriangleGroup * /*triangleGroup*/)
-#define running_rouondBasePosition_ FUNCTION_ADDRESS(void, 0x80641674, undefined8, int /*someXCoord*/, int, int)
-#define setFanObjPtr FUNCTION_ADDRESS(void, 0x80642678, int /*ptr*/)
-#define CTRLBuildMatrixRelated FUNCTION_ADDRESS(void, 0x806426CC, TextureArchiveHeader *)
-#define inningScoreDisplayRelated_ FUNCTION_ADDRESS(void, 0x80643ACC, EnumStadiumIDs4 /*stadiumId*/)
-#define drawStadiumObjects_ FUNCTION_ADDRESS(void, 0x80644710, int *)
-#define drawStadium_ FUNCTION_ADDRESS(void, 0x80644C40)
-#define updateStadiumFileHeaders FUNCTION_ADDRESS(void, 0x80644F54, StadiumFileHeader * /*stadiumHeader*/)
-#define chompCollision_processStarHitVariables FUNCTION_ADDRESS(void, 0x806455C4)
-#define plantPhysics FUNCTION_ADDRESS(void, 0x806456B4)
-#define checkForBallDead FUNCTION_ADDRESS(void, 0x80645728)
-#define ballCollisionLogic FUNCTION_ADDRESS(void, 0x80645CCC)
-#define handleBallBounceAndRoll FUNCTION_ADDRESS(void, 0x80647D84, int /*verticalVelocity*/, int /*bounceFrameCount*/, byte * /*ballIsRolling*/, int)
-#define handleBallHitDeadBallOutcome FUNCTION_ADDRESS(void, 0x806480E0)
-#define fairOrFoulBall FUNCTION_ADDRESS(void, 0x806482F4, TriangleCollisionTypes_word /*collType*/)
-#define processLandedBallBouncing FUNCTION_ADDRESS(void, 0x8064859C)
-#define processBallInAir__Landed FUNCTION_ADDRESS(void, 0x8064889C)
-#define ballDistCalculator FUNCTION_ADDRESS(void, 0x80648D74)
-#define relatedToGroundRuleDouble FUNCTION_ADDRESS(void, 0x80648F18)
-#define foulBall_80649184 FUNCTION_ADDRESS(void, 0x80649184)
-#define warioWaluStarHit FUNCTION_ADDRESS(void, 0x8064922C)
-#define updatePastHitBallCoords FUNCTION_ADDRESS(void, 0x806498D0)
-#define liveBallHitPhysics FUNCTION_ADDRESS(void, 0x80649A04, int /*thrownBallInd*/)
-#define estimateTimeForThrowToReachTarget FUNCTION_ADDRESS(void, 0x8064A4D4)
-#define fielding_setHeldBallOffset FUNCTION_ADDRESS(void, 0x8064A9D4)
-#define futureFrameForClosestBall FUNCTION_ADDRESS(void, 0x8064AC50, undefined8 /*playerX*/, undefined8 /*playerZ*/, int /*averageXOfDive*/, int /*diveMaxFramePlus15*/, int /*const2*/)
-#define setHitClassification3 FUNCTION_ADDRESS(void, 0x8064AE0C)
-#define classifyHitTrajectoryOrHitAnimRelated FUNCTION_ADDRESS(void, 0x8064B0C8)
-#define updateFrameCountersAndBallPastCoordinatesWhenFielderHoldingBall FUNCTION_ADDRESS(void, 0x8064BA88)
-#define estimateAndSetFutureCoords FUNCTION_ADDRESS(void, 0x8064BEBC)
-#define adjustVeloByAirResistance FUNCTION_ADDRESS(void, 0x8064CC64)
-#define estimateWhereBallWillHitWall FUNCTION_ADDRESS(void, 0x8064CCDC)
-#define calculateImplicationsOfTheHitTrajectory FUNCTION_ADDRESS(void, 0x8064D368)
-#define setLiveBallVariablesAfterContact FUNCTION_ADDRESS(void, 0x8064DEE0)
-#define setDefaultInMemBall FUNCTION_ADDRESS(void, 0x8064E270)
-#define resetBallValuesBetweenBatters_ FUNCTION_ADDRESS(void, 0x8064E60C)
-#define resetInMemBall FUNCTION_ADDRESS(void, 0x8064E84C)
-#define initBallAndGameStateOnLoad FUNCTION_ADDRESS(void, 0x8064EC3C)
-#define UpdateRandomInts FUNCTION_ADDRESS(void, 0x8064EFE0)
-#define ballPhysicsMainFunction FUNCTION_ADDRESS(void, 0x8064F1E0)
-#define starHitSetting_Unused__ FUNCTION_ADDRESS(void, 0x8064F35C)
-#define CalculateBallVelocityAcceleration FUNCTION_ADDRESS(void, 0x8064F504)
-#define _unused__CalculateBallHorizontalAngle FUNCTION_ADDRESS(short, 0x8064F98C)
-#define calculateBuntHorizontalAngle FUNCTION_ADDRESS(void, 0x8064FB14)
-#define calculateHorizontalPower FUNCTION_ADDRESS(void, 0x8064FD94)
-#define calculateVerticalAngle FUNCTION_ADDRESS(void, 0x806504FC)
-#define calculateBallHorizontalAngleHit FUNCTION_ADDRESS(void, 0x80650C30)
-#define calculateContactAndHitType FUNCTION_ADDRESS(void, 0x80650F64)
-#define maybe_determineStarType FUNCTION_ADDRESS(void, 0x80651570)
-#define CalculateHitVariables FUNCTION_ADDRESS(void, 0x806515E8)
-#define CalculateIfHitBall FUNCTION_ADDRESS(void, 0x80651D48)
-#define ifBunt FUNCTION_ADDRESS(void, 0x80651E70)
-#define starSwingSpendStars FUNCTION_ADDRESS(void, 0x8065209C)
-#define ifSwing FUNCTION_ADDRESS(void, 0x806522F0)
-#define unusedBatterPreSwing FUNCTION_ADDRESS(void, 0x80652830)
-#define batterInBoxMovement FUNCTION_ADDRESS(void, 0x80652A34)
-#define batterHumanControlled FUNCTION_ADDRESS(void, 0x80652E28)
-#define updateBallHittableZoneStatus FUNCTION_ADDRESS(void, 0x80653350)
-#define loadBatterActor FUNCTION_ADDRESS(int, 0x8065341C)
-#define setDefaultInMemBatter FUNCTION_ADDRESS(void, 0x806534E8)
-#define setBatterContactConstants FUNCTION_ADDRESS(void, 0x80653758)
-#define initializeInMemBatter FUNCTION_ADDRESS(void, 0x806538C0)
-#define atBat_Batter FUNCTION_ADDRESS(void, 0x806538EC)
-#define assignFrameCountersToAPointer FUNCTION_ADDRESS(void, 0x806545B8)
-#define resetSomeStruct FUNCTION_ADDRESS(void, 0x80654E24)
-#define pauseMenuCameraAngle FUNCTION_ADDRESS(void, 0x80655028)
-#define bOD_Cam_liveBall FUNCTION_ADDRESS(void, 0x80655E00)
-#define camera_matchLiveBall_regular_replay FUNCTION_ADDRESS(void, 0x80656B84)
-#define gameplay_Camera_ FUNCTION_ADDRESS(void, 0x80656E34)
-#define cameraRelated FUNCTION_ADDRESS(void, 0x806575A0)
-#define camera_zoomInDuringFielderAction_slide_clamber_wallJump_ FUNCTION_ADDRESS(void, 0x80659ED8, undefined8 /*midXCoord*/, undefined8 /*midYCoord*/, undefined8 /*midZCoord*/, byte /*specialCatchTypeInd*/, short /*frames?*/)
-#define camera_match_setMovement FUNCTION_ADDRESS(void, 0x8065A404)
-#define matchCamera_setPastAndCurrentTarget FUNCTION_ADDRESS(void, 0x8065AAAC)
-#define camera_matchLiveBall FUNCTION_ADDRESS(void, 0x8065B244)
-#define cameraControl FUNCTION_ADDRESS(void, 0x8065BF24)
-#define staminaRelated FUNCTION_ADDRESS(void, 0x8065C900)
-#define versusStarChanceSetPointers_ FUNCTION_ADDRESS(void, 0x8065CCC4)
-#define trackLastPitchInfo FUNCTION_ADDRESS(void, 0x8065CDDC)
-#define setDefaultAIValues FUNCTION_ADDRESS(void, 0x8065CF4C)
-#define betweenABSetPitcherBatter FUNCTION_ADDRESS(void, 0x8065D1E8)
-#define someRosterMemoryManagement FUNCTION_ADDRESS(void, 0x8065D20C)
-#define initializeAIConstants FUNCTION_ADDRESS(void, 0x8065D3BC)
-#define unreferenced_8065d7b8 FUNCTION_ADDRESS(void, 0x8065D7B8)
-#define batterAIBallLocRelated FUNCTION_ADDRESS(void, 0x8065D888)
-#define batterAIFrameToSwingAndStickInput FUNCTION_ADDRESS(void, 0x8065DB3C)
-#define batterAISwingInd FUNCTION_ADDRESS(void, 0x8065E078)
-#define batterTrackBallInBox FUNCTION_ADDRESS(void, 0x8065E50C)
-#define batterAIMoveBatter FUNCTION_ADDRESS(void, 0x8065EA2C)
-#define batterAIControlled FUNCTION_ADDRESS(void, 0x8065EE20)
-#define trackLastPitchInfo2 FUNCTION_ADDRESS(void, 0x8065EFDC)
-#define batterAISwingEarlyOrLate FUNCTION_ADDRESS(void, 0x8065F0F8)
-#define batterAIRNGValueSetting FUNCTION_ADDRESS(void, 0x8065F2B8)
-#define resetBatterPreAB_ FUNCTION_ADDRESS(void, 0x8065FAF4)
-#define resetLastPitchData FUNCTION_ADDRESS(void, 0x8065FB44)
-#define aIPickoff FUNCTION_ADDRESS(void, 0x8065FBC4)
-#define aiPitchCurveDirection FUNCTION_ADDRESS(void, 0x8065FD80, undefined8 /*curvePerFrame*/)
-#define movePitcherOnMound FUNCTION_ADDRESS(void, 0x8065FEE4)
-#define unused_8065ff80 FUNCTION_ADDRESS(void, 0x8065FF80)
-#define pitcherAISetCurve FUNCTION_ADDRESS(void, 0x80660044)
-#define pitcherAISelectPitch FUNCTION_ADDRESS(void, 0x80660334)
-#define pitcherAI_prePitchSetConstants FUNCTION_ADDRESS(void, 0x80660640)
-#define pitcherAINewBatter FUNCTION_ADDRESS(void, 0x806607FC)
-#define resetPitcherPreAB_ FUNCTION_ADDRESS(void, 0x80660A34)
-#define maybeSetVsIndOrScoutFlagChance_ FUNCTION_ADDRESS(void, 0x80660FA8)
-#define resetSomethingRelatedToVersus FUNCTION_ADDRESS(void, 0x806618E4)
-#define versusScreen_seemsToDoNothing FUNCTION_ADDRESS(void, 0x80661CA4)
-#define championshipScreen FUNCTION_ADDRESS(void, 0x80661CB4)
-#define starChanceVsScreenProcess FUNCTION_ADDRESS(void, 0x80662550)
-#define homeRunTrot FUNCTION_ADDRESS(void, 0x80662924)
-#define homeRunEnd FUNCTION_ADDRESS(void, 0x80662D80)
-#define postReplayBatterCelebration FUNCTION_ADDRESS(void, 0x8066318C)
-#define initializeAnimations_ FUNCTION_ADDRESS(void, 0x80664190)
-#define knockOut_setPosAndVelo FUNCTION_ADDRESS(void, 0x80664278, uint /*fielderIndex*/)
-#define garlicOrStadiumHazardKnockOuts_ FUNCTION_ADDRESS(void, 0x80664438, int /*fielderIndex*/, short /*knockOutAngle?*/)
-#define fielderOnFirePosAndVelo FUNCTION_ADDRESS(void, 0x806646DC, int /*fielderIndex*/)
-#define maybeCastleFireballBurn FUNCTION_ADDRESS(void, 0x806648D8, int /*fielderIndex*/, int /*countdownIndex*/)
-#define unused_8066496c FUNCTION_ADDRESS(void, 0x8066496C, int /*fielderInd*/)
-#define runningCatch_updatePositionAndVelocity FUNCTION_ADDRESS(void, 0x80664AFC, int /*fielderIndex*/)
-#define mag_BirdoSlidingCatchSetCoordinates FUNCTION_ADDRESS(void, 0x80664CD4, int /*fielderIndex*/)
-#define fielderMovement_VelocityDuringCatchAnimations FUNCTION_ADDRESS(void, 0x8066527C, int /*fielderIndex*/)
-#define calculateBobble FUNCTION_ADDRESS(void, 0x806656F8, int /*fielder*/)
-#define updateVariablesPostCatch FUNCTION_ADDRESS(void, 0x80665B08, int /*fielderIndex*/)
-#define processFielderAutoCatch FUNCTION_ADDRESS(void, 0x806666DC)
-#define catchAnimationProgression FUNCTION_ADDRESS(void, 0x806668F4, int /*fielderIndex*/)
-#define clamberCheckCatch FUNCTION_ADDRESS(void, 0x80666DFC, int /*fielderInd*/)
-#define wallJumpSOmething3_ FUNCTION_ADDRESS(void, 0x80667088)
-#define wallJumpInitialization FUNCTION_ADDRESS(int, 0x806672B8, int /*fielderIndex*/)
-#define divingCatch_80667d3c FUNCTION_ADDRESS(int, 0x80667D3C, int /*fielderIndex*/)
-#define uncalledattemptJumpingCatch FUNCTION_ADDRESS(bool, 0x806691F8, int /*fielderIndex*/)
-#define checkForAndSetFielderWallActionsOrDives FUNCTION_ADDRESS(BOOL, 0x8066931C, int /*fielderIndex*/)
-#define ballThrownToEmptyBaseCatchAttempt FUNCTION_ADDRESS(void, 0x80669730, int /*fielder*/)
-#define unused_80669d6c FUNCTION_ADDRESS(void, 0x80669D6C)
-#define catchThrownBallFun FUNCTION_ADDRESS(void, 0x80669DFC, int /*fielderInd*/)
-#define checkIfRunningCatchOccurs FUNCTION_ADDRESS(BOOL, 0x8066A728, int /*fielderInd*/)
-#define checkIfCatchOccurs FUNCTION_ADDRESS(BOOL, 0x8066AB98, int /*fielderInd*/)
-#define evaluateFlyBallCatch FUNCTION_ADDRESS(void, 0x8066B384, int /*fielderIndex*/)
-#define checkForCatchBallAction FUNCTION_ADDRESS(void, 0x8066B72C, int /*fielderIndex*/)
-#define minigameDashUpdateFieldingVals FUNCTION_ADDRESS(void, 0x8066BC74)
-#define unused_FUN_8066bf88 FUNCTION_ADDRESS(void, 0x8066BF88, int /*fielderIndex*/)
-#define determineBestFrameForFielder FUNCTION_ADDRESS(void, 0x8066C114, int /*fielderIndex*/)
-#define updateFielderPositionBasedOnBallState FUNCTION_ADDRESS(void, 0x8066C510, int /*fielderIndex*/)
-#define unused_FUN_8066c7fc FUNCTION_ADDRESS(void, 0x8066C7FC, int /*fielderIndex*/)
-#define autoMovement28_minigameDashRelated3 FUNCTION_ADDRESS(void, 0x8066C9C0, int /*fielderIndex*/)
-#define autoMovement27_minigameDashRelated2 FUNCTION_ADDRESS(void, 0x8066CB58, int /*fielderIndex*/)
-#define autoMovement26_minigameRelated1 FUNCTION_ADDRESS(void, 0x8066CD88, int /*fielderIndex*/)
-#define minigameRelated_FUN_8066d4b0 FUNCTION_ADDRESS(void, 0x8066D4B0)
-#define toyfieldRelated_ FUNCTION_ADDRESS(void, 0x8066D910)
-#define miniGameFielding_ FUNCTION_ADDRESS(void, 0x8066DAB8)
-#define minigameDashUpdateFieldingVariables FUNCTION_ADDRESS(void, 0x8066DF58)
-#define miniGameDash FUNCTION_ADDRESS(void, 0x8066E518)
-#define jumpSetPosAndVelo FUNCTION_ADDRESS(void, 0x8066E608, int /*fielderIndex*/)
-#define unused_8066e868 FUNCTION_ADDRESS(void, 0x8066E868)
-#define wallSplat_setPosAndVelo FUNCTION_ADDRESS(void, 0x8066E9B8, int /*fielderIndex*/)
-#define setClamberPos FUNCTION_ADDRESS(void, 0x8066EC30, int /*fielderIndex*/)
-#define clamberJumpOffWall FUNCTION_ADDRESS(void, 0x8066EFC0, int /*fielderIndex*/)
-#define unused_8066f14c FUNCTION_ADDRESS(void, 0x8066F14C)
-#define clamberInitialization FUNCTION_ADDRESS(void, 0x8066F2A8)
-#define walljump_calculateJumpedOffWallPositionAndVelocity FUNCTION_ADDRESS(void, 0x8066F5F8, int /*fIndex*/)
-#define unused_8066f6b0 FUNCTION_ADDRESS(void, 0x8066F6B0)
-#define unReferenced FUNCTION_ADDRESS(void, 0x8066FAEC)
-#define fielding_prePitchAutomovement FUNCTION_ADDRESS(void, 0x8066FE08)
-#define fielding_atBat_SetSomeAutomovements_callCollisionFn FUNCTION_ADDRESS(void, 0x80670444)
-#define atBat_Fielders FUNCTION_ADDRESS(void, 0x80670628)
-#define unused_8067070c FUNCTION_ADDRESS(void, 0x8067070C)
-#define unused_80670ad0 FUNCTION_ADDRESS(void, 0x80670AD0)
-#define fielderActionsOnSteal FUNCTION_ADDRESS(void, 0x80670CE4)
-#define stealSetFielders FUNCTION_ADDRESS(void, 0x80671124)
-#define determineSelectedfielderOnIFHit_Dribbler FUNCTION_ADDRESS(void, 0x80671438)
-#define selectInitialFielders_linedriveThroughPitcher FUNCTION_ADDRESS(void, 0x806718A4)
-#define setInitialFielderMovements_foulBall FUNCTION_ADDRESS(void, 0x80671A38)
-#define chooseSecondaryFielderFromClosestOutfielder FUNCTION_ADDRESS(void, 0x8067211C)
-#define setInitialFielderMovements_generalCase FUNCTION_ADDRESS(void, 0x80672580, int /*secondaryFielderWillBeSetSeparatelyInd*/)
-#define determinePrimaryAndSecondaryOutFielders FUNCTION_ADDRESS(void, 0x80672E64, int /*primaryFielder*/, int /*secondaryFielder*/)
-#define setInitialFielderMovements_DeepFly FUNCTION_ADDRESS(void, 0x8067327C)
-#define humanTeamFieldingFirstFrameAfterHit FUNCTION_ADDRESS(void, 0x806734E4)
-#define decideHowToTrackFoulBall FUNCTION_ADDRESS(void, 0x80673AD4, int /*fielderIndex*/)
-#define autoMovement16_trackFoulBall FUNCTION_ADDRESS(void, 0x80674DBC, int /*fielderIndex*/)
-#define setPlayerWhoCanInterceptThrow FUNCTION_ADDRESS(void, 0x80674EB0)
-#define SelectClosestFielder2 FUNCTION_ADDRESS(void, 0x8067526C, undefined8 /*targetX*/, undefined8 /*targetZ*/)
-#define selectBestFielder FUNCTION_ADDRESS(int, 0x8067570C, float /*ballX*/, float /*ballZ*/, int /*fielder1Index*/, int /*fielder2Index*/, int /*mode*/)
-#define SelectBetterFielder FUNCTION_ADDRESS(enumFielder, 0x806761A8, float /*ballX*/, float /*ballZ*/, enumFielder /*fielder1Index*/, enumFielder /*fielder2Index*/, int /*mode*/)
-#define unused_FUN_8067661c FUNCTION_ADDRESS(void, 0x8067661C)
-#define selectClosestFielderBasedOnFutureCoord FUNCTION_ADDRESS(void, 0x806766A4, int /*futureCoordIndex*/)
-#define SelectOptimalFielder FUNCTION_ADDRESS(void, 0x80677094)
-#define unreferenced_806772c8 FUNCTION_ADDRESS(void, 0x806772C8)
-#define selectAssignClosestFielder2 FUNCTION_ADDRESS(void, 0x80677398)
-#define setNewSelectedFielder_determinePriorSelectedFielder_sAutoMovement FUNCTION_ADDRESS(void, 0x80677824, int /*newFielderIndex*/, int /*autoMovementMode?*/)
-#define HandleMiddleInfieldSelection FUNCTION_ADDRESS(void, 0x80677DA4)
-#define fielderSelect_tertiaryFielderExists_determine2FieldersToKeep FUNCTION_ADDRESS(void, 0x8067808C)
-#define updateBallLandedFielderSelection FUNCTION_ADDRESS(void, 0x80678444)
-#define updateInAirFielderSelection FUNCTION_ADDRESS(void, 0x806788EC)
-#define unused_FUN_80678e58 FUNCTION_ADDRESS(void, 0x80678E58)
-#define updateFielderSelection FUNCTION_ADDRESS(void, 0x80678F44)
-#define setFielderVelocity_someSituation FUNCTION_ADDRESS(void, 0x806792C8, int /*fielderIndex*/)
-#define moveFielder_CheckForAndSetJump FUNCTION_ADDRESS(void, 0x80679618, int /*fielderIndex*/)
-#define updateFielderMovementIfNoBall FUNCTION_ADDRESS(void, 0x80679D54, enumFielder /*fielderIndex*/)
-#define autoMovement21_23_humanControlInitialSelectedFielders FUNCTION_ADDRESS(void, 0x80679EC8, enumFielder /*fielderIndex*/)
-#define autoMovement15_selectedFielderOnLooseBall_ FUNCTION_ADDRESS(void, 0x8067A404, int /*fielderIndex*/)
-#define liveBallFielderControlHumanTeam FUNCTION_ADDRESS(void, 0x8067AA78)
-#define checkIfPlayerNeedsToMoveToCatchBall FUNCTION_ADDRESS(void, 0x8067AEE4, int /*fielderIndex*/)
-#define autoMovement19_foulBall FUNCTION_ADDRESS(void, 0x8067B23C, int /*fIndex*/)
-#define autoMovement0_stayStill_exceptForSpecialActions FUNCTION_ADDRESS(void, 0x8067B2B4, int /*fielderIndex*/)
-#define runOffBaseOverride FUNCTION_ADDRESS(void, 0x8067B628, int /*fIndex*/)
-#define autoMovement9_OffBase_coverHome_ FUNCTION_ADDRESS(void, 0x8067BD44, int /*fielderIndex*/)
-#define autoMovement17_runningOffField FUNCTION_ADDRESS(void, 0x8067C398, int /*fielderIndex*/)
-#define autoMovement12_stopBetweenInstructions FUNCTION_ADDRESS(void, 0x8067C740, enumFielder /*fIndex*/)
-#define setFielderLocToBeNearBase FUNCTION_ADDRESS(void, 0x8067C868, int /*fIndex*/)
-#define autoMovement14_infieldSupport FUNCTION_ADDRESS(void, 0x8067CC0C, int /*fielderIndex*/)
-#define autoMovement20_pitcherLinedriveRelated FUNCTION_ADDRESS(void, 0x8067D3E0, int /*fielderIndex*/)
-#define knockoutRelated_Grounder_Liner FUNCTION_ADDRESS(void, 0x8067D724)
-#define knockoutRelated_FlyBall FUNCTION_ADDRESS(void, 0x8067DC00)
-#define knockoutRelated FUNCTION_ADDRESS(void, 0x8067E0C8)
-#define uncalled FUNCTION_ADDRESS(void, 0x8067E1B8)
-#define aITeamFieldingFirstFrameAfterHit FUNCTION_ADDRESS(void, 0x80680240)
-#define fielderAIAssignmentRelated FUNCTION_ADDRESS(void, 0x80680A10)
-#define fielderAISomething FUNCTION_ADDRESS(void, 0x80680E0C)
-#define decideWhenToLeaveFunction2_16_18 FUNCTION_ADDRESS(void, 0x80681110, int /*feilderIndex*/)
-#define updateFielderPosition FUNCTION_ADDRESS(void, 0x80681D70, int /*fielderIndex*/)
-#define setIntendedLocToInterceptBall FUNCTION_ADDRESS(void, 0x806820CC, int /*fielderIndex*/)
-#define fielderTrackingBall_updateVariables FUNCTION_ADDRESS(void, 0x80682474, int /*fielderIndex*/)
-#define fielderTrackingBall_initialVariableSetting_ FUNCTION_ADDRESS(void, 0x80683858, int /*fielderIndex*/)
-#define autoMovement2_18_goTowardsBall_phase2 FUNCTION_ADDRESS(void, 0x80684428, int /*fielderIndex*/)
-#define autoMovement4_AI_goTowardsHitBall_ FUNCTION_ADDRESS(void, 0x80684648, int /*fielderIndex*/)
-#define autoMovement3_goTowardsHitBall_AITeam FUNCTION_ADDRESS(void, 0x806848F4, int /*fielderIndex*/)
-#define autoMovement25_readyToInterceptThrownBall FUNCTION_ADDRESS(void, 0x80684C1C, int /*fielderIndex*/)
-#define updateFielderValuesSubFunction1_cuttoffRelated FUNCTION_ADDRESS(void, 0x80684F2C)
-#define checkIfCutoffIsntAtThrowDestination FUNCTION_ADDRESS(void, 0x80685B50, int /*fielderIndex*/)
-#define setCutoffLocationToStandAt FUNCTION_ADDRESS(void, 0x80685E9C, int /*fielderIndex*/, int /*intendedLocX*/, int /*intendedLocZ*/)
-#define setInitialFielderMovements_cutoffs FUNCTION_ADDRESS(void, 0x8068680C)
-#define autoMovement5 FUNCTION_ADDRESS(void, 0x80687514, int /*fielderIndex*/)
-#define autoMovement11_cutoff_setInitialLocation FUNCTION_ADDRESS(void, 0x80687AE8, int /*fielderIndex*/)
-#define secondaryOutfielderWhenToStopMoving FUNCTION_ADDRESS(void, 0x80688588, int /*fielderIndex*/)
-#define setSecondaryFielderToBe12mFromDropSpotToSupport_ FUNCTION_ADDRESS(void, 0x80688A58, int /*fielderIndex*/, Vec3f * /*intendedLocation*/)
-#define autoMovement24_goTowardsHitBall_humanTeam FUNCTION_ADDRESS(void, 0x80688CAC, int /*fielderIndex*/)
-#define updateFielderValuesSubFunction3_empty FUNCTION_ADDRESS(void, 0x80688FD0)
-#define autoMovementDetermineWhatToDo FUNCTION_ADDRESS(void, 0x80688FD4, enumFielder /*fIndex*/, presetFielderLocations_int_ /*outfieldPositionToStand*/)
-#define setInitialFielderMovements_restOfFielders FUNCTION_ADDRESS(void, 0x806891B8)
-#define setIntendedLocationAheadOfBallPath FUNCTION_ADDRESS(void, 0x8068949C, int /*fIndex*/, int /*xCoord*/, int /*zCoord*/)
-#define autoMovement13_GoTowardsBallAsBackUp FUNCTION_ADDRESS(void, 0x80689A40, int /*fIndex*/)
-#define autoMovement6_outfielderNoCatch_Phase2 FUNCTION_ADDRESS(void, 0x8068A1BC, enumFielder /*fielderIndex*/)
-#define autoMovement7_8_outfiederNoCatch_Phase1 FUNCTION_ADDRESS(void, 0x8068A5A8, enumFielder /*fielderIndex*/)
-#define updateSomeAutoMovementAssignments FUNCTION_ADDRESS(void, 0x8068AAA0)
-#define setInitialFielderMovements_CoverBases FUNCTION_ADDRESS(void, 0x8068BA5C)
-#define autoMovement1_coverBase FUNCTION_ADDRESS(void, 0x8068C2A0, int /*fielderIndex*/)
-#define bobbleDirection FUNCTION_ADDRESS(void, 0x8068CCA8, int /*bobblingPlayerIndex*/)
-#define findClosestFieldersToLooseBallAndAssignToGoGetIt FUNCTION_ADDRESS(void, 0x8068D250)
-#define checkForAndHandleLooseBalls FUNCTION_ADDRESS(void, 0x8068D6CC)
-#define aISetFielderWithBallIndex FUNCTION_ADDRESS(void, 0x8068DC58)
-#define knockoutRelated_subFn FUNCTION_ADDRESS(void, 0x8068E05C, int /*fielderIndex*/, int)
-#define setCatcherCatchStrategy_distToLandingSpot FUNCTION_ADDRESS(void, 0x8068E598, int /*fielderIndex*/)
-#define setFielderCatchStrategy_calcFramesToGetToDropSpot FUNCTION_ADDRESS(void, 0x8068EBC8, int /*fielderIndex*/)
-#define fielderMovement_adjustPlaceToStandForBallBouncingOffWall FUNCTION_ADDRESS(void, 0x8068FCB4, int /*fielderInd*/, int /*xCoord*/, int /*zCoord*/)
-#define updateSprintPointers FUNCTION_ADDRESS(void, 0x806902B4)
-#define adjustPlayerPosOutsideFoulLine FUNCTION_ADDRESS(uint, 0x806906E0, int /*fielderIndex*/, Vec3f * /*outPosVec*/)
-#define updateFielderPosition_checkFielderCollision_ FUNCTION_ADDRESS(int, 0x8069082C, int /*fielderIndex*/, Vec3f * /*outNewPos*/, int)
-#define setZoneAwayFromHome FUNCTION_ADDRESS(void, 0x80690E84)
-#define calculateMinDiveDistAndEndingCoords FUNCTION_ADDRESS(void, 0x80691374, double /*xDist*/, double /*zDist*/, int /*fielderIndex*/, int /*frameAhead*/, float * /*postDiveX*/, float * /*postDiveZ*/, float * /*minimumDiveDistance*/)
-#define fRunningTimeToDestinationPlus7 FUNCTION_ADDRESS(void, 0x806915F4, undefined8 /*someX*/, undefined8 /*someZ*/, int /*fielderIndex*/)
-#define setFielderVelocity FUNCTION_ADDRESS(void, 0x80691770, int /*fielderIndex*/, int, int /*distFromRunner*/)
-#define setFielderAutoCoords FUNCTION_ADDRESS(void, 0x80691FE0, undefined8 /*targetX*/, undefined8 /*targetZ*/, int)
-#define updateFielderPositionAndVelocityForSpecialActions FUNCTION_ADDRESS(void, 0x806921C4, int /*fielderIndex*/)
-#define setStandingOnBaseVariables FUNCTION_ADDRESS(void, 0x806927C0, int /*fielderIndex*/)
-#define fielderMovementRelated FUNCTION_ADDRESS(void, 0x80692F7C)
-#define minigameFieldingRelated_collisions_ FUNCTION_ADDRESS(void, 0x80692FDC)
-#define fielding_handleCollisionsAndSpecialActions FUNCTION_ADDRESS(void, 0x8069354C)
-#define updateFielderDirectionFacing FUNCTION_ADDRESS(void, 0x80693BEC, int /*fielderIndex*/)
-#define handleBodyCheck2 FUNCTION_ADDRESS(void, 0x806947A4, int /*fielderWBall*/)
-#define fielder_endOfInning_deadball_updateCounters FUNCTION_ADDRESS(void, 0x806949AC)
-#define fielderUpdateChasingRunnerValues FUNCTION_ADDRESS(void, 0x80694D58, int /*fielderIndex*/)
-#define updateFielder_SpecificValuesEachFrame FUNCTION_ADDRESS(void, 0x80694F80, int /*fielderIndex*/)
-#define liveBallUpdateFieldingValues FUNCTION_ADDRESS(void, 0x806961D8)
-#define updateOutfielderPositionBasedOnBallState FUNCTION_ADDRESS(void, 0x8069651C)
-#define processFielderJumpAI FUNCTION_ADDRESS(void, 0x80696748, int /*fielderIndex*/)
-#define aITeamFielding_SelectCharWithHand FUNCTION_ADDRESS(void, 0x80696AA8)
-#define updateFielderMovementAndPosition FUNCTION_ADDRESS(void, 0x80696C48)
-#define liveBallFielderControlAITeam FUNCTION_ADDRESS(void, 0x8069744C)
-#define fielderResetAndStoreValuesEachFrame FUNCTION_ADDRESS(void, 0x8069771C)
-#define setDefaultInMemFielder FUNCTION_ADDRESS(void, 0x80697904)
-#define initializeMiniGameCharacters FUNCTION_ADDRESS(void, 0x80697EE4)
-#define fielding_setStartingCoordinates FUNCTION_ADDRESS(void, 0x80697FEC, int /*positionIndex*/, int /*xCoord*/, int /*zCoord*/)
-#define pPRelated_ FUNCTION_ADDRESS(void, 0x80698240)
-#define resetInMemFielders FUNCTION_ADDRESS(void, 0x806983CC)
-#define initializeFielderConstants FUNCTION_ADDRESS(void, 0x80698658)
-#define initFielders FUNCTION_ADDRESS(void, 0x8069878C)
-#define ifCurrentFielderIsTakingOverBaseCovering FUNCTION_ADDRESS(void, 0x806988F0, int /*fielderIndex*/, int /*fielderAction*/)
-#define fielderMainFunction FUNCTION_ADDRESS(void, 0x80698964)
-#define QueueTextToDisplay FUNCTION_ADDRESS(void, 0x806989AC, EnumPopupText_word /*textToDisplay*/)
-#define initializeSomethingDuringTransition FUNCTION_ADDRESS(void, 0x80698B24)
-#define resetCount FUNCTION_ADDRESS(void, 0x80699718)
-#define configureTeamsForGame_Unused__ FUNCTION_ADDRESS(void, 0x80699734, int /*battingInd*/, int, int /*initialBattingAndFielding*/, int /*addtlParam*/)
-#define SetGameStatus FUNCTION_ADDRESS(void, 0x80699768, EnumGameStatus /*newGameStatus*/)
-#define exitToMenuControl FUNCTION_ADDRESS(void, 0x80699790)
-#define gameInitRelated FUNCTION_ADDRESS(void, 0x80699910)
-#define simulate1FrameOfTheGame FUNCTION_ADDRESS(void, 0x80699D34)
-#define transferSomeValuesOnMatchLoad FUNCTION_ADDRESS(void, 0x80699F30)
-#define gameSimulationFunction FUNCTION_ADDRESS(void, 0x8069A158)
-#define exitMenu_main FUNCTION_ADDRESS(void, 0x8069A414)
-#define startChallengeModeMatch_ FUNCTION_ADDRESS(void, 0x8069A634)
-#define endOfGame_menuControl FUNCTION_ADDRESS(void, 0x8069AAC0)
-#define matchEndGameScreenFunction FUNCTION_ADDRESS(void, 0x8069ADD4)
-#define evaluateInningCondition FUNCTION_ADDRESS(void, 0x8069B5C4, int /*inning*/)
-#define uncalledRunnerUpdateRelated FUNCTION_ADDRESS(void, 0x8069B65C)
-#define transitionToLiveBallWithoutContact FUNCTION_ADDRESS(void, 0x8069B730, byte /*stealInd*/)
-#define processScoreChanges FUNCTION_ADDRESS(void, 0x8069B7E0, int /*isLiveBallScreen*/)
-#define endOfMatch FUNCTION_ADDRESS(void, 0x8069BE48)
-#define unreferenced_8069c064 FUNCTION_ADDRESS(void, 0x8069C064)
-#define endOfGameCheck FUNCTION_ADDRESS(void, 0x8069C128, int /*isRBI*/)
-#define inningImportanceAI FUNCTION_ADDRESS(void, 0x8069C490)
-#define inningChange FUNCTION_ADDRESS(void, 0x8069C67C)
-#define settingGameStatus FUNCTION_ADDRESS(void, 0x8069CB30)
-#define handleABEndEvent FUNCTION_ADDRESS(void, 0x8069CD74)
-#define handleDeadBall FUNCTION_ADDRESS(void, 0x8069CDC4)
-#define playOverTransitionStuff FUNCTION_ADDRESS(void, 0x8069CFE8)
-#define checkIfPlayOver FUNCTION_ADDRESS(void, 0x8069D358)
-#define switchFromAtBatToLiveBall FUNCTION_ADDRESS(void, 0x8069DE2C)
-#define freePracticeSomething_ FUNCTION_ADDRESS(void, 0x8069DE6C)
-#define endBatterTransition FUNCTION_ADDRESS(void, 0x8069DEEC)
-#define atBatScreen FUNCTION_ADDRESS(void, 0x8069E080)
-#define newPitch FUNCTION_ADDRESS(void, 0x8069E1E8)
-#define matchTransitionPrepareNextAB FUNCTION_ADDRESS(void, 0x8069E490)
-#define practiceNewBatter_ FUNCTION_ADDRESS(void, 0x8069E7B4)
-#define initNewInning_ FUNCTION_ADDRESS(void, 0x8069E83C)
-#define exhibitionGameTransitionCalculations FUNCTION_ADDRESS(void, 0x8069E9C4)
-#define initializeGame_ FUNCTION_ADDRESS(void, 0x8069EFA4)
-#define baseballMatchSimulation FUNCTION_ADDRESS(void, 0x8069F1B0)
-#define updateFielderState FUNCTION_ADDRESS(int, 0x8069F898, int /*fielderIndex*/, int /*updateType*/)
-#define foulAnimationRelatedMaybe FUNCTION_ADDRESS(void, 0x8069FB2C, int /*fielderInd*/, AnimationStruct * /*animStruct*/)
-#define fielderThrowingAnimations FUNCTION_ADDRESS(void, 0x806A02BC, int /*fielderIndex*/)
-#define animationsForFielding FUNCTION_ADDRESS(void, 0x806A05D8, int /*fielderIndex*/)
-#define fielderAnimations_setAnimation FUNCTION_ADDRESS(void, 0x806A0BF8, int /*fielderIndex*/)
-#define handleRunnerActionsAndTagging FUNCTION_ADDRESS(void, 0x806A1998)
-#define fielderAnimations FUNCTION_ADDRESS(void, 0x806A1F04)
-#define runnerAnimation_general FUNCTION_ADDRESS(void, 0x806A2240, int /*runnerIndex*/)
-#define runnerAnimation_detailed FUNCTION_ADDRESS(void, 0x806A2908)
-#define batterAnimations_ FUNCTION_ADDRESS(void, 0x806A2B8C)
-#define pitcherAnimation_ FUNCTION_ADDRESS(void, 0x806A3C70)
-#define minigameAnimations FUNCTION_ADDRESS(void, 0x806A51D4)
-#define matchAnimations FUNCTION_ADDRESS(void, 0x806A5590)
-#define unsure_updateAnimations FUNCTION_ADDRESS(void, 0x806A5950)
-#define setDefaultPlayTrackingVariables3 FUNCTION_ADDRESS(void, 0x806A61C4)
-#define setupBallTrailEffect FUNCTION_ADDRESS(void, 0x806A66B4, enumBallTrailTypes /*maybeBallTrailType*/, int /*trailDuration*/)
-#define ballAnimationSubFun4 FUNCTION_ADDRESS(void, 0x806A6ADC)
-#define displayBallTrail FUNCTION_ADDRESS(void, 0x806A7684)
-#define ballSpinSetting FUNCTION_ADDRESS(void, 0x806A7C48)
-#define clearAnimationRelatedPointers FUNCTION_ADDRESS(void, 0x806A8190)
-#define ballAnimationSubFun3 FUNCTION_ADDRESS(void, 0x806A8218)
-#define ballAnimationSubFun2 FUNCTION_ADDRESS(void, 0x806A8374)
-#define ballAnimationSubFun1 FUNCTION_ADDRESS(void, 0x806A868C)
-#define ballAnimations FUNCTION_ADDRESS(void, 0x806A8860)
-#define AnimBlr FUNCTION_ADDRESS(void, 0x806A92E4)
-#define resetAnimationRelatedPointers FUNCTION_ADDRESS(void, 0x806A92F0)
-#define animateStarHits_Pitches_ FUNCTION_ADDRESS(void, 0x806A94A8)
-#define animateChargeSprites FUNCTION_ADDRESS(void, 0x806A9BEC)
-#define resetAnimationFlags FUNCTION_ADDRESS(void, 0x806A9F74)
-#define computeAdjustedFielderOrientation FUNCTION_ADDRESS(void, 0x806AA030, int /*fielderIndex*/)
-#define animateDefence_ FUNCTION_ADDRESS(void, 0x806AA1D8)
-#define loadMVPMaybe_ FUNCTION_ADDRESS(void, 0x806AA66C)
-#define animateShadows_nonBall_ FUNCTION_ADDRESS(void, 0x806AA708)
-#define matchTransitionFunction2 FUNCTION_ADDRESS(void, 0x806AA904)
-#define loadRunnerActors_ FUNCTION_ADDRESS(void, 0x806AAAF8)
-#define setDefaultPlayTrackingVariables2 FUNCTION_ADDRESS(void, 0x806AB174)
-#define initializeSomethingDuringTransition2 FUNCTION_ADDRESS(void, 0x806AB19C)
-#define setInningEndingKIndTo0 FUNCTION_ADDRESS(void, 0x806AB1D0)
-#define graphicsFunction_nonMiniGame_ FUNCTION_ADDRESS(void, 0x806AB26C)
-#define resetAnimRelatedPointer FUNCTION_ADDRESS(void, 0x806AB4A4)
-#define emptyFunction FUNCTION_ADDRESS(void, 0x806AB4BC)
-#define resetAnimationFlags2 FUNCTION_ADDRESS(void, 0x806AB4E8)
-#define animateOffence FUNCTION_ADDRESS(void, 0x806AB564)
-#define setCharacterAnimations_ FUNCTION_ADDRESS(void, 0x806AB8E8, int /*battingTeam*/, int)
-#define checkForButtonPressToSkip_ FUNCTION_ADDRESS(void, 0x806AB9CC, undefined4, undefined2 /*inputsToCheckFor*/)
-#define InterpretControllerInputsIntoMagnitude FUNCTION_ADDRESS(void, 0x806ABE1C)
-#define UpdateControllerInputs FUNCTION_ADDRESS(void, 0x806AC398)
-#define resetInputTrackers FUNCTION_ADDRESS(void, 0x806AC534)
-#define getAdjustedPitcherStamina FUNCTION_ADDRESS(void, 0x806AC5F8, int /*team*/, int /*rosterID*/, int /*stamAdj*/)
-#define CheckFieldingStat FUNCTION_ADDRESS(int, 0x806AC698, int /*team*/, int /*rosterID*/, EnumFieldingAbilityBitLocation /*bit*/)
-#define calculateChemistry FUNCTION_ADDRESS(void, 0x806AC6EC, int /*teamFielding*/, int /*character*/, int /*secondCharacter*/)
-#define unreferenced_806ac768 FUNCTION_ADDRESS(void, 0x806AC768)
-#define initializeInMemRunner FUNCTION_ADDRESS(void, 0x806AC9F8, int /*rosterID*/, int /*runnerInd*/)
-#define setInMemBatterConstants FUNCTION_ADDRESS(void, 0x806ACEF4, int /*rosterID*/)
-#define getThrowSpeedBasedOnArmStrengthStat FUNCTION_ADDRESS(void, 0x806AD268, undefined4 /*armStrength*/)
-#define setFielderValues FUNCTION_ADDRESS(void, 0x806AD2E0, int /*rosterID*/, int /*fielder*/)
-#define setPitcherStatsToInMemPitcher FUNCTION_ADDRESS(void, 0x806ADC48)
-#define initRosterForMatch FUNCTION_ADDRESS(void, 0x806ADFB0)
-#define runnerStealing_TransitionToLiveViewIndicator FUNCTION_ADDRESS(int, 0x806AE57C)
-#define waitingForPitch_checkForPickoffs FUNCTION_ADDRESS(void, 0x806AE7DC)
-#define unused_806aeabc FUNCTION_ADDRESS(void, 0x806AEABC)
-#define unused_806aec2c FUNCTION_ADDRESS(void, 0x806AEC2C)
-#define pitchCall FUNCTION_ADDRESS(void, 0x806AF480)
-#define estimateXAndFrameAtBatterZ FUNCTION_ADDRESS(void, 0x806AF7FC, undefined8 /*batZ*/, int /*varToUpdate*/, int /*considerCurveInd*/)
-#define unused_806af8cc FUNCTION_ADDRESS(void, 0x806AF8CC)
-#define unused_806afc28 FUNCTION_ADDRESS(void, 0x806AFC28)
-#define pitchCurve FUNCTION_ADDRESS(void, 0x806AFF88)
-#define pitchInAirFunction FUNCTION_ADDRESS(void, 0x806B02DC)
-#define pitchSetPhysicsConstants FUNCTION_ADDRESS(void, 0x806B17FC)
-#define adjustPitchCurveSpeedCursedBall FUNCTION_ADDRESS(void, 0x806B1D3C)
-#define pitchBeingReleased FUNCTION_ADDRESS(void, 0x806B21A0)
-#define handleHPBORRunnerAdvance FUNCTION_ADDRESS(void, 0x806B263C)
-#define resetBatterCount FUNCTION_ADDRESS(void, 0x806B2760)
-#define resetCounter FUNCTION_ADDRESS(void, 0x806B27AC)
-#define unreferenced_806b27c0 FUNCTION_ADDRESS(void, 0x806B27C0)
-#define endAtBatNonHit FUNCTION_ADDRESS(void, 0x806B293C)
-#define unreferenced_806b2e7c FUNCTION_ADDRESS(void, 0x806B2E7C)
-#define unused_806b2fc0 FUNCTION_ADDRESS(void, 0x806B2FC0)
-#define unused_806b3040 FUNCTION_ADDRESS(void, 0x806B3040)
-#define pitchingWindUpFunction FUNCTION_ADDRESS(void, 0x806B31BC)
-#define pitcherMovementOnMound FUNCTION_ADDRESS(void, 0x806B3B58)
-#define waitingForPitch FUNCTION_ADDRESS(void, 0x806B3DA0)
-#define pitcherAITransitionFromPrePitchToWindup FUNCTION_ADDRESS(void, 0x806B4158)
-#define loadPitcherActor FUNCTION_ADDRESS(void, 0x806B4170)
-#define setDefaultInMemPitcher FUNCTION_ADDRESS(void, 0x806B4248)
-#define resetPitcherValuesBetweenBatters_ FUNCTION_ADDRESS(void, 0x806B447C)
-#define resetInMemPitcher FUNCTION_ADDRESS(void, 0x806B44C8)
-#define setPitchingConstants_ FUNCTION_ADDRESS(void, 0x806B454C)
-#define atBat_Pitcher FUNCTION_ADDRESS(void, 0x806B45F4)
-#define unreferenced_806b4950 FUNCTION_ADDRESS(void, 0x806B4950, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int, int, int, int)
-#define MVPCalculation FUNCTION_ADDRESS(void, 0x806B4A50)
-#define winningPitcher_ FUNCTION_ADDRESS(void, 0x806B5208)
-#define endOfGameStats_MVP FUNCTION_ADDRESS(void, 0x806B55EC)
-#define steal_pickoff_incrementSteal_runsStats FUNCTION_ADDRESS(void, 0x806B5B30)
-#define updateStatsBasedOnABResult FUNCTION_ADDRESS(void, 0x806B5D9C, int /*batterIndex*/, EnumAtBatResult_word /*atBatResult*/, int /*fIndexWhoCausedOut?*/, int /*rbisOnPlay*/)
-#define postPlayTrackStats FUNCTION_ADDRESS(void, 0x806B69A8)
-#define pickoff_infieldThrow_related FUNCTION_ADDRESS(void, 0x806B7608, undefined2 /*throwingFielder*/)
-#define monitorForErrors FUNCTION_ADDRESS(void, 0x806B77C4)
-#define update_runnersBeingTargetedWhileBatterCanBeForcedOut FUNCTION_ADDRESS(void, 0x806B7B58)
-#define initialize_runnersBeingTargetedWhileBatterCanBeForcedOut FUNCTION_ADDRESS(void, 0x806B80D4)
-#define runnerResultCd_bunt FUNCTION_ADDRESS(void, 0x806B84A8)
-#define adjustTotalBasesOnHit FUNCTION_ADDRESS(void, 0x806B863C)
-#define setInitialTotalBasesOnHit FUNCTION_ADDRESS(void, 0x806B8800)
-#define midPlay_trackStats FUNCTION_ADDRESS(void, 0x806B8B60)
-#define updatePitcherStatsOnScoreChange FUNCTION_ADDRESS(void, 0x806B8F88)
-#define postPitchStatUpdating FUNCTION_ADDRESS(void, 0x806B91E8, int /*liveBallInd*/)
-#define incrementPitchCount FUNCTION_ADDRESS(void, 0x806B9BC8)
-#define postPitchStatRelated FUNCTION_ADDRESS(void, 0x806B9C0C, undefined4 /*param_1_always0*/, undefined4, undefined4, undefined4 /*battingPositionOfCatcher?*/)
-#define setRunnerOnBaseIndicators FUNCTION_ADDRESS(void, 0x806B9FFC)
-#define intializeRunnersDuringTransition FUNCTION_ADDRESS(void, 0x806BA078)
-#define resetGameControlVars_duringNewInning__ FUNCTION_ADDRESS(void, 0x806BA1C4)
-#define initializeStats FUNCTION_ADDRESS(void, 0x806BA39C)
-#define determineIfReplayShouldPlay FUNCTION_ADDRESS(void, 0x806BACB4)
-#define replaceGameStructs_postReplay FUNCTION_ADDRESS(void, 0x806BB290, undefined4 /*param_1_always1*/)
-#define useReplayInputs FUNCTION_ADDRESS(void, 0x806BB578)
-#define structCopying FUNCTION_ADDRESS(void, 0x806BB840)
-#define CopyMoreStructs FUNCTION_ADDRESS(void, 0x806BBA6C)
-#define lastPlayStats FUNCTION_ADDRESS(void, 0x806BBF24)
-#define initializeReplayState FUNCTION_ADDRESS(void, 0x806BC01C)
-#define ReplayRelatedCopying_storeDataBeforePlay FUNCTION_ADDRESS(void, 0x806BC4EC)
-#define initializeReplayVariables FUNCTION_ADDRESS(void, 0x806BC814)
-#define runnerChangeDirectionHumanInput FUNCTION_ADDRESS(void, 0x806BCBC4, int /*runnerNum*/)
-#define cCSRunningFun FUNCTION_ADDRESS(void, 0x806BCE00)
-#define running_LiveBall_Human FUNCTION_ADDRESS(void, 0x806BD350)
-#define running_sendOutRunnerToDugout FUNCTION_ADDRESS(void, 0x806BDC68, int /*runnerIndex*/)
-#define running_roundBaseDecision FUNCTION_ADDRESS(void, 0x806BDD90, int /*runnerIndex*/)
-#define running_overrun1stIndicator FUNCTION_ADDRESS(void, 0x806BE36C)
-#define running_triggerSlideOrBodyCheck FUNCTION_ADDRESS(void, 0x806BE528, int /*runnerNum*/)
-#define unused_ FUNCTION_ADDRESS(void, 0x806BEA58)
-#define running_DirectionOverrides FUNCTION_ADDRESS(runnerMovementType, 0x806BEB0C, int /*runnerNum*/)
-#define unused__806bee24 FUNCTION_ADDRESS(void, 0x806BEE24)
-#define running_updatePosition FUNCTION_ADDRESS(void, 0x806BF0BC, int /*runnerIndex*/)
-#define running_updatePositionTracking_storeRBIs_stopAtNextBase_displaySafe FUNCTION_ADDRESS(void, 0x806C0224, int /*runnerIndex*/)
-#define unReferenced_806c0b4c FUNCTION_ADDRESS(void, 0x806C0B4C)
-#define running_overrunBaseControl FUNCTION_ADDRESS(void, 0x806C0C5C, undefined4 /*rIndex*/)
-#define runnerOverrun1BRelated FUNCTION_ADDRESS(void, 0x806C0F40, undefined4 /*rIndex*/)
-#define running_ActionControlAndVelocity FUNCTION_ADDRESS(void, 0x806C1448, undefined4 /*rIndex*/)
-#define running_CalculateSpeedVariables FUNCTION_ADDRESS(void, 0x806C1704, int /*rIndex*/)
-#define updateRunnerFramesToClosestBases FUNCTION_ADDRESS(void, 0x806C2014, int /*runnerNum*/, int /*framesPrevBase*/, int /*framesNextBase*/)
-#define running_updateDistAndFramesToClosestBases FUNCTION_ADDRESS(void, 0x806C2110, int /*runnerNum*/)
-#define unused__806c2480 FUNCTION_ADDRESS(void, 0x806C2480)
-#define running_LiveBall_AI FUNCTION_ADDRESS(void, 0x806C27A8)
-#define possibleRunnerAIRelated FUNCTION_ADDRESS(void, 0x806C3254)
-#define runnerAILiveBall_ FUNCTION_ADDRESS(void, 0x806C3378, int /*runnerIndex*/)
-#define runnerAI_2 FUNCTION_ADDRESS(void, 0x806C375C)
-#define runnerAISubfunction4 FUNCTION_ADDRESS(void, 0x806C3B64, int /*runnerIndex*/, int /*someFrames*/)
-#define runnerAISubfunction3 FUNCTION_ADDRESS(void, 0x806C4108)
-#define runnerAISubfunction2 FUNCTION_ADDRESS(void, 0x806C48D4, int /*runnerIndex*/, int, int)
-#define running_AIStartSteals FUNCTION_ADDRESS(void, 0x806C4D44)
-#define runnerAISetRunningDirection FUNCTION_ADDRESS(void, 0x806C4F88, int /*runnerNum*/, int /*actionCode*/)
-#define runnerAISubfunction FUNCTION_ADDRESS(void, 0x806C51AC)
-#define running_setRestrictedMovements FUNCTION_ADDRESS(void, 0x806C5830)
-#define running_beginSteal_CheckForPerfect FUNCTION_ADDRESS(void, 0x806C5F8C)
-#define unreferenced_806c6140 FUNCTION_ADDRESS(void, 0x806C6140)
-#define updateRunnerValues FUNCTION_ADDRESS(void, 0x806C6360)
-#define running_CheckForForceOuts_UpdateStamina_UpdateTagOutVars FUNCTION_ADDRESS(void, 0x806C64B8)
-#define running_UpdateTrackingValues_BasesEarned FUNCTION_ADDRESS(void, 0x806C68B0)
-#define running_CalcVeloAndIfBatterShouldStayStill FUNCTION_ADDRESS(void, 0x806C6B7C)
-#define running_chainChompSprintRelated FUNCTION_ADDRESS(void, 0x806C6D5C)
-#define setRunnerAngle FUNCTION_ADDRESS(void, 0x806C6F14)
-#define unused_forceOutSomething FUNCTION_ADDRESS(void, 0x806C72BC)
-#define running_checkForOuts FUNCTION_ADDRESS(void, 0x806C749C)
-#define running_ForceOutStateRelated FUNCTION_ADDRESS(void, 0x806C7BAC)
-#define maybeUpdateRunnerNoRun FUNCTION_ADDRESS(void, 0x806C7CB8)
-#define runnerOut FUNCTION_ADDRESS(void, 0x806C7E1C, int /*runnerNum*/)
-#define maybeHandleBaserunners FUNCTION_ADDRESS(void, 0x806C802C)
-#define stealCancelLeadoffs FUNCTION_ADDRESS(void, 0x806C81B0)
-#define setDefaultInMemRunner FUNCTION_ADDRESS(void, 0x806C81D0)
-#define updateRunnerPosition FUNCTION_ADDRESS(void, 0x806C88F8, int /*runnerNum*/, byte /*baseIncrement*/)
-#define transferInMemRunnerValuesToNextRunnerIndex FUNCTION_ADDRESS(void, 0x806C8A50)
-#define initializeARunner FUNCTION_ADDRESS(void, 0x806C926C)
-#define resetInMemRunners FUNCTION_ADDRESS(void, 0x806C93E4)
-#define initBaseRunnersAfterFoulBall FUNCTION_ADDRESS(void, 0x806C9578)
-#define initializeInMemRunner_806c9638 FUNCTION_ADDRESS(void, 0x806C9638)
-#define unreferenced_806c96ac FUNCTION_ADDRESS(void, 0x806C96AC)
-#define _unused_ FUNCTION_ADDRESS(void, 0x806C9848)
-#define running_MainFunction FUNCTION_ADDRESS(void, 0x806C99EC)
-#define addToCircularBuffer FUNCTION_ADDRESS(void, 0x806CA2EC)
-#define stadiumMusic_ FUNCTION_ADDRESS(void, 0x806CA3AC, EnumStadiumIDs4 /*stadium*/)
-#define updateAndRemoveStadiumEmitter FUNCTION_ADDRESS(void, 0x806CA924, int /*emitterIndex*/)
-#define updateOrRemoveEmitter FUNCTION_ADDRESS(SND_EMITTER *, 0x806CAAF4, int /*emitterID*/, SND_FVECTOR * /*newPos*/, SND_FVECTOR * /*newDir*/)
-#define initializeStadiumObjectEmitter FUNCTION_ADDRESS(int, 0x806CAC58, int /*soundID*/, SND_FVECTOR * /*position*/, SND_FVECTOR * /*direction*/, int /*paramIndex*/)
-#define initializeCamera_ FUNCTION_ADDRESS(void, 0x806CAF20)
-#define transitionToReplay_ FUNCTION_ADDRESS(void, 0x806CB110)
-#define makeSoundOfBallBouncing FUNCTION_ADDRESS(void, 0x806CB65C)
-#define handleGameSound FUNCTION_ADDRESS(void, 0x806CBE08)
-#define soundControl_ FUNCTION_ADDRESS(void, 0x806CCB14)
-#define soundFxRelated FUNCTION_ADDRESS(void, 0x806CE2B0)
-#define newAtBatPlaySound FUNCTION_ADDRESS(void, 0x806CECA0)
-#define adjustBallSoundEffectBasedOnHeight FUNCTION_ADDRESS(void, 0x806CED14)
-#define initializeSounds_ FUNCTION_ADDRESS(void, 0x806CEFAC)
-#define animateThrownBall_ FUNCTION_ADDRESS(int, 0x806CEFF0, float /*x*/, float /*y*/, float /*z*/, enumSoundEffect_short /*soundCode*/)
-#define callSfx FUNCTION_ADDRESS(void, 0x806CF0F8, enumSoundEffect_short /*sfxID*/)
-#define playCharacterSound FUNCTION_ADDRESS(void, 0x806CF2B4, int /*charID*/, enumCharacterSounds /*soundCode*/)
-#define PlaySoundEffect FUNCTION_ADDRESS(void, 0x806CF328, enumSoundEffect_short /*soundNumber*/)
-#define playOverSounds FUNCTION_ADDRESS(void, 0x806CF3BC)
-#define cleanupCharacters FUNCTION_ADDRESS(void, 0x806CFD44)
-#define hud_ScoreUpdate_ToyFieldOffScreenPlayers FUNCTION_ADDRESS(void, 0x806D04D0)
-#define animateScreenRelated FUNCTION_ADDRESS(void, 0x806D0C30)
-#define animateScreenRelated_806d0d04 FUNCTION_ADDRESS(void, 0x806D0D04)
-#define manageScoreboardGraphic FUNCTION_ADDRESS(void, 0x806D1058)
-#define graphics_ShowScoreUpdateOnRBI_ongoing FUNCTION_ADDRESS(void, 0x806D29F4)
-#define graphics_ShowScoreUpdateOnRBI_initial FUNCTION_ADDRESS(void, 0x806D2DF0)
-#define relatedToAnimatingEndOfGame FUNCTION_ADDRESS(void, 0x806D3228)
-#define HUD_ongoingStarChance FUNCTION_ADDRESS(void, 0x806D45FC)
-#define HUD_initStarChance FUNCTION_ADDRESS(void, 0x806D4660)
-#define drawDiamondMiniMap_ongoing FUNCTION_ADDRESS(void, 0x806D4A50)
-#define drawDiamondMiniMap_init FUNCTION_ADDRESS(void, 0x806D5730)
-#define toyfield_hud_turns_diamondMap FUNCTION_ADDRESS(void, 0x806D59A8)
-#define handleInGameEventsAndSoundEffects FUNCTION_ADDRESS(void, 0x806D5D38)
-#define manageEventStates FUNCTION_ADDRESS(void, 0x806D61D8)
-#define animateMatchScene FUNCTION_ADDRESS(void, 0x806D6480)
-#define initAnimStruct_ FUNCTION_ADDRESS(void, 0x806D6894)
-#define pauseMenu_ControlsMenu_ FUNCTION_ADDRESS(void, 0x806D6D80)
-#define animatePauseMenu FUNCTION_ADDRESS(void, 0x806D80F8)
-#define wallBallAnimationRelated FUNCTION_ADDRESS(void, 0x806D88AC)
-#define draw_OnBaseChemLinks FUNCTION_ADDRESS(void, 0x806D8D90)
-#define draw_ongoingStarGuageHud FUNCTION_ADDRESS(void, 0x806D8EA4)
-#define draw_initStarGuageHud FUNCTION_ADDRESS(void, 0x806D9938)
-#define draw_ScoreInningHud FUNCTION_ADDRESS(void, 0x806DA888)
-#define maybe_updateBallStrikeOutUI FUNCTION_ADDRESS(void, 0x806DAF74, undefined4 /*scene*/)
-#define update_BallStrikeOutHud FUNCTION_ADDRESS(void, 0x806DB0A8)
-#define init_BallStrikeOutHud FUNCTION_ADDRESS(void, 0x806DB320)
-#define matchHudDrawingControl FUNCTION_ADDRESS(void, 0x806DB60C)
-#define runScored FUNCTION_ADDRESS(void, 0x806DB828)
-#define categorizeBallTrajectory FUNCTION_ADDRESS(void, 0x806DBB84)
-#define atBatBuntResult FUNCTION_ADDRESS(void, 0x806DBF0C)
-#define atBatResultsForOuts FUNCTION_ADDRESS(void, 0x806DC1D4)
-#define noForceOutInd_atBatResultsAfterForcedRunnersAllAdvance FUNCTION_ADDRESS(void, 0x806DC408)
-#define setAtBatResult FUNCTION_ADDRESS(void, 0x806DC738)
-#define setDefaultPlayTrackingVariables1 FUNCTION_ADDRESS(void, 0x806DCBF0)
-#define initializeInningTrackers FUNCTION_ADDRESS(void, 0x806DCC78)
-#define bobOmbDerbyBatterAI2_ FUNCTION_ADDRESS(void, 0x806DD3FC)
-#define WeightedRandomIndex FUNCTION_ADDRESS(int, 0x806DD634, byte * /*weights*/, int /*param_counter*/)
-#define iterateBatter FUNCTION_ADDRESS(void, 0x806DD868, int /*teamBatting*/)
-#define randomInRange_ FUNCTION_ADDRESS(void, 0x806DDC60)
-#define randBetween FUNCTION_ADDRESS(void, 0x806DDDB0)
-#define RandomInt FUNCTION_ADDRESS(void, 0x806DDEB8)
-#define RandomInt_Game FUNCTION_ADDRESS(int, 0x806DDF4C, int /*MaxNum*/)
-#define calculateBallInterceptDistance_ FUNCTION_ADDRESS(void, 0x806DE064, InMemBall * /*inmemBall*/, int /*zero?*/, int /*ballFutureX?*/, int /*auStack?*/)
-#define fieldersRunningToDugoutCalculateOffsets FUNCTION_ADDRESS(void, 0x806DE830, undefined8 /*stadiumRelated*/, undefined8 /*fielderRelatedX*/, undefined8 /*fielderRelatedZ*/, int /*xOffset*/, int /*zOffset*/)
-#define sinAndCosOfAngle FUNCTION_ADDRESS(void, 0x806DE9F8, undefined8 /*angle*/, int /*cos*/, int /*sin*/)
-#define getAngleComponents FUNCTION_ADDRESS(void, 0x806DEA5C, short /*angle*/, int /*xComponent*/, int /*zComponent*/)
-#define radianAngleToPoint FUNCTION_ADDRESS(void, 0x806DEBD4, undefined8 /*x*/, undefined8 /*y*/)
-#define calculateAngleFromCoordinates FUNCTION_ADDRESS(void, 0x806DEC20)
-#define calculateDiffInAngles_ FUNCTION_ADDRESS(void, 0x806DECB0, undefined8 /*angle1*/, undefined8 /*angle2*/)
-#define angleDifferenceNormalized FUNCTION_ADDRESS(void, 0x806DED38, short /*angle1*/, short /*angle2*/)
-#define getDifferenceInAngle FUNCTION_ADDRESS(void, 0x806DED8C, int /*angle1*/, int /*angle2*/)
-#define normalizeAnglebetween_2048And2047 FUNCTION_ADDRESS(void, 0x806DEDBC, short /*anglePlus180*/)
-#define normalizeAngle FUNCTION_ADDRESS(short, 0x806DEF00, short /*BallAngle*/)
-#define radianAngleReduction FUNCTION_ADDRESS(double, 0x806DEF3C, double /*angle*/)
-#define normalizeAngleToRange FUNCTION_ADDRESS(void, 0x806DEF98, undefined8 /*angleRadians*/)
-#define convertRadiansToBase4096 FUNCTION_ADDRESS(void, 0x806DEFF4)
-#define normalizeAngle_806df040 FUNCTION_ADDRESS(void, 0x806DF040)
-#define someAngleFun FUNCTION_ADDRESS(void, 0x806DF0AC)
-#define fielderAIDecideWhatRunnerToTarget FUNCTION_ADDRESS(void, 0x806DF130, int /*fielderIndex*/)
-#define fielderAIWeirdSituation FUNCTION_ADDRESS(void, 0x806E10DC)
-#define canThrowOutRunnerWhoNeedsToTagUp FUNCTION_ADDRESS(void, 0x806E12C0)
-#define throwOutRunnerTaggingUpInd FUNCTION_ADDRESS(void, 0x806E1498)
-#define genericPlayOnRunnerOffBase FUNCTION_ADDRESS(void, 0x806E1658)
-#define fielderAIOutfieldPlayAttemptInd FUNCTION_ADDRESS(void, 0x806E2408)
-#define fielderAIChaseRunner_ FUNCTION_ADDRESS(void, 0x806E2D54)
-#define fielderAIMakePlay FUNCTION_ADDRESS(void, 0x806E3734, int /*targetRunner*/)
-#define fieldingAIPlayStrategy FUNCTION_ADDRESS(void, 0x806E3AA4)
-#define throwTimeToBase_ FUNCTION_ADDRESS(void, 0x806E3FE4, int /*baseCounter*/)
-#define runnerTimeToCoverBase FUNCTION_ADDRESS(void, 0x806E4798, int /*runnerIndex*/)
-#define fieldingAIThrowOrChase FUNCTION_ADDRESS(void, 0x806E4BE0, int /*runnerNum*/)
-#define howManyFramesTheRunnerIsOutOfReach FUNCTION_ADDRESS(void, 0x806E5478, int /*runnerNum*/, int /*forwardsInd*/, int /*throwRunStrat*/, int /*runningOutStrat*/)
-#define estimatedThrowFramesBetweenTwoPoints_ FUNCTION_ADDRESS(void, 0x806E58A4, undefined8 /*x1*/, undefined8 /*y1*/, undefined8 /*x2*/, undefined8 /*y2*/)
-#define tagRelated FUNCTION_ADDRESS(void, 0x806E5F2C)
-#define tagOutValues FUNCTION_ADDRESS(void, 0x806E60D4, undefined8 /*distToBase*/, int /*fielderIndex*/)
-#define fielderHasBall FUNCTION_ADDRESS(void, 0x806E6748)
-#define checkForBufferedThrow FUNCTION_ADDRESS(void, 0x806E6D1C)
-#define fielderControl_classifyControlStickDirection FUNCTION_ADDRESS(void, 0x806E6F8C)
-#define setRunnerChasingAfter_ FUNCTION_ADDRESS(void, 0x806E7108, int /*fielderIndex*/)
-#define fielderChasingAI_ FUNCTION_ADDRESS(void, 0x806E73CC)
-#define runnerTagUpOrBatterTo1B FUNCTION_ADDRESS(void, 0x806E750C)
-#define maybeUnused_SetThrowSpeedType2 FUNCTION_ADDRESS(void, 0x806E765C)
-#define knockBallLoose FUNCTION_ADDRESS(void, 0x806E83E8, int /*fielderIndex*/, int /*knockOutCause*/)
-#define fielderBodyCheck_setStatus_Pos_Velo FUNCTION_ADDRESS(void, 0x806E8790, int /*fielderIndex*/)
-#define fielderKnockback FUNCTION_ADDRESS(void, 0x806E8A18, int /*fielderIndex*/)
-#define setFielder215 FUNCTION_ADDRESS(void, 0x806E8D08)
-#define autoMovement10_HasBall FUNCTION_ADDRESS(void, 0x806E8DB4, int /*fielderIndex*/)
-#define setCutoffThrowTargetLocation FUNCTION_ADDRESS(void, 0x806EA084, undefined4 /*throwTargetX*/, undefined4 /*throwTargetZ*/)
-#define initializeThrowAngle_Speed_Length FUNCTION_ADDRESS(void, 0x806EA644, int /*framesForFielderToGetToLoc*/, float * /*throwAngle*/, float * /*throwSpeed*/)
-#define makeThrowVariables FUNCTION_ADDRESS(void, 0x806EAE64, int /*throwingFielder*/)
-#define howToPlayScreen_ FUNCTION_ADDRESS(void, 0x806EBB8C)
-#define controlOptionsMenu FUNCTION_ADDRESS(void, 0x806EBDCC)
-#define pauseMenuControl FUNCTION_ADDRESS(void, 0x806EC1F8)
-#define positionSwapScreenInputs FUNCTION_ADDRESS(void, 0x806EC450)
-#define positionSwap FUNCTION_ADDRESS(void, 0x806EC960)
-#define loadPauseMenu_ FUNCTION_ADDRESS(void, 0x806EE1A0)
-#define pauseMenuControl_806ee638 FUNCTION_ADDRESS(void, 0x806EE638)
-#define transitionToPauseScreen FUNCTION_ADDRESS(void, 0x806EEAF8)
-#define match_checkForPause FUNCTION_ADDRESS(void, 0x806EEBF8)
-#define setPausedTo0AndOtherStateVars FUNCTION_ADDRESS(void, 0x806EEE38)
-#define practiceRelatedPostPlay FUNCTION_ADDRESS(void, 0x806EEEA0)
-#define guidedPracticeRelated FUNCTION_ADDRESS(void, 0x806EF0D0)
-#define unused__806ef274 FUNCTION_ADDRESS(void, 0x806EF274)
-#define someBattingPitchingCallFuns FUNCTION_ADDRESS(void, 0x806EF2F0)
-#define battingPracticeRelated FUNCTION_ADDRESS(void, 0x806EF33C)
-#define unused__806ef4f8 FUNCTION_ADDRESS(void, 0x806EF4F8)
-#define battingPracticeSomething FUNCTION_ADDRESS(void, 0x806EF600)
-#define battingPracticeSwitcher FUNCTION_ADDRESS(void, 0x806EF908)
-#define battingPracticeControl FUNCTION_ADDRESS(void, 0x806EFB40)
-#define fieldingPractice_setHitVariables FUNCTION_ADDRESS(void, 0x806EFBF0)
-#define batterAI_buntForPractice FUNCTION_ADDRESS(void, 0x806EFD88)
-#define fieldingPracticeAISwingDecision FUNCTION_ADDRESS(void, 0x806EFDC0)
-#define practice_fieldingRelated FUNCTION_ADDRESS(void, 0x806EFE94)
-#define unused_806f0264 FUNCTION_ADDRESS(void, 0x806F0264)
-#define unused_806f038c FUNCTION_ADDRESS(void, 0x806F038C)
-#define practiceRelatedUnused_ FUNCTION_ADDRESS(void, 0x806F0504)
-#define fieldingPracticeInitialization_ FUNCTION_ADDRESS(void, 0x806F060C)
-#define fieldingPracticeRelated FUNCTION_ADDRESS(void, 0x806F0AC4)
-#define fieldingPracticeControl FUNCTION_ADDRESS(void, 0x806F0CA8)
-#define loadGuidedPractice FUNCTION_ADDRESS(void, 0x806F0D44)
-#define playPracticeCPUInputs FUNCTION_ADDRESS(void, 0x806F0E64)
-#define setUpPlayerTryingSkill FUNCTION_ADDRESS(void, 0x806F15E0)
-#define practice_giveAndDemonstrateInstructions FUNCTION_ADDRESS(void, 0x806F16C4)
-#define practiceRelatedInit FUNCTION_ADDRESS(void, 0x806F1838)
-#define practice_pause_unloadPauseMenu_ FUNCTION_ADDRESS(void, 0x806F193C)
-#define practicePauseRelated FUNCTION_ADDRESS(void, 0x806F1EB4)
-#define practice_checkForPause FUNCTION_ADDRESS(void, 0x806F234C)
-#define practiceMenuLogic FUNCTION_ADDRESS(void, 0x806F24DC)
-#define practiceLogicRelatedPause FUNCTION_ADDRESS(void, 0x806F26B4)
-#define transitionToPlayerControl_806f2ae0 FUNCTION_ADDRESS(void, 0x806F2AE0)
-#define practiceRelatedReset FUNCTION_ADDRESS(void, 0x806F2C04)
-#define baserunningPracticeRelated FUNCTION_ADDRESS(void, 0x806F2C64)
-#define setTutorialState FUNCTION_ADDRESS(void, 0x806F2D0C)
-#define updatePracticeTransitionState FUNCTION_ADDRESS(void, 0x806F2D28, byte /*state*/)
-#define switchSecondaryGameMode FUNCTION_ADDRESS(void, 0x806F2D40)
-#define practice_relatedToSettingCharacters FUNCTION_ADDRESS(void, 0x806F2D68)
-#define practiceLoadingRelatedMaybe FUNCTION_ADDRESS(void, 0x806F307C)
-#define practice_loadCharacter FUNCTION_ADDRESS(void, 0x806F31B8, undefined4 /*teamIndex*/, undefined4 /*rosterIndex*/, undefined4 /*characterID*/, undefined4 /*editHandedness*/)
-#define practice_loadCharacterData FUNCTION_ADDRESS(void, 0x806F333C)
-#define loadPracticeScreen FUNCTION_ADDRESS(void, 0x806F347C)
-#define practiceSimulation FUNCTION_ADDRESS(void, 0x806F38C0)
-#define practiceRelatedMenu FUNCTION_ADDRESS(void, 0x806F3CD4)
-#define unref FUNCTION_ADDRESS(void, 0x806F4124)
-#define practice_subMenu_stateHandling FUNCTION_ADDRESS(void, 0x806F4278)
-#define notReferenced FUNCTION_ADDRESS(void, 0x806F4728)
-#define practice_mainMenu_stateHandling FUNCTION_ADDRESS(void, 0x806F48AC)
-#define unused_MaybePractice FUNCTION_ADDRESS(void, 0x806F4D48)
-#define practiceMenu FUNCTION_ADDRESS(void, 0x806F4E0C)
-#define unused_806f5184 FUNCTION_ADDRESS(void, 0x806F5184)
-#define unused_806f5254 FUNCTION_ADDRESS(void, 0x806F5254)
-#define practiceRelUnuse_ FUNCTION_ADDRESS(void, 0x806F53B4)
-#define pitchingPractice_BaseballControl FUNCTION_ADDRESS(void, 0x806F54D4)
-#define pitchingPracticeRelated FUNCTION_ADDRESS(void, 0x806F5A28)
-#define pitchingPracticeControl FUNCTION_ADDRESS(void, 0x806F5C38)
-#define unused_806f5f2c FUNCTION_ADDRESS(void, 0x806F5F2C)
-#define unused_806f6000 FUNCTION_ADDRESS(void, 0x806F6000)
-#define practiceRelatedUnused__806f6110 FUNCTION_ADDRESS(int, 0x806F6110)
-#define baseRunningPracticeRelated FUNCTION_ADDRESS(void, 0x806F6218)
-#define practiceRel FUNCTION_ADDRESS(void, 0x806F66B4)
-#define baseRunningPracticeControl FUNCTION_ADDRESS(void, 0x806F6870)
-#define checkFielderCollision FUNCTION_ADDRESS(bool, 0x806F6CC0, float * /*inParamFielder*/, float * /*futureCoordinate*/)
-#define isCoordinateUncatchableTerrain FUNCTION_ADDRESS(void, 0x806F6D70, float /*xCoordParam*/, float /*zCoordParam*/)
-#define foul_isBallWithin3mFair_ FUNCTION_ADDRESS(bool, 0x806F6E00, double /*x*/, double /*y*/)
-#define foul_ifBallConsideredPastTheBases FUNCTION_ADDRESS(void, 0x806F6E6C, undefined8 /*ballX*/, undefined8 /*ballZ*/)
-#define foul_checkIfFoul FUNCTION_ADDRESS(int, 0x806F6EA4, double /*x*/, double /*z*/)
-#define DistanceSquared FUNCTION_ADDRESS(double, 0x806F6F84, Vec3f * /*velo1*/, Vec3f * /*velo2*/)
-#define CrossProduct FUNCTION_ADDRESS(void, 0x806F6FAC, Vec3f * /*out*/, Vec3f * /*a*/, Vec3f * /*b*/)
-#define rng FUNCTION_ADDRESS(void, 0x806F7004)
-#define randomizeAndLoadSoundEffect FUNCTION_ADDRESS(void, 0x806F705C, int /*soundID*/, int)
-#define maybeYoshiParkGXRelated FUNCTION_ADDRESS(void, 0x806F7164)
-#define storeBoundingBoxCoordinates FUNCTION_ADDRESS(void, 0x806F74A8, int /*minCoordsDest*/, int /*maxCoordsDest*/)
-#define transformVectorsUpdateBoundingBox FUNCTION_ADDRESS(void, 0x806F74F8, int /*transformMatrix*/, int /*vertexData*/)
-#define initBoundingBoxLimits FUNCTION_ADDRESS(void, 0x806F7608)
-#define calculateHazardDataAddress FUNCTION_ADDRESS(int, 0x806F763C, int /*index*/, int * /*calculatedAddress*/)
-#define CopyOutVecSrcDst FUNCTION_ADDRESS(void, 0x806F7670, int /*index*/, Vec3f * /*src*/, Vec3f * /*dst*/)
-#define loadStadiumObjectVisuals FUNCTION_ADDRESS(void, 0x806F78BC, Mtx *, int, int)
-#define initStadiumObjectData FUNCTION_ADDRESS(void, 0x806F8120)
-#define updateStadiumObjCollision FUNCTION_ADDRESS(void, 0x806F81B8)
-#define processStadiumObjectFunction FUNCTION_ADDRESS(void, 0x806F8200, EnumStadiumIDs4 /*stadium*/, Vec3f * /*vec*/, TriangleCollisionTypes /*triangleCollisionType*/, OutCollisionStruct * /*outCollisionStruct*/)
-#define getStadiumHazardTriangles FUNCTION_ADDRESS(TriangleGroup *, 0x806F825C, EnumStadiumIDs4 /*stadium*/, int /*offset*/, Mtx * /*mtx*/)
-#define updateGameStatusFlag FUNCTION_ADDRESS(void, 0x806F8430)
-#define hazardSimulationRelated FUNCTION_ADDRESS(void, 0x806F8460)
-#define cleanupMinigameResources FUNCTION_ADDRESS(void, 0x806F8680)
-#define actOrAnimRelated FUNCTION_ADDRESS(void, 0x806F8870, ACTActor * /*act*/, AnimBank * /*act2*/)
-#define calledWhileMatchIsLoading_ FUNCTION_ADDRESS(void, 0x806F8A78)
-#define loadStadiumObjects FUNCTION_ADDRESS(int, 0x806F8C48, EnumStadiumIDs4 /*stadiumID*/)
-#define processStadiumFileObjects FUNCTION_ADDRESS(void, 0x806F8DFC, enumObjTypeInFile_ * /*objTypeArray*/, int /*numObjects*/, int /*baseAddr*/, int /*outputArray*/)
-#define loadStadiumLighting FUNCTION_ADDRESS(void, 0x806F904C, int /*mStadiumType*/, int /*stadiumData*/)
-#define spriteAnimations_ FUNCTION_ADDRESS(void, 0x806FB028)
-#define animateDustCloudsBehindFielder_Runner FUNCTION_ADDRESS(void, 0x806FB370)
-#define maybeFireworks_ FUNCTION_ADDRESS(void, 0x806FB76C, int, int, int /*maybeShape?*/, int)
-#define drawSun FUNCTION_ADDRESS(void, 0x806FBAB4)
-#define sunRelated FUNCTION_ADDRESS(void, 0x806FC26C)
-#define setSunLocation FUNCTION_ADDRESS(void, 0x806FC4C8, int /*stadiumID*/, int /*miniGameStadInd*/)
-#define animationRelated_806fc598 FUNCTION_ADDRESS(void, 0x806FC598)
-#define setContactWordSprite FUNCTION_ADDRESS(void, 0x806FD208)
-#define pauseStateOnStadiums_ FUNCTION_ADDRESS(void, 0x806FE1EC)
-#define pauseAnimations_ FUNCTION_ADDRESS(void, 0x806FE240)
-#define maybeHudRelated FUNCTION_ADDRESS(void, 0x806FE754)
-#define maybeLoadHUDObjectFromMemory FUNCTION_ADDRESS(void, 0x806FE90C)
-#define chargeAnimRelated FUNCTION_ADDRESS(void, 0x806FF834)
-#define applyChargeAnimationEffect FUNCTION_ADDRESS(void, 0x807003D8, double, double, int /*animIndex*/, int)
-#define maybeConfigureChargeEffectGraphics FUNCTION_ADDRESS(void, 0x80700804, int /*animIndex*/)
-#define bowserCastleSomething FUNCTION_ADDRESS(void, 0x80702A5C)
-#define thwomp_screenShake FUNCTION_ADDRESS(void, 0x80702ACC)
-#define bowserCastleStarPadsContaactFn FUNCTION_ADDRESS(void, 0x807031E0)
-#define stadiumObjCollision_Castle__ FUNCTION_ADDRESS(void, 0x80703338)
-#define castleFireballMaybe FUNCTION_ADDRESS(void, 0x80704D74)
-#define bowserCastleRelated FUNCTION_ADDRESS(void, 0x80704E70)
-#define flameControl FUNCTION_ADDRESS(void, 0x80705464, castleFireObject * /*currFire*/)
-#define stadiumObjRelated_Castle__ FUNCTION_ADDRESS(void, 0x80706260, int /*currentVertexIndex*/, int /*currentObjectIndex*/)
-#define thwomp_bounceOffSoundAndVisualFx_ FUNCTION_ADDRESS(void, 0x80706530)
-#define thwomp_smokeRelated FUNCTION_ADDRESS(ulong, 0x8070664C)
-#define thwomp_slamControl FUNCTION_ADDRESS(void, 0x80706AA0, castleThwompObj * /*thwompObj*/)
-#define loadBowserCastle FUNCTION_ADDRESS(void, 0x807076E4, int /*baseAddr*/)
-#define manageMarioStadiumSoundEmmitters FUNCTION_ADDRESS(void, 0x807087D8)
-#define fanAnimationRelated FUNCTION_ADDRESS(void, 0x8070890C)
-#define sta_c0 FUNCTION_ADDRESS(void, 0x80708D28)
-#define loadMarioStadium FUNCTION_ADDRESS(void, 0x80708E48, int /*baseLoadAddress*/)
-#define perfectPitchGraphicsRelated FUNCTION_ADDRESS(void, 0x8070A030)
-#define animatePitchersHandOnFire FUNCTION_ADDRESS(void, 0x8070A440)
-#define stadiumStarAnimation FUNCTION_ADDRESS(void, 0x8070A7CC)
-#define stadiumStarAwarded FUNCTION_ADDRESS(void, 0x8070A87C, float, float, float)
-#define palaceStadiumObjTransformationAndPhysics FUNCTION_ADDRESS(void, 0x8070B014, castleThwompObj * /*stadiumObj*/)
-#define mPalaceObjHandling FUNCTION_ADDRESS(void, 0x8070B658, castleThwompObj * /*obj*/)
-#define maybeChainChompSprintCTRLRelated FUNCTION_ADDRESS(void, 0x8070B8B0)
-#define palaceMinigameObjectLoading FUNCTION_ADDRESS(void, 0x8070BCB8)
-#define palaceHazeTextureMaybe FUNCTION_ADDRESS(void, 0x8070D600)
-#define warioPalaceSomething FUNCTION_ADDRESS(void, 0x8070D978)
-#define starHitAnimation_ FUNCTION_ADDRESS(void, 0x8070E7C0)
-#define warioPalaceSandStarRelated FUNCTION_ADDRESS(void, 0x8070E9C4, undefined4 /*sandStar*/)
-#define palaceNadoLogic_ FUNCTION_ADDRESS(void, 0x8070F9AC, castleThwompObj *)
-#define maybePalaceCTRLRelated FUNCTION_ADDRESS(void, 0x80710314, castleThwompObj * /*obj*/)
-#define applyTransformationToPalaceObjs FUNCTION_ADDRESS(void, 0x807107D0)
-#define chomp_attackBall FUNCTION_ADDRESS(void, 0x80711AA0, palaceChompObj * /*chomp*/)
-#define chompState3 FUNCTION_ADDRESS(void, 0x80712164)
-#define chompState1 FUNCTION_ADDRESS(void, 0x80712914)
-#define chompState0 FUNCTION_ADDRESS(void, 0x80712D70, palaceChompObj * /*chompObj*/)
-#define palaceChainChompControl FUNCTION_ADDRESS(void, 0x80712FE8, palaceChompObj * /*chomp*/)
-#define someCTRLButNotCalled FUNCTION_ADDRESS(void, 0x80713D38, castleThwompObj * /*obj*/)
-#define someCTRLButNotCalled2 FUNCTION_ADDRESS(void, 0x80713E94, castleThwompObj * /*obj*/)
-#define processPalaceObjectCollisions FUNCTION_ADDRESS(void, 0x80714680)
-#define stadiumObjCollisionRelated_Palace__ FUNCTION_ADDRESS(void, 0x80714F14)
-#define loadWarioPalace_ FUNCTION_ADDRESS(void, 0x80715860)
-#define toyFieldRelated FUNCTION_ADDRESS(void, 0x80718AC4)
-#define toyFieldPoints_ FUNCTION_ADDRESS(void, 0x807198C8)
-#define processToyFieldBallState FUNCTION_ADDRESS(void, 0x8071B414)
-#define toyFieldPause FUNCTION_ADDRESS(void, 0x8071BD14)
-#define toyFieldStateTransitionRelated FUNCTION_ADDRESS(void, 0x8071C094)
-#define toyFieldInningTransition FUNCTION_ADDRESS(void, 0x8071C23C)
-#define toyFieldLiveBall FUNCTION_ADDRESS(void, 0x8071CA38)
-#define initializeStgh2 FUNCTION_ADDRESS(void, 0x8071CFB0)
-#define initializeToyFieldSomething FUNCTION_ADDRESS(void, 0x8071D7D8)
-#define toyFieldRelated_8071dc24 FUNCTION_ADDRESS(void, 0x8071DC24)
-#define toyFieldTransitionPrepareNextPlay FUNCTION_ADDRESS(void, 0x8071E0A0)
-#define toyFieldTransitionToMinigameStart FUNCTION_ADDRESS(void, 0x8071E2F0)
-#define toyFieldGameStartMovie FUNCTION_ADDRESS(void, 0x8071E46C)
-#define initializeMinigameData FUNCTION_ADDRESS(void, 0x8071E968)
-#define toyfieldSimulation FUNCTION_ADDRESS(void, 0x8071EC40)
-#define updateMinigameFielderAnimations FUNCTION_ADDRESS(void, 0x8072050C)
-#define graphicsFunction_minigames_ FUNCTION_ADDRESS(void, 0x80720A7C)
-#define parkPlantMaybe FUNCTION_ADDRESS(void, 0x80721700)
-#define managePlantBallInteraction FUNCTION_ADDRESS(int, 0x80721C04, castleThwompObj * /*obj*/)
-#define updateStadiumObjStateAndTransform FUNCTION_ADDRESS(void, 0x80721F0C, castleThwompObj * /*obj*/)
-#define yoshiParkPlantRelated FUNCTION_ADDRESS(void, 0x80721FE0)
-#define nadoRelated_ FUNCTION_ADDRESS(void, 0x807220D8, castleThwompObj * /*obj*/)
-#define handleYoshiParkPlantInteraction FUNCTION_ADDRESS(void, 0x80722318, castleThwompObj * /*obj*/)
-#define loadYoshiPark2SubFun FUNCTION_ADDRESS(void, 0x807226FC, int /*obj*/)
-#define maybe_YoshiParkPlantsPopUp FUNCTION_ADDRESS(void, 0x807227F8, castleThwompObj * /*stadObj*/)
-#define controlYoshiParkPlants FUNCTION_ADDRESS(void, 0x80722C1C, castleThwompObj * /*obj*/)
-#define processYoshiParkPlantBoundingBoxes FUNCTION_ADDRESS(void, 0x80723D44, int /*currentVertexIndex*/, int /*currentObjectIndex*/)
-#define loadYoshiPark FUNCTION_ADDRESS(void, 0x80724058)
-#define processToyFieldObjectCollisions FUNCTION_ADDRESS(void, 0x8072641C)
-#define loadToyField_ FUNCTION_ADDRESS(void, 0x80727BB8)
-#define toyfield_offScreenCharacterImage FUNCTION_ADDRESS(void, 0x80728DC4)
-#define toyfield_offScreenCharacterImage_loadFn FUNCTION_ADDRESS(void, 0x807293D4)
-#define toyField_draw_theCoinsBesideThe_CoinsX2_Graphic FUNCTION_ADDRESS(void, 0x8072C524)
-#define toyFieldDrawRelated_miniMap_ FUNCTION_ADDRESS(void, 0x8072C608)
-#define toyField_hud_scores_BallsStrikesOuts FUNCTION_ADDRESS(void, 0x8072C8AC)
-#define toyfield_drawHud FUNCTION_ADDRESS(void, 0x8072CDA4)
-#define klaptrapHitAnimation FUNCTION_ADDRESS(void, 0x8072E068, int /*klaptrapIndex*/)
-#define jungleStadiumObjectRelated FUNCTION_ADDRESS(void, 0x8072E49C, castleThwompObj * /*obj*/)
-#define jungleObjState4 FUNCTION_ADDRESS(void, 0x8072E9C4, castleThwompObj * /*obj*/)
-#define jungleObjState2 FUNCTION_ADDRESS(void, 0x8072F2B8, castleThwompObj *)
-#define jungleObjState1 FUNCTION_ADDRESS(void, 0x8072F8C0, castleThwompObj * /*obj*/)
-#define jungleCTRLRelated FUNCTION_ADDRESS(void, 0x80730038, castleThwompObj * /*obj*/)
-#define klaptrapCTRLSetup FUNCTION_ADDRESS(void, 0x807304DC, castleThwompObj * /*obj*/)
-#define maybeGharialCTRLRel FUNCTION_ADDRESS(void, 0x807305AC, castleThwompObj * /*obj*/)
-#define handleDKJungleBarrels FUNCTION_ADDRESS(void, 0x807309D0, void *)
-#define dkBarrelCollision_ FUNCTION_ADDRESS(void, 0x80730EC0)
-#define dkBarrel_collisionWithFielder FUNCTION_ADDRESS(void, 0x807314DC, CTRLControl *)
-#define dkBarrelCollisionRElated_ FUNCTION_ADDRESS(void, 0x807319CC)
-#define unreferenced_80732090 FUNCTION_ADDRESS(void, 0x80732090)
-#define setBarrelTrajectory FUNCTION_ADDRESS(void, 0x80732274, undefined8 /*targetX*/, undefined8 /*targetZ*/, jungleBarrelObj * /*obj*/)
-#define dkJungleRelated FUNCTION_ADDRESS(void, 0x80733734)
-#define unreferenced_80733ce0 FUNCTION_ADDRESS(void, 0x80733CE0)
-#define handleBarrelFiring FUNCTION_ADDRESS(void, 0x80734050, jungleBarrelObj * /*stadiumObject*/)
-#define dkJungleHazardsLogic FUNCTION_ADDRESS(void, 0x80734760, jungleBarrelObj * /*obj*/)
-#define processJungleObjectCollisions FUNCTION_ADDRESS(void, 0x80735118)
-#define updateDKJungleObjBoundingBoxes FUNCTION_ADDRESS(void, 0x8073575C, int /*objIndex*/)
-#define maybeBarrelCTRLRel FUNCTION_ADDRESS(void, 0x807359CC)
-#define updateDKJungleControl FUNCTION_ADDRESS(void, 0x80735CF4)
-#define loadDKJungle_ FUNCTION_ADDRESS(void, 0x80736070)
-#define peachGardenSomething FUNCTION_ADDRESS(void, 0x80737B50)
-#define loadPeachGarden_ FUNCTION_ADDRESS(void, 0x80739620)
-#define camera_switchScene FUNCTION_ADDRESS(void, 0x8073AE40, cameraScene /*sceneID*/)
-#define camera_replay_ FUNCTION_ADDRESS(void, 0x8073AEB8)
-#define manageDrawingItemState FUNCTION_ADDRESS(void, 0x8073CAB0)
-#define unkPauseSimulationCheck FUNCTION_ADDRESS(void, 0x8073F110)
-#define someAllocFunction FUNCTION_ADDRESS(void, 0x80745E90)
-#define loadSomeDataFile FUNCTION_ADDRESS(void, 0x80745EE4)
-#define unreferenced_80745f68 FUNCTION_ADDRESS(void, 0x80745F68)
-#define minigames_0x27 FUNCTION_ADDRESS(void, 0x80746138)
-#define minigames_0x26 FUNCTION_ADDRESS(void, 0x807462C0)
-#define minigames_0x28 FUNCTION_ADDRESS(void, 0x80746818)
-#define AI_getPort FUNCTION_ADDRESS(void, 0x80746E48, undefined1 /*portNum*/)
-#define minigame_checkIfAIInputIs_Algorithmic_Or_ControllerBased FUNCTION_ADDRESS(void, 0x80746ED0, byte /*rosterID*/)
-#define minigamePause FUNCTION_ADDRESS(void, 0x80747548)
-#define checkForPauses_ FUNCTION_ADDRESS(void, 0x807478E8)
-#define postMinigame FUNCTION_ADDRESS(void, 0x80747CE8)
-#define minigameEndSwitcher FUNCTION_ADDRESS(void, 0x80749134)
-#define minigameStartSwitcher FUNCTION_ADDRESS(void, 0x80749F84)
-#define minigames_pickOpponentsAndLoadStats_ FUNCTION_ADDRESS(void, 0x8074AF10)
-#define unused_8074b4e4 FUNCTION_ADDRESS(void, 0x8074B4E4)
-#define unused_8074b620 FUNCTION_ADDRESS(void, 0x8074B620)
-#define toyFieldCharSelectSwitcher FUNCTION_ADDRESS(void, 0x8074D6A0)
-#define minigameSelectSwitcher FUNCTION_ADDRESS(void, 0x8074E268)
-#define toyFieldStadiumLoad FUNCTION_ADDRESS(void, 0x8074E46C)
-#define minigameSimulation FUNCTION_ADDRESS(void, 0x8074EE5C)
-#define unusedBattingSomething FUNCTION_ADDRESS(void, 0x8074F568)
-#define bobOmbDerbyBatterAI FUNCTION_ADDRESS(void, 0x8074F6C8)
-#define BODScoring_ FUNCTION_ADDRESS(void, 0x8074FB68)
-#define unused_BODRelated FUNCTION_ADDRESS(void, 0x807500CC)
-#define bobOmbDerbyCalculatePoints FUNCTION_ADDRESS(void, 0x80750348)
-#define unusedBODFunction FUNCTION_ADDRESS(void, 0x807507CC)
-#define bOD_bB_Pitcher_waitingForPitch FUNCTION_ADDRESS(void, 0x80750948)
-#define unused_80750cf0 FUNCTION_ADDRESS(void, 0x80750CF0)
-#define bobOmbDerbyPitchTransition FUNCTION_ADDRESS(void, 0x807512C4)
-#define bOD_LoadGame FUNCTION_ADDRESS(void, 0x807516A4)
-#define bobOmbDerbySimulation FUNCTION_ADDRESS(void, 0x80751C6C)
-#define wallBallMultiplayer_AIControl FUNCTION_ADDRESS(void, 0x80752458)
-#define wallBallAIPitches FUNCTION_ADDRESS(void, 0x80752790)
-#define wallBallCalc_WallsBroken FUNCTION_ADDRESS(void, 0x80752ADC)
-#define wallBallSomething2 FUNCTION_ADDRESS(void, 0x80752FA8)
-#define wallBallDropInNewWalls FUNCTION_ADDRESS(void, 0x80753298)
-#define wallBallCalculateNewWalls FUNCTION_ADDRESS(void, 0x80753418)
-#define wallBallRotatePitchers FUNCTION_ADDRESS(void, 0x80753B1C)
-#define wallBallCalculatePointsAndEndTurn FUNCTION_ADDRESS(void, 0x8075419C)
-#define unreferenced_807545d4 FUNCTION_ADDRESS(void, 0x807545D4)
-#define unreferenced_80754a0c FUNCTION_ADDRESS(void, 0x80754A0C)
-#define wallBallInitializeValues FUNCTION_ADDRESS(void, 0x80754CB8)
-#define wallBallSituationSwitcher FUNCTION_ADDRESS(void, 0x80755150)
-#define nonPracticePitchingMachineLogic_ FUNCTION_ADDRESS(void, 0x807599C0)
-#define loadPitchingMachineModel FUNCTION_ADDRESS(void, 0x80759BC0)
-#define minigameStateLogic FUNCTION_ADDRESS(void, 0x80763438)
-#define minigameGraphics FUNCTION_ADDRESS(void, 0x8076C288)
-#define bB_AI FUNCTION_ADDRESS(void, 0x8076CC14)
-#define bB_AI_setSwingVariables FUNCTION_ADDRESS(void, 0x8076CE60)
-#define unused_BarrelBatterRelated FUNCTION_ADDRESS(void, 0x8076D8D0)
-#define bB_chooseBombBarrel_dropNewBarrels FUNCTION_ADDRESS(void, 0x8076D990)
-#define bB_likelyReplaceBlownUpBarrels FUNCTION_ADDRESS(void, 0x8076E038, undefined4 /*bIndex*/)
-#define bB_connectingBarrels FUNCTION_ADDRESS(void, 0x8076E4B8, int /*barrelNum?*/, short /*blowUpDelay*/, int /*bombBarrelHitInd*/)
-#define bB_checkIfBarrelHitAndCalculateScore FUNCTION_ADDRESS(void, 0x8076E6B8)
-#define barrelBatterLiveBallSubFun FUNCTION_ADDRESS(void, 0x8076F31C)
-#define bobombDerbyRelated FUNCTION_ADDRESS(void, 0x8076FB60)
-#define bB_AtBat FUNCTION_ADDRESS(void, 0x8076FD00)
-#define barrelBatterTransitionToMainFunction FUNCTION_ADDRESS(void, 0x807705D4)
-#define bB_LoadGame FUNCTION_ADDRESS(void, 0x80771150)
-#define barrelBatterSwitcher FUNCTION_ADDRESS(void, 0x8077157C)
-#define unused_80774af8 FUNCTION_ADDRESS(void, 0x80774AF8)
-#define minigame_transferPoints FUNCTION_ADDRESS(void, 0x807790DC)
-#define starDashRelated FUNCTION_ADDRESS(void, 0x80779140)
-#define starDashRelated_80779b0c FUNCTION_ADDRESS(void, 0x80779B0C)
-#define starDashLiveBall FUNCTION_ADDRESS(void, 0x8077A318)
-#define starDashSomething FUNCTION_ADDRESS(void, 0x8077AD4C)
-#define starDashSwitcher FUNCTION_ADDRESS(void, 0x8077B4FC)
-#define chainChompSpringPoints_ FUNCTION_ADDRESS(void, 0x8077DAC4)
-#define chainChompSpringMainFun FUNCTION_ADDRESS(void, 0x8077FD74)
-#define mVPRelated FUNCTION_ADDRESS(void, 0x80780184)
-#define chainChompSprintRelated FUNCTION_ADDRESS(void, 0x80780540)
-#define chainChompSprintSwitcher FUNCTION_ADDRESS(void, 0x80780AC4)
-#define pP_relatedToCalculatingHeldBallLoc FUNCTION_ADDRESS(void, 0x807837B0)
-#define piranhaPanicPoints_ FUNCTION_ADDRESS(void, 0x80784450, int)
-#define ppRelated FUNCTION_ADDRESS(void, 0x80784C2C)
-#define piranhaPanicLiveBall FUNCTION_ADDRESS(void, 0x8078549C)
-#define piranhaPanicRelated FUNCTION_ADDRESS(void, 0x80785B24)
-#define piranhaPanicSwitcher FUNCTION_ADDRESS(void, 0x80786258)
-#define barrelBatterRel FUNCTION_ADDRESS(void, 0x807899A0)
-#define wallBall_updateSomePointers FUNCTION_ADDRESS(void, 0x8078F15C)
-#define bobOmbDerbyPitching FUNCTION_ADDRESS(void, 0x8079431C)
-#define bODPitchAnimation FUNCTION_ADDRESS(void, 0x807952AC)
-#define practiceAnimationRelated4 FUNCTION_ADDRESS(void, 0x80796EBC)
-#define practiceAnimationRelated2 FUNCTION_ADDRESS(void, 0x80797140)
-#define practiceAnimationRelated_text_ FUNCTION_ADDRESS(void, 0x80797BF8)
-#define practiceAnimationRelated FUNCTION_ADDRESS(void, 0x80798078)
-#define graphicsRelated FUNCTION_ADDRESS(void, 0x80798A4C)
-#define animationOrDrawingRelated FUNCTION_ADDRESS(void, 0x807994DC)
-#define practice_drawHud_ FUNCTION_ADDRESS(void, 0x807997F0)
-#define animatePracticeScene FUNCTION_ADDRESS(void, 0x80799A88)
-#define practice_startPitchAfter90Frames FUNCTION_ADDRESS(void, 0x80799E28)
-#define practiceRelated FUNCTION_ADDRESS(void, 0x80799EC8)
-#define _unused_matchSimulationRelated FUNCTION_ADDRESS(void, 0x8079A00C)
-#define fieldingPractice_resetMem FUNCTION_ADDRESS(void, 0x8079A16C)
-#define fieldingPracticeRelated_8079a528 FUNCTION_ADDRESS(void, 0x8079A528)
-#define freeFieldingPracticeControl FUNCTION_ADDRESS(void, 0x8079A6A4)
-#define animationRelated_8079a830 FUNCTION_ADDRESS(void, 0x8079A830)
-#define peachDaisyStarSwingRelated2 FUNCTION_ADDRESS(void, 0x8079B094)
-#define peachDaisyStarSwingRelated FUNCTION_ADDRESS(void, 0x8079B0A8)
-#define compilingStats_ FUNCTION_ADDRESS(void, 0x8079C26C)
-#define animateMVP_GameEnd FUNCTION_ADDRESS(void, 0x8079E4A4)
-#define starMissionsMinigamesSpecialAction FUNCTION_ADDRESS(void, 0x8079F984, int /*missionCode*/, int /*pointsEarned*/, int /*specialActionCount*/)
-#define starMissionsMinigamesTotalPoints FUNCTION_ADDRESS(void, 0x807A010C)
-#define starMissionsQuantityBased FUNCTION_ADDRESS(void, 0x807A061C, enumFieldingStarMissionCodes /*switchVar*/, int /*rosterLocation*/)
-#define challenge_postPitchStarMissionTracking FUNCTION_ADDRESS(void, 0x807A1114)
-#define starMissionsOffensive_StarChange_DoublePlay FUNCTION_ADDRESS(void, 0x807A13A0, int /*playResultCd*/, int)
-#define starMissionsWholeGame FUNCTION_ADDRESS(void, 0x807A1DE8)
-#define recruitWholeTeamAfterMercy_ FUNCTION_ADDRESS(void, 0x807A2880)
-#define challengeModeRelated_checkScoutMissionSuccess_ FUNCTION_ADDRESS(void, 0x807A3B08)
-#define setScoutMissionRelatedToZero FUNCTION_ADDRESS(void, 0x807A4A20)
-#define shouldScoutMissionBeEnabled_ FUNCTION_ADDRESS(void, 0x807A4A34, int /*potentialMissionID*/)
-#define decideScoutFlagMission FUNCTION_ADDRESS(void, 0x807A4DB8)
-#define practiceAnimationRelated_807a5440 FUNCTION_ADDRESS(void, 0x807A5440)
-#define magikoopaAnimationRelated FUNCTION_ADDRESS(void, 0x807A5A00)
-#define applyStarRelatedTransformations FUNCTION_ADDRESS(void, 0x807A5A30)
-#define fieldingRelatedAnimations FUNCTION_ADDRESS(void, 0x807A7340, int, byte /*switch*/)
-#define mUpdateActorTransformAndAnimation FUNCTION_ADDRESS(void, 0x807A7B00, int /*mActorID*/)
-#define displayChem_antiChemGraphics FUNCTION_ADDRESS(void, 0x807A8034, undefined4, undefined4 /*0chem_1antiChem*/)
-#define gardenSFXRelated FUNCTION_ADDRESS(void, 0x807AB4A4)
-#define checkFielderCollisionPotential FUNCTION_ADDRESS(void, 0x807AC56C, double /*ballHeight*/, byte /*fielderIndex*/)
-#define processBallFielderCollision FUNCTION_ADDRESS(void, 0x807AC678, int /*interactionType*/)
-#define animateScoreBoard_ FUNCTION_ADDRESS(void, 0x807AD280)
-#define animateScoreBoardCheck_ FUNCTION_ADDRESS(void, 0x807AD3CC, int /*TextureData*/, int /*objOrTextureCount*/)
+#define OSPanic FUNCTION_ADDRESS(void, 0x8006F860, char *, uint, char *, ...)
+static inline void OSSetErrorHandler(void) { ((void(*)(void))0x8006F98C)(); }
+static inline void __OSUnhandledException(void) { ((void(*)(void))0x8006FBA4)(); }
+static inline void PackArgs(int * param_1, int param_2, int * param_3) { ((void(*)(int *, int, int *))0x8006FE8C)(param_1, param_2, param_3); }
+static inline void Run(void) { ((void(*)(void))0x80070014)(); }
+static inline void ReadDisc(void) { ((void(*)(void))0x80070050)(); }
+static inline void Callback(void) { ((void(*)(void))0x800700BC)(); }
+static inline void __OSGetExecParams(void) { ((void(*)(void))0x800700C8)(); }
+static inline void GetApploaderPosition(void) { ((void(*)(void))0x80070108)(); }
+static inline void __OSBootDolSimple(void) { ((void(*)(void))0x800701CC)(); }
+static inline void __OSBootDol(void) { ((void(*)(void))0x80070650)(); }
+static inline void GetFontCode(void) { ((void(*)(void))0x800707EC)(); }
+static inline void OSGetFontEncode(void) { ((void(*)(void))0x80070960)(); }
+static inline void ParseStringS(void) { ((void(*)(void))0x800709C4)(); }
+static inline void OSDisableInterrupts(void) { ((void(*)(void))0x80070B00)(); }
+static inline void OSEnableInterrupts(void) { ((void(*)(void))0x80070B14)(); }
+static inline void OSRestoreInterrupts(void) { ((void(*)(void))0x80070B28)(); }
+static inline void __OSSetInterruptHandler(void) { ((void(*)(void))0x80070B4C)(); }
+static inline void __OSGetInterruptHandler(void) { ((void(*)(void))0x80070B68)(); }
+static inline void __OSInterruptInit(void) { ((void(*)(void))0x80070B7C)(); }
+static inline void SetInterruptMask(void) { ((void(*)(void))0x80070BF0)(); }
+static inline void __OSMaskInterrupts(void) { ((void(*)(void))0x80070EC8)(); }
+static inline void __OSUnmaskInterrupts(void) { ((void(*)(void))0x80070F50)(); }
+static inline void __OSDispatchHandler(void) { ((void(*)(void))0x80070FD8)(); }
+static inline void ExternalInterruptHandler(void) { ((void(*)(void))0x8007131C)(); }
+static inline void OSNotifyLink(void) { ((void(*)(void))0x8007136C)(); }
+static inline void OSNotifyUnlink(void) { ((void(*)(void))0x80071370)(); }
+static inline void Relocate(void) { ((void(*)(void))0x80071374)(); }
+static inline void Link(OSModuleInfo * param_1, int bss, int param_3) { ((void(*)(OSModuleInfo *, int, int))0x80071630)(param_1, bss, param_3); }
+static inline void OSLink(OSModuleInfo * newModule, byte * bss) { ((void(*)(OSModuleInfo *, byte *))0x80071910)(newModule, bss); }
+static inline void Undo(OSModuleInfo * param_1, int param_2) { ((void(*)(OSModuleInfo *, int))0x80071934)(param_1, param_2); }
+static inline void OSUnlink(OSModuleInfo * oldModule) { ((void(*)(OSModuleInfo *))0x80071B6C)(oldModule); }
+static inline void __OSModuleInit(void) { ((void(*)(void))0x80071D40)(); }
+static inline void OSInitMessageQueue(void) { ((void(*)(void))0x80071D58)(); }
+static inline void OSSendMessage(void) { ((void(*)(void))0x80071DB8)(); }
+static inline void OSReceiveMessage(void) { ((void(*)(void))0x80071E80)(); }
+static inline void OnReset_80071f5c(void) { ((void(*)(void))0x80071F5C)(); }
+static inline void MEMIntrruptHandler(void) { ((void(*)(void))0x80071F98)(); }
+static inline void Config24MB(void) { ((void(*)(void))0x80072004)(); }
+static inline void RealMode(void) { ((void(*)(void))0x80072104)(); }
+static inline void __OSInitMemoryProtection(void) { ((void(*)(void))0x8007211C)(); }
+static inline void __OSUnlockAllMutex(void) { ((void(*)(void))0x80072234)(); }
+static inline void __OSReboot(void) { ((void(*)(void))0x800722A4)(); }
+static inline void OSGetSaveRegion(void) { ((void(*)(void))0x80072314)(); }
+static inline void OSRegisterResetFunction(void) { ((void(*)(void))0x80072328)(); }
+static inline void __OSCallResetFunctions(void) { ((void(*)(void))0x800723AC)(); }
+static inline void KillThreads(void) { ((void(*)(void))0x800724C4)(); }
+static inline void __OSDoHotReset(void) { ((void(*)(void))0x8007252C)(); }
+static inline void ResetSystem(void) { ((void(*)(void))0x80072574)(); }
+static inline void OSGetResetCode(void) { ((void(*)(void))0x80072774)(); }
+static inline void OSGetResetButtonState(void) { ((void(*)(void))0x800728A0)(); }
+static inline void WriteSramCallback(void) { ((void(*)(void))0x80072B38)(); }
+static inline void WriteSram(void) { ((void(*)(void))0x80072B98)(); }
+static inline void __OSInitSram(void) { ((void(*)(void))0x80072CB0)(); }
+static inline void __OSLockSram(void) { ((void(*)(void))0x80072DEC)(); }
+static inline void __OSLockSramEx(void) { ((void(*)(void))0x80072E48)(); }
+static inline void UnlockSram(void) { ((void(*)(void))0x80072EA4)(); }
+static inline void __OSUnlockSram(void) { ((void(*)(void))0x800731E0)(); }
+static inline void __OSUnlockSramEx(void) { ((void(*)(void))0x80073204)(); }
+static inline void __OSSyncSram(void) { ((void(*)(void))0x80073228)(); }
+static inline void OSGetSoundMode(void) { ((void(*)(void))0x80073238)(); }
+static inline void OSSetSoundMode(void) { ((void(*)(void))0x800732B8)(); }
+static inline void OSGetProgressiveMode(void) { ((void(*)(void))0x8007335C)(); }
+static inline void OSSetProgressiveMode(void) { ((void(*)(void))0x800733CC)(); }
+static inline void OSGetWirelessID(void) { ((void(*)(void))0x80073470)(); }
+static inline void OSSetWirelessID(void) { ((void(*)(void))0x800734F4)(); }
+static inline void OSGetGbsMode(void) { ((void(*)(void))0x800735A0)(); }
+static inline void OSSetGbsMode(void) { ((void(*)(void))0x80073610)(); }
+static inline void OSInitSemaphore(void) { ((void(*)(void))0x800736C8)(); }
+static inline void OSWaitSemaphore(void) { ((void(*)(void))0x80073720)(); }
+static inline void OSSignalSemaphore(void) { ((void(*)(void))0x80073790)(); }
+static inline void __OSInitSystemCall(void) { ((void(*)(void))0x80073810)(); }
+static inline void DefaultSwitchThreadCallback(void) { ((void(*)(void))0x80073874)(); }
+static inline void __OSThreadInit(void) { ((void(*)(void))0x80073878)(); }
+static inline void OSInitThreadQueue(void) { ((void(*)(void))0x800739D0)(); }
+static inline OSThread * OSGetCurrentThread(void) { return ((OSThread *(*)(void))0x800739E0)(); }
+static inline void OSIsThreadSuspended(void) { ((void(*)(void))0x800739EC)(); }
+static inline void OSDisableScheduler(void) { ((void(*)(void))0x80073A08)(); }
+static inline void OSEnableScheduler(void) { ((void(*)(void))0x80073A48)(); }
+static inline void UnsetRun(void) { ((void(*)(void))0x80073A88)(); }
+static inline void __OSGetEffectivePriority(void) { ((void(*)(void))0x80073AF0)(); }
+static inline void SetEffectiovePriority(void) { ((void(*)(void))0x80073B2C)(); }
+static inline void SelectThread(void) { ((void(*)(void))0x80073CEC)(); }
+static inline void __OSReschedule(void) { ((void(*)(void))0x80073F14)(); }
+static inline bool OSCreateThread(OSThread * thread, void * func, void * param, void * stack, uint stackSize, OSPriority priority, ushort attr) { return ((bool(*)(OSThread *, void *, void *, void *, uint, OSPriority, ushort))0x80073F44)(thread, func, param, stack, stackSize, priority, attr); }
+static inline void OSExitThread(void) { ((void(*)(void))0x8007412C)(); }
+static inline void OSCancelThread(void) { ((void(*)(void))0x80074210)(); }
+static inline void OSResumeThread(OSThread * param_1) { ((void(*)(OSThread *))0x800743CC)(param_1); }
+static inline void OSSuspendThread(OSThread * param_1) { ((void(*)(OSThread *))0x80074654)(param_1); }
+static inline void OSSleepThread(void) { ((void(*)(void))0x800747C4)(); }
+static inline void OSWakeupThread(void) { ((void(*)(void))0x800748B0)(); }
+static inline void OSClearStack(void) { ((void(*)(void))0x800749B4)(); }
+static inline void OSGetTime(void) { ((void(*)(void))0x80074A60)(); }
+static inline void OSGetTick(void) { ((void(*)(void))0x80074A78)(); }
+static inline void __OSGetSystemTime(void) { ((void(*)(void))0x80074A80)(); }
+static inline void GetDates(void) { ((void(*)(void))0x80074AE4)(); }
+static inline void OSTicksToCalendarTime(void) { ((void(*)(void))0x80074C80)(); }
+static inline void __init_user(void) { ((void(*)(void))0x80074E84)(); }
+static inline void __init_cpp(void) { ((void(*)(void))0x80074EA4)(); }
+static inline void abort(void) { ((void(*)(void))0x80074EF8)(); }
+static inline void DBInit(void) { ((void(*)(void))0x80074F18)(); }
+static inline void __DBExceptionDestinationAux(void) { ((void(*)(void))0x80074F40)(); }
+static inline void __DBIsExceptionMarked(void) { ((void(*)(void))0x80074F98)(); }
+static inline void DBPrintf(void) { ((void(*)(void))0x80074FB4)(); }
+static inline void PSMTXIdentity(Mtx * m) { ((void(*)(Mtx *))0x80075004)(m); }
+static inline void PSMTXCopy(Mtx * source, Mtx * dst) { ((void(*)(Mtx *, Mtx *))0x80075030)(source, dst); }
+static inline void PSMTXConcat(Mtx * a, Mtx * b, Mtx * ab) { ((void(*)(Mtx *, Mtx *, Mtx *))0x80075064)(a, b, ab); }
+static inline void PSMTXTranspose(Mtx * src, Mtx * xPose) { ((void(*)(Mtx *, Mtx *))0x80075130)(src, xPose); }
+static inline uint PSMTXInverse(Mtx * src, Mtx * inv) { return ((uint(*)(Mtx *, Mtx *))0x80075180)(src, inv); }
+static inline void PSMTXRotRad(Mtx * m, char axis, float rad) { ((void(*)(Mtx *, char, float))0x80075278)(m, axis, rad); }
+static inline void PSMTXRotTrig(Mtx * m, char axis, float sinA, float cosA) { ((void(*)(Mtx *, char, float, float))0x800752E8)(m, axis, sinA, cosA); }
+static inline double ___PSMTXRotAxisRadInternal(double param_1, double param_2, int param_3, int param_4) { return ((double(*)(double, double, int, int))0x80075398)(param_1, param_2, param_3, param_4); }
+static inline void PSMTXRotAxisRad(Mtx * m, Vec3f * axis, float rad) { ((void(*)(Mtx *, Vec3f *, float))0x80075448)(m, axis, rad); }
+static inline void PSMTXTrans(Mtx * m, float xT, float yT, float zT) { ((void(*)(Mtx *, float, float, float))0x800754B8)(m, xT, yT, zT); }
+static inline void PSMTXTransApply(Mtx * src, Mtx * dst, float xT, float yT, float zT) { ((void(*)(Mtx *, Mtx *, float, float, float))0x800754EC)(src, dst, xT, yT, zT); }
+static inline void PSMTXScale(Mtx * m, float xS, float yS, float zS) { ((void(*)(Mtx *, float, float, float))0x80075538)(m, xS, yS, zS); }
+static inline void PSMTXScaleApply(Mtx * src, Mtx * dst, float xS, float yS, float zS) { ((void(*)(Mtx *, Mtx *, float, float, float))0x80075560)(src, dst, xS, yS, zS); }
+static inline void PSMTXQuat(Mtx * m, Quaternion * q) { ((void(*)(Mtx *, Quaternion *))0x800755B8)(m, q); }
+static inline void C_MTXLookAt(Mtx * m, Vec3f * camPos, Vec3f * camUp, Vec3f * target) { ((void(*)(Mtx *, Vec3f *, Vec3f *, Vec3f *))0x8007565C)(m, camPos, camUp, target); }
+static inline void C_MTXLightOrtho(Mtx * m, float t, float b, float l, float r, float n, float scaleS, float scaleT, float transS, float transT) { ((void(*)(Mtx *, float, float, float, float, float, float, float, float, float))0x800757E8)(m, t, b, l, r, n, scaleS, scaleT, transS, transT); }
+static inline void PSMTXMultVec(Mtx * m, Vec3f * src, Vec3f * dst) { ((void(*)(Mtx *, Vec3f *, Vec3f *))0x80075870)(m, src, dst); }
+static inline void PSMTXMultVecArray(Mtx * m, Vec3f * srcBase, Vec3f * dstBase, uint count) { ((void(*)(Mtx *, Vec3f *, Vec3f *, uint))0x800758C4)(m, srcBase, dstBase, count); }
+static inline void PSMTXMultVecSR(Mtx * m, Vec3f * src, Vec3f * dst) { ((void(*)(Mtx *, Vec3f *, Vec3f *))0x80075950)(m, src, dst); }
+static inline void C_MTXFrustum(Mtx44 * m, float t, float b, float l, float r, float n, float f) { ((void(*)(Mtx44 *, float, float, float, float, float, float))0x800759A4)(m, t, b, l, r, n, f); }
+static inline void C_MTXLightOrtho_80075a40(Mtx44 * m, float t, float b, float l, float r, float n, float f) { ((void(*)(Mtx44 *, float, float, float, float, float, float))0x80075A40)(m, t, b, l, r, n, f); }
+static inline void PSMTX44Identity(Mtx44 * m) { ((void(*)(Mtx44 *))0x80075AD8)(m); }
+static inline void PSMTX44Copy(Mtx44 * src, Mtx44 * dst) { ((void(*)(Mtx44 *, Mtx44 *))0x80075B0C)(src, dst); }
+static inline void PSMTX44Concat(Mtx44 * a, Mtx44 * b, Mtx44 * ab) { ((void(*)(Mtx44 *, Mtx44 *, Mtx44 *))0x80075B50)(a, b, ab); }
+static inline uint C_MTX44Inverse(Mtx44 * src, Mtx44 * inv) { return ((uint(*)(Mtx44 *, Mtx44 *))0x80075C54)(src, inv); }
+static inline void PSMTX44RotRad(Mtx44 * m, char axis, float rad) { ((void(*)(Mtx44 *, char, float))0x80076044)(m, axis, rad); }
+static inline void PSMTX44RotTrig(Mtx44 * m, char axis, float sinA, float cosA) { ((void(*)(Mtx44 *, char, float, float))0x800760B4)(m, axis, sinA, cosA); }
+static inline void PSMTX44MultVec(Mtx44 * m, Vec3f * src, Vec3f * dst) { ((void(*)(Mtx44 *, Vec3f *, Vec3f *))0x80076188)(m, src, dst); }
+static inline void PSMTX44MultVecArray(Mtx44 * m, Vec3f * srcBase, Vec3f * dstBase, uint count) { ((void(*)(Mtx44 *, Vec3f *, Vec3f *, uint))0x80076200)(m, srcBase, dstBase, count); }
+static inline void PSVECAdd(Vec3f * a, Vec3f * b, Vec3f * ab) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x800762F0)(a, b, ab); }
+static inline void PSVECSubtract(Vec3f * a, Vec3f * b, Vec3f * a_b) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x80076314)(a, b, a_b); }
+static inline void PSVECScale(Vec3f * src, Vec3f * dst, float scale) { ((void(*)(Vec3f *, Vec3f *, float))0x80076338)(src, dst, scale); }
+static inline void PSVECNormalize(Vec3f * src, Vec3f * unit) { ((void(*)(Vec3f *, Vec3f *))0x80076354)(src, unit); }
+static inline float PSVECMag(Vec3f * v) { return ((float(*)(Vec3f *))0x80076398)(v); }
+static inline float PSVECDotProduct(Vec3f * a, Vec3f * b) { return ((float(*)(Vec3f *, Vec3f *))0x800763DC)(a, b); }
+static inline void PSVECCrossProduct(Vec3f * a, Vec3f * b, Vec3f * axb) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x800763FC)(a, b, axb); }
+static inline float PSVECSquareDistance(Vec3f * a, Vec3f * b) { return ((float(*)(Vec3f *, Vec3f *))0x80076438)(a, b); }
+static inline float PSVECDistance(Vec3f * a, Vec3f * b) { return ((float(*)(Vec3f *, Vec3f *))0x80076460)(a, b); }
+static inline void PSQUATAdd(Quaternion * p, Quaternion * q, Quaternion * r) { ((void(*)(Quaternion *, Quaternion *, Quaternion *))0x800764B4)(p, q, r); }
+static inline void PSQUATMultiply(Quaternion * p, Quaternion * q, Quaternion * pq) { ((void(*)(Quaternion *, Quaternion *, Quaternion *))0x800764D8)(p, q, pq); }
+static inline void PSQUATScale(Quaternion * q, Quaternion * r, float scale) { ((void(*)(Quaternion *, Quaternion *, float))0x80076534)(q, r, scale); }
+static inline float PSQUATDotProduct(Quaternion * p, Quaternion * q) { return ((float(*)(Quaternion *, Quaternion *))0x80076550)(p, q); }
+static inline void PSQUATNormalize(Quaternion * src, Quaternion * unit) { ((void(*)(Quaternion *, Quaternion *))0x80076570)(src, unit); }
+static inline void C_QUATRotAxisRad(Quaternion * r, Vec3f * axis, float rad) { ((void(*)(Quaternion *, Vec3f *, float))0x800765C4)(r, axis, rad); }
+static inline void C_QUATMtx(Quaternion * r, Mtx * m) { ((void(*)(Quaternion *, Mtx *))0x80076650)(r, m); }
+static inline void C_QUATSlerp(Quaternion * p, Quaternion * q, Quaternion * r, float t) { ((void(*)(Quaternion *, Quaternion *, Quaternion *, float))0x800768A8)(p, q, r, t); }
+static inline void PSMTXReorder(Mtx * src, ROMtx * dest) { ((void(*)(Mtx *, ROMtx *))0x80076A1C)(src, dest); }
+static inline void __DVDInitWA(void) { ((void(*)(void))0x80076A68)(); }
+static inline void __DVDInterruptHandler(void) { ((void(*)(void))0x80076AA8)(); }
+static inline void AlarmHandler(void) { ((void(*)(void))0x80076D88)(); }
+static inline void AlarmHandlerForTimeout(void) { ((void(*)(void))0x80076E0C)(); }
+static inline void Read(void) { ((void(*)(void))0x80076E7C)(); }
+static inline void SeekTwiceBeforeRead(void) { ((void(*)(void))0x80076F8C)(); }
+static inline void DVDLowRead(void) { ((void(*)(void))0x8007700C)(); }
+static inline void DVDLowSeek(void) { ((void(*)(void))0x800772A4)(); }
+static inline void DVDLowWaitCoverClose(void) { ((void(*)(void))0x80077338)(); }
+static inline void DVDLowReadDiskID(void) { ((void(*)(void))0x80077364)(); }
+static inline void DVDLowStopMotor(void) { ((void(*)(void))0x80077408)(); }
+static inline void DVDLowRequestError(void) { ((void(*)(void))0x80077494)(); }
+static inline void DVDLowInquiry(void) { ((void(*)(void))0x80077520)(); }
+static inline void DVDLowAudioStatus(void) { ((void(*)(void))0x800775BC)(); }
+static inline void DVDLowRequestAudioStatus(void) { ((void(*)(void))0x80077654)(); }
+static inline void DVDLowAudioBufferConfig(void) { ((void(*)(void))0x800776E0)(); }
+static inline void DVDLowReset(void) { ((void(*)(void))0x8007777C)(); }
+static inline void DVDLowBreak(void) { ((void(*)(void))0x80077838)(); }
+static inline void DVDLowClearCallback(void) { ((void(*)(void))0x8007784C)(); }
+static inline void __DVDLowSetWAType(void) { ((void(*)(void))0x80077868)(); }
+static inline void __DVDLowTestAlarm(void) { ((void(*)(void))0x800778AC)(); }
+static inline void __DVDFSInit(void) { ((void(*)(void))0x800778E4)(); }
+static inline s32 DVDConvertPathToEntrynum(char * fileName) { return ((s32(*)(char *))0x8007791C)(fileName); }
+static inline BOOL DVDFastOpen(int entryNum, DVDFileInfo * fileInfo) { return ((BOOL(*)(int, DVDFileInfo *))0x80077C10)(entryNum, fileInfo); }
+static inline BOOL DVDOpen(char * fileName, DVDFileInfo * fileInfo) { return ((BOOL(*)(char *, DVDFileInfo *))0x80077C84)(fileName, fileInfo); }
+static inline bool DVDClose(DVDFileInfo * fileInfo) { return ((bool(*)(DVDFileInfo *))0x80077D4C)(fileInfo); }
+static inline void entryToPath(int entry, int param_2, int param_3) { ((void(*)(int, int, int))0x80077D70)(entry, param_2, param_3); }
+static inline bool DVDGetCurrentDir(char * path, int maxlen) { return ((bool(*)(char *, int))0x80077ED0)(path, maxlen); }
+static inline bool DVDReadAsyncPrio(DVDFileInfo * fileInfo, void * addr, int length, int offset, DVDCallback callback, int prio) { return ((bool(*)(DVDFileInfo *, void *, int, int, DVDCallback, int))0x80077F94)(fileInfo, addr, length, offset, callback, prio); }
+static inline void cbForReadAsync(void) { ((void(*)(void))0x80078054)(); }
+static inline s32 DVDReadPrio(DVDFileInfo * fileInfo, void * addr, s32 length, s32 offset, s32 prio) { return ((s32(*)(DVDFileInfo *, void *, s32, s32, s32))0x80078084)(fileInfo, addr, length, offset, prio); }
+static inline void cbForReadSync(void) { ((void(*)(void))0x8007819C)(); }
+static inline BOOL DVDPrepareStreamAsync(int param_1, uint param_2, uint param_3, int param_4) { return ((BOOL(*)(int, uint, uint, int))0x800781C0)(param_1, param_2, param_3, param_4); }
+static inline void cbForPrepareStreamAsync(void) { ((void(*)(void))0x800782AC)(); }
+static inline void defaultOptionalCommandChecker(void) { ((void(*)(void))0x800782DC)(); }
+static inline void DVDInit(void) { ((void(*)(void))0x800782E0)(); }
+static inline void stateReadingFST(void) { ((void(*)(void))0x800783AC)(); }
+static inline void cbForStateReadingFST(void) { ((void(*)(void))0x80078440)(); }
+static inline void cbForStateError(void) { ((void(*)(void))0x800784CC)(); }
+static inline void stateTimeout(void) { ((void(*)(void))0x80078578)(); }
+static inline void stateGettingError(void) { ((void(*)(void))0x800785AC)(); }
+static inline void CategorizeError(void) { ((void(*)(void))0x800785D4)(); }
+static inline void cbForStateGettingError(void) { ((void(*)(void))0x80078688)(); }
+static inline void cbForUnrecoveredError(void) { ((void(*)(void))0x8007891C)(); }
+static inline void cbForUnrecoveredErrorRetry(void) { ((void(*)(void))0x80078984)(); }
+static inline void stateGoToRetry(void) { ((void(*)(void))0x80078A1C)(); }
+static inline void cbForStateGoToRetry(void) { ((void(*)(void))0x80078A44)(); }
+static inline void stateCheckID(void) { ((void(*)(void))0x80078B9C)(); }
+static inline void stateCheckID3(void) { ((void(*)(void))0x80078C7C)(); }
+static inline void stateCheckID2a(void) { ((void(*)(void))0x80078CB0)(); }
+static inline void cbForStateCheckID2a(void) { ((void(*)(void))0x80078CE4)(); }
+static inline void stateCheckID2(void) { ((void(*)(void))0x80078D58)(); }
+static inline void cbForStateCheckID1(void) { ((void(*)(void))0x80078D90)(); }
+static inline void cbForStateCheckID2(void) { ((void(*)(void))0x80078EA4)(); }
+static inline void cbForStatecheckID3(void) { ((void(*)(void))0x80078F88)(); }
+static inline void AlarmHandler_80079084(void) { ((void(*)(void))0x80079084)(); }
+static inline void stateCoverClosed(void) { ((void(*)(void))0x800790C8)(); }
+static inline void stateCoverClosed_CMD(void) { ((void(*)(void))0x80079194)(); }
+static inline void cbForStateCoverClosed(void) { ((void(*)(void))0x800791C4)(); }
+static inline void stateMotorStopped(void) { ((void(*)(void))0x80079234)(); }
+static inline void cbForStateMotorStopped(void) { ((void(*)(void))0x8007925C)(); }
+static inline void stateReady(void) { ((void(*)(void))0x80079340)(); }
+static inline void stateBusy(void) { ((void(*)(void))0x80079570)(); }
+static inline void cbForStateBusy(void) { ((void(*)(void))0x80079890)(); }
+static inline bool DVDReadAbsAsyncPrio(DVDCommandBlock * block, void * addr, int length, int offset, DVDCBCallback callback, int prio) { return ((bool(*)(DVDCommandBlock *, void *, int, int, DVDCBCallback, int))0x80079EC8)(block, addr, length, offset, callback, prio); }
+static inline void DVDReadAbsAsyncForBS(void) { ((void(*)(void))0x80079FA4)(); }
+static inline void DVDReadDiskID(void) { ((void(*)(void))0x8007A074)(); }
+static inline void DVDPrepareStreamAbsAsync(void) { ((void(*)(void))0x8007A148)(); }
+static inline void DVDCancelStreamAsync(void) { ((void(*)(void))0x8007A20C)(); }
+static inline void DVDStopSteramAtEndAsync(void) { ((void(*)(void))0x8007A2C8)(); }
+static inline void DVDGetStreamErrorStatusAsync(void) { ((void(*)(void))0x8007A384)(); }
+static inline void DVDGetSteramPlayAddrAsync(void) { ((void(*)(void))0x8007A440)(); }
+static inline void DVDInquiryAsync(void) { ((void(*)(void))0x8007A4FC)(); }
+static inline void DVDReset(void) { ((void(*)(void))0x8007A5CC)(); }
+static inline void DVDGetCommandBlockStatus(void) { ((void(*)(void))0x8007A610)(); }
+static inline void DVDGetDriveStatus(void) { ((void(*)(void))0x8007A65C)(); }
+static inline void DVDSetAutoInvalidation(void) { ((void(*)(void))0x8007A708)(); }
+static inline void DVDResume(void) { ((void(*)(void))0x8007A718)(); }
+static inline bool DVDCancelAsync(DVDCommandBlock * block, DVDCBCallback callback) { return ((bool(*)(DVDCommandBlock *, DVDCBCallback))0x8007A768)(block, callback); }
+static inline void DVDCancel(void) { ((void(*)(void))0x8007A9E4)(); }
+static inline char * DVDGetCurrentDiskID(void) { return ((char *(*)(void))0x8007AAB4)(); }
+static inline void DVDCheckDisk(void) { ((void(*)(void))0x8007AABC)(); }
+static inline void __DVDPrepareResetAsync(void) { ((void(*)(void))0x8007ABB4)(); }
+static inline void __DVDTestAlarm(void) { ((void(*)(void))0x8007ACD0)(); }
+static inline void __DVDClearWaitingQueue(void) { ((void(*)(void))0x8007AD08)(); }
+static inline void __DVDPushWaitingQueue(void) { ((void(*)(void))0x8007AD40)(); }
+static inline void __DVDPopWaitingQueue(void) { ((void(*)(void))0x8007ADA8)(); }
+static inline void __DVDCheckWaitingQueue(void) { ((void(*)(void))0x8007AE48)(); }
+static inline void __DVDDequeueWaitingQueue(void) { ((void(*)(void))0x8007AEA0)(); }
+static inline void DVDDumpWaitingQueue(void) { ((void(*)(void))0x8007AF00)(); }
+static inline void ErrorCode2Num(void) { ((void(*)(void))0x8007B00C)(); }
+static inline void __DVDStoreErrorCode(void) { ((void(*)(void))0x8007B128)(); }
+static inline void DVDCompareDiskID(void) { ((void(*)(void))0x8007B1A4)(); }
+static inline void __DVDPrintFatalMessage(void) { ((void(*)(void))0x8007B29C)(); }
+static inline void __fstLoad(void) { ((void(*)(void))0x8007B3A4)(); }
+static inline void VISetPreRetraceCallback(void) { ((void(*)(void))0x8007B780)(); }
+static inline void VISetPostRetraceCallback(void) { ((void(*)(void))0x8007B7C4)(); }
+static inline void getTiming(void) { ((void(*)(void))0x8007B808)(); }
+static inline void __VIInit(void) { ((void(*)(void))0x8007B8A8)(); }
+static inline void VIInit(void) { ((void(*)(void))0x8007BAA8)(); }
+static inline void VIWaitForRetrace(void) { ((void(*)(void))0x8007BF58)(); }
+static inline void setFbbRegs(void) { ((void(*)(void))0x8007BFAC)(); }
+static inline void setVerticalRegs(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, int param_9) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int))0x8007C280)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9); }
+static inline void VIConfigure(void) { ((void(*)(void))0x8007C420)(); }
+static inline void VIFlush(void) { ((void(*)(void))0x8007CC48)(); }
+static inline void VISetNextFrameBuffer(void) { ((void(*)(void))0x8007CD78)(); }
+static inline void VISetNextRightFrameBuffer(void) { ((void(*)(void))0x8007CDE4)(); }
+static inline void GetCurrentDisplayPosition(void) { ((void(*)(void))0x8007CE60)(); }
+static inline void getCurrentFieldEvenOdd(void) { ((void(*)(void))0x8007CE9C)(); }
+static inline void VIGetNextField(void) { ((void(*)(void))0x8007CF04)(); }
+static inline void VIGetCurrentLine(void) { ((void(*)(void))0x8007CFA0)(); }
+static inline void VIGetTvFormat(void) { ((void(*)(void))0x8007D038)(); }
+static inline void VIGetDTVStatus(void) { ((void(*)(void))0x8007D0A0)(); }
+static inline void __VIDisplayPositionToXY(void) { ((void(*)(void))0x8007D0DC)(); }
+static inline void __VIGetCurrentPosition(void) { ((void(*)(void))0x8007D2F8)(); }
+static inline void ClampStick(void) { ((void(*)(void))0x8007D358)(); }
+static inline void PADClamp(void) { ((void(*)(void))0x8007D488)(); }
+static inline void UpdateOrigin(void) { ((void(*)(void))0x8007D59C)(); }
+static inline void PadOriginCallback(void) { ((void(*)(void))0x8007D740)(); }
+static inline void PADOriginUpdateCallback(void) { ((void(*)(void))0x8007D804)(); }
+static inline void PADProbeCallback(void) { ((void(*)(void))0x8007D8D0)(); }
+static inline void PADTypeAndStatusCallback(void) { ((void(*)(void))0x8007D9A8)(); }
+static inline void PADReceiveCheckCallback(void) { ((void(*)(void))0x8007DCD4)(); }
+static inline void PADReset(void) { ((void(*)(void))0x8007DE14)(); }
+static inline void PADRecalibrate(void) { ((void(*)(void))0x8007DF24)(); }
+static inline void PADInit(void) { ((void(*)(void))0x8007E038)(); }
+static inline void PADRead(void) { ((void(*)(void))0x8007E188)(); }
+static inline void PadControlMotor(void) { ((void(*)(void))0x8007E488)(); }
+static inline void PADSetSpec(void) { ((void(*)(void))0x8007E540)(); }
+static inline void SPEC0_MakeStatus(void) { ((void(*)(void))0x8007E5A0)(); }
+static inline void SPEC1_MakeStatus(void) { ((void(*)(void))0x8007E714)(); }
+static inline void SPEC2_MakeStatus(void) { ((void(*)(void))0x8007E888)(); }
+static inline void OnReset_8007ecf8(void) { ((void(*)(void))0x8007ECF8)(); }
+static inline void SamplingHandler(void) { ((void(*)(void))0x8007EDB4)(); }
+static inline void PADSetSamplingCallback(void) { ((void(*)(void))0x8007EE14)(); }
+static inline void __PADDisableRecalibration(void) { ((void(*)(void))0x8007EE68)(); }
+static inline void AIRegisterDMACallback(void) { ((void(*)(void))0x8007EEE4)(); }
+static inline void AIInitDMA(void) { ((void(*)(void))0x8007EF28)(); }
+static inline void AIStartDMA(void) { ((void(*)(void))0x8007EFB0)(); }
+static inline void AIGetDMABytesLeft(void) { ((void(*)(void))0x8007EFC8)(); }
+static inline void AIGetDMAStartAddr(void) { ((void(*)(void))0x8007EFE0)(); }
+static inline void AIRegisterStreamCallback(void) { ((void(*)(void))0x8007EFFC)(); }
+static inline void AIResetStreamSampleCount(void) { ((void(*)(void))0x8007F040)(); }
+static inline void AISetStreamTrigger(void) { ((void(*)(void))0x8007F058)(); }
+static inline void AISetStreamPlayState(void) { ((void(*)(void))0x8007F064)(); }
+static inline void AIGetStreamPlayState(void) { ((void(*)(void))0x8007F13C)(); }
+static inline void AISetDSPSampleRate(void) { ((void(*)(void))0x8007F14C)(); }
+static inline void AIGetDSPSampleRate(void) { ((void(*)(void))0x8007F22C)(); }
+static inline void __AI_set_stream_sample_rate(void) { ((void(*)(void))0x8007F240)(); }
+static inline void AIGetStreamSampleRate(void) { ((void(*)(void))0x8007F314)(); }
+static inline void AISetStreamVolLeft(void) { ((void(*)(void))0x8007F324)(); }
+static inline void AIGetStreamVolLeft(void) { ((void(*)(void))0x8007F340)(); }
+static inline void AISetStreamVolRight(void) { ((void(*)(void))0x8007F350)(); }
+static inline void AIGetStreamVolRight(void) { ((void(*)(void))0x8007F36C)(); }
+static inline void AIInit(void) { ((void(*)(void))0x8007F37C)(); }
+static inline void __AICallbackStackSwitch(void) { ((void(*)(void))0x8007F610)(); }
+static inline void __AI_SRC_INIT(void) { ((void(*)(void))0x8007F668)(); }
+static inline void ARRegisterDMACallback(void) { ((void(*)(void))0x8007F84C)(); }
+static inline void ARGetDMAStatus(void) { ((void(*)(void))0x8007F890)(); }
+static inline void ARStartDMA(int type, int mainmem_addr, int aram_addr, int length) { ((void(*)(int, int, int, int))0x8007F8CC)(type, mainmem_addr, aram_addr, length); }
+static inline void ARInit(void) { ((void(*)(void))0x8007F9BC)(); }
+static inline void ARGetBaseAddress(void) { ((void(*)(void))0x8007FA80)(); }
+static inline void ARGetSize(void) { ((void(*)(void))0x8007FA88)(); }
+static inline void __ARHandler(void) { ((void(*)(void))0x8007FA90)(); }
+static inline void __ARClearInterrupt(void) { ((void(*)(void))0x8007FB08)(); }
+static inline void __ARGetInterruptStatus(void) { ((void(*)(void))0x8007FB28)(); }
+static inline void __ARChecksize(void) { ((void(*)(void))0x8007FB38)(); }
+static inline void __ARQServiceQueueLo(void) { ((void(*)(void))0x8008132C)(); }
+static inline void __ARQCallbackHack(void) { ((void(*)(void))0x8008142C)(); }
+static inline void __ARQInterruptServiceRoutine(void) { ((void(*)(void))0x80081430)(); }
+static inline void ARQInit(void) { ((void(*)(void))0x800814FC)(); }
+static inline void ARQPostRequest(ARQRequest * task, int owner, int type, int priority, int source, int dest, int length, ulong (*callback)(void)) { ((void(*)(ARQRequest *, int, int, int, int, int, int, ulong (*)(void)))0x8008156C)(task, owner, type, priority, source, dest, length, callback); }
+static inline void ARQRemoveOwnerRequest(void) { ((void(*)(void))0x800816C8)(); }
+static inline void ARQFlushQueue(void) { ((void(*)(void))0x800817B8)(); }
+static inline void ARQSetChunkSize(void) { ((void(*)(void))0x800817F0)(); }
+static inline void DSPCheckMailToDSP(void) { ((void(*)(void))0x80081810)(); }
+static inline void DSPCheckMailFromDSP(void) { ((void(*)(void))0x80081820)(); }
+static inline void DSPReadMailFromDSP(void) { ((void(*)(void))0x80081830)(); }
+static inline void DSPSendMailToDSP(void) { ((void(*)(void))0x80081848)(); }
+static inline void DSPInit(void) { ((void(*)(void))0x8008185C)(); }
+static inline void DSPAddTask(void) { ((void(*)(void))0x80081920)(); }
+static inline void DSPCancelTask(void) { ((void(*)(void))0x80081990)(); }
+static inline void __DSP_debug_printf(void) { ((void(*)(void))0x800819D0)(); }
+static inline void __DSPHandler(void) { ((void(*)(void))0x80081A20)(); }
+static inline void __DSP_exec_task(void) { ((void(*)(void))0x80081E44)(); }
+static inline void __DSP_boot_task(void) { ((void(*)(void))0x80081FE4)(); }
+static inline void __DSP_insert_task(void) { ((void(*)(void))0x80082170)(); }
+static inline void __DSP_remove_task(void) { ((void(*)(void))0x80082210)(); }
+static inline void __CARDDefaultApiCallback(void) { ((void(*)(void))0x800822A4)(); }
+static inline void __CARDSyncCallback(void) { ((void(*)(void))0x800822A8)(); }
+static inline void __CARDExtHandler(void) { ((void(*)(void))0x800822DC)(); }
+static inline void __CARDExiHandler(void) { ((void(*)(void))0x800823B4)(); }
+static inline void __CARDTxHandler(void) { ((void(*)(void))0x800824CC)(); }
+static inline void __CARDUnlockHandler(void) { ((void(*)(void))0x80082574)(); }
+static inline void __CardEnableInterrupt(void) { ((void(*)(void))0x800825F8)(); }
+static inline void __CARDReadStatus(void) { ((void(*)(void))0x800826B8)(); }
+static inline void __CARDClearStatus(void) { ((void(*)(void))0x800827A8)(); }
+static inline void TimeoutHandler(void) { ((void(*)(void))0x80082854)(); }
+static inline void Retry(void) { ((void(*)(void))0x800828F8)(); }
+static inline void UnlockedCallback(void) { ((void(*)(void))0x80082B24)(); }
+static inline void __CARDStart(void) { ((void(*)(void))0x80082C34)(); }
+static inline void __CARDReadSegment(void) { ((void(*)(void))0x80082DE8)(); }
+static inline void __CARDWritePage(void) { ((void(*)(void))0x80082F1C)(); }
+static inline void __CARDEraseSector(void) { ((void(*)(void))0x80083038)(); }
+static inline void CARDInit(void) { ((void(*)(void))0x80083118)(); }
+static inline void __CARDGetFontEncode(void) { ((void(*)(void))0x800831C4)(); }
+static inline void __CARDSetDiskID(void) { ((void(*)(void))0x800831CC)(); }
+static inline void __CARDGetControlBlock(void) { ((void(*)(void))0x80083204)(); }
+static inline void __CARDPutControlBlock(void) { ((void(*)(void))0x800832BC)(); }
+static inline void CARDGetResultCode(void) { ((void(*)(void))0x80083320)(); }
+static inline void CARDFreeBlocks(void) { ((void(*)(void))0x80083350)(); }
+static inline void __CARDSync(void) { ((void(*)(void))0x800834A0)(); }
+static inline void OnReset_80083538(void) { ((void(*)(void))0x80083538)(); }
+static inline void bitrev(void) { ((void(*)(void))0x80083588)(); }
+static inline void ReadArrayUnlock(void) { ((void(*)(void))0x800836F4)(); }
+static inline void DummyLen(void) { ((void(*)(void))0x80083838)(); }
+static inline void __CARDUnlock(void) { ((void(*)(void))0x800838FC)(); }
+static inline void InitCallback(void) { ((void(*)(void))0x80084454)(); }
+static inline void DoneCallback(void) { ((void(*)(void))0x800844C4)(); }
+static inline void BlockReadCallback(void) { ((void(*)(void))0x800847E8)(); }
+static inline void __CARDRead(void) { ((void(*)(void))0x800848C4)(); }
+static inline void BlockWriteCallback(void) { ((void(*)(void))0x80084928)(); }
+static inline void __CARDWrite(void) { ((void(*)(void))0x80084A04)(); }
+static inline void CARDGetXferredBytes(void) { ((void(*)(void))0x80084A68)(); }
+static inline void __CARDGetFatBlock(void) { ((void(*)(void))0x80084A80)(); }
+static inline void WriteCallback(void) { ((void(*)(void))0x80084A88)(); }
+static inline void EraseCallback(void) { ((void(*)(void))0x80084B5C)(); }
+static inline void __CARDAllocBlock(void) { ((void(*)(void))0x80084C24)(); }
+static inline void __CARDFreeBlock(void) { ((void(*)(void))0x80084D3C)(); }
+static inline void __CARDUpdateFatBlock(void) { ((void(*)(void))0x80084DD8)(); }
+static inline void __CARDGetDirBlock(void) { ((void(*)(void))0x80084E84)(); }
+static inline void WriteCallback_80084e8c(void) { ((void(*)(void))0x80084E8C)(); }
+static inline void EraseCallback_80084f5c(void) { ((void(*)(void))0x80084F5C)(); }
+static inline void __CARDUpdateDir(void) { ((void(*)(void))0x80085024)(); }
+static inline void __CARDCheckSum(void) { ((void(*)(void))0x800850E8)(); }
+static inline void VerifyID(void) { ((void(*)(void))0x80085298)(); }
+static inline void VerifyDir(void) { ((void(*)(void))0x8008551C)(); }
+static inline void VerifyFat(void) { ((void(*)(void))0x8008575C)(); }
+static inline void __CARDVerify(void) { ((void(*)(void))0x800859E0)(); }
+static inline void CARDCheckExAsync(void) { ((void(*)(void))0x80085A6C)(); }
+static inline void CARDCheckAsync(void) { ((void(*)(void))0x80085FFC)(); }
+static inline void CARDCheckEx(void) { ((void(*)(void))0x80086024)(); }
+static inline void IsCard(void) { ((void(*)(void))0x80086078)(); }
+static inline void CARDProbeEx(void) { ((void(*)(void))0x80086144)(); }
+static inline void DoMount(void) { ((void(*)(void))0x800862C0)(); }
+static inline void __CARDMountCallback(void) { ((void(*)(void))0x800866D0)(); }
+static inline void CARDMountAsync(void) { ((void(*)(void))0x80086808)(); }
+static inline void CARDMount(void) { ((void(*)(void))0x800869A8)(); }
+static inline void DoUnmount(void) { ((void(*)(void))0x800869F0)(); }
+static inline void CARDUnmount(void) { ((void(*)(void))0x80086A8C)(); }
+static inline void __CARDFormatRegionAsync(void) { ((void(*)(void))0x80086C7C)(); }
+static inline void CARDFormatAsync(void) { ((void(*)(void))0x800872D4)(); }
+static inline void CARDFormat(void) { ((void(*)(void))0x8008731C)(); }
+static inline void __CARDCompareFileName(void) { ((void(*)(void))0x80087370)(); }
+static inline void __CARDAccess(void) { ((void(*)(void))0x800873D8)(); }
+static inline void __CARDIsWritable(void) { ((void(*)(void))0x8008746C)(); }
+static inline void __CARDIsReadable(void) { ((void(*)(void))0x800875A0)(); }
+static inline void __CARDGetFileNo(void) { ((void(*)(void))0x80087694)(); }
+static inline void CARDOpen(void) { ((void(*)(void))0x800877E4)(); }
+static inline void CARDClose(void) { ((void(*)(void))0x80087900)(); }
+static inline void __CARDIsOpened(void) { ((void(*)(void))0x80087954)(); }
+static inline void CreateCallbackFat(void) { ((void(*)(void))0x8008795C)(); }
+static inline void CARDCreateAsync(void) { ((void(*)(void))0x80087A8C)(); }
+static inline void CARDCreate(void) { ((void(*)(void))0x80087CAC)(); }
+static inline void __CARDSeek(void) { ((void(*)(void))0x80087CF4)(); }
+static inline void ReadCallback(void) { ((void(*)(void))0x80087EAC)(); }
+static inline void CARDReadAsync(void) { ((void(*)(void))0x80087FDC)(); }
+static inline void CARDRead(void) { ((void(*)(void))0x80088120)(); }
+static inline void WriteCallback_80088168(void) { ((void(*)(void))0x80088168)(); }
+static inline void EraseCallback_800882d8(void) { ((void(*)(void))0x800882D8)(); }
+static inline void CARDWriteAsync(void) { ((void(*)(void))0x80088388)(); }
+static inline void CARDWrite(void) { ((void(*)(void))0x8008849C)(); }
+static inline void DeleteCallback(void) { ((void(*)(void))0x800884E4)(); }
+static inline void CARDFastDeleteAsync(void) { ((void(*)(void))0x80088588)(); }
+static inline void CARDFastDelete(void) { ((void(*)(void))0x80088698)(); }
+static inline void UpdateIconOffsets(void) { ((void(*)(void))0x800886E0)(); }
+static inline void CARDGetStatus(void) { ((void(*)(void))0x800888D8)(); }
+static inline void CARDSetStatusAsync(void) { ((void(*)(void))0x800889EC)(); }
+static inline void CARDSetStatus(void) { ((void(*)(void))0x80088B60)(); }
+static inline void __CARDGetStatusEx(void) { ((void(*)(void))0x80088BA8)(); }
+static inline void __CARDSetStatusExAsync(int chan, int cardFile, int dst, int param_4) { ((void(*)(int, int, int, int))0x80088C4C)(chan, cardFile, dst, param_4); }
+static inline void CARDGetSerialNo(void) { ((void(*)(void))0x80088EE8)(); }
+static inline void CARDSetAttributesAsync(void) { ((void(*)(void))0x80088FAC)(); }
+static inline void CARDSetAttributes(void) { ((void(*)(void))0x80089090)(); }
+static inline void __GXDefaultTexRegionCallback(void) { ((void(*)(void))0x800890D8)(); }
+static inline void __GXDefaultTlutRegionCallback(void) { ((void(*)(void))0x800891D4)(); }
+static inline void __GXShutdown(void) { ((void(*)(void))0x800891F8)(); }
+static inline void __GXInitRevisionBits(void) { ((void(*)(void))0x80089388)(); }
+static inline void GXInit(void) { ((void(*)(void))0x8008952C)(); }
+static inline void __GXInitGX(void) { ((void(*)(void))0x80089B2C)(); }
+static inline void GXCPInterruptHandler(void) { ((void(*)(void))0x8008A464)(); }
+static inline void * GXGetFifoBase(GXFifoObj * fifo) { return ((void *(*)(GXFifoObj *))0x8008A598)(fifo); }
+static inline void GXInitFifoPtrs(GXFifoObj * fifo, void * readPtr, void * writePtr) { ((void(*)(GXFifoObj *, void *, void *))0x8008A604)(fifo, readPtr, writePtr); }
+static inline void GXInitFifoLimits(GXFifoObj * fifo, int hiWaterMark, int loWaterMark) { ((void(*)(GXFifoObj *, int, int))0x8008A674)(fifo, hiWaterMark, loWaterMark); }
+static inline void GXSetCPUFifo(GXFifoObj * fifo) { ((void(*)(GXFifoObj *))0x8008A680)(fifo); }
+static inline void GXSetGPFifo(GXFifoObj * fifo) { ((void(*)(GXFifoObj *))0x8008A7A8)(fifo); }
+static inline void GXSetBreakPtCallback(void) { ((void(*)(void))0x8008A948)(); }
+static inline void __GXFifoInit(void) { ((void(*)(void))0x8008A98C)(); }
+static inline void __GXFifoReadEnable(void) { ((void(*)(void))0x8008A9D8)(); }
+static inline void __GXFifoReadDisable(void) { ((void(*)(void))0x8008A9FC)(); }
+static inline void __GXFifoLink(void) { ((void(*)(void))0x8008AA20)(); }
+static inline void __GXWriteFifoIntEnable(void) { ((void(*)(void))0x8008AA54)(); }
+static inline void __GXWriteFifoIntReset(void) { ((void(*)(void))0x8008AA84)(); }
+static inline OSThread * GXSetCurrentGXThread(void) { return ((OSThread *(*)(void))0x8008AAB4)(); }
+static inline OSThread * GXGetCurrentGXThread(void) { return ((OSThread *(*)(void))0x8008AB00)(); }
+static inline GXFifoObj * GXGetGPFifo(void) { return ((GXFifoObj *(*)(void))0x8008AB08)(); }
+static inline void GXSetVtxDesc(GXAttr attr, GXAttrType type) { ((void(*)(GXAttr, GXAttrType))0x8008AB10)(attr, type); }
+static inline void GXSetVtxDescv(GXVtxDescList * attrPtr) { ((void(*)(GXVtxDescList *))0x8008AD7C)(attrPtr); }
+static inline void __GXSetVCD(void) { ((void(*)(void))0x8008B004)(); }
+static inline void __GXCalculateVLim(void) { ((void(*)(void))0x8008B0C0)(); }
+static inline void GXGetVtxDesc(GXAttr attr, GXAttrType * type) { ((void(*)(GXAttr, GXAttrType *))0x8008B1E4)(attr, type); }
+static inline void GXGetVtxDescv(GXVtxDescList * vcd) { ((void(*)(GXVtxDescList *))0x8008B398)(vcd); }
+static inline void GXClearVtxDesc(void) { ((void(*)(void))0x8008B428)(); }
+static inline void GXSetVtxAttrFmt(GXVtxFmt vtxfmt, GXAttr attr, GXCompCnt cnt, GXCompType type, byte frac) { ((void(*)(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, byte))0x8008B460)(vtxfmt, attr, cnt, type, frac); }
+static inline void GXSetVtxAttrFmtv(GXVtxFmt vtxfmt, GXVtxAttrFmtList * list) { ((void(*)(GXVtxFmt, GXVtxAttrFmtList *))0x8008B6BC)(vtxfmt, list); }
+static inline void __GXSetVAT(void) { ((void(*)(void))0x8008B93C)(); }
+static inline void GXGetVtxAttrFmt(GXVtxFmt idx, GXAttr attr, GXCompCnt * compCnt, GXCompType * compType, byte * shift) { ((void(*)(GXVtxFmt, GXAttr, GXCompCnt *, GXCompType *, byte *))0x8008B9C4)(idx, attr, compCnt, compType, shift); }
+static inline void GXGetVtxAttrFmtv(GXVtxFmt fmt, GXVtxAttrFmtList * vat) { ((void(*)(GXVtxFmt, GXVtxAttrFmtList *))0x8008BC44)(fmt, vat); }
+static inline void GXSetArray(GXAttr attr, void * base_ptr, byte stride) { ((void(*)(GXAttr, void *, byte))0x8008BCB8)(attr, base_ptr, stride); }
+static inline void GxInvalidateVtxCache(void) { ((void(*)(void))0x8008BCFC)(); }
+static inline void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc src_param, int mtx, GXBool normalize, int postmtx) { ((void(*)(GXTexCoordID, GXTexGenType, GXTexGenSrc, int, GXBool, int))0x8008BD0C)(dst_coord, func, src_param, mtx, normalize, postmtx); }
+static inline void GXSetNumTexGens(byte nTexGens) { ((void(*)(byte))0x8008BF8C)(nTexGens); }
+static inline void GXSetMisc(GXMiscToken token, int val) { ((void(*)(GXMiscToken, int))0x8008BFC8)(token, val); }
+static inline void GXFlush(void) { ((void(*)(void))0x8008C05C)(); }
+static inline void __GXAbort(void) { ((void(*)(void))0x8008C0B8)(); }
+static inline void GXSetDrawSync(short token) { ((void(*)(short))0x8008C224)(token); }
+static inline short GXReadDrawSync(void) { return ((short(*)(void))0x8008C2D8)(); }
+static inline void GXDrawDone(void) { ((void(*)(void))0x8008C2E4)(); }
+static inline void GXPixModeSync(void) { ((void(*)(void))0x8008C364)(); }
+static inline void GXPokeAlphaMode(GXCompare func, byte threshold) { ((void(*)(GXCompare, byte))0x8008C388)(func, threshold); }
+static inline void GXPokeAlphaRead(GXAlphaReadMode mode) { ((void(*)(GXAlphaReadMode))0x8008C39C)(mode); }
+static inline void GXPokeAlphaUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008C3BC)(update_enable); }
+static inline void GXPokeBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) { ((void(*)(GXBlendMode, GXBlendFactor, GXBlendFactor, GXLogicOp))0x8008C3D4)(type, src_factor, dst_factor, op); }
+static inline void GXPokeColorUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008C438)(update_enable); }
+static inline void GXPokeDstAlpha(GXBool enable, byte alpha) { ((void(*)(GXBool, byte))0x8008C450)(enable, alpha); }
+static inline void GXPokeDither(GXBool dither) { ((void(*)(GXBool))0x8008C474)(dither); }
+static inline void GXPokeZMode(GXBool compare_enable, GXCompare func, GXBool update_enable) { ((void(*)(GXBool, GXCompare, GXBool))0x8008C48C)(compare_enable, func, update_enable); }
+static inline void GXSetDrawSyncCallback(void) { ((void(*)(void))0x8008C4AC)(); }
+static inline void GXSetDrawDoneCallback(void) { ((void(*)(void))0x8008C578)(); }
+static inline void __GXPEInit(void) { ((void(*)(void))0x8008C63C)(); }
+static inline void __GXSetDirtyState(void) { ((void(*)(void))0x8008C6B0)(); }
+static inline void GXBegin(GXPrimitive type, GXVtxFmt vtxfmt, short nverts) { ((void(*)(GXPrimitive, GXVtxFmt, short))0x8008C730)(type, vtxfmt, nverts); }
+static inline void __GXSendFlushPrim(void) { ((void(*)(void))0x8008C800)(); }
+static inline void GXSetLineWidth(byte width, GXTexOffset texOffsets) { ((void(*)(byte, GXTexOffset))0x8008C888)(width, texOffsets); }
+static inline void GXGetLineWidth(byte * width, GXTexOffset * texOffsets) { ((void(*)(byte *, GXTexOffset *))0x8008C8C8)(width, texOffsets); }
+static inline void GXSetPointSize(byte pointSize, GXTexOffset texOffsets) { ((void(*)(byte, GXTexOffset))0x8008C8E4)(pointSize, texOffsets); }
+static inline void GXEnableTexOffsets(GXTexCoordID coord, GXBool line_enable, GXBool point_enable) { ((void(*)(GXTexCoordID, GXBool, GXBool))0x8008C924)(coord, line_enable, point_enable); }
+static inline void GXSetCullMode(GXCullMode mode) { ((void(*)(GXCullMode))0x8008C96C)(mode); }
+static inline void GXGetCullMode(GXCullMode * mode) { ((void(*)(GXCullMode *))0x8008C994)(mode); }
+static inline void GXSetCoPlanar(GXBool enable) { ((void(*)(GXBool))0x8008C9B0)(enable); }
+static inline void __GXSetGenMode(void) { ((void(*)(void))0x8008C9E4)(); }
+static inline void GXAdjustForOverscan(GXRenderModeObj * rmin, GXRenderModeObj * rmout, short hor, short ver) { ((void(*)(GXRenderModeObj *, GXRenderModeObj *, short, short))0x8008CA08)(rmin, rmout, hor, ver); }
+static inline void GXSetDispCopySrc(short left_, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CB4C)(left_, top, wd, ht); }
+static inline void GXSetTexCopySrc(short left_, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CBC8)(left_, top, wd, ht); }
+static inline void GXSetDispCopyDst(short wd, short ht) { ((void(*)(short, short))0x8008CC44)(wd, ht); }
+static inline void GXSetTexCopyDst(short wd, short ht, GXTexFmt fmt, GXBool mipmap) { ((void(*)(short, short, GXTexFmt, GXBool))0x8008CC78)(wd, ht, fmt, mipmap); }
+static inline void GXSetDispCopyFrame2Field(GXCopyMode mode) { ((void(*)(GXCopyMode))0x8008CDA8)(mode); }
+static inline void GXSetCopyClamp(GXFBClamp clamp) { ((void(*)(GXFBClamp))0x8008CDCC)(clamp); }
+static inline int GXSetDispCopyYScale(f64 vscale) { return ((int(*)(f64))0x8008CE24)(vscale); }
+static inline void GXSetCopyClear(GXColor clear_clr, int clear_z) { ((void(*)(GXColor, int))0x8008CEF0)(clear_clr, clear_z); }
+static inline void GXSetCopyFilter(GXBool aa, byte (*sample_pattern)[12][2], GXBool vf, byte vfilter[7]) { ((void(*)(GXBool, byte (*)[12][2], GXBool, byte [7]))0x8008CF68)(aa, sample_pattern, vf, vfilter); }
+static inline void GXSetDispCopyGamma(GXGamma gamma) { ((void(*)(GXGamma))0x8008D170)(gamma); }
+static inline void GXCopyDisp(void * dest, GXBool clear) { ((void(*)(void *, GXBool))0x8008D184)(dest, clear); }
+static inline void GXCopyTex(void * dest, GXBool clear) { ((void(*)(void *, GXBool))0x8008D2EC)(dest, clear); }
+static inline void GXClearBoundingBox(void) { ((void(*)(void))0x8008D478)(); }
+static inline void GXInitLightAttn(undefined lt_obj, float a0, float a1, float a2, float k0, float k1, float k2) { ((void(*)(undefined, float, float, float, float, float, float))0x8008D4B0)(lt_obj, a0, a1, a2, k0, k1, k2); }
+static inline void GXInitLightPos(GXLightObjPriv * lt_obj, float x_, float y_, float z_) { ((void(*)(GXLightObjPriv *, float, float, float))0x8008D4CC)(lt_obj, x_, y_, z_); }
+static inline void GXInitLightDir(GXLightObjPriv * lt_obj, float nx, float ny, float nz) { ((void(*)(GXLightObjPriv *, float, float, float))0x8008D4DC)(lt_obj, nx, ny, nz); }
+static inline void GXInitLightColor(undefined lt_obj, GXColor color) { ((void(*)(undefined, GXColor))0x8008D4F8)(lt_obj, color); }
+static inline void GXLoadLightObjImm(undefined lt_obj, GXLightID light) { ((void(*)(undefined, GXLightID))0x8008D504)(lt_obj, light); }
+static inline void GXSetChanAmbColor(GXChannelID chan, GXColor amb_color) { ((void(*)(GXChannelID, GXColor))0x8008D580)(chan, amb_color); }
+static inline void GXSetChanMatColor(GXChannelID chan, GXColor mat_color) { ((void(*)(GXChannelID, GXColor))0x8008D668)(chan, mat_color); }
+static inline void GXSetNumChans(byte nChans) { ((void(*)(byte))0x8008D750)(nChans); }
+static inline void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, int light_mask, GXDiffuseFn diff_fn, GXAttnFn attn_fn) { ((void(*)(GXChannelID, GXBool, GXColorSrc, GXColorSrc, int, GXDiffuseFn, GXAttnFn))0x8008D78C)(chan, enable, amb_src, mat_src, light_mask, diff_fn, attn_fn); }
+static inline int GXGetTexBufferSize(short width, short height, int format, GXBool mipmap, byte max_lod) { return ((int(*)(short, short, int, GXBool, byte))0x8008D83C)(width, height, format, mipmap, max_lod); }
+static inline void __GetImageTileCount(void) { ((void(*)(void))0x8008D998)(); }
+static inline void GXInitTexObj(GXTexObj * obj, void * image_ptr, short width, short height, GXTexFmt format, GXTexWrapMode wrap_s, GXTexWrapMode wrap_t, GXBool mipmap) { ((void(*)(GXTexObj *, void *, short, short, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool))0x8008DA60)(obj, image_ptr, width, height, format, wrap_s, wrap_t, mipmap); }
+static inline void GXInitTexObjCI(GXTexObj * obj, void * image_ptr, short width, short height, GXCITexFmt format, GXTexWrapMode wrap_s, GXTexWrapMode wrap_t, GXBool mipmap, int tlut_name) { ((void(*)(GXTexObj *, void *, short, short, GXCITexFmt, GXTexWrapMode, GXTexWrapMode, GXBool, int))0x8008DCAC)(obj, image_ptr, width, height, format, wrap_s, wrap_t, mipmap, tlut_name); }
+static inline void GXInitTexObjLOD(GXTexObj * obj, GXTexFilter min_filt, GXTexFilter mag_filt, float min_lod, float max_lod, float lod_bias, GXBool bias_clamp, GXBool do_edge_lod, GXAnisotropy max_aniso) { ((void(*)(GXTexObj *, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy))0x8008DCF4)(obj, min_filt, mag_filt, min_lod, max_lod, lod_bias, bias_clamp, do_edge_lod, max_aniso); }
+static inline short GXGetTexObjWidth(GXTexObj * tex_obj) { return ((short(*)(GXTexObj *))0x8008DE58)(tex_obj); }
+static inline short GXGetTexObjHeight(GXTexObj * tex_obj) { return ((short(*)(GXTexObj *))0x8008DE68)(tex_obj); }
+static inline GXTexFmt GXGetTexObjFmt(GXTexObj * tex_obj) { return ((GXTexFmt(*)(GXTexObj *))0x8008DE78)(tex_obj); }
+static inline GXBool GXGetTexObjMipMap(GXTexObj * tex_obj) { return ((GXBool(*)(GXTexObj *))0x8008DE80)(tex_obj); }
+static inline void GXLoadTexObjPreLoaded(GXTexObj * obj, GXTexRegion * region, GXTexMapID id) { ((void(*)(GXTexObj *, GXTexRegion *, GXTexMapID))0x8008DE98)(obj, region, id); }
+static inline void GXLoadTexObj(GXTexObj * obj, GXTexMapID id) { ((void(*)(GXTexObj *, GXTexMapID))0x8008E014)(obj, id); }
+static inline void GXInitTlutObj(GXTlutObj * tlut_obj, void * lut, GXTlutFmt fmt, short n_entries) { ((void(*)(GXTlutObj *, void *, GXTlutFmt, short))0x8008E068)(tlut_obj, lut, fmt, n_entries); }
+static inline void GXLoadTlut(GXTlutObj * tlut_obj, int tlut_name) { ((void(*)(GXTlutObj *, int))0x8008E0A0)(tlut_obj, tlut_name); }
+static inline void GXInitTexCacheRegion(GXTexRegion * region, GXBool is_32b_mipmap, int tmem_even, GXTexCacheSize size_even, int tmem_odd, GXTexCacheSize size_odd) { ((void(*)(GXTexRegion *, GXBool, int, GXTexCacheSize, int, GXTexCacheSize))0x8008E138)(region, is_32b_mipmap, tmem_even, size_even, tmem_odd, size_odd); }
+static inline void GXInitTlutRegion(GXTlutRegion * region, int tmem_addr, GXTlutSize tlut_size) { ((void(*)(GXTlutRegion *, int, GXTlutSize))0x8008E22C)(region, tmem_addr, tlut_size); }
+static inline void GXInvalidateTexAll(void) { ((void(*)(void))0x8008E264)(); }
+static inline void GXSetTexRegionCallback(void) { ((void(*)(void))0x8008E2AC)(); }
+static inline void GXSetTlutRegionCallback(void) { ((void(*)(void))0x8008E2C0)(); }
+static inline void GXSetTexCoordScaleManually(GXTexCoordID coord, GXBool enable, short ss_, short ts) { ((void(*)(GXTexCoordID, GXBool, short, short))0x8008E2D4)(coord, enable, ss_, ts); }
+static inline void __SetSURegs(void) { ((void(*)(void))0x8008E350)(); }
+static inline void __GXSetSuTexRegs(void) { ((void(*)(void))0x8008E3F0)(); }
+static inline void __GXSetTmemConfig(void) { ((void(*)(void))0x8008E56C)(); }
+static inline void GXSetTevIndirect(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexFormat format, GXIndTexBiasSel bias_sel, GXIndTexMtxID matrix_sel, GXIndTexWrap wrap_s, GXIndTexWrap wrap_t, GXBool add_prev, GXBool ind_lod, GXIndTexAlphaSel alpha_sel) { ((void(*)(GXTevStageID, GXIndTexStageID, GXIndTexFormat, GXIndTexBiasSel, GXIndTexMtxID, GXIndTexWrap, GXIndTexWrap, GXBool, GXBool, GXIndTexAlphaSel))0x8008E8C0)(tev_stage, ind_stage, format, bias_sel, matrix_sel, wrap_s, wrap_t, add_prev, ind_lod, alpha_sel); }
+static inline void GXSetIndTexMtx(GXIndTexMtxID mtx_sel, float (*offset)[2][3], s8 scale_exp) { ((void(*)(GXIndTexMtxID, float (*)[2][3], s8))0x8008E92C)(mtx_sel, offset, scale_exp); }
+static inline void GXSetIndTexCoordScale(GXIndTexStageID ind_state, GXIndTexScale scale_s, GXIndTexScale scale_t) { ((void(*)(GXIndTexStageID, GXIndTexScale, GXIndTexScale))0x8008EAA4)(ind_state, scale_s, scale_t); }
+static inline void GXSetIndTexOrder(GXIndTexStageID ind_stage, GXTexCoordID tex_coord, GXTexMapID tex_map) { ((void(*)(GXIndTexStageID, GXTexCoordID, GXTexMapID))0x8008EBE8)(ind_stage, tex_coord, tex_map); }
+static inline void GXSetNumIndStages(byte nIndStages) { ((void(*)(byte))0x8008ECD4)(nIndStages); }
+static inline void GXSetTevDirect(GXTevStageID tev_stage) { ((void(*)(GXTevStageID))0x8008ECF8)(tev_stage); }
+static inline void GXSetTevIndWarp(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXBool signed_offset, GXBool replace_mode, GXIndTexMtxID matrix_sel) { ((void(*)(GXTevStageID, GXIndTexStageID, GXBool, GXBool, GXIndTexMtxID))0x8008ED40)(tev_stage, ind_stage, signed_offset, replace_mode, matrix_sel); }
+static inline void __GXUpdateBPMask(void) { ((void(*)(void))0x8008EDA4)(); }
+static inline void __GXSetIndirectMask(void) { ((void(*)(void))0x8008EDA8)(); }
+static inline void __GXFlushTextureState(void) { ((void(*)(void))0x8008EDD8)(); }
+static inline void GXSetTevOp(GXTevStageID id, GXTevMode mode) { ((void(*)(GXTevStageID, GXTevMode))0x8008EDFC)(id, mode); }
+static inline void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d) { ((void(*)(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg))0x8008EE88)(stage, a, b, c, d); }
+static inline void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d) { ((void(*)(GXTevStageID, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg))0x8008EECC)(stage, a, b, c, d); }
+static inline void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg) { ((void(*)(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID))0x8008EF10)(stage, op, bias, scale, clamp, out_reg); }
+static inline void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg) { ((void(*)(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID))0x8008EF78)(stage, op, bias, scale, clamp, out_reg); }
+static inline void GXSetTevColor(GXTevRegID id, GXColor color) { ((void(*)(GXTevRegID, GXColor))0x8008EFE0)(id, color); }
+static inline void GXSetTevKColor(GXTevKColorID id, GXColor color) { ((void(*)(GXTevKColorID, GXColor))0x8008F040)(id, color); }
+static inline void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel) { ((void(*)(GXTevStageID, GXTevKColorSel))0x8008F0A4)(stage, sel); }
+static inline void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel) { ((void(*)(GXTevStageID, GXTevKAlphaSel))0x8008F100)(stage, sel); }
+static inline void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel) { ((void(*)(GXTevStageID, GXTevSwapSel, GXTevSwapSel))0x8008F15C)(stage, ras_sel, tex_sel); }
+static inline void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red_, GXTevColorChan green, GXTevColorChan blue_, GXTevColorChan alpha) { ((void(*)(GXTevSwapSel, GXTevColorChan, GXTevColorChan, GXTevColorChan, GXTevColorChan))0x8008F1A4)(table, red_, green, blue_, alpha); }
+static inline void GXSetAlphaCompare(GXCompare comp0, byte ref0, GXAlphaOp op, GXCompare comp1, byte ref1) { ((void(*)(GXCompare, byte, GXAlphaOp, GXCompare, byte))0x8008F224)(comp0, ref0, op, comp1, ref1); }
+static inline void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, int bias) { ((void(*)(GXZTexOp, GXTexFmt, int))0x8008F268)(op, fmt, bias); }
+static inline void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color) { ((void(*)(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID))0x8008F2F4)(stage, coord, map, color); }
+static inline void GXSetNumTevStages(byte nStages) { ((void(*)(byte))0x8008F490)(nStages); }
+static inline void GXSetFog(GXFogType type, float startz, float endz, float nearz, float farz, GXColor color) { ((void(*)(GXFogType, float, float, float, float, GXColor))0x8008F4B8)(type, startz, endz, nearz, farz, color); }
+static inline void GXInitFogAdjTable(GXFogAdjTable * table, short width, float (*projmtx)[4][4]) { ((void(*)(GXFogAdjTable *, short, float (*)[4][4]))0x8008F6CC)(table, width, projmtx); }
+static inline void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) { ((void(*)(GXBlendMode, GXBlendFactor, GXBlendFactor, GXLogicOp))0x8008F7F0)(type, src_factor, dst_factor, op); }
+static inline void GXSetColorUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008F844)(update_enable); }
+static inline void GXSetAlphaUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008F870)(update_enable); }
+static inline void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable) { ((void(*)(GXBool, GXCompare, GXBool))0x8008F89C)(compare_enable, func, update_enable); }
+static inline void GXSetZCompLoc(GXBool before_tex) { ((void(*)(GXBool))0x8008F8D0)(before_tex); }
+static inline void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt) { ((void(*)(GXPixelFmt, GXZFmt16))0x8008F904)(pix_fmt, z_fmt); }
+static inline void GXSetDither(GXBool dither) { ((void(*)(GXBool))0x8008F9D8)(dither); }
+static inline void GXSetDstAlpha(GXBool enable, byte alpha) { ((void(*)(GXBool, byte))0x8008FA04)(enable, alpha); }
+static inline void GXSetFieldMask(GXBool odd_mask, GXBool even_mask) { ((void(*)(GXBool, GXBool))0x8008FA40)(odd_mask, even_mask); }
+static inline void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio) { ((void(*)(GXBool, GXBool))0x8008FA78)(field_mode, half_aspect_ratio); }
+static inline void Subdivide(void) { ((void(*)(void))0x8008FAF0)(); }
+static inline void GXDrawSphere1(byte depth) { ((void(*)(byte))0x8008FEA4)(depth); }
+static inline void GXCallDisplayList(void * list, int nbytes) { ((void(*)(void *, int))0x8008FFB8)(list, nbytes); }
+static inline void GXProject(float x_, float y_, float z_, Mtx * mtx, float * pm, float * vp, float * sx, float * sy, float * sz) { ((void(*)(float, float, float, Mtx *, float *, float *, float *, float *, float *))0x80090028)(x_, y_, z_, mtx, pm, vp, sx, sy, sz); }
+static inline void GXSetProjection(Mtx * mtx, GXProjectionType type) { ((void(*)(Mtx *, GXProjectionType))0x8009019C)(mtx, type); }
+static inline void GXSetProjectionv(float * ptr) { ((void(*)(float *))0x80090240)(ptr); }
+static inline void GXGetProjectionv(float * p) { ((void(*)(float *))0x800902CC)(p); }
+static inline void GXLoadPosMtxImm(Mtx * mtx, GXPosNrmMtx id) { ((void(*)(Mtx *, GXPosNrmMtx))0x80090314)(mtx, id); }
+static inline void GXLoadNrmMtxImm(Mtx * mtx, int id) { ((void(*)(Mtx *, int))0x80090364)(mtx, id); }
+static inline void GXSetCurrentMtx(GXPosNrmMtx id) { ((void(*)(GXPosNrmMtx))0x800903B4)(id); }
+static inline void GXLoadTexMtxImm(Mtx * mtx, uint id, GXTexMtxType type) { ((void(*)(Mtx *, uint, GXTexMtxType))0x800903E8)(mtx, id, type); }
+static inline void __GXSetViewport(void) { ((void(*)(void))0x8009049C)(); }
+static inline void GXSetViewportJitter(float left_, float top, float wd, float ht, float nearz, float farz, int field) { ((void(*)(float, float, float, float, float, float, int))0x8009052C)(left_, top, wd, ht, nearz, farz, field); }
+static inline void GXSetViewport(float left_, float top, float wd, float ht, float nearz, float farz) { ((void(*)(float, float, float, float, float, float))0x80090584)(left_, top, wd, ht, nearz, farz); }
+static inline void GXGetViewportv(float * viewport) { ((void(*)(float *))0x800905CC)(viewport); }
+static inline void GXSetScissor(int left_, int top, int wd, int ht) { ((void(*)(int, int, int, int))0x800905F0)(left_, top, wd, ht); }
+static inline void GXGetScissor(int * left_, int * top, int * width, int * height) { ((void(*)(int *, int *, int *, int *))0x80090668)(left_, top, width, height); }
+static inline void GXSetScissorBoxOffset(s32 x_off, s32 y_off) { ((void(*)(s32, s32))0x800906B0)(x_off, y_off); }
+static inline void GXSetClipMode(GXClipMode mode) { ((void(*)(GXClipMode))0x800906F0)(mode); }
+static inline void __GXSetMatrixIndex(void) { ((void(*)(void))0x80090718)(); }
+static inline void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1) { ((void(*)(GXPerf0, GXPerf1))0x8009079C)(perf0, perf1); }
+static inline void GXReadGPMetric(int * cnt0, int * cnt1) { ((void(*)(int *, int *))0x80090FE4)(cnt0, cnt1); }
+static inline void GXClearGPMetric(void) { ((void(*)(void))0x8009118C)(); }
+static inline void GXReadGP0Metric(void) { ((void(*)(void))0x8009119C)(); }
+static inline void GXReadGP1Metric(void) { ((void(*)(void))0x800911C8)(); }
+static inline void GXReadPixMetric(int * top_pixels_in, int * top_pixels_out, int * bot_pixels_in, int * bot_pixels_out, int * clr_pixels_in, int * copy_clks) { ((void(*)(int *, int *, int *, int *, int *, int *))0x800911F4)(top_pixels_in, top_pixels_out, bot_pixels_in, bot_pixels_out, clr_pixels_in, copy_clks); }
+static inline void GXClearPixMetric(void) { ((void(*)(void))0x8009132C)(); }
+static inline void GXSetVCacheMetric(GXVCachePerf attr) { ((void(*)(GXVCachePerf))0x8009135C)(attr); }
+static inline void GXReadVCacheMetric(int * check, int * miss, int * stall) { ((void(*)(int *, int *, int *))0x800913A0)(check, miss, stall); }
+static inline void GXClearVCacheMetric(void) { ((void(*)(void))0x80091434)(); }
+static inline TEXDescriptor * TEXGet(TEXPalette * pal, int id) { return ((TEXDescriptor *(*)(TEXPalette *, int))0x80091450)(pal, id); }
+static inline void DSInitList(DSList * DSList_, int maybeStartAddr, int maybeEndAddr) { ((void(*)(DSList *, int, int))0x80091460)(DSList_, maybeStartAddr, maybeEndAddr); }
+static inline void DSInsertListObject(DSList * param_1, int param_2, int param_3) { ((void(*)(DSList *, int, int))0x80091478)(param_1, param_2, param_3); }
+static inline int Strcmp(char * param_1, char * param_2) { return ((int(*)(char *, char *))0x8009150C)(param_1, param_2); }
+static inline void DSInitTree(void) { ((void(*)(void))0x8009155C)(); }
+static inline void DSInsertBranchBelow(void) { ((void(*)(void))0x80091570)(); }
+static inline void TRKNubMainLoop(void) { ((void(*)(void))0x80091608)(); }
+static inline void TRKDestructEvent(void) { ((void(*)(void))0x80091700)(); }
+static inline void TRKConstructEvent(void) { ((void(*)(void))0x80091724)(); }
+static inline void TRKPostEvent(void) { ((void(*)(void))0x8009173C)(); }
+static inline void TRKGetNextEvent(void) { ((void(*)(void))0x8009181C)(); }
+static inline void TRKInitializeEventQueue(void) { ((void(*)(void))0x800918D0)(); }
+static inline void TRKNubWelcome(void) { ((void(*)(void))0x80091928)(); }
+static inline void TRKTerminateNub(void) { ((void(*)(void))0x80091950)(); }
+static inline void TRKInitializeNub(void) { ((void(*)(void))0x80091974)(); }
+static inline void TRKMessageSend(void) { ((void(*)(void))0x80091AC0)(); }
+static inline void TRKReadBuffer_ui32(void) { ((void(*)(void))0x80091B04)(); }
+static inline void TRKReadBuffer_ui8(void) { ((void(*)(void))0x80091BF4)(); }
+static inline void TRKReadBuffer1_ui64(void) { ((void(*)(void))0x80091C8C)(); }
+static inline void TRKAppendBuffer_ui32(void) { ((void(*)(void))0x80091D74)(); }
+static inline void TRKAppendBuffer_ui8(void) { ((void(*)(void))0x80091E70)(); }
+static inline void TRKAppendBuffer1_ui64(void) { ((void(*)(void))0x80091ED8)(); }
+static inline void TRKReadBuffer(void) { ((void(*)(void))0x80091FD4)(); }
+static inline void TRKAppendBuffer(void) { ((void(*)(void))0x80092060)(); }
+static inline void TRKSetBufferPosition(void) { ((void(*)(void))0x80092104)(); }
+static inline void TRKResetBuffer(void) { ((void(*)(void))0x80092134)(); }
+static inline void TRKReleaseBuffer(void) { ((void(*)(void))0x80092174)(); }
+static inline void TRKGetBuffer(void) { ((void(*)(void))0x800921D8)(); }
+static inline void TRKGetFreeBuffer(void) { ((void(*)(void))0x80092204)(); }
+static inline void TRKIntializeMessageBuffers(void) { ((void(*)(void))0x800922CC)(); }
+static inline void TRKTerminateSerialHandler(void) { ((void(*)(void))0x80092340)(); }
+static inline void TRKInitializeProgramEndTrap(void) { ((void(*)(void))0x80092348)(); }
+static inline void TRKProcessInput(void) { ((void(*)(void))0x8009240C)(); }
+static inline void TRKGetInput(void) { ((void(*)(void))0x8009245C)(); }
+static inline void TRKTestForPacket(void) { ((void(*)(void))0x800924BC)(); }
+static inline void usr_put_initialize(void) { ((void(*)(void))0x800925F8)(); }
+static inline void usr_puts_serial(void) { ((void(*)(void))0x800925FC)(); }
+static inline void TRKDispatchMessage(void) { ((void(*)(void))0x80092684)(); }
+static inline void TRKInitializeDispatcher(void) { ((void(*)(void))0x800927F4)(); }
+static inline void TRKDoSetOption(void) { ((void(*)(void))0x800927FC)(); }
+static inline void TRKDoStop(void) { ((void(*)(void))0x800928A4)(); }
+static inline void TRKDoStep(void) { ((void(*)(void))0x8009294C)(); }
+static inline void TRKDoContinue(void) { ((void(*)(void))0x80092B6C)(); }
+static inline void TRKDoWriteRegisters(void) { ((void(*)(void))0x80092C1C)(); }
+static inline void TRKDoReadRegisters(void) { ((void(*)(void))0x80092EAC)(); }
+static inline void TRKDoWriteMemory(void) { ((void(*)(void))0x8009318C)(); }
+static inline void TRKDoReadMemory(void) { ((void(*)(void))0x800933C8)(); }
+static inline void TRKDoSupportMask(void) { ((void(*)(void))0x8009360C)(); }
+static inline void TRKDoVersions(void) { ((void(*)(void))0x80093614)(); }
+static inline void TRKDoOverride(void) { ((void(*)(void))0x8009361C)(); }
+static inline void TRKDoReset(void) { ((void(*)(void))0x80093674)(); }
+static inline void TRKDoDisconnect(void) { ((void(*)(void))0x800936CC)(); }
+static inline void TRKDoConnect(void) { ((void(*)(void))0x80093744)(); }
+static inline void SetTRKConnected(void) { ((void(*)(void))0x800937A8)(); }
+static inline void GetTRKConnected(void) { ((void(*)(void))0x800937B4)(); }
+static inline void OutputData(void) { ((void(*)(void))0x800937C4)(); }
+static inline void HandlePositionFileSupportRequest(void) { ((void(*)(void))0x8009386C)(); }
+static inline void HandleCloseFileSupportRequest(void) { ((void(*)(void))0x8009397C)(); }
+static inline void HandleOpenFileSupportRequest(void) { ((void(*)(void))0x80093A64)(); }
+static inline void TRKRequestSend(void) { ((void(*)(void))0x80093B80)(); }
+static inline void TRKSuppAccessFile(void) { ((void(*)(void))0x80093D60)(); }
+static inline void TRKReleaseMutex(void) { ((void(*)(void))0x80093F80)(); }
+static inline void TRKAcquireMutex(void) { ((void(*)(void))0x80093F88)(); }
+static inline void TRKInitializeMutex(void) { ((void(*)(void))0x80093F90)(); }
+static inline void TRKDoNotifyStopped(void) { ((void(*)(void))0x80093F98)(); }
+static inline void TRK_flushCache(void) { ((void(*)(void))0x80094030)(); }
+static inline void TRK_fill_mem_80094068(void) { ((void(*)(void))0x80094068)(); }
+static inline void __TRK_get_MSR(void) { ((void(*)(void))0x80094120)(); }
+static inline void __TRK_set_MSR(void) { ((void(*)(void))0x80094128)(); }
+static inline void TRK_ppc_memcpy(void) { ((void(*)(void))0x80094130)(); }
+static inline void TRKSwapAndGo(void) { ((void(*)(void))0x8009439C)(); }
+static inline void ReadFPSCR(void) { ((void(*)(void))0x800944B4)(); }
+static inline void WriteFPSCR(void) { ((void(*)(void))0x800944D8)(); }
+static inline void TRKTargetAccessARAM(void) { ((void(*)(void))0x800944FC)(); }
+static inline void TRKTargetSetInputPendingPtr(void) { ((void(*)(void))0x800945C0)(); }
+static inline void TRKTargetStop(void) { ((void(*)(void))0x800945D0)(); }
+static inline void TRKTargetSetStopped(void) { ((void(*)(void))0x800945E8)(); }
+static inline void TRKTargetStopped(void) { ((void(*)(void))0x800945F8)(); }
+static inline void TRKTargetSupportRequest(void) { ((void(*)(void))0x80094608)(); }
+static inline void TRKTargetGetPC(void) { ((void(*)(void))0x80094808)(); }
+static inline void TRKTargetStopOutOfRange(void) { ((void(*)(void))0x80094818)(); }
+static inline void TRKTargetSingleStep(void) { ((void(*)(void))0x800948D0)(); }
+static inline void TRKTargetAddExceptionInfo(void) { ((void(*)(void))0x8009497C)(); }
+static inline void TRKTargetAddStopInfo(void) { ((void(*)(void))0x80094A00)(); }
+static inline void TRKTargetInterrupt(void) { ((void(*)(void))0x80094A8C)(); }
+static inline void TRKPostInterruptEvent(void) { ((void(*)(void))0x80094C1C)(); }
+static inline void TRKTargetAccessExtended2(void) { ((void(*)(void))0x80094CC8)(); }
+static inline void TRKTargetAccessExtended1(void) { ((void(*)(void))0x80095100)(); }
+static inline void TRKTargetAccessFP(void) { ((void(*)(void))0x80095270)(); }
+static inline void TRKTargetAccessDefault(void) { ((void(*)(void))0x8009577C)(); }
+static inline void TRKTargetReadInstruction(void) { ((void(*)(void))0x80095870)(); }
+static inline void TRKTargetAccessMemory(void) { ((void(*)(void))0x800958BC)(); }
+static inline void TRKValidMemory32(void) { ((void(*)(void))0x80095A08)(); }
+static inline void TRKAccessFile(void) { ((void(*)(void))0x80095CB0)(); }
+static inline void TRKOpenFile(void) { ((void(*)(void))0x80095CB8)(); }
+static inline void TRKCloseFile(void) { ((void(*)(void))0x80095CC0)(); }
+static inline void TRKPositionFile(void) { ((void(*)(void))0x80095CC8)(); }
+static inline void TRKSaveExtended1Block(void) { ((void(*)(void))0x80095CD0)(); }
+static inline void TRKSaveExtended1Block_1(void) { ((void(*)(void))0x80095DDC)(); }
+static inline void TRKSaveExtended1Block_2(void) { ((void(*)(void))0x80095E20)(); }
+static inline void TRKSaveExtended1Block_3(void) { ((void(*)(void))0x80095E5C)(); }
+static inline void TRKRestoreExtended1Block(void) { ((void(*)(void))0x80095E88)(); }
+static inline void TRKRestoreExtended1Block_1(void) { ((void(*)(void))0x80095EF8)(); }
+static inline void TRKRestoreExtended1Block_2(void) { ((void(*)(void))0x80095F5C)(); }
+static inline void InitMetroTRK(void) { ((void(*)(void))0x80096040)(); }
+static inline void InitMetroTRK_BBA(void) { ((void(*)(void))0x800960D8)(); }
+static inline void TRK__write_aram(void) { ((void(*)(void))0x8009616C)(); }
+static inline void TRK__read_aram(void) { ((void(*)(void))0x80096358)(); }
+static inline void TRKInitializeTarget(void) { ((void(*)(void))0x8009648C)(); }
+static inline void __TRK_copy_vectors(void) { ((void(*)(void))0x800964D8)(); }
+static inline void TRKTargetTranslate(void) { ((void(*)(void))0x80096604)(); }
+static inline void EnableMetroTRKInterrupts(void) { ((void(*)(void))0x8009665C)(); }
+static inline void TRK_main(void) { ((void(*)(void))0x8009667C)(); }
+static inline void TRKLoadContext(void) { ((void(*)(void))0x800966D4)(); }
+static inline void TRKUARTInterruptHandler(void) { ((void(*)(void))0x8009675C)(); }
+static inline void InitializeProgramEndTrap(void) { ((void(*)(void))0x80096760)(); }
+static inline void TRK_board_display(void) { ((void(*)(void))0x800967B8)(); }
+static inline void UnreserveEXI2Port(void) { ((void(*)(void))0x800967E8)(); }
+static inline void ReserveEXI2Port(void) { ((void(*)(void))0x80096818)(); }
+static inline void TRKWriteUARTN(void) { ((void(*)(void))0x80096848)(); }
+static inline void TRKReadUARTN(void) { ((void(*)(void))0x80096884)(); }
+static inline void TRKPollUART(void) { ((void(*)(void))0x800968C0)(); }
+static inline void EnableExi2Interrupts(void) { ((void(*)(void))0x800968F0)(); }
+static inline void TRKInitializeIntDriverUART(void) { ((void(*)(void))0x80096938)(); }
+static inline void InitMetroTRKCommTable(void) { ((void(*)(void))0x80096988)(); }
+static inline void TRKEXICallBack(void) { ((void(*)(void))0x80096BF4)(); }
+static inline void TRKTargetContinue(void) { ((void(*)(void))0x80096C2C)(); }
+static inline void GetUseSerialIO(void) { ((void(*)(void))0x80096C60)(); }
+static inline void SetUseSerialIO(void) { ((void(*)(void))0x80096C70)(); }
+static inline void __close_console(void) { ((void(*)(void))0x80096C7C)(); }
+static inline void __TRK_write_console(void) { ((void(*)(void))0x80096D00)(); }
+static inline void __read_console(void) { ((void(*)(void))0x80096DBC)(); }
+static inline void udp_cc_post_stop(void) { ((void(*)(void))0x80096E78)(); }
+static inline void udp_cc_pre_continue(void) { ((void(*)(void))0x80096E80)(); }
+static inline void udp_cc_peek(void) { ((void(*)(void))0x80096E88)(); }
+static inline void udp_cc_write(void) { ((void(*)(void))0x80096E90)(); }
+static inline void udp_cc_read(void) { ((void(*)(void))0x80096E98)(); }
+static inline void udp_cc_close(void) { ((void(*)(void))0x80096EA0)(); }
+static inline void udp_cc_open(void) { ((void(*)(void))0x80096EA8)(); }
+static inline void udp_cc_shutdown(void) { ((void(*)(void))0x80096EB0)(); }
+static inline void udp_cc_initialize(void) { ((void(*)(void))0x80096EB8)(); }
+static inline void ddh_cc_initinterrupts(void) { ((void(*)(void))0x80096EC0)(); }
+static inline void ddh_cc_peek(void) { ((void(*)(void))0x80096EE4)(); }
+static inline void ddh_cc_post_stop(void) { ((void(*)(void))0x80096F54)(); }
+static inline void ddh_cc_pre_continue(void) { ((void(*)(void))0x80096F78)(); }
+static inline void ddh_cc_write(void) { ((void(*)(void))0x80096F9C)(); }
+static inline void ddh_cc_read(void) { ((void(*)(void))0x8009705C)(); }
+static inline void ddh_cc_close(void) { ((void(*)(void))0x80097148)(); }
+static inline void ddh_cc_open(void) { ((void(*)(void))0x80097150)(); }
+static inline void ddh_cc_shutdown(void) { ((void(*)(void))0x80097174)(); }
+static inline void ddh_cc_initialize(void) { ((void(*)(void))0x8009717C)(); }
+static inline void CircleBufferReadBytes(void) { ((void(*)(void))0x80097204)(); }
+static inline void CircleBufferWriteBytes(void) { ((void(*)(void))0x8009730C)(); }
+static inline void CircleBufferInitialize(void) { ((void(*)(void))0x80097414)(); }
+static inline void CBGetBytesAvailableForRead(void) { ((void(*)(void))0x80097464)(); }
+static inline void gdev_cc_initinterrupts(void) { ((void(*)(void))0x8009746C)(); }
+static inline void gdev_cc_peek(void) { ((void(*)(void))0x80097490)(); }
+static inline void gdev_cc_post_stop(void) { ((void(*)(void))0x80097500)(); }
+static inline void gdev_cc_pre_continue(void) { ((void(*)(void))0x80097524)(); }
+static inline void gdev_cc_write(void) { ((void(*)(void))0x80097548)(); }
+static inline void gdev_cc_read(void) { ((void(*)(void))0x80097608)(); }
+static inline void gdev_cc_close(void) { ((void(*)(void))0x800976FC)(); }
+static inline void gdev_cc_open(void) { ((void(*)(void))0x80097704)(); }
+static inline void gdev_cc_shutdown(void) { ((void(*)(void))0x80097728)(); }
+static inline void gdev_cc_initalize(int inputPendingPtrRef, int monitorCallback) { ((void(*)(int, int))0x80097730)(inputPendingPtrRef, monitorCallback); }
+static inline void MWTRACE(void) { ((void(*)(void))0x800977B8)(); }
+static inline void MWExitCriticalSection(void) { ((void(*)(void))0x80097808)(); }
+static inline void MWEnterCriticalSection(void) { ((void(*)(void))0x8009782C)(); }
+static inline void MWInitializeCriticalSection(void) { ((void(*)(void))0x8009785C)(); }
+static inline void __va_arg(void) { ((void(*)(void))0x80097860)(); }
+static inline void __destroy_global_chain(void) { ((void(*)(void))0x80097928)(); }
+static inline void __cvt_fp2unsigned(void) { ((void(*)(void))0x80097970)(); }
+static inline void __save_fpr(void) { ((void(*)(void))0x800979CC)(); }
+static inline void __save_fpr_2(void) { ((void(*)(void))0x800979F8)(); }
+static inline void __restore_fpr(void) { ((void(*)(void))0x80097A18)(); }
+static inline void __restore_fpr_2(void) { ((void(*)(void))0x80097A44)(); }
+static inline void _savegpr_14(void) { ((void(*)(void))0x80097A64)(); }
+static inline void _savegpr_15(void) { ((void(*)(void))0x80097A68)(); }
+static inline void _savegpr_18(void) { ((void(*)(void))0x80097A74)(); }
+static inline void _savegpr_20(void) { ((void(*)(void))0x80097A7C)(); }
+static inline void _savegpr_21(void) { ((void(*)(void))0x80097A80)(); }
+static inline void _savegpr_22(void) { ((void(*)(void))0x80097A84)(); }
+static inline void _savegpr_23(void) { ((void(*)(void))0x80097A88)(); }
+static inline void _savegpr_24(void) { ((void(*)(void))0x80097A8C)(); }
+static inline void _savegpr_25(void) { ((void(*)(void))0x80097A90)(); }
+static inline void _savegpr_26(void) { ((void(*)(void))0x80097A94)(); }
+static inline void _savegpr_27(void) { ((void(*)(void))0x80097A98)(); }
+static inline void _restgpr_14(void) { ((void(*)(void))0x80097AB0)(); }
+static inline void _restgpr_15(void) { ((void(*)(void))0x80097AB4)(); }
+static inline void _restgpr_18(void) { ((void(*)(void))0x80097AC0)(); }
+static inline void _restgpr_20(void) { ((void(*)(void))0x80097AC8)(); }
+static inline void _restgpr_21(void) { ((void(*)(void))0x80097ACC)(); }
+static inline void _restgpr_22(void) { ((void(*)(void))0x80097AD0)(); }
+static inline void _restgpr_23(void) { ((void(*)(void))0x80097AD4)(); }
+static inline void _restgpr_24(void) { ((void(*)(void))0x80097AD8)(); }
+static inline void _restgpr_25(void) { ((void(*)(void))0x80097ADC)(); }
+static inline void _restgpr_26(void) { ((void(*)(void))0x80097AE0)(); }
+static inline void _restgpr_27(void) { ((void(*)(void))0x80097AE4)(); }
+static inline void __div2u(void) { ((void(*)(void))0x80097AFC)(); }
+static inline void __div2i(void) { ((void(*)(void))0x80097BE8)(); }
+static inline void __mod2u(void) { ((void(*)(void))0x80097D20)(); }
+static inline void __mod2i(void) { ((void(*)(void))0x80097E04)(); }
+static inline void __shl2i(void) { ((void(*)(void))0x80097F10)(); }
+static inline void __shr2u(void) { ((void(*)(void))0x80097F34)(); }
+static inline void __shr2i(void) { ((void(*)(void))0x80097F58)(); }
+static inline void __cvt_dbl_usll(void) { ((void(*)(void))0x80097F80)(); }
+static inline void GetR2(void) { ((void(*)(void))0x8009804C)(); }
+static inline void __fini_cpp_exceptions(void) { ((void(*)(void))0x80098054)(); }
+static inline void __init_cpp_exceptions(void) { ((void(*)(void))0x80098088)(); }
+static inline void __unregister_fragment(void) { ((void(*)(void))0x800980C8)(); }
+static inline void __register_fragment(void) { ((void(*)(void))0x800980FC)(); }
+static inline void __sys_free(int param_1) { ((void(*)(int))0x80098130)(param_1); }
+static inline void exit(int __status) { ((void(*)(int))0x800981E8)(__status); }
+static inline void free(void * __ptr) { ((void(*)(void *))0x800982D8)(__ptr); }
+static inline void __pool_free(void) { ((void(*)(void))0x80098348)(); }
+static inline void deallocate_from_fixed_pools(void) { ((void(*)(void))0x800983A0)(); }
+static inline void deallocate_from_var_pools(void) { ((void(*)(void))0x800984F8)(); }
+static inline void __flsuh_all(void) { ((void(*)(void))0x8009878C)(); }
+static inline void __close_all(void) { ((void(*)(void))0x800987FC)(); }
+static inline void __num2dec(void) { ((void(*)(void))0x800988A4)(); }
+static inline void __num2dec_internal(void) { ((void(*)(void))0x80098A48)(); }
+static inline void __two_exp(void) { ((void(*)(void))0x80098DFC)(); }
+static inline void __timesdec(void) { ((void(*)(void))0x8009A580)(); }
+static inline void __flush_buffer(void) { ((void(*)(void))0x8009A7F8)(); }
+static inline void __prep_buffer(void) { ((void(*)(void))0x8009A8BC)(); }
+static inline void __end_critical_region(void) { ((void(*)(void))0x8009A8F0)(); }
+static inline void __begin_critical_region(void) { ((void(*)(void))0x8009A8F4)(); }
+static inline void __kill_critical_regions(void) { ((void(*)(void))0x8009A8F8)(); }
+static inline int tolower(int __c) { return ((int(*)(int))0x8009A8FC)(__c); }
+static inline void __fwrite(void) { ((void(*)(void))0x8009A920)(); }
+static inline size_t fwrite(void * __ptr, size_t __size, size_t __n, FILE * __s) { return ((size_t(*)(void *, size_t, size_t, FILE *))0x8009AC2C)(__ptr, __size, __n, __s); }
+static inline int fflush(FILE * __stream) { return ((int(*)(FILE *))0x8009ACA8)(__stream); }
+static inline int fclose(FILE * __stream) { return ((int(*)(FILE *))0x8009ADE0)(__stream); }
+static inline int fseek(FILE * __stream, long __off, int __whence) { return ((int(*)(FILE *, long, int))0x8009AF9C)(__stream, __off, __whence); }
+static inline void _fseek(void) { ((void(*)(void))0x8009B008)(); }
+static inline long ftell(FILE * __stream) { return ((long(*)(FILE *))0x8009B278)(__stream); }
+static inline size_t wcstombs(char * __s, wchar_t * __pwcs, size_t __n) { return ((size_t(*)(char *, wchar_t *, size_t))0x8009B35C)(__s, __pwcs, __n); }
+static inline int memcmp(byte * array1, byte * array2, int byteCount) { return ((int(*)(byte *, byte *, int))0x8009B474)(array1, array2, byteCount); }
+static inline void __memrchr(void) { ((void(*)(void))0x8009B4C0)(); }
+static inline void * memchr(void * __s, int __c, size_t __n) { return ((void *(*)(void *, int, size_t))0x8009B4EC)(__s, __c, __n); }
+static inline void * memmove(void * __dest, void * __src, size_t __n) { return ((void *(*)(void *, void *, size_t))0x8009B518)(__dest, __src, __n); }
+static inline void __copy_longs_rev_unaligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B5E4)(param_1, param_2, param_3); }
+static inline void __copy_longs_unaligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B690)(param_1, param_2, param_3); }
+static inline void __copy_longs_rev_aligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B750)(param_1, param_2, param_3); }
+static inline void __copy_longs_aligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B7F8)(param_1, param_2, param_3); }
+static inline void __stdio_atexit(void) { ((void(*)(void))0x8009B8B4)(); }
+#define sprintf FUNCTION_ADDRESS(int, 0x8009B8C4, char *, char *, ...)
+static inline int vprintf(char * __format, __gnuc_va_list __arg) { return ((int(*)(char *, __gnuc_va_list))0x8009B9A4)(__format, __arg); }
+static inline void __StringWrite(void) { ((void(*)(void))0x8009BA3C)(); }
+static inline void __FileWrite(void) { ((void(*)(void))0x8009BAA8)(); }
+static inline int __pformatter(undefined * param_1, int param_2, char * param_3, int param_4) { return ((int(*)(undefined *, int, char *, int))0x8009BB00)(param_1, param_2, param_3, param_4); }
+static inline char * float2str(double param_1, int param_2, int param_3) { return ((char *(*)(double, int, int))0x8009C274)(param_1, param_2, param_3); }
+static inline void round_decimal(void) { ((void(*)(void))0x8009C990)(); }
+static inline void double2hex(void) { ((void(*)(void))0x8009CABC)(); }
+static inline void longlong2str(void) { ((void(*)(void))0x8009CDF4)(); }
+static inline void long2str(void) { ((void(*)(void))0x8009D108)(); }
+static inline void parse_format(void) { ((void(*)(void))0x8009D360)(); }
+static inline int rand(void) { return ((int(*)(void))0x8009D864)(); }
+static inline char * strchr(char * __s, int __c) { return ((char *(*)(char *, int))0x8009D884)(__s, __c); }
+static inline void strcnmp(void) { ((void(*)(void))0x8009D8B4)(); }
+static inline char * strncpy(char * __dest, char * __src, size_t __n) { return ((char *(*)(char *, char *, size_t))0x8009D8F4)(__dest, __src, __n); }
+static inline char * strcpy(char * __dest, char * __src) { return ((char *(*)(char *, char *))0x8009D938)(__dest, __src); }
+static inline size_t strlen(char * __s) { return ((size_t(*)(char *))0x8009D9F0)(__s); }
+static inline int fwide(__FILE * __fp, int __mode) { return ((int(*)(__FILE *, int))0x8009DA0C)(__fp, __mode); }
+static inline void __write_console(void) { ((void(*)(void))0x8009DA94)(); }
+static inline double __ieee754_acos(double param_1) { return ((double(*)(double))0x8009DB64)(param_1); }
+static inline double __ieee754_asin(double x_) { return ((double(*)(double))0x8009DDA0)(x_); }
+static inline double __ieee754_atan2(double y_, double x_) { return ((double(*)(double, double))0x8009DFD8)(y_, x_); }
+static inline void __ieee754_fmod(void) { ((void(*)(void))0x8009E268)(); }
+static inline double __ieee754_pow(double x_, double y_) { return ((double(*)(double, double))0x8009E5A4)(x_, y_); }
+static inline double __ieee754_rem_pio2(double param_1, double * param_2) { return ((double(*)(double, double *))0x8009EDD4)(param_1, param_2); }
+static inline double __kernel_cos(double param_1, double param_2) { return ((double(*)(double, double))0x8009F174)(param_1, param_2); }
+static inline int __kernel_rem_pio2(double * x_, double * y_, int e0, int nx, int prec, int * ipio2) { return ((int(*)(double *, double *, int, int, int, int *))0x8009F268)(x_, y_, e0, nx, prec, ipio2); }
+static inline double __kernel_sin(double param_1, double param_2, int param_3) { return ((double(*)(double, double, int))0x800A00BC)(param_1, param_2, param_3); }
+static inline void __kernel_tan(void) { ((void(*)(void))0x800A015C)(); }
+static inline double atan(double __x) { return ((double(*)(double))0x800A0370)(__x); }
+static inline double copysign(double __x, double __y) { return ((double(*)(double, double))0x800A0588)(__x, __y); }
+static inline double cos(double __x) { return ((double(*)(double))0x800A05B0)(__x); }
+static inline double floor(double __x) { return ((double(*)(double))0x800A0684)(__x); }
+static inline double frexp(double __x, int * __exponent) { return ((double(*)(double, int *))0x800A07CC)(__x, __exponent); }
+static inline double ldexp(double __x, int __exponent) { return ((double(*)(double, int))0x800A0858)(__x, __exponent); }
+static inline double modf(double __x, double * __iptr) { return ((double(*)(double, double *))0x800A0A1C)(__x, __iptr); }
+static inline double sin(double __x) { return ((double(*)(double))0x800A0B18)(__x); }
+static inline double tan(double __x) { return ((double(*)(double))0x800A0BF0)(__x); }
+static inline float acosf(float __x) { return ((float(*)(float))0x800A0C68)(__x); }
+static inline double asin(double __x) { return ((double(*)(double))0x800A0C88)(__x); }
+static inline double atan_800a0ca8(double y_, double x_) { return ((double(*)(double, double))0x800A0CA8)(y_, x_); }
+static inline double fmod(double __x, double __y) { return ((double(*)(double, double))0x800A0CC8)(__x, __y); }
+static inline double pow(double __x, double __y) { return ((double(*)(double, double))0x800A0CE8)(__x, __y); }
+static inline double __ieee754_sqrt(double param_1) { return ((double(*)(double))0x800A0D08)(param_1); }
+static inline float sinf(float __x) { return ((float(*)(float))0x800A0F2C)(__x); }
+static inline float cosf(float __x) { return ((float(*)(float))0x800A0F50)(__x); }
+static inline float acosf_800a0f74(float __x) { return ((float(*)(float))0x800A0F74)(__x); }
+static inline double sqrt(double __x) { return ((double(*)(double))0x800A0F98)(__x); }
+static inline void EXI2_Init(void) { ((void(*)(void))0x800A0FB8)(); }
+static inline void EXI2_EnableInterrupts(void) { ((void(*)(void))0x800A0FBC)(); }
+static inline void EXI2_Poll(void) { ((void(*)(void))0x800A0FC0)(); }
+static inline void EXI2_ReadN(void) { ((void(*)(void))0x800A0FC8)(); }
+static inline void EXI2_WriteN(void) { ((void(*)(void))0x800A0FD0)(); }
+static inline void EXI2_Reserve(void) { ((void(*)(void))0x800A0FD8)(); }
+static inline void EXI2_Unreserve(void) { ((void(*)(void))0x800A0FDC)(); }
+static inline void AMC_IsStub(void) { ((void(*)(void))0x800A0FE0)(); }
+static inline void Hu_IsStub(void) { ((void(*)(void))0x800A0FE8)(); }
+static inline void DBGEXIImm(void) { ((void(*)(void))0x800A0FF0)(); }
+static inline void DBGReadMailbox(void) { ((void(*)(void))0x800A1288)(); }
+static inline void DBGRead(void) { ((void(*)(void))0x800A1334)(); }
+static inline void DBGWrite(void) { ((void(*)(void))0x800A1410)(); }
+static inline void DBGReadStatus(void) { ((void(*)(void))0x800A14EC)(); }
+static inline void MWCallback(void) { ((void(*)(void))0x800A1598)(); }
+static inline void DBGHandler(void) { ((void(*)(void))0x800A15D4)(); }
+static inline void DBInitComm(void) { ((void(*)(void))0x800A1614)(); }
+static inline void DBInitInterrupts(void) { ((void(*)(void))0x800A168C)(); }
+static inline void DBQueryData(void) { ((void(*)(void))0x800A16E0)(); }
+static inline void DBRead(void) { ((void(*)(void))0x800A177C)(); }
+static inline void DBWrite(void) { ((void(*)(void))0x800A1808)(); }
+static inline void DBOpen(void) { ((void(*)(void))0x800A1A68)(); }
+static inline void DBClose(void) { ((void(*)(void))0x800A1A6C)(); }
+static inline void SetExiInterruptMask(void) { ((void(*)(void))0x800A2B5C)(); }
+static inline void EXIImm(void) { ((void(*)(void))0x800A2C50)(); }
+static inline void EXIImmEx(void) { ((void(*)(void))0x800A2EAC)(); }
+static inline void EXIDma(void) { ((void(*)(void))0x800A2F4C)(); }
+static inline void EXISync(void) { ((void(*)(void))0x800A3038)(); }
+static inline void EXIClearInterrupts(void) { ((void(*)(void))0x800A3284)(); }
+static inline void EXISetExiCallback(void) { ((void(*)(void))0x800A32CC)(); }
+static inline void __EXIProbe(void) { ((void(*)(void))0x800A3348)(); }
+static inline void EXIProbe(void) { ((void(*)(void))0x800A34BC)(); }
+static inline void EXIProbeEx(void) { ((void(*)(void))0x800A353C)(); }
+static inline void EXIAttach(void) { ((void(*)(void))0x800A35F0)(); }
+static inline void EXIDetach(void) { ((void(*)(void))0x800A36FC)(); }
+static inline void EXISelect(void) { ((void(*)(void))0x800A37B8)(); }
+static inline void EXIDeselect(void) { ((void(*)(void))0x800A38E4)(); }
+static inline void EXIIntrruptHandler(void) { ((void(*)(void))0x800A39F4)(); }
+static inline void TCIIntrruptHandler(void) { ((void(*)(void))0x800A3ABC)(); }
+static inline void EXTIntrruptHandler(void) { ((void(*)(void))0x800A3CD4)(); }
+static inline void EXIInit(void) { ((void(*)(void))0x800A3DA4)(); }
+static inline void EXILock(void) { ((void(*)(void))0x800A3F78)(); }
+static inline void EXIUnlock(void) { ((void(*)(void))0x800A406C)(); }
+static inline void EXIGetState(void) { ((void(*)(void))0x800A4148)(); }
+static inline void UnlockedHandler(void) { ((void(*)(void))0x800A4160)(); }
+static inline void EXIGetID(void) { ((void(*)(void))0x800A4188)(); }
+static inline void ProbeBarnacle(void) { ((void(*)(void))0x800A4538)(); }
+static inline void __OSEnableBarnacle(void) { ((void(*)(void))0x800A46C4)(); }
+static inline void InitializeUART(void) { ((void(*)(void))0x800A4880)(); }
+static inline void WriteUARTN(void) { ((void(*)(void))0x800A48F0)(); }
+static inline void SIBusy(void) { ((void(*)(void))0x800A4B0C)(); }
+static inline void SIIsChanBusy(void) { ((void(*)(void))0x800A4B2C)(); }
+static inline void CompleteTransfer(void) { ((void(*)(void))0x800A4B68)(); }
+static inline void SIInterruptHandler(void) { ((void(*)(void))0x800A4E64)(); }
+static inline void SIEnablePollingInterrupt(void) { ((void(*)(void))0x800A51A8)(); }
+static inline void SIRegisterPollingHandle(void) { ((void(*)(void))0x800A5240)(); }
+static inline void SIUnregisterPollingHandle(void) { ((void(*)(void))0x800A530C)(); }
+static inline void SIInit(void) { ((void(*)(void))0x800A5400)(); }
+static inline void __SITransfer(void) { ((void(*)(void))0x800A54B4)(); }
+static inline void SIGetStatus(void) { ((void(*)(void))0x800A56C0)(); }
+static inline void SISetCommand(void) { ((void(*)(void))0x800A573C)(); }
+static inline void SITransferCommands(void) { ((void(*)(void))0x800A5750)(); }
+static inline void SISetXY(void) { ((void(*)(void))0x800A5760)(); }
+static inline void SIEnablePolling(void) { ((void(*)(void))0x800A57CC)(); }
+static inline void SIDisablePolling(void) { ((void(*)(void))0x800A5868)(); }
+static inline void SIGetResponseRaw(void) { ((void(*)(void))0x800A58D4)(); }
+static inline void SIGetResponse(void) { ((void(*)(void))0x800A59A8)(); }
+static inline void AlarmHandler_800a5a6c(void) { ((void(*)(void))0x800A5A6C)(); }
+static inline void SITransfer(void) { ((void(*)(void))0x800A5AF8)(); }
+static inline void GetTypeCallback(void) { ((void(*)(void))0x800A5C64)(); }
+static inline void SIGetType(void) { ((void(*)(void))0x800A5EFC)(); }
+static inline void SIGetTypeAsync(void) { ((void(*)(void))0x800A60C0)(); }
+static inline void SISetSamplingRate(void) { ((void(*)(void))0x800A61FC)(); }
+static inline void SIRefreshSamplingRate(void) { ((void(*)(void))0x800A62E0)(); }
+static inline void SetReadParameters(CompressedDiskRead * cdr, undefined * readBuffer, undefined * dst, int isSegmentedRead) { ((void(*)(CompressedDiskRead *, undefined *, undefined *, int))0x800A64E0)(cdr, readBuffer, dst, isSegmentedRead); }
+static inline void StartThreadForReadingFromDisk(void) { ((void(*)(void))0x800A65A0)(); }
+static inline void ReadDataFromDisk(void) { ((void(*)(void))0x800A65F8)(); }
+static inline void DecompressDiskData(void) { ((void(*)(void))0x800A6654)(); }
+static inline void ReadBits(int bits) { ((void(*)(int))0x800A673C)(bits); }
+static inline void manageFileReadingProcess(void) { ((void(*)(void))0x800A6900)(); }
+static inline void ARAMTransfer(CompressedDiskRead * compressedStruct, undefined * readDestination, byte loadInfo_, undefined * aramAddress) { ((void(*)(CompressedDiskRead *, undefined *, byte, undefined *))0x800A70DC)(compressedStruct, readDestination, loadInfo_, aramAddress); }
+static inline uint ConvertPathToEntryNum(char * * param_1) { return ((uint(*)(char * *))0x800A7544)(param_1); }
+static inline void handleDVDCancelAndARQRemoval(void) { ((void(*)(void))0x800A7568)(); }
+static inline void cancelReadCallback1(void) { ((void(*)(void))0x800A75EC)(); }
+static inline void cancelReadCallback2(void) { ((void(*)(void))0x800A7670)(); }
+static inline void initializeDVDSystem(void) { ((void(*)(void))0x800A76BC)(); }
+static inline void someGFXRenderingFn(void) { ((void(*)(void))0x800A7C08)(); }
+static inline void initRenderMode(void) { ((void(*)(void))0x800A80E8)(); }
+static inline void LoadFile(int fileName, int param_2, int param_3, int param_4, int param_5) { ((void(*)(int, int, int, int, int))0x800A8CBC)(fileName, param_2, param_3, param_4, param_5); }
+static inline void initInputDevices(void) { ((void(*)(void))0x800A983C)(); }
+static inline void memoryCardRelatedFunction(void) { ((void(*)(void))0x800AAEE4)(); }
+static inline void processBannerImage(int param_1, astruct_9 * textureData, int texSize, int param_4, int param_5, int param_6, byte param_7, int param_8, int param_9, int maybeSize) { ((void(*)(int, astruct_9 *, int, int, int, int, byte, int, int, int))0x800AC508)(param_1, textureData, texSize, param_4, param_5, param_6, param_7, param_8, param_9, maybeSize); }
+static inline void unkLoadingCleanupRelated(int * param_1) { ((void(*)(int *))0x800ACF14)(param_1); }
+static inline void allocateAlignedMemoryBlock(int alignment, int size) { ((void(*)(int, int))0x800ACF34)(alignment, size); }
+static inline void * OSAllocFromHeap(OSHeapHandle heapHandle, int size) { return ((void *(*)(OSHeapHandle, int))0x800ACFD0)(heapHandle, size); }
+static inline void YUV2RGB(int src, byte * dst, int param_3, int param_4) { ((void(*)(int, byte *, int, int))0x800ADF60)(src, dst, param_3, param_4); }
+static inline void YUV2RGB_(int src, byte * dst, int param_3, int param_4) { ((void(*)(int, byte *, int, int))0x800AE298)(src, dst, param_3, param_4); }
+static inline void MovStreamThread(void) { ((void(*)(void))0x800AEB18)(); }
+static inline void MovDecodeThread(void) { ((void(*)(void))0x800AED34)(); }
+static inline void makeLookAtMatrix(Mtx * m, Vec3f * coordinate, Vec3f * up_, Vec3f * target) { ((void(*)(Mtx *, Vec3f *, Vec3f *, Vec3f *))0x800B0724)(m, coordinate, up_, target); }
+static inline void soundQuit(void) { ((void(*)(void))0x800B07FC)(); }
+static inline void initSound_800b0834(void) { ((void(*)(void))0x800B0834)(); }
+static inline void SndFree(void) { ((void(*)(void))0x800B0938)(); }
+static inline void SndAlloc(void) { ((void(*)(void))0x800B099C)(); }
+static inline void removeCurrentDrawingItem(void) { ((void(*)(void))0x800B0A14)(); }
+static inline DrawingSceneStruct * insertGraphicDrawingFunction(void (*paramFuncPtr)(void *), short priority) { return ((DrawingSceneStruct *(*)(void (*)(void *), short))0x800B0A5C)(paramFuncPtr, priority); }
+static inline void resetAllDrawingStructs_tonop(void) { ((void(*)(void))0x800B0B2C)(); }
+static inline void resetAllDrawingStructs(void) { ((void(*)(void))0x800B0BE8)(); }
+static inline void nop_function(void) { ((void(*)(void))0x800B0CB4)(); }
+static inline void RunDrawScripts_with_stack_variables(void) { ((void(*)(void))0x800B0CB8)(); }
+static inline void AllocateSprite_(void) { ((void(*)(void))0x800B0D68)(); }
+static inline void DrawNullSprite(SpritePositionStruct * position, int count) { ((void(*)(SpritePositionStruct *, int))0x800B12A4)(position, count); }
+static inline void renderSprite(int param_1, int tex, int width, int height) { ((void(*)(int, int, int, int))0x800B1314)(param_1, tex, width, height); }
+static inline void DrawSprite_TexObj(SpritePositionStruct * param_1, TextureObj * tex) { ((void(*)(SpritePositionStruct *, TextureObj *))0x800B1350)(param_1, tex); }
+static inline void DrawSprite(int drawSpriteEnum, SpritePositionStruct * position, int positionStructCount, TextureObj * texture_, int width, int height) { ((void(*)(int, SpritePositionStruct *, int, TextureObj *, int, int))0x800B1500)(drawSpriteEnum, position, positionStructCount, texture_, width, height); }
+static inline void setTextRenderingMode_(void) { ((void(*)(void))0x800B2160)(); }
+static inline void ProcessActorBonesForShadows(ACTActor * actor) { ((void(*)(ACTActor *))0x800B2AC8)(actor); }
+static inline void Set_FUN_800b2b6c(undefined * param_1, int param_2) { ((void(*)(undefined *, int))0x800B2B6C)(param_1, param_2); }
+static inline void callDSInsertListObject(void) { ((void(*)(void))0x800B2B74)(); }
+static inline void maybeTransformVectorByAnimationMatrix(int param_1, uint param_2, int vec) { ((void(*)(int, uint, int))0x800B2C44)(param_1, param_2, vec); }
+static inline void ACTSort(ACTActor * actor) { ((void(*)(ACTActor *))0x800B2CBC)(actor); }
+static inline void actorBoneRelated(ACTActor * param_1, int param_2, int param_3, int param_4) { ((void(*)(ACTActor *, int, int, int))0x800B34B4)(param_1, param_2, param_3, param_4); }
+static inline void BuildBoneSkinOrientationMatrix_800b37a4(ACTBone * actBone, int mtx) { ((void(*)(ACTBone *, int))0x800B37A4)(actBone, mtx); }
+static inline int maybeBallRelated(ACTActor * * actor, ActLayout * actLayout, short actorID) { return ((int(*)(ACTActor * *, ActLayout *, short))0x800B4048)(actor, actLayout, actorID); }
+static inline void InitBone_800b4084(void) { ((void(*)(void))0x800B4084)(); }
+static inline void maybeProcessActLayout(ACTActor * act_, ActLayout * layout) { ((void(*)(ACTActor *, ActLayout *))0x800B43A0)(act_, layout); }
+static inline void renderingRelated(void) { ((void(*)(void))0x800B472C)(); }
+static inline void PointActorToGEOPalette(ACTActor * actor, GEOPalette * gPalette) { ((void(*)(ACTActor *, GEOPalette *))0x800B4908)(actor, gPalette); }
+static inline void LoadActorLayout(ActLayout * actLayout) { ((void(*)(ActLayout *))0x800B4910)(actLayout); }
+static inline void AdjustActorPointers(ACTActor * actor) { ((void(*)(ACTActor *))0x800B49E4)(actor); }
+static inline void calledByHazardLogic(void) { ((void(*)(void))0x800B4A94)(); }
+static inline void updateBoneParam(ActLayout * act_, byte param_2) { ((void(*)(ActLayout *, byte))0x800B4AFC)(act_, param_2); }
+static inline void AnimateActorBones(ACTActor * actor) { ((void(*)(ACTActor *))0x800B4B38)(actor); }
+static inline void ACTSetAnimation(ACTActor * actor, AnimBank * animBank, char * sequenceName, short seqNum, float time_) { ((void(*)(ACTActor *, AnimBank *, char *, short, float))0x800B4D64)(actor, animBank, sequenceName, seqNum, time_); }
+static inline void ANIMGetKeyFrameFromTrack(ANIMTrack * animTrack, float time_, ANIMKeyFrame * currentFrame, ANIMKeyFrame * nextFrame) { ((void(*)(ANIMTrack *, float, ANIMKeyFrame *, ANIMKeyFrame *))0x800B4E9C)(animTrack, time_, currentFrame, nextFrame); }
+static inline void ANIMGetTrackFromSequence(AnimSequence * animSeq, short animTrackID) { ((void(*)(AnimSequence *, short))0x800B4F9C)(animSeq, animTrackID); }
+static inline AnimSequence * ANIMGetSequence(AnimBank * animBank, char * sequenceName, short seqNum) { return ((AnimSequence *(*)(AnimBank *, char *, short))0x800B4FEC)(animBank, sequenceName, seqNum); }
+static inline void ANIMGet(AnimBank * animBank, char * name) { ((void(*)(AnimBank *, char *))0x800B508C)(animBank, name); }
+static inline void Squad(void) { ((void(*)(void))0x800B516C)(); }
+static inline void GetData(void) { ((void(*)(void))0x800B560C)(); }
+static inline void DoTranslationAnimation(void) { ((void(*)(void))0x800B5DA8)(); }
+static inline void DoScaleAnimation(ANIMPipe * animPipe, ANIMKeyFrame * startFrame, ANIMKeyFrame * endFrame) { ((void(*)(ANIMPipe *, ANIMKeyFrame *, ANIMKeyFrame *))0x800B63DC)(animPipe, startFrame, endFrame); }
+static inline void DoEulerAnimation(void) { ((void(*)(void))0x800B6E0C)(); }
+static inline void DoQuatAnimation(void) { ((void(*)(void))0x800B71C0)(); }
+static inline void ANIMTick(ANIMPipe * animPipe) { ((void(*)(ANIMPipe *))0x800B7718)(animPipe); }
+static inline void ANIMBind(ANIMPipe * animPipe, CTRLControl * control, ANIMTrack * animTrack, float time_) { ((void(*)(ANIMPipe *, CTRLControl *, ANIMTrack *, float))0x800B79A0)(animPipe, control, animTrack, time_); }
+static inline void ACTSetBoneTrack(ACTBone * bone, ANIMTrack * track, float time_) { ((void(*)(ACTBone *, ANIMTrack *, float))0x800B79D0)(bone, track, time_); }
+static inline int checkObjectVisibility(int objIndex_, Vec3f * SrcVec, Mtx * transformationMtx) { return ((int(*)(int, Vec3f *, Mtx *))0x800B7D3C)(objIndex_, SrcVec, transformationMtx); }
+static inline int checkPlaneIntersection(Vec3f * planePoints, Vec3f * testPoints) { return ((int(*)(Vec3f *, Vec3f *))0x800B81C0)(planePoints, testPoints); }
+static inline void CTRL_GetQuatUnk(int ctrl, float * x_, float * y_, float * z_, float * w) { ((void(*)(int, float *, float *, float *, float *))0x800B845C)(ctrl, x_, y_, z_, w); }
+static inline void CTRL_SetQuatUnk(undefined8 x_, undefined8 y_, undefined8 z_, undefined8 w, byte * param_5) { ((void(*)(undefined8, undefined8, undefined8, undefined8, byte *))0x800B8480)(x_, y_, z_, w, param_5); }
+static inline void CTRLBuildInverseMatrix(CTRLControl * src, int dst) { ((void(*)(CTRLControl *, int))0x800B87F4)(src, dst); }
+static inline void CTRLBuildMatrix_Flip(CTRLControl * src, int dst, EnumCTRLXYZ flip) { ((void(*)(CTRLControl *, int, EnumCTRLXYZ))0x800B8BF0)(src, dst, flip); }
+static inline void CTRLBuildMatrix_FlipX(CTRLControl * param_1, int param_2) { ((void(*)(CTRLControl *, int))0x800B8F20)(param_1, param_2); }
+static inline void CTRLBuildMatrix_FlipY(CTRLControl * param_1, int param_2) { ((void(*)(CTRLControl *, int))0x800B9214)(param_1, param_2); }
+static inline void CTRLBuildMatrix(CTRLControl * control, Mtx * m) { ((void(*)(CTRLControl *, Mtx *))0x800B9508)(control, m); }
+static inline void CTRLGetTranslation(CTRLControl * control, float * x_, float * y_, float * z_) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B97D4)(control, x_, y_, z_); }
+static inline void CTRLGetQuat(CTRLControl * control, float * x_, float * y_, float * z_, float * w) { ((void(*)(CTRLControl *, float *, float *, float *, float *))0x800B97F0)(control, x_, y_, z_, w); }
+static inline void CTRLGetRotation(CTRLControl * control, float * x_, float * y_, float * z_) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9814)(control, x_, y_, z_); }
+static inline void CTRLGetScale(CTRLControl * control, float * x_, float * y_, float * z_) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9830)(control, x_, y_, z_); }
+static inline void CTRLSetMatrix(CTRLControl * control, Mtx * m) { ((void(*)(CTRLControl *, Mtx *))0x800B984C)(control, m); }
+static inline void CTRLSetTranslation(CTRLControl * control, float x_, float y_, float z_) { ((void(*)(CTRLControl *, float, float, float))0x800B9880)(control, x_, y_, z_); }
+static inline void CTRLSetQuat(CTRLControl * control, float x_, float y_, float z_, float w) { ((void(*)(CTRLControl *, float, float, float, float))0x800B98A8)(control, x_, y_, z_, w); }
+static inline void CTRLSetRotation(CTRLControl * control, float x_, float y_, float z_) { ((void(*)(CTRLControl *, float, float, float))0x800B98E0)(control, x_, y_, z_); }
+static inline void CTRLSetScale(CTRLControl * control, float x_, float y_, float z_) { ((void(*)(CTRLControl *, float, float, float))0x800B9914)(control, x_, y_, z_); }
+static inline void SetFogNone(void) { ((void(*)(void))0x800B9974)(); }
+static inline void SetFog(void) { ((void(*)(void))0x800B99C4)(); }
+static inline void SetFogNoneAgain(void) { ((void(*)(void))0x800B9A30)(); }
+static inline void setLITLightPtr(LITLightPtr * lit) { ((void(*)(LITLightPtr *))0x800B9AA8)(lit); }
+static inline void DODefaultUserTevMode(int param_1, int param_2, int param_3, int param_4, GXTexCoordID GXTexCoordID_) { ((void(*)(int, int, int, int, GXTexCoordID))0x800BA44C)(param_1, param_2, param_3, param_4, GXTexCoordID_); }
+static inline void CustomSetState(DODisplayObj * DODisplayObj_, DODisplayState * state, int cameraMtx) { ((void(*)(DODisplayObj *, DODisplayState *, int))0x800BA848)(DODisplayObj_, state, cameraMtx); }
+static inline void SetState(DODisplayState * state, DODisplayObj * dispObj, int camera_) { ((void(*)(DODisplayState *, DODisplayObj *, int))0x800BBB2C)(state, dispObj, camera_); }
+static inline void GetColorFromQuant(int src, byte srcCode, int r, int g, int b, int a) { ((void(*)(int, byte, int, int, int, int))0x800BBF5C)(src, srcCode, r, g, b, a); }
+static inline void DOVARender(DODisplayObj * displayObj, int camera_, byte numLights, va_list * list) { ((void(*)(DODisplayObj *, int, byte, va_list *))0x800BC0C4)(displayObj, camera_, numLights, list); }
+static inline void DOVARenderSkin(int param_1, int param_2, Mtx * mtxArray, int invTransposeMtxArray, int param_5, int param_6) { ((void(*)(int, int, Mtx *, int, int, int))0x800BC7E8)(param_1, param_2, mtxArray, invTransposeMtxArray, param_5, param_6); }
+static inline void updateMemoryLocation(int memoryAddress, int value) { ((void(*)(int, int))0x800BC824)(memoryAddress, value); }
+static inline void DOSetWorldMatrix(DODisplayObj * dispObj, int m) { ((void(*)(DODisplayObj *, int))0x800BC834)(dispObj, m); }
+static inline void InitDisplayObjWithLayout(DODisplayObj * dispObj, DOLayout * layout) { ((void(*)(DODisplayObj *, DOLayout *))0x800BC860)(dispObj, layout); }
+static inline void DOGet(DODisplayObj * dispObj, GEOPalette * pal, short id) { ((void(*)(DODisplayObj *, GEOPalette *, short))0x800BCAB8)(dispObj, pal, id); }
+static inline void LoadGeoPalette(GEOPalette * geoPal, char * name) { ((void(*)(GEOPalette *, char *))0x800BCB44)(geoPal, name); }
+static inline void convertGeometryAndSknHeader(GEOPalette * geo, SKNHeader * skn) { ((void(*)(GEOPalette *, SKNHeader *))0x800BCD60)(geo, skn); }
+static inline void AdjustGEOPalettePointers(GEOPalette * palette) { ((void(*)(GEOPalette *))0x800BCE38)(palette); }
+static inline void AdjustGPLDataPointers(GEOPalette * inputData, DODisplayObj * outputData) { ((void(*)(GEOPalette *, DODisplayObj *))0x800BCEF8)(inputData, outputData); }
+static inline void UpdateTexturePalettePointers(GEOPalette * palette, int newPalettePointer) { ((void(*)(GEOPalette *, int))0x800BD190)(palette, newPalettePointer); }
+static inline void __MTGQR5(void) { ((void(*)(void))0x800BD1F0)(); }
+static inline void __MTGQR6(void) { ((void(*)(void))0x800BD1F8)(); }
+static inline void __MTGQR7(void) { ((void(*)(void))0x800BD200)(); }
+static inline void GQRSetup7(void) { ((void(*)(void))0x800BD208)(); }
+static inline void GQRSetup6(void) { ((void(*)(void))0x800BD240)(); }
+static inline void GQRSetup5(void) { ((void(*)(void))0x800BD278)(); }
+static inline void lightingRelated(void) { ((void(*)(void))0x800BD2B0)(); }
+static inline void adjustLightingParams(void) { ((void(*)(void))0x800BD2CC)(); }
+static inline void LITXForm(void) { ((void(*)(void))0x800BD300)(); }
+static inline void LITInitColor(LITLightPtr * light, GXColor color) { ((void(*)(LITLightPtr *, GXColor))0x800BD3A0)(light, color); }
+static inline void LITInitDir(void) { ((void(*)(void))0x800BD3AC)(); }
+static inline void LITInitPos(LITLightPtr * light, float x_, float y_, float z_) { ((void(*)(LITLightPtr *, float, float, float))0x800BD3BC)(light, x_, y_, z_); }
+static inline void LITInitAttn(LITLightPtr * light, float a0, float a1, float a2, float k0, float k1, float k2) { ((void(*)(LITLightPtr *, float, float, float, float, float, float))0x800BD3CC)(light, a0, a1, a2, k0, k1, k2); }
+static inline void LITAlloc(LITLightPtr * light) { ((void(*)(LITLightPtr *))0x800BD3EC)(light); }
+static inline void sknRelated(ACTActor * param_1, int param_2) { ((void(*)(ACTActor *, int))0x800BDA94)(param_1, param_2); }
+static inline void animateBallRelated(void) { ((void(*)(void))0x800BDC88)(); }
+static inline void ActorObjectInitTable(ushort functionArguments) { ((void(*)(ushort))0x800BDD74)(functionArguments); }
+static inline void setVectors(void) { ((void(*)(void))0x800BEA04)(); }
+static inline Mtx * returnMtxPtr(uint param_1) { return ((Mtx *(*)(uint))0x800BEB80)(param_1); }
+static inline void returnDrawShadows(void) { ((void(*)(void))0x800BEBA0)(); }
+static inline bool GetDrawShadows(void) { return ((bool(*)(void))0x800BEBB0)(); }
+static inline void DrawShadows(bool shadowsOn) { ((void(*)(bool))0x800BEBC0)(shadowsOn); }
+static inline void updateVectorInArray(int index, Vec3f * vector) { ((void(*)(int, Vec3f *))0x800BEBCC)(index, vector); }
+static inline void loadTlutRelated(void) { ((void(*)(void))0x800BF008)(); }
+static inline void maybeUpdateFunctionPointer(void) { ((void(*)(void))0x800BF038)(); }
+static inline void ShouldDrawShadows(void) { ((void(*)(void))0x800BF068)(); }
+static inline void SKNLoadFile(SKHeader * skHeader) { ((void(*)(SKHeader *))0x800BF074)(skHeader); }
+static inline void SKNFlushByIndex(void) { ((void(*)(void))0x800BF1A4)(); }
+static inline void SKNFlushByIndex_800bf1c0(void) { ((void(*)(void))0x800BF1C0)(); }
+static inline void SKNBzero32B(void) { ((void(*)(void))0x800BF1E8)(); }
+static inline void SKNInit(void) { ((void(*)(void))0x800BF204)(); }
+static inline void processModelDataRelated(int param_1, int params, int param_3) { ((void(*)(int, int, int))0x800BF2A8)(param_1, params, param_3); }
+static inline void SKNIt(ACTBone * bones, SKHeader * param_2, int param_3) { ((void(*)(ACTBone *, SKHeader *, int))0x800BF89C)(bones, param_2, param_3); }
+static inline void SKN1Vecs16Norms16(void) { ((void(*)(void))0x800BFE90)(); }
+static inline void SKN2Vecs16Norms16NoTouch(void) { ((void(*)(void))0x800C00A8)(); }
+static inline void SKNAccVecs16Norms16Iu16(void) { ((void(*)(void))0x800C04E8)(); }
+static inline void SKNAccVecs16Norms16Iu16_800c0630(void) { ((void(*)(void))0x800C0630)(); }
+static inline void AdjustTextureHeaderPointers(TextureArchiveHeader * textureArchive) { ((void(*)(TextureArchiveHeader *))0x800C0770)(textureArchive); }
+static inline void seqGetPrivateId(void) { ((void(*)(void))0x800C0A8C)(); }
+static inline void seqStartPlay(void) { ((void(*)(void))0x800C0AF4)(); }
+static inline void StartPause(void) { ((void(*)(void))0x800C15C0)(); }
+static inline void seqPause(void) { ((void(*)(void))0x800C1624)(); }
+static inline void seqStop(void) { ((void(*)(void))0x800C18A0)(); }
+static inline void seqKillAllInstances(void) { ((void(*)(void))0x800C1B50)(); }
+static inline void seqKillInstancesByGroupID(void) { ((void(*)(void))0x800C1BAC)(); }
+static inline void seqSpeed(void) { ((void(*)(void))0x800C1C3C)(); }
+static inline void seqContinue(void) { ((void(*)(void))0x800C1D20)(); }
+static inline void seqMute(void) { ((void(*)(void))0x800C1E28)(); }
+static inline void seqVolume(void) { ((void(*)(void))0x800C1EE4)(); }
+static inline void seqCrossFade(void) { ((void(*)(void))0x800C20B0)(); }
+static inline void GenerateNextTrackEvent(void) { ((void(*)(void))0x800C2C08)(); }
+static inline void HandleEvent(void) { ((void(*)(void))0x800C2E20)(); }
+static inline void InitTrackEvents(void) { ((void(*)(void))0x800C38E0)(); }
+static inline void HandleTrackEvents(void) { ((void(*)(void))0x800C3A54)(); }
+static inline void seqHandle(void) { ((void(*)(void))0x800C3EF0)(); }
+static inline void seqInit(void) { ((void(*)(void))0x800C490C)(); }
+static inline void synthSetBpm(void) { ((void(*)(void))0x800C4AB4)(); }
+static inline void synthGetTicksPerSecond(void) { ((void(*)(void))0x800C4AF8)(); }
+static inline void synthInitPortamento(void) { ((void(*)(void))0x800C4B2C)(); }
+static inline void do_voice_portamento(void) { ((void(*)(void))0x800C4BA4)(); }
+static inline void StartLayer(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, int param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int))0x800C4E44)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
+static inline void StartKeymap(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, int param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int))0x800C5204)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
+static inline enumSoundEffect_int synthStartSound(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, uint param_5, undefined4 param_6, uint param_7, undefined4 param_8, undefined param_9, undefined param_10, undefined2 param_11, undefined2 param_12, undefined param_13, short param_14, undefined param_15, undefined4 param_16) { return ((enumSoundEffect_int(*)(undefined4, undefined4, undefined4, undefined4, uint, undefined4, uint, undefined4, undefined, undefined, undefined2, undefined2, undefined, short, undefined, undefined4))0x800C5460)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
+static inline void LowPrecisionHandler(void) { ((void(*)(void))0x800C58C0)(); }
+static inline void ZeroOffsetHandler(void) { ((void(*)(void))0x800C6004)(); }
+static inline void synthAddJob(void) { ((void(*)(void))0x800C67B4)(); }
+static inline void synthStartSynthJobHandling(void) { ((void(*)(void))0x800C6904)(); }
+static inline void synthForceLowPrecisionUpdate(void) { ((void(*)(void))0x800C6968)(); }
+static inline void synthKeyStateUpdate(void) { ((void(*)(void))0x800C69AC)(); }
+static inline void synthHandle(void) { ((void(*)(void))0x800C69D4)(); }
+static inline void synthFXGetMaxVoices(void) { ((void(*)(void))0x800C6EE4)(); }
+static inline enumSoundEffect_int synthFXStart(short fid, byte unk, byte vol, byte pan, byte studio, int itd) { return ((enumSoundEffect_int(*)(short, byte, byte, byte, byte, int))0x800C6F18)(fid, unk, vol, pan, studio, itd); }
+static inline void synthCheckFXRealloc(void) { ((void(*)(void))0x800C6FFC)(); }
+static inline bool synthFXSetCtrl(enumSoundEffect_short vid, byte ctrl, byte value) { return ((bool(*)(enumSoundEffect_short, byte, byte))0x800C7078)(vid, ctrl, value); }
+static inline bool synthFXSetCtrl14(int vid, byte ctrl, short value) { return ((bool(*)(int, byte, short))0x800C715C)(vid, ctrl, value); }
+static inline void synthFXCloneMidiSetup(void) { ((void(*)(void))0x800C7240)(); }
+static inline void synthSendKeyOff(void) { ((void(*)(void))0x800C72C4)(); }
+static inline void synthVolume(void) { ((void(*)(void))0x800C734C)(); }
+static inline void synthIsFadeOutActive(void) { ((void(*)(void))0x800C787C)(); }
+static inline void synthSetMusicVolumeType(void) { ((void(*)(void))0x800C78D0)(); }
+static inline void synthHWMessageHandler(void) { ((void(*)(void))0x800C78F8)(); }
+static inline void synthInit(void) { ((void(*)(void))0x800C79C8)(); }
+static inline void synthExit(void) { ((void(*)(void))0x800C7F3C)(); }
+static inline void sndSeqGetValid(void) { ((void(*)(void))0x800C7F60)(); }
+static inline void sndSeqStop(void) { ((void(*)(void))0x800C7F90)(); }
+static inline void sndSeqLoop(void) { ((void(*)(void))0x800C7FC8)(); }
+static inline void sndSeqSpeed(void) { ((void(*)(void))0x800C806C)(); }
+static inline void sndSeqContinue(void) { ((void(*)(void))0x800C80B4)(); }
+static inline void sndSeqMute(void) { ((void(*)(void))0x800C80EC)(); }
+static inline void sndSeqVolume(void) { ((void(*)(void))0x800C8144)(); }
+static inline void seqGetMidiPriority(void) { ((void(*)(void))0x800C81AC)(); }
+static inline void seqGetInstancesForVoice(void) { ((void(*)(void))0x800C81C8)(); }
+static inline bool sndFXCtrl(enumSoundEffect_short soundID, byte ctrl, byte value) { return ((bool(*)(enumSoundEffect_short, byte, byte))0x800C826C)(soundID, ctrl, value); }
+static inline bool sndFXCtrl14(SND_VOICEID vid, byte ctrl, short value) { return ((bool(*)(SND_VOICEID, byte, short))0x800C82CC)(vid, ctrl, value); }
+static inline int sndFXKeyOff(int param_1) { return ((int(*)(int))0x800C832C)(param_1); }
+static inline enumSoundEffect_int sndFXStartEx(enumSoundEffect_short sfx, int vol, int pan, int studio) { return ((enumSoundEffect_int(*)(enumSoundEffect_short, int, int, int))0x800C836C)(sfx, vol, pan, studio); }
+static inline void sndFXCheck(void) { ((void(*)(void))0x800C83F4)(); }
+static inline void sndSilence(void) { ((void(*)(void))0x800C8440)(); }
+static inline void sndVolume(uint volume_, uint time_, uint volGroup) { ((void(*)(uint, uint, uint))0x800C8474)(volume_, time_, volGroup); }
+static inline void sndMasterVolume(int volume_, int time_, byte music, byte fx_) { ((void(*)(int, int, byte, byte))0x800C84D4)(volume_, time_, music, fx_); }
+static inline void sndOutputMode(void) { ((void(*)(void))0x800C8568)(); }
+static inline void sndSetAuxProcessing(byte studio, SND_AUX_CALLBACK auxA, void * userA, byte midiA, SND_SEQID seqIDA, SND_AUX_CALLBACK auxB, void * userB, byte midiB, SND_SEQID seqIDB) { ((void(*)(byte, SND_AUX_CALLBACK, void *, byte, SND_SEQID, SND_AUX_CALLBACK, void *, byte, SND_SEQID))0x800C8654)(studio, auxA, userA, midiA, seqIDA, auxB, userB, midiB, seqIDB); }
+static inline void streamInit(void) { ((void(*)(void))0x800C87AC)(); }
+static inline void streamHandle(void) { ((void(*)(void))0x800C8874)(); }
+static inline void streamCorrectLoops(void) { ((void(*)(void))0x800C9158)(); }
+static inline void streamKill(void) { ((void(*)(void))0x800C915C)(); }
+static inline void streamOutputModeChanged(void) { ((void(*)(void))0x800C91F4)(); }
+static inline void dataInsertKeymap(void) { ((void(*)(void))0x800C9324)(); }
+static inline void dataRemoveKeymap(void) { ((void(*)(void))0x800C9514)(); }
+static inline void dataInsertLayer(void) { ((void(*)(void))0x800C9690)(); }
+static inline void dataRemoveLayer(void) { ((void(*)(void))0x800C98D8)(); }
+static inline void dataInsertCurve(void) { ((void(*)(void))0x800C9A9C)(); }
+static inline void dataRemoveCurve(void) { ((void(*)(void))0x800C9CA0)(); }
+static inline bool dataInsertSDir(SDIR_DATA * sdir, void * smp_data) { return ((bool(*)(SDIR_DATA *, void *))0x800C9E1C)(sdir, smp_data); }
+static inline void dataRemoveSDir(void) { ((void(*)(void))0x800C9F84)(); }
+static inline void dataAddSampleReference(void) { ((void(*)(void))0x800CA160)(); }
+static inline void dataRemoveSampleReference(void) { ((void(*)(void))0x800CA238)(); }
+static inline bool dataInsertFX(short gid_, FX_TAB * fx_, short fxNum) { return ((bool(*)(short, FX_TAB *, short))0x800CA2D4)(gid_, fx_, fxNum); }
+static inline void dataRemoveFX(void) { ((void(*)(void))0x800CA414)(); }
+static inline void dataInsertMacro(void) { ((void(*)(void))0x800CA5E0)(); }
+static inline void dataRemoveMacro(void) { ((void(*)(void))0x800CA8CC)(); }
+static inline void dataGetMacro(void) { ((void(*)(void))0x800CAB60)(); }
+static inline void dataGetSample(void) { ((void(*)(void))0x800CABFC)(); }
+static inline void dataGetCurve(void) { ((void(*)(void))0x800CAD3C)(); }
+static inline void dataGetKeymap(void) { ((void(*)(void))0x800CAD98)(); }
+static inline void dataGetLayer(void) { ((void(*)(void))0x800CAE04)(); }
+static inline void dataGetFX(void) { ((void(*)(void))0x800CAE90)(); }
+static inline void dataInit(void) { ((void(*)(void))0x800CAF2C)(); }
+static inline void dataExit(void) { ((void(*)(void))0x800CB010)(); }
+static inline void mcmdWait(void) { ((void(*)(void))0x800CB030)(); }
+static inline void mcmdGosub(void) { ((void(*)(void))0x800CB320)(); }
+static inline void mcmdLoop(void) { ((void(*)(void))0x800CB3F0)(); }
+static inline void mcmdPlayMacro(void) { ((void(*)(void))0x800CB544)(); }
+static inline void mcmdAddKey(void) { ((void(*)(void))0x800CB6D0)(); }
+static inline void mcmdStartSample(void) { ((void(*)(void))0x800CB7A8)(); }
+static inline void mcmdVibrato(void) { ((void(*)(void))0x800CB9A8)(); }
+static inline void DoSetPitch(void) { ((void(*)(void))0x800CBB24)(); }
+static inline void mcmdSetADSR(void) { ((void(*)(void))0x800CBCC4)(); }
+static inline void mcmdSetADSRFromCtrl(void) { ((void(*)(void))0x800CBF1C)(); }
+static inline void mcmdSetPitchADSR(void) { ((void(*)(void))0x800CC048)(); }
+static inline void mcmdSetPanning(void) { ((void(*)(void))0x800CC2C4)(); }
+static inline void mcmdSetSurroundPanning(void) { ((void(*)(void))0x800CC360)(); }
+static inline void mcmdScaleVolume(void) { ((void(*)(void))0x800CC3FC)(); }
+static inline void mcmdEnvelope(void) { ((void(*)(void))0x800CC530)(); }
+static inline void mcmdFadeIn(void) { ((void(*)(void))0x800CC660)(); }
+static inline void mcmdRandomKey(void) { ((void(*)(void))0x800CC79C)(); }
+static inline void mcmdVolumeSelect(void) { ((void(*)(void))0x800CC938)(); }
+static inline void mcmdPanningSelect(void) { ((void(*)(void))0x800CCA3C)(); }
+static inline void mcmdPitchWheelSelect(void) { ((void(*)(void))0x800CCB40)(); }
+static inline void mcmdModWheelSelect(void) { ((void(*)(void))0x800CCC44)(); }
+static inline void mcmdPedalSelect(void) { ((void(*)(void))0x800CCD48)(); }
+static inline void mcmdPortamentoSelect(void) { ((void(*)(void))0x800CCE4C)(); }
+static inline void mcmdReverbSelect(void) { ((void(*)(void))0x800CCF50)(); }
+static inline void mcmdPreAuxASelect(void) { ((void(*)(void))0x800CD054)(); }
+static inline void mcmdPreAuxBSelect(void) { ((void(*)(void))0x800CD158)(); }
+static inline void mcmdPostAuxBSelect(void) { ((void(*)(void))0x800CD25C)(); }
+static inline void mcmdSurroundPanningSelect(void) { ((void(*)(void))0x800CD360)(); }
+static inline void mcmdDopplerSelect(void) { ((void(*)(void))0x800CD464)(); }
+static inline void mcmdTremoloSelect(void) { ((void(*)(void))0x800CD568)(); }
+static inline void mcmdFilterSwitchSelect(void) { ((void(*)(void))0x800CD66C)(); }
+static inline void mcmdFilterParameterSelect(void) { ((void(*)(void))0x800CD770)(); }
+static inline void mcmdAuxAFXSelect(void) { ((void(*)(void))0x800CD874)(); }
+static inline void mcmdAuxBFXSelect(void) { ((void(*)(void))0x800CD9F0)(); }
+static inline void mcmdPortamento(void) { ((void(*)(void))0x800CDB6C)(); }
+static inline void varGet(void) { ((void(*)(void))0x800CDCD0)(); }
+static inline void mcmdVarCalculation(void) { ((void(*)(void))0x800CDD38)(); }
+static inline void mcmdIfVarCompare(void) { ((void(*)(void))0x800CDF58)(); }
+static inline void mcmdSendMessage(void) { ((void(*)(void))0x800CE0A4)(); }
+static inline void mcmdGetVID(void) { ((void(*)(void))0x800CE2E8)(); }
+static inline void mcmdSetKeyGroup(void) { ((void(*)(void))0x800CE368)(); }
+static inline void macHandleActive(void) { ((void(*)(void))0x800CE444)(); }
+static inline void macHandle(void) { ((void(*)(void))0x800CF3D8)(); }
+static inline void macSampleEndNotify(void) { ((void(*)(void))0x800CF52C)(); }
+static inline void macSetExternalKeyoff(void) { ((void(*)(void))0x800CF5D8)(); }
+static inline void maxSetPedalState(void) { ((void(*)(void))0x800CF6C8)(); }
+static inline void TimeQueueAdd(void) { ((void(*)(void))0x800CF7D0)(); }
+static inline void macMakeActive(void) { ((void(*)(void))0x800CF874)(); }
+static inline void macMakeInactive(void) { ((void(*)(void))0x800CF97C)(); }
+static inline void macStart(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, byte param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, byte, byte, byte, int))0x800CFA78)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
+static inline void macInit(void) { ((void(*)(void))0x800CFEB0)(); }
+static inline void vidInit(void) { ((void(*)(void))0x800CFF18)(); }
+static inline void vidRemoveVoiceReferences(void) { ((void(*)(void))0x800CFFF8)(); }
+static inline void vidMakeRoot(void) { ((void(*)(void))0x800D0360)(); }
+static inline void vidMakeNew(void) { ((void(*)(void))0x800D0374)(); }
+static inline void vidGetInternalId(int vid) { ((void(*)(int))0x800D0488)(vid); }
+static inline void vidGetPublicId(void) { ((void(*)(void))0x800D04D8)(); }
+static inline void voiceSetPrioriety(void) { ((void(*)(void))0x800D052C)(); }
+static inline void voiceAllocateFind(void) { ((void(*)(void))0x800D0778)(); }
+static inline void voiceAllocate(void) { ((void(*)(void))0x800D0B00)(); }
+static inline void voiceAllocatePeek(void) { ((void(*)(void))0x800D0C10)(); }
+static inline void voiceFree(void) { ((void(*)(void))0x800D0C88)(); }
+static inline void synthInitAllocationAids(void) { ((void(*)(void))0x800D0E4C)(); }
+static inline void voiceUnblock(void) { ((void(*)(void))0x800D10EC)(); }
+static inline void voiceKill(void) { ((void(*)(void))0x800D1304)(); }
+static inline void voiceKillSound(void) { ((void(*)(void))0x800D1538)(); }
+static inline void synthKillAllVoices(void) { ((void(*)(void))0x800D15FC)(); }
+static inline void synthKillVoicesByMacroReferences(void) { ((void(*)(void))0x800D16A4)(); }
+static inline void synthKillVoicesBySampleReferences(void) { ((void(*)(void))0x800D1800)(); }
+static inline void voiceIsLastStarted(void) { ((void(*)(void))0x800D195C)(); }
+static inline void voiceSetLastStarted(void) { ((void(*)(void))0x800D19D0)(); }
+static inline void voiceResetLastStarted(void) { ((void(*)(void))0x800D1A24)(); }
+static inline void voiceInitLastStarted(void) { ((void(*)(void))0x800D1A98)(); }
+static inline void sndPitchUpOne(void) { ((void(*)(void))0x800D1BDC)(); }
+static inline void sndGetPitch(void) { ((void(*)(void))0x800D1C18)(); }
+static inline void adsrConvertTimeCents(void) { ((void(*)(void))0x800D1CFC)(); }
+static inline void salChangeADSRState(void) { ((void(*)(void))0x800D1D54)(); }
+static inline void adsrSetup(void) { ((void(*)(void))0x800D1FC0)(); }
+static inline void adsrStartRelease(void) { ((void(*)(void))0x800D1FE8)(); }
+static inline void adsrRelease(void) { ((void(*)(void))0x800D2138)(); }
+static inline void adsrHandle(void) { ((void(*)(void))0x800D22A0)(); }
+static inline void adsrHandleLowPrecision(void) { ((void(*)(void))0x800D2438)(); }
+static inline void vsInit(void) { ((void(*)(void))0x800D24BC)(); }
+static inline void vsSampleStartNotify(void) { ((void(*)(void))0x800D2578)(); }
+static inline void vsSampleEndNotify(void) { ((void(*)(void))0x800D2844)(); }
+static inline void vsUpdateBuffer(void) { ((void(*)(void))0x800D28EC)(); }
+static inline void vsSampleUpdates(void) { ((void(*)(void))0x800D2C44)(); }
+static inline void dataInitStack(void) { ((void(*)(void))0x800D2E54)(); }
+static inline void InsertData(int id, void * data_, byte dataType, int remove) { ((void(*)(int, void *, byte, int))0x800D2E94)(id, data_, dataType, remove); }
+static inline int sndPushGroup(void * prj_data, int gid_, void * samples, void * sdir, void * pool) { return ((int(*)(void *, int, void *, void *, void *))0x800D3120)(prj_data, gid_, samples, sdir, pool); }
+static inline void sndPopGroup(void) { ((void(*)(void))0x800D346C)(); }
+static inline void seqPlaySong(void) { ((void(*)(void))0x800D37BC)(); }
+static inline void sndSeqPlayEx(void) { ((void(*)(void))0x800D3910)(); }
+static inline void salInitDspCtrl(void) { ((void(*)(void))0x800D3A34)(); }
+static inline void salInitHRTFBuffer(void) { ((void(*)(void))0x800D3DE8)(); }
+static inline void salExitDspCtrl(void) { ((void(*)(void))0x800D3E20)(); }
+static inline void salActivateStudio(void) { ((void(*)(void))0x800D3F00)(); }
+static inline void salCheckVolErrorAndResetDelta(void) { ((void(*)(void))0x800D4050)(); }
+static inline void sal_setup_dspvol(void) { ((void(*)(void))0x800D4144)(); }
+static inline void sal_update_hostplayinfo(void) { ((void(*)(void))0x800D418C)(); }
+static inline void DoDepopFade(void) { ((void(*)(void))0x800D4200)(); }
+static inline void HandleDepopVoice(void) { ((void(*)(void))0x800D42AC)(); }
+static inline void SortVoices(void) { ((void(*)(void))0x800D45B8)(); }
+static inline void salBuildCommandList(void) { ((void(*)(void))0x800D4810)(); }
+static inline void salSynthSendMessage(void) { ((void(*)(void))0x800D6E08)(); }
+static inline void salActivateVoice(void) { ((void(*)(void))0x800D6E4C)(); }
+static inline void salDeactivateVoice(void) { ((void(*)(void))0x800D6EEC)(); }
+static inline void salHandleAuxProcessing(void) { ((void(*)(void))0x800D6F4C)(); }
+static inline void salCalcVolume(void) { ((void(*)(void))0x800D70A4)(); }
+static inline void CalcEmitter(void) { ((void(*)(void))0x800D7794)(); }
+static inline bool sndUpdateEmitter(SND_EMITTER * em, SND_FVECTOR * pos, SND_FVECTOR * dir, byte maxVol, SND_ROOM * room) { return ((bool(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, byte, SND_ROOM *))0x800D7E10)(em, pos, dir, maxVol, room); }
+static inline bool sndCheckEmitter(SND_EMITTER * em) { return ((bool(*)(SND_EMITTER *))0x800D7EE8)(em); }
+static inline SND_VOICEID AddEmitter(SND_EMITTER * em_buffer, SND_FVECTOR * pos, SND_FVECTOR * dir, float maxDis, float comp, int flags, short fxid, int groupid, byte maxVol, byte minVol, SND_ROOM * room, SND_PARAMETER_INFO * para, byte studio) { return ((SND_VOICEID(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, float, float, int, short, int, byte, byte, SND_ROOM *, SND_PARAMETER_INFO *, byte))0x800D7F08)(em_buffer, pos, dir, maxDis, comp, flags, fxid, groupid, maxVol, minVol, room, para, studio); }
+static inline int sndAddEmitter(SND_EMITTER * em_buffer, SND_FVECTOR * pos, SND_FVECTOR * dir, float maxDis, float comp, int flags, ushort fxid, byte maxVol, byte minVol, SND_ROOM * room) { return ((int(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, float, float, int, ushort, byte, byte, SND_ROOM *))0x800D83B0)(em_buffer, pos, dir, maxDis, comp, flags, fxid, maxVol, minVol, room); }
+static inline void sndRemoveEmitter(void) { ((void(*)(void))0x800D8408)(); }
+static inline void s3dKillAllEmitter(void) { ((void(*)(void))0x800D84B0)(); }
+static inline void s3dKillEmitterByFXID(void) { ((void(*)(void))0x800D8568)(); }
+static inline void sndUpdateListener(void) { ((void(*)(void))0x800D8664)(); }
+static inline void sndAddListener(void) { ((void(*)(void))0x800D87D8)(); }
+static inline void sndRemoveListener(void) { ((void(*)(void))0x800D89E8)(); }
+static inline void AddStartingEmitter(void) { ((void(*)(void))0x800D8A64)(); }
+static inline void StartContinousEmitters(void) { ((void(*)(void))0x800D8BB8)(); }
+static inline void s3dHandle(void) { ((void(*)(void))0x800D94AC)(); }
+static inline void s3dInit(void) { ((void(*)(void))0x800D9BD4)(); }
+static inline void s3dExit(void) { ((void(*)(void))0x800D9C0C)(); }
+static inline int sndInit(byte voices, byte music, byte sfx, byte studios, int flags, int aramSize) { return ((int(*)(byte, byte, byte, byte, int, int))0x800D9C10)(voices, music, sfx, studios, flags, aramSize); }
+static inline void sndQuit(void) { ((void(*)(void))0x800D9D48)(); }
+static inline void salApplyMatrix(Mtx * param_1, Vec3f * param_2, Vec3f * param_3) { ((void(*)(Mtx *, Vec3f *, Vec3f *))0x800D9D7C)(param_1, param_2, param_3); }
+static inline void salNormalizeVector(Vec3f * param_1) { ((void(*)(Vec3f *))0x800D9E28)(param_1); }
+static inline void salCrossProduct(Vec3f * param_1, Vec3f * param_2, Vec3f * param_3) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x800D9EDC)(param_1, param_2, param_3); }
+static inline void salInvertMatrix(Mtx * param_1, Mtx * param_2) { ((void(*)(Mtx *, Mtx *))0x800D9F40)(param_1, param_2); }
+static inline void inpSetGlobalMIDIDirtyFlag(void) { ((void(*)(void))0x800DA13C)(); }
+static inline void inpSetRPNHi(void) { ((void(*)(void))0x800DA160)(); }
+static inline void inpSetRPNDec(void) { ((void(*)(void))0x800DA340)(); }
+static inline void inpSetRPNInc(void) { ((void(*)(void))0x800DA564)(); }
+static inline void inpSetMidiCtrl(byte ctrl, byte channel, byte set, byte value) { ((void(*)(byte, byte, byte, byte))0x800DA788)(ctrl, channel, set, value); }
+static inline void inpSetMidiCtrl14(byte ctrl, byte channel, byte set, ushort value) { ((void(*)(byte, byte, byte, ushort))0x800DACA4)(ctrl, channel, set, value); }
+static inline void inpResetMidiCtrl(void) { ((void(*)(void))0x800DADC8)(); }
+static inline void inpGetMidiCtrl(void) { ((void(*)(void))0x800DAEB8)(); }
+static inline void inpGetChannelDefaults(void) { ((void(*)(void))0x800DB17C)(); }
+static inline void inpResetChannelDefaults(void) { ((void(*)(void))0x800DB1C0)(); }
+static inline void inpAddCtrl(void) { ((void(*)(void))0x800DB21C)(); }
+static inline void inpFXCopyCtrl(void) { ((void(*)(void))0x800DB2B4)(); }
+static inline void inpSetMidiLastNote(void) { ((void(*)(void))0x800DB3C8)(); }
+static inline void inpGetMidiLastNote(void) { ((void(*)(void))0x800DB404)(); }
+static inline void _GetInputValue(void) { ((void(*)(void))0x800DB440)(); }
+static inline void inpGetVolume(void) { ((void(*)(void))0x800DB8E0)(); }
+static inline void inpGetPanning(void) { ((void(*)(void))0x800DB928)(); }
+static inline void inpGetSurPanning(void) { ((void(*)(void))0x800DB970)(); }
+static inline void inpGetPitchBend(void) { ((void(*)(void))0x800DB9B8)(); }
+static inline void inpGetDoppler(void) { ((void(*)(void))0x800DBA00)(); }
+static inline void inpGetModulation(void) { ((void(*)(void))0x800DBA48)(); }
+static inline void inpGetPedal(void) { ((void(*)(void))0x800DBA90)(); }
+static inline void inpGetPreAuxA(void) { ((void(*)(void))0x800DBAD8)(); }
+static inline void inpGetReverb(void) { ((void(*)(void))0x800DBB20)(); }
+static inline void inpGetPreAuxB(void) { ((void(*)(void))0x800DBB68)(); }
+static inline void inpGetPostAuxB(void) { ((void(*)(void))0x800DBBB0)(); }
+static inline void inpGetTremolo(void) { ((void(*)(void))0x800DBBF8)(); }
+static inline void inpGetFilterSwitch(void) { ((void(*)(void))0x800DBC40)(); }
+static inline void inpGetFilterParameter(void) { ((void(*)(void))0x800DBC88)(); }
+static inline void inpGetAuxA(void) { ((void(*)(void))0x800DBCD0)(); }
+static inline void inpGetAuxB(void) { ((void(*)(void))0x800DBD84)(); }
+static inline void inpInit(void) { ((void(*)(void))0x800DBE38)(); }
+static inline void inpTranslateExCtrl(void) { ((void(*)(void))0x800DC0FC)(); }
+static inline void inpGetExCtrl(void) { ((void(*)(void))0x800DC16C)(); }
+static inline void inpSetExCtrl(void) { ((void(*)(void))0x800DC268)(); }
+static inline void sndRand(void) { ((void(*)(void))0x800DC44C)(); }
+static inline void sndSin(void) { ((void(*)(void))0x800DC468)(); }
+static inline void sndBSearch(void) { ((void(*)(void))0x800DC4F4)(); }
+static inline void sndSqrt(void) { ((void(*)(void))0x800DC598)(); }
+static inline void sndCos(void) { ((void(*)(void))0x800DC5EC)(); }
+static inline void sndConvertMs(void) { ((void(*)(void))0x800DC6C0)(); }
+static inline void sndConvertTicks(void) { ((void(*)(void))0x800DC6D0)(); }
+static inline void sndConvert2Ms(void) { ((void(*)(void))0x800DC718)(); }
+static inline void snd_handle_irq(void) { ((void(*)(void))0x800DC720)(); }
+static inline void hwInit(void) { ((void(*)(void))0x800DC874)(); }
+static inline void hwExit(void) { ((void(*)(void))0x800DC938)(); }
+static inline void hwSetTimeOffset(void) { ((void(*)(void))0x800DC96C)(); }
+static inline void hwGetTimeOffset(void) { ((void(*)(void))0x800DC974)(); }
+static inline void hwIsActive(void) { ((void(*)(void))0x800DC97C)(); }
+static inline void hwSetMesgCallback(void) { ((void(*)(void))0x800DC99C)(); }
+static inline void hwSetPriority(void) { ((void(*)(void))0x800DC9A4)(); }
+static inline void hwInitSamplePlayback(void) { ((void(*)(void))0x800DC9B8)(); }
+static inline void hwBreak(void) { ((void(*)(void))0x800DCB6C)(); }
+static inline void hwSetADSR(void) { ((void(*)(void))0x800DCBBC)(); }
+static inline void hwSetVirtualSampleLoopBuffer(void) { ((void(*)(void))0x800DCD68)(); }
+static inline void hwGetVirtualSampleState(void) { ((void(*)(void))0x800DCD88)(); }
+static inline void hwGetSampleType(void) { ((void(*)(void))0x800DCD9C)(); }
+static inline void hwGetSampleID(void) { ((void(*)(void))0x800DCDB0)(); }
+static inline void hwGetSampleExtraData(void) { ((void(*)(void))0x800DCDC4)(); }
+static inline void hwSetStreamLoopPS(void) { ((void(*)(void))0x800DCDD8)(); }
+static inline void hwStart(void) { ((void(*)(void))0x800DCDEC)(); }
+static inline void hwKeyOff(void) { ((void(*)(void))0x800DCE28)(); }
+static inline void hwSetPitch(void) { ((void(*)(void))0x800DCE50)(); }
+static inline void hwSetSRCType(void) { ((void(*)(void))0x800DCEC8)(); }
+static inline void hwSetPolyPhaseFilter(void) { ((void(*)(void))0x800DCEF4)(); }
+static inline void hwLowPassFrqToCoef(void) { ((void(*)(void))0x800DCF20)(); }
+static inline void hwSetFilter(void) { ((void(*)(void))0x800DD018)(); }
+static inline void hwSetITDMode(void) { ((void(*)(void))0x800DD098)(); }
+static inline void hwSetVolume(void) { ((void(*)(void))0x800DD0F4)(); }
+static inline void hwSetAuxProcessingCallbacks(byte studio, SND_AUX_CALLBACK auxA, SND_AUX_CALLBACK auxB, void * userB) { ((void(*)(byte, SND_AUX_CALLBACK, SND_AUX_CALLBACK, void *))0x800DD3B4)(studio, auxA, auxB, userB); }
+static inline void hwGetPos(void) { ((void(*)(void))0x800DD3DC)(); }
+static inline void hwFlushStream(void) { ((void(*)(void))0x800DD488)(); }
+static inline void hwGetStreamPlayBuffer(void) { ((void(*)(void))0x800DD518)(); }
+static inline void * hwTransAddr(void * samples) { return ((void *(*)(void *))0x800DD53C)(samples); }
+static inline void hwFrqPitch(void) { ((void(*)(void))0x800DD540)(); }
+static inline void hwInitSampleMem(void) { ((void(*)(void))0x800DD59C)(); }
+static inline void hwExitSampleMem(void) { ((void(*)(void))0x800DD5C0)(); }
+static inline void hwSaveSample(void) { ((void(*)(void))0x800DD5E0)(); }
+static inline void hwRemoveSample(void) { ((void(*)(void))0x800DD678)(); }
+static inline void hwSyncSampleMem(void) { ((void(*)(void))0x800DD700)(); }
+static inline void hwFrameDone(void) { ((void(*)(void))0x800DD720)(); }
+static inline void sndSetHooks(void) { ((void(*)(void))0x800DD724)(); }
+static inline void hwDisableHRTF(void) { ((void(*)(void))0x800DD740)(); }
+static inline void hwEnableCompressor(void) { ((void(*)(void))0x800DD74C)(); }
+static inline void hwGetVirtualSampleID(void) { ((void(*)(void))0x800DD758)(); }
+static inline void hwVoiceInStartup(void) { ((void(*)(void))0x800DD780)(); }
+static inline ulong aramQueueCallback(void) { return ((ulong(*)(void))0x800DD7A0)(); }
+static inline void aramUploadData(void) { ((void(*)(void))0x800DD840)(); }
+static inline void aramSyncTransferQueue(void) { ((void(*)(void))0x800DDA1C)(); }
+static inline void aramInit(void) { ((void(*)(void))0x800DDA34)(); }
+static inline void aramExit(void) { ((void(*)(void))0x800DDD18)(); }
+static inline void aramGetZeroBuffer(void) { ((void(*)(void))0x800DDD1C)(); }
+static inline void aramGetFirstUserAddress(void) { ((void(*)(void))0x800DDD3C)(); }
+static inline void aramGetUserBytes(void) { ((void(*)(void))0x800DDD60)(); }
+static inline void aramStoreData(void) { ((void(*)(void))0x800DDD68)(); }
+static inline void aramRemoveData(void) { ((void(*)(void))0x800DE18C)(); }
+static inline void InitStreamBuffers(void) { ((void(*)(void))0x800DE1A4)(); }
+static inline void aramGetStreamBufferAddress(void) { ((void(*)(void))0x800DE268)(); }
+static inline void salCallback(void) { ((void(*)(void))0x800DE2A0)(); }
+static inline void dspInitCallback(void) { ((void(*)(void))0x800DE348)(); }
+static inline void dspResumeCallback(void) { ((void(*)(void))0x800DE358)(); }
+static inline void dspDoneCallback(void) { ((void(*)(void))0x800DE3BC)(); }
+static inline void salInitAi(void) { ((void(*)(void))0x800DE3E0)(); }
+static inline void salStartAi(void) { ((void(*)(void))0x800DE4A8)(); }
+static inline void salExitAi(void) { ((void(*)(void))0x800DE4C8)(); }
+static inline void salAIGetDest(void) { ((void(*)(void))0x800DE4FC)(); }
+static inline void salInitDsp(void) { ((void(*)(void))0x800DE52C)(); }
+static inline void salExitDsp(void) { ((void(*)(void))0x800DE600)(); }
+static inline void salCtrlDsp(void) { ((void(*)(void))0x800DE650)(); }
+static inline void salGetStartDelay(void) { ((void(*)(void))0x800DE6C4)(); }
+static inline void hwInitIrq(void) { ((void(*)(void))0x800DE710)(); }
+static inline void hwExitIeq(void) { ((void(*)(void))0x800DE73C)(); }
+static inline void hwEnableIrq(void) { ((void(*)(void))0x800DE740)(); }
+static inline void hwDisableIrq(void) { ((void(*)(void))0x800DE778)(); }
+static inline void hwIRQEnterCritical(void) { ((void(*)(void))0x800DE7B0)(); }
+static inline void hwIRQLeaveCritical(void) { ((void(*)(void))0x800DE7D0)(); }
+static inline void salMalloc(void) { ((void(*)(void))0x800DE7F0)(); }
+static inline void salMallocPhysical(void) { ((void(*)(void))0x800DE81C)(); }
+static inline void salFree(void) { ((void(*)(void))0x800DE84C)(); }
+static inline void sndAuxCallbackReverbHI(void) { ((void(*)(void))0x800DE87C)(); }
+static inline void sndAuxCallbackPrepareReverbHI(void) { ((void(*)(void))0x800DE8D8)(); }
+static inline void ReverbHICreate(void) { ((void(*)(void))0x800DE918)(); }
+static inline void DoCrossTalk(void) { ((void(*)(void))0x800DEE24)(); }
+static inline void HandleReverb(void) { ((void(*)(void))0x800DEFA8)(); }
+static inline void ReverbHICallback(void) { ((void(*)(void))0x800DF4B4)(); }
+static inline void do_src1(void) { ((void(*)(void))0x800DF594)(); }
+static inline void do_src2(void) { ((void(*)(void))0x800DF72C)(); }
+static inline void sndAuxCallbackChorus(void) { ((void(*)(void))0x800DF918)(); }
+static inline void sndAuxCallbackPrepareChorus(void) { ((void(*)(void))0x800DFBD4)(); }
+static inline void maybeProcessTeamData(void) { ((void(*)(void))0x8063F094)(); }
+static inline void unreferenced(void) { ((void(*)(void))0x8063F2EC)(); }
+static inline void manageStadiumLoading(void) { ((void(*)(void))0x8063F588)(); }
+static inline void manageLoadingState(void) { ((void(*)(void))0x8063F6F0)(); }
+static inline TriangleCollisionTypes checkCollision(VecSrcDst * inVec, OutCollisionStruct * outCollisionStruct, int collisionCheckType, BOOL useBallCoords) { return ((TriangleCollisionTypes(*)(VecSrcDst *, OutCollisionStruct *, int, BOOL))0x8063F9A8)(inVec, outCollisionStruct, collisionCheckType, useBallCoords); }
+static inline TriangleCollisionTypes checkStadiumHazardCollisions(VecSrcDst * in, VecSrcDst * out_, stadiumObjectCollision * mstadiumObj) { return ((TriangleCollisionTypes(*)(VecSrcDst *, VecSrcDst *, stadiumObjectCollision *))0x8063FB00)(in, out_, mstadiumObj); }
+static inline TriangleCollisionTypes DidCollideWithBoundingBoxes(VecSrcDst * inCoord, OutCollisionStruct * outVecs, CollisionBox * inBoxes, short inCount) { return ((TriangleCollisionTypes(*)(VecSrcDst *, OutCollisionStruct *, CollisionBox *, short))0x8063FE84)(inCoord, outVecs, inBoxes, inCount); }
+static inline BOOL checkTriangleCollisions(TriangleCollisionStruct * collisionData, TriangleGroup * triangleGroup) { return ((BOOL(*)(TriangleCollisionStruct *, TriangleGroup *))0x80640174)(collisionData, triangleGroup); }
+static inline void running_rouondBasePosition_(undefined8 param_1, int someXCoord, int param_3, int param_4) { ((void(*)(undefined8, int, int, int))0x80641674)(param_1, someXCoord, param_3, param_4); }
+static inline void setFanObjPtr(int ptr) { ((void(*)(int))0x80642678)(ptr); }
+static inline void CTRLBuildMatrixRelated(TextureArchiveHeader * param_1) { ((void(*)(TextureArchiveHeader *))0x806426CC)(param_1); }
+static inline void inningScoreDisplayRelated_(EnumStadiumIDs4 stadiumId) { ((void(*)(EnumStadiumIDs4))0x80643ACC)(stadiumId); }
+static inline void drawStadiumObjects_(int * param_1) { ((void(*)(int *))0x80644710)(param_1); }
+static inline void drawStadium_(void) { ((void(*)(void))0x80644C40)(); }
+static inline void updateStadiumFileHeaders(StadiumFileHeader * stadiumHeader) { ((void(*)(StadiumFileHeader *))0x80644F54)(stadiumHeader); }
+static inline void chompCollision_processStarHitVariables(void) { ((void(*)(void))0x806455C4)(); }
+static inline void plantPhysics(void) { ((void(*)(void))0x806456B4)(); }
+static inline void checkForBallDead(void) { ((void(*)(void))0x80645728)(); }
+static inline void ballCollisionLogic(void) { ((void(*)(void))0x80645CCC)(); }
+static inline void handleBallBounceAndRoll(int verticalVelocity, int bounceFrameCount, byte * ballIsRolling, int param_4) { ((void(*)(int, int, byte *, int))0x80647D84)(verticalVelocity, bounceFrameCount, ballIsRolling, param_4); }
+static inline void handleBallHitDeadBallOutcome(void) { ((void(*)(void))0x806480E0)(); }
+static inline void fairOrFoulBall(TriangleCollisionTypes_word collType) { ((void(*)(TriangleCollisionTypes_word))0x806482F4)(collType); }
+static inline void processLandedBallBouncing(void) { ((void(*)(void))0x8064859C)(); }
+static inline void processBallInAir__Landed(void) { ((void(*)(void))0x8064889C)(); }
+static inline void ballDistCalculator(void) { ((void(*)(void))0x80648D74)(); }
+static inline void relatedToGroundRuleDouble(void) { ((void(*)(void))0x80648F18)(); }
+static inline void foulBall_80649184(void) { ((void(*)(void))0x80649184)(); }
+static inline void warioWaluStarHit(void) { ((void(*)(void))0x8064922C)(); }
+static inline void updatePastHitBallCoords(void) { ((void(*)(void))0x806498D0)(); }
+static inline void liveBallHitPhysics(int thrownBallInd) { ((void(*)(int))0x80649A04)(thrownBallInd); }
+static inline void estimateTimeForThrowToReachTarget(void) { ((void(*)(void))0x8064A4D4)(); }
+static inline void fielding_setHeldBallOffset(void) { ((void(*)(void))0x8064A9D4)(); }
+static inline void futureFrameForClosestBall(undefined8 playerX, undefined8 playerZ, int averageXOfDive, int diveMaxFramePlus15, int const2) { ((void(*)(undefined8, undefined8, int, int, int))0x8064AC50)(playerX, playerZ, averageXOfDive, diveMaxFramePlus15, const2); }
+static inline void setHitClassification3(void) { ((void(*)(void))0x8064AE0C)(); }
+static inline void classifyHitTrajectoryOrHitAnimRelated(void) { ((void(*)(void))0x8064B0C8)(); }
+static inline void updateFrameCountersAndBallPastCoordinatesWhenFielderHoldingBall(void) { ((void(*)(void))0x8064BA88)(); }
+static inline void estimateAndSetFutureCoords(void) { ((void(*)(void))0x8064BEBC)(); }
+static inline void adjustVeloByAirResistance(void) { ((void(*)(void))0x8064CC64)(); }
+static inline void estimateWhereBallWillHitWall(void) { ((void(*)(void))0x8064CCDC)(); }
+static inline void calculateImplicationsOfTheHitTrajectory(void) { ((void(*)(void))0x8064D368)(); }
+static inline void setLiveBallVariablesAfterContact(void) { ((void(*)(void))0x8064DEE0)(); }
+static inline void setDefaultInMemBall(void) { ((void(*)(void))0x8064E270)(); }
+static inline void resetBallValuesBetweenBatters_(void) { ((void(*)(void))0x8064E60C)(); }
+static inline void resetInMemBall(void) { ((void(*)(void))0x8064E84C)(); }
+static inline void initBallAndGameStateOnLoad(void) { ((void(*)(void))0x8064EC3C)(); }
+static inline void UpdateRandomInts(void) { ((void(*)(void))0x8064EFE0)(); }
+static inline void ballPhysicsMainFunction(void) { ((void(*)(void))0x8064F1E0)(); }
+static inline void starHitSetting_Unused__(void) { ((void(*)(void))0x8064F35C)(); }
+static inline void CalculateBallVelocityAcceleration(void) { ((void(*)(void))0x8064F504)(); }
+static inline short _unused__CalculateBallHorizontalAngle(void) { return ((short(*)(void))0x8064F98C)(); }
+static inline void calculateBuntHorizontalAngle(void) { ((void(*)(void))0x8064FB14)(); }
+static inline void calculateHorizontalPower(void) { ((void(*)(void))0x8064FD94)(); }
+static inline void calculateVerticalAngle(void) { ((void(*)(void))0x806504FC)(); }
+static inline void calculateBallHorizontalAngleHit(void) { ((void(*)(void))0x80650C30)(); }
+static inline void calculateContactAndHitType(void) { ((void(*)(void))0x80650F64)(); }
+static inline void maybe_determineStarType(void) { ((void(*)(void))0x80651570)(); }
+static inline void CalculateHitVariables(void) { ((void(*)(void))0x806515E8)(); }
+static inline void CalculateIfHitBall(void) { ((void(*)(void))0x80651D48)(); }
+static inline void ifBunt(void) { ((void(*)(void))0x80651E70)(); }
+static inline void starSwingSpendStars(void) { ((void(*)(void))0x8065209C)(); }
+static inline void ifSwing(void) { ((void(*)(void))0x806522F0)(); }
+static inline void unusedBatterPreSwing(void) { ((void(*)(void))0x80652830)(); }
+static inline void batterInBoxMovement(void) { ((void(*)(void))0x80652A34)(); }
+static inline void batterHumanControlled(void) { ((void(*)(void))0x80652E28)(); }
+static inline void updateBallHittableZoneStatus(void) { ((void(*)(void))0x80653350)(); }
+static inline int loadBatterActor(void) { return ((int(*)(void))0x8065341C)(); }
+static inline void setDefaultInMemBatter(void) { ((void(*)(void))0x806534E8)(); }
+static inline void setBatterContactConstants(void) { ((void(*)(void))0x80653758)(); }
+static inline void initializeInMemBatter(void) { ((void(*)(void))0x806538C0)(); }
+static inline void atBat_Batter(void) { ((void(*)(void))0x806538EC)(); }
+static inline void assignFrameCountersToAPointer(void) { ((void(*)(void))0x806545B8)(); }
+static inline void resetSomeStruct(void) { ((void(*)(void))0x80654E24)(); }
+static inline void pauseMenuCameraAngle(void) { ((void(*)(void))0x80655028)(); }
+static inline void bOD_Cam_liveBall(void) { ((void(*)(void))0x80655E00)(); }
+static inline void camera_matchLiveBall_regular_replay(void) { ((void(*)(void))0x80656B84)(); }
+static inline void gameplay_Camera_(void) { ((void(*)(void))0x80656E34)(); }
+static inline void cameraRelated(void) { ((void(*)(void))0x806575A0)(); }
+static inline void camera_zoomInDuringFielderAction_slide_clamber_wallJump_(undefined8 midXCoord, undefined8 midYCoord, undefined8 midZCoord, byte specialCatchTypeInd, short frames_) { ((void(*)(undefined8, undefined8, undefined8, byte, short))0x80659ED8)(midXCoord, midYCoord, midZCoord, specialCatchTypeInd, frames_); }
+static inline void camera_match_setMovement(void) { ((void(*)(void))0x8065A404)(); }
+static inline void matchCamera_setPastAndCurrentTarget(void) { ((void(*)(void))0x8065AAAC)(); }
+static inline void camera_matchLiveBall(void) { ((void(*)(void))0x8065B244)(); }
+static inline void cameraControl(void) { ((void(*)(void))0x8065BF24)(); }
+static inline void staminaRelated(void) { ((void(*)(void))0x8065C900)(); }
+static inline void versusStarChanceSetPointers_(void) { ((void(*)(void))0x8065CCC4)(); }
+static inline void trackLastPitchInfo(void) { ((void(*)(void))0x8065CDDC)(); }
+static inline void setDefaultAIValues(void) { ((void(*)(void))0x8065CF4C)(); }
+static inline void betweenABSetPitcherBatter(void) { ((void(*)(void))0x8065D1E8)(); }
+static inline void someRosterMemoryManagement(void) { ((void(*)(void))0x8065D20C)(); }
+static inline void initializeAIConstants(void) { ((void(*)(void))0x8065D3BC)(); }
+static inline void unreferenced_8065d7b8(void) { ((void(*)(void))0x8065D7B8)(); }
+static inline void batterAIBallLocRelated(void) { ((void(*)(void))0x8065D888)(); }
+static inline void batterAIFrameToSwingAndStickInput(void) { ((void(*)(void))0x8065DB3C)(); }
+static inline void batterAISwingInd(void) { ((void(*)(void))0x8065E078)(); }
+static inline void batterTrackBallInBox(void) { ((void(*)(void))0x8065E50C)(); }
+static inline void batterAIMoveBatter(void) { ((void(*)(void))0x8065EA2C)(); }
+static inline void batterAIControlled(void) { ((void(*)(void))0x8065EE20)(); }
+static inline void trackLastPitchInfo2(void) { ((void(*)(void))0x8065EFDC)(); }
+static inline void batterAISwingEarlyOrLate(void) { ((void(*)(void))0x8065F0F8)(); }
+static inline void batterAIRNGValueSetting(void) { ((void(*)(void))0x8065F2B8)(); }
+static inline void resetBatterPreAB_(void) { ((void(*)(void))0x8065FAF4)(); }
+static inline void resetLastPitchData(void) { ((void(*)(void))0x8065FB44)(); }
+static inline void aIPickoff(void) { ((void(*)(void))0x8065FBC4)(); }
+static inline void aiPitchCurveDirection(undefined8 curvePerFrame) { ((void(*)(undefined8))0x8065FD80)(curvePerFrame); }
+static inline void movePitcherOnMound(void) { ((void(*)(void))0x8065FEE4)(); }
+static inline void unused_8065ff80(void) { ((void(*)(void))0x8065FF80)(); }
+static inline void pitcherAISetCurve(void) { ((void(*)(void))0x80660044)(); }
+static inline void pitcherAISelectPitch(void) { ((void(*)(void))0x80660334)(); }
+static inline void pitcherAI_prePitchSetConstants(void) { ((void(*)(void))0x80660640)(); }
+static inline void pitcherAINewBatter(void) { ((void(*)(void))0x806607FC)(); }
+static inline void resetPitcherPreAB_(void) { ((void(*)(void))0x80660A34)(); }
+static inline void maybeSetVsIndOrScoutFlagChance_(void) { ((void(*)(void))0x80660FA8)(); }
+static inline void resetSomethingRelatedToVersus(void) { ((void(*)(void))0x806618E4)(); }
+static inline void versusScreen_seemsToDoNothing(void) { ((void(*)(void))0x80661CA4)(); }
+static inline void championshipScreen(void) { ((void(*)(void))0x80661CB4)(); }
+static inline void starChanceVsScreenProcess(void) { ((void(*)(void))0x80662550)(); }
+static inline void homeRunTrot(void) { ((void(*)(void))0x80662924)(); }
+static inline void homeRunEnd(void) { ((void(*)(void))0x80662D80)(); }
+static inline void postReplayBatterCelebration(void) { ((void(*)(void))0x8066318C)(); }
+static inline void initializeAnimations_(void) { ((void(*)(void))0x80664190)(); }
+static inline void knockOut_setPosAndVelo(uint fielderIndex) { ((void(*)(uint))0x80664278)(fielderIndex); }
+static inline void garlicOrStadiumHazardKnockOuts_(int fielderIndex, short knockOutAngle_) { ((void(*)(int, short))0x80664438)(fielderIndex, knockOutAngle_); }
+static inline void fielderOnFirePosAndVelo(int fielderIndex) { ((void(*)(int))0x806646DC)(fielderIndex); }
+static inline void maybeCastleFireballBurn(int fielderIndex, int countdownIndex) { ((void(*)(int, int))0x806648D8)(fielderIndex, countdownIndex); }
+static inline void unused_8066496c(int fielderInd) { ((void(*)(int))0x8066496C)(fielderInd); }
+static inline void runningCatch_updatePositionAndVelocity(int fielderIndex) { ((void(*)(int))0x80664AFC)(fielderIndex); }
+static inline void mag_BirdoSlidingCatchSetCoordinates(int fielderIndex) { ((void(*)(int))0x80664CD4)(fielderIndex); }
+static inline void fielderMovement_VelocityDuringCatchAnimations(int fielderIndex) { ((void(*)(int))0x8066527C)(fielderIndex); }
+static inline void calculateBobble(int fielder_) { ((void(*)(int))0x806656F8)(fielder_); }
+static inline void updateVariablesPostCatch(int fielderIndex) { ((void(*)(int))0x80665B08)(fielderIndex); }
+static inline void processFielderAutoCatch(void) { ((void(*)(void))0x806666DC)(); }
+static inline void catchAnimationProgression(int fielderIndex) { ((void(*)(int))0x806668F4)(fielderIndex); }
+static inline void clamberCheckCatch(int fielderInd) { ((void(*)(int))0x80666DFC)(fielderInd); }
+static inline void wallJumpSOmething3_(void) { ((void(*)(void))0x80667088)(); }
+static inline int wallJumpInitialization(int fielderIndex) { return ((int(*)(int))0x806672B8)(fielderIndex); }
+static inline int divingCatch_80667d3c(int fielderIndex) { return ((int(*)(int))0x80667D3C)(fielderIndex); }
+static inline bool uncalledattemptJumpingCatch(int fielderIndex) { return ((bool(*)(int))0x806691F8)(fielderIndex); }
+static inline BOOL checkForAndSetFielderWallActionsOrDives(int fielderIndex) { return ((BOOL(*)(int))0x8066931C)(fielderIndex); }
+static inline void ballThrownToEmptyBaseCatchAttempt(int fielder_) { ((void(*)(int))0x80669730)(fielder_); }
+static inline void unused_80669d6c(void) { ((void(*)(void))0x80669D6C)(); }
+static inline void catchThrownBallFun(int fielderInd) { ((void(*)(int))0x80669DFC)(fielderInd); }
+static inline BOOL checkIfRunningCatchOccurs(int fielderInd) { return ((BOOL(*)(int))0x8066A728)(fielderInd); }
+static inline BOOL checkIfCatchOccurs(int fielderInd) { return ((BOOL(*)(int))0x8066AB98)(fielderInd); }
+static inline void evaluateFlyBallCatch(int fielderIndex) { ((void(*)(int))0x8066B384)(fielderIndex); }
+static inline void checkForCatchBallAction(int fielderIndex) { ((void(*)(int))0x8066B72C)(fielderIndex); }
+static inline void minigameDashUpdateFieldingVals(void) { ((void(*)(void))0x8066BC74)(); }
+static inline void unused_FUN_8066bf88(int fielderIndex) { ((void(*)(int))0x8066BF88)(fielderIndex); }
+static inline void determineBestFrameForFielder(int fielderIndex) { ((void(*)(int))0x8066C114)(fielderIndex); }
+static inline void updateFielderPositionBasedOnBallState(int fielderIndex) { ((void(*)(int))0x8066C510)(fielderIndex); }
+static inline void unused_FUN_8066c7fc(int fielderIndex) { ((void(*)(int))0x8066C7FC)(fielderIndex); }
+static inline void autoMovement28_minigameDashRelated3(int fielderIndex) { ((void(*)(int))0x8066C9C0)(fielderIndex); }
+static inline void autoMovement27_minigameDashRelated2(int fielderIndex) { ((void(*)(int))0x8066CB58)(fielderIndex); }
+static inline void autoMovement26_minigameRelated1(int fielderIndex) { ((void(*)(int))0x8066CD88)(fielderIndex); }
+static inline void minigameRelated_FUN_8066d4b0(void) { ((void(*)(void))0x8066D4B0)(); }
+static inline void toyfieldRelated_(void) { ((void(*)(void))0x8066D910)(); }
+static inline void miniGameFielding_(void) { ((void(*)(void))0x8066DAB8)(); }
+static inline void minigameDashUpdateFieldingVariables(void) { ((void(*)(void))0x8066DF58)(); }
+static inline void miniGameDash(void) { ((void(*)(void))0x8066E518)(); }
+static inline void jumpSetPosAndVelo(int fielderIndex) { ((void(*)(int))0x8066E608)(fielderIndex); }
+static inline void unused_8066e868(void) { ((void(*)(void))0x8066E868)(); }
+static inline void wallSplat_setPosAndVelo(int fielderIndex) { ((void(*)(int))0x8066E9B8)(fielderIndex); }
+static inline void setClamberPos(int fielderIndex) { ((void(*)(int))0x8066EC30)(fielderIndex); }
+static inline void clamberJumpOffWall(int fielderIndex) { ((void(*)(int))0x8066EFC0)(fielderIndex); }
+static inline void unused_8066f14c(void) { ((void(*)(void))0x8066F14C)(); }
+static inline void clamberInitialization(void) { ((void(*)(void))0x8066F2A8)(); }
+static inline void walljump_calculateJumpedOffWallPositionAndVelocity(int fIndex) { ((void(*)(int))0x8066F5F8)(fIndex); }
+static inline void unused_8066f6b0(void) { ((void(*)(void))0x8066F6B0)(); }
+static inline void unReferenced(void) { ((void(*)(void))0x8066FAEC)(); }
+static inline void fielding_prePitchAutomovement(void) { ((void(*)(void))0x8066FE08)(); }
+static inline void fielding_atBat_SetSomeAutomovements_callCollisionFn(void) { ((void(*)(void))0x80670444)(); }
+static inline void atBat_Fielders(void) { ((void(*)(void))0x80670628)(); }
+static inline void unused_8067070c(void) { ((void(*)(void))0x8067070C)(); }
+static inline void unused_80670ad0(void) { ((void(*)(void))0x80670AD0)(); }
+static inline void fielderActionsOnSteal(void) { ((void(*)(void))0x80670CE4)(); }
+static inline void stealSetFielders(void) { ((void(*)(void))0x80671124)(); }
+static inline void determineSelectedfielderOnIFHit_Dribbler(void) { ((void(*)(void))0x80671438)(); }
+static inline void selectInitialFielders_linedriveThroughPitcher(void) { ((void(*)(void))0x806718A4)(); }
+static inline void setInitialFielderMovements_foulBall(void) { ((void(*)(void))0x80671A38)(); }
+static inline void chooseSecondaryFielderFromClosestOutfielder(void) { ((void(*)(void))0x8067211C)(); }
+static inline void setInitialFielderMovements_generalCase(int secondaryFielderWillBeSetSeparatelyInd) { ((void(*)(int))0x80672580)(secondaryFielderWillBeSetSeparatelyInd); }
+static inline void determinePrimaryAndSecondaryOutFielders(int primaryFielder, int secondaryFielder) { ((void(*)(int, int))0x80672E64)(primaryFielder, secondaryFielder); }
+static inline void setInitialFielderMovements_DeepFly(void) { ((void(*)(void))0x8067327C)(); }
+static inline void humanTeamFieldingFirstFrameAfterHit(void) { ((void(*)(void))0x806734E4)(); }
+static inline void decideHowToTrackFoulBall(int fielderIndex) { ((void(*)(int))0x80673AD4)(fielderIndex); }
+static inline void autoMovement16_trackFoulBall(int fielderIndex) { ((void(*)(int))0x80674DBC)(fielderIndex); }
+static inline void setPlayerWhoCanInterceptThrow(void) { ((void(*)(void))0x80674EB0)(); }
+static inline void SelectClosestFielder2(undefined8 targetX, undefined8 targetZ) { ((void(*)(undefined8, undefined8))0x8067526C)(targetX, targetZ); }
+static inline int selectBestFielder(float ballX, float ballZ, int fielder1Index, int fielder2Index, int mode) { return ((int(*)(float, float, int, int, int))0x8067570C)(ballX, ballZ, fielder1Index, fielder2Index, mode); }
+static inline enumFielder SelectBetterFielder(float ballX, float ballZ, enumFielder fielder1Index, enumFielder fielder2Index, int mode) { return ((enumFielder(*)(float, float, enumFielder, enumFielder, int))0x806761A8)(ballX, ballZ, fielder1Index, fielder2Index, mode); }
+static inline void unused_FUN_8067661c(void) { ((void(*)(void))0x8067661C)(); }
+static inline void selectClosestFielderBasedOnFutureCoord(int futureCoordIndex) { ((void(*)(int))0x806766A4)(futureCoordIndex); }
+static inline void SelectOptimalFielder(void) { ((void(*)(void))0x80677094)(); }
+static inline void unreferenced_806772c8(void) { ((void(*)(void))0x806772C8)(); }
+static inline void selectAssignClosestFielder2(void) { ((void(*)(void))0x80677398)(); }
+static inline void setNewSelectedFielder_determinePriorSelectedFielder_sAutoMovement(int newFielderIndex, int autoMovementMode_) { ((void(*)(int, int))0x80677824)(newFielderIndex, autoMovementMode_); }
+static inline void HandleMiddleInfieldSelection(void) { ((void(*)(void))0x80677DA4)(); }
+static inline void fielderSelect_tertiaryFielderExists_determine2FieldersToKeep(void) { ((void(*)(void))0x8067808C)(); }
+static inline void updateBallLandedFielderSelection(void) { ((void(*)(void))0x80678444)(); }
+static inline void updateInAirFielderSelection(void) { ((void(*)(void))0x806788EC)(); }
+static inline void unused_FUN_80678e58(void) { ((void(*)(void))0x80678E58)(); }
+static inline void updateFielderSelection(void) { ((void(*)(void))0x80678F44)(); }
+static inline void setFielderVelocity_someSituation(int fielderIndex) { ((void(*)(int))0x806792C8)(fielderIndex); }
+static inline void moveFielder_CheckForAndSetJump(int fielderIndex) { ((void(*)(int))0x80679618)(fielderIndex); }
+static inline void updateFielderMovementIfNoBall(enumFielder fielderIndex) { ((void(*)(enumFielder))0x80679D54)(fielderIndex); }
+static inline void autoMovement21_23_humanControlInitialSelectedFielders(enumFielder fielderIndex) { ((void(*)(enumFielder))0x80679EC8)(fielderIndex); }
+static inline void autoMovement15_selectedFielderOnLooseBall_(int fielderIndex) { ((void(*)(int))0x8067A404)(fielderIndex); }
+static inline void liveBallFielderControlHumanTeam(void) { ((void(*)(void))0x8067AA78)(); }
+static inline void checkIfPlayerNeedsToMoveToCatchBall(int fielderIndex) { ((void(*)(int))0x8067AEE4)(fielderIndex); }
+static inline void autoMovement19_foulBall(int fIndex) { ((void(*)(int))0x8067B23C)(fIndex); }
+static inline void autoMovement0_stayStill_exceptForSpecialActions(int fielderIndex) { ((void(*)(int))0x8067B2B4)(fielderIndex); }
+static inline void runOffBaseOverride(int fIndex) { ((void(*)(int))0x8067B628)(fIndex); }
+static inline void autoMovement9_OffBase_coverHome_(int fielderIndex) { ((void(*)(int))0x8067BD44)(fielderIndex); }
+static inline void autoMovement17_runningOffField(int fielderIndex) { ((void(*)(int))0x8067C398)(fielderIndex); }
+static inline void autoMovement12_stopBetweenInstructions(enumFielder fIndex) { ((void(*)(enumFielder))0x8067C740)(fIndex); }
+static inline void setFielderLocToBeNearBase(int fIndex) { ((void(*)(int))0x8067C868)(fIndex); }
+static inline void autoMovement14_infieldSupport(int fielderIndex) { ((void(*)(int))0x8067CC0C)(fielderIndex); }
+static inline void autoMovement20_pitcherLinedriveRelated(int fielderIndex) { ((void(*)(int))0x8067D3E0)(fielderIndex); }
+static inline void knockoutRelated_Grounder_Liner(void) { ((void(*)(void))0x8067D724)(); }
+static inline void knockoutRelated_FlyBall(void) { ((void(*)(void))0x8067DC00)(); }
+static inline void knockoutRelated(void) { ((void(*)(void))0x8067E0C8)(); }
+static inline void uncalled(void) { ((void(*)(void))0x8067E1B8)(); }
+static inline void aITeamFieldingFirstFrameAfterHit(void) { ((void(*)(void))0x80680240)(); }
+static inline void fielderAIAssignmentRelated(void) { ((void(*)(void))0x80680A10)(); }
+static inline void fielderAISomething(void) { ((void(*)(void))0x80680E0C)(); }
+static inline void decideWhenToLeaveFunction2_16_18(int feilderIndex) { ((void(*)(int))0x80681110)(feilderIndex); }
+static inline void updateFielderPosition(int fielderIndex) { ((void(*)(int))0x80681D70)(fielderIndex); }
+static inline void setIntendedLocToInterceptBall(int fielderIndex) { ((void(*)(int))0x806820CC)(fielderIndex); }
+static inline void fielderTrackingBall_updateVariables(int fielderIndex) { ((void(*)(int))0x80682474)(fielderIndex); }
+static inline void fielderTrackingBall_initialVariableSetting_(int fielderIndex) { ((void(*)(int))0x80683858)(fielderIndex); }
+static inline void autoMovement2_18_goTowardsBall_phase2(int fielderIndex) { ((void(*)(int))0x80684428)(fielderIndex); }
+static inline void autoMovement4_AI_goTowardsHitBall_(int fielderIndex) { ((void(*)(int))0x80684648)(fielderIndex); }
+static inline void autoMovement3_goTowardsHitBall_AITeam(int fielderIndex) { ((void(*)(int))0x806848F4)(fielderIndex); }
+static inline void autoMovement25_readyToInterceptThrownBall(int fielderIndex) { ((void(*)(int))0x80684C1C)(fielderIndex); }
+static inline void updateFielderValuesSubFunction1_cuttoffRelated(void) { ((void(*)(void))0x80684F2C)(); }
+static inline void checkIfCutoffIsntAtThrowDestination(int fielderIndex) { ((void(*)(int))0x80685B50)(fielderIndex); }
+static inline void setCutoffLocationToStandAt(int fielderIndex, int intendedLocX, int intendedLocZ) { ((void(*)(int, int, int))0x80685E9C)(fielderIndex, intendedLocX, intendedLocZ); }
+static inline void setInitialFielderMovements_cutoffs(void) { ((void(*)(void))0x8068680C)(); }
+static inline void autoMovement5(int fielderIndex) { ((void(*)(int))0x80687514)(fielderIndex); }
+static inline void autoMovement11_cutoff_setInitialLocation(int fielderIndex) { ((void(*)(int))0x80687AE8)(fielderIndex); }
+static inline void secondaryOutfielderWhenToStopMoving(int fielderIndex) { ((void(*)(int))0x80688588)(fielderIndex); }
+static inline void setSecondaryFielderToBe12mFromDropSpotToSupport_(int fielderIndex, Vec3f * intendedLocation) { ((void(*)(int, Vec3f *))0x80688A58)(fielderIndex, intendedLocation); }
+static inline void autoMovement24_goTowardsHitBall_humanTeam(int fielderIndex) { ((void(*)(int))0x80688CAC)(fielderIndex); }
+static inline void updateFielderValuesSubFunction3_empty(void) { ((void(*)(void))0x80688FD0)(); }
+static inline void autoMovementDetermineWhatToDo(enumFielder fIndex, presetFielderLocations_int_ outfieldPositionToStand) { ((void(*)(enumFielder, presetFielderLocations_int_))0x80688FD4)(fIndex, outfieldPositionToStand); }
+static inline void setInitialFielderMovements_restOfFielders(void) { ((void(*)(void))0x806891B8)(); }
+static inline void setIntendedLocationAheadOfBallPath(int fIndex, int xCoord, int zCoord) { ((void(*)(int, int, int))0x8068949C)(fIndex, xCoord, zCoord); }
+static inline void autoMovement13_GoTowardsBallAsBackUp(int fIndex) { ((void(*)(int))0x80689A40)(fIndex); }
+static inline void autoMovement6_outfielderNoCatch_Phase2(enumFielder fielderIndex) { ((void(*)(enumFielder))0x8068A1BC)(fielderIndex); }
+static inline void autoMovement7_8_outfiederNoCatch_Phase1(enumFielder fielderIndex) { ((void(*)(enumFielder))0x8068A5A8)(fielderIndex); }
+static inline void updateSomeAutoMovementAssignments(void) { ((void(*)(void))0x8068AAA0)(); }
+static inline void setInitialFielderMovements_CoverBases(void) { ((void(*)(void))0x8068BA5C)(); }
+static inline void autoMovement1_coverBase(int fielderIndex) { ((void(*)(int))0x8068C2A0)(fielderIndex); }
+static inline void bobbleDirection(int bobblingPlayerIndex) { ((void(*)(int))0x8068CCA8)(bobblingPlayerIndex); }
+static inline void findClosestFieldersToLooseBallAndAssignToGoGetIt(void) { ((void(*)(void))0x8068D250)(); }
+static inline void checkForAndHandleLooseBalls(void) { ((void(*)(void))0x8068D6CC)(); }
+static inline void aISetFielderWithBallIndex(void) { ((void(*)(void))0x8068DC58)(); }
+static inline void knockoutRelated_subFn(int fielderIndex, int param_2) { ((void(*)(int, int))0x8068E05C)(fielderIndex, param_2); }
+static inline void setCatcherCatchStrategy_distToLandingSpot(int fielderIndex) { ((void(*)(int))0x8068E598)(fielderIndex); }
+static inline void setFielderCatchStrategy_calcFramesToGetToDropSpot(int fielderIndex) { ((void(*)(int))0x8068EBC8)(fielderIndex); }
+static inline void fielderMovement_adjustPlaceToStandForBallBouncingOffWall(int fielderInd, int xCoord, int zCoord) { ((void(*)(int, int, int))0x8068FCB4)(fielderInd, xCoord, zCoord); }
+static inline void updateSprintPointers(void) { ((void(*)(void))0x806902B4)(); }
+static inline uint adjustPlayerPosOutsideFoulLine(int fielderIndex, Vec3f * outPosVec) { return ((uint(*)(int, Vec3f *))0x806906E0)(fielderIndex, outPosVec); }
+static inline int updateFielderPosition_checkFielderCollision_(int fielderIndex, Vec3f * outNewPos, int param_3) { return ((int(*)(int, Vec3f *, int))0x8069082C)(fielderIndex, outNewPos, param_3); }
+static inline void setZoneAwayFromHome(void) { ((void(*)(void))0x80690E84)(); }
+static inline void calculateMinDiveDistAndEndingCoords(double xDist, double zDist, int fielderIndex, int frameAhead, float * postDiveX, float * postDiveZ, float * minimumDiveDistance) { ((void(*)(double, double, int, int, float *, float *, float *))0x80691374)(xDist, zDist, fielderIndex, frameAhead, postDiveX, postDiveZ, minimumDiveDistance); }
+static inline void fRunningTimeToDestinationPlus7(undefined8 someX, undefined8 someZ, int fielderIndex) { ((void(*)(undefined8, undefined8, int))0x806915F4)(someX, someZ, fielderIndex); }
+static inline void setFielderVelocity(int fielderIndex, int param_2, int distFromRunner) { ((void(*)(int, int, int))0x80691770)(fielderIndex, param_2, distFromRunner); }
+static inline void setFielderAutoCoords(undefined8 targetX, undefined8 targetZ, int param_3) { ((void(*)(undefined8, undefined8, int))0x80691FE0)(targetX, targetZ, param_3); }
+static inline void updateFielderPositionAndVelocityForSpecialActions(int fielderIndex) { ((void(*)(int))0x806921C4)(fielderIndex); }
+static inline void setStandingOnBaseVariables(int fielderIndex) { ((void(*)(int))0x806927C0)(fielderIndex); }
+static inline void fielderMovementRelated(void) { ((void(*)(void))0x80692F7C)(); }
+static inline void minigameFieldingRelated_collisions_(void) { ((void(*)(void))0x80692FDC)(); }
+static inline void fielding_handleCollisionsAndSpecialActions(void) { ((void(*)(void))0x8069354C)(); }
+static inline void updateFielderDirectionFacing(int fielderIndex) { ((void(*)(int))0x80693BEC)(fielderIndex); }
+static inline void handleBodyCheck2(int fielderWBall) { ((void(*)(int))0x806947A4)(fielderWBall); }
+static inline void fielder_endOfInning_deadball_updateCounters(void) { ((void(*)(void))0x806949AC)(); }
+static inline void fielderUpdateChasingRunnerValues(int fielderIndex) { ((void(*)(int))0x80694D58)(fielderIndex); }
+static inline void updateFielder_SpecificValuesEachFrame(int fielderIndex) { ((void(*)(int))0x80694F80)(fielderIndex); }
+static inline void liveBallUpdateFieldingValues(void) { ((void(*)(void))0x806961D8)(); }
+static inline void updateOutfielderPositionBasedOnBallState(void) { ((void(*)(void))0x8069651C)(); }
+static inline void processFielderJumpAI(int fielderIndex) { ((void(*)(int))0x80696748)(fielderIndex); }
+static inline void aITeamFielding_SelectCharWithHand(void) { ((void(*)(void))0x80696AA8)(); }
+static inline void updateFielderMovementAndPosition(void) { ((void(*)(void))0x80696C48)(); }
+static inline void liveBallFielderControlAITeam(void) { ((void(*)(void))0x8069744C)(); }
+static inline void fielderResetAndStoreValuesEachFrame(void) { ((void(*)(void))0x8069771C)(); }
+static inline void setDefaultInMemFielder(void) { ((void(*)(void))0x80697904)(); }
+static inline void initializeMiniGameCharacters(void) { ((void(*)(void))0x80697EE4)(); }
+static inline void fielding_setStartingCoordinates(int positionIndex, int xCoord, int zCoord) { ((void(*)(int, int, int))0x80697FEC)(positionIndex, xCoord, zCoord); }
+static inline void pPRelated_(void) { ((void(*)(void))0x80698240)(); }
+static inline void resetInMemFielders(void) { ((void(*)(void))0x806983CC)(); }
+static inline void initializeFielderConstants(void) { ((void(*)(void))0x80698658)(); }
+static inline void initFielders(void) { ((void(*)(void))0x8069878C)(); }
+static inline void ifCurrentFielderIsTakingOverBaseCovering(int fielderIndex, int fielderAction) { ((void(*)(int, int))0x806988F0)(fielderIndex, fielderAction); }
+static inline void fielderMainFunction(void) { ((void(*)(void))0x80698964)(); }
+static inline void QueueTextToDisplay(EnumPopupText_word textToDisplay) { ((void(*)(EnumPopupText_word))0x806989AC)(textToDisplay); }
+static inline void initializeSomethingDuringTransition(void) { ((void(*)(void))0x80698B24)(); }
+static inline void resetCount(void) { ((void(*)(void))0x80699718)(); }
+static inline void configureTeamsForGame_Unused__(int battingInd, int param_2, int initialBattingAndFielding, int addtlParam) { ((void(*)(int, int, int, int))0x80699734)(battingInd, param_2, initialBattingAndFielding, addtlParam); }
+static inline void SetGameStatus(EnumGameStatus newGameStatus) { ((void(*)(EnumGameStatus))0x80699768)(newGameStatus); }
+static inline void exitToMenuControl(void) { ((void(*)(void))0x80699790)(); }
+static inline void gameInitRelated(void) { ((void(*)(void))0x80699910)(); }
+static inline void simulate1FrameOfTheGame(void) { ((void(*)(void))0x80699D34)(); }
+static inline void transferSomeValuesOnMatchLoad(void) { ((void(*)(void))0x80699F30)(); }
+static inline void gameSimulationFunction(void) { ((void(*)(void))0x8069A158)(); }
+static inline void exitMenu_main(void) { ((void(*)(void))0x8069A414)(); }
+static inline void startChallengeModeMatch_(void) { ((void(*)(void))0x8069A634)(); }
+static inline void endOfGame_menuControl(void) { ((void(*)(void))0x8069AAC0)(); }
+static inline void matchEndGameScreenFunction(void) { ((void(*)(void))0x8069ADD4)(); }
+static inline void evaluateInningCondition(int inning) { ((void(*)(int))0x8069B5C4)(inning); }
+static inline void uncalledRunnerUpdateRelated(void) { ((void(*)(void))0x8069B65C)(); }
+static inline void transitionToLiveBallWithoutContact(byte stealInd) { ((void(*)(byte))0x8069B730)(stealInd); }
+static inline void processScoreChanges(int isLiveBallScreen) { ((void(*)(int))0x8069B7E0)(isLiveBallScreen); }
+static inline void endOfMatch(void) { ((void(*)(void))0x8069BE48)(); }
+static inline void unreferenced_8069c064(void) { ((void(*)(void))0x8069C064)(); }
+static inline void endOfGameCheck(int isRBI) { ((void(*)(int))0x8069C128)(isRBI); }
+static inline void inningImportanceAI(void) { ((void(*)(void))0x8069C490)(); }
+static inline void inningChange(void) { ((void(*)(void))0x8069C67C)(); }
+static inline void settingGameStatus(void) { ((void(*)(void))0x8069CB30)(); }
+static inline void handleABEndEvent(void) { ((void(*)(void))0x8069CD74)(); }
+static inline void handleDeadBall(void) { ((void(*)(void))0x8069CDC4)(); }
+static inline void playOverTransitionStuff(void) { ((void(*)(void))0x8069CFE8)(); }
+static inline void checkIfPlayOver(void) { ((void(*)(void))0x8069D358)(); }
+static inline void switchFromAtBatToLiveBall(void) { ((void(*)(void))0x8069DE2C)(); }
+static inline void freePracticeSomething_(void) { ((void(*)(void))0x8069DE6C)(); }
+static inline void endBatterTransition(void) { ((void(*)(void))0x8069DEEC)(); }
+static inline void atBatScreen(void) { ((void(*)(void))0x8069E080)(); }
+static inline void newPitch(void) { ((void(*)(void))0x8069E1E8)(); }
+static inline void matchTransitionPrepareNextAB(void) { ((void(*)(void))0x8069E490)(); }
+static inline void practiceNewBatter_(void) { ((void(*)(void))0x8069E7B4)(); }
+static inline void initNewInning_(void) { ((void(*)(void))0x8069E83C)(); }
+static inline void exhibitionGameTransitionCalculations(void) { ((void(*)(void))0x8069E9C4)(); }
+static inline void initializeGame_(void) { ((void(*)(void))0x8069EFA4)(); }
+static inline void baseballMatchSimulation(void) { ((void(*)(void))0x8069F1B0)(); }
+static inline int updateFielderState(int fielderIndex, int updateType) { return ((int(*)(int, int))0x8069F898)(fielderIndex, updateType); }
+static inline void foulAnimationRelatedMaybe(int fielderInd, AnimationStruct * animStruct) { ((void(*)(int, AnimationStruct *))0x8069FB2C)(fielderInd, animStruct); }
+static inline void fielderThrowingAnimations(int fielderIndex) { ((void(*)(int))0x806A02BC)(fielderIndex); }
+static inline void animationsForFielding(int fielderIndex) { ((void(*)(int))0x806A05D8)(fielderIndex); }
+static inline void fielderAnimations_setAnimation(int fielderIndex) { ((void(*)(int))0x806A0BF8)(fielderIndex); }
+static inline void handleRunnerActionsAndTagging(void) { ((void(*)(void))0x806A1998)(); }
+static inline void fielderAnimations(void) { ((void(*)(void))0x806A1F04)(); }
+static inline void runnerAnimation_general(int runnerIndex) { ((void(*)(int))0x806A2240)(runnerIndex); }
+static inline void runnerAnimation_detailed(void) { ((void(*)(void))0x806A2908)(); }
+static inline void batterAnimations_(void) { ((void(*)(void))0x806A2B8C)(); }
+static inline void pitcherAnimation_(void) { ((void(*)(void))0x806A3C70)(); }
+static inline void minigameAnimations(void) { ((void(*)(void))0x806A51D4)(); }
+static inline void matchAnimations(void) { ((void(*)(void))0x806A5590)(); }
+static inline void unsure_updateAnimations(void) { ((void(*)(void))0x806A5950)(); }
+static inline void setDefaultPlayTrackingVariables3(void) { ((void(*)(void))0x806A61C4)(); }
+static inline void setupBallTrailEffect(enumBallTrailTypes maybeBallTrailType, int trailDuration) { ((void(*)(enumBallTrailTypes, int))0x806A66B4)(maybeBallTrailType, trailDuration); }
+static inline void ballAnimationSubFun4(void) { ((void(*)(void))0x806A6ADC)(); }
+static inline void displayBallTrail(void) { ((void(*)(void))0x806A7684)(); }
+static inline void ballSpinSetting(void) { ((void(*)(void))0x806A7C48)(); }
+static inline void clearAnimationRelatedPointers(void) { ((void(*)(void))0x806A8190)(); }
+static inline void ballAnimationSubFun3(void) { ((void(*)(void))0x806A8218)(); }
+static inline void ballAnimationSubFun2(void) { ((void(*)(void))0x806A8374)(); }
+static inline void ballAnimationSubFun1(void) { ((void(*)(void))0x806A868C)(); }
+static inline void ballAnimations(void) { ((void(*)(void))0x806A8860)(); }
+static inline void AnimBlr(void) { ((void(*)(void))0x806A92E4)(); }
+static inline void resetAnimationRelatedPointers(void) { ((void(*)(void))0x806A92F0)(); }
+static inline void animateStarHits_Pitches_(void) { ((void(*)(void))0x806A94A8)(); }
+static inline void animateChargeSprites(void) { ((void(*)(void))0x806A9BEC)(); }
+static inline void resetAnimationFlags(void) { ((void(*)(void))0x806A9F74)(); }
+static inline void computeAdjustedFielderOrientation(int fielderIndex) { ((void(*)(int))0x806AA030)(fielderIndex); }
+static inline void animateDefence_(void) { ((void(*)(void))0x806AA1D8)(); }
+static inline void loadMVPMaybe_(void) { ((void(*)(void))0x806AA66C)(); }
+static inline void animateShadows_nonBall_(void) { ((void(*)(void))0x806AA708)(); }
+static inline void matchTransitionFunction2(void) { ((void(*)(void))0x806AA904)(); }
+static inline void loadRunnerActors_(void) { ((void(*)(void))0x806AAAF8)(); }
+static inline void setDefaultPlayTrackingVariables2(void) { ((void(*)(void))0x806AB174)(); }
+static inline void initializeSomethingDuringTransition2(void) { ((void(*)(void))0x806AB19C)(); }
+static inline void setInningEndingKIndTo0(void) { ((void(*)(void))0x806AB1D0)(); }
+static inline void graphicsFunction_nonMiniGame_(void) { ((void(*)(void))0x806AB26C)(); }
+static inline void resetAnimRelatedPointer(void) { ((void(*)(void))0x806AB4A4)(); }
+static inline void emptyFunction(void) { ((void(*)(void))0x806AB4BC)(); }
+static inline void resetAnimationFlags2(void) { ((void(*)(void))0x806AB4E8)(); }
+static inline void animateOffence(void) { ((void(*)(void))0x806AB564)(); }
+static inline void setCharacterAnimations_(int battingTeam, int param_2) { ((void(*)(int, int))0x806AB8E8)(battingTeam, param_2); }
+static inline void checkForButtonPressToSkip_(undefined4 param_1, undefined2 inputsToCheckFor) { ((void(*)(undefined4, undefined2))0x806AB9CC)(param_1, inputsToCheckFor); }
+static inline void InterpretControllerInputsIntoMagnitude(void) { ((void(*)(void))0x806ABE1C)(); }
+static inline void UpdateControllerInputs(void) { ((void(*)(void))0x806AC398)(); }
+static inline void resetInputTrackers(void) { ((void(*)(void))0x806AC534)(); }
+static inline void getAdjustedPitcherStamina(int team, int rosterID, int stamAdj) { ((void(*)(int, int, int))0x806AC5F8)(team, rosterID, stamAdj); }
+static inline int CheckFieldingStat(int team, int rosterID, EnumFieldingAbilityBitLocation bit) { return ((int(*)(int, int, EnumFieldingAbilityBitLocation))0x806AC698)(team, rosterID, bit); }
+static inline void calculateChemistry(int teamFielding, int character, int secondCharacter) { ((void(*)(int, int, int))0x806AC6EC)(teamFielding, character, secondCharacter); }
+static inline void unreferenced_806ac768(void) { ((void(*)(void))0x806AC768)(); }
+static inline void initializeInMemRunner(int rosterID, int runnerInd) { ((void(*)(int, int))0x806AC9F8)(rosterID, runnerInd); }
+static inline void setInMemBatterConstants(int rosterID) { ((void(*)(int))0x806ACEF4)(rosterID); }
+static inline void getThrowSpeedBasedOnArmStrengthStat(undefined4 armStrength) { ((void(*)(undefined4))0x806AD268)(armStrength); }
+static inline void setFielderValues(int rosterID, int fielder_) { ((void(*)(int, int))0x806AD2E0)(rosterID, fielder_); }
+static inline void setPitcherStatsToInMemPitcher(void) { ((void(*)(void))0x806ADC48)(); }
+static inline void initRosterForMatch(void) { ((void(*)(void))0x806ADFB0)(); }
+static inline int runnerStealing_TransitionToLiveViewIndicator(void) { return ((int(*)(void))0x806AE57C)(); }
+static inline void waitingForPitch_checkForPickoffs(void) { ((void(*)(void))0x806AE7DC)(); }
+static inline void unused_806aeabc(void) { ((void(*)(void))0x806AEABC)(); }
+static inline void unused_806aec2c(void) { ((void(*)(void))0x806AEC2C)(); }
+static inline void pitchCall(void) { ((void(*)(void))0x806AF480)(); }
+static inline void estimateXAndFrameAtBatterZ(undefined8 batZ, int varToUpdate, int considerCurveInd) { ((void(*)(undefined8, int, int))0x806AF7FC)(batZ, varToUpdate, considerCurveInd); }
+static inline void unused_806af8cc(void) { ((void(*)(void))0x806AF8CC)(); }
+static inline void unused_806afc28(void) { ((void(*)(void))0x806AFC28)(); }
+static inline void pitchCurve(void) { ((void(*)(void))0x806AFF88)(); }
+static inline void pitchInAirFunction(void) { ((void(*)(void))0x806B02DC)(); }
+static inline void pitchSetPhysicsConstants(void) { ((void(*)(void))0x806B17FC)(); }
+static inline void adjustPitchCurveSpeedCursedBall(void) { ((void(*)(void))0x806B1D3C)(); }
+static inline void pitchBeingReleased(void) { ((void(*)(void))0x806B21A0)(); }
+static inline void handleHPBORRunnerAdvance(void) { ((void(*)(void))0x806B263C)(); }
+static inline void resetBatterCount(void) { ((void(*)(void))0x806B2760)(); }
+static inline void resetCounter(void) { ((void(*)(void))0x806B27AC)(); }
+static inline void unreferenced_806b27c0(void) { ((void(*)(void))0x806B27C0)(); }
+static inline void endAtBatNonHit(void) { ((void(*)(void))0x806B293C)(); }
+static inline void unreferenced_806b2e7c(void) { ((void(*)(void))0x806B2E7C)(); }
+static inline void unused_806b2fc0(void) { ((void(*)(void))0x806B2FC0)(); }
+static inline void unused_806b3040(void) { ((void(*)(void))0x806B3040)(); }
+static inline void pitchingWindUpFunction(void) { ((void(*)(void))0x806B31BC)(); }
+static inline void pitcherMovementOnMound(void) { ((void(*)(void))0x806B3B58)(); }
+static inline void waitingForPitch(void) { ((void(*)(void))0x806B3DA0)(); }
+static inline void pitcherAITransitionFromPrePitchToWindup(void) { ((void(*)(void))0x806B4158)(); }
+static inline void loadPitcherActor(void) { ((void(*)(void))0x806B4170)(); }
+static inline void setDefaultInMemPitcher(void) { ((void(*)(void))0x806B4248)(); }
+static inline void resetPitcherValuesBetweenBatters_(void) { ((void(*)(void))0x806B447C)(); }
+static inline void resetInMemPitcher(void) { ((void(*)(void))0x806B44C8)(); }
+static inline void setPitchingConstants_(void) { ((void(*)(void))0x806B454C)(); }
+static inline void atBat_Pitcher(void) { ((void(*)(void))0x806B45F4)(); }
+static inline void unreferenced_806b4950(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, int param_11, int param_12, int param_13, int param_14) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int, int, int, int))0x806B4950)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14); }
+static inline void MVPCalculation(void) { ((void(*)(void))0x806B4A50)(); }
+static inline void winningPitcher_(void) { ((void(*)(void))0x806B5208)(); }
+static inline void endOfGameStats_MVP(void) { ((void(*)(void))0x806B55EC)(); }
+static inline void steal_pickoff_incrementSteal_runsStats(void) { ((void(*)(void))0x806B5B30)(); }
+static inline void updateStatsBasedOnABResult(int batterIndex, EnumAtBatResult_word atBatResult_, int fIndexWhoCausedOut_, int rbisOnPlay) { ((void(*)(int, EnumAtBatResult_word, int, int))0x806B5D9C)(batterIndex, atBatResult_, fIndexWhoCausedOut_, rbisOnPlay); }
+static inline void postPlayTrackStats(void) { ((void(*)(void))0x806B69A8)(); }
+static inline void pickoff_infieldThrow_related(undefined2 throwingFielder) { ((void(*)(undefined2))0x806B7608)(throwingFielder); }
+static inline void monitorForErrors(void) { ((void(*)(void))0x806B77C4)(); }
+static inline void update_runnersBeingTargetedWhileBatterCanBeForcedOut(void) { ((void(*)(void))0x806B7B58)(); }
+static inline void initialize_runnersBeingTargetedWhileBatterCanBeForcedOut(void) { ((void(*)(void))0x806B80D4)(); }
+static inline void runnerResultCd_bunt(void) { ((void(*)(void))0x806B84A8)(); }
+static inline void adjustTotalBasesOnHit(void) { ((void(*)(void))0x806B863C)(); }
+static inline void setInitialTotalBasesOnHit(void) { ((void(*)(void))0x806B8800)(); }
+static inline void midPlay_trackStats(void) { ((void(*)(void))0x806B8B60)(); }
+static inline void updatePitcherStatsOnScoreChange(void) { ((void(*)(void))0x806B8F88)(); }
+static inline void postPitchStatUpdating(int liveBallInd) { ((void(*)(int))0x806B91E8)(liveBallInd); }
+static inline void incrementPitchCount(void) { ((void(*)(void))0x806B9BC8)(); }
+static inline void postPitchStatRelated(undefined4 param_1_always0, undefined4 param_2, undefined4 param_3, undefined4 battingPositionOfCatcher_) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x806B9C0C)(param_1_always0, param_2, param_3, battingPositionOfCatcher_); }
+static inline void setRunnerOnBaseIndicators(void) { ((void(*)(void))0x806B9FFC)(); }
+static inline void intializeRunnersDuringTransition(void) { ((void(*)(void))0x806BA078)(); }
+static inline void resetGameControlVars_duringNewInning__(void) { ((void(*)(void))0x806BA1C4)(); }
+static inline void initializeStats(void) { ((void(*)(void))0x806BA39C)(); }
+static inline void determineIfReplayShouldPlay(void) { ((void(*)(void))0x806BACB4)(); }
+static inline void replaceGameStructs_postReplay(undefined4 param_1_always1) { ((void(*)(undefined4))0x806BB290)(param_1_always1); }
+static inline void useReplayInputs(void) { ((void(*)(void))0x806BB578)(); }
+static inline void structCopying(void) { ((void(*)(void))0x806BB840)(); }
+static inline void CopyMoreStructs(void) { ((void(*)(void))0x806BBA6C)(); }
+static inline void lastPlayStats(void) { ((void(*)(void))0x806BBF24)(); }
+static inline void initializeReplayState(void) { ((void(*)(void))0x806BC01C)(); }
+static inline void ReplayRelatedCopying_storeDataBeforePlay(void) { ((void(*)(void))0x806BC4EC)(); }
+static inline void initializeReplayVariables(void) { ((void(*)(void))0x806BC814)(); }
+static inline void runnerChangeDirectionHumanInput(int runnerNum) { ((void(*)(int))0x806BCBC4)(runnerNum); }
+static inline void cCSRunningFun(void) { ((void(*)(void))0x806BCE00)(); }
+static inline void running_LiveBall_Human(void) { ((void(*)(void))0x806BD350)(); }
+static inline void running_sendOutRunnerToDugout(int runnerIndex) { ((void(*)(int))0x806BDC68)(runnerIndex); }
+static inline void running_roundBaseDecision(int runnerIndex) { ((void(*)(int))0x806BDD90)(runnerIndex); }
+static inline void running_overrun1stIndicator(void) { ((void(*)(void))0x806BE36C)(); }
+static inline void running_triggerSlideOrBodyCheck(int runnerNum) { ((void(*)(int))0x806BE528)(runnerNum); }
+static inline void unused_(void) { ((void(*)(void))0x806BEA58)(); }
+static inline runnerMovementType running_DirectionOverrides(int runnerNum) { return ((runnerMovementType(*)(int))0x806BEB0C)(runnerNum); }
+static inline void unused__806bee24(void) { ((void(*)(void))0x806BEE24)(); }
+static inline void running_updatePosition(int runnerIndex) { ((void(*)(int))0x806BF0BC)(runnerIndex); }
+static inline void running_updatePositionTracking_storeRBIs_stopAtNextBase_displaySafe(int runnerIndex) { ((void(*)(int))0x806C0224)(runnerIndex); }
+static inline void unReferenced_806c0b4c(void) { ((void(*)(void))0x806C0B4C)(); }
+static inline void running_overrunBaseControl(undefined4 rIndex) { ((void(*)(undefined4))0x806C0C5C)(rIndex); }
+static inline void runnerOverrun1BRelated(undefined4 rIndex) { ((void(*)(undefined4))0x806C0F40)(rIndex); }
+static inline void running_ActionControlAndVelocity(undefined4 rIndex) { ((void(*)(undefined4))0x806C1448)(rIndex); }
+static inline void running_CalculateSpeedVariables(int rIndex) { ((void(*)(int))0x806C1704)(rIndex); }
+static inline void updateRunnerFramesToClosestBases(int runnerNum, int framesPrevBase, int framesNextBase) { ((void(*)(int, int, int))0x806C2014)(runnerNum, framesPrevBase, framesNextBase); }
+static inline void running_updateDistAndFramesToClosestBases(int runnerNum) { ((void(*)(int))0x806C2110)(runnerNum); }
+static inline void unused__806c2480(void) { ((void(*)(void))0x806C2480)(); }
+static inline void running_LiveBall_AI(void) { ((void(*)(void))0x806C27A8)(); }
+static inline void possibleRunnerAIRelated(void) { ((void(*)(void))0x806C3254)(); }
+static inline void runnerAILiveBall_(int runnerIndex) { ((void(*)(int))0x806C3378)(runnerIndex); }
+static inline void runnerAI_2(void) { ((void(*)(void))0x806C375C)(); }
+static inline void runnerAISubfunction4(int runnerIndex, int someFrames) { ((void(*)(int, int))0x806C3B64)(runnerIndex, someFrames); }
+static inline void runnerAISubfunction3(void) { ((void(*)(void))0x806C4108)(); }
+static inline void runnerAISubfunction2(int runnerIndex, int param_2, int param_3) { ((void(*)(int, int, int))0x806C48D4)(runnerIndex, param_2, param_3); }
+static inline void running_AIStartSteals(void) { ((void(*)(void))0x806C4D44)(); }
+static inline void runnerAISetRunningDirection(int runnerNum, int actionCode) { ((void(*)(int, int))0x806C4F88)(runnerNum, actionCode); }
+static inline void runnerAISubfunction(void) { ((void(*)(void))0x806C51AC)(); }
+static inline void running_setRestrictedMovements(void) { ((void(*)(void))0x806C5830)(); }
+static inline void running_beginSteal_CheckForPerfect(void) { ((void(*)(void))0x806C5F8C)(); }
+static inline void unreferenced_806c6140(void) { ((void(*)(void))0x806C6140)(); }
+static inline void updateRunnerValues(void) { ((void(*)(void))0x806C6360)(); }
+static inline void running_CheckForForceOuts_UpdateStamina_UpdateTagOutVars(void) { ((void(*)(void))0x806C64B8)(); }
+static inline void running_UpdateTrackingValues_BasesEarned(void) { ((void(*)(void))0x806C68B0)(); }
+static inline void running_CalcVeloAndIfBatterShouldStayStill(void) { ((void(*)(void))0x806C6B7C)(); }
+static inline void running_chainChompSprintRelated(void) { ((void(*)(void))0x806C6D5C)(); }
+static inline void setRunnerAngle(void) { ((void(*)(void))0x806C6F14)(); }
+static inline void unused_forceOutSomething(void) { ((void(*)(void))0x806C72BC)(); }
+static inline void running_checkForOuts(void) { ((void(*)(void))0x806C749C)(); }
+static inline void running_ForceOutStateRelated(void) { ((void(*)(void))0x806C7BAC)(); }
+static inline void maybeUpdateRunnerNoRun(void) { ((void(*)(void))0x806C7CB8)(); }
+static inline void runnerOut(int runnerNum) { ((void(*)(int))0x806C7E1C)(runnerNum); }
+static inline void maybeHandleBaserunners(void) { ((void(*)(void))0x806C802C)(); }
+static inline void stealCancelLeadoffs(void) { ((void(*)(void))0x806C81B0)(); }
+static inline void setDefaultInMemRunner(void) { ((void(*)(void))0x806C81D0)(); }
+static inline void updateRunnerPosition(int runnerNum, byte baseIncrement) { ((void(*)(int, byte))0x806C88F8)(runnerNum, baseIncrement); }
+static inline void transferInMemRunnerValuesToNextRunnerIndex(void) { ((void(*)(void))0x806C8A50)(); }
+static inline void initializeARunner(void) { ((void(*)(void))0x806C926C)(); }
+static inline void resetInMemRunners(void) { ((void(*)(void))0x806C93E4)(); }
+static inline void initBaseRunnersAfterFoulBall(void) { ((void(*)(void))0x806C9578)(); }
+static inline void initializeInMemRunner_806c9638(void) { ((void(*)(void))0x806C9638)(); }
+static inline void unreferenced_806c96ac(void) { ((void(*)(void))0x806C96AC)(); }
+static inline void _unused_(void) { ((void(*)(void))0x806C9848)(); }
+static inline void running_MainFunction(void) { ((void(*)(void))0x806C99EC)(); }
+static inline void addToCircularBuffer(void) { ((void(*)(void))0x806CA2EC)(); }
+static inline void stadiumMusic_(EnumStadiumIDs4 stadium) { ((void(*)(EnumStadiumIDs4))0x806CA3AC)(stadium); }
+static inline void updateAndRemoveStadiumEmitter(int emitterIndex) { ((void(*)(int))0x806CA924)(emitterIndex); }
+static inline SND_EMITTER * updateOrRemoveEmitter(int emitterID, SND_FVECTOR * newPos, SND_FVECTOR * newDir) { return ((SND_EMITTER *(*)(int, SND_FVECTOR *, SND_FVECTOR *))0x806CAAF4)(emitterID, newPos, newDir); }
+static inline int initializeStadiumObjectEmitter(int soundID, SND_FVECTOR * position, SND_FVECTOR * direction, int paramIndex) { return ((int(*)(int, SND_FVECTOR *, SND_FVECTOR *, int))0x806CAC58)(soundID, position, direction, paramIndex); }
+static inline void initializeCamera_(void) { ((void(*)(void))0x806CAF20)(); }
+static inline void transitionToReplay_(void) { ((void(*)(void))0x806CB110)(); }
+static inline void makeSoundOfBallBouncing(void) { ((void(*)(void))0x806CB65C)(); }
+static inline void handleGameSound(void) { ((void(*)(void))0x806CBE08)(); }
+static inline void soundControl_(void) { ((void(*)(void))0x806CCB14)(); }
+static inline void soundFxRelated(void) { ((void(*)(void))0x806CE2B0)(); }
+static inline void newAtBatPlaySound(void) { ((void(*)(void))0x806CECA0)(); }
+static inline void adjustBallSoundEffectBasedOnHeight(void) { ((void(*)(void))0x806CED14)(); }
+static inline void initializeSounds_(void) { ((void(*)(void))0x806CEFAC)(); }
+static inline int animateThrownBall_(float x_, float y_, float z_, enumSoundEffect_short soundCode) { return ((int(*)(float, float, float, enumSoundEffect_short))0x806CEFF0)(x_, y_, z_, soundCode); }
+static inline void callSfx(enumSoundEffect_short sfxID) { ((void(*)(enumSoundEffect_short))0x806CF0F8)(sfxID); }
+static inline void playCharacterSound(int charID, enumCharacterSounds soundCode) { ((void(*)(int, enumCharacterSounds))0x806CF2B4)(charID, soundCode); }
+static inline void PlaySoundEffect(enumSoundEffect_short soundNumber) { ((void(*)(enumSoundEffect_short))0x806CF328)(soundNumber); }
+static inline void playOverSounds(void) { ((void(*)(void))0x806CF3BC)(); }
+static inline void cleanupCharacters(void) { ((void(*)(void))0x806CFD44)(); }
+static inline void hud_ScoreUpdate_ToyFieldOffScreenPlayers(void) { ((void(*)(void))0x806D04D0)(); }
+static inline void animateScreenRelated(void) { ((void(*)(void))0x806D0C30)(); }
+static inline void animateScreenRelated_806d0d04(void) { ((void(*)(void))0x806D0D04)(); }
+static inline void manageScoreboardGraphic(void) { ((void(*)(void))0x806D1058)(); }
+static inline void graphics_ShowScoreUpdateOnRBI_ongoing(void) { ((void(*)(void))0x806D29F4)(); }
+static inline void graphics_ShowScoreUpdateOnRBI_initial(void) { ((void(*)(void))0x806D2DF0)(); }
+static inline void relatedToAnimatingEndOfGame(void) { ((void(*)(void))0x806D3228)(); }
+static inline void HUD_ongoingStarChance(void) { ((void(*)(void))0x806D45FC)(); }
+static inline void HUD_initStarChance(void) { ((void(*)(void))0x806D4660)(); }
+static inline void drawDiamondMiniMap_ongoing(void) { ((void(*)(void))0x806D4A50)(); }
+static inline void drawDiamondMiniMap_init(void) { ((void(*)(void))0x806D5730)(); }
+static inline void toyfield_hud_turns_diamondMap(void) { ((void(*)(void))0x806D59A8)(); }
+static inline void handleInGameEventsAndSoundEffects(void) { ((void(*)(void))0x806D5D38)(); }
+static inline void manageEventStates(void) { ((void(*)(void))0x806D61D8)(); }
+static inline void animateMatchScene(void) { ((void(*)(void))0x806D6480)(); }
+static inline void initAnimStruct_(void) { ((void(*)(void))0x806D6894)(); }
+static inline void pauseMenu_ControlsMenu_(void) { ((void(*)(void))0x806D6D80)(); }
+static inline void animatePauseMenu(void) { ((void(*)(void))0x806D80F8)(); }
+static inline void wallBallAnimationRelated(void) { ((void(*)(void))0x806D88AC)(); }
+static inline void draw_OnBaseChemLinks(void) { ((void(*)(void))0x806D8D90)(); }
+static inline void draw_ongoingStarGuageHud(void) { ((void(*)(void))0x806D8EA4)(); }
+static inline void draw_initStarGuageHud(void) { ((void(*)(void))0x806D9938)(); }
+static inline void draw_ScoreInningHud(void) { ((void(*)(void))0x806DA888)(); }
+static inline void maybe_updateBallStrikeOutUI(undefined4 scene) { ((void(*)(undefined4))0x806DAF74)(scene); }
+static inline void update_BallStrikeOutHud(void) { ((void(*)(void))0x806DB0A8)(); }
+static inline void init_BallStrikeOutHud(void) { ((void(*)(void))0x806DB320)(); }
+static inline void matchHudDrawingControl(void) { ((void(*)(void))0x806DB60C)(); }
+static inline void runScored(void) { ((void(*)(void))0x806DB828)(); }
+static inline void categorizeBallTrajectory(void) { ((void(*)(void))0x806DBB84)(); }
+static inline void atBatBuntResult(void) { ((void(*)(void))0x806DBF0C)(); }
+static inline void atBatResultsForOuts(void) { ((void(*)(void))0x806DC1D4)(); }
+static inline void noForceOutInd_atBatResultsAfterForcedRunnersAllAdvance(void) { ((void(*)(void))0x806DC408)(); }
+static inline void setAtBatResult(void) { ((void(*)(void))0x806DC738)(); }
+static inline void setDefaultPlayTrackingVariables1(void) { ((void(*)(void))0x806DCBF0)(); }
+static inline void initializeInningTrackers(void) { ((void(*)(void))0x806DCC78)(); }
+static inline void bobOmbDerbyBatterAI2_(void) { ((void(*)(void))0x806DD3FC)(); }
+static inline int WeightedRandomIndex(byte * weights, int param_counter) { return ((int(*)(byte *, int))0x806DD634)(weights, param_counter); }
+static inline void iterateBatter(int teamBatting) { ((void(*)(int))0x806DD868)(teamBatting); }
+static inline void randomInRange_(void) { ((void(*)(void))0x806DDC60)(); }
+static inline void randBetween(void) { ((void(*)(void))0x806DDDB0)(); }
+static inline void RandomInt(void) { ((void(*)(void))0x806DDEB8)(); }
+static inline int RandomInt_Game(int MaxNum) { return ((int(*)(int))0x806DDF4C)(MaxNum); }
+static inline void calculateBallInterceptDistance_(InMemBall * inmemBall, int zero_, int ballFutureX_, int auStack_) { ((void(*)(InMemBall *, int, int, int))0x806DE064)(inmemBall, zero_, ballFutureX_, auStack_); }
+static inline void fieldersRunningToDugoutCalculateOffsets(undefined8 stadiumRelated, undefined8 fielderRelatedX, undefined8 fielderRelatedZ, int xOffset, int zOffset) { ((void(*)(undefined8, undefined8, undefined8, int, int))0x806DE830)(stadiumRelated, fielderRelatedX, fielderRelatedZ, xOffset, zOffset); }
+static inline void sinAndCosOfAngle(undefined8 angle, int cos_, int sin_) { ((void(*)(undefined8, int, int))0x806DE9F8)(angle, cos_, sin_); }
+static inline void getAngleComponents(short angle, int xComponent, int zComponent) { ((void(*)(short, int, int))0x806DEA5C)(angle, xComponent, zComponent); }
+static inline void radianAngleToPoint(undefined8 x_, undefined8 y_) { ((void(*)(undefined8, undefined8))0x806DEBD4)(x_, y_); }
+static inline void calculateAngleFromCoordinates(void) { ((void(*)(void))0x806DEC20)(); }
+static inline void calculateDiffInAngles_(undefined8 angle1, undefined8 angle2) { ((void(*)(undefined8, undefined8))0x806DECB0)(angle1, angle2); }
+static inline void angleDifferenceNormalized(short angle1, short angle2) { ((void(*)(short, short))0x806DED38)(angle1, angle2); }
+static inline void getDifferenceInAngle(int angle1, int angle2) { ((void(*)(int, int))0x806DED8C)(angle1, angle2); }
+static inline void normalizeAnglebetween_2048And2047(short anglePlus180) { ((void(*)(short))0x806DEDBC)(anglePlus180); }
+static inline short normalizeAngle(short BallAngle) { return ((short(*)(short))0x806DEF00)(BallAngle); }
+static inline double radianAngleReduction(double angle) { return ((double(*)(double))0x806DEF3C)(angle); }
+static inline void normalizeAngleToRange(undefined8 angleRadians) { ((void(*)(undefined8))0x806DEF98)(angleRadians); }
+static inline void convertRadiansToBase4096(void) { ((void(*)(void))0x806DEFF4)(); }
+static inline void normalizeAngle_806df040(void) { ((void(*)(void))0x806DF040)(); }
+static inline void someAngleFun(void) { ((void(*)(void))0x806DF0AC)(); }
+static inline void fielderAIDecideWhatRunnerToTarget(int fielderIndex) { ((void(*)(int))0x806DF130)(fielderIndex); }
+static inline void fielderAIWeirdSituation(void) { ((void(*)(void))0x806E10DC)(); }
+static inline void canThrowOutRunnerWhoNeedsToTagUp(void) { ((void(*)(void))0x806E12C0)(); }
+static inline void throwOutRunnerTaggingUpInd(void) { ((void(*)(void))0x806E1498)(); }
+static inline void genericPlayOnRunnerOffBase(void) { ((void(*)(void))0x806E1658)(); }
+static inline void fielderAIOutfieldPlayAttemptInd(void) { ((void(*)(void))0x806E2408)(); }
+static inline void fielderAIChaseRunner_(void) { ((void(*)(void))0x806E2D54)(); }
+static inline void fielderAIMakePlay(int targetRunner) { ((void(*)(int))0x806E3734)(targetRunner); }
+static inline void fieldingAIPlayStrategy(void) { ((void(*)(void))0x806E3AA4)(); }
+static inline void throwTimeToBase_(int baseCounter) { ((void(*)(int))0x806E3FE4)(baseCounter); }
+static inline void runnerTimeToCoverBase(int runnerIndex) { ((void(*)(int))0x806E4798)(runnerIndex); }
+static inline void fieldingAIThrowOrChase(int runnerNum) { ((void(*)(int))0x806E4BE0)(runnerNum); }
+static inline void howManyFramesTheRunnerIsOutOfReach(int runnerNum, int forwardsInd, int throwRunStrat, int runningOutStrat) { ((void(*)(int, int, int, int))0x806E5478)(runnerNum, forwardsInd, throwRunStrat, runningOutStrat); }
+static inline void estimatedThrowFramesBetweenTwoPoints_(undefined8 x1_, undefined8 y1, undefined8 x2, undefined8 y2) { ((void(*)(undefined8, undefined8, undefined8, undefined8))0x806E58A4)(x1_, y1, x2, y2); }
+static inline void tagRelated(void) { ((void(*)(void))0x806E5F2C)(); }
+static inline void tagOutValues(undefined8 distToBase, int fielderIndex) { ((void(*)(undefined8, int))0x806E60D4)(distToBase, fielderIndex); }
+static inline void fielderHasBall(void) { ((void(*)(void))0x806E6748)(); }
+static inline void checkForBufferedThrow(void) { ((void(*)(void))0x806E6D1C)(); }
+static inline void fielderControl_classifyControlStickDirection(void) { ((void(*)(void))0x806E6F8C)(); }
+static inline void setRunnerChasingAfter_(int fielderIndex) { ((void(*)(int))0x806E7108)(fielderIndex); }
+static inline void fielderChasingAI_(void) { ((void(*)(void))0x806E73CC)(); }
+static inline void runnerTagUpOrBatterTo1B(void) { ((void(*)(void))0x806E750C)(); }
+static inline void maybeUnused_SetThrowSpeedType2(void) { ((void(*)(void))0x806E765C)(); }
+static inline void knockBallLoose(int fielderIndex, int knockOutCause) { ((void(*)(int, int))0x806E83E8)(fielderIndex, knockOutCause); }
+static inline void fielderBodyCheck_setStatus_Pos_Velo(int fielderIndex) { ((void(*)(int))0x806E8790)(fielderIndex); }
+static inline void fielderKnockback(int fielderIndex) { ((void(*)(int))0x806E8A18)(fielderIndex); }
+static inline void setFielder215(void) { ((void(*)(void))0x806E8D08)(); }
+static inline void autoMovement10_HasBall(int fielderIndex) { ((void(*)(int))0x806E8DB4)(fielderIndex); }
+static inline void setCutoffThrowTargetLocation(undefined4 throwTargetX, undefined4 throwTargetZ) { ((void(*)(undefined4, undefined4))0x806EA084)(throwTargetX, throwTargetZ); }
+static inline void initializeThrowAngle_Speed_Length(int framesForFielderToGetToLoc, float * throwAngle, float * throwSpeed) { ((void(*)(int, float *, float *))0x806EA644)(framesForFielderToGetToLoc, throwAngle, throwSpeed); }
+static inline void makeThrowVariables(int throwingFielder) { ((void(*)(int))0x806EAE64)(throwingFielder); }
+static inline void howToPlayScreen_(void) { ((void(*)(void))0x806EBB8C)(); }
+static inline void controlOptionsMenu(void) { ((void(*)(void))0x806EBDCC)(); }
+static inline void pauseMenuControl(void) { ((void(*)(void))0x806EC1F8)(); }
+static inline void positionSwapScreenInputs(void) { ((void(*)(void))0x806EC450)(); }
+static inline void positionSwap(void) { ((void(*)(void))0x806EC960)(); }
+static inline void loadPauseMenu_(void) { ((void(*)(void))0x806EE1A0)(); }
+static inline void pauseMenuControl_806ee638(void) { ((void(*)(void))0x806EE638)(); }
+static inline void transitionToPauseScreen(void) { ((void(*)(void))0x806EEAF8)(); }
+static inline void match_checkForPause(void) { ((void(*)(void))0x806EEBF8)(); }
+static inline void setPausedTo0AndOtherStateVars(void) { ((void(*)(void))0x806EEE38)(); }
+static inline void practiceRelatedPostPlay(void) { ((void(*)(void))0x806EEEA0)(); }
+static inline void guidedPracticeRelated(void) { ((void(*)(void))0x806EF0D0)(); }
+static inline void unused__806ef274(void) { ((void(*)(void))0x806EF274)(); }
+static inline void someBattingPitchingCallFuns(void) { ((void(*)(void))0x806EF2F0)(); }
+static inline void battingPracticeRelated(void) { ((void(*)(void))0x806EF33C)(); }
+static inline void unused__806ef4f8(void) { ((void(*)(void))0x806EF4F8)(); }
+static inline void battingPracticeSomething(void) { ((void(*)(void))0x806EF600)(); }
+static inline void battingPracticeSwitcher(void) { ((void(*)(void))0x806EF908)(); }
+static inline void battingPracticeControl(void) { ((void(*)(void))0x806EFB40)(); }
+static inline void fieldingPractice_setHitVariables(void) { ((void(*)(void))0x806EFBF0)(); }
+static inline void batterAI_buntForPractice(void) { ((void(*)(void))0x806EFD88)(); }
+static inline void fieldingPracticeAISwingDecision(void) { ((void(*)(void))0x806EFDC0)(); }
+static inline void practice_fieldingRelated(void) { ((void(*)(void))0x806EFE94)(); }
+static inline void unused_806f0264(void) { ((void(*)(void))0x806F0264)(); }
+static inline void unused_806f038c(void) { ((void(*)(void))0x806F038C)(); }
+static inline void practiceRelatedUnused_(void) { ((void(*)(void))0x806F0504)(); }
+static inline void fieldingPracticeInitialization_(void) { ((void(*)(void))0x806F060C)(); }
+static inline void fieldingPracticeRelated(void) { ((void(*)(void))0x806F0AC4)(); }
+static inline void fieldingPracticeControl(void) { ((void(*)(void))0x806F0CA8)(); }
+static inline void loadGuidedPractice(void) { ((void(*)(void))0x806F0D44)(); }
+static inline void playPracticeCPUInputs(void) { ((void(*)(void))0x806F0E64)(); }
+static inline void setUpPlayerTryingSkill(void) { ((void(*)(void))0x806F15E0)(); }
+static inline void practice_giveAndDemonstrateInstructions(void) { ((void(*)(void))0x806F16C4)(); }
+static inline void practiceRelatedInit(void) { ((void(*)(void))0x806F1838)(); }
+static inline void practice_pause_unloadPauseMenu_(void) { ((void(*)(void))0x806F193C)(); }
+static inline void practicePauseRelated(void) { ((void(*)(void))0x806F1EB4)(); }
+static inline void practice_checkForPause(void) { ((void(*)(void))0x806F234C)(); }
+static inline void practiceMenuLogic(void) { ((void(*)(void))0x806F24DC)(); }
+static inline void practiceLogicRelatedPause(void) { ((void(*)(void))0x806F26B4)(); }
+static inline void transitionToPlayerControl_806f2ae0(void) { ((void(*)(void))0x806F2AE0)(); }
+static inline void practiceRelatedReset(void) { ((void(*)(void))0x806F2C04)(); }
+static inline void baserunningPracticeRelated(void) { ((void(*)(void))0x806F2C64)(); }
+static inline void setTutorialState(void) { ((void(*)(void))0x806F2D0C)(); }
+static inline void updatePracticeTransitionState(byte state) { ((void(*)(byte))0x806F2D28)(state); }
+static inline void switchSecondaryGameMode(void) { ((void(*)(void))0x806F2D40)(); }
+static inline void practice_relatedToSettingCharacters(void) { ((void(*)(void))0x806F2D68)(); }
+static inline void practiceLoadingRelatedMaybe(void) { ((void(*)(void))0x806F307C)(); }
+static inline void practice_loadCharacter(undefined4 teamIndex, undefined4 rosterIndex, undefined4 characterID, undefined4 editHandedness) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x806F31B8)(teamIndex, rosterIndex, characterID, editHandedness); }
+static inline void practice_loadCharacterData(void) { ((void(*)(void))0x806F333C)(); }
+static inline void loadPracticeScreen(void) { ((void(*)(void))0x806F347C)(); }
+static inline void practiceSimulation(void) { ((void(*)(void))0x806F38C0)(); }
+static inline void practiceRelatedMenu(void) { ((void(*)(void))0x806F3CD4)(); }
+static inline void unref(void) { ((void(*)(void))0x806F4124)(); }
+static inline void practice_subMenu_stateHandling(void) { ((void(*)(void))0x806F4278)(); }
+static inline void notReferenced(void) { ((void(*)(void))0x806F4728)(); }
+static inline void practice_mainMenu_stateHandling(void) { ((void(*)(void))0x806F48AC)(); }
+static inline void unused_MaybePractice(void) { ((void(*)(void))0x806F4D48)(); }
+static inline void practiceMenu(void) { ((void(*)(void))0x806F4E0C)(); }
+static inline void unused_806f5184(void) { ((void(*)(void))0x806F5184)(); }
+static inline void unused_806f5254(void) { ((void(*)(void))0x806F5254)(); }
+static inline void practiceRelUnuse_(void) { ((void(*)(void))0x806F53B4)(); }
+static inline void pitchingPractice_BaseballControl(void) { ((void(*)(void))0x806F54D4)(); }
+static inline void pitchingPracticeRelated(void) { ((void(*)(void))0x806F5A28)(); }
+static inline void pitchingPracticeControl(void) { ((void(*)(void))0x806F5C38)(); }
+static inline void unused_806f5f2c(void) { ((void(*)(void))0x806F5F2C)(); }
+static inline void unused_806f6000(void) { ((void(*)(void))0x806F6000)(); }
+static inline int practiceRelatedUnused__806f6110(void) { return ((int(*)(void))0x806F6110)(); }
+static inline void baseRunningPracticeRelated(void) { ((void(*)(void))0x806F6218)(); }
+static inline void practiceRel(void) { ((void(*)(void))0x806F66B4)(); }
+static inline void baseRunningPracticeControl(void) { ((void(*)(void))0x806F6870)(); }
+static inline bool checkFielderCollision(float * inParamFielder, float * futureCoordinate) { return ((bool(*)(float *, float *))0x806F6CC0)(inParamFielder, futureCoordinate); }
+static inline void isCoordinateUncatchableTerrain(float xCoordParam, float zCoordParam) { ((void(*)(float, float))0x806F6D70)(xCoordParam, zCoordParam); }
+static inline bool foul_isBallWithin3mFair_(double x_, double y_) { return ((bool(*)(double, double))0x806F6E00)(x_, y_); }
+static inline void foul_ifBallConsideredPastTheBases(undefined8 ballX, undefined8 ballZ) { ((void(*)(undefined8, undefined8))0x806F6E6C)(ballX, ballZ); }
+static inline int foul_checkIfFoul(double x_, double z_) { return ((int(*)(double, double))0x806F6EA4)(x_, z_); }
+static inline double DistanceSquared(Vec3f * velo1, Vec3f * velo2) { return ((double(*)(Vec3f *, Vec3f *))0x806F6F84)(velo1, velo2); }
+static inline void CrossProduct(Vec3f * out_, Vec3f * a, Vec3f * b) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x806F6FAC)(out_, a, b); }
+static inline void rng(void) { ((void(*)(void))0x806F7004)(); }
+static inline void randomizeAndLoadSoundEffect(int soundID, int param_2) { ((void(*)(int, int))0x806F705C)(soundID, param_2); }
+static inline void maybeYoshiParkGXRelated(void) { ((void(*)(void))0x806F7164)(); }
+static inline void storeBoundingBoxCoordinates(int minCoordsDest, int maxCoordsDest) { ((void(*)(int, int))0x806F74A8)(minCoordsDest, maxCoordsDest); }
+static inline void transformVectorsUpdateBoundingBox(int transformMatrix, int vertexData) { ((void(*)(int, int))0x806F74F8)(transformMatrix, vertexData); }
+static inline void initBoundingBoxLimits(void) { ((void(*)(void))0x806F7608)(); }
+static inline int calculateHazardDataAddress(int index, int * calculatedAddress) { return ((int(*)(int, int *))0x806F763C)(index, calculatedAddress); }
+static inline void CopyOutVecSrcDst(int index, Vec3f * src, Vec3f * dst) { ((void(*)(int, Vec3f *, Vec3f *))0x806F7670)(index, src, dst); }
+static inline void loadStadiumObjectVisuals(Mtx * param_1, int param_2, int param_3) { ((void(*)(Mtx *, int, int))0x806F78BC)(param_1, param_2, param_3); }
+static inline void initStadiumObjectData(void) { ((void(*)(void))0x806F8120)(); }
+static inline void updateStadiumObjCollision(void) { ((void(*)(void))0x806F81B8)(); }
+static inline void processStadiumObjectFunction(EnumStadiumIDs4 stadium, Vec3f * vec, TriangleCollisionTypes triangleCollisionType, OutCollisionStruct * outCollisionStruct) { ((void(*)(EnumStadiumIDs4, Vec3f *, TriangleCollisionTypes, OutCollisionStruct *))0x806F8200)(stadium, vec, triangleCollisionType, outCollisionStruct); }
+static inline TriangleGroup * getStadiumHazardTriangles(EnumStadiumIDs4 stadium, int offset, Mtx * mtx) { return ((TriangleGroup *(*)(EnumStadiumIDs4, int, Mtx *))0x806F825C)(stadium, offset, mtx); }
+static inline void updateGameStatusFlag(void) { ((void(*)(void))0x806F8430)(); }
+static inline void hazardSimulationRelated(void) { ((void(*)(void))0x806F8460)(); }
+static inline void cleanupMinigameResources(void) { ((void(*)(void))0x806F8680)(); }
+static inline void actOrAnimRelated(ACTActor * act_, AnimBank * act2_) { ((void(*)(ACTActor *, AnimBank *))0x806F8870)(act_, act2_); }
+static inline void calledWhileMatchIsLoading_(void) { ((void(*)(void))0x806F8A78)(); }
+static inline int loadStadiumObjects(EnumStadiumIDs4 stadiumID) { return ((int(*)(EnumStadiumIDs4))0x806F8C48)(stadiumID); }
+static inline void processStadiumFileObjects(enumObjTypeInFile_ * objTypeArray, int numObjects, int baseAddr, int outputArray) { ((void(*)(enumObjTypeInFile_ *, int, int, int))0x806F8DFC)(objTypeArray, numObjects, baseAddr, outputArray); }
+static inline void loadStadiumLighting(int mStadiumType, int stadiumData) { ((void(*)(int, int))0x806F904C)(mStadiumType, stadiumData); }
+static inline void spriteAnimations_(void) { ((void(*)(void))0x806FB028)(); }
+static inline void animateDustCloudsBehindFielder_Runner(void) { ((void(*)(void))0x806FB370)(); }
+static inline void maybeFireworks_(int param_1, int param_2, int maybeShape_, int param_4) { ((void(*)(int, int, int, int))0x806FB76C)(param_1, param_2, maybeShape_, param_4); }
+static inline void drawSun(void) { ((void(*)(void))0x806FBAB4)(); }
+static inline void sunRelated(void) { ((void(*)(void))0x806FC26C)(); }
+static inline void setSunLocation(int stadiumID, int miniGameStadInd) { ((void(*)(int, int))0x806FC4C8)(stadiumID, miniGameStadInd); }
+static inline void animationRelated_806fc598(void) { ((void(*)(void))0x806FC598)(); }
+static inline void setContactWordSprite(void) { ((void(*)(void))0x806FD208)(); }
+static inline void pauseStateOnStadiums_(void) { ((void(*)(void))0x806FE1EC)(); }
+static inline void pauseAnimations_(void) { ((void(*)(void))0x806FE240)(); }
+static inline void maybeHudRelated(void) { ((void(*)(void))0x806FE754)(); }
+static inline void maybeLoadHUDObjectFromMemory(void) { ((void(*)(void))0x806FE90C)(); }
+static inline void chargeAnimRelated(void) { ((void(*)(void))0x806FF834)(); }
+static inline void applyChargeAnimationEffect(double param_1, double param_2, int animIndex, int param_4) { ((void(*)(double, double, int, int))0x807003D8)(param_1, param_2, animIndex, param_4); }
+static inline void maybeConfigureChargeEffectGraphics(int animIndex) { ((void(*)(int))0x80700804)(animIndex); }
+static inline void bowserCastleSomething(void) { ((void(*)(void))0x80702A5C)(); }
+static inline void thwomp_screenShake(void) { ((void(*)(void))0x80702ACC)(); }
+static inline void bowserCastleStarPadsContaactFn(void) { ((void(*)(void))0x807031E0)(); }
+static inline void stadiumObjCollision_Castle__(void) { ((void(*)(void))0x80703338)(); }
+static inline void castleFireballMaybe(void) { ((void(*)(void))0x80704D74)(); }
+static inline void bowserCastleRelated(void) { ((void(*)(void))0x80704E70)(); }
+static inline void flameControl(castleFireObject * currFire) { ((void(*)(castleFireObject *))0x80705464)(currFire); }
+static inline void stadiumObjRelated_Castle__(int currentVertexIndex, int currentObjectIndex) { ((void(*)(int, int))0x80706260)(currentVertexIndex, currentObjectIndex); }
+static inline void thwomp_bounceOffSoundAndVisualFx_(void) { ((void(*)(void))0x80706530)(); }
+static inline ulong thwomp_smokeRelated(void) { return ((ulong(*)(void))0x8070664C)(); }
+static inline void thwomp_slamControl(castleThwompObj * thwompObj) { ((void(*)(castleThwompObj *))0x80706AA0)(thwompObj); }
+static inline void loadBowserCastle(int baseAddr) { ((void(*)(int))0x807076E4)(baseAddr); }
+static inline void manageMarioStadiumSoundEmmitters(void) { ((void(*)(void))0x807087D8)(); }
+static inline void fanAnimationRelated(void) { ((void(*)(void))0x8070890C)(); }
+static inline void sta_c0(void) { ((void(*)(void))0x80708D28)(); }
+static inline void loadMarioStadium(int baseLoadAddress) { ((void(*)(int))0x80708E48)(baseLoadAddress); }
+static inline void perfectPitchGraphicsRelated(void) { ((void(*)(void))0x8070A030)(); }
+static inline void animatePitchersHandOnFire(void) { ((void(*)(void))0x8070A440)(); }
+static inline void stadiumStarAnimation(void) { ((void(*)(void))0x8070A7CC)(); }
+static inline void stadiumStarAwarded(float param_1, float param_2, float param_3) { ((void(*)(float, float, float))0x8070A87C)(param_1, param_2, param_3); }
+static inline void palaceStadiumObjTransformationAndPhysics(castleThwompObj * stadiumObj) { ((void(*)(castleThwompObj *))0x8070B014)(stadiumObj); }
+static inline void mPalaceObjHandling(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8070B658)(obj); }
+static inline void maybeChainChompSprintCTRLRelated(void) { ((void(*)(void))0x8070B8B0)(); }
+static inline void palaceMinigameObjectLoading(void) { ((void(*)(void))0x8070BCB8)(); }
+static inline void palaceHazeTextureMaybe(void) { ((void(*)(void))0x8070D600)(); }
+static inline void warioPalaceSomething(void) { ((void(*)(void))0x8070D978)(); }
+static inline void starHitAnimation_(void) { ((void(*)(void))0x8070E7C0)(); }
+static inline void warioPalaceSandStarRelated(undefined4 sandStar) { ((void(*)(undefined4))0x8070E9C4)(sandStar); }
+static inline void palaceNadoLogic_(castleThwompObj * param_1) { ((void(*)(castleThwompObj *))0x8070F9AC)(param_1); }
+static inline void maybePalaceCTRLRelated(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80710314)(obj); }
+static inline void applyTransformationToPalaceObjs(void) { ((void(*)(void))0x807107D0)(); }
+static inline void chomp_attackBall(palaceChompObj * chomp) { ((void(*)(palaceChompObj *))0x80711AA0)(chomp); }
+static inline void chompState3(void) { ((void(*)(void))0x80712164)(); }
+static inline void chompState1(void) { ((void(*)(void))0x80712914)(); }
+static inline void chompState0(palaceChompObj * chompObj) { ((void(*)(palaceChompObj *))0x80712D70)(chompObj); }
+static inline void palaceChainChompControl(palaceChompObj * chomp) { ((void(*)(palaceChompObj *))0x80712FE8)(chomp); }
+static inline void someCTRLButNotCalled(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80713D38)(obj); }
+static inline void someCTRLButNotCalled2(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80713E94)(obj); }
+static inline void processPalaceObjectCollisions(void) { ((void(*)(void))0x80714680)(); }
+static inline void stadiumObjCollisionRelated_Palace__(void) { ((void(*)(void))0x80714F14)(); }
+static inline void loadWarioPalace_(void) { ((void(*)(void))0x80715860)(); }
+static inline void toyFieldRelated(void) { ((void(*)(void))0x80718AC4)(); }
+static inline void toyFieldPoints_(void) { ((void(*)(void))0x807198C8)(); }
+static inline void processToyFieldBallState(void) { ((void(*)(void))0x8071B414)(); }
+static inline void toyFieldPause(void) { ((void(*)(void))0x8071BD14)(); }
+static inline void toyFieldStateTransitionRelated(void) { ((void(*)(void))0x8071C094)(); }
+static inline void toyFieldInningTransition(void) { ((void(*)(void))0x8071C23C)(); }
+static inline void toyFieldLiveBall(void) { ((void(*)(void))0x8071CA38)(); }
+static inline void initializeStgh2(void) { ((void(*)(void))0x8071CFB0)(); }
+static inline void initializeToyFieldSomething(void) { ((void(*)(void))0x8071D7D8)(); }
+static inline void toyFieldRelated_8071dc24(void) { ((void(*)(void))0x8071DC24)(); }
+static inline void toyFieldTransitionPrepareNextPlay(void) { ((void(*)(void))0x8071E0A0)(); }
+static inline void toyFieldTransitionToMinigameStart(void) { ((void(*)(void))0x8071E2F0)(); }
+static inline void toyFieldGameStartMovie(void) { ((void(*)(void))0x8071E46C)(); }
+static inline void initializeMinigameData(void) { ((void(*)(void))0x8071E968)(); }
+static inline void toyfieldSimulation(void) { ((void(*)(void))0x8071EC40)(); }
+static inline void updateMinigameFielderAnimations(void) { ((void(*)(void))0x8072050C)(); }
+static inline void graphicsFunction_minigames_(void) { ((void(*)(void))0x80720A7C)(); }
+static inline void parkPlantMaybe(void) { ((void(*)(void))0x80721700)(); }
+static inline int managePlantBallInteraction(castleThwompObj * obj) { return ((int(*)(castleThwompObj *))0x80721C04)(obj); }
+static inline void updateStadiumObjStateAndTransform(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80721F0C)(obj); }
+static inline void yoshiParkPlantRelated(void) { ((void(*)(void))0x80721FE0)(); }
+static inline void nadoRelated_(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807220D8)(obj); }
+static inline void handleYoshiParkPlantInteraction(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80722318)(obj); }
+static inline void loadYoshiPark2SubFun(int obj) { ((void(*)(int))0x807226FC)(obj); }
+static inline void maybe_YoshiParkPlantsPopUp(castleThwompObj * stadObj) { ((void(*)(castleThwompObj *))0x807227F8)(stadObj); }
+static inline void controlYoshiParkPlants(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80722C1C)(obj); }
+static inline void processYoshiParkPlantBoundingBoxes(int currentVertexIndex, int currentObjectIndex) { ((void(*)(int, int))0x80723D44)(currentVertexIndex, currentObjectIndex); }
+static inline void loadYoshiPark(void) { ((void(*)(void))0x80724058)(); }
+static inline void processToyFieldObjectCollisions(void) { ((void(*)(void))0x8072641C)(); }
+static inline void loadToyField_(void) { ((void(*)(void))0x80727BB8)(); }
+static inline void toyfield_offScreenCharacterImage(void) { ((void(*)(void))0x80728DC4)(); }
+static inline void toyfield_offScreenCharacterImage_loadFn(void) { ((void(*)(void))0x807293D4)(); }
+static inline void toyField_draw_theCoinsBesideThe_CoinsX2_Graphic(void) { ((void(*)(void))0x8072C524)(); }
+static inline void toyFieldDrawRelated_miniMap_(void) { ((void(*)(void))0x8072C608)(); }
+static inline void toyField_hud_scores_BallsStrikesOuts(void) { ((void(*)(void))0x8072C8AC)(); }
+static inline void toyfield_drawHud(void) { ((void(*)(void))0x8072CDA4)(); }
+static inline void klaptrapHitAnimation(int klaptrapIndex) { ((void(*)(int))0x8072E068)(klaptrapIndex); }
+static inline void jungleStadiumObjectRelated(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8072E49C)(obj); }
+static inline void jungleObjState4(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8072E9C4)(obj); }
+static inline void jungleObjState2(castleThwompObj * param_1) { ((void(*)(castleThwompObj *))0x8072F2B8)(param_1); }
+static inline void jungleObjState1(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8072F8C0)(obj); }
+static inline void jungleCTRLRelated(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80730038)(obj); }
+static inline void klaptrapCTRLSetup(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807304DC)(obj); }
+static inline void maybeGharialCTRLRel(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807305AC)(obj); }
+static inline void handleDKJungleBarrels(void * param_1) { ((void(*)(void *))0x807309D0)(param_1); }
+static inline void dkBarrelCollision_(void) { ((void(*)(void))0x80730EC0)(); }
+static inline void dkBarrel_collisionWithFielder(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x807314DC)(param_1); }
+static inline void dkBarrelCollisionRElated_(void) { ((void(*)(void))0x807319CC)(); }
+static inline void unreferenced_80732090(void) { ((void(*)(void))0x80732090)(); }
+static inline void setBarrelTrajectory(undefined8 targetX, undefined8 targetZ, jungleBarrelObj * obj) { ((void(*)(undefined8, undefined8, jungleBarrelObj *))0x80732274)(targetX, targetZ, obj); }
+static inline void dkJungleRelated(void) { ((void(*)(void))0x80733734)(); }
+static inline void unreferenced_80733ce0(void) { ((void(*)(void))0x80733CE0)(); }
+static inline void handleBarrelFiring(jungleBarrelObj * stadiumObject_) { ((void(*)(jungleBarrelObj *))0x80734050)(stadiumObject_); }
+static inline void dkJungleHazardsLogic(jungleBarrelObj * obj) { ((void(*)(jungleBarrelObj *))0x80734760)(obj); }
+static inline void processJungleObjectCollisions(void) { ((void(*)(void))0x80735118)(); }
+static inline void updateDKJungleObjBoundingBoxes(int objIndex_) { ((void(*)(int))0x8073575C)(objIndex_); }
+static inline void maybeBarrelCTRLRel(void) { ((void(*)(void))0x807359CC)(); }
+static inline void updateDKJungleControl(void) { ((void(*)(void))0x80735CF4)(); }
+static inline void loadDKJungle_(void) { ((void(*)(void))0x80736070)(); }
+static inline void peachGardenSomething(void) { ((void(*)(void))0x80737B50)(); }
+static inline void loadPeachGarden_(void) { ((void(*)(void))0x80739620)(); }
+static inline void camera_switchScene(cameraScene sceneID) { ((void(*)(cameraScene))0x8073AE40)(sceneID); }
+static inline void camera_replay_(void) { ((void(*)(void))0x8073AEB8)(); }
+static inline void manageDrawingItemState(void) { ((void(*)(void))0x8073CAB0)(); }
+static inline void unkPauseSimulationCheck(void) { ((void(*)(void))0x8073F110)(); }
+static inline void someAllocFunction(void) { ((void(*)(void))0x80745E90)(); }
+static inline void loadSomeDataFile(void) { ((void(*)(void))0x80745EE4)(); }
+static inline void unreferenced_80745f68(void) { ((void(*)(void))0x80745F68)(); }
+static inline void minigames_0x27(void) { ((void(*)(void))0x80746138)(); }
+static inline void minigames_0x26(void) { ((void(*)(void))0x807462C0)(); }
+static inline void minigames_0x28(void) { ((void(*)(void))0x80746818)(); }
+static inline void AI_getPort(undefined1 portNum) { ((void(*)(undefined1))0x80746E48)(portNum); }
+static inline void minigame_checkIfAIInputIs_Algorithmic_Or_ControllerBased(byte rosterID) { ((void(*)(byte))0x80746ED0)(rosterID); }
+static inline void minigamePause(void) { ((void(*)(void))0x80747548)(); }
+static inline void checkForPauses_(void) { ((void(*)(void))0x807478E8)(); }
+static inline void postMinigame(void) { ((void(*)(void))0x80747CE8)(); }
+static inline void minigameEndSwitcher(void) { ((void(*)(void))0x80749134)(); }
+static inline void minigameStartSwitcher(void) { ((void(*)(void))0x80749F84)(); }
+static inline void minigames_pickOpponentsAndLoadStats_(void) { ((void(*)(void))0x8074AF10)(); }
+static inline void unused_8074b4e4(void) { ((void(*)(void))0x8074B4E4)(); }
+static inline void unused_8074b620(void) { ((void(*)(void))0x8074B620)(); }
+static inline void toyFieldCharSelectSwitcher(void) { ((void(*)(void))0x8074D6A0)(); }
+static inline void minigameSelectSwitcher(void) { ((void(*)(void))0x8074E268)(); }
+static inline void toyFieldStadiumLoad(void) { ((void(*)(void))0x8074E46C)(); }
+static inline void minigameSimulation(void) { ((void(*)(void))0x8074EE5C)(); }
+static inline void unusedBattingSomething(void) { ((void(*)(void))0x8074F568)(); }
+static inline void bobOmbDerbyBatterAI(void) { ((void(*)(void))0x8074F6C8)(); }
+static inline void BODScoring_(void) { ((void(*)(void))0x8074FB68)(); }
+static inline void unused_BODRelated(void) { ((void(*)(void))0x807500CC)(); }
+static inline void bobOmbDerbyCalculatePoints(void) { ((void(*)(void))0x80750348)(); }
+static inline void unusedBODFunction(void) { ((void(*)(void))0x807507CC)(); }
+static inline void bOD_bB_Pitcher_waitingForPitch(void) { ((void(*)(void))0x80750948)(); }
+static inline void unused_80750cf0(void) { ((void(*)(void))0x80750CF0)(); }
+static inline void bobOmbDerbyPitchTransition(void) { ((void(*)(void))0x807512C4)(); }
+static inline void bOD_LoadGame(void) { ((void(*)(void))0x807516A4)(); }
+static inline void bobOmbDerbySimulation(void) { ((void(*)(void))0x80751C6C)(); }
+static inline void wallBallMultiplayer_AIControl(void) { ((void(*)(void))0x80752458)(); }
+static inline void wallBallAIPitches(void) { ((void(*)(void))0x80752790)(); }
+static inline void wallBallCalc_WallsBroken(void) { ((void(*)(void))0x80752ADC)(); }
+static inline void wallBallSomething2(void) { ((void(*)(void))0x80752FA8)(); }
+static inline void wallBallDropInNewWalls(void) { ((void(*)(void))0x80753298)(); }
+static inline void wallBallCalculateNewWalls(void) { ((void(*)(void))0x80753418)(); }
+static inline void wallBallRotatePitchers(void) { ((void(*)(void))0x80753B1C)(); }
+static inline void wallBallCalculatePointsAndEndTurn(void) { ((void(*)(void))0x8075419C)(); }
+static inline void unreferenced_807545d4(void) { ((void(*)(void))0x807545D4)(); }
+static inline void unreferenced_80754a0c(void) { ((void(*)(void))0x80754A0C)(); }
+static inline void wallBallInitializeValues(void) { ((void(*)(void))0x80754CB8)(); }
+static inline void wallBallSituationSwitcher(void) { ((void(*)(void))0x80755150)(); }
+static inline void nonPracticePitchingMachineLogic_(void) { ((void(*)(void))0x807599C0)(); }
+static inline void loadPitchingMachineModel(void) { ((void(*)(void))0x80759BC0)(); }
+static inline void minigameStateLogic(void) { ((void(*)(void))0x80763438)(); }
+static inline void minigameGraphics(void) { ((void(*)(void))0x8076C288)(); }
+static inline void bB_AI(void) { ((void(*)(void))0x8076CC14)(); }
+static inline void bB_AI_setSwingVariables(void) { ((void(*)(void))0x8076CE60)(); }
+static inline void unused_BarrelBatterRelated(void) { ((void(*)(void))0x8076D8D0)(); }
+static inline void bB_chooseBombBarrel_dropNewBarrels(void) { ((void(*)(void))0x8076D990)(); }
+static inline void bB_likelyReplaceBlownUpBarrels(undefined4 bIndex) { ((void(*)(undefined4))0x8076E038)(bIndex); }
+static inline void bB_connectingBarrels(int barrelNum_, short blowUpDelay, int bombBarrelHitInd) { ((void(*)(int, short, int))0x8076E4B8)(barrelNum_, blowUpDelay, bombBarrelHitInd); }
+static inline void bB_checkIfBarrelHitAndCalculateScore(void) { ((void(*)(void))0x8076E6B8)(); }
+static inline void barrelBatterLiveBallSubFun(void) { ((void(*)(void))0x8076F31C)(); }
+static inline void bobombDerbyRelated(void) { ((void(*)(void))0x8076FB60)(); }
+static inline void bB_AtBat(void) { ((void(*)(void))0x8076FD00)(); }
+static inline void barrelBatterTransitionToMainFunction(void) { ((void(*)(void))0x807705D4)(); }
+static inline void bB_LoadGame(void) { ((void(*)(void))0x80771150)(); }
+static inline void barrelBatterSwitcher(void) { ((void(*)(void))0x8077157C)(); }
+static inline void unused_80774af8(void) { ((void(*)(void))0x80774AF8)(); }
+static inline void minigame_transferPoints(void) { ((void(*)(void))0x807790DC)(); }
+static inline void starDashRelated(void) { ((void(*)(void))0x80779140)(); }
+static inline void starDashRelated_80779b0c(void) { ((void(*)(void))0x80779B0C)(); }
+static inline void starDashLiveBall(void) { ((void(*)(void))0x8077A318)(); }
+static inline void starDashSomething(void) { ((void(*)(void))0x8077AD4C)(); }
+static inline void starDashSwitcher(void) { ((void(*)(void))0x8077B4FC)(); }
+static inline void chainChompSpringPoints_(void) { ((void(*)(void))0x8077DAC4)(); }
+static inline void chainChompSpringMainFun(void) { ((void(*)(void))0x8077FD74)(); }
+static inline void mVPRelated(void) { ((void(*)(void))0x80780184)(); }
+static inline void chainChompSprintRelated(void) { ((void(*)(void))0x80780540)(); }
+static inline void chainChompSprintSwitcher(void) { ((void(*)(void))0x80780AC4)(); }
+static inline void pP_relatedToCalculatingHeldBallLoc(void) { ((void(*)(void))0x807837B0)(); }
+static inline void piranhaPanicPoints_(int param_1) { ((void(*)(int))0x80784450)(param_1); }
+static inline void ppRelated(void) { ((void(*)(void))0x80784C2C)(); }
+static inline void piranhaPanicLiveBall(void) { ((void(*)(void))0x8078549C)(); }
+static inline void piranhaPanicRelated(void) { ((void(*)(void))0x80785B24)(); }
+static inline void piranhaPanicSwitcher(void) { ((void(*)(void))0x80786258)(); }
+static inline void barrelBatterRel(void) { ((void(*)(void))0x807899A0)(); }
+static inline void wallBall_updateSomePointers(void) { ((void(*)(void))0x8078F15C)(); }
+static inline void bobOmbDerbyPitching(void) { ((void(*)(void))0x8079431C)(); }
+static inline void bODPitchAnimation(void) { ((void(*)(void))0x807952AC)(); }
+static inline void practiceAnimationRelated4(void) { ((void(*)(void))0x80796EBC)(); }
+static inline void practiceAnimationRelated2(void) { ((void(*)(void))0x80797140)(); }
+static inline void practiceAnimationRelated_text_(void) { ((void(*)(void))0x80797BF8)(); }
+static inline void practiceAnimationRelated(void) { ((void(*)(void))0x80798078)(); }
+static inline void graphicsRelated(void) { ((void(*)(void))0x80798A4C)(); }
+static inline void animationOrDrawingRelated(void) { ((void(*)(void))0x807994DC)(); }
+static inline void practice_drawHud_(void) { ((void(*)(void))0x807997F0)(); }
+static inline void animatePracticeScene(void) { ((void(*)(void))0x80799A88)(); }
+static inline void practice_startPitchAfter90Frames(void) { ((void(*)(void))0x80799E28)(); }
+static inline void practiceRelated(void) { ((void(*)(void))0x80799EC8)(); }
+static inline void _unused_matchSimulationRelated(void) { ((void(*)(void))0x8079A00C)(); }
+static inline void fieldingPractice_resetMem(void) { ((void(*)(void))0x8079A16C)(); }
+static inline void fieldingPracticeRelated_8079a528(void) { ((void(*)(void))0x8079A528)(); }
+static inline void freeFieldingPracticeControl(void) { ((void(*)(void))0x8079A6A4)(); }
+static inline void animationRelated_8079a830(void) { ((void(*)(void))0x8079A830)(); }
+static inline void peachDaisyStarSwingRelated2(void) { ((void(*)(void))0x8079B094)(); }
+static inline void peachDaisyStarSwingRelated(void) { ((void(*)(void))0x8079B0A8)(); }
+static inline void compilingStats_(void) { ((void(*)(void))0x8079C26C)(); }
+static inline void animateMVP_GameEnd(void) { ((void(*)(void))0x8079E4A4)(); }
+static inline void starMissionsMinigamesSpecialAction(int missionCode, int pointsEarned, int specialActionCount) { ((void(*)(int, int, int))0x8079F984)(missionCode, pointsEarned, specialActionCount); }
+static inline void starMissionsMinigamesTotalPoints(void) { ((void(*)(void))0x807A010C)(); }
+static inline void starMissionsQuantityBased(enumFieldingStarMissionCodes switchVar, int rosterLocation) { ((void(*)(enumFieldingStarMissionCodes, int))0x807A061C)(switchVar, rosterLocation); }
+static inline void challenge_postPitchStarMissionTracking(void) { ((void(*)(void))0x807A1114)(); }
+static inline void starMissionsOffensive_StarChange_DoublePlay(int playResultCd, int param_2) { ((void(*)(int, int))0x807A13A0)(playResultCd, param_2); }
+static inline void starMissionsWholeGame(void) { ((void(*)(void))0x807A1DE8)(); }
+static inline void recruitWholeTeamAfterMercy_(void) { ((void(*)(void))0x807A2880)(); }
+static inline void challengeModeRelated_checkScoutMissionSuccess_(void) { ((void(*)(void))0x807A3B08)(); }
+static inline void setScoutMissionRelatedToZero(void) { ((void(*)(void))0x807A4A20)(); }
+static inline void shouldScoutMissionBeEnabled_(int potentialMissionID) { ((void(*)(int))0x807A4A34)(potentialMissionID); }
+static inline void decideScoutFlagMission(void) { ((void(*)(void))0x807A4DB8)(); }
+static inline void practiceAnimationRelated_807a5440(void) { ((void(*)(void))0x807A5440)(); }
+static inline void magikoopaAnimationRelated(void) { ((void(*)(void))0x807A5A00)(); }
+static inline void applyStarRelatedTransformations(void) { ((void(*)(void))0x807A5A30)(); }
+static inline void fieldingRelatedAnimations(int param_1, byte switch_) { ((void(*)(int, byte))0x807A7340)(param_1, switch_); }
+static inline void mUpdateActorTransformAndAnimation(int mActorID) { ((void(*)(int))0x807A7B00)(mActorID); }
+static inline void displayChem_antiChemGraphics(undefined4 param_1, undefined4 _0chem_1antiChem) { ((void(*)(undefined4, undefined4))0x807A8034)(param_1, _0chem_1antiChem); }
+static inline void gardenSFXRelated(void) { ((void(*)(void))0x807AB4A4)(); }
+static inline void checkFielderCollisionPotential(double ballHeight, byte fielderIndex) { ((void(*)(double, byte))0x807AC56C)(ballHeight, fielderIndex); }
+static inline void processBallFielderCollision(int interactionType) { ((void(*)(int))0x807AC678)(interactionType); }
+static inline void animateScoreBoard_(void) { ((void(*)(void))0x807AD280)(); }
+static inline void animateScoreBoardCheck_(int TextureData_, int objOrTextureCount_) { ((void(*)(int, int))0x807AD3CC)(TextureData_, objOrTextureCount_); }
 
