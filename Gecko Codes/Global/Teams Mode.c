@@ -34,14 +34,6 @@ void TeamsMode()
     team_base[1] = team_size[0];
     team_size[1] = (second_drafter == 3) ? 3 : 2;   // 1v3 -> team 1 has three; else two
 
-    // debug: snapshot port state before this frame's writes. If another code
-    // (e.g. Rio's Store Port Info) stomped these since last frame, the A+B
-    // debug print below will show them out of sync with what we wrote.
-    int pre_ctrl0 = gameControls.teams[0];
-    int pre_ctrl1 = gameControls.teams[1];
-    int pre_golf0 = autogolf_ports[0];
-    int pre_golf1 = autogolf_ports[1];
-
     int field_team = gameControls.fieldingTeam_P1_P2_;
     int bat_team   = gameControls.battingTeam_P1_P2_;
 
@@ -92,13 +84,4 @@ void TeamsMode()
     int batter_port = bat_base + (number_PAs % bat_size);
     gameControls.teams[bat_team] = batter_port;
     autogolf_ports[1] = batter_port + 1;
-
-    // DEBUG -> if P1 holds A+B, print some debug stuff
-    // if ((InputBuffer[0].button & (PAD_BUTTON_A | PAD_BUTTON_B)) == (PAD_BUTTON_A | PAD_BUTTON_B))
-    // {
-    //     OSReport("[Teams] scene=%d PAs=%d wrote fielder=P%d batter=P%d | pre ctrl=[%d,%d] golf=[%d,%d]\n",
-    //              gameControls.sceneID, number_PAs,
-    //              fielder_port + 1, batter_port + 1,
-    //              gameControls.teams[0] + 1, gameControls.teams[1] + 1, pre_golf0, pre_golf1);
-    // }
 }
