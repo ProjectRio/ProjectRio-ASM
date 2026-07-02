@@ -15,7 +15,7 @@
 
 #include "Game Data/GameData.h"
 
-#define autogolf_ports VAR_ADDRESS(byte, 2, 0x802EBF94) // [0] = fielder, [1] = batter
+#define autogolf_ports ARRAY_1D_ADDRESS(byte, 2, 0x802EBF94) // [0] = fielder, [1] = batter
 
 void TeamsMode()
 {
