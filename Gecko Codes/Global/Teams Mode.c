@@ -76,12 +76,12 @@ void TeamsMode()
         int fielder2_port = field_base + (r + 1) % 3;
         fielder_port = is_at_bat ? pitcher_port : fielder2_port;
     }
-    gameControls.teams[field_team] = fielder_port;
+    gameControls.teamPorts_P1P2[field_team] = fielder_port;
     autogolf_ports[0] = fielder_port + 1;
 
     // batting -- round-robin through the batting team's players each plate appearance
     // (size 1 -> always the one player; size 2 -> A/B toggle; size 3 -> P2/P3/P4)
     int batter_port = bat_base + (number_PAs % bat_size);
-    gameControls.teams[bat_team] = batter_port;
+    gameControls.teamPorts_P1P2[bat_team] = batter_port;
     autogolf_ports[1] = batter_port + 1;
 }
