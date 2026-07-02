@@ -51,6 +51,8 @@ struct unknownStatStruct { unsigned char _opaque_stub; } __attribute__((packed))
 
 typedef unsigned char undefined;
 
+typedef unsigned char bool_;
+typedef unsigned char byte;
 typedef unsigned int dword;
 typedef long long longlong;
 typedef unsigned long long qword;
@@ -14812,7 +14814,7 @@ typedef struct byteByteShort byteByteShort, *PbyteByteShort;
 struct byteByteShort {
     byte byte;
     byte byte2;
-    short short;
+    short short_;
 } __attribute__((packed));
 
 typedef struct cameraData cameraData, *PcameraData;
@@ -18958,7 +18960,7 @@ struct fanAnimationPointerStruct {
     void * field1_0x4;
     void * field2_0x8;
     void * field3_0xc;
-    struct fanAnimations (*field4_0x10)[32];
+    struct fanAnimations *field4_0x10;
 } __attribute__((packed));
 
 struct fanAnimations {
@@ -19268,7 +19270,7 @@ typedef struct graphicDataEntry graphicDataEntry, *PgraphicDataEntry;
 
 struct graphicDataEntry {
     short entryType;
-    short short;
+    short short_;
     struct Vec2f pos;
     int spriteID;
     byte blendMode;
@@ -19319,7 +19321,7 @@ enum {
     hitDistFromHomeEnum___38_8m=1,
     hitDistFromHomeEnum___55_2m=2,
     hitDistFromHomeEnum___61_2m=3,
-    hitDistFromHomeEnum__= 61.2m=4
+    hitDistFromHomeEnum____61_2m=4
 };
 typedef unsigned int hitDistFromHomeEnum;
 
@@ -21719,7 +21721,7 @@ typedef struct ptr2Short ptr2Short, *Pptr2Short;
 
 struct ptr2Short {
     void * ptr;
-    short short;
+    short short_;
     short short2;
 } __attribute__((packed));
 
@@ -22532,7 +22534,7 @@ struct stadiumObjectCollision {
     void * crowdAnimRelatedPtr;
     void *unkFloatStructPtr;
     void (*functionPtr)(void *);
-    void (*functionPtr2(sounds?))(void *);
+    void (*functionPtr2_sounds_)(void *);
     struct LITLightPtr *LITLightPtr;
     void * field9_0x24;
     void * field10_0x28;
@@ -23179,7 +23181,7 @@ struct storedGameInfoStruct {
     byte nBattersThisInning2_;
     byte nBattersThisInning2_stored;
     enum_noHitter noHitterTracker[2];
-    byte consecutiveStrikeouts[A/H][2];
+    byte consecutiveStrikeouts_A_H_[2];
     byte consecutiveABsWithOuts[2];
     byte field64_0x69[2][10];
     byte inningOfFirstRun;
@@ -23199,9 +23201,9 @@ struct storedGameInfoStruct {
     undefined field79_0x8b;
 } __attribute__((packed));
 
-typedef struct struct struct, *Pstruct;
+typedef struct struct_ struct_, *Pstruct;
 
-struct struct {  /* bases */
+struct struct_ {  /* bases */
     float field0_0x0;
     float field1_0x4;
     float field2_0x8;
@@ -26287,7 +26289,7 @@ struct yoshiStadiumPlants_ {
 #define INT_800e81d0 VAR_ADDRESS(int, 0x800E81D0)
 #define INT_800e82e4 VAR_ADDRESS(int, 0x800E82E4)
 #define INT_800e82f0 VAR_ADDRESS(int, 0x800E82F0)
-#define CharSizeMultipliers VAR_ADDRESS(float_2_, 54, 0x800E8300)
+#define CharSizeMultipliers VAR_ADDRESS(float, 54, 2, 0x800E8300)
 #define ballScaleFactors_800e84b0 VAR_ADDRESS(ballScaleFactors, 13, 0x800E84B0)
 #define BYTE_800e854c VAR_ADDRESS(byte, 0x800E854C)
 #define BYTE_800e854d VAR_ADDRESS(byte, 0x800E854D)
@@ -26340,7 +26342,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_800e8714 VAR_ADDRESS(byte, 0x800E8714)
 #define BYTE_800e8715 VAR_ADDRESS(byte, 0x800E8715)
 #define BYTE_800e8716 VAR_ADDRESS(byte, 0x800E8716)
-#define SHORT_ARRAY_ARRAY_800e871c VAR_ADDRESS(short_2_, 4, 0x800E871C)
+#define SHORT_ARRAY_ARRAY_800e871c VAR_ADDRESS(short, 4, 2, 0x800E871C)
 #define challengeMinigame_baseCoinsEarned VAR_ADDRESS(short, 0x800E872C)
 #define unused_netWinsVsBJ VAR_ADDRESS(byte, 0x800E872E)
 #define BYTE_800e872f VAR_ADDRESS(byte, 0x800E872F)
@@ -26520,7 +26522,7 @@ struct yoshiStadiumPlants_ {
 #define CompressedDiskRead_800f1d68 VAR_ADDRESS(CompressedDiskRead, 0x800F1D68)
 #define CompressedDiskRead_800f1d78 VAR_ADDRESS(CompressedDiskRead, 0x800F1D78)
 #define BYTE_ARRAY_800f743c VAR_ADDRESS(byte, 60, 0x800F743C)
-#define inputParams VAR_ADDRESS(byte_44_, 14, 0x800F7478)
+#define inputParams VAR_ADDRESS(byte, 14, 44, 0x800F7478)
 #define nullTex VAR_ADDRESS(TEXDescriptor *, 0x800F7700)
 #define INT_800f7704 VAR_ADDRESS(int, 0x800F7704)
 #define SHORT_800f7708 VAR_ADDRESS(short, 0x800F7708)
@@ -26597,7 +26599,7 @@ struct yoshiStadiumPlants_ {
 #define INT_800fc000 VAR_ADDRESS(int, 0x800FC000)
 #define INT_800fc054 VAR_ADDRESS(int, 0x800FC054)
 #define INT_800fc0a8 VAR_ADDRESS(int, 0x800FC0A8)
-#define BYTE_ARRAY_ARRAY_800fc0fc VAR_ADDRESS(byte_3_, 13, 0x800FC0FC)
+#define BYTE_ARRAY_ARRAY_800fc0fc VAR_ADDRESS(byte, 13, 3, 0x800FC0FC)
 #define switchdataD_800fc2e4 VAR_ADDRESS(void *, 0x800FC2E4)
 #define switchdataD_800fc318 VAR_ADDRESS(void *, 0x800FC318)
 #define INT_800fc398 VAR_ADDRESS(int, 0x800FC398)
@@ -26763,7 +26765,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_80108ffd VAR_ADDRESS(byte, 0x80108FFD)
 #define BYTE_8010902c VAR_ADDRESS(byte, 0x8010902C)
 #define CompressedDiskRead_80109044 VAR_ADDRESS(CompressedDiskRead, 0x80109044)
-#define battingOrderPriorityPositions VAR_ADDRESS(byte_5_, 4, 0x80109054)
+#define battingOrderPriorityPositions VAR_ADDRESS(byte, 4, 5, 0x80109054)
 #define switchdataD_8010907c VAR_ADDRESS(void *, 0x8010907C)
 #define switchdataD_801090ac VAR_ADDRESS(void *, 0x801090AC)
 #define switchdataD_801090e8 VAR_ADDRESS(void *, 0x801090E8)
@@ -26779,11 +26781,11 @@ struct yoshiStadiumPlants_ {
 #define SHORT_80109402 VAR_ADDRESS(short, 0x80109402)
 #define scoutMissionProbabilities VAR_ADDRESS(structScoutMissionProbabilities, 13, 0x80109420)
 #define scoutFlagQuantity VAR_ADDRESS(structScoutFlagQuantites, 54, 0x801094E4)
-#define starMissionRequirementsTable VAR_ADDRESS(starMissionStruct_10_, 32, 0x80109AE8)
+#define starMissionRequirementsTable VAR_ADDRESS(starMissionStruct, 32, 10, 0x80109AE8)
 #define starMenuSizes VAR_ADDRESS(short, 4, 0x8010B42C)
-#define starMissionsUnlockedDifficulty_ VAR_ADDRESS(short_11_, 4, 0x8010B444)
-#define FLOAT_ARRAY_ARRAY_8010b4b4 VAR_ADDRESS(float_11_, 5, 0x8010B4B4)
-#define challengeInnings VAR_ADDRESS(byte_3_, 4, 0x8010B600)
+#define starMissionsUnlockedDifficulty_ VAR_ADDRESS(short, 4, 11, 0x8010B444)
+#define FLOAT_ARRAY_ARRAY_8010b4b4 VAR_ADDRESS(float, 5, 11, 0x8010B4B4)
+#define challengeInnings VAR_ADDRESS(byte, 4, 3, 0x8010B600)
 #define INT_8010b734 VAR_ADDRESS(int, 0x8010B734)
 #define INT_8010b810 VAR_ADDRESS(int, 0x8010B810)
 #define switchdataD_8010bf7c VAR_ADDRESS(void *, 0x8010BF7C)
@@ -29485,7 +29487,7 @@ struct yoshiStadiumPlants_ {
 #define SHORT_ARRAY_8031c3fa VAR_ADDRESS(short, 2, 0x8031C3FA)
 #define SHORT_ARRAY_8031c3fe VAR_ADDRESS(short, 2, 0x8031C3FE)
 #define SHORT_ARRAY_8031c402 VAR_ADDRESS(short, 2, 0x8031C402)
-#define SHORT_ARRAY_ARRAY_8031c406 VAR_ADDRESS(short_2_, 48, 0x8031C406)
+#define SHORT_ARRAY_ARRAY_8031c406 VAR_ADDRESS(short, 48, 2, 0x8031C406)
 #define voicePrioSortVoicesRoot VAR_ADDRESS(byte, 0x8031C4C8)
 #define BYTE_8031c4c9 VAR_ADDRESS(byte, 0x8031C4C9)
 #define BYTE_8031c4ca VAR_ADDRESS(byte, 0x8031C4CA)
@@ -29551,7 +29553,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_8031c506 VAR_ADDRESS(byte, 0x8031C506)
 #define BYTE_ARRAY_8031c507 VAR_ADDRESS(byte, 193, 0x8031C507)
 #define SHORT_8031c5c8 VAR_ADDRESS(short, 0x8031C5C8)
-#define SHORT_ARRAY_ARRAY_8031c5ca VAR_ADDRESS(short_2_, 39, 0x8031C5CA)
+#define SHORT_ARRAY_ARRAY_8031c5ca VAR_ADDRESS(short, 39, 2, 0x8031C5CA)
 #define SHORT_8031c668 VAR_ADDRESS(short, 0x8031C668)
 #define SHORT_ARRAY_8031c66a VAR_ADDRESS(short, 430, 0x8031C66A)
 #define voiceList VAR_ADDRESS(byte, 0x8031C9C8)
@@ -30164,12 +30166,12 @@ struct yoshiStadiumPlants_ {
 #define BYTE_8034e99e VAR_ADDRESS(byte, 0x8034E99E)
 #define BYTE_8034e99f VAR_ADDRESS(byte, 0x8034E99F)
 #define Static_Stats_Tables VAR_ADDRESS(Static_MSSB_Data, 0x8034E9A0)
-#define atBatResultTracker_ VAR_ADDRESS(atBatResultTracker_100_, 2, 0x803532A8)
-#define PitcherStats_P1_P2_ VAR_ADDRESS(StatisticsPitcher_9_, 2, 0x803535C8)
-#define BatterStats_P1_P2_ VAR_ADDRESS(StatisticsBatter_9_, 2, 0x803537E4)
+#define atBatResultTracker_ VAR_ADDRESS(atBatResultTracker, 2, 100, 0x803532A8)
+#define PitcherStats_P1_P2_ VAR_ADDRESS(StatisticsPitcher, 2, 9, 0x803535C8)
+#define BatterStats_P1_P2_ VAR_ADDRESS(StatisticsBatter, 2, 9, 0x803537E4)
 #define someScoreStruct_80353a90 VAR_ADDRESS(someScoreStruct, 0x80353A90)
-#define pitcherList_rosterID__inningStartedPitching_ VAR_ADDRESS(byte_20_, 2, 0x80353B4E)
-#define listOfCatchers VAR_ADDRESS(byte_5_, 2, 0x80353B76)
+#define pitcherList_rosterID__inningStartedPitching_ VAR_ADDRESS(byte, 2, 20, 0x80353B4E)
+#define listOfCatchers VAR_ADDRESS(byte, 2, 5, 0x80353B76)
 #define stealsAgainst_ VAR_ADDRESS(byte, 2, 0x80353B80)
 #define teamWhoWon_A_H_ VAR_ADDRESS(byte, 0x80353B82)
 #define winningPitcherRosterID VAR_ADDRESS(byte, 0x80353B83)
@@ -30189,8 +30191,8 @@ struct yoshiStadiumPlants_ {
 #define battingLocOfMVP VAR_ADDRESS(byte, 2, 0x80353B91)
 #define rosterLocOfWinningCapt_ VAR_ADDRESS(byte, 0x80353B93)
 #define BYTE_ARRAY_80353b94 VAR_ADDRESS(byte, 76, 0x80353B94)
-#define inMemRoster_P1_P2_ VAR_ADDRESS(CharacterStats_9_, 2, 0x80353BE0)
-#define lineUpInfoStruct VAR_ADDRESS(byte_9__4_, 8, 0x80354720)
+#define inMemRoster_P1_P2_ VAR_ADDRESS(CharacterStats, 2, 9, 0x80353BE0)
+#define lineUpInfoStruct VAR_ADDRESS(byte, 288, 0x80354720)
 #define BYTE_ARRAY_80354ddb VAR_ADDRESS(byte, 12945, 0x80354DDB)
 #define BYTE_ARRAY_8035806c VAR_ADDRESS(byte, 3076, 0x8035806C)
 #define BYTE_ARRAY_80358c70 VAR_ADDRESS(byte, 29584, 0x80358C70)
@@ -30558,7 +30560,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_ARRAY_803ab7ac VAR_ADDRESS(byte, 192, 0x803AB7AC)
 #define BYTE_ARRAY_803ab86c VAR_ADDRESS(byte, 192, 0x803AB86C)
 #define BYTE_ARRAY_803ab92c VAR_ADDRESS(byte, 192, 0x803AB92C)
-#define BYTE_ARRAY_ARRAY_803ab9ec VAR_ADDRESS(byte_192_, 434, 0x803AB9EC)
+#define BYTE_ARRAY_ARRAY_803ab9ec VAR_ADDRESS(byte, 434, 192, 0x803AB9EC)
 #define BYTE_ARRAY_803c0000 VAR_ADDRESS(byte, 19424, 0x803C0000)
 #define Mtx_803c4be0 VAR_ADDRESS(Mtx, 0x803C4BE0)
 #define INT_ARRAY_803c4c4c VAR_ADDRESS(int, 60, 0x803C4C4C)
@@ -30759,7 +30761,7 @@ struct yoshiStadiumPlants_ {
 #define INT_803c60e8 VAR_ADDRESS(int, 0x803C60E8)
 #define BYTE_803c60f8 VAR_ADDRESS(byte, 0x803C60F8)
 #define BYTE_803c60f9 VAR_ADDRESS(byte, 0x803C60F9)
-#define FLOAT_ARRAY_ARRAY_803c639c VAR_ADDRESS(float_4_, 4, 0x803C639C)
+#define FLOAT_ARRAY_ARRAY_803c639c VAR_ADDRESS(float, 4, 4, 0x803C639C)
 #define FLOAT_803c63dc VAR_ADDRESS(float, 0x803C63DC)
 #define Vec3f_803c640c VAR_ADDRESS(Vec3f, 0x803C640C)
 #define Vec3f_803c6418 VAR_ADDRESS(Vec3f, 0x803C6418)
@@ -30771,7 +30773,7 @@ struct yoshiStadiumPlants_ {
 #define Vec3f_803c64c0 VAR_ADDRESS(Vec3f, 0x803C64C0)
 #define Vec3f_803c64cc VAR_ADDRESS(Vec3f, 0x803C64CC)
 #define INT_803c64e8 VAR_ADDRESS(int, 0x803C64E8)
-#define FLOAT_ARRAY_ARRAY_803c64ec VAR_ADDRESS(float_42_, 2, 0x803C64EC)
+#define FLOAT_ARRAY_ARRAY_803c64ec VAR_ADDRESS(float, 2, 42, 0x803C64EC)
 #define INT_803c663c VAR_ADDRESS(int, 0x803C663C)
 #define INT_803c6640 VAR_ADDRESS(int, 0x803C6640)
 #define INT_803c6644 VAR_ADDRESS(int, 0x803C6644)
@@ -30845,7 +30847,7 @@ struct yoshiStadiumPlants_ {
 #define AtBat_ButtonInput2 VAR_ADDRESS(ghidra_word, 0x803C77BE)
 #define BYTE_803c77c0 VAR_ADDRESS(byte, 0x803C77C0)
 #define BYTE_803c77c1 VAR_ADDRESS(byte, 0x803C77C1)
-#define BYTE_ARRAY_ARRAY_803c77c2 VAR_ADDRESS(byte_2_, 2, 0x803C77C2)
+#define BYTE_ARRAY_ARRAY_803c77c2 VAR_ADDRESS(byte, 2, 2, 0x803C77C2)
 #define BYTE_803c77c8 VAR_ADDRESS(byte, 0x803C77C8)
 #define BYTE_803c77c9 VAR_ADDRESS(byte, 0x803C77C9)
 #define BYTE_803c77ca VAR_ADDRESS(byte, 0x803C77CA)
@@ -33865,17 +33867,17 @@ struct yoshiStadiumPlants_ {
 #define switchdataD_807b2e48 VAR_ADDRESS(void *, 0x807B2E48)
 #define switchdataD_807b2e64 VAR_ADDRESS(void *, 0x807B2E64)
 #define invertAILevels VAR_ADDRESS(byte, 4, 0x807B2E80)
-#define chargePitchProb VAR_ADDRESS(byte_4__4_, 2, 0x807B2E88)
-#define perfectPitchProb VAR_ADDRESS(byte_4_, 3, 0x807B2EA8)
-#define changeUpProb VAR_ADDRESS(byte_4_, 2, 0x807B2EB4)
-#define starLikelihoodArray VAR_ADDRESS(byte_4_, 5, 0x807B2EC0)
+#define chargePitchProb VAR_ADDRESS(byte, 32, 0x807B2E88)
+#define perfectPitchProb VAR_ADDRESS(byte, 3, 4, 0x807B2EA8)
+#define changeUpProb VAR_ADDRESS(byte, 2, 4, 0x807B2EB4)
+#define starLikelihoodArray VAR_ADDRESS(byte, 5, 4, 0x807B2EC0)
 #define const_236_ VAR_ADDRESS(byte, 0x807B2ED8)
 #define const_10_0_807b2ed9 VAR_ADDRESS(byte, 0x807B2ED9)
 #define aiPitchWeakCurveProbabilities VAR_ADDRESS(byte, 4, 0x807B2EDC)
-#define pitchAIDelayPitchStartProbabilities VAR_ADDRESS(byte_4_, 4, 0x807B2EE0)
+#define pitchAIDelayPitchStartProbabilities VAR_ADDRESS(byte, 4, 4, 0x807B2EE0)
 #define aIPitchCurveEndingXConstants VAR_ADDRESS(float, 7, 0x807B2EF0)
-#define aIMoundLocationProbabilities VAR_ADDRESS(byte_6_, 4, 0x807B2F0C)
-#define pickOffProb VAR_ADDRESS(byte_4_, 4, 0x807B2F24)
+#define aIMoundLocationProbabilities VAR_ADDRESS(byte, 4, 6, 0x807B2F0C)
+#define pickOffProb VAR_ADDRESS(byte, 4, 4, 0x807B2F24)
 #define const_60 VAR_ADDRESS(short, 0x807B2F34)
 #define const_75 VAR_ADDRESS(short, 0x807B2F36)
 #define const_90_0_807b2f38 VAR_ADDRESS(short, 0x807B2F38)
@@ -33889,20 +33891,20 @@ struct yoshiStadiumPlants_ {
 #define INT_807b324c VAR_ADDRESS(int, 0x807B324C)
 #define SHORT_807b3254 VAR_ADDRESS(short, 0x807B3254)
 #define SHORT_807b3256 VAR_ADDRESS(short, 0x807B3256)
-#define SHORT_ARRAY_ARRAY_807b3258 VAR_ADDRESS(short_4_, 4, 0x807B3258)
+#define SHORT_ARRAY_ARRAY_807b3258 VAR_ADDRESS(short, 4, 4, 0x807B3258)
 #define neg20ForRunningAI VAR_ADDRESS(short, 2, 0x807B3288)
 #define batterAIPerfectStealProb VAR_ADDRESS(byte, 4, 0x807B3290)
-#define batterAIStealingProb VAR_ADDRESS(byte_3__4_, 4, 0x807B32D4)
+#define batterAIStealingProb VAR_ADDRESS(byte, 48, 0x807B32D4)
 #define batterAIBatterClassMultOnStealing VAR_ADDRESS(float, 4, 0x807B3310)
 #define const_0_0_807b3320 VAR_ADDRESS(int, 0x807B3320)
 #define const_0_1_807b3324 VAR_ADDRESS(float, 0x807B3324)
 #define BYTE_807b354f VAR_ADDRESS(byte, 0x807B354F)
 #define INT_807b3570 VAR_ADDRESS(int, 0x807B3570)
 #define homerun_cameraSceneIDs VAR_ADDRESS(int, 54, 0x807B35F8)
-#define BYTE_ARRAY_ARRAY_807b3968 VAR_ADDRESS(byte_4_, 6, 0x807B3968)
+#define BYTE_ARRAY_ARRAY_807b3968 VAR_ADDRESS(byte, 6, 4, 0x807B3968)
 #define INT_ARRAY_807b3980 VAR_ADDRESS(int, 6, 0x807B3980)
 #define vsSituations_ VAR_ADDRESS(struct_vsSituations, 33, 0x807B3998)
-#define VsCharCombos VAR_ADDRESS(byte_55_, 55, 0x807B41D8)
+#define VsCharCombos VAR_ADDRESS(byte, 55, 55, 0x807B41D8)
 #define INT_807b4dc4 VAR_ADDRESS(int, 0x807B4DC4)
 #define INT_807b4ea0 VAR_ADDRESS(int, 0x807B4EA0)
 #define INT_807b4f7c VAR_ADDRESS(int, 0x807B4F7C)
@@ -33927,8 +33929,8 @@ struct yoshiStadiumPlants_ {
 #define switchdataD_807b57f4 VAR_ADDRESS(void *, 0x807B57F4)
 #define switchdataD_807b5840 VAR_ADDRESS(void *, 0x807B5840)
 #define INT_807b588c VAR_ADDRESS(int, 0x807B588C)
-#define dugoutCoordinates VAR_ADDRESS(float_2__2_, 7, 0x807B5890)
-#define FLOAT_ARRAY_ARRAY_807b5900 VAR_ADDRESS(float_2_, 9, 0x807B5900)
+#define dugoutCoordinates VAR_ADDRESS(float, 28, 0x807B5890)
+#define FLOAT_ARRAY_ARRAY_807b5900 VAR_ADDRESS(float, 9, 2, 0x807B5900)
 #define stadiumHitAngleCFOffsets VAR_ADDRESS(byte, 7, 0x807B5980)
 #define ballBounceConstants VAR_ADDRESS(bounceConstants, 7, 0x807B5988)
 #define const_0_35_807b5a14 VAR_ADDRESS(float, 0x807B5A14)
@@ -33944,10 +33946,10 @@ struct yoshiStadiumPlants_ {
 #define const_0_4_moundRightLimit VAR_ADDRESS(float, 0x807B5A78)
 #define const_0_08_pitcherHorizontalMoundMovementSpeed VAR_ADDRESS(float, 0x807B5A7C)
 #define const_0_16 VAR_ADDRESS(float, 0x807B5A80)
-#define extendedLocationCoordinates VAR_ADDRESS(float_2_, 6, 0x807B5A84)
-#define presetFielderLocations VAR_ADDRESS(float_2_, 11, 0x807B5AB4)
+#define extendedLocationCoordinates VAR_ADDRESS(float, 6, 2, 0x807B5A84)
+#define presetFielderLocations VAR_ADDRESS(float, 11, 2, 0x807B5AB4)
 #define fieldingStartingCoords_regular VAR_ADDRESS(Vec2f, 9, 0x807B5B0C)
-#define fielderStartingCoords_holdRunners VAR_ADDRESS(Vec2f_3_, 4, 0x807B5B54)
+#define fielderStartingCoords_holdRunners VAR_ADDRESS(Vec2f, 4, 3, 0x807B5B54)
 #define fielderStartingCoords_bunt VAR_ADDRESS(Vec2f, 7, 0x807B5BB4)
 #define const_0_15_807b5bf4 VAR_ADDRESS(float, 0x807B5BF4)
 #define const_0_35_807b5bf8 VAR_ADDRESS(float, 0x807B5BF8)
@@ -33969,7 +33971,7 @@ struct yoshiStadiumPlants_ {
 #define ToyFieldSpeedArray VAR_ADDRESS(float, 22, 0x807B5C98)
 #define ballDashEffect_1_5 VAR_ADDRESS(float, 0x807B5CF0)
 #define const_0_7_807b5cf4 VAR_ADDRESS(float, 0x807B5CF4)
-#define fielderLockout VAR_ADDRESS(byte_9_, 2, 0x807B5CF8)
+#define fielderLockout VAR_ADDRESS(byte, 2, 9, 0x807B5CF8)
 #define const_10_807b5d0c VAR_ADDRESS(byte, 0x807B5D0C)
 #define const_30_807b5d0d VAR_ADDRESS(byte, 0x807B5D0D)
 #define const_4_0_807b5d10 VAR_ADDRESS(byte, 0x807B5D10)
@@ -34005,15 +34007,15 @@ struct yoshiStadiumPlants_ {
 #define SHORT_ARRAY_807b5eb8 VAR_ADDRESS(short, 4, 0x807B5EB8)
 #define const_0_5_807b5ec4 VAR_ADDRESS(float, 0x807B5EC4)
 #define _0x18aArray VAR_ADDRESS(byte, 4, 0x807B5EF8)
-#define throwWindUpFrames_ VAR_ADDRESS(byte_3_, 2, 0x807B5F00)
+#define throwWindUpFrames_ VAR_ADDRESS(byte, 2, 3, 0x807B5F00)
 #define const_20_antiChemLerpLower VAR_ADDRESS(byte, 0x807B5F08)
 #define const_20_antiChemLerpUpper VAR_ADDRESS(byte, 0x807B5F09)
-#define slidingCatchMultipliers VAR_ADDRESS(float_3_, 2, 0x807B5F0C)
+#define slidingCatchMultipliers VAR_ADDRESS(float, 2, 3, 0x807B5F0C)
 #define slidingCatchArray VAR_ADDRESS(diveFrame, 2, 0x807B5F24)
 #define fielderActionConstants_807b5f30 VAR_ADDRESS(fielderActionConstants, 0x807B5F30)
-#define peachDaisyStarHitConstants VAR_ADDRESS(float_2_, 2, 0x807B5FCC)
+#define peachDaisyStarHitConstants VAR_ADDRESS(float, 2, 2, 0x807B5FCC)
 #define specialFielderActionConstants VAR_ADDRESS(specialFieldingActionStruct, 0x807B5FDC)
-#define baseCoordsForRunning VAR_ADDRESS(float_2_, 4, 0x807B6034)
+#define baseCoordsForRunning VAR_ADDRESS(float, 4, 2, 0x807B6034)
 #define const_0_012 VAR_ADDRESS(float, 0x807B6124)
 #define FLOAT_807b6128 VAR_ADDRESS(float, 0x807B6128)
 #define const_60_overrun1BSprintDuration VAR_ADDRESS(short, 0x807B6140)
@@ -34038,7 +34040,7 @@ struct yoshiStadiumPlants_ {
 #define const_3_807b61a2 VAR_ADDRESS(short, 0x807B61A2)
 #define sprintSlowdownDuration_30 VAR_ADDRESS(short, 0x807B61A4)
 #define altSprintSlowdownDuration_20 VAR_ADDRESS(short, 0x807B61A6)
-#define bodyCheckProbabiliities VAR_ADDRESS(byte_5_, 5, 0x807B61A8)
+#define bodyCheckProbabiliities VAR_ADDRESS(byte, 5, 5, 0x807B61A8)
 #define const_0_01_807b61c4 VAR_ADDRESS(float, 0x807B61C4)
 #define const_0_005_807b61c8 VAR_ADDRESS(float, 0x807B61C8)
 #define const_0_005_807b61cc VAR_ADDRESS(float, 0x807B61CC)
@@ -34066,38 +34068,38 @@ struct yoshiStadiumPlants_ {
 #define const_1_807b6268 VAR_ADDRESS(short, 0x807B6268)
 #define const_3_807b626a VAR_ADDRESS(short, 0x807B626A)
 #define maybeInitialBatPos VAR_ADDRESS(Vec3f, 0x807B626C)
-#define batContactRange VAR_ADDRESS(float_2_, 2, 0x807B6278)
+#define batContactRange VAR_ADDRESS(float, 2, 2, 0x807B6278)
 #define FLOAT_807b6288 VAR_ADDRESS(float, 0x807B6288)
 #define const_1_3_807b6290 VAR_ADDRESS(float, 0x807B6290)
-#define BallContactArray_807b6294 VAR_ADDRESS(byte_5__2__2__4_, 2, 0x807B6294)
-#define ContactPerfectThresholds VAR_ADDRESS(float_3_, 3, 0x807B6334)
-#define hittableFrameInd VAR_ADDRESS(short_15_, 2, 0x807B6358)
-#define BattingAngleRanges VAR_ADDRESS(short_2__15__2_, 3, 0x807B6394)
-#define BarrelBatterBattingAngleRanges VAR_ADDRESS(short_2__15__2_, 3, 0x807B64FC)
-#define ToyFieldBattingAngleRanges VAR_ADDRESS(short_2__15__2_, 3, 0x807B6664)
-#define HitVertTrajRanges VAR_ADDRESS(short_5__5__2_, 2, 0x807B67CC)
-#define toyFieldHitVertTraj VAR_ADDRESS(short_5__5__2_, 2, 0x807B6894)
-#define CaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short_5__2_, 12, 0x807B695C)
-#define NonCaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short_5__2_, 3, 0x807B6A4C)
-#define bODHitVertTraj VAR_ADDRESS(short_5__2_, 5, 0x807B6A88)
+#define BallContactArray_807b6294 VAR_ADDRESS(byte, 160, 0x807B6294)
+#define ContactPerfectThresholds VAR_ADDRESS(float, 3, 3, 0x807B6334)
+#define hittableFrameInd VAR_ADDRESS(short, 2, 15, 0x807B6358)
+#define BattingAngleRanges VAR_ADDRESS(short, 180, 0x807B6394)
+#define BarrelBatterBattingAngleRanges VAR_ADDRESS(short, 180, 0x807B64FC)
+#define ToyFieldBattingAngleRanges VAR_ADDRESS(short, 180, 0x807B6664)
+#define HitVertTrajRanges VAR_ADDRESS(short, 100, 0x807B67CC)
+#define toyFieldHitVertTraj VAR_ADDRESS(short, 100, 0x807B6894)
+#define CaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short, 120, 0x807B695C)
+#define NonCaptainStarSwingBattingVerticalAngleRanges VAR_ADDRESS(short, 30, 0x807B6A4C)
+#define bODHitVertTraj VAR_ADDRESS(short, 50, 0x807B6A88)
 #define bB_launchAngles VAR_ADDRESS(short, 4, 0x807B6AEC)
-#define autoPopUpHitVertTraj VAR_ADDRESS(short_2_, 3, 0x807B6AF4)
-#define BattingVerticalAngleRangeProbabilities VAR_ADDRESS(byte_2__2__5__5_, 3, 0x807B6B00)
+#define autoPopUpHitVertTraj VAR_ADDRESS(short, 3, 2, 0x807B6AF4)
+#define BattingVerticalAngleRangeProbabilities VAR_ADDRESS(byte, 300, 0x807B6B00)
 #define ToyFieldBattingVerticalAngleRanges VAR_ADDRESS(trajZonesOvr, 0x807B6C2C)
 #define bODTrajProbabilities VAR_ADDRESS(trajZones, 5, 0x807B6D58)
-#define BallHitArray VAR_ADDRESS(short_5__3_, 2, 0x807B6D74)
-#define ToyFieldExitVelocityContactArray VAR_ADDRESS(short_5__3_, 4, 0x807B6DB0)
-#define BobOmbDerbyExitVelocityContactArray VAR_ADDRESS(short_5__3_, 2, 0x807B6E28)
-#define BarrelBatterExitVelocityContactArray VAR_ADDRESS(short_5__3_, 2, 0x807B6E64)
-#define CaptainStarSwingExitVelocityArray VAR_ADDRESS(short_5__3_, 12, 0x807B6EA0)
-#define StarSwingExitVelocityArray VAR_ADDRESS(short_5__3_, 2, 0x807B7008)
-#define buntHorizontalAngles0OnRight VAR_ADDRESS(short_2__2_, 5, 0x807B7064)
-#define buntVerticalAngles VAR_ADDRESS(short_2__2__2_, 5, 0x807B708C)
-#define buntPower VAR_ADDRESS(byte_2_, 5, 0x807B70DC)
-#define swingSoundFrame VAR_ADDRESS(byte_4_, 2, 0x807B70E8)
+#define BallHitArray VAR_ADDRESS(short, 30, 0x807B6D74)
+#define ToyFieldExitVelocityContactArray VAR_ADDRESS(short, 60, 0x807B6DB0)
+#define BobOmbDerbyExitVelocityContactArray VAR_ADDRESS(short, 30, 0x807B6E28)
+#define BarrelBatterExitVelocityContactArray VAR_ADDRESS(short, 30, 0x807B6E64)
+#define CaptainStarSwingExitVelocityArray VAR_ADDRESS(short, 180, 0x807B6EA0)
+#define StarSwingExitVelocityArray VAR_ADDRESS(short, 30, 0x807B7008)
+#define buntHorizontalAngles0OnRight VAR_ADDRESS(short, 20, 0x807B7064)
+#define buntVerticalAngles VAR_ADDRESS(short, 40, 0x807B708C)
+#define buntPower VAR_ADDRESS(byte, 5, 2, 0x807B70DC)
+#define swingSoundFrame VAR_ADDRESS(byte, 2, 4, 0x807B70E8)
 #define const_0_8_power_nonContactQualityRelated VAR_ADDRESS(float, 0x807B70F0)
 #define _1_0_807b70f4 VAR_ADDRESS(float, 0x807B70F4)
-#define horizTrajPowerMultipliers VAR_ADDRESS(float_5_, 3, 0x807B70F8)
+#define horizTrajPowerMultipliers VAR_ADDRESS(float, 3, 5, 0x807B70F8)
 #define hitTrajOptions VAR_ADDRESS(struct_hitTrajOptions, 19, 0x807B7134)
 #define const_60_807b72d4 VAR_ADDRESS(short, 0x807B72D4)
 #define const_90 VAR_ADDRESS(short, 0x807B72D6)
@@ -34108,12 +34110,12 @@ struct yoshiStadiumPlants_ {
 #define const_0_85_knockbackDecayPerBounce VAR_ADDRESS(float, 0x807B72E4)
 #define const_0_3_knockbackConvertEnergyToFrames VAR_ADDRESS(float, 0x807B72E8)
 #define bobbleStunFramesModConst VAR_ADDRESS(float, 0x807B72EC)
-#define bobbleSlowDownFactors VAR_ADDRESS(float_3_, 2, 0x807B72F0)
+#define bobbleSlowDownFactors VAR_ADDRESS(float, 2, 3, 0x807B72F0)
 #define knockbackFrameMultiplier VAR_ADDRESS(float, 5, 0x807B7308)
 #define const_hitFloats VAR_ADDRESS(hitFloatConstants, 0x807B731C)
 #define hitShortConst VAR_ADDRESS(hitContants_shorts, 0x807B734C)
 #define pitchConstantsArray VAR_ADDRESS(struct_pitchConstants, 19, 0x807B736C)
-#define curveControlFrames_CursedBallMult VAR_ADDRESS(float_2_, 4, 0x807B7478)
+#define curveControlFrames_CursedBallMult VAR_ADDRESS(float, 4, 2, 0x807B7478)
 #define strikeZone VAR_ADDRESS(struct_strikeZone, 0x807B7498)
 #define const_0_7_807b74a8 VAR_ADDRESS(float, 0x807B74A8)
 #define const__0_4 VAR_ADDRESS(float, 0x807B74B0)
@@ -34144,7 +34146,7 @@ struct yoshiStadiumPlants_ {
 #define pitchOverChargeUpper VAR_ADDRESS(float, 0x807B7538)
 #define const_16 VAR_ADDRESS(short, 0x807B753C)
 #define const_15_807b7540 VAR_ADDRESS(short, 0x807B7540)
-#define bulletBallConstants VAR_ADDRESS(byte_5_, 2, 0x807B7550)
+#define bulletBallConstants VAR_ADDRESS(byte, 2, 5, 0x807B7550)
 #define eggConstants VAR_ADDRESS(struct_eggConstants, 0x807B755C)
 #define pitchSpeedScaler VAR_ADDRESS(float, 0x807B7590)
 #define const_0_998_airResistanceFactor VAR_ADDRESS(float, 0x807B7594)
@@ -34162,8 +34164,8 @@ struct yoshiStadiumPlants_ {
 #define const_50_challengeChemAdjustment VAR_ADDRESS(float, 0x807B75EC)
 #define SHORT_ARRAY_807b7674 VAR_ADDRESS(short, 4, 0x807B7674)
 #define challenge_baseCoinsAwarded VAR_ADDRESS(struct_challenge_matchCoinsAwarded, 0x807B767C)
-#define challenge_minigames_opponentCharIDs_ VAR_ADDRESS(byte_3__6_, 4, 0x807B769C)
-#define BYTE_ARRAY_ARRAY_807b76e4 VAR_ADDRESS(byte_2_, 6, 0x807B76E4)
+#define challenge_minigames_opponentCharIDs_ VAR_ADDRESS(byte, 72, 0x807B769C)
+#define BYTE_ARRAY_ARRAY_807b76e4 VAR_ADDRESS(byte, 6, 2, 0x807B76E4)
 #define const_30_0starChance_ VAR_ADDRESS(byte, 0x807B76F0)
 #define const_5_maxStars VAR_ADDRESS(byte, 0x807B76F4)
 #define const_1_starSpentForCaptainStarSwingOrPitch VAR_ADDRESS(byte, 0x807B76F5)
@@ -34185,11 +34187,11 @@ struct yoshiStadiumPlants_ {
 #define const_8 VAR_ADDRESS(byte, 0x807B7C00)
 #define BYTE_807b7c30 VAR_ADDRESS(byte, 0x807B7C30)
 #define BYTE_807b7c31 VAR_ADDRESS(byte, 0x807B7C31)
-#define catchZoneAnimations VAR_ADDRESS(short_3_, 3, 0x807B7C44)
+#define catchZoneAnimations VAR_ADDRESS(short, 3, 3, 0x807B7C44)
 #define const_20_807b7c58 VAR_ADDRESS(byte, 0x807B7C58)
 #define const_5_807b7c5c VAR_ADDRESS(short, 0x807B7C5C)
 #define SHORT_807b7c5e VAR_ADDRESS(short, 0x807B7C5E)
-#define SHORT_ARRAY_ARRAY_807b7c60 VAR_ADDRESS(short_2_, 54, 0x807B7C60)
+#define SHORT_ARRAY_ARRAY_807b7c60 VAR_ADDRESS(short, 54, 2, 0x807B7C60)
 #define starBallOffsets VAR_ADDRESS(byte, 14, 0x807B7E20)
 #define const_2_5_807b7e30 VAR_ADDRESS(float, 0x807B7E30)
 #define const_5_0_807b7e34 VAR_ADDRESS(float, 0x807B7E34)
@@ -34209,13 +34211,13 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807b7fc0 VAR_ADDRESS(byte, 0x807B7FC0)
 #define BYTE_807b84f0 VAR_ADDRESS(byte, 0x807B84F0)
 #define BatterHitbox VAR_ADDRESS(BatterReaches, 54, 0x807B84F8)
-#define ChargePowerConstants VAR_ADDRESS(byte_2_, 54, 0x807B8C90)
+#define ChargePowerConstants VAR_ADDRESS(byte, 54, 2, 0x807B8C90)
 #define hitByPitchHitboxes VAR_ADDRESS(hitByPitchHitbox, 32, 0x807B8CFC)
 #define const_30_delayBeforeStartingToRun VAR_ADDRESS(byte, 0x807B8D5C)
 #define runnerConstants_ VAR_ADDRESS(runnerConstants, 54, 0x807B8D60)
 #define FielderHitboxConsts VAR_ADDRESS(HitboxConsts, 54, 0x807B8FB4)
 #define minimumHitboxConstants VAR_ADDRESS(short, 6, 0x807B9314)
-#define bodyCheckFrameRelatedConstants VAR_ADDRESS(byte_4_, 54, 0x807B9434)
+#define bodyCheckFrameRelatedConstants VAR_ADDRESS(byte, 54, 4, 0x807B9434)
 #define barrelCollisionHitboxes VAR_ADDRESS(short, 54, 0x807B9510)
 #define SHORT_ARRAY_807b957c VAR_ADDRESS(short, 56, 0x807B957C)
 #define SHORT_807b9680 VAR_ADDRESS(short, 0x807B9680)
@@ -34228,7 +34230,7 @@ struct yoshiStadiumPlants_ {
 #define unkCharacterArray VAR_ADDRESS(enumCharacterID_byte, 32, 0x807B9748)
 #define characterSoundArray VAR_ADDRESS(short, 54, 0x807B9768)
 #define BYTE_807b97da VAR_ADDRESS(byte, 0x807B97DA)
-#define stadiumHazardSoundIDs_ VAR_ADDRESS(short_7_, 2, 0x807B97DC)
+#define stadiumHazardSoundIDs_ VAR_ADDRESS(short, 2, 7, 0x807B97DC)
 #define SHORT_807b97fc VAR_ADDRESS(short, 0x807B97FC)
 #define SHORT_807b97fe VAR_ADDRESS(short, 0x807B97FE)
 #define SHORT_807b9800 VAR_ADDRESS(short, 0x807B9800)
@@ -34435,7 +34437,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807b99f5 VAR_ADDRESS(byte, 0x807B99F5)
 #define BYTE_807b99f6 VAR_ADDRESS(byte, 0x807B99F6)
 #define BYTE_807b99f7 VAR_ADDRESS(byte, 0x807B99F7)
-#define stadiumHazardSoundFxRelated VAR_ADDRESS(byte_30_, 7, 0x807B9A04)
+#define stadiumHazardSoundFxRelated VAR_ADDRESS(byte, 7, 30, 0x807B9A04)
 #define BYTE_807b9b10 VAR_ADDRESS(byte, 0x807B9B10)
 #define charSoundFxVol VAR_ADDRESS(byte, 12, 0x807B9B30)
 #define BYTE_ARRAY_807b9cb0 VAR_ADDRESS(byte, 12, 0x807B9CB0)
@@ -34614,12 +34616,12 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807c10b6 VAR_ADDRESS(byte, 0x807C10B6)
 #define BYTE_807c10ba VAR_ADDRESS(byte, 0x807C10BA)
 #define BYTE_ARRAY_807c10c4 VAR_ADDRESS(byte, 5, 0x807C10C4)
-#define practice_subMenu_length VAR_ADDRESS(byte_5_, 5, 0x807C10CC)
+#define practice_subMenu_length VAR_ADDRESS(byte, 5, 5, 0x807C10CC)
 #define BYTE_807c10e8 VAR_ADDRESS(byte, 0x807C10E8)
 #define BYTE_807c10ed VAR_ADDRESS(byte, 0x807C10ED)
-#define guidedPracticeThresholds VAR_ADDRESS(byte_4_, 4, 0x807C10F4)
+#define guidedPracticeThresholds VAR_ADDRESS(byte, 4, 4, 0x807C10F4)
 #define c_90_807c1104 VAR_ADDRESS(short, 0x807C1104)
-#define hitVarsForFieldingPractice VAR_ADDRESS(short_10__3_, 4, 0x807C1108)
+#define hitVarsForFieldingPractice VAR_ADDRESS(short, 120, 0x807C1108)
 #define const_60_807c11f8 VAR_ADDRESS(short, 0x807C11F8)
 #define const_120_807c11fa VAR_ADDRESS(short, 0x807C11FA)
 #define const_90_807c11fc VAR_ADDRESS(short, 0x807C11FC)
@@ -34695,7 +34697,7 @@ struct yoshiStadiumPlants_ {
 #define INT_807c3304 VAR_ADDRESS(int, 0x807C3304)
 #define INT_807c3308 VAR_ADDRESS(int, 0x807C3308)
 #define INT_807c3950 VAR_ADDRESS(int, 0x807C3950)
-#define sunLayers VAR_ADDRESS(stadiumSunStruct_7_, 2, 0x807C3954)
+#define sunLayers VAR_ADDRESS(stadiumSunStruct, 2, 7, 0x807C3954)
 #define INT_807c42b4 VAR_ADDRESS(int, 0x807C42B4)
 #define BYTE_ARRAY_807c8083 VAR_ADDRESS(byte, 973, 0x807C8083)
 #define INT_807c8564 VAR_ADDRESS(int, 0x807C8564)
@@ -34836,7 +34838,7 @@ struct yoshiStadiumPlants_ {
 #define SHORT_807c9fe8 VAR_ADDRESS(short, 0x807C9FE8)
 #define SHORT_807c9fea VAR_ADDRESS(short, 0x807C9FEA)
 #define SHORT_807c9fec VAR_ADDRESS(short, 0x807C9FEC)
-#define BYTE_ARRAY_ARRAY_ARRAY_ARRAY_807c9ff0 VAR_ADDRESS(byte_3__3__8_, 2, 0x807C9FF0)
+#define BYTE_ARRAY_ARRAY_ARRAY_ARRAY_807c9ff0 VAR_ADDRESS(byte, 144, 0x807C9FF0)
 #define const_20_0_807ca108 VAR_ADDRESS(float, 0x807CA108)
 #define const_71_0 VAR_ADDRESS(float, 0x807CA10C)
 #define const_14_0_807ca114 VAR_ADDRESS(float, 0x807CA114)
@@ -35043,7 +35045,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_807d2870 VAR_ADDRESS(byte, 0x807D2870)
 #define const_30_807d2878 VAR_ADDRESS(byte, 0x807D2878)
 #define const_60_807d2879 VAR_ADDRESS(byte, 0x807D2879)
-#define regular_minigames_opponentCharIDs_ VAR_ADDRESS(byte_4__6_, 4, 0x807D289E)
+#define regular_minigames_opponentCharIDs_ VAR_ADDRESS(byte, 96, 0x807D289E)
 #define INT_807d290c VAR_ADDRESS(int, 0x807D290C)
 #define INT_807d2914 VAR_ADDRESS(int, 0x807D2914)
 #define INT_807d2918 VAR_ADDRESS(int, 0x807D2918)
@@ -35073,7 +35075,7 @@ struct yoshiStadiumPlants_ {
 #define _18_0 VAR_ADDRESS(float, 0x807D2988)
 #define bOD_bB_maxMovement VAR_ADDRESS(float, 4, 0x807D298C)
 #define minigamePitchSpeeds_base VAR_ADDRESS(byte, 5, 0x807D299C)
-#define soloBODPitchSelectionType VAR_ADDRESS(byte_2_, 3, 0x807D29D4)
+#define soloBODPitchSelectionType VAR_ADDRESS(byte, 3, 2, 0x807D29D4)
 #define bODMultiplayerTurnPitchVeriety VAR_ADDRESS(byte, 4, 0x807D29DB)
 #define const_25 VAR_ADDRESS(byte, 0x807D29E0)
 #define const_55 VAR_ADDRESS(byte, 0x807D29E1)
@@ -35081,11 +35083,11 @@ struct yoshiStadiumPlants_ {
 #define const_30_807d29e3 VAR_ADDRESS(byte, 0x807D29E3)
 #define const_200_kingBombBonus VAR_ADDRESS(short, 0x807D29FA)
 #define const_15_bOD_ComboBonus VAR_ADDRESS(short, 0x807D29FC)
-#define bOD_challenge_nPitches_Points VAR_ADDRESS(short_2_, 3, 0x807D2A00)
+#define bOD_challenge_nPitches_Points VAR_ADDRESS(short, 3, 2, 0x807D2A00)
 #define bODPowerThresholdsForVertAngles VAR_ADDRESS(short, 5, 0x807D2A10)
 #define const_0_bOD_nonCharged_vAngle_lower VAR_ADDRESS(short, 0x807D2A1C)
 #define const_150_bOD_nonCharged_vAngle_upper VAR_ADDRESS(short, 0x807D2A1E)
-#define bODVertAngles VAR_ADDRESS(short_2_, 6, 0x807D2A20)
+#define bODVertAngles VAR_ADDRESS(short, 6, 2, 0x807D2A20)
 #define const_0_001BobOmbDerbyGravity VAR_ADDRESS(float, 0x807D2A38)
 #define _1_5_807d2a40 VAR_ADDRESS(float, 0x807D2A40)
 #define const_130_0 VAR_ADDRESS(float, 0x807D2A44)
@@ -35099,10 +35101,10 @@ struct yoshiStadiumPlants_ {
 #define SHORT_807d2a56 VAR_ADDRESS(short, 0x807D2A56)
 #define const_30_807d2a58 VAR_ADDRESS(short, 0x807D2A58)
 #define const_90_807d2a5a VAR_ADDRESS(short, 0x807D2A5A)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2a88 VAR_ADDRESS(byte_4__3_, 2, 0x807D2A88)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2ab8 VAR_ADDRESS(byte_4__3_, 2, 0x807D2AB8)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2ad0 VAR_ADDRESS(byte_4__3_, 2, 0x807D2AD0)
-#define BYTE_ARRAY_ARRAY_ARRAY_807d2ae8 VAR_ADDRESS(byte_4__3_, 2, 0x807D2AE8)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2a88 VAR_ADDRESS(byte, 24, 0x807D2A88)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2ab8 VAR_ADDRESS(byte, 24, 0x807D2AB8)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2ad0 VAR_ADDRESS(byte, 24, 0x807D2AD0)
+#define BYTE_ARRAY_ARRAY_ARRAY_807d2ae8 VAR_ADDRESS(byte, 24, 0x807D2AE8)
 #define FLOAT_807d2b00 VAR_ADDRESS(float, 0x807D2B00)
 #define FLOAT_807d2b04 VAR_ADDRESS(float, 0x807D2B04)
 #define FLOAT_807d2b74 VAR_ADDRESS(float, 0x807D2B74)
@@ -35114,7 +35116,7 @@ struct yoshiStadiumPlants_ {
 #define const_0_0_807d2bd4 VAR_ADDRESS(float, 0x807D2BD4)
 #define const_0_0_807d2bd8 VAR_ADDRESS(float, 0x807D2BD8)
 #define const_0_2_807d2bdc VAR_ADDRESS(float, 0x807D2BDC)
-#define FLOAT_ARRAY_ARRAY_807d2be0 VAR_ADDRESS(float_3_, 3, 0x807D2BE0)
+#define FLOAT_ARRAY_ARRAY_807d2be0 VAR_ADDRESS(float, 3, 3, 0x807D2BE0)
 #define const_0_2_807d2c34 VAR_ADDRESS(float, 0x807D2C34)
 #define const_0_1_807d2c38 VAR_ADDRESS(float, 0x807D2C38)
 #define const_0_44_wallBallCoinInitialYVelocityDecay VAR_ADDRESS(float, 0x807D2C3C)
@@ -35828,7 +35830,7 @@ struct yoshiStadiumPlants_ {
 #define INT_80861124 VAR_ADDRESS(int, 0x80861124)
 #define INT_8086117c VAR_ADDRESS(int, 0x8086117C)
 #define INT_80861180 VAR_ADDRESS(int, 0x80861180)
-#define storeControlStickInputs_ VAR_ADDRESS(short_20_, 2, 0x808611AC)
+#define storeControlStickInputs_ VAR_ADDRESS(short, 2, 20, 0x808611AC)
 #define currentStickDirection_ VAR_ADDRESS(short, 0x8086124C)
 #define fielderControlStick_continuousAngleHistory VAR_ADDRESS(short, 20, 0x80861250)
 #define SHORT_80861278 VAR_ADDRESS(short, 0x80861278)
@@ -35928,7 +35930,7 @@ struct yoshiStadiumPlants_ {
 #define BYTE_8086aec4 VAR_ADDRESS(byte, 0x8086AEC4)
 #define nThwompsLoaded VAR_ADDRESS(byte, 0x8086AEC5)
 #define BYTE_8086aec7 VAR_ADDRESS(byte, 0x8086AEC7)
-#define INT_ARRAY_ARRAY_8086aec8 VAR_ADDRESS(int_3_, 2, 0x8086AEC8)
+#define INT_ARRAY_ARRAY_8086aec8 VAR_ADDRESS(int, 2, 3, 0x8086AEC8)
 #define BYTE_8086af28 VAR_ADDRESS(byte, 0x8086AF28)
 #define BYTE_8086af29 VAR_ADDRESS(byte, 0x8086AF29)
 #define INT_8086af30 VAR_ADDRESS(int, 0x8086AF30)
@@ -36281,8 +36283,8 @@ struct yoshiStadiumPlants_ {
 #define us_80893300_808785ba VAR_ADDRESS(us_80893300, 0x808785BA)
 #define unkAnimRelatedStruct_808785dc VAR_ADDRESS(unkAnimRelatedStruct, 0x808785DC)
 #define us_80893280_808788d0 VAR_ADDRESS(us_80893280, 0x808788D0)
-#define StatisticsBatter_ARRAY_ARRAY_80878950 VAR_ADDRESS(StatisticsBatter_9_, 2, 0x80878950)
-#define StatisticsPitcher_ARRAY_ARRAY_80878bfc VAR_ADDRESS(StatisticsPitcher_9_, 2, 0x80878BFC)
+#define StatisticsBatter_ARRAY_ARRAY_80878950 VAR_ADDRESS(StatisticsBatter, 2, 9, 0x80878950)
+#define StatisticsPitcher_ARRAY_ARRAY_80878bfc VAR_ADDRESS(StatisticsPitcher, 2, 9, 0x80878BFC)
 #define ReplayInputs VAR_ADDRESS(BothTeamInputStruct, 1200, 0x80885CE4)
 #define lastPitchStats VAR_ADDRESS(float, 7, 0x8088A7E4)
 #define lastPitchHitAngles VAR_ADDRESS(short, 4, 0x8088A800)
@@ -36323,8 +36325,8 @@ struct yoshiStadiumPlants_ {
 #define dest_us80893300 VAR_ADDRESS(us_80893300, 0x8088E5BA)
 #define destUnkAnimRelatedStruct VAR_ADDRESS(unkAnimRelatedStruct, 0x8088E5DC)
 #define destUS_80893280 VAR_ADDRESS(us_80893280, 0x8088E8D0)
-#define destBatterStatsArray VAR_ADDRESS(StatisticsBatter_9_, 2, 0x8088E950)
-#define destPitcherStatsArray VAR_ADDRESS(StatisticsPitcher_9_, 2, 0x8088EBFC)
+#define destBatterStatsArray VAR_ADDRESS(StatisticsBatter, 2, 9, 0x8088E950)
+#define destPitcherStatsArray VAR_ADDRESS(StatisticsPitcher, 2, 9, 0x8088EBFC)
 #define inMemRunners VAR_ADDRESS(InMemRunner, 4, 0x8088EE18)
 #define inMemFielders VAR_ADDRESS(InMemFielder, 9, 0x8088F368)
 #define inMemBatter VAR_ADDRESS(InMemBatter, 0x80890910)
@@ -36346,10 +36348,10 @@ struct yoshiStadiumPlants_ {
 #define textRelated VAR_ADDRESS(us808937f8, 0x808937F8)
 #define animRelated VAR_ADDRESS(unkStateRelatedStruct, 0x80893804)
 #define inMemControls VAR_ADDRESS(InputStruct, 4, 0x80893928)
-#define abResultList VAR_ADDRESS(byte_100_, 2, 0x80893968)
+#define abResultList VAR_ADDRESS(byte, 2, 100, 0x80893968)
 #define BYTE_ARRAY_80893aeb VAR_ADDRESS(byte, 41, 0x80893AEB)
 #define BYTE_ARRAY_80893b14 VAR_ADDRESS(byte, 4, 0x80893B14)
-#define pitchingInfo_A_H_ VAR_ADDRESS(pitchingStatStruct_9_, 2, 0x80893B18)
+#define pitchingInfo_A_H_ VAR_ADDRESS(pitchingStatStruct, 2, 9, 0x80893B18)
 #define BYTE_80893b72 VAR_ADDRESS(byte, 0x80893B72)
 #define BYTE_80893b73 VAR_ADDRESS(byte, 0x80893B73)
 #define storedInningInfo VAR_ADDRESS(storedGameInfoStruct, 0x80893B74)
@@ -38369,65 +38371,65 @@ struct yoshiStadiumPlants_ {
 
 // =============================================================================
 
-static inline void system_reset_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000100)(param_1, param_2, param_3); }
-static inline void machine_check_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000200)(param_1, param_2, param_3); }
-static inline void dsi_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000300)(param_1, param_2, param_3); }
-static inline void isi_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000400)(param_1, param_2, param_3); }
-static inline void external_interrupt_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000500)(param_1, param_2, param_3); }
-static inline void alignment_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000600)(param_1, param_2, param_3); }
-static inline void program_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000700)(param_1, param_2, param_3); }
-static inline void floating_point_unavailable_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000800)(param_1, param_2, param_3); }
-static inline void decrementer_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000900)(param_1, param_2, param_3); }
+static inline void system_reset_exception_handler(void) { ((void(*)(void))0x80000100)(); }
+static inline void machine_check_exception_handler(void) { ((void(*)(void))0x80000200)(); }
+static inline void dsi_exception_handler(void) { ((void(*)(void))0x80000300)(); }
+static inline void isi_exception_handler(void) { ((void(*)(void))0x80000400)(); }
+static inline void external_interrupt_exception_handler(void) { ((void(*)(void))0x80000500)(); }
+static inline void alignment_exception_handler(void) { ((void(*)(void))0x80000600)(); }
+static inline void program_exception_handler(void) { ((void(*)(void))0x80000700)(); }
+static inline void floating_point_unavailable_exception_handler(void) { ((void(*)(void))0x80000800)(); }
+static inline void decrementer_exception_handler(void) { ((void(*)(void))0x80000900)(); }
 static inline void system_call_exception_handler(void) { ((void(*)(void))0x80000C00)(); }
-static inline void trace_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000D00)(param_1, param_2, param_3); }
-static inline void performance_monitor_interrupt_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80000F00)(param_1, param_2, param_3); }
-static inline void instruction_address_breakpoint_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80001300)(param_1, param_2, param_3); }
-static inline void thermal_management_interrupt_exception_handler(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x80001700)(param_1, param_2, param_3); }
+static inline void trace_exception_handler(void) { ((void(*)(void))0x80000D00)(); }
+static inline void performance_monitor_interrupt_handler(void) { ((void(*)(void))0x80000F00)(); }
+static inline void instruction_address_breakpoint_exception_handler(void) { ((void(*)(void))0x80001300)(); }
+static inline void thermal_management_interrupt_exception_handler(void) { ((void(*)(void))0x80001700)(); }
 static inline void __check_pad3(void) { ((void(*)(void))0x80003100)(); }
 static inline void __check_pad3_(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, int param_10) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int))0x80003110)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10); }
 static inline void __set_debug_bba(void) { ((void(*)(void))0x80003140)(); }
-static inline byte __get_debug_bba(void) { return ((byte(*)(void))0x8000314C)(); }
+static inline void __get_debug_bba(void) { ((void(*)(void))0x8000314C)(); }
 static inline void __start(void) { ((void(*)(void))0x80003154)(); }
-static inline undefined8 __init_registers(void) { return ((undefined8(*)(void))0x800032B0)(); }
+static inline void __init_registers(void) { ((void(*)(void))0x800032B0)(); }
 static inline void __init_data(void) { ((void(*)(void))0x80003340)(); }
 static inline void __init_hardware(void) { ((void(*)(void))0x80003400)(); }
-static inline void __flush_cache(uint param_1, int param_2) { ((void(*)(uint, int))0x80003424)(param_1, param_2); }
-static inline undefined4 TRK_memset(undefined4 param_1) { return ((undefined4(*)(undefined4))0x80003458)(param_1); }
-static inline void TRK_memcpy(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80003488)(param_1, param_2, param_3); }
+static inline void __flush_cache(void) { ((void(*)(void))0x80003424)(); }
+static inline void TRK_memset(void) { ((void(*)(void))0x80003458)(); }
+static inline void TRK_memcpy(void) { ((void(*)(void))0x80003488)(); }
 static inline void __TRK_reset(void) { ((void(*)(void))0x800053E0)(); }
-#define memset FUNCTION_ADDRESS(int, 0x8000540C, void * /*ptr*/, uint /*val*/, uint /*Count*/)
+static inline int memset(void * ptr, uint val, uint Count) { return ((int(*)(void *, uint, uint))0x8000540C)(ptr, val, Count); }
 static inline void TRK_fill_mem(undefined * param_1, int param_2, int param_3) { ((void(*)(undefined *, int, int))0x8000543C)(param_1, param_2, param_3); }
-#define memcpy FUNCTION_ADDRESS(void, 0x800054F4, void * /*dst*/, void * /*src*/, uint /*byteCount*/)
+static inline void memcpy(void * dst, void * src, uint byteCount) { ((void(*)(void *, void *, uint))0x800054F4)(dst, src, byteCount); }
 static inline void PostRetraceCallback(void) { ((void(*)(void))0x80008FD0)(); }
-#define main FUNCTION_ADDRESS(void, 0x80009180, int, int)
+static inline void main(int param_1, int param_2) { ((void(*)(int, int))0x80009180)(param_1, param_2); }
 static inline void PrepFilesToBeLoaded(void) { ((void(*)(void))0x800096DC)(); }
 static inline void handleLoadingProcess(void) { ((void(*)(void))0x800097A0)(); }
 static inline void interpolatePointsUnknown(int count, Vec2f * src, BOOL param_3, BOOL param_4) { ((void(*)(int, Vec2f *, BOOL, BOOL))0x80009E94)(count, src, param_3, param_4); }
-static inline void BezierInterpolate(float percentage, Vec2f * out, Vec2f * p1, Vec2f * p2, Vec2f * p3, Vec2f * p4) { ((void(*)(float, Vec2f *, Vec2f *, Vec2f *, Vec2f *, Vec2f *))0x8000A00C)(percentage, out, p1, p2, p3, p4); }
-static inline void interpolatePointsBezier_Vec2s(undefined8 percentage, int out, Vec2s * param_3, Vec2s * param_4, Vec2s * param_5, Vec2s * param_6, int param_7) { ((void(*)(undefined8, int, Vec2s *, Vec2s *, Vec2s *, Vec2s *, int))0x8000A1E8)(percentage, out, param_3, param_4, param_5, param_6, param_7); }
-static inline int updateMenuOrBackgroundUI(uint * param_1, int param_2, int param_3, Mtx * param_4, int param_5, uint param_6, ushort * * param_7, undefined2 * param_8) { return ((int(*)(uint *, int, int, Mtx *, int, uint, ushort * *, undefined2 *))0x8000BA3C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline int updateHUDRelatedUI(uint * param_1, int param_2, int param_3, Mtx * param_4, uint param_5, uint param_6, ushort * * param_7, TextureObj * param_8) { return ((int(*)(uint *, int, int, Mtx *, uint, uint, ushort * *, TextureObj *))0x8000C194)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline int triggerDefaultHUDAction_(uint * param_1, int param_2, int param_3, Mtx * param_4, uint param_5, uint param_6, ushort * * param_7, undefined4 param_8) { return ((int(*)(uint *, int, int, Mtx *, uint, uint, ushort * *, undefined4))0x8000D164)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void handleUIAction(undefined4 param_1, int param_2, int param_3) { ((void(*)(undefined4, int, int))0x8000D838)(param_1, param_2, param_3); }
+static inline void BezierInterpolate(float percentage, Vec2f * out_, Vec2f * p1, Vec2f * p2, Vec2f * p3, Vec2f * p4) { ((void(*)(float, Vec2f *, Vec2f *, Vec2f *, Vec2f *, Vec2f *))0x8000A00C)(percentage, out_, p1, p2, p3, p4); }
+static inline void interpolatePointsBezier_Vec2s(undefined8 percentage, int out_, Vec2s * param_3, Vec2s * param_4, Vec2s * param_5, Vec2s * param_6, int param_7) { ((void(*)(undefined8, int, Vec2s *, Vec2s *, Vec2s *, Vec2s *, int))0x8000A1E8)(percentage, out_, param_3, param_4, param_5, param_6, param_7); }
+static inline void updateMenuOrBackgroundUI(void) { ((void(*)(void))0x8000BA3C)(); }
+static inline void updateHUDRelatedUI(void) { ((void(*)(void))0x8000C194)(); }
+static inline void triggerDefaultHUDAction_(void) { ((void(*)(void))0x8000D164)(); }
+static inline void handleUIAction(void) { ((void(*)(void))0x8000D838)(); }
 static inline void SetSpriteRect(byte * param_1, TextureObj * param_2, int mat, Vec2i * addition, short param_5) { ((void(*)(byte *, TextureObj *, int, Vec2i *, short))0x8000E900)(param_1, param_2, mat, addition, param_5); }
 static inline void AddVec2iToQuad(Quad * orig, Mtx * mat, Vec2i * addition) { ((void(*)(Quad *, Mtx *, Vec2i *))0x8000EF1C)(orig, mat, addition); }
 static inline void somethingSetTexturePointer(void) { ((void(*)(void))0x8000F48C)(); }
-static inline uint text_initializeNewChannel(int param_1, int param_2, short param_3, undefined4 param_4, undefined4 param_5, int param_6) { return ((uint(*)(int, int, short, undefined4, undefined4, int))0x8000F988)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline void text_initializeNewChannel(void) { ((void(*)(void))0x8000F988)(); }
 static inline int calculateTextBlockWidth(uint textIndex) { return ((int(*)(uint))0x8000FA9C)(textIndex); }
 static inline void practiceTextRelated(undefined4 textChannel, undefined4 param_2, undefined4 letterBeingDrawn) { ((void(*)(undefined4, undefined4, undefined4))0x8000FD9C)(textChannel, param_2, letterBeingDrawn); }
 static inline void text_setPtrToWhereCharsAreStored(undefined4 r3_channelNumber, undefined4 r4_param_2, undefined4 r5_textOffset) { ((void(*)(undefined4, undefined4, undefined4))0x8000FE08)(r3_channelNumber, r4_param_2, r5_textOffset); }
 static inline void setText0x2aTo0(undefined4 textChannel) { ((void(*)(undefined4))0x8000FEE8)(textChannel); }
 static inline void initializeTextParameters(undefined4 param_1, undefined4 param_2, undefined2 xPos, undefined2 yPos, undefined1 param_5, undefined4 color, undefined1 textStyle) { ((void(*)(undefined4, undefined4, undefined2, undefined2, undefined1, undefined4, undefined1))0x8000FF04)(param_1, param_2, xPos, yPos, param_5, color, textStyle); }
-static inline void drawTransformedSprite(int xPos, int yPos, int param_3, int param_4, short width, int texture, int spriteType, int transformMtx) { ((void(*)(int, int, int, int, short, int, int, int))0x800100A4)(xPos, yPos, param_3, param_4, width, texture, spriteType, transformMtx); }
+static inline void drawTransformedSprite(int xPos, int yPos, int param_3, int param_4, short width, int texture_, int spriteType, int transformMtx) { ((void(*)(int, int, int, int, short, int, int, int))0x800100A4)(xPos, yPos, param_3, param_4, width, texture_, spriteType, transformMtx); }
 static inline void DrawText(int textBlockIndex) { ((void(*)(int))0x80010498)(textBlockIndex); }
 static inline void DrawTextOnCondition(int param_1) { ((void(*)(int))0x80010F2C)(param_1); }
 static inline void initTextRendering_(void) { ((void(*)(void))0x80010FA0)(); }
 static inline void animationRelated(int animStruct, int param_2) { ((void(*)(int, int))0x800111FC)(animStruct, param_2); }
 static inline void LoadModel(AnimationStruct * animStructPtr) { ((void(*)(AnimationStruct *))0x800127F8)(animStructPtr); }
 static inline void animateModelArmsGlovesBats(AnimationStruct * animStruct) { ((void(*)(AnimationStruct *))0x80013680)(animStruct); }
-static inline undefined4 loadSomethingFromDiskAtBeginningOfAB1(int param_1) { return ((undefined4(*)(int))0x80014D4C)(param_1); }
-static inline undefined4 loadSomethingFromDiskAtBeginningOfAB2(int param_1) { return ((undefined4(*)(int))0x80014E50)(param_1); }
-static inline undefined4 loadBatterModelFromDisk_(int param_1) { return ((undefined4(*)(int))0x80014F40)(param_1); }
+static inline void loadSomethingFromDiskAtBeginningOfAB1(void) { ((void(*)(void))0x80014D4C)(); }
+static inline void loadSomethingFromDiskAtBeginningOfAB2(void) { ((void(*)(void))0x80014E50)(); }
+static inline void loadBatterModelFromDisk_(void) { ((void(*)(void))0x80014F40)(); }
 static inline void practice_loadAllGraphics_(undefined4 team) { ((void(*)(undefined4))0x8001594C)(team); }
 static inline void setupAnimationModelMemory(void) { ((void(*)(void))0x80018024)(); }
 static inline void animationInitializationRunnerRelated(int param_1, undefined * param_2) { ((void(*)(int, undefined *))0x80018270)(param_1, param_2); }
@@ -38437,7 +38439,7 @@ static inline int getAnimationCollisionOffset(int fielderIndex, int offsetType, 
 static inline bool getAnimRelatedCoordinates(int character, enumAnimationCoordinatesType animationCode, Vec3f * coords) { return ((bool(*)(int, enumAnimationCoordinatesType, Vec3f *))0x8001B80C)(character, animationCode, coords); }
 static inline void QueueCharacterAnimation(int character, EnumCharacterAnimation_int animation, byte param_3, byte param_4, short param_5, bool flip, int param_7) { ((void(*)(int, EnumCharacterAnimation_int, byte, byte, short, bool, int))0x8001B918)(character, animation, param_3, param_4, param_5, flip, param_7); }
 static inline void AnimateCharacter(int character, EnumCharacterAnimation_int animationIndex, bool loop, byte param_4, byte param_5, short param_6, byte param_7, int param_8) { ((void(*)(int, EnumCharacterAnimation_int, bool, byte, byte, short, byte, int))0x8001B990)(character, animationIndex, loop, param_4, param_5, param_6, param_7, param_8); }
-static inline undefined4 loadFielderActors(int param_1, OSThread * param_2) { return ((undefined4(*)(int, OSThread *))0x8001C588)(param_1, param_2); }
+static inline void loadFielderActors(void) { ((void(*)(void))0x8001C588)(); }
 static inline bool loadAndAnimateCharacter(int charID, int charIndexIfMinigame) { return ((bool(*)(int, int))0x8001C67C)(charID, charIndexIfMinigame); }
 static inline int loadCharacterAnimation(int character) { return ((int(*)(int))0x8001C920)(character); }
 static inline void initStadiumLighting(void) { ((void(*)(void))0x8001CBD4)(); }
@@ -38446,38 +38448,38 @@ static inline void applyUniformScaleToObject(float scaleFactor, int index) { ((v
 static inline void applyNonUniformScaleToObject(float xScale, float yScale, float zScale, int index) { ((void(*)(float, float, float, int))0x8001D110)(xScale, yScale, zScale, index); }
 static inline void baseballCTRLSetScale(float xS, float yS, float zS, int index) { ((void(*)(float, float, float, int))0x8001D148)(xS, yS, zS, index); }
 static inline void updateAnimationAction(int animIndex, int bitFlag, int actionFlag) { ((void(*)(int, int, int))0x8001D180)(animIndex, bitFlag, actionFlag); }
-static inline void animRelated_8001db74(ushort * param_1) { ((void(*)(ushort *))0x8001DB74)(param_1); }
+static inline void animRelated_8001db74(void) { ((void(*)(void))0x8001DB74)(); }
 static inline void setNullPtrForStadiumObjs(void) { ((void(*)(void))0x8001E474)(); }
 static inline void resetGameStadiumStateOnExit(void) { ((void(*)(void))0x8001F228)(); }
 static inline void challengeMapMaybe_(void) { ((void(*)(void))0x8001F4C0)(); }
 static inline void somethingFileHandlingLoadingRelated(void) { ((void(*)(void))0x8001F5E8)(); }
 static inline void initShortsHandleCompressedDiskReads(int baseAddress) { ((void(*)(int))0x8001FC4C)(baseAddress); }
-static inline int calledWhenStartingMatch(void) { return ((int(*)(void))0x80020048)(); }
+static inline void calledWhenStartingMatch(void) { ((void(*)(void))0x80020048)(); }
 static inline void challenge_setTransitionScreenCharacterPortrait(undefined1 param_1, undefined1 captain) { ((void(*)(undefined1, undefined1))0x800203E0)(param_1, captain); }
-static inline void changeScene_(byte param_1, short param_2) { ((void(*)(byte, short))0x800204CC)(param_1, param_2); }
+static inline void changeScene_(void) { ((void(*)(void))0x800204CC)(); }
 static inline void soundOrMusicRelated(void) { ((void(*)(void))0x80021308)(); }
 static inline void initSound(void) { ((void(*)(void))0x800219B4)(); }
 static inline undefined * loadCharacterDataRelated(enumCharIDWord charID, uint charTypes_Range1To6, int * charData) { return ((undefined *(*)(enumCharIDWord, uint, int *))0x80021CA4)(charID, charTypes_Range1To6, charData); }
 static inline void maybe_somethingAnimRelated(void) { ((void(*)(void))0x80022634)(); }
 static inline DODisplayObj * InitBone(ACTBone * parent, ACTBoneLayout * layout, ACTActor * actor, short * numBones) { return ((DODisplayObj *(*)(ACTBone *, ACTBoneLayout *, ACTActor *, short *))0x80022DAC)(parent, layout, actor, numBones); }
-static inline void InitActorWithLayout(ActLayout * layout, ACTActor * act) { ((void(*)(ActLayout *, ACTActor *))0x800232E0)(layout, act); }
-static inline void BuildBoneSkinOrientationMatrix(int param_1, Mtx * param_2) { ((void(*)(int, Mtx *))0x8002360C)(param_1, param_2); }
-static inline void characterAndBallDisplayRelated(int ptr, int mayberosterIndex, short maybeRosterIndex, int act, int param_5, int param_6) { ((void(*)(int, int, short, int, int, int))0x8002399C)(ptr, mayberosterIndex, maybeRosterIndex, act, param_5, param_6); }
+static inline void InitActorWithLayout(ActLayout * layout, ACTActor * act_) { ((void(*)(ActLayout *, ACTActor *))0x800232E0)(layout, act_); }
+static inline void BuildBoneSkinOrientationMatrix(void) { ((void(*)(void))0x8002360C)(); }
+static inline void characterAndBallDisplayRelated(int ptr, int mayberosterIndex, short maybeRosterIndex, int act_, int param_5, int param_6) { ((void(*)(int, int, short, int, int, int))0x8002399C)(ptr, mayberosterIndex, maybeRosterIndex, act_, param_5, param_6); }
 static inline void initActorArray(int numActors) { ((void(*)(int))0x80023B04)(numActors); }
-static inline void characterLightingRelated(int inputParams, int outputParams) { ((void(*)(int, int))0x80023B90)(inputParams, outputParams); }
-static inline void gOz_GXSetTexture(GXTevMode param_1, int param_2, int param_3) { ((void(*)(GXTevMode, int, int))0x80024184)(param_1, param_2, param_3); }
+static inline void characterLightingRelated(int inputParams_, int outputParams) { ((void(*)(int, int))0x80023B90)(inputParams_, outputParams); }
+static inline void gOz_GXSetTexture(void) { ((void(*)(void))0x80024184)(); }
 static inline void SetDisplayStateTexture(TextureHeader * tex, int texMap, int tlutName) { ((void(*)(TextureHeader *, int, int))0x80024404)(tex, texMap, tlutName); }
 static inline void endOfGame_Campaign_starRelated_(int playerIndex, int challengeIndex) { ((void(*)(int, int))0x80024840)(playerIndex, challengeIndex); }
-static inline uint multBottomBits_asFloat(uint param_1, uint param_2) { return ((uint(*)(uint, uint))0x80024974)(param_1, param_2); }
+static inline void multBottomBits_asFloat(void) { ((void(*)(void))0x80024974)(); }
 static inline void byteWiseMultiply(int scalar, int bytes) { ((void(*)(int, int))0x800249D8)(scalar, bytes); }
 static inline int LERPToNewRange_Float(int input, int inLow, int inHigh, int outLow, int outHigh) { return ((int(*)(int, int, int, int, int))0x80024B00)(input, inLow, inHigh, outLow, outHigh); }
 static inline double LinearInterpolateToNewRange(double value, double prevMin, double prevMax, double nextMin, double nextMax) { return ((double(*)(double, double, double, double, double))0x80024BB4)(value, prevMin, prevMax, nextMin, nextMax); }
-static inline void ACTActorRelated(ACTActor * ACTActor, GEOPalette * gpl, int param_3, int * param_4) { ((void(*)(ACTActor *, GEOPalette *, int, int *))0x80025C58)(ACTActor, gpl, param_3, param_4); }
+static inline void ACTActorRelated(ACTActor * ACTActor_, GEOPalette * gpl, int param_3, int * param_4) { ((void(*)(ACTActor *, GEOPalette *, int, int *))0x80025C58)(ACTActor_, gpl, param_3, param_4); }
 static inline void adjustInternalPointers(ACTActor * baseAddr) { ((void(*)(ACTActor *))0x80025DDC)(baseAddr); }
 static inline void actorRelated(ActLayout * param_1, int param_2, int param_3) { ((void(*)(ActLayout *, int, int))0x80025EEC)(param_1, param_2, param_3); }
-static inline void actRelated(ACTActor * actor, ActLayout * act2) { ((void(*)(ACTActor *, ActLayout *))0x80025FFC)(actor, act2); }
-static inline uint maybeTexOrSpriteRelated(int param_1) { return ((uint(*)(int))0x800263FC)(param_1); }
-static inline void pitchingMachinePitching_(byte param_1) { ((void(*)(byte))0x8003385C)(param_1); }
+static inline void actRelated(ACTActor * actor, ActLayout * act2_) { ((void(*)(ACTActor *, ActLayout *))0x80025FFC)(actor, act2_); }
+static inline void maybeTexOrSpriteRelated(void) { ((void(*)(void))0x800263FC)(); }
+static inline void pitchingMachinePitching_(void) { ((void(*)(void))0x8003385C)(); }
 static inline void initMinigamePointers(void) { ((void(*)(void))0x80034220)(); }
 static inline void configureMinigameGX(void) { ((void(*)(void))0x8003452C)(); }
 static inline void setupMinigamePointerStruct(void) { ((void(*)(void))0x800348C8)(); }
@@ -38490,15 +38492,15 @@ static inline void load_Icon_(int pointer, int drawingItemNumber_, int menuOptio
 static inline void setIndicatorSlotState(DrawingSceneStruct * param_1, int param_2, int param_3, int param_4, int param_5) { ((void(*)(DrawingSceneStruct *, int, int, int, int))0x8003649C)(param_1, param_2, param_3, param_4, param_5); }
 static inline undefined * GetUITexture(void) { return ((undefined *(*)(void))0x80039AA8)(); }
 static inline TextureHeader * returnTexture_(void) { return ((TextureHeader *(*)(void))0x80039AB4)(); }
-static inline void updateFunctionPtr(undefined * param_1) { ((void(*)(undefined *))0x8003A548)(param_1); }
-static inline void GXTexObjRelated(TextureArchiveHeader * header) { ((void(*)(TextureArchiveHeader *))0x8003AD84)(header); }
+static inline void updateFunctionPtr(void) { ((void(*)(void))0x8003A548)(); }
+static inline void GXTexObjRelated(TextureArchiveHeader * header_) { ((void(*)(TextureArchiveHeader *))0x8003AD84)(header_); }
 static inline void sceneDrawingLogic(void) { ((void(*)(void))0x8003C00C)(); }
 static inline void capApplicationFunction_(void) { ((void(*)(void))0x8004207C)(); }
-static inline undefined4 lineupOrderChangeRelated(uint param_1, int param_2) { return ((undefined4(*)(uint, int))0x80042598)(param_1, param_2); }
+static inline void lineupOrderChangeRelated(void) { ((void(*)(void))0x80042598)(); }
 static inline void adjustStatsForSuperstar(int playerNumber) { ((void(*)(int))0x800426DC)(playerNumber); }
 static inline void randRange_FUN_80042bf0(int high, int low) { ((void(*)(int, int))0x80042BF0)(high, low); }
-static inline void sndFXRelated(ushort param_1) { ((void(*)(ushort))0x80042C44)(param_1); }
-static inline undefined4 maybeCheckAndResetGrapicsElement(int param_1, int param_2, uint param_3) { return ((undefined4(*)(int, int, uint))0x80042DA8)(param_1, param_2, param_3); }
+static inline void sndFXRelated(void) { ((void(*)(void))0x80042C44)(); }
+static inline void maybeCheckAndResetGrapicsElement(void) { ((void(*)(void))0x80042DA8)(); }
 static inline void challengeStarMenu(void) { ((void(*)(void))0x80042DE8)(); }
 static inline void viewStarMenuOverTeamManagementScreen_unused(void) { ((void(*)(void))0x8004338C)(); }
 static inline void swapPosMenu_left_rightPress(undefined1 left_right, undefined1 param_2) { ((void(*)(undefined1, undefined1))0x80043880)(left_right, param_2); }
@@ -38510,37 +38512,37 @@ static inline void createTeamManagementScreen_inGame(undefined2 param_1, undefin
 static inline void createTeamManagementScreen_preGame(void) { ((void(*)(void))0x80048764)(); }
 static inline void startGameRelated(void) { ((void(*)(void))0x80048EB8)(); }
 static inline void possiblyTransferDataBetweenDifferentRels(void) { ((void(*)(void))0x80049878)(); }
-static inline void setTransitionVariable(int param_1) { ((void(*)(int))0x8004ABD8)(param_1); }
-static inline int marioHandOnFire_endFireAnimation_(int param_1) { return ((int(*)(int))0x8004ABE8)(param_1); }
-static inline void newPitcherEnteringGame_(double param_1, int param_2) { ((void(*)(double, int))0x8004AC00)(param_1, param_2); }
+static inline void setTransitionVariable(void) { ((void(*)(void))0x8004ABD8)(); }
+static inline void marioHandOnFire_endFireAnimation_(void) { ((void(*)(void))0x8004ABE8)(); }
+static inline void newPitcherEnteringGame_(void) { ((void(*)(void))0x8004AC00)(); }
 static inline someStadCollisionCode stadiumCollisionRelated(EnumStadiumIDs4 stadiumID, TriangleCollisionTypes_word collisionType) { return ((someStadCollisionCode(*)(EnumStadiumIDs4, TriangleCollisionTypes_word))0x8004AD54)(stadiumID, collisionType); }
-static inline void processCharacterStateBasedOnGameMode(int param_1) { ((void(*)(int))0x8004B7F4)(param_1); }
+static inline void processCharacterStateBasedOnGameMode(void) { ((void(*)(void))0x8004B7F4)(); }
 static inline void exitMenu(EnumControllerInput param_1) { ((void(*)(EnumControllerInput))0x8004CA6C)(param_1); }
-static inline int returnsCurrentMode(void) { return ((int(*)(void))0x8005268C)(); }
+static inline void returnsCurrentMode(void) { ((void(*)(void))0x8005268C)(); }
 static inline void setScissorAndProjection(int mode) { ((void(*)(int))0x80052694)(mode); }
 static inline float * returnFloatFromModeIndex(int mode) { return ((float *(*)(int))0x80052734)(mode); }
-static inline void setScissorMode(int param_1) { ((void(*)(int))0x80052798)(param_1); }
-static inline int returnScissorMode(void) { return ((int(*)(void))0x800527BC)(); }
+static inline void setScissorMode(void) { ((void(*)(void))0x80052798)(); }
+static inline void returnScissorMode(void) { ((void(*)(void))0x800527BC)(); }
 static inline void graphics_relatedToVsScreen(void) { ((void(*)(void))0x80052968)(); }
 static inline void possiblyTransitionBlackScreen(void) { ((void(*)(void))0x80052F98)(); }
-static inline void drawStarProgressionMenu_(int param_1) { ((void(*)(int))0x80056AE4)(param_1); }
-static inline void someChallengeStarFunction(int param_1) { ((void(*)(int))0x80056F70)(param_1); }
-static inline void someChallengeStarFunction2(int param_1) { ((void(*)(int))0x800572C0)(param_1); }
+static inline void drawStarProgressionMenu_(void) { ((void(*)(void))0x80056AE4)(); }
+static inline void someChallengeStarFunction(void) { ((void(*)(void))0x80056F70)(); }
+static inline void someChallengeStarFunction2(void) { ((void(*)(void))0x800572C0)(); }
 static inline void challengeCheckStarsMenuLoading(void) { ((void(*)(void))0x800576F0)(); }
 static inline void starMissionMenu(void) { ((void(*)(void))0x80057C08)(); }
 static inline void scoutFlagMenu(void) { ((void(*)(void))0x80058050)(); }
-static inline void zMenuLoadGraphics(int param_1) { ((void(*)(int))0x80058394)(param_1); }
-static inline void starMissionRelated(int param_1) { ((void(*)(int))0x80059B38)(param_1); }
+static inline void zMenuLoadGraphics(void) { ((void(*)(void))0x80058394)(); }
+static inline void starMissionRelated(void) { ((void(*)(void))0x80059B38)(); }
 static inline void battingOrderProcessInputs(maybeGraphicsManager * param_1, undefined4 playerNum) { ((void(*)(maybeGraphicsManager *, undefined4))0x8005A350)(param_1, playerNum); }
 static inline void teamManagementGraphics_fieldingAlignmentScreen(undefined4 drawingItem) { ((void(*)(undefined4))0x8005AF68)(drawingItem); }
 static inline void teamManagementGraphics_battingOrderScreen(undefined4 drawingItem) { ((void(*)(undefined4))0x8005B298)(drawingItem); }
-static inline void teamManagementGraphics_fieldingAlignmentInfo(int param_1) { ((void(*)(int))0x8005BF40)(param_1); }
-static inline void teamManagementGraphics_battingOrderInfo(int param_1) { ((void(*)(int))0x8005C2B0)(param_1); }
+static inline void teamManagementGraphics_fieldingAlignmentInfo(void) { ((void(*)(void))0x8005BF40)(); }
+static inline void teamManagementGraphics_battingOrderInfo(void) { ((void(*)(void))0x8005C2B0)(); }
 static inline void teamManagementGraphics_steadyState(void) { ((void(*)(void))0x80060184)(); }
 static inline void teamManagementGraphics_initialLoad(void) { ((void(*)(void))0x80061B9C)(); }
 static inline void SetMenuNumber(void) { ((void(*)(void))0x8006236C)(); }
 static inline void updateCharacterSelectProcessCode(undefined4 player, undefined1 param_2) { ((void(*)(undefined4, undefined1))0x800625A4)(player, param_2); }
-static inline void makeCursorMovable(int param_1) { ((void(*)(int))0x80062674)(param_1); }
+static inline void makeCursorMovable(void) { ((void(*)(void))0x80062674)(); }
 static inline void initializeUnknown(void) { ((void(*)(void))0x80062A50)(); }
 static inline void relatedToReturningToPracticeMenu(void) { ((void(*)(void))0x80062A94)(); }
 static inline void maybeUpdateFielderTerrainStatus(byte fielderIndex) { ((void(*)(byte))0x80063958)(fielderIndex); }
@@ -38549,8 +38551,8 @@ static inline int translateStarPitchHitIndex(byte starHitType) { return ((int(*)
 static inline byte translateStarPitch(byte param_1) { return ((byte(*)(byte))0x800647E0)(param_1); }
 static inline byte translateStarSwing(byte param_1) { return ((byte(*)(byte))0x8006487C)(param_1); }
 static inline void challengeSetCPURoster2(int player) { ((void(*)(int))0x80064A04)(player); }
-static inline void setInitialBattingOrder(uint param_1) { ((void(*)(uint))0x80065DEC)(param_1); }
-static inline undefined4 teamClassTypeLogos(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x80067264)(param_1, param_2); }
+static inline void setInitialBattingOrder(void) { ((void(*)(void))0x80065DEC)(); }
+static inline void teamClassTypeLogos(void) { ((void(*)(void))0x80067264)(); }
 static inline void teamCompositionLogos(int team, int CaptainCharacterID) { ((void(*)(int, int))0x800675C4)(team, CaptainCharacterID); }
 static inline void teamLogoDetermination(int team) { ((void(*)(int))0x800678CC)(team); }
 static inline void unknownSettingTeamValues(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, byte param_11, byte param_12, byte param_13, byte param_14, byte param_15, byte param_16, byte param_17, int param_18, int param_19, int param_20) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, byte, byte, byte, byte, byte, int, int, int))0x8006885C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16, param_17, param_18, param_19, param_20); }
@@ -38560,10 +38562,10 @@ static inline void endDemo_(void) { ((void(*)(void))0x80069A98)(); }
 static inline void challengeDrawStarsOnMissionMenu_(void) { ((void(*)(void))0x8006C48C)(); }
 static inline void starMissionRelated_assignPlayersToBJTeamAfterBeatingBowser_(void) { ((void(*)(void))0x8006C7C4)(); }
 static inline void challenge_checkRecruitment(void) { ((void(*)(void))0x8006C9D8)(); }
-static inline double intermediateStatBuffForScoutFlags_(void) { return ((double(*)(void))0x8006CA9C)(); }
-static inline double intermediateStatBuffForCompletedMissions(int param_1) { return ((double(*)(int))0x8006CAC8)(param_1); }
-static inline int challengeRelated(int param_1) { return ((int(*)(int))0x8006CBE4)(param_1); }
-static inline int determineIfMissionDescriptionIsShown_(int param_1) { return ((int(*)(int))0x8006CCA4)(param_1); }
+static inline void intermediateStatBuffForScoutFlags_(void) { ((void(*)(void))0x8006CA9C)(); }
+static inline void intermediateStatBuffForCompletedMissions(void) { ((void(*)(void))0x8006CAC8)(); }
+static inline void challengeRelated(void) { ((void(*)(void))0x8006CBE4)(); }
+static inline void determineIfMissionDescriptionIsShown_(void) { ((void(*)(void))0x8006CCA4)(); }
 static inline void PPCMfmsr(void) { ((void(*)(void))0x8006D024)(); }
 static inline void PPCMtmsr(void) { ((void(*)(void))0x8006D02C)(); }
 static inline void PPCMfhid0(void) { ((void(*)(void))0x8006D034)(); }
@@ -38579,182 +38581,182 @@ static inline void PPCMtpmc1(void) { ((void(*)(void))0x8006D088)(); }
 static inline void PPCMtpmc2(void) { ((void(*)(void))0x8006D090)(); }
 static inline void PPCMtpmc3(void) { ((void(*)(void))0x8006D098)(); }
 static inline void PPCMtpmc4(void) { ((void(*)(void))0x8006D0A0)(); }
-static inline uint PPCMffpscr(void) { return ((uint(*)(void))0x8006D0A8)(); }
+static inline void PPCMffpscr(void) { ((void(*)(void))0x8006D0A8)(); }
 static inline void PPCMtfpscr(void) { ((void(*)(void))0x8006D0C8)(); }
 static inline void PPCMfhid2(void) { ((void(*)(void))0x8006D0F0)(); }
 static inline void PPCMthid2(void) { ((void(*)(void))0x8006D0F8)(); }
 static inline void PPCMtwpar(void) { ((void(*)(void))0x8006D100)(); }
 static inline void PPCDisableSpeculation(void) { ((void(*)(void))0x8006D108)(); }
 static inline void PPCSetFpNonIEEEMode(void) { ((void(*)(void))0x8006D130)(); }
-static inline int * __OSFPRInit(void) { return ((int *(*)(void))0x8006D138)(); }
-static inline int GetConsoleType(void) { return ((int(*)(void))0x8006D260)(); }
-static inline void InquiryCallback(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x8006D288)(param_1, param_2); }
+static inline void __OSFPRInit(void) { ((void(*)(void))0x8006D138)(); }
+static inline void GetConsoleType(void) { ((void(*)(void))0x8006D260)(); }
+static inline void InquiryCallback(void) { ((void(*)(void))0x8006D288)(); }
 static inline void OSInit(void) { ((void(*)(void))0x8006D2C4)(); }
 static inline void OSExceptionInit(void) { ((void(*)(void))0x8006D7A4)(); }
-static inline undefined4 __OSDBIntegrator(void) { return ((undefined4(*)(void))0x8006DA24)(); }
-static inline undefined4 __OSSetExceptionHandler(uint param_1, undefined4 param_2) { return ((undefined4(*)(uint, undefined4))0x8006DA4C)(param_1, param_2); }
-static inline undefined4 __OSGetExceptionHandler(uint param_1) { return ((undefined4(*)(uint))0x8006DA68)(param_1); }
-static inline void OSExceptionVector(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x8006DA7C)(param_1, param_2, param_3); }
-static inline void __DBVECTOR(undefined4 param_1, undefined4 param_2, uint param_3) { ((void(*)(undefined4, undefined4, uint))0x8006DAD4)(param_1, param_2, param_3); }
-static inline void __OSEVSetNumber(undefined4 param_1, undefined4 param_2, uint param_3) { ((void(*)(undefined4, undefined4, uint))0x8006DAE4)(param_1, param_2, param_3); }
-static inline void __OSEVEnd(undefined4 param_1, undefined4 * param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8) { ((void(*)(undefined4, undefined4 *, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8006DB14)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void OSDefaultExceptionHandler(undefined4 param_1, undefined4 * param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8) { ((void(*)(undefined4, undefined4 *, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8006DB18)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline undefined4 __OSPSInit(void) { return ((undefined4(*)(void))0x8006DB70)(); }
-static inline uint __OSGetDIConfig(void) { return ((uint(*)(void))0x8006DBC4)(); }
-static inline void OSRegisterVersion(undefined4 param_1) { ((void(*)(undefined4))0x8006DBD8)(param_1); }
+static inline void __OSDBIntegrator(void) { ((void(*)(void))0x8006DA24)(); }
+static inline void __OSSetExceptionHandler(void) { ((void(*)(void))0x8006DA4C)(); }
+static inline void __OSGetExceptionHandler(void) { ((void(*)(void))0x8006DA68)(); }
+static inline void OSExceptionVector(void) { ((void(*)(void))0x8006DA7C)(); }
+static inline void __DBVECTOR(void) { ((void(*)(void))0x8006DAD4)(); }
+static inline void __OSEVSetNumber(void) { ((void(*)(void))0x8006DAE4)(); }
+static inline void __OSEVEnd(void) { ((void(*)(void))0x8006DB14)(); }
+static inline void OSDefaultExceptionHandler(void) { ((void(*)(void))0x8006DB18)(); }
+static inline void __OSPSInit(void) { ((void(*)(void))0x8006DB70)(); }
+static inline void __OSGetDIConfig(void) { ((void(*)(void))0x8006DBC4)(); }
+static inline void OSRegisterVersion(void) { ((void(*)(void))0x8006DBD8)(); }
 static inline void OSInitAlarm(void) { ((void(*)(void))0x8006DC04)(); }
-static inline void OSCreateAlarm(undefined4 * param_1) { ((void(*)(undefined4 *))0x8006DC5C)(param_1); }
-static inline void InsertAlarm(undefined4 * param_1, undefined4 param_2, uint param_3, uint param_4, undefined4 param_5) { ((void(*)(undefined4 *, undefined4, uint, uint, undefined4))0x8006DC6C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void OSSetAlarm(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5) { ((void(*)(int, undefined4, undefined4, undefined4, undefined4))0x8006DEBC)(param_1, param_2, param_3, param_4, param_5); }
-static inline void OSCancelAlarm(int * param_1) { ((void(*)(int *))0x8006DF24)(param_1); }
-static inline undefined4 OnReset(int param_1) { return ((undefined4(*)(int))0x8006E2C0)(param_1); }
-static inline uint * * DLInsert(uint * * param_1, uint * * param_2) { return ((uint * *(*)(uint * *, uint * *))0x8006E360)(param_1, param_2); }
-static inline void OSFreeToHeap(int param_1, int param_2) { ((void(*)(int, int))0x8006E40C)(param_1, param_2); }
-static inline int OSSetCurrentHeap(int param_1) { return ((int(*)(int))0x8006E488)(param_1); }
-static inline void OSInitAlloc(int param_1, uint param_2, int param_3) { ((void(*)(int, uint, int))0x8006E498)(param_1, param_2, param_3); }
+static inline void OSCreateAlarm(void) { ((void(*)(void))0x8006DC5C)(); }
+static inline void InsertAlarm(void) { ((void(*)(void))0x8006DC6C)(); }
+static inline void OSSetAlarm(void) { ((void(*)(void))0x8006DEBC)(); }
+static inline void OSCancelAlarm(void) { ((void(*)(void))0x8006DF24)(); }
+static inline void OnReset(void) { ((void(*)(void))0x8006E2C0)(); }
+static inline void DLInsert(void) { ((void(*)(void))0x8006E360)(); }
+static inline void OSFreeToHeap(void) { ((void(*)(void))0x8006E40C)(); }
+static inline void OSSetCurrentHeap(void) { ((void(*)(void))0x8006E488)(); }
+static inline void OSInitAlloc(void) { ((void(*)(void))0x8006E498)(); }
 static inline void OSCreateHeap(void * low, void * high) { ((void(*)(void *, void *))0x8006E508)(low, high); }
-static inline undefined * OSGetArenaHi(void) { return ((undefined *(*)(void))0x8006E574)(); }
-static inline undefined * OSGetArenaLo(void) { return ((undefined *(*)(void))0x8006E57C)(); }
+static inline void OSGetArenaHi(void) { ((void(*)(void))0x8006E574)(); }
+static inline void OSGetArenaLo(void) { ((void(*)(void))0x8006E57C)(); }
 static inline void OSSetArenaHi(void * newHi) { ((void(*)(void *))0x8006E584)(newHi); }
 static inline void OSSetArenaLo(void * newLo) { ((void(*)(void *))0x8006E58C)(newLo); }
 static inline void * OSAllocFromArenaLo(int size, int align) { return ((void *(*)(int, int))0x8006E594)(size, align); }
 static inline void __OSInitAudioSystem(void) { ((void(*)(void))0x8006E5C0)(); }
 static inline void __OSStopAudioSystem(void) { ((void(*)(void))0x8006E77C)(); }
-static inline uint DCEnable(void) { return ((uint(*)(void))0x8006E854)(); }
+static inline void DCEnable(void) { ((void(*)(void))0x8006E854)(); }
 static inline void DCInvalidateRange(void * addr, int numBytes) { ((void(*)(void *, int))0x8006E868)(addr, numBytes); }
-static inline uint DCFlushRange(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E894)(param_1, param_2); }
-static inline uint DCStoreRange(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E8C4)(param_1, param_2); }
-static inline uint DCFlushRangeNoSync(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E8F4)(param_1, param_2); }
-static inline uint DVStoreRangeNoSync(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E920)(param_1, param_2); }
-static inline uint ICInvalidateRange(uint param_1, int param_2) { return ((uint(*)(uint, int))0x8006E94C)(param_1, param_2); }
-static inline uint ICFlashInvalidate(void) { return ((uint(*)(void))0x8006E980)(); }
-static inline uint ICEnable(void) { return ((uint(*)(void))0x8006E990)(); }
-static inline ulonglong __LCEnable(void) { return ((ulonglong(*)(void))0x8006E9A4)(); }
+static inline void DCFlushRange(void) { ((void(*)(void))0x8006E894)(); }
+static inline void DCStoreRange(void) { ((void(*)(void))0x8006E8C4)(); }
+static inline void DCFlushRangeNoSync(void) { ((void(*)(void))0x8006E8F4)(); }
+static inline void DVStoreRangeNoSync(void) { ((void(*)(void))0x8006E920)(); }
+static inline void ICInvalidateRange(void) { ((void(*)(void))0x8006E94C)(); }
+static inline void ICFlashInvalidate(void) { ((void(*)(void))0x8006E980)(); }
+static inline void ICEnable(void) { ((void(*)(void))0x8006E990)(); }
+static inline void __LCEnable(void) { ((void(*)(void))0x8006E9A4)(); }
 static inline void LCEnable(void) { ((void(*)(void))0x8006EA70)(); }
-static inline ulonglong LCDisable(void) { return ((ulonglong(*)(void))0x8006EAA8)(); }
+static inline void LCDisable(void) { ((void(*)(void))0x8006EAA8)(); }
 static inline void LCLoadBlocks(void) { ((void(*)(void))0x8006EAD0)(); }
-static inline uint LCStoreBlocks(uint param_1) { return ((uint(*)(uint))0x8006EAF4)(param_1); }
-static inline uint LCLoadData(int param_1, int param_2, int param_3) { return ((uint(*)(int, int, int))0x8006EB18)(param_1, param_2, param_3); }
-static inline uint LCStoreData(int param_1, int param_2, int param_3) { return ((uint(*)(int, int, int))0x8006EBC4)(param_1, param_2, param_3); }
-static inline void LCQueueWait(int param_1) { ((void(*)(int))0x8006EC70)(param_1); }
+static inline void LCStoreBlocks(void) { ((void(*)(void))0x8006EAF4)(); }
+static inline void LCLoadData(void) { ((void(*)(void))0x8006EB18)(); }
+static inline void LCStoreData(void) { ((void(*)(void))0x8006EBC4)(); }
+static inline void LCQueueWait(void) { ((void(*)(void))0x8006EC70)(); }
 static inline void L2GlobalInvalidate(void) { ((void(*)(void))0x8006EC84)(); }
 static inline void __OSCacheInit(void) { ((void(*)(void))0x8006EE7C)(); }
-static inline undefined8 __OSLoadFPUContext(undefined8 param_1, undefined4 param_2, int param_3) { return ((undefined8(*)(undefined8, undefined4, int))0x8006EF70)(param_1, param_2, param_3); }
-static inline void __OSSaveFPUContext(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8, undefined8 param_9, undefined8 param_10, undefined8 param_11, undefined8 param_12, undefined8 param_13, undefined4 param_14, undefined4 param_15, int param_16) { ((void(*)(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined8, undefined4, undefined4, int))0x8006F094)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
-static inline void OSLoadFPUContext(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8006F1BC)(param_1, param_2); }
-static inline void OSSetCurrentContext(OSThread * param_1) { ((void(*)(OSThread *))0x8006F1C4)(param_1); }
-static inline OSContext * OSGetCurrentContext(void) { return ((OSContext *(*)(void))0x8006F220)(); }
-static inline undefined4 OSSaveContext(int param_1) { return ((undefined4(*)(int))0x8006F22C)(param_1); }
-static inline undefined8 OSLoadContext(int param_1) { return ((undefined8(*)(int))0x8006F2AC)(param_1); }
-static inline undefined * OSGetStackPointer(void) { return ((undefined *(*)(void))0x8006F384)(); }
-static inline void OSClearContext(OSThread * param_1) { ((void(*)(OSThread *))0x8006F38C)(param_1); }
-static inline void OSInitContext(int param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(int, undefined4, undefined4))0x8006F3B0)(param_1, param_2, param_3); }
-static inline void OSDumpContext(undefined4 * param_1) { ((void(*)(undefined4 *))0x8006F46C)(param_1); }
+static inline void __OSLoadFPUContext(void) { ((void(*)(void))0x8006EF70)(); }
+static inline void __OSSaveFPUContext(void) { ((void(*)(void))0x8006F094)(); }
+static inline void OSLoadFPUContext(void) { ((void(*)(void))0x8006F1BC)(); }
+static inline void OSSetCurrentContext(void) { ((void(*)(void))0x8006F1C4)(); }
+static inline void OSGetCurrentContext(void) { ((void(*)(void))0x8006F220)(); }
+static inline void OSSaveContext(void) { ((void(*)(void))0x8006F22C)(); }
+static inline void OSLoadContext(void) { ((void(*)(void))0x8006F2AC)(); }
+static inline void OSGetStackPointer(void) { ((void(*)(void))0x8006F384)(); }
+static inline void OSClearContext(void) { ((void(*)(void))0x8006F38C)(); }
+static inline void OSInitContext(void) { ((void(*)(void))0x8006F3B0)(); }
+static inline void OSDumpContext(void) { ((void(*)(void))0x8006F46C)(); }
 static inline void __OSContextInit(void) { ((void(*)(void))0x8006F798)(); }
 #define OSReport FUNCTION_ADDRESS(void, 0x8006F7E0, char *, ...)
-#define OSPanic FUNCTION_ADDRESS(void, 0x8006F860, char * /*fileName*/, uint /*line*/, char * /*message*/, ...)
-static inline int OSSetErrorHandler(ushort param_1, int param_2) { return ((int(*)(ushort, int))0x8006F98C)(param_1, param_2); }
-static inline void __OSUnhandledException(byte param_1, OSThread * param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(byte, OSThread *, undefined4, undefined4))0x8006FBA4)(param_1, param_2, param_3, param_4); }
+#define OSPanic FUNCTION_ADDRESS(void, 0x8006F860, char *, uint, char *, ...)
+static inline void OSSetErrorHandler(void) { ((void(*)(void))0x8006F98C)(); }
+static inline void __OSUnhandledException(void) { ((void(*)(void))0x8006FBA4)(); }
 static inline void PackArgs(int * param_1, int param_2, int * param_3) { ((void(*)(int *, int, int *))0x8006FE8C)(param_1, param_2, param_3); }
 static inline void Run(void) { ((void(*)(void))0x80070014)(); }
-static inline void ReadDisc(void * param_1, int param_2, int param_3) { ((void(*)(void *, int, int))0x80070050)(param_1, param_2, param_3); }
+static inline void ReadDisc(void) { ((void(*)(void))0x80070050)(); }
 static inline void Callback(void) { ((void(*)(void))0x800700BC)(); }
-static inline void __OSGetExecParams(undefined4 * param_1) { ((void(*)(undefined4 *))0x800700C8)(param_1); }
-static inline int GetApploaderPosition(void) { return ((int(*)(void))0x80070108)(); }
-static inline void __OSBootDolSimple(int param_1, undefined4 param_2, int param_3, int param_4, int param_5, int param_6, int * param_7) { ((void(*)(int, undefined4, int, int, int, int, int *))0x800701CC)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
-static inline void __OSBootDol(undefined4 param_1, undefined4 param_2, int * param_3) { ((void(*)(undefined4, undefined4, int *))0x80070650)(param_1, param_2, param_3); }
-static inline uint GetFontCode(short param_1, uint param_2) { return ((uint(*)(short, uint))0x800707EC)(param_1, param_2); }
-static inline short OSGetFontEncode(void) { return ((short(*)(void))0x80070960)(); }
-static inline byte * ParseStringS(uint param_1, byte * param_2, int * param_3, undefined4 * param_4, undefined4 param_5, int param_6) { return ((byte *(*)(uint, byte *, int *, undefined4 *, undefined4, int))0x800709C4)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline ulonglong OSDisableInterrupts(void) { return ((ulonglong(*)(void))0x80070B00)(); }
-static inline ulonglong OSEnableInterrupts(void) { return ((ulonglong(*)(void))0x80070B14)(); }
+static inline void __OSGetExecParams(void) { ((void(*)(void))0x800700C8)(); }
+static inline void GetApploaderPosition(void) { ((void(*)(void))0x80070108)(); }
+static inline void __OSBootDolSimple(void) { ((void(*)(void))0x800701CC)(); }
+static inline void __OSBootDol(void) { ((void(*)(void))0x80070650)(); }
+static inline void GetFontCode(void) { ((void(*)(void))0x800707EC)(); }
+static inline void OSGetFontEncode(void) { ((void(*)(void))0x80070960)(); }
+static inline void ParseStringS(void) { ((void(*)(void))0x800709C4)(); }
+static inline void OSDisableInterrupts(void) { ((void(*)(void))0x80070B00)(); }
+static inline void OSEnableInterrupts(void) { ((void(*)(void))0x80070B14)(); }
 static inline void OSRestoreInterrupts(void) { ((void(*)(void))0x80070B28)(); }
-static inline undefined4 __OSSetInterruptHandler(short param_1, undefined4 param_2) { return ((undefined4(*)(short, undefined4))0x80070B4C)(param_1, param_2); }
-static inline undefined4 __OSGetInterruptHandler(short param_1) { return ((undefined4(*)(short))0x80070B68)(param_1); }
+static inline void __OSSetInterruptHandler(void) { ((void(*)(void))0x80070B4C)(); }
+static inline void __OSGetInterruptHandler(void) { ((void(*)(void))0x80070B68)(); }
 static inline void __OSInterruptInit(void) { ((void(*)(void))0x80070B7C)(); }
-static inline uint SetInterruptMask(uint param_1, uint param_2) { return ((uint(*)(uint, uint))0x80070BF0)(param_1, param_2); }
-static inline uint __OSMaskInterrupts(uint param_1) { return ((uint(*)(uint))0x80070EC8)(param_1); }
-static inline uint __OSUnmaskInterrupts(uint param_1) { return ((uint(*)(uint))0x80070F50)(param_1); }
-static inline void __OSDispatchHandler(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x80070FD8)(param_1, param_2); }
-static inline void ExternalInterruptHandler(undefined4 param_1, undefined4 * param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8) { ((void(*)(undefined4, undefined4 *, undefined4, undefined4, undefined4, undefined4, undefined4, undefined4))0x8007131C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
+static inline void SetInterruptMask(void) { ((void(*)(void))0x80070BF0)(); }
+static inline void __OSMaskInterrupts(void) { ((void(*)(void))0x80070EC8)(); }
+static inline void __OSUnmaskInterrupts(void) { ((void(*)(void))0x80070F50)(); }
+static inline void __OSDispatchHandler(void) { ((void(*)(void))0x80070FD8)(); }
+static inline void ExternalInterruptHandler(void) { ((void(*)(void))0x8007131C)(); }
 static inline void OSNotifyLink(void) { ((void(*)(void))0x8007136C)(); }
 static inline void OSNotifyUnlink(void) { ((void(*)(void))0x80071370)(); }
-static inline undefined4 Relocate(int * param_1, int param_2) { return ((undefined4(*)(int *, int))0x80071374)(param_1, param_2); }
+static inline void Relocate(void) { ((void(*)(void))0x80071374)(); }
 static inline void Link(OSModuleInfo * param_1, int bss, int param_3) { ((void(*)(OSModuleInfo *, int, int))0x80071630)(param_1, bss, param_3); }
 static inline void OSLink(OSModuleInfo * newModule, byte * bss) { ((void(*)(OSModuleInfo *, byte *))0x80071910)(newModule, bss); }
 static inline void Undo(OSModuleInfo * param_1, int param_2) { ((void(*)(OSModuleInfo *, int))0x80071934)(param_1, param_2); }
 static inline void OSUnlink(OSModuleInfo * oldModule) { ((void(*)(OSModuleInfo *))0x80071B6C)(oldModule); }
 static inline void __OSModuleInit(void) { ((void(*)(void))0x80071D40)(); }
-static inline void OSInitMessageQueue(int param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(int, undefined4, undefined4))0x80071D58)(param_1, param_2, param_3); }
-static inline undefined4 OSSendMessage(int param_1, undefined4 param_2, uint param_3) { return ((undefined4(*)(int, undefined4, uint))0x80071DB8)(param_1, param_2, param_3); }
-static inline undefined4 OSReceiveMessage(int param_1, undefined4 * param_2, uint param_3) { return ((undefined4(*)(int, undefined4 *, uint))0x80071E80)(param_1, param_2, param_3); }
-static inline undefined4 OnReset_80071f5c(int param_1) { return ((undefined4(*)(int))0x80071F5C)(param_1); }
-static inline void MEMIntrruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80071F98)(param_1, param_2); }
+static inline void OSInitMessageQueue(void) { ((void(*)(void))0x80071D58)(); }
+static inline void OSSendMessage(void) { ((void(*)(void))0x80071DB8)(); }
+static inline void OSReceiveMessage(void) { ((void(*)(void))0x80071E80)(); }
+static inline void OnReset_80071f5c(void) { ((void(*)(void))0x80071F5C)(); }
+static inline void MEMIntrruptHandler(void) { ((void(*)(void))0x80071F98)(); }
 static inline void Config24MB(void) { ((void(*)(void))0x80072004)(); }
-static inline uint RealMode(void) { return ((uint(*)(void))0x80072104)(); }
+static inline void RealMode(void) { ((void(*)(void))0x80072104)(); }
 static inline void __OSInitMemoryProtection(void) { ((void(*)(void))0x8007211C)(); }
-static inline void __OSUnlockAllMutex(int param_1) { ((void(*)(int))0x80072234)(param_1); }
-static inline void __OSReboot(uint param_1, undefined4 param_2) { ((void(*)(uint, undefined4))0x800722A4)(param_1, param_2); }
-static inline void OSGetSaveRegion(int * param_1, int * param_2) { ((void(*)(int *, int *))0x80072314)(param_1, param_2); }
-static inline void OSRegisterResetFunction(undefined * param_1) { ((void(*)(undefined *))0x80072328)(param_1); }
-static inline bool __OSCallResetFunctions(undefined4 param_1) { return ((bool(*)(undefined4))0x800723AC)(param_1); }
+static inline void __OSUnlockAllMutex(void) { ((void(*)(void))0x80072234)(); }
+static inline void __OSReboot(void) { ((void(*)(void))0x800722A4)(); }
+static inline void OSGetSaveRegion(void) { ((void(*)(void))0x80072314)(); }
+static inline void OSRegisterResetFunction(void) { ((void(*)(void))0x80072328)(); }
+static inline void __OSCallResetFunctions(void) { ((void(*)(void))0x800723AC)(); }
 static inline void KillThreads(void) { ((void(*)(void))0x800724C4)(); }
-static inline void __OSDoHotReset(int param_1) { ((void(*)(int))0x8007252C)(param_1); }
-static inline void ResetSystem(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80072574)(param_1, param_2, param_3); }
-static inline uint OSGetResetCode(void) { return ((uint(*)(void))0x80072774)(); }
-static inline uint OSGetResetButtonState(void) { return ((uint(*)(void))0x800728A0)(); }
+static inline void __OSDoHotReset(void) { ((void(*)(void))0x8007252C)(); }
+static inline void ResetSystem(void) { ((void(*)(void))0x80072574)(); }
+static inline void OSGetResetCode(void) { ((void(*)(void))0x80072774)(); }
+static inline void OSGetResetButtonState(void) { ((void(*)(void))0x800728A0)(); }
 static inline void WriteSramCallback(void) { ((void(*)(void))0x80072B38)(); }
-static inline uint WriteSram(undefined4 param_1, int param_2, undefined4 param_3) { return ((uint(*)(undefined4, int, undefined4))0x80072B98)(param_1, param_2, param_3); }
+static inline void WriteSram(void) { ((void(*)(void))0x80072B98)(); }
 static inline void __OSInitSram(void) { ((void(*)(void))0x80072CB0)(); }
-static inline short * __OSLockSram(void) { return ((short *(*)(void))0x80072DEC)(); }
-static inline char * __OSLockSramEx(void) { return ((char *(*)(void))0x80072E48)(); }
-static inline int UnlockSram(int param_1, uint param_2) { return ((int(*)(int, uint))0x80072EA4)(param_1, param_2); }
-static inline void __OSUnlockSram(undefined4 param_1) { ((void(*)(undefined4))0x800731E0)(param_1); }
-static inline void __OSUnlockSramEx(undefined4 param_1) { ((void(*)(undefined4))0x80073204)(param_1); }
-static inline int __OSSyncSram(void) { return ((int(*)(void))0x80073228)(); }
-static inline bool OSGetSoundMode(void) { return ((bool(*)(void))0x80073238)(); }
-static inline void OSSetSoundMode(uint param_1) { ((void(*)(uint))0x800732B8)(param_1); }
-static inline byte OSGetProgressiveMode(void) { return ((byte(*)(void))0x8007335C)(); }
-static inline void OSSetProgressiveMode(uint param_1) { ((void(*)(uint))0x800733CC)(param_1); }
-static inline undefined2 OSGetWirelessID(int param_1) { return ((undefined2(*)(int))0x80073470)(param_1); }
-static inline void OSSetWirelessID(int param_1, short param_2) { ((void(*)(int, short))0x800734F4)(param_1, param_2); }
-static inline undefined2 OSGetGbsMode(void) { return ((undefined2(*)(void))0x800735A0)(); }
-static inline void OSSetGbsMode(ushort param_1) { ((void(*)(ushort))0x80073610)(param_1); }
-static inline void OSInitSemaphore(undefined4 * param_1, undefined4 param_2) { ((void(*)(undefined4 *, undefined4))0x800736C8)(param_1, param_2); }
-static inline int OSWaitSemaphore(int * param_1) { return ((int(*)(int *))0x80073720)(param_1); }
-static inline int OSSignalSemaphore(int * param_1) { return ((int(*)(int *))0x80073790)(param_1); }
+static inline void __OSLockSram(void) { ((void(*)(void))0x80072DEC)(); }
+static inline void __OSLockSramEx(void) { ((void(*)(void))0x80072E48)(); }
+static inline void UnlockSram(void) { ((void(*)(void))0x80072EA4)(); }
+static inline void __OSUnlockSram(void) { ((void(*)(void))0x800731E0)(); }
+static inline void __OSUnlockSramEx(void) { ((void(*)(void))0x80073204)(); }
+static inline void __OSSyncSram(void) { ((void(*)(void))0x80073228)(); }
+static inline void OSGetSoundMode(void) { ((void(*)(void))0x80073238)(); }
+static inline void OSSetSoundMode(void) { ((void(*)(void))0x800732B8)(); }
+static inline void OSGetProgressiveMode(void) { ((void(*)(void))0x8007335C)(); }
+static inline void OSSetProgressiveMode(void) { ((void(*)(void))0x800733CC)(); }
+static inline void OSGetWirelessID(void) { ((void(*)(void))0x80073470)(); }
+static inline void OSSetWirelessID(void) { ((void(*)(void))0x800734F4)(); }
+static inline void OSGetGbsMode(void) { ((void(*)(void))0x800735A0)(); }
+static inline void OSSetGbsMode(void) { ((void(*)(void))0x80073610)(); }
+static inline void OSInitSemaphore(void) { ((void(*)(void))0x800736C8)(); }
+static inline void OSWaitSemaphore(void) { ((void(*)(void))0x80073720)(); }
+static inline void OSSignalSemaphore(void) { ((void(*)(void))0x80073790)(); }
 static inline void __OSInitSystemCall(void) { ((void(*)(void))0x80073810)(); }
 static inline void DefaultSwitchThreadCallback(void) { ((void(*)(void))0x80073874)(); }
 static inline void __OSThreadInit(void) { ((void(*)(void))0x80073878)(); }
-static inline void OSInitThreadQueue(undefined4 * param_1) { ((void(*)(undefined4 *))0x800739D0)(param_1); }
+static inline void OSInitThreadQueue(void) { ((void(*)(void))0x800739D0)(); }
 static inline OSThread * OSGetCurrentThread(void) { return ((OSThread *(*)(void))0x800739E0)(); }
-static inline undefined4 OSIsThreadSuspended(int param_1) { return ((undefined4(*)(int))0x800739EC)(param_1); }
-static inline int OSDisableScheduler(void) { return ((int(*)(void))0x80073A08)(); }
-static inline int OSEnableScheduler(void) { return ((int(*)(void))0x80073A48)(); }
-static inline void UnsetRun(int param_1) { ((void(*)(int))0x80073A88)(param_1); }
-static inline int __OSGetEffectivePriority(int param_1) { return ((int(*)(int))0x80073AF0)(param_1); }
-static inline undefined4 SetEffectiovePriority(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x80073B2C)(param_1, param_2); }
-static inline OSThread * SelectThread(int param_1) { return ((OSThread *(*)(int))0x80073CEC)(param_1); }
+static inline void OSIsThreadSuspended(void) { ((void(*)(void))0x800739EC)(); }
+static inline void OSDisableScheduler(void) { ((void(*)(void))0x80073A08)(); }
+static inline void OSEnableScheduler(void) { ((void(*)(void))0x80073A48)(); }
+static inline void UnsetRun(void) { ((void(*)(void))0x80073A88)(); }
+static inline void __OSGetEffectivePriority(void) { ((void(*)(void))0x80073AF0)(); }
+static inline void SetEffectiovePriority(void) { ((void(*)(void))0x80073B2C)(); }
+static inline void SelectThread(void) { ((void(*)(void))0x80073CEC)(); }
 static inline void __OSReschedule(void) { ((void(*)(void))0x80073F14)(); }
 static inline bool OSCreateThread(OSThread * thread, void * func, void * param, void * stack, uint stackSize, OSPriority priority, ushort attr) { return ((bool(*)(OSThread *, void *, void *, void *, uint, OSPriority, ushort))0x80073F44)(thread, func, param, stack, stackSize, priority, attr); }
-static inline void OSExitThread(void * param_1) { ((void(*)(void *))0x8007412C)(param_1); }
-static inline void OSCancelThread(int param_1) { ((void(*)(int))0x80074210)(param_1); }
+static inline void OSExitThread(void) { ((void(*)(void))0x8007412C)(); }
+static inline void OSCancelThread(void) { ((void(*)(void))0x80074210)(); }
 static inline void OSResumeThread(OSThread * param_1) { ((void(*)(OSThread *))0x800743CC)(param_1); }
 static inline void OSSuspendThread(OSThread * param_1) { ((void(*)(OSThread *))0x80074654)(param_1); }
-static inline void OSSleepThread(OSThreadQueue * param_1) { ((void(*)(OSThreadQueue *))0x800747C4)(param_1); }
-static inline void OSWakeupThread(int * param_1) { ((void(*)(int *))0x800748B0)(param_1); }
-static inline void OSClearStack(uint param_1) { ((void(*)(uint))0x800749B4)(param_1); }
+static inline void OSSleepThread(void) { ((void(*)(void))0x800747C4)(); }
+static inline void OSWakeupThread(void) { ((void(*)(void))0x800748B0)(); }
+static inline void OSClearStack(void) { ((void(*)(void))0x800749B4)(); }
 static inline void OSGetTime(void) { ((void(*)(void))0x80074A60)(); }
 static inline void OSGetTick(void) { ((void(*)(void))0x80074A78)(); }
-static inline longlong __OSGetSystemTime(void) { return ((longlong(*)(void))0x80074A80)(); }
-static inline void GetDates(int param_1, int param_2) { ((void(*)(int, int))0x80074AE4)(param_1, param_2); }
-static inline void OSTicksToCalendarTime(int param_1, uint param_2, int * param_3) { ((void(*)(int, uint, int *))0x80074C80)(param_1, param_2, param_3); }
+static inline void __OSGetSystemTime(void) { ((void(*)(void))0x80074A80)(); }
+static inline void GetDates(void) { ((void(*)(void))0x80074AE4)(); }
+static inline void OSTicksToCalendarTime(void) { ((void(*)(void))0x80074C80)(); }
 static inline void __init_user(void) { ((void(*)(void))0x80074E84)(); }
 static inline void __init_cpp(void) { ((void(*)(void))0x80074EA4)(); }
 static inline void abort(void) { ((void(*)(void))0x80074EF8)(); }
 static inline void DBInit(void) { ((void(*)(void))0x80074F18)(); }
 static inline void __DBExceptionDestinationAux(void) { ((void(*)(void))0x80074F40)(); }
-static inline uint __DBIsExceptionMarked(uint param_1) { return ((uint(*)(uint))0x80074F98)(param_1); }
+static inline void __DBIsExceptionMarked(void) { ((void(*)(void))0x80074F98)(); }
 static inline void DBPrintf(void) { ((void(*)(void))0x80074FB4)(); }
 static inline void PSMTXIdentity(Mtx * m) { ((void(*)(Mtx *))0x80075004)(m); }
 static inline void PSMTXCopy(Mtx * source, Mtx * dst) { ((void(*)(Mtx *, Mtx *))0x80075030)(source, dst); }
@@ -38804,26 +38806,26 @@ static inline void C_QUATMtx(Quaternion * r, Mtx * m) { ((void(*)(Quaternion *, 
 static inline void C_QUATSlerp(Quaternion * p, Quaternion * q, Quaternion * r, float t) { ((void(*)(Quaternion *, Quaternion *, Quaternion *, float))0x800768A8)(p, q, r, t); }
 static inline void PSMTXReorder(Mtx * src, ROMtx * dest) { ((void(*)(Mtx *, ROMtx *))0x80076A1C)(src, dest); }
 static inline void __DVDInitWA(void) { ((void(*)(void))0x80076A68)(); }
-static inline void __DVDInterruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80076AA8)(param_1, param_2); }
+static inline void __DVDInterruptHandler(void) { ((void(*)(void))0x80076AA8)(); }
 static inline void AlarmHandler(void) { ((void(*)(void))0x80076D88)(); }
-static inline void AlarmHandlerForTimeout(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80076E0C)(param_1, param_2); }
-static inline void Read(int param_1, uint param_2, uint param_3, int param_4) { ((void(*)(int, uint, uint, int))0x80076E7C)(param_1, param_2, param_3, param_4); }
-static inline void SeekTwiceBeforeRead(int param_1, int param_2, uint param_3, int param_4) { ((void(*)(int, int, uint, int))0x80076F8C)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDLowRead(undefined * param_1, int param_2, uint param_3, int param_4) { return ((undefined4(*)(undefined *, int, uint, int))0x8007700C)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDLowSeek(uint param_1, int param_2) { return ((undefined4(*)(uint, int))0x800772A4)(param_1, param_2); }
-static inline undefined4 DVDLowWaitCoverClose(int param_1) { return ((undefined4(*)(int))0x80077338)(param_1); }
-static inline undefined4 DVDLowReadDiskID(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80077364)(param_1, param_2); }
-static inline undefined4 DVDLowStopMotor(int param_1) { return ((undefined4(*)(int))0x80077408)(param_1); }
-static inline undefined4 DVDLowRequestError(int param_1) { return ((undefined4(*)(int))0x80077494)(param_1); }
-static inline undefined4 DVDLowInquiry(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80077520)(param_1, param_2); }
-static inline undefined4 DVDLowAudioStatus(uint param_1, int param_2, uint param_3, int param_4) { return ((undefined4(*)(uint, int, uint, int))0x800775BC)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDLowRequestAudioStatus(uint param_1, int param_2) { return ((undefined4(*)(uint, int))0x80077654)(param_1, param_2); }
-static inline undefined4 DVDLowAudioBufferConfig(int param_1, uint param_2, int param_3) { return ((undefined4(*)(int, uint, int))0x800776E0)(param_1, param_2, param_3); }
+static inline void AlarmHandlerForTimeout(void) { ((void(*)(void))0x80076E0C)(); }
+static inline void Read(void) { ((void(*)(void))0x80076E7C)(); }
+static inline void SeekTwiceBeforeRead(void) { ((void(*)(void))0x80076F8C)(); }
+static inline void DVDLowRead(void) { ((void(*)(void))0x8007700C)(); }
+static inline void DVDLowSeek(void) { ((void(*)(void))0x800772A4)(); }
+static inline void DVDLowWaitCoverClose(void) { ((void(*)(void))0x80077338)(); }
+static inline void DVDLowReadDiskID(void) { ((void(*)(void))0x80077364)(); }
+static inline void DVDLowStopMotor(void) { ((void(*)(void))0x80077408)(); }
+static inline void DVDLowRequestError(void) { ((void(*)(void))0x80077494)(); }
+static inline void DVDLowInquiry(void) { ((void(*)(void))0x80077520)(); }
+static inline void DVDLowAudioStatus(void) { ((void(*)(void))0x800775BC)(); }
+static inline void DVDLowRequestAudioStatus(void) { ((void(*)(void))0x80077654)(); }
+static inline void DVDLowAudioBufferConfig(void) { ((void(*)(void))0x800776E0)(); }
 static inline void DVDLowReset(void) { ((void(*)(void))0x8007777C)(); }
-static inline undefined4 DVDLowBreak(void) { return ((undefined4(*)(void))0x80077838)(); }
-static inline int DVDLowClearCallback(void) { return ((int(*)(void))0x8007784C)(); }
-static inline void __DVDLowSetWAType(int param_1, int param_2) { ((void(*)(int, int))0x80077868)(param_1, param_2); }
-static inline undefined4 __DVDLowTestAlarm(undefined * param_1) { return ((undefined4(*)(undefined *))0x800778AC)(param_1); }
+static inline void DVDLowBreak(void) { ((void(*)(void))0x80077838)(); }
+static inline void DVDLowClearCallback(void) { ((void(*)(void))0x8007784C)(); }
+static inline void __DVDLowSetWAType(void) { ((void(*)(void))0x80077868)(); }
+static inline void __DVDLowTestAlarm(void) { ((void(*)(void))0x800778AC)(); }
 static inline void __DVDFSInit(void) { ((void(*)(void))0x800778E4)(); }
 static inline s32 DVDConvertPathToEntrynum(char * fileName) { return ((s32(*)(char *))0x8007791C)(fileName); }
 static inline BOOL DVDFastOpen(int entryNum, DVDFileInfo * fileInfo) { return ((BOOL(*)(int, DVDFileInfo *))0x80077C10)(entryNum, fileInfo); }
@@ -38831,281 +38833,281 @@ static inline BOOL DVDOpen(char * fileName, DVDFileInfo * fileInfo) { return ((B
 static inline bool DVDClose(DVDFileInfo * fileInfo) { return ((bool(*)(DVDFileInfo *))0x80077D4C)(fileInfo); }
 static inline void entryToPath(int entry, int param_2, int param_3) { ((void(*)(int, int, int))0x80077D70)(entry, param_2, param_3); }
 static inline bool DVDGetCurrentDir(char * path, int maxlen) { return ((bool(*)(char *, int))0x80077ED0)(path, maxlen); }
-#define DVDReadAsyncPrio FUNCTION_ADDRESS(bool, 0x80077F94, DVDFileInfo * /*fileInfo*/, void * /*addr*/, int /*length*/, int /*offset*/, DVDCallback /*callback*/, int /*prio*/)
-static inline void cbForReadAsync(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x80078054)(param_1, param_2); }
+static inline bool DVDReadAsyncPrio(DVDFileInfo * fileInfo, void * addr, int length, int offset, DVDCallback callback, int prio) { return ((bool(*)(DVDFileInfo *, void *, int, int, DVDCallback, int))0x80077F94)(fileInfo, addr, length, offset, callback, prio); }
+static inline void cbForReadAsync(void) { ((void(*)(void))0x80078054)(); }
 static inline s32 DVDReadPrio(DVDFileInfo * fileInfo, void * addr, s32 length, s32 offset, s32 prio) { return ((s32(*)(DVDFileInfo *, void *, s32, s32, s32))0x80078084)(fileInfo, addr, length, offset, prio); }
 static inline void cbForReadSync(void) { ((void(*)(void))0x8007819C)(); }
 static inline BOOL DVDPrepareStreamAsync(int param_1, uint param_2, uint param_3, int param_4) { return ((BOOL(*)(int, uint, uint, int))0x800781C0)(param_1, param_2, param_3, param_4); }
-static inline void cbForPrepareStreamAsync(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x800782AC)(param_1, param_2); }
+static inline void cbForPrepareStreamAsync(void) { ((void(*)(void))0x800782AC)(); }
 static inline void defaultOptionalCommandChecker(void) { ((void(*)(void))0x800782DC)(); }
 static inline void DVDInit(void) { ((void(*)(void))0x800782E0)(); }
 static inline void stateReadingFST(void) { ((void(*)(void))0x800783AC)(); }
-static inline void cbForStateReadingFST(uint param_1) { ((void(*)(uint))0x80078440)(param_1); }
-static inline void cbForStateError(int param_1) { ((void(*)(int))0x800784CC)(param_1); }
+static inline void cbForStateReadingFST(void) { ((void(*)(void))0x80078440)(); }
+static inline void cbForStateError(void) { ((void(*)(void))0x800784CC)(); }
 static inline void stateTimeout(void) { ((void(*)(void))0x80078578)(); }
 static inline void stateGettingError(void) { ((void(*)(void))0x800785AC)(); }
-static inline undefined4 CategorizeError(uint param_1) { return ((undefined4(*)(uint))0x800785D4)(param_1); }
-static inline void cbForStateGettingError(uint param_1) { ((void(*)(uint))0x80078688)(param_1); }
-static inline void cbForUnrecoveredError(uint param_1) { ((void(*)(uint))0x8007891C)(param_1); }
-static inline void cbForUnrecoveredErrorRetry(uint param_1) { ((void(*)(uint))0x80078984)(param_1); }
+static inline void CategorizeError(void) { ((void(*)(void))0x800785D4)(); }
+static inline void cbForStateGettingError(void) { ((void(*)(void))0x80078688)(); }
+static inline void cbForUnrecoveredError(void) { ((void(*)(void))0x8007891C)(); }
+static inline void cbForUnrecoveredErrorRetry(void) { ((void(*)(void))0x80078984)(); }
 static inline void stateGoToRetry(void) { ((void(*)(void))0x80078A1C)(); }
-static inline void cbForStateGoToRetry(uint param_1) { ((void(*)(uint))0x80078A44)(param_1); }
+static inline void cbForStateGoToRetry(void) { ((void(*)(void))0x80078A44)(); }
 static inline void stateCheckID(void) { ((void(*)(void))0x80078B9C)(); }
 static inline void stateCheckID3(void) { ((void(*)(void))0x80078C7C)(); }
 static inline void stateCheckID2a(void) { ((void(*)(void))0x80078CB0)(); }
-static inline void cbForStateCheckID2a(uint param_1) { ((void(*)(uint))0x80078CE4)(param_1); }
+static inline void cbForStateCheckID2a(void) { ((void(*)(void))0x80078CE4)(); }
 static inline void stateCheckID2(void) { ((void(*)(void))0x80078D58)(); }
-static inline void cbForStateCheckID1(uint param_1) { ((void(*)(uint))0x80078D90)(param_1); }
-static inline void cbForStateCheckID2(uint param_1) { ((void(*)(uint))0x80078EA4)(param_1); }
-static inline void cbForStatecheckID3(uint param_1) { ((void(*)(uint))0x80078F88)(param_1); }
+static inline void cbForStateCheckID1(void) { ((void(*)(void))0x80078D90)(); }
+static inline void cbForStateCheckID2(void) { ((void(*)(void))0x80078EA4)(); }
+static inline void cbForStatecheckID3(void) { ((void(*)(void))0x80078F88)(); }
 static inline void AlarmHandler_80079084(void) { ((void(*)(void))0x80079084)(); }
 static inline void stateCoverClosed(void) { ((void(*)(void))0x800790C8)(); }
 static inline void stateCoverClosed_CMD(void) { ((void(*)(void))0x80079194)(); }
-static inline void cbForStateCoverClosed(uint param_1) { ((void(*)(uint))0x800791C4)(param_1); }
+static inline void cbForStateCoverClosed(void) { ((void(*)(void))0x800791C4)(); }
 static inline void stateMotorStopped(void) { ((void(*)(void))0x80079234)(); }
 static inline void cbForStateMotorStopped(void) { ((void(*)(void))0x8007925C)(); }
 static inline void stateReady(void) { ((void(*)(void))0x80079340)(); }
-static inline void stateBusy(int param_1) { ((void(*)(int))0x80079570)(param_1); }
-static inline void cbForStateBusy(uint param_1) { ((void(*)(uint))0x80079890)(param_1); }
-#define DVDReadAbsAsyncPrio FUNCTION_ADDRESS(bool, 0x80079EC8, DVDCommandBlock * /*block*/, void * /*addr*/, int /*length*/, int /*offset*/, DVDCBCallback /*callback*/, int /*prio*/)
-static inline undefined4 DVDReadAbsAsyncForBS(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5) { return ((undefined4(*)(int, undefined4, undefined4, undefined4, undefined4))0x80079FA4)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 DVDReadDiskID(int param_1, undefined4 param_2, undefined4 param_3) { return ((undefined4(*)(int, undefined4, undefined4))0x8007A074)(param_1, param_2, param_3); }
-static inline undefined4 DVDPrepareStreamAbsAsync(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { return ((undefined4(*)(int, undefined4, undefined4, undefined4))0x8007A148)(param_1, param_2, param_3, param_4); }
-static inline undefined4 DVDCancelStreamAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A20C)(param_1, param_2); }
-static inline undefined4 DVDStopSteramAtEndAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A2C8)(param_1, param_2); }
-static inline undefined4 DVDGetStreamErrorStatusAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A384)(param_1, param_2); }
-static inline undefined4 DVDGetSteramPlayAddrAsync(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x8007A440)(param_1, param_2); }
-static inline undefined4 DVDInquiryAsync(int param_1, undefined4 param_2, undefined4 param_3) { return ((undefined4(*)(int, undefined4, undefined4))0x8007A4FC)(param_1, param_2, param_3); }
+static inline void stateBusy(void) { ((void(*)(void))0x80079570)(); }
+static inline void cbForStateBusy(void) { ((void(*)(void))0x80079890)(); }
+static inline bool DVDReadAbsAsyncPrio(DVDCommandBlock * block, void * addr, int length, int offset, DVDCBCallback callback, int prio) { return ((bool(*)(DVDCommandBlock *, void *, int, int, DVDCBCallback, int))0x80079EC8)(block, addr, length, offset, callback, prio); }
+static inline void DVDReadAbsAsyncForBS(void) { ((void(*)(void))0x80079FA4)(); }
+static inline void DVDReadDiskID(void) { ((void(*)(void))0x8007A074)(); }
+static inline void DVDPrepareStreamAbsAsync(void) { ((void(*)(void))0x8007A148)(); }
+static inline void DVDCancelStreamAsync(void) { ((void(*)(void))0x8007A20C)(); }
+static inline void DVDStopSteramAtEndAsync(void) { ((void(*)(void))0x8007A2C8)(); }
+static inline void DVDGetStreamErrorStatusAsync(void) { ((void(*)(void))0x8007A384)(); }
+static inline void DVDGetSteramPlayAddrAsync(void) { ((void(*)(void))0x8007A440)(); }
+static inline void DVDInquiryAsync(void) { ((void(*)(void))0x8007A4FC)(); }
 static inline void DVDReset(void) { ((void(*)(void))0x8007A5CC)(); }
-static inline int DVDGetCommandBlockStatus(int param_1) { return ((int(*)(int))0x8007A610)(param_1); }
-static inline int DVDGetDriveStatus(void) { return ((int(*)(void))0x8007A65C)(); }
-static inline int DVDSetAutoInvalidation(int param_1) { return ((int(*)(int))0x8007A708)(param_1); }
+static inline void DVDGetCommandBlockStatus(void) { ((void(*)(void))0x8007A610)(); }
+static inline void DVDGetDriveStatus(void) { ((void(*)(void))0x8007A65C)(); }
+static inline void DVDSetAutoInvalidation(void) { ((void(*)(void))0x8007A708)(); }
 static inline void DVDResume(void) { ((void(*)(void))0x8007A718)(); }
-#define DVDCancelAsync FUNCTION_ADDRESS(bool, 0x8007A768, DVDCommandBlock * /*block*/, DVDCBCallback /*callback*/)
-static inline undefined4 DVDCancel(DVDCommandBlock * param_1) { return ((undefined4(*)(DVDCommandBlock *))0x8007A9E4)(param_1); }
+static inline bool DVDCancelAsync(DVDCommandBlock * block, DVDCBCallback callback) { return ((bool(*)(DVDCommandBlock *, DVDCBCallback))0x8007A768)(block, callback); }
+static inline void DVDCancel(void) { ((void(*)(void))0x8007A9E4)(); }
 static inline char * DVDGetCurrentDiskID(void) { return ((char *(*)(void))0x8007AAB4)(); }
-static inline undefined4 DVDCheckDisk(void) { return ((undefined4(*)(void))0x8007AABC)(); }
-#define __DVDPrepareResetAsync FUNCTION_ADDRESS(void, 0x8007ABB4, DVDCBCallback)
-static inline undefined4 __DVDTestAlarm(undefined * param_1) { return ((undefined4(*)(undefined *))0x8007ACD0)(param_1); }
+static inline void DVDCheckDisk(void) { ((void(*)(void))0x8007AABC)(); }
+static inline void __DVDPrepareResetAsync(void) { ((void(*)(void))0x8007ABB4)(); }
+static inline void __DVDTestAlarm(void) { ((void(*)(void))0x8007ACD0)(); }
 static inline void __DVDClearWaitingQueue(void) { ((void(*)(void))0x8007AD08)(); }
-static inline undefined4 __DVDPushWaitingQueue(int param_1, undefined4 * param_2) { return ((undefined4(*)(int, undefined4 *))0x8007AD40)(param_1, param_2); }
-static inline int * * __DVDPopWaitingQueue(void) { return ((int * *(*)(void))0x8007ADA8)(); }
-static inline undefined4 __DVDCheckWaitingQueue(void) { return ((undefined4(*)(void))0x8007AE48)(); }
-static inline undefined4 __DVDDequeueWaitingQueue(int * param_1) { return ((undefined4(*)(int *))0x8007AEA0)(param_1); }
+static inline void __DVDPushWaitingQueue(void) { ((void(*)(void))0x8007AD40)(); }
+static inline void __DVDPopWaitingQueue(void) { ((void(*)(void))0x8007ADA8)(); }
+static inline void __DVDCheckWaitingQueue(void) { ((void(*)(void))0x8007AE48)(); }
+static inline void __DVDDequeueWaitingQueue(void) { ((void(*)(void))0x8007AEA0)(); }
 static inline void DVDDumpWaitingQueue(void) { ((void(*)(void))0x8007AF00)(); }
-static inline char ErrorCode2Num(uint param_1) { return ((char(*)(uint))0x8007B00C)(param_1); }
-static inline void __DVDStoreErrorCode(uint param_1) { ((void(*)(uint))0x8007B128)(param_1); }
-static inline undefined4 DVDCompareDiskID(char * param_1, char * param_2) { return ((undefined4(*)(char *, char *))0x8007B1A4)(param_1, param_2); }
+static inline void ErrorCode2Num(void) { ((void(*)(void))0x8007B00C)(); }
+static inline void __DVDStoreErrorCode(void) { ((void(*)(void))0x8007B128)(); }
+static inline void DVDCompareDiskID(void) { ((void(*)(void))0x8007B1A4)(); }
 static inline void __DVDPrintFatalMessage(void) { ((void(*)(void))0x8007B29C)(); }
 static inline void __fstLoad(void) { ((void(*)(void))0x8007B3A4)(); }
-static inline undefined * VISetPreRetraceCallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007B780)(param_1); }
-static inline undefined * VISetPostRetraceCallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007B7C4)(param_1); }
-static inline byte * getTiming(undefined4 param_1) { return ((byte *(*)(undefined4))0x8007B808)(param_1); }
-static inline void __VIInit(uint param_1) { ((void(*)(uint))0x8007B8A8)(param_1); }
+static inline void VISetPreRetraceCallback(void) { ((void(*)(void))0x8007B780)(); }
+static inline void VISetPostRetraceCallback(void) { ((void(*)(void))0x8007B7C4)(); }
+static inline void getTiming(void) { ((void(*)(void))0x8007B808)(); }
+static inline void __VIInit(void) { ((void(*)(void))0x8007B8A8)(); }
 static inline void VIInit(void) { ((void(*)(void))0x8007BAA8)(); }
 static inline void VIWaitForRetrace(void) { ((void(*)(void))0x8007BF58)(); }
-static inline void setFbbRegs(int param_1, uint * param_2, uint * param_3, uint * param_4, uint * param_5) { ((void(*)(int, uint *, uint *, uint *, uint *))0x8007BFAC)(param_1, param_2, param_3, param_4, param_5); }
+static inline void setFbbRegs(void) { ((void(*)(void))0x8007BFAC)(); }
 static inline void setVerticalRegs(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, int param_9) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, int))0x8007C280)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9); }
-static inline void VIConfigure(uint * param_1) { ((void(*)(uint *))0x8007C420)(param_1); }
+static inline void VIConfigure(void) { ((void(*)(void))0x8007C420)(); }
 static inline void VIFlush(void) { ((void(*)(void))0x8007CC48)(); }
-static inline void VISetNextFrameBuffer(undefined4 param_1) { ((void(*)(undefined4))0x8007CD78)(param_1); }
-static inline void VISetNextRightFrameBuffer(undefined4 param_1) { ((void(*)(undefined4))0x8007CDE4)(param_1); }
-static inline void GetCurrentDisplayPosition(uint * param_1, uint * param_2) { ((void(*)(uint *, uint *))0x8007CE60)(param_1, param_2); }
-static inline undefined4 getCurrentFieldEvenOdd(void) { return ((undefined4(*)(void))0x8007CE9C)(); }
-static inline ushort VIGetNextField(void) { return ((ushort(*)(void))0x8007CF04)(); }
-static inline uint VIGetCurrentLine(void) { return ((uint(*)(void))0x8007CFA0)(); }
-static inline int VIGetTvFormat(void) { return ((int(*)(void))0x8007D038)(); }
-static inline ushort VIGetDTVStatus(void) { return ((ushort(*)(void))0x8007D0A0)(); }
-static inline void __VIDisplayPositionToXY(int param_1, int param_2, short * param_3, ushort * param_4) { ((void(*)(int, int, short *, ushort *))0x8007D0DC)(param_1, param_2, param_3, param_4); }
-static inline void __VIGetCurrentPosition(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8007D2F8)(param_1, param_2); }
-static inline void ClampStick(char * param_1, char * param_2, char param_3, char param_4, char param_5) { ((void(*)(char *, char *, char, char, char))0x8007D358)(param_1, param_2, param_3, param_4, param_5); }
-static inline void PADClamp(int param_1) { ((void(*)(int))0x8007D488)(param_1); }
-static inline void UpdateOrigin(int param_1) { ((void(*)(int))0x8007D59C)(param_1); }
-static inline void PadOriginCallback(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007D740)(param_1, param_2); }
-static inline void PADOriginUpdateCallback(int param_1, uint param_2) { ((void(*)(int, uint))0x8007D804)(param_1, param_2); }
-static inline void PADProbeCallback(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007D8D0)(param_1, param_2); }
-static inline void PADTypeAndStatusCallback(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007D9A8)(param_1, param_2); }
-static inline void PADReceiveCheckCallback(int param_1, uint param_2) { ((void(*)(int, uint))0x8007DCD4)(param_1, param_2); }
-static inline undefined4 PADReset(uint param_1) { return ((undefined4(*)(uint))0x8007DE14)(param_1); }
-static inline undefined4 PADRecalibrate(uint param_1) { return ((undefined4(*)(uint))0x8007DF24)(param_1); }
-static inline undefined4 PADInit(void) { return ((undefined4(*)(void))0x8007E038)(); }
-static inline uint PADRead(ushort * param_1) { return ((uint(*)(ushort *))0x8007E188)(param_1); }
-static inline void PadControlMotor(int param_1, uint param_2) { ((void(*)(int, uint))0x8007E488)(param_1, param_2); }
-static inline void PADSetSpec(int param_1) { ((void(*)(int))0x8007E540)(param_1); }
-static inline void SPEC0_MakeStatus(undefined4 param_1, ushort * param_2, uint * param_3) { ((void(*)(undefined4, ushort *, uint *))0x8007E5A0)(param_1, param_2, param_3); }
-static inline void SPEC1_MakeStatus(undefined4 param_1, ushort * param_2, uint * param_3) { ((void(*)(undefined4, ushort *, uint *))0x8007E714)(param_1, param_2, param_3); }
-static inline void SPEC2_MakeStatus(int param_1, ushort * param_2, undefined4 * param_3) { ((void(*)(int, ushort *, undefined4 *))0x8007E888)(param_1, param_2, param_3); }
-static inline int OnReset_8007ecf8(int param_1) { return ((int(*)(int))0x8007ECF8)(param_1); }
-static inline void SamplingHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8007EDB4)(param_1, param_2); }
-static inline int PADSetSamplingCallback(int param_1) { return ((int(*)(int))0x8007EE14)(param_1); }
-static inline bool __PADDisableRecalibration(int param_1) { return ((bool(*)(int))0x8007EE68)(param_1); }
-static inline undefined * AIRegisterDMACallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007EEE4)(param_1); }
-static inline void AIInitDMA(undefined4 param_1, uint param_2) { ((void(*)(undefined4, uint))0x8007EF28)(param_1, param_2); }
+static inline void VISetNextFrameBuffer(void) { ((void(*)(void))0x8007CD78)(); }
+static inline void VISetNextRightFrameBuffer(void) { ((void(*)(void))0x8007CDE4)(); }
+static inline void GetCurrentDisplayPosition(void) { ((void(*)(void))0x8007CE60)(); }
+static inline void getCurrentFieldEvenOdd(void) { ((void(*)(void))0x8007CE9C)(); }
+static inline void VIGetNextField(void) { ((void(*)(void))0x8007CF04)(); }
+static inline void VIGetCurrentLine(void) { ((void(*)(void))0x8007CFA0)(); }
+static inline void VIGetTvFormat(void) { ((void(*)(void))0x8007D038)(); }
+static inline void VIGetDTVStatus(void) { ((void(*)(void))0x8007D0A0)(); }
+static inline void __VIDisplayPositionToXY(void) { ((void(*)(void))0x8007D0DC)(); }
+static inline void __VIGetCurrentPosition(void) { ((void(*)(void))0x8007D2F8)(); }
+static inline void ClampStick(void) { ((void(*)(void))0x8007D358)(); }
+static inline void PADClamp(void) { ((void(*)(void))0x8007D488)(); }
+static inline void UpdateOrigin(void) { ((void(*)(void))0x8007D59C)(); }
+static inline void PadOriginCallback(void) { ((void(*)(void))0x8007D740)(); }
+static inline void PADOriginUpdateCallback(void) { ((void(*)(void))0x8007D804)(); }
+static inline void PADProbeCallback(void) { ((void(*)(void))0x8007D8D0)(); }
+static inline void PADTypeAndStatusCallback(void) { ((void(*)(void))0x8007D9A8)(); }
+static inline void PADReceiveCheckCallback(void) { ((void(*)(void))0x8007DCD4)(); }
+static inline void PADReset(void) { ((void(*)(void))0x8007DE14)(); }
+static inline void PADRecalibrate(void) { ((void(*)(void))0x8007DF24)(); }
+static inline void PADInit(void) { ((void(*)(void))0x8007E038)(); }
+static inline void PADRead(void) { ((void(*)(void))0x8007E188)(); }
+static inline void PadControlMotor(void) { ((void(*)(void))0x8007E488)(); }
+static inline void PADSetSpec(void) { ((void(*)(void))0x8007E540)(); }
+static inline void SPEC0_MakeStatus(void) { ((void(*)(void))0x8007E5A0)(); }
+static inline void SPEC1_MakeStatus(void) { ((void(*)(void))0x8007E714)(); }
+static inline void SPEC2_MakeStatus(void) { ((void(*)(void))0x8007E888)(); }
+static inline void OnReset_8007ecf8(void) { ((void(*)(void))0x8007ECF8)(); }
+static inline void SamplingHandler(void) { ((void(*)(void))0x8007EDB4)(); }
+static inline void PADSetSamplingCallback(void) { ((void(*)(void))0x8007EE14)(); }
+static inline void __PADDisableRecalibration(void) { ((void(*)(void))0x8007EE68)(); }
+static inline void AIRegisterDMACallback(void) { ((void(*)(void))0x8007EEE4)(); }
+static inline void AIInitDMA(void) { ((void(*)(void))0x8007EF28)(); }
 static inline void AIStartDMA(void) { ((void(*)(void))0x8007EFB0)(); }
 static inline void AIGetDMABytesLeft(void) { ((void(*)(void))0x8007EFC8)(); }
-static inline uint AIGetDMAStartAddr(void) { return ((uint(*)(void))0x8007EFE0)(); }
-static inline undefined * AIRegisterStreamCallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007EFFC)(param_1); }
+static inline void AIGetDMAStartAddr(void) { ((void(*)(void))0x8007EFE0)(); }
+static inline void AIRegisterStreamCallback(void) { ((void(*)(void))0x8007EFFC)(); }
 static inline void AIResetStreamSampleCount(void) { ((void(*)(void))0x8007F040)(); }
-static inline void AISetStreamTrigger(int param_1) { ((void(*)(int))0x8007F058)(param_1); }
-static inline void AISetStreamPlayState(uint param_1) { ((void(*)(uint))0x8007F064)(param_1); }
-static inline uint AIGetStreamPlayState(void) { return ((uint(*)(void))0x8007F13C)(); }
-static inline void AISetDSPSampleRate(int param_1) { ((void(*)(int))0x8007F14C)(param_1); }
-static inline uint AIGetDSPSampleRate(void) { return ((uint(*)(void))0x8007F22C)(); }
-static inline void __AI_set_stream_sample_rate(int param_1) { ((void(*)(int))0x8007F240)(param_1); }
-static inline uint AIGetStreamSampleRate(void) { return ((uint(*)(void))0x8007F314)(); }
-static inline void AISetStreamVolLeft(uint param_1) { ((void(*)(uint))0x8007F324)(param_1); }
-static inline uint AIGetStreamVolLeft(void) { return ((uint(*)(void))0x8007F340)(); }
-static inline void AISetStreamVolRight(uint param_1) { ((void(*)(uint))0x8007F350)(param_1); }
-static inline uint AIGetStreamVolRight(void) { return ((uint(*)(void))0x8007F36C)(); }
-static inline void AIInit(int param_1) { ((void(*)(int))0x8007F37C)(param_1); }
-static inline void __AICallbackStackSwitch(undefined * param_1) { ((void(*)(undefined *))0x8007F610)(param_1); }
+static inline void AISetStreamTrigger(void) { ((void(*)(void))0x8007F058)(); }
+static inline void AISetStreamPlayState(void) { ((void(*)(void))0x8007F064)(); }
+static inline void AIGetStreamPlayState(void) { ((void(*)(void))0x8007F13C)(); }
+static inline void AISetDSPSampleRate(void) { ((void(*)(void))0x8007F14C)(); }
+static inline void AIGetDSPSampleRate(void) { ((void(*)(void))0x8007F22C)(); }
+static inline void __AI_set_stream_sample_rate(void) { ((void(*)(void))0x8007F240)(); }
+static inline void AIGetStreamSampleRate(void) { ((void(*)(void))0x8007F314)(); }
+static inline void AISetStreamVolLeft(void) { ((void(*)(void))0x8007F324)(); }
+static inline void AIGetStreamVolLeft(void) { ((void(*)(void))0x8007F340)(); }
+static inline void AISetStreamVolRight(void) { ((void(*)(void))0x8007F350)(); }
+static inline void AIGetStreamVolRight(void) { ((void(*)(void))0x8007F36C)(); }
+static inline void AIInit(void) { ((void(*)(void))0x8007F37C)(); }
+static inline void __AICallbackStackSwitch(void) { ((void(*)(void))0x8007F610)(); }
 static inline void __AI_SRC_INIT(void) { ((void(*)(void))0x8007F668)(); }
-static inline undefined * ARRegisterDMACallback(undefined * param_1) { return ((undefined *(*)(undefined *))0x8007F84C)(param_1); }
-static inline ushort ARGetDMAStatus(void) { return ((ushort(*)(void))0x8007F890)(); }
+static inline void ARRegisterDMACallback(void) { ((void(*)(void))0x8007F84C)(); }
+static inline void ARGetDMAStatus(void) { ((void(*)(void))0x8007F890)(); }
 static inline void ARStartDMA(int type, int mainmem_addr, int aram_addr, int length) { ((void(*)(int, int, int, int))0x8007F8CC)(type, mainmem_addr, aram_addr, length); }
-static inline int ARInit(int param_1, int param_2) { return ((int(*)(int, int))0x8007F9BC)(param_1, param_2); }
-static inline undefined4 ARGetBaseAddress(void) { return ((undefined4(*)(void))0x8007FA80)(); }
-static inline int ARGetSize(void) { return ((int(*)(void))0x8007FA88)(); }
-static inline void __ARHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8007FA90)(param_1, param_2); }
+static inline void ARInit(void) { ((void(*)(void))0x8007F9BC)(); }
+static inline void ARGetBaseAddress(void) { ((void(*)(void))0x8007FA80)(); }
+static inline void ARGetSize(void) { ((void(*)(void))0x8007FA88)(); }
+static inline void __ARHandler(void) { ((void(*)(void))0x8007FA90)(); }
 static inline void __ARClearInterrupt(void) { ((void(*)(void))0x8007FB08)(); }
-static inline ushort __ARGetInterruptStatus(void) { return ((ushort(*)(void))0x8007FB28)(); }
+static inline void __ARGetInterruptStatus(void) { ((void(*)(void))0x8007FB28)(); }
 static inline void __ARChecksize(void) { ((void(*)(void))0x8007FB38)(); }
 static inline void __ARQServiceQueueLo(void) { ((void(*)(void))0x8008132C)(); }
 static inline void __ARQCallbackHack(void) { ((void(*)(void))0x8008142C)(); }
 static inline void __ARQInterruptServiceRoutine(void) { ((void(*)(void))0x80081430)(); }
 static inline void ARQInit(void) { ((void(*)(void))0x800814FC)(); }
-#define ARQPostRequest FUNCTION_ADDRESS(void, 0x8008156C, ARQRequest * /*task*/, int /*owner*/, int /*type*/, int /*priority*/, int /*source*/, int /*dest*/, int /*length*/, func * /*callback*/)
-static inline void ARQRemoveOwnerRequest(int param_1) { ((void(*)(int))0x800816C8)(param_1); }
+static inline void ARQPostRequest(ARQRequest * task, int owner, int type, int priority, int source, int dest, int length, ulong (*callback)(void)) { ((void(*)(ARQRequest *, int, int, int, int, int, int, ulong (*)(void)))0x8008156C)(task, owner, type, priority, source, dest, length, callback); }
+static inline void ARQRemoveOwnerRequest(void) { ((void(*)(void))0x800816C8)(); }
 static inline void ARQFlushQueue(void) { ((void(*)(void))0x800817B8)(); }
-static inline void ARQSetChunkSize(uint param_1) { ((void(*)(uint))0x800817F0)(param_1); }
-static inline ushort DSPCheckMailToDSP(void) { return ((ushort(*)(void))0x80081810)(); }
-static inline ushort DSPCheckMailFromDSP(void) { return ((ushort(*)(void))0x80081820)(); }
-static inline undefined4 DSPReadMailFromDSP(void) { return ((undefined4(*)(void))0x80081830)(); }
-static inline void DSPSendMailToDSP(undefined4 param_1) { ((void(*)(undefined4))0x80081848)(param_1); }
+static inline void ARQSetChunkSize(void) { ((void(*)(void))0x800817F0)(); }
+static inline void DSPCheckMailToDSP(void) { ((void(*)(void))0x80081810)(); }
+static inline void DSPCheckMailFromDSP(void) { ((void(*)(void))0x80081820)(); }
+static inline void DSPReadMailFromDSP(void) { ((void(*)(void))0x80081830)(); }
+static inline void DSPSendMailToDSP(void) { ((void(*)(void))0x80081848)(); }
 static inline void DSPInit(void) { ((void(*)(void))0x8008185C)(); }
-static inline undefined4 * DSPAddTask(undefined4 * param_1) { return ((undefined4 *(*)(undefined4 *))0x80081920)(param_1); }
-static inline int DSPCancelTask(int param_1) { return ((int(*)(int))0x80081990)(param_1); }
+static inline void DSPAddTask(void) { ((void(*)(void))0x80081920)(); }
+static inline void DSPCancelTask(void) { ((void(*)(void))0x80081990)(); }
 static inline void __DSP_debug_printf(void) { ((void(*)(void))0x800819D0)(); }
-static inline void __DSPHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80081A20)(param_1, param_2); }
-static inline void __DSP_exec_task(int param_1, int * param_2) { ((void(*)(int, int *))0x80081E44)(param_1, param_2); }
-static inline void __DSP_boot_task(int param_1) { ((void(*)(int))0x80081FE4)(param_1); }
-static inline void __DSP_insert_task(undefined * param_1) { ((void(*)(undefined *))0x80082170)(param_1); }
-static inline void __DSP_remove_task(undefined4 * param_1) { ((void(*)(undefined4 *))0x80082210)(param_1); }
+static inline void __DSPHandler(void) { ((void(*)(void))0x80081A20)(); }
+static inline void __DSP_exec_task(void) { ((void(*)(void))0x80081E44)(); }
+static inline void __DSP_boot_task(void) { ((void(*)(void))0x80081FE4)(); }
+static inline void __DSP_insert_task(void) { ((void(*)(void))0x80082170)(); }
+static inline void __DSP_remove_task(void) { ((void(*)(void))0x80082210)(); }
 static inline void __CARDDefaultApiCallback(void) { ((void(*)(void))0x800822A4)(); }
-static inline void __CARDSyncCallback(int param_1) { ((void(*)(int))0x800822A8)(param_1); }
-static inline void __CARDExtHandler(int param_1) { ((void(*)(int))0x800822DC)(param_1); }
-static inline void __CARDExiHandler(int param_1) { ((void(*)(int))0x800823B4)(param_1); }
-static inline void __CARDTxHandler(int param_1) { ((void(*)(int))0x800824CC)(param_1); }
-static inline void __CARDUnlockHandler(int param_1) { ((void(*)(int))0x80082574)(param_1); }
-static inline undefined4 __CardEnableInterrupt(undefined4 param_1, int param_2) { return ((undefined4(*)(undefined4, int))0x800825F8)(param_1, param_2); }
-static inline undefined4 __CARDReadStatus(undefined4 param_1, undefined4 param_2) { return ((undefined4(*)(undefined4, undefined4))0x800826B8)(param_1, param_2); }
-static inline undefined4 __CARDClearStatus(undefined4 param_1) { return ((undefined4(*)(undefined4))0x800827A8)(param_1); }
-static inline void TimeoutHandler(undefined * param_1) { ((void(*)(undefined *))0x80082854)(param_1); }
-static inline undefined4 Retry(int param_1) { return ((undefined4(*)(int))0x800828F8)(param_1); }
-static inline void UnlockedCallback(int param_1, int param_2) { ((void(*)(int, int))0x80082B24)(param_1, param_2); }
-static inline undefined4 __CARDStart(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x80082C34)(param_1, param_2, param_3); }
-static inline int __CARDReadSegment(int param_1, undefined4 param_2) { return ((int(*)(int, undefined4))0x80082DE8)(param_1, param_2); }
-static inline int __CARDWritePage(int param_1, undefined4 param_2) { return ((int(*)(int, undefined4))0x80082F1C)(param_1, param_2); }
-static inline int __CARDEraseSector(int param_1, uint param_2) { return ((int(*)(int, uint))0x80083038)(param_1, param_2); }
+static inline void __CARDSyncCallback(void) { ((void(*)(void))0x800822A8)(); }
+static inline void __CARDExtHandler(void) { ((void(*)(void))0x800822DC)(); }
+static inline void __CARDExiHandler(void) { ((void(*)(void))0x800823B4)(); }
+static inline void __CARDTxHandler(void) { ((void(*)(void))0x800824CC)(); }
+static inline void __CARDUnlockHandler(void) { ((void(*)(void))0x80082574)(); }
+static inline void __CardEnableInterrupt(void) { ((void(*)(void))0x800825F8)(); }
+static inline void __CARDReadStatus(void) { ((void(*)(void))0x800826B8)(); }
+static inline void __CARDClearStatus(void) { ((void(*)(void))0x800827A8)(); }
+static inline void TimeoutHandler(void) { ((void(*)(void))0x80082854)(); }
+static inline void Retry(void) { ((void(*)(void))0x800828F8)(); }
+static inline void UnlockedCallback(void) { ((void(*)(void))0x80082B24)(); }
+static inline void __CARDStart(void) { ((void(*)(void))0x80082C34)(); }
+static inline void __CARDReadSegment(void) { ((void(*)(void))0x80082DE8)(); }
+static inline void __CARDWritePage(void) { ((void(*)(void))0x80082F1C)(); }
+static inline void __CARDEraseSector(void) { ((void(*)(void))0x80083038)(); }
 static inline void CARDInit(void) { ((void(*)(void))0x80083118)(); }
-static inline short __CARDGetFontEncode(void) { return ((short(*)(void))0x800831C4)(); }
-static inline void __CARDSetDiskID(undefined * param_1) { ((void(*)(undefined *))0x800831CC)(param_1); }
-static inline undefined4 __CARDGetControlBlock(int param_1, int * * param_2) { return ((undefined4(*)(int, int * *))0x80083204)(param_1, param_2); }
-static inline int __CARDPutControlBlock(int * param_1, int param_2) { return ((int(*)(int *, int))0x800832BC)(param_1, param_2); }
-static inline int CARDGetResultCode(int param_1) { return ((int(*)(int))0x80083320)(param_1); }
-static inline int CARDFreeBlocks(undefined4 param_1, int * param_2, int * param_3) { return ((int(*)(undefined4, int *, int *))0x80083350)(param_1, param_2, param_3); }
-static inline int __CARDSync(int param_1) { return ((int(*)(int))0x800834A0)(param_1); }
-static inline undefined4 OnReset_80083538(int param_1) { return ((undefined4(*)(int))0x80083538)(param_1); }
-static inline uint bitrev(uint param_1) { return ((uint(*)(uint))0x80083588)(param_1); }
-static inline undefined4 ReadArrayUnlock(int param_1, uint param_2, undefined4 param_3, undefined4 param_4, int param_5) { return ((undefined4(*)(int, uint, undefined4, undefined4, int))0x800836F4)(param_1, param_2, param_3, param_4, param_5); }
-static inline uint DummyLen(void) { return ((uint(*)(void))0x80083838)(); }
-static inline undefined4 __CARDUnlock(int param_1, uint * param_2) { return ((undefined4(*)(int, uint *))0x800838FC)(param_1, param_2); }
-static inline void InitCallback(int * param_1) { ((void(*)(int *))0x80084454)(param_1); }
-static inline void DoneCallback(int * param_1) { ((void(*)(int *))0x800844C4)(param_1); }
-static inline void BlockReadCallback(int param_1, int param_2) { ((void(*)(int, int))0x800847E8)(param_1, param_2); }
-static inline undefined4 __CARDRead(int param_1, undefined4 param_2, uint param_3, undefined * param_4, undefined4 param_5) { return ((undefined4(*)(int, undefined4, uint, undefined *, undefined4))0x800848C4)(param_1, param_2, param_3, param_4, param_5); }
-static inline void BlockWriteCallback(int param_1, int param_2) { ((void(*)(int, int))0x80084928)(param_1, param_2); }
-static inline undefined4 __CARDWrite(int param_1, undefined4 param_2, uint param_3, undefined * param_4, undefined4 param_5) { return ((undefined4(*)(int, undefined4, uint, undefined *, undefined4))0x80084A04)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 CARDGetXferredBytes(int param_1) { return ((undefined4(*)(int))0x80084A68)(param_1); }
-static inline undefined4 __CARDGetFatBlock(int param_1) { return ((undefined4(*)(int))0x80084A80)(param_1); }
-static inline void WriteCallback(int param_1, int param_2) { ((void(*)(int, int))0x80084A88)(param_1, param_2); }
-static inline void EraseCallback(int param_1, int param_2) { ((void(*)(int, int))0x80084B5C)(param_1, param_2); }
-static inline undefined4 __CARDAllocBlock(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x80084C24)(param_1, param_2); }
-static inline undefined4 __CARDFreeBlock(int param_1, ushort param_2) { return ((undefined4(*)(int, ushort))0x80084D3C)(param_1, param_2); }
-static inline void __CARDUpdateFatBlock(int param_1, int param_2, undefined4 param_3) { ((void(*)(int, int, undefined4))0x80084DD8)(param_1, param_2, param_3); }
-static inline undefined4 __CARDGetDirBlock(int param_1) { return ((undefined4(*)(int))0x80084E84)(param_1); }
-static inline void WriteCallback_80084e8c(int param_1, int param_2) { ((void(*)(int, int))0x80084E8C)(param_1, param_2); }
-static inline void EraseCallback_80084f5c(int param_1, int param_2) { ((void(*)(int, int))0x80084F5C)(param_1, param_2); }
-static inline undefined4 __CARDUpdateDir(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x80085024)(param_1, param_2); }
-static inline void __CARDCheckSum(ushort * param_1, uint param_2, short * param_3, short * param_4) { ((void(*)(ushort *, uint, short *, short *))0x800850E8)(param_1, param_2, param_3, param_4); }
-static inline undefined4 VerifyID(int param_1) { return ((undefined4(*)(int))0x80085298)(param_1); }
-static inline int VerifyDir(int param_1, uint * param_2) { return ((int(*)(int, uint *))0x8008551C)(param_1, param_2); }
-static inline int VerifyFat(int param_1, uint * param_2) { return ((int(*)(int, uint *))0x8008575C)(param_1, param_2); }
-static inline int __CARDVerify(undefined4 param_1) { return ((int(*)(undefined4))0x800859E0)(param_1); }
-static inline int CARDCheckExAsync(undefined4 param_1, undefined4 * param_2, undefined * param_3) { return ((int(*)(undefined4, undefined4 *, undefined *))0x80085A6C)(param_1, param_2, param_3); }
-static inline void CARDCheckAsync(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80085FFC)(param_1, param_2); }
-static inline void CARDCheckEx(undefined4 param_1) { ((void(*)(undefined4))0x80086024)(param_1); }
-static inline undefined4 IsCard(char * param_1) { return ((undefined4(*)(char *))0x80086078)(param_1); }
-static inline undefined4 CARDProbeEx(int param_1, uint * param_2, undefined4 * param_3) { return ((undefined4(*)(int, uint *, undefined4 *))0x80086144)(param_1, param_2, param_3); }
-static inline int DoMount(int param_1) { return ((int(*)(int))0x800862C0)(param_1); }
-static inline void __CARDMountCallback(int param_1, int param_2) { ((void(*)(int, int))0x800866D0)(param_1, param_2); }
-static inline undefined4 CARDMountAsync(int param_1, undefined * param_2, undefined4 param_3, undefined * param_4) { return ((undefined4(*)(int, undefined *, undefined4, undefined *))0x80086808)(param_1, param_2, param_3, param_4); }
-static inline void CARDMount(undefined4 param_1) { ((void(*)(undefined4))0x800869A8)(param_1); }
-static inline void DoUnmount(int param_1, int param_2) { ((void(*)(int, int))0x800869F0)(param_1, param_2); }
-static inline int CARDUnmount(int param_1) { return ((int(*)(int))0x80086A8C)(param_1); }
-static inline int __CARDFormatRegionAsync(int param_1, undefined2 param_2, undefined * param_3) { return ((int(*)(int, undefined2, undefined *))0x80086C7C)(param_1, param_2, param_3); }
-static inline void CARDFormatAsync(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800872D4)(param_1, param_2); }
-static inline void CARDFormat(undefined4 param_1) { ((void(*)(undefined4))0x8008731C)(param_1); }
-static inline undefined4 __CARDCompareFileName(int param_1, char * param_2) { return ((undefined4(*)(int, char *))0x80087370)(param_1, param_2); }
-static inline undefined4 __CARDAccess(int param_1, byte * param_2) { return ((undefined4(*)(int, byte *))0x800873D8)(param_1, param_2); }
-static inline int __CARDIsWritable(int param_1, byte * param_2) { return ((int(*)(int, byte *))0x8008746C)(param_1, param_2); }
-static inline int __CARDIsReadable(int param_1, byte * param_2) { return ((int(*)(int, byte *))0x800875A0)(param_1, param_2); }
-static inline undefined4 __CARDGetFileNo(int * param_1, byte * param_2, int * param_3) { return ((undefined4(*)(int *, byte *, int *))0x80087694)(param_1, param_2, param_3); }
-static inline void CARDOpen(undefined4 param_1, undefined4 param_2, undefined4 * param_3) { ((void(*)(undefined4, undefined4, undefined4 *))0x800877E4)(param_1, param_2, param_3); }
-static inline void CARDClose(undefined4 * param_1) { ((void(*)(undefined4 *))0x80087900)(param_1); }
-static inline undefined4 __CARDIsOpened(void) { return ((undefined4(*)(void))0x80087954)(); }
-static inline void CreateCallbackFat(int param_1, int param_2) { ((void(*)(int, int))0x8008795C)(param_1, param_2); }
-static inline int CARDCreateAsync(undefined4 param_1, char * param_2, uint param_3, undefined4 * param_4, undefined * param_5) { return ((int(*)(undefined4, char *, uint, undefined4 *, undefined *))0x80087A8C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void CARDCreate(undefined4 param_1) { ((void(*)(undefined4))0x80087CAC)(param_1); }
-static inline int __CARDSeek(undefined4 * param_1, int param_2, uint param_3, int * param_4) { return ((int(*)(undefined4 *, int, uint, int *))0x80087CF4)(param_1, param_2, param_3, param_4); }
-static inline void ReadCallback(int param_1, int param_2) { ((void(*)(int, int))0x80087EAC)(param_1, param_2); }
-static inline int CARDReadAsync(undefined4 * param_1, void * param_2, uint param_3, uint param_4, undefined * param_5) { return ((int(*)(undefined4 *, void *, uint, uint, undefined *))0x80087FDC)(param_1, param_2, param_3, param_4, param_5); }
-static inline void CARDRead(undefined4 * param_1) { ((void(*)(undefined4 *))0x80088120)(param_1); }
-static inline void WriteCallback_80088168(int param_1, int param_2) { ((void(*)(int, int))0x80088168)(param_1, param_2); }
-static inline void EraseCallback_800882d8(int param_1, int param_2) { ((void(*)(int, int))0x800882D8)(param_1, param_2); }
-static inline int CARDWriteAsync(undefined4 * param_1, undefined4 param_2, uint param_3, uint param_4, undefined * param_5) { return ((int(*)(undefined4 *, undefined4, uint, uint, undefined *))0x80088388)(param_1, param_2, param_3, param_4, param_5); }
-static inline void CARDWrite(undefined4 * param_1) { ((void(*)(undefined4 *))0x8008849C)(param_1); }
-static inline void DeleteCallback(int param_1, int param_2) { ((void(*)(int, int))0x800884E4)(param_1, param_2); }
-static inline int CARDFastDeleteAsync(undefined4 param_1, undefined4 param_2, undefined * param_3) { return ((int(*)(undefined4, undefined4, undefined *))0x80088588)(param_1, param_2, param_3); }
-static inline void CARDFastDelete(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80088698)(param_1, param_2); }
-static inline void UpdateIconOffsets(int param_1, int param_2) { ((void(*)(int, int))0x800886E0)(param_1, param_2); }
-static inline int CARDGetStatus(undefined4 param_1, int param_2, void * param_3) { return ((int(*)(undefined4, int, void *))0x800888D8)(param_1, param_2, param_3); }
-static inline int CARDSetStatusAsync(undefined4 param_1, int param_2, int param_3, undefined4 param_4) { return ((int(*)(undefined4, int, int, undefined4))0x800889EC)(param_1, param_2, param_3, param_4); }
-static inline void CARDSetStatus(undefined4 param_1) { ((void(*)(undefined4))0x80088B60)(param_1); }
-static inline int __CARDGetStatusEx(undefined4 param_1, int param_2, void * param_3) { return ((int(*)(undefined4, int, void *))0x80088BA8)(param_1, param_2, param_3); }
+static inline void __CARDGetFontEncode(void) { ((void(*)(void))0x800831C4)(); }
+static inline void __CARDSetDiskID(void) { ((void(*)(void))0x800831CC)(); }
+static inline void __CARDGetControlBlock(void) { ((void(*)(void))0x80083204)(); }
+static inline void __CARDPutControlBlock(void) { ((void(*)(void))0x800832BC)(); }
+static inline void CARDGetResultCode(void) { ((void(*)(void))0x80083320)(); }
+static inline void CARDFreeBlocks(void) { ((void(*)(void))0x80083350)(); }
+static inline void __CARDSync(void) { ((void(*)(void))0x800834A0)(); }
+static inline void OnReset_80083538(void) { ((void(*)(void))0x80083538)(); }
+static inline void bitrev(void) { ((void(*)(void))0x80083588)(); }
+static inline void ReadArrayUnlock(void) { ((void(*)(void))0x800836F4)(); }
+static inline void DummyLen(void) { ((void(*)(void))0x80083838)(); }
+static inline void __CARDUnlock(void) { ((void(*)(void))0x800838FC)(); }
+static inline void InitCallback(void) { ((void(*)(void))0x80084454)(); }
+static inline void DoneCallback(void) { ((void(*)(void))0x800844C4)(); }
+static inline void BlockReadCallback(void) { ((void(*)(void))0x800847E8)(); }
+static inline void __CARDRead(void) { ((void(*)(void))0x800848C4)(); }
+static inline void BlockWriteCallback(void) { ((void(*)(void))0x80084928)(); }
+static inline void __CARDWrite(void) { ((void(*)(void))0x80084A04)(); }
+static inline void CARDGetXferredBytes(void) { ((void(*)(void))0x80084A68)(); }
+static inline void __CARDGetFatBlock(void) { ((void(*)(void))0x80084A80)(); }
+static inline void WriteCallback(void) { ((void(*)(void))0x80084A88)(); }
+static inline void EraseCallback(void) { ((void(*)(void))0x80084B5C)(); }
+static inline void __CARDAllocBlock(void) { ((void(*)(void))0x80084C24)(); }
+static inline void __CARDFreeBlock(void) { ((void(*)(void))0x80084D3C)(); }
+static inline void __CARDUpdateFatBlock(void) { ((void(*)(void))0x80084DD8)(); }
+static inline void __CARDGetDirBlock(void) { ((void(*)(void))0x80084E84)(); }
+static inline void WriteCallback_80084e8c(void) { ((void(*)(void))0x80084E8C)(); }
+static inline void EraseCallback_80084f5c(void) { ((void(*)(void))0x80084F5C)(); }
+static inline void __CARDUpdateDir(void) { ((void(*)(void))0x80085024)(); }
+static inline void __CARDCheckSum(void) { ((void(*)(void))0x800850E8)(); }
+static inline void VerifyID(void) { ((void(*)(void))0x80085298)(); }
+static inline void VerifyDir(void) { ((void(*)(void))0x8008551C)(); }
+static inline void VerifyFat(void) { ((void(*)(void))0x8008575C)(); }
+static inline void __CARDVerify(void) { ((void(*)(void))0x800859E0)(); }
+static inline void CARDCheckExAsync(void) { ((void(*)(void))0x80085A6C)(); }
+static inline void CARDCheckAsync(void) { ((void(*)(void))0x80085FFC)(); }
+static inline void CARDCheckEx(void) { ((void(*)(void))0x80086024)(); }
+static inline void IsCard(void) { ((void(*)(void))0x80086078)(); }
+static inline void CARDProbeEx(void) { ((void(*)(void))0x80086144)(); }
+static inline void DoMount(void) { ((void(*)(void))0x800862C0)(); }
+static inline void __CARDMountCallback(void) { ((void(*)(void))0x800866D0)(); }
+static inline void CARDMountAsync(void) { ((void(*)(void))0x80086808)(); }
+static inline void CARDMount(void) { ((void(*)(void))0x800869A8)(); }
+static inline void DoUnmount(void) { ((void(*)(void))0x800869F0)(); }
+static inline void CARDUnmount(void) { ((void(*)(void))0x80086A8C)(); }
+static inline void __CARDFormatRegionAsync(void) { ((void(*)(void))0x80086C7C)(); }
+static inline void CARDFormatAsync(void) { ((void(*)(void))0x800872D4)(); }
+static inline void CARDFormat(void) { ((void(*)(void))0x8008731C)(); }
+static inline void __CARDCompareFileName(void) { ((void(*)(void))0x80087370)(); }
+static inline void __CARDAccess(void) { ((void(*)(void))0x800873D8)(); }
+static inline void __CARDIsWritable(void) { ((void(*)(void))0x8008746C)(); }
+static inline void __CARDIsReadable(void) { ((void(*)(void))0x800875A0)(); }
+static inline void __CARDGetFileNo(void) { ((void(*)(void))0x80087694)(); }
+static inline void CARDOpen(void) { ((void(*)(void))0x800877E4)(); }
+static inline void CARDClose(void) { ((void(*)(void))0x80087900)(); }
+static inline void __CARDIsOpened(void) { ((void(*)(void))0x80087954)(); }
+static inline void CreateCallbackFat(void) { ((void(*)(void))0x8008795C)(); }
+static inline void CARDCreateAsync(void) { ((void(*)(void))0x80087A8C)(); }
+static inline void CARDCreate(void) { ((void(*)(void))0x80087CAC)(); }
+static inline void __CARDSeek(void) { ((void(*)(void))0x80087CF4)(); }
+static inline void ReadCallback(void) { ((void(*)(void))0x80087EAC)(); }
+static inline void CARDReadAsync(void) { ((void(*)(void))0x80087FDC)(); }
+static inline void CARDRead(void) { ((void(*)(void))0x80088120)(); }
+static inline void WriteCallback_80088168(void) { ((void(*)(void))0x80088168)(); }
+static inline void EraseCallback_800882d8(void) { ((void(*)(void))0x800882D8)(); }
+static inline void CARDWriteAsync(void) { ((void(*)(void))0x80088388)(); }
+static inline void CARDWrite(void) { ((void(*)(void))0x8008849C)(); }
+static inline void DeleteCallback(void) { ((void(*)(void))0x800884E4)(); }
+static inline void CARDFastDeleteAsync(void) { ((void(*)(void))0x80088588)(); }
+static inline void CARDFastDelete(void) { ((void(*)(void))0x80088698)(); }
+static inline void UpdateIconOffsets(void) { ((void(*)(void))0x800886E0)(); }
+static inline void CARDGetStatus(void) { ((void(*)(void))0x800888D8)(); }
+static inline void CARDSetStatusAsync(void) { ((void(*)(void))0x800889EC)(); }
+static inline void CARDSetStatus(void) { ((void(*)(void))0x80088B60)(); }
+static inline void __CARDGetStatusEx(void) { ((void(*)(void))0x80088BA8)(); }
 static inline void __CARDSetStatusExAsync(int chan, int cardFile, int dst, int param_4) { ((void(*)(int, int, int, int))0x80088C4C)(chan, cardFile, dst, param_4); }
-static inline int CARDGetSerialNo(int param_1, uint * param_2) { return ((int(*)(int, uint *))0x80088EE8)(param_1, param_2); }
-static inline int CARDSetAttributesAsync(undefined4 param_1, undefined4 param_2, byte param_3, undefined4 param_4) { return ((int(*)(undefined4, undefined4, byte, undefined4))0x80088FAC)(param_1, param_2, param_3, param_4); }
-static inline void CARDSetAttributes(undefined4 param_1) { ((void(*)(undefined4))0x80089090)(param_1); }
-static inline undefined * __GXDefaultTexRegionCallback(GXTexObj * param_1, uint param_2) { return ((undefined *(*)(GXTexObj *, uint))0x800890D8)(param_1, param_2); }
-static inline undefined * __GXDefaultTlutRegionCallback(uint param_1) { return ((undefined *(*)(uint))0x800891D4)(param_1); }
-static inline undefined4 __GXShutdown(int param_1) { return ((undefined4(*)(int))0x800891F8)(param_1); }
+static inline void CARDGetSerialNo(void) { ((void(*)(void))0x80088EE8)(); }
+static inline void CARDSetAttributesAsync(void) { ((void(*)(void))0x80088FAC)(); }
+static inline void CARDSetAttributes(void) { ((void(*)(void))0x80089090)(); }
+static inline void __GXDefaultTexRegionCallback(void) { ((void(*)(void))0x800890D8)(); }
+static inline void __GXDefaultTlutRegionCallback(void) { ((void(*)(void))0x800891D4)(); }
+static inline void __GXShutdown(void) { ((void(*)(void))0x800891F8)(); }
 static inline void __GXInitRevisionBits(void) { ((void(*)(void))0x80089388)(); }
-static inline GXFifoObj * GXInit(void) { return ((GXFifoObj *(*)(void))0x8008952C)(); }
+static inline void GXInit(void) { ((void(*)(void))0x8008952C)(); }
 static inline void __GXInitGX(void) { ((void(*)(void))0x80089B2C)(); }
-static inline void GXCPInterruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x8008A464)(param_1, param_2); }
+static inline void GXCPInterruptHandler(void) { ((void(*)(void))0x8008A464)(); }
 static inline void * GXGetFifoBase(GXFifoObj * fifo) { return ((void *(*)(GXFifoObj *))0x8008A598)(fifo); }
 static inline void GXInitFifoPtrs(GXFifoObj * fifo, void * readPtr, void * writePtr) { ((void(*)(GXFifoObj *, void *, void *))0x8008A604)(fifo, readPtr, writePtr); }
 static inline void GXInitFifoLimits(GXFifoObj * fifo, int hiWaterMark, int loWaterMark) { ((void(*)(GXFifoObj *, int, int))0x8008A674)(fifo, hiWaterMark, loWaterMark); }
 static inline void GXSetCPUFifo(GXFifoObj * fifo) { ((void(*)(GXFifoObj *))0x8008A680)(fifo); }
 static inline void GXSetGPFifo(GXFifoObj * fifo) { ((void(*)(GXFifoObj *))0x8008A7A8)(fifo); }
-static inline int GXSetBreakPtCallback(int param_1) { return ((int(*)(int))0x8008A948)(param_1); }
+static inline void GXSetBreakPtCallback(void) { ((void(*)(void))0x8008A948)(); }
 static inline void __GXFifoInit(void) { ((void(*)(void))0x8008A98C)(); }
 static inline void __GXFifoReadEnable(void) { ((void(*)(void))0x8008A9D8)(); }
 static inline void __GXFifoReadDisable(void) { ((void(*)(void))0x8008A9FC)(); }
-static inline void __GXFifoLink(char param_1) { ((void(*)(char))0x8008AA20)(param_1); }
-static inline void __GXWriteFifoIntEnable(uint param_1, uint param_2) { ((void(*)(uint, uint))0x8008AA54)(param_1, param_2); }
-static inline void __GXWriteFifoIntReset(uint param_1, uint param_2) { ((void(*)(uint, uint))0x8008AA84)(param_1, param_2); }
+static inline void __GXFifoLink(void) { ((void(*)(void))0x8008AA20)(); }
+static inline void __GXWriteFifoIntEnable(void) { ((void(*)(void))0x8008AA54)(); }
+static inline void __GXWriteFifoIntReset(void) { ((void(*)(void))0x8008AA84)(); }
 static inline OSThread * GXSetCurrentGXThread(void) { return ((OSThread *(*)(void))0x8008AAB4)(); }
 static inline OSThread * GXGetCurrentGXThread(void) { return ((OSThread *(*)(void))0x8008AB00)(); }
 static inline GXFifoObj * GXGetGPFifo(void) { return ((GXFifoObj *(*)(void))0x8008AB08)(); }
@@ -39140,8 +39142,8 @@ static inline void GXPokeColorUpdate(GXBool update_enable) { ((void(*)(GXBool))0
 static inline void GXPokeDstAlpha(GXBool enable, byte alpha) { ((void(*)(GXBool, byte))0x8008C450)(enable, alpha); }
 static inline void GXPokeDither(GXBool dither) { ((void(*)(GXBool))0x8008C474)(dither); }
 static inline void GXPokeZMode(GXBool compare_enable, GXCompare func, GXBool update_enable) { ((void(*)(GXBool, GXCompare, GXBool))0x8008C48C)(compare_enable, func, update_enable); }
-static inline int GXSetDrawSyncCallback(int param_1) { return ((int(*)(int))0x8008C4AC)(param_1); }
-static inline int GXSetDrawDoneCallback(int param_1) { return ((int(*)(int))0x8008C578)(param_1); }
+static inline void GXSetDrawSyncCallback(void) { ((void(*)(void))0x8008C4AC)(); }
+static inline void GXSetDrawDoneCallback(void) { ((void(*)(void))0x8008C578)(); }
 static inline void __GXPEInit(void) { ((void(*)(void))0x8008C63C)(); }
 static inline void __GXSetDirtyState(void) { ((void(*)(void))0x8008C6B0)(); }
 static inline void GXBegin(GXPrimitive type, GXVtxFmt vtxfmt, short nverts) { ((void(*)(GXPrimitive, GXVtxFmt, short))0x8008C730)(type, vtxfmt, nverts); }
@@ -39155,21 +39157,21 @@ static inline void GXGetCullMode(GXCullMode * mode) { ((void(*)(GXCullMode *))0x
 static inline void GXSetCoPlanar(GXBool enable) { ((void(*)(GXBool))0x8008C9B0)(enable); }
 static inline void __GXSetGenMode(void) { ((void(*)(void))0x8008C9E4)(); }
 static inline void GXAdjustForOverscan(GXRenderModeObj * rmin, GXRenderModeObj * rmout, short hor, short ver) { ((void(*)(GXRenderModeObj *, GXRenderModeObj *, short, short))0x8008CA08)(rmin, rmout, hor, ver); }
-static inline void GXSetDispCopySrc(short left, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CB4C)(left, top, wd, ht); }
-static inline void GXSetTexCopySrc(short left, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CBC8)(left, top, wd, ht); }
+static inline void GXSetDispCopySrc(short left_, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CB4C)(left_, top, wd, ht); }
+static inline void GXSetTexCopySrc(short left_, short top, short wd, short ht) { ((void(*)(short, short, short, short))0x8008CBC8)(left_, top, wd, ht); }
 static inline void GXSetDispCopyDst(short wd, short ht) { ((void(*)(short, short))0x8008CC44)(wd, ht); }
 static inline void GXSetTexCopyDst(short wd, short ht, GXTexFmt fmt, GXBool mipmap) { ((void(*)(short, short, GXTexFmt, GXBool))0x8008CC78)(wd, ht, fmt, mipmap); }
 static inline void GXSetDispCopyFrame2Field(GXCopyMode mode) { ((void(*)(GXCopyMode))0x8008CDA8)(mode); }
 static inline void GXSetCopyClamp(GXFBClamp clamp) { ((void(*)(GXFBClamp))0x8008CDCC)(clamp); }
 static inline int GXSetDispCopyYScale(f64 vscale) { return ((int(*)(f64))0x8008CE24)(vscale); }
 static inline void GXSetCopyClear(GXColor clear_clr, int clear_z) { ((void(*)(GXColor, int))0x8008CEF0)(clear_clr, clear_z); }
-#define GXSetCopyFilter FUNCTION_ADDRESS(void, 0x8008CF68, GXBool /*aa*/, byte_12__2_ * /*sample_pattern*/, GXBool /*vf*/, byte_7_ /*vfilter*/)
+static inline void GXSetCopyFilter(GXBool aa, byte (*sample_pattern)[12][2], GXBool vf, byte vfilter[7]) { ((void(*)(GXBool, byte (*)[12][2], GXBool, byte [7]))0x8008CF68)(aa, sample_pattern, vf, vfilter); }
 static inline void GXSetDispCopyGamma(GXGamma gamma) { ((void(*)(GXGamma))0x8008D170)(gamma); }
 static inline void GXCopyDisp(void * dest, GXBool clear) { ((void(*)(void *, GXBool))0x8008D184)(dest, clear); }
 static inline void GXCopyTex(void * dest, GXBool clear) { ((void(*)(void *, GXBool))0x8008D2EC)(dest, clear); }
 static inline void GXClearBoundingBox(void) { ((void(*)(void))0x8008D478)(); }
 static inline void GXInitLightAttn(undefined lt_obj, float a0, float a1, float a2, float k0, float k1, float k2) { ((void(*)(undefined, float, float, float, float, float, float))0x8008D4B0)(lt_obj, a0, a1, a2, k0, k1, k2); }
-static inline void GXInitLightPos(GXLightObjPriv * lt_obj, float x, float y, float z) { ((void(*)(GXLightObjPriv *, float, float, float))0x8008D4CC)(lt_obj, x, y, z); }
+static inline void GXInitLightPos(GXLightObjPriv * lt_obj, float x_, float y_, float z_) { ((void(*)(GXLightObjPriv *, float, float, float))0x8008D4CC)(lt_obj, x_, y_, z_); }
 static inline void GXInitLightDir(GXLightObjPriv * lt_obj, float nx, float ny, float nz) { ((void(*)(GXLightObjPriv *, float, float, float))0x8008D4DC)(lt_obj, nx, ny, nz); }
 static inline void GXInitLightColor(undefined lt_obj, GXColor color) { ((void(*)(undefined, GXColor))0x8008D4F8)(lt_obj, color); }
 static inline void GXLoadLightObjImm(undefined lt_obj, GXLightID light) { ((void(*)(undefined, GXLightID))0x8008D504)(lt_obj, light); }
@@ -39178,7 +39180,7 @@ static inline void GXSetChanMatColor(GXChannelID chan, GXColor mat_color) { ((vo
 static inline void GXSetNumChans(byte nChans) { ((void(*)(byte))0x8008D750)(nChans); }
 static inline void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, int light_mask, GXDiffuseFn diff_fn, GXAttnFn attn_fn) { ((void(*)(GXChannelID, GXBool, GXColorSrc, GXColorSrc, int, GXDiffuseFn, GXAttnFn))0x8008D78C)(chan, enable, amb_src, mat_src, light_mask, diff_fn, attn_fn); }
 static inline int GXGetTexBufferSize(short width, short height, int format, GXBool mipmap, byte max_lod) { return ((int(*)(short, short, int, GXBool, byte))0x8008D83C)(width, height, format, mipmap, max_lod); }
-static inline void __GetImageTileCount(int param_1, ushort param_2, ushort param_3, int * param_4, int * param_5, undefined4 * param_6) { ((void(*)(int, ushort, ushort, int *, int *, undefined4 *))0x8008D998)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline void __GetImageTileCount(void) { ((void(*)(void))0x8008D998)(); }
 static inline void GXInitTexObj(GXTexObj * obj, void * image_ptr, short width, short height, GXTexFmt format, GXTexWrapMode wrap_s, GXTexWrapMode wrap_t, GXBool mipmap) { ((void(*)(GXTexObj *, void *, short, short, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool))0x8008DA60)(obj, image_ptr, width, height, format, wrap_s, wrap_t, mipmap); }
 static inline void GXInitTexObjCI(GXTexObj * obj, void * image_ptr, short width, short height, GXCITexFmt format, GXTexWrapMode wrap_s, GXTexWrapMode wrap_t, GXBool mipmap, int tlut_name) { ((void(*)(GXTexObj *, void *, short, short, GXCITexFmt, GXTexWrapMode, GXTexWrapMode, GXBool, int))0x8008DCAC)(obj, image_ptr, width, height, format, wrap_s, wrap_t, mipmap, tlut_name); }
 static inline void GXInitTexObjLOD(GXTexObj * obj, GXTexFilter min_filt, GXTexFilter mag_filt, float min_lod, float max_lod, float lod_bias, GXBool bias_clamp, GXBool do_edge_lod, GXAnisotropy max_aniso) { ((void(*)(GXTexObj *, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy))0x8008DCF4)(obj, min_filt, mag_filt, min_lod, max_lod, lod_bias, bias_clamp, do_edge_lod, max_aniso); }
@@ -39193,21 +39195,21 @@ static inline void GXLoadTlut(GXTlutObj * tlut_obj, int tlut_name) { ((void(*)(G
 static inline void GXInitTexCacheRegion(GXTexRegion * region, GXBool is_32b_mipmap, int tmem_even, GXTexCacheSize size_even, int tmem_odd, GXTexCacheSize size_odd) { ((void(*)(GXTexRegion *, GXBool, int, GXTexCacheSize, int, GXTexCacheSize))0x8008E138)(region, is_32b_mipmap, tmem_even, size_even, tmem_odd, size_odd); }
 static inline void GXInitTlutRegion(GXTlutRegion * region, int tmem_addr, GXTlutSize tlut_size) { ((void(*)(GXTlutRegion *, int, GXTlutSize))0x8008E22C)(region, tmem_addr, tlut_size); }
 static inline void GXInvalidateTexAll(void) { ((void(*)(void))0x8008E264)(); }
-static inline undefined4 GXSetTexRegionCallback(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8008E2AC)(param_1); }
-static inline undefined4 GXSetTlutRegionCallback(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8008E2C0)(param_1); }
-static inline void GXSetTexCoordScaleManually(GXTexCoordID coord, GXBool enable, short ss, short ts) { ((void(*)(GXTexCoordID, GXBool, short, short))0x8008E2D4)(coord, enable, ss, ts); }
-static inline void __SetSURegs(int param_1, int param_2) { ((void(*)(int, int))0x8008E350)(param_1, param_2); }
+static inline void GXSetTexRegionCallback(void) { ((void(*)(void))0x8008E2AC)(); }
+static inline void GXSetTlutRegionCallback(void) { ((void(*)(void))0x8008E2C0)(); }
+static inline void GXSetTexCoordScaleManually(GXTexCoordID coord, GXBool enable, short ss_, short ts) { ((void(*)(GXTexCoordID, GXBool, short, short))0x8008E2D4)(coord, enable, ss_, ts); }
+static inline void __SetSURegs(void) { ((void(*)(void))0x8008E350)(); }
 static inline void __GXSetSuTexRegs(void) { ((void(*)(void))0x8008E3F0)(); }
-static inline void __GXSetTmemConfig(int param_1) { ((void(*)(int))0x8008E56C)(param_1); }
+static inline void __GXSetTmemConfig(void) { ((void(*)(void))0x8008E56C)(); }
 static inline void GXSetTevIndirect(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexFormat format, GXIndTexBiasSel bias_sel, GXIndTexMtxID matrix_sel, GXIndTexWrap wrap_s, GXIndTexWrap wrap_t, GXBool add_prev, GXBool ind_lod, GXIndTexAlphaSel alpha_sel) { ((void(*)(GXTevStageID, GXIndTexStageID, GXIndTexFormat, GXIndTexBiasSel, GXIndTexMtxID, GXIndTexWrap, GXIndTexWrap, GXBool, GXBool, GXIndTexAlphaSel))0x8008E8C0)(tev_stage, ind_stage, format, bias_sel, matrix_sel, wrap_s, wrap_t, add_prev, ind_lod, alpha_sel); }
-#define GXSetIndTexMtx FUNCTION_ADDRESS(void, 0x8008E92C, GXIndTexMtxID /*mtx_sel*/, float_2__3_ * /*offset*/, s8 /*scale_exp*/)
+static inline void GXSetIndTexMtx(GXIndTexMtxID mtx_sel, float (*offset)[2][3], s8 scale_exp) { ((void(*)(GXIndTexMtxID, float (*)[2][3], s8))0x8008E92C)(mtx_sel, offset, scale_exp); }
 static inline void GXSetIndTexCoordScale(GXIndTexStageID ind_state, GXIndTexScale scale_s, GXIndTexScale scale_t) { ((void(*)(GXIndTexStageID, GXIndTexScale, GXIndTexScale))0x8008EAA4)(ind_state, scale_s, scale_t); }
 static inline void GXSetIndTexOrder(GXIndTexStageID ind_stage, GXTexCoordID tex_coord, GXTexMapID tex_map) { ((void(*)(GXIndTexStageID, GXTexCoordID, GXTexMapID))0x8008EBE8)(ind_stage, tex_coord, tex_map); }
 static inline void GXSetNumIndStages(byte nIndStages) { ((void(*)(byte))0x8008ECD4)(nIndStages); }
 static inline void GXSetTevDirect(GXTevStageID tev_stage) { ((void(*)(GXTevStageID))0x8008ECF8)(tev_stage); }
 static inline void GXSetTevIndWarp(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXBool signed_offset, GXBool replace_mode, GXIndTexMtxID matrix_sel) { ((void(*)(GXTevStageID, GXIndTexStageID, GXBool, GXBool, GXIndTexMtxID))0x8008ED40)(tev_stage, ind_stage, signed_offset, replace_mode, matrix_sel); }
 static inline void __GXUpdateBPMask(void) { ((void(*)(void))0x8008EDA4)(); }
-static inline void __GXSetIndirectMask(uint param_1) { ((void(*)(uint))0x8008EDA8)(param_1); }
+static inline void __GXSetIndirectMask(void) { ((void(*)(void))0x8008EDA8)(); }
 static inline void __GXFlushTextureState(void) { ((void(*)(void))0x8008EDD8)(); }
 static inline void GXSetTevOp(GXTevStageID id, GXTevMode mode) { ((void(*)(GXTevStageID, GXTevMode))0x8008EDFC)(id, mode); }
 static inline void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d) { ((void(*)(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg))0x8008EE88)(stage, a, b, c, d); }
@@ -39219,13 +39221,13 @@ static inline void GXSetTevKColor(GXTevKColorID id, GXColor color) { ((void(*)(G
 static inline void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel) { ((void(*)(GXTevStageID, GXTevKColorSel))0x8008F0A4)(stage, sel); }
 static inline void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel) { ((void(*)(GXTevStageID, GXTevKAlphaSel))0x8008F100)(stage, sel); }
 static inline void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel) { ((void(*)(GXTevStageID, GXTevSwapSel, GXTevSwapSel))0x8008F15C)(stage, ras_sel, tex_sel); }
-static inline void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan green, GXTevColorChan blue, GXTevColorChan alpha) { ((void(*)(GXTevSwapSel, GXTevColorChan, GXTevColorChan, GXTevColorChan, GXTevColorChan))0x8008F1A4)(table, red, green, blue, alpha); }
+static inline void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red_, GXTevColorChan green, GXTevColorChan blue_, GXTevColorChan alpha) { ((void(*)(GXTevSwapSel, GXTevColorChan, GXTevColorChan, GXTevColorChan, GXTevColorChan))0x8008F1A4)(table, red_, green, blue_, alpha); }
 static inline void GXSetAlphaCompare(GXCompare comp0, byte ref0, GXAlphaOp op, GXCompare comp1, byte ref1) { ((void(*)(GXCompare, byte, GXAlphaOp, GXCompare, byte))0x8008F224)(comp0, ref0, op, comp1, ref1); }
 static inline void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, int bias) { ((void(*)(GXZTexOp, GXTexFmt, int))0x8008F268)(op, fmt, bias); }
 static inline void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color) { ((void(*)(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID))0x8008F2F4)(stage, coord, map, color); }
 static inline void GXSetNumTevStages(byte nStages) { ((void(*)(byte))0x8008F490)(nStages); }
 static inline void GXSetFog(GXFogType type, float startz, float endz, float nearz, float farz, GXColor color) { ((void(*)(GXFogType, float, float, float, float, GXColor))0x8008F4B8)(type, startz, endz, nearz, farz, color); }
-#define GXInitFogAdjTable FUNCTION_ADDRESS(void, 0x8008F6CC, GXFogAdjTable * /*table*/, short /*width*/, float_4__4_ * /*projmtx*/)
+static inline void GXInitFogAdjTable(GXFogAdjTable * table, short width, float (*projmtx)[4][4]) { ((void(*)(GXFogAdjTable *, short, float (*)[4][4]))0x8008F6CC)(table, width, projmtx); }
 static inline void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) { ((void(*)(GXBlendMode, GXBlendFactor, GXBlendFactor, GXLogicOp))0x8008F7F0)(type, src_factor, dst_factor, op); }
 static inline void GXSetColorUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008F844)(update_enable); }
 static inline void GXSetAlphaUpdate(GXBool update_enable) { ((void(*)(GXBool))0x8008F870)(update_enable); }
@@ -39236,10 +39238,10 @@ static inline void GXSetDither(GXBool dither) { ((void(*)(GXBool))0x8008F9D8)(di
 static inline void GXSetDstAlpha(GXBool enable, byte alpha) { ((void(*)(GXBool, byte))0x8008FA04)(enable, alpha); }
 static inline void GXSetFieldMask(GXBool odd_mask, GXBool even_mask) { ((void(*)(GXBool, GXBool))0x8008FA40)(odd_mask, even_mask); }
 static inline void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio) { ((void(*)(GXBool, GXBool))0x8008FA78)(field_mode, half_aspect_ratio); }
-static inline void Subdivide(char param_1, float * param_2, float * param_3, float * param_4) { ((void(*)(char, float *, float *, float *))0x8008FAF0)(param_1, param_2, param_3, param_4); }
+static inline void Subdivide(void) { ((void(*)(void))0x8008FAF0)(); }
 static inline void GXDrawSphere1(byte depth) { ((void(*)(byte))0x8008FEA4)(depth); }
 static inline void GXCallDisplayList(void * list, int nbytes) { ((void(*)(void *, int))0x8008FFB8)(list, nbytes); }
-static inline void GXProject(float x, float y, float z, Mtx * mtx, float * pm, float * vp, float * sx, float * sy, float * sz) { ((void(*)(float, float, float, Mtx *, float *, float *, float *, float *, float *))0x80090028)(x, y, z, mtx, pm, vp, sx, sy, sz); }
+static inline void GXProject(float x_, float y_, float z_, Mtx * mtx, float * pm, float * vp, float * sx, float * sy, float * sz) { ((void(*)(float, float, float, Mtx *, float *, float *, float *, float *, float *))0x80090028)(x_, y_, z_, mtx, pm, vp, sx, sy, sz); }
 static inline void GXSetProjection(Mtx * mtx, GXProjectionType type) { ((void(*)(Mtx *, GXProjectionType))0x8009019C)(mtx, type); }
 static inline void GXSetProjectionv(float * ptr) { ((void(*)(float *))0x80090240)(ptr); }
 static inline void GXGetProjectionv(float * p) { ((void(*)(float *))0x800902CC)(p); }
@@ -39248,117 +39250,117 @@ static inline void GXLoadNrmMtxImm(Mtx * mtx, int id) { ((void(*)(Mtx *, int))0x
 static inline void GXSetCurrentMtx(GXPosNrmMtx id) { ((void(*)(GXPosNrmMtx))0x800903B4)(id); }
 static inline void GXLoadTexMtxImm(Mtx * mtx, uint id, GXTexMtxType type) { ((void(*)(Mtx *, uint, GXTexMtxType))0x800903E8)(mtx, id, type); }
 static inline void __GXSetViewport(void) { ((void(*)(void))0x8009049C)(); }
-static inline void GXSetViewportJitter(float left, float top, float wd, float ht, float nearz, float farz, int field) { ((void(*)(float, float, float, float, float, float, int))0x8009052C)(left, top, wd, ht, nearz, farz, field); }
-static inline void GXSetViewport(float left, float top, float wd, float ht, float nearz, float farz) { ((void(*)(float, float, float, float, float, float))0x80090584)(left, top, wd, ht, nearz, farz); }
+static inline void GXSetViewportJitter(float left_, float top, float wd, float ht, float nearz, float farz, int field) { ((void(*)(float, float, float, float, float, float, int))0x8009052C)(left_, top, wd, ht, nearz, farz, field); }
+static inline void GXSetViewport(float left_, float top, float wd, float ht, float nearz, float farz) { ((void(*)(float, float, float, float, float, float))0x80090584)(left_, top, wd, ht, nearz, farz); }
 static inline void GXGetViewportv(float * viewport) { ((void(*)(float *))0x800905CC)(viewport); }
-static inline void GXSetScissor(int left, int top, int wd, int ht) { ((void(*)(int, int, int, int))0x800905F0)(left, top, wd, ht); }
-static inline void GXGetScissor(int * left, int * top, int * width, int * height) { ((void(*)(int *, int *, int *, int *))0x80090668)(left, top, width, height); }
+static inline void GXSetScissor(int left_, int top, int wd, int ht) { ((void(*)(int, int, int, int))0x800905F0)(left_, top, wd, ht); }
+static inline void GXGetScissor(int * left_, int * top, int * width, int * height) { ((void(*)(int *, int *, int *, int *))0x80090668)(left_, top, width, height); }
 static inline void GXSetScissorBoxOffset(s32 x_off, s32 y_off) { ((void(*)(s32, s32))0x800906B0)(x_off, y_off); }
 static inline void GXSetClipMode(GXClipMode mode) { ((void(*)(GXClipMode))0x800906F0)(mode); }
-static inline void __GXSetMatrixIndex(int param_1) { ((void(*)(int))0x80090718)(param_1); }
+static inline void __GXSetMatrixIndex(void) { ((void(*)(void))0x80090718)(); }
 static inline void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1) { ((void(*)(GXPerf0, GXPerf1))0x8009079C)(perf0, perf1); }
 static inline void GXReadGPMetric(int * cnt0, int * cnt1) { ((void(*)(int *, int *))0x80090FE4)(cnt0, cnt1); }
 static inline void GXClearGPMetric(void) { ((void(*)(void))0x8009118C)(); }
-static inline int GXReadGP0Metric(void) { return ((int(*)(void))0x8009119C)(); }
-static inline int GXReadGP1Metric(void) { return ((int(*)(void))0x800911C8)(); }
+static inline void GXReadGP0Metric(void) { ((void(*)(void))0x8009119C)(); }
+static inline void GXReadGP1Metric(void) { ((void(*)(void))0x800911C8)(); }
 static inline void GXReadPixMetric(int * top_pixels_in, int * top_pixels_out, int * bot_pixels_in, int * bot_pixels_out, int * clr_pixels_in, int * copy_clks) { ((void(*)(int *, int *, int *, int *, int *, int *))0x800911F4)(top_pixels_in, top_pixels_out, bot_pixels_in, bot_pixels_out, clr_pixels_in, copy_clks); }
 static inline void GXClearPixMetric(void) { ((void(*)(void))0x8009132C)(); }
 static inline void GXSetVCacheMetric(GXVCachePerf attr) { ((void(*)(GXVCachePerf))0x8009135C)(attr); }
 static inline void GXReadVCacheMetric(int * check, int * miss, int * stall) { ((void(*)(int *, int *, int *))0x800913A0)(check, miss, stall); }
 static inline void GXClearVCacheMetric(void) { ((void(*)(void))0x80091434)(); }
 static inline TEXDescriptor * TEXGet(TEXPalette * pal, int id) { return ((TEXDescriptor *(*)(TEXPalette *, int))0x80091450)(pal, id); }
-static inline void DSInitList(DSList * DSList, int maybeStartAddr, int maybeEndAddr) { ((void(*)(DSList *, int, int))0x80091460)(DSList, maybeStartAddr, maybeEndAddr); }
+static inline void DSInitList(DSList * DSList_, int maybeStartAddr, int maybeEndAddr) { ((void(*)(DSList *, int, int))0x80091460)(DSList_, maybeStartAddr, maybeEndAddr); }
 static inline void DSInsertListObject(DSList * param_1, int param_2, int param_3) { ((void(*)(DSList *, int, int))0x80091478)(param_1, param_2, param_3); }
 static inline int Strcmp(char * param_1, char * param_2) { return ((int(*)(char *, char *))0x8009150C)(param_1, param_2); }
-static inline void DSInitTree(int * param_1, int param_2, int param_3) { ((void(*)(int *, int, int))0x8009155C)(param_1, param_2, param_3); }
-static inline void DSInsertBranchBelow(int * param_1, int param_2, int param_3) { ((void(*)(int *, int, int))0x80091570)(param_1, param_2, param_3); }
+static inline void DSInitTree(void) { ((void(*)(void))0x8009155C)(); }
+static inline void DSInsertBranchBelow(void) { ((void(*)(void))0x80091570)(); }
 static inline void TRKNubMainLoop(void) { ((void(*)(void))0x80091608)(); }
-static inline void TRKDestructEvent(int param_1) { ((void(*)(int))0x80091700)(param_1); }
-static inline void TRKConstructEvent(undefined4 * param_1, undefined4 param_2) { ((void(*)(undefined4 *, undefined4))0x80091724)(param_1, param_2); }
-static inline undefined4 TRKPostEvent(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8009173C)(param_1); }
-static inline undefined4 TRKGetNextEvent(undefined4 param_1) { return ((undefined4(*)(undefined4))0x8009181C)(param_1); }
-static inline undefined4 TRKInitializeEventQueue(void) { return ((undefined4(*)(void))0x800918D0)(); }
+static inline void TRKDestructEvent(void) { ((void(*)(void))0x80091700)(); }
+static inline void TRKConstructEvent(void) { ((void(*)(void))0x80091724)(); }
+static inline void TRKPostEvent(void) { ((void(*)(void))0x8009173C)(); }
+static inline void TRKGetNextEvent(void) { ((void(*)(void))0x8009181C)(); }
+static inline void TRKInitializeEventQueue(void) { ((void(*)(void))0x800918D0)(); }
 static inline void TRKNubWelcome(void) { ((void(*)(void))0x80091928)(); }
-static inline undefined4 TRKTerminateNub(void) { return ((undefined4(*)(void))0x80091950)(); }
-static inline int TRKInitializeNub(void) { return ((int(*)(void))0x80091974)(); }
-static inline undefined4 TRKMessageSend(int param_1) { return ((undefined4(*)(int))0x80091AC0)(param_1); }
-static inline void TRKReadBuffer_ui32(int param_1, undefined * param_2, int param_3) { ((void(*)(int, undefined *, int))0x80091B04)(param_1, param_2, param_3); }
-static inline void TRKReadBuffer_ui8(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80091BF4)(param_1, param_2, param_3); }
-static inline int TRKReadBuffer1_ui64(int param_1, undefined * param_2) { return ((int(*)(int, undefined *))0x80091C8C)(param_1, param_2); }
-static inline void TRKAppendBuffer_ui32(int param_1, int * param_2, int param_3) { ((void(*)(int, int *, int))0x80091D74)(param_1, param_2, param_3); }
-static inline int TRKAppendBuffer_ui8(int param_1, undefined * param_2, int param_3) { return ((int(*)(int, undefined *, int))0x80091E70)(param_1, param_2, param_3); }
-static inline undefined4 TRKAppendBuffer1_ui64(int param_1, undefined4 param_2, int param_3, int param_4) { return ((undefined4(*)(int, undefined4, int, int))0x80091ED8)(param_1, param_2, param_3, param_4); }
-static inline undefined4 TRKReadBuffer(int param_1, undefined4 param_2, uint param_3) { return ((undefined4(*)(int, undefined4, uint))0x80091FD4)(param_1, param_2, param_3); }
-static inline undefined4 TRKAppendBuffer(int param_1, undefined * param_2, uint param_3) { return ((undefined4(*)(int, undefined *, uint))0x80092060)(param_1, param_2, param_3); }
-static inline undefined4 TRKSetBufferPosition(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x80092104)(param_1, param_2); }
-static inline void TRKResetBuffer(int param_1, int param_2) { ((void(*)(int, int))0x80092134)(param_1, param_2); }
-static inline void TRKReleaseBuffer(int param_1) { ((void(*)(int))0x80092174)(param_1); }
-static inline undefined * TRKGetBuffer(int param_1) { return ((undefined *(*)(int))0x800921D8)(param_1); }
-static inline int TRKGetFreeBuffer(int * param_1, undefined4 * param_2) { return ((int(*)(int *, undefined4 *))0x80092204)(param_1, param_2); }
-static inline undefined4 TRKIntializeMessageBuffers(void) { return ((undefined4(*)(void))0x800922CC)(); }
-static inline undefined4 TRKTerminateSerialHandler(void) { return ((undefined4(*)(void))0x80092340)(); }
-static inline undefined4 TRKInitializeProgramEndTrap(void) { return ((undefined4(*)(void))0x80092348)(); }
-static inline void TRKProcessInput(int param_1) { ((void(*)(int))0x8009240C)(param_1); }
+static inline void TRKTerminateNub(void) { ((void(*)(void))0x80091950)(); }
+static inline void TRKInitializeNub(void) { ((void(*)(void))0x80091974)(); }
+static inline void TRKMessageSend(void) { ((void(*)(void))0x80091AC0)(); }
+static inline void TRKReadBuffer_ui32(void) { ((void(*)(void))0x80091B04)(); }
+static inline void TRKReadBuffer_ui8(void) { ((void(*)(void))0x80091BF4)(); }
+static inline void TRKReadBuffer1_ui64(void) { ((void(*)(void))0x80091C8C)(); }
+static inline void TRKAppendBuffer_ui32(void) { ((void(*)(void))0x80091D74)(); }
+static inline void TRKAppendBuffer_ui8(void) { ((void(*)(void))0x80091E70)(); }
+static inline void TRKAppendBuffer1_ui64(void) { ((void(*)(void))0x80091ED8)(); }
+static inline void TRKReadBuffer(void) { ((void(*)(void))0x80091FD4)(); }
+static inline void TRKAppendBuffer(void) { ((void(*)(void))0x80092060)(); }
+static inline void TRKSetBufferPosition(void) { ((void(*)(void))0x80092104)(); }
+static inline void TRKResetBuffer(void) { ((void(*)(void))0x80092134)(); }
+static inline void TRKReleaseBuffer(void) { ((void(*)(void))0x80092174)(); }
+static inline void TRKGetBuffer(void) { ((void(*)(void))0x800921D8)(); }
+static inline void TRKGetFreeBuffer(void) { ((void(*)(void))0x80092204)(); }
+static inline void TRKIntializeMessageBuffers(void) { ((void(*)(void))0x800922CC)(); }
+static inline void TRKTerminateSerialHandler(void) { ((void(*)(void))0x80092340)(); }
+static inline void TRKInitializeProgramEndTrap(void) { ((void(*)(void))0x80092348)(); }
+static inline void TRKProcessInput(void) { ((void(*)(void))0x8009240C)(); }
 static inline void TRKGetInput(void) { ((void(*)(void))0x8009245C)(); }
-static inline int TRKTestForPacket(void) { return ((int(*)(void))0x800924BC)(); }
+static inline void TRKTestForPacket(void) { ((void(*)(void))0x800924BC)(); }
 static inline void usr_put_initialize(void) { ((void(*)(void))0x800925F8)(); }
-static inline void usr_puts_serial(byte * param_1) { ((void(*)(byte *))0x800925FC)(param_1); }
-static inline undefined4 TRKDispatchMessage(int param_1) { return ((undefined4(*)(int))0x80092684)(param_1); }
-static inline undefined4 TRKInitializeDispatcher(void) { return ((undefined4(*)(void))0x800927F4)(); }
-static inline undefined4 TRKDoSetOption(int param_1) { return ((undefined4(*)(int))0x800927FC)(param_1); }
-static inline undefined4 TRKDoStop(void) { return ((undefined4(*)(void))0x800928A4)(); }
-static inline undefined4 TRKDoStep(int param_1) { return ((undefined4(*)(int))0x8009294C)(param_1); }
-static inline undefined4 TRKDoContinue(void) { return ((undefined4(*)(void))0x80092B6C)(); }
-static inline undefined4 TRKDoWriteRegisters(int param_1) { return ((undefined4(*)(int))0x80092C1C)(param_1); }
-static inline undefined4 TRKDoReadRegisters(int param_1) { return ((undefined4(*)(int))0x80092EAC)(param_1); }
-static inline undefined4 TRKDoWriteMemory(int param_1) { return ((undefined4(*)(int))0x8009318C)(param_1); }
-static inline undefined4 TRKDoReadMemory(int param_1) { return ((undefined4(*)(int))0x800933C8)(param_1); }
-static inline undefined4 TRKDoSupportMask(void) { return ((undefined4(*)(void))0x8009360C)(); }
-static inline undefined4 TRKDoVersions(void) { return ((undefined4(*)(void))0x80093614)(); }
-static inline undefined4 TRKDoOverride(void) { return ((undefined4(*)(void))0x8009361C)(); }
-static inline undefined4 TRKDoReset(void) { return ((undefined4(*)(void))0x80093674)(); }
-static inline undefined4 TRKDoDisconnect(void) { return ((undefined4(*)(void))0x800936CC)(); }
-static inline undefined4 TRKDoConnect(void) { return ((undefined4(*)(void))0x80093744)(); }
-static inline void SetTRKConnected(int param_1) { ((void(*)(int))0x800937A8)(param_1); }
-static inline int GetTRKConnected(void) { return ((int(*)(void))0x800937B4)(); }
-static inline void OutputData(undefined * param_1, int param_2) { ((void(*)(undefined *, int))0x800937C4)(param_1, param_2); }
-static inline int HandlePositionFileSupportRequest(int param_1, int * param_2, byte param_3, undefined4 * param_4) { return ((int(*)(int, int *, byte, undefined4 *))0x8009386C)(param_1, param_2, param_3, param_4); }
-static inline int HandleCloseFileSupportRequest(int param_1, undefined4 * param_2) { return ((int(*)(int, undefined4 *))0x8009397C)(param_1, param_2); }
-static inline int HandleOpenFileSupportRequest(char * param_1, byte param_2, undefined4 * param_3, undefined4 * param_4) { return ((int(*)(char *, byte, undefined4 *, undefined4 *))0x80093A64)(param_1, param_2, param_3, param_4); }
-static inline int TRKRequestSend(undefined4 param_1, int * param_2, undefined4 param_3, int param_4, int param_5) { return ((int(*)(undefined4, int *, undefined4, int, int))0x80093B80)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKSuppAccessFile(int param_1, int param_2, uint * param_3, uint * param_4, int param_5, int param_6) { return ((int(*)(int, int, uint *, uint *, int, int))0x80093D60)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline undefined4 TRKReleaseMutex(void) { return ((undefined4(*)(void))0x80093F80)(); }
-static inline undefined4 TRKAcquireMutex(void) { return ((undefined4(*)(void))0x80093F88)(); }
-static inline undefined4 TRKInitializeMutex(void) { return ((undefined4(*)(void))0x80093F90)(); }
-static inline int TRKDoNotifyStopped(int param_1) { return ((int(*)(int))0x80093F98)(param_1); }
-static inline void TRK_flushCache(uint param_1, int param_2) { ((void(*)(uint, int))0x80094030)(param_1, param_2); }
-static inline void TRK_fill_mem_80094068(int param_1, byte param_2, uint param_3) { ((void(*)(int, byte, uint))0x80094068)(param_1, param_2, param_3); }
+static inline void usr_puts_serial(void) { ((void(*)(void))0x800925FC)(); }
+static inline void TRKDispatchMessage(void) { ((void(*)(void))0x80092684)(); }
+static inline void TRKInitializeDispatcher(void) { ((void(*)(void))0x800927F4)(); }
+static inline void TRKDoSetOption(void) { ((void(*)(void))0x800927FC)(); }
+static inline void TRKDoStop(void) { ((void(*)(void))0x800928A4)(); }
+static inline void TRKDoStep(void) { ((void(*)(void))0x8009294C)(); }
+static inline void TRKDoContinue(void) { ((void(*)(void))0x80092B6C)(); }
+static inline void TRKDoWriteRegisters(void) { ((void(*)(void))0x80092C1C)(); }
+static inline void TRKDoReadRegisters(void) { ((void(*)(void))0x80092EAC)(); }
+static inline void TRKDoWriteMemory(void) { ((void(*)(void))0x8009318C)(); }
+static inline void TRKDoReadMemory(void) { ((void(*)(void))0x800933C8)(); }
+static inline void TRKDoSupportMask(void) { ((void(*)(void))0x8009360C)(); }
+static inline void TRKDoVersions(void) { ((void(*)(void))0x80093614)(); }
+static inline void TRKDoOverride(void) { ((void(*)(void))0x8009361C)(); }
+static inline void TRKDoReset(void) { ((void(*)(void))0x80093674)(); }
+static inline void TRKDoDisconnect(void) { ((void(*)(void))0x800936CC)(); }
+static inline void TRKDoConnect(void) { ((void(*)(void))0x80093744)(); }
+static inline void SetTRKConnected(void) { ((void(*)(void))0x800937A8)(); }
+static inline void GetTRKConnected(void) { ((void(*)(void))0x800937B4)(); }
+static inline void OutputData(void) { ((void(*)(void))0x800937C4)(); }
+static inline void HandlePositionFileSupportRequest(void) { ((void(*)(void))0x8009386C)(); }
+static inline void HandleCloseFileSupportRequest(void) { ((void(*)(void))0x8009397C)(); }
+static inline void HandleOpenFileSupportRequest(void) { ((void(*)(void))0x80093A64)(); }
+static inline void TRKRequestSend(void) { ((void(*)(void))0x80093B80)(); }
+static inline void TRKSuppAccessFile(void) { ((void(*)(void))0x80093D60)(); }
+static inline void TRKReleaseMutex(void) { ((void(*)(void))0x80093F80)(); }
+static inline void TRKAcquireMutex(void) { ((void(*)(void))0x80093F88)(); }
+static inline void TRKInitializeMutex(void) { ((void(*)(void))0x80093F90)(); }
+static inline void TRKDoNotifyStopped(void) { ((void(*)(void))0x80093F98)(); }
+static inline void TRK_flushCache(void) { ((void(*)(void))0x80094030)(); }
+static inline void TRK_fill_mem_80094068(void) { ((void(*)(void))0x80094068)(); }
 static inline void __TRK_get_MSR(void) { ((void(*)(void))0x80094120)(); }
 static inline void __TRK_set_MSR(void) { ((void(*)(void))0x80094128)(); }
-static inline void TRK_ppc_memcpy(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x80094130)(param_1, param_2, param_3); }
-static inline int TRKSwapAndGo(undefined4 param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7, int param_8) { return ((int(*)(undefined4, int, int, int, int, int, int, int))0x8009439C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void ReadFPSCR(ulonglong * param_1) { ((void(*)(ulonglong *))0x800944B4)(param_1); }
+static inline void TRK_ppc_memcpy(void) { ((void(*)(void))0x80094130)(); }
+static inline void TRKSwapAndGo(void) { ((void(*)(void))0x8009439C)(); }
+static inline void ReadFPSCR(void) { ((void(*)(void))0x800944B4)(); }
 static inline void WriteFPSCR(void) { ((void(*)(void))0x800944D8)(); }
-static inline undefined4 TRKTargetAccessARAM(undefined4 param_1, undefined4 param_2, undefined4 * param_3, int param_4) { return ((undefined4(*)(undefined4, undefined4, undefined4 *, int))0x800944FC)(param_1, param_2, param_3, param_4); }
-static inline void TRKTargetSetInputPendingPtr(int param_1) { ((void(*)(int))0x800945C0)(param_1); }
-static inline undefined4 TRKTargetStop(void) { return ((undefined4(*)(void))0x800945D0)(); }
-static inline void TRKTargetSetStopped(int param_1) { ((void(*)(int))0x800945E8)(param_1); }
-static inline int TRKTargetStopped(void) { return ((int(*)(void))0x800945F8)(); }
-static inline int TRKTargetSupportRequest(void) { return ((int(*)(void))0x80094608)(); }
-static inline int TRKTargetGetPC(void) { return ((int(*)(void))0x80094808)(); }
-static inline undefined4 TRKTargetStopOutOfRange(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x80094818)(param_1, param_2, param_3); }
-static inline undefined4 TRKTargetSingleStep(int param_1, int param_2) { return ((undefined4(*)(int, int))0x800948D0)(param_1, param_2); }
-static inline void TRKTargetAddExceptionInfo(undefined4 param_1) { ((void(*)(undefined4))0x8009497C)(param_1); }
-static inline void TRKTargetAddStopInfo(undefined4 param_1) { ((void(*)(undefined4))0x80094A00)(param_1); }
-static inline undefined4 TRKTargetInterrupt(int * param_1) { return ((undefined4(*)(int *))0x80094A8C)(param_1); }
+static inline void TRKTargetAccessARAM(void) { ((void(*)(void))0x800944FC)(); }
+static inline void TRKTargetSetInputPendingPtr(void) { ((void(*)(void))0x800945C0)(); }
+static inline void TRKTargetStop(void) { ((void(*)(void))0x800945D0)(); }
+static inline void TRKTargetSetStopped(void) { ((void(*)(void))0x800945E8)(); }
+static inline void TRKTargetStopped(void) { ((void(*)(void))0x800945F8)(); }
+static inline void TRKTargetSupportRequest(void) { ((void(*)(void))0x80094608)(); }
+static inline void TRKTargetGetPC(void) { ((void(*)(void))0x80094808)(); }
+static inline void TRKTargetStopOutOfRange(void) { ((void(*)(void))0x80094818)(); }
+static inline void TRKTargetSingleStep(void) { ((void(*)(void))0x800948D0)(); }
+static inline void TRKTargetAddExceptionInfo(void) { ((void(*)(void))0x8009497C)(); }
+static inline void TRKTargetAddStopInfo(void) { ((void(*)(void))0x80094A00)(); }
+static inline void TRKTargetInterrupt(void) { ((void(*)(void))0x80094A8C)(); }
 static inline void TRKPostInterruptEvent(void) { ((void(*)(void))0x80094C1C)(); }
-static inline int TRKTargetAccessExtended2(uint param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((int(*)(uint, uint, undefined4, int *, int))0x80094CC8)(param_1, param_2, param_3, param_4, param_5); }
-static inline uint TRKTargetAccessExtended1(uint param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((uint(*)(uint, uint, undefined4, int *, int))0x80095100)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKTargetAccessFP(uint param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((int(*)(uint, uint, undefined4, int *, int))0x80095270)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 TRKTargetAccessDefault(int param_1, uint param_2, undefined4 param_3, int * param_4, int param_5) { return ((undefined4(*)(int, uint, undefined4, int *, int))0x8009577C)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKTargetReadInstruction(undefined4 param_1, undefined4 param_2) { return ((int(*)(undefined4, undefined4))0x80095870)(param_1, param_2); }
-static inline int TRKTargetAccessMemory(undefined4 param_1, int param_2, undefined4 * param_3, undefined4 param_4, int param_5) { return ((int(*)(undefined4, int, undefined4 *, undefined4, int))0x800958BC)(param_1, param_2, param_3, param_4, param_5); }
-static inline int TRKValidMemory32(uint param_1, int param_2, int param_3) { return ((int(*)(uint, int, int))0x80095A08)(param_1, param_2, param_3); }
+static inline void TRKTargetAccessExtended2(void) { ((void(*)(void))0x80094CC8)(); }
+static inline void TRKTargetAccessExtended1(void) { ((void(*)(void))0x80095100)(); }
+static inline void TRKTargetAccessFP(void) { ((void(*)(void))0x80095270)(); }
+static inline void TRKTargetAccessDefault(void) { ((void(*)(void))0x8009577C)(); }
+static inline void TRKTargetReadInstruction(void) { ((void(*)(void))0x80095870)(); }
+static inline void TRKTargetAccessMemory(void) { ((void(*)(void))0x800958BC)(); }
+static inline void TRKValidMemory32(void) { ((void(*)(void))0x80095A08)(); }
 static inline void TRKAccessFile(void) { ((void(*)(void))0x80095CB0)(); }
 static inline void TRKOpenFile(void) { ((void(*)(void))0x80095CB8)(); }
 static inline void TRKCloseFile(void) { ((void(*)(void))0x80095CC0)(); }
@@ -39370,74 +39372,74 @@ static inline void TRKSaveExtended1Block_3(void) { ((void(*)(void))0x80095E5C)()
 static inline void TRKRestoreExtended1Block(void) { ((void(*)(void))0x80095E88)(); }
 static inline void TRKRestoreExtended1Block_1(void) { ((void(*)(void))0x80095EF8)(); }
 static inline void TRKRestoreExtended1Block_2(void) { ((void(*)(void))0x80095F5C)(); }
-static inline undefined8 InitMetroTRK(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7, int param_8) { return ((undefined8(*)(int, int, int, int, int, int, int, int))0x80096040)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline undefined8 InitMetroTRK_BBA(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7, int param_8) { return ((undefined8(*)(int, int, int, int, int, int, int, int))0x800960D8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void TRK__write_aram(int param_1, uint param_2, int * param_3) { ((void(*)(int, uint, int *))0x8009616C)(param_1, param_2, param_3); }
-static inline void TRK__read_aram(int param_1, uint param_2, int * param_3) { ((void(*)(int, uint, int *))0x80096358)(param_1, param_2, param_3); }
-static inline undefined4 TRKInitializeTarget(void) { return ((undefined4(*)(void))0x8009648C)(); }
+static inline void InitMetroTRK(void) { ((void(*)(void))0x80096040)(); }
+static inline void InitMetroTRK_BBA(void) { ((void(*)(void))0x800960D8)(); }
+static inline void TRK__write_aram(void) { ((void(*)(void))0x8009616C)(); }
+static inline void TRK__read_aram(void) { ((void(*)(void))0x80096358)(); }
+static inline void TRKInitializeTarget(void) { ((void(*)(void))0x8009648C)(); }
 static inline void __TRK_copy_vectors(void) { ((void(*)(void))0x800964D8)(); }
-static inline uint TRKTargetTranslate(uint param_1) { return ((uint(*)(uint))0x80096604)(param_1); }
+static inline void TRKTargetTranslate(void) { ((void(*)(void))0x80096604)(); }
 static inline void EnableMetroTRKInterrupts(void) { ((void(*)(void))0x8009665C)(); }
 static inline void TRK_main(void) { ((void(*)(void))0x8009667C)(); }
-static inline int TRKLoadContext(int * param_1, int param_2, undefined4 param_3, undefined4 param_4, int param_5, int param_6, int param_7, int param_8) { return ((int(*)(int *, int, undefined4, undefined4, int, int, int, int))0x800966D4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
+static inline void TRKLoadContext(void) { ((void(*)(void))0x800966D4)(); }
 static inline void TRKUARTInterruptHandler(void) { ((void(*)(void))0x8009675C)(); }
 static inline void InitializeProgramEndTrap(void) { ((void(*)(void))0x80096760)(); }
-static inline void TRK_board_display(undefined4 param_1) { ((void(*)(undefined4))0x800967B8)(param_1); }
+static inline void TRK_board_display(void) { ((void(*)(void))0x800967B8)(); }
 static inline void UnreserveEXI2Port(void) { ((void(*)(void))0x800967E8)(); }
 static inline void ReserveEXI2Port(void) { ((void(*)(void))0x80096818)(); }
-static inline int TRKWriteUARTN(void) { return ((int(*)(void))0x80096848)(); }
-static inline int TRKReadUARTN(void) { return ((int(*)(void))0x80096884)(); }
+static inline void TRKWriteUARTN(void) { ((void(*)(void))0x80096848)(); }
+static inline void TRKReadUARTN(void) { ((void(*)(void))0x80096884)(); }
 static inline void TRKPollUART(void) { ((void(*)(void))0x800968C0)(); }
 static inline void EnableExi2Interrupts(void) { ((void(*)(void))0x800968F0)(); }
-static inline undefined4 TRKInitializeIntDriverUART(void) { return ((undefined4(*)(void))0x80096938)(); }
-static inline undefined4 InitMetroTRKCommTable(int param_1) { return ((undefined4(*)(int))0x80096988)(param_1); }
-static inline void TRKEXICallBack(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x80096BF4)(param_1, param_2); }
-static inline undefined4 TRKTargetContinue(void) { return ((undefined4(*)(void))0x80096C2C)(); }
-static inline byte GetUseSerialIO(void) { return ((byte(*)(void))0x80096C60)(); }
-static inline void SetUseSerialIO(byte param_1) { ((void(*)(byte))0x80096C70)(param_1); }
-static inline undefined4 __close_console(undefined4 param_1) { return ((undefined4(*)(undefined4))0x80096C7C)(param_1); }
-static inline undefined4 __TRK_write_console(undefined4 param_1, undefined4 param_2, int * param_3) { return ((undefined4(*)(undefined4, undefined4, int *))0x80096D00)(param_1, param_2, param_3); }
-static inline undefined4 __read_console(undefined4 param_1, undefined4 param_2, int * param_3) { return ((undefined4(*)(undefined4, undefined4, int *))0x80096DBC)(param_1, param_2, param_3); }
-static inline undefined4 udp_cc_post_stop(void) { return ((undefined4(*)(void))0x80096E78)(); }
-static inline undefined4 udp_cc_pre_continue(void) { return ((undefined4(*)(void))0x80096E80)(); }
-static inline undefined4 udp_cc_peek(void) { return ((undefined4(*)(void))0x80096E88)(); }
-static inline undefined4 udp_cc_write(void) { return ((undefined4(*)(void))0x80096E90)(); }
-static inline undefined4 udp_cc_read(void) { return ((undefined4(*)(void))0x80096E98)(); }
-static inline undefined4 udp_cc_close(void) { return ((undefined4(*)(void))0x80096EA0)(); }
-static inline undefined4 udp_cc_open(void) { return ((undefined4(*)(void))0x80096EA8)(); }
-static inline undefined4 udp_cc_shutdown(void) { return ((undefined4(*)(void))0x80096EB0)(); }
-static inline undefined4 udp_cc_initialize(void) { return ((undefined4(*)(void))0x80096EB8)(); }
-static inline undefined4 ddh_cc_initinterrupts(void) { return ((undefined4(*)(void))0x80096EC0)(); }
-static inline int ddh_cc_peek(void) { return ((int(*)(void))0x80096EE4)(); }
-static inline undefined4 ddh_cc_post_stop(void) { return ((undefined4(*)(void))0x80096F54)(); }
-static inline undefined4 ddh_cc_pre_continue(void) { return ((undefined4(*)(void))0x80096F78)(); }
-static inline undefined4 ddh_cc_write(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80096F9C)(param_1, param_2); }
-static inline int ddh_cc_read(undefined4 param_1, uint param_2) { return ((int(*)(undefined4, uint))0x8009705C)(param_1, param_2); }
-static inline undefined4 ddh_cc_close(void) { return ((undefined4(*)(void))0x80097148)(); }
-static inline undefined4 ddh_cc_open(void) { return ((undefined4(*)(void))0x80097150)(); }
-static inline undefined4 ddh_cc_shutdown(void) { return ((undefined4(*)(void))0x80097174)(); }
-static inline undefined4 ddh_cc_initialize(undefined4 param_1, undefined4 param_2) { return ((undefined4(*)(undefined4, undefined4))0x8009717C)(param_1, param_2); }
-static inline undefined4 CircleBufferReadBytes(void * * param_1, void * param_2, void * param_3) { return ((undefined4(*)(void * *, void *, void *))0x80097204)(param_1, param_2, param_3); }
-static inline undefined4 CircleBufferWriteBytes(int param_1, void * param_2, uint param_3) { return ((undefined4(*)(int, void *, uint))0x8009730C)(param_1, param_2, param_3); }
-static inline void CircleBufferInitialize(undefined4 * param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4 *, undefined4, undefined4))0x80097414)(param_1, param_2, param_3); }
-static inline undefined4 CBGetBytesAvailableForRead(int param_1) { return ((undefined4(*)(int))0x80097464)(param_1); }
-static inline undefined4 gdev_cc_initinterrupts(void) { return ((undefined4(*)(void))0x8009746C)(); }
-static inline int gdev_cc_peek(void) { return ((int(*)(void))0x80097490)(); }
-static inline undefined4 gdev_cc_post_stop(void) { return ((undefined4(*)(void))0x80097500)(); }
-static inline undefined4 gdev_cc_pre_continue(void) { return ((undefined4(*)(void))0x80097524)(); }
-static inline undefined4 gdev_cc_write(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80097548)(param_1, param_2); }
-static inline int gdev_cc_read(undefined4 param_1, uint param_2) { return ((int(*)(undefined4, uint))0x80097608)(param_1, param_2); }
-static inline undefined4 gdev_cc_close(void) { return ((undefined4(*)(void))0x800976FC)(); }
-static inline undefined4 gdev_cc_open(void) { return ((undefined4(*)(void))0x80097704)(); }
-static inline undefined4 gdev_cc_shutdown(void) { return ((undefined4(*)(void))0x80097728)(); }
+static inline void TRKInitializeIntDriverUART(void) { ((void(*)(void))0x80096938)(); }
+static inline void InitMetroTRKCommTable(void) { ((void(*)(void))0x80096988)(); }
+static inline void TRKEXICallBack(void) { ((void(*)(void))0x80096BF4)(); }
+static inline void TRKTargetContinue(void) { ((void(*)(void))0x80096C2C)(); }
+static inline void GetUseSerialIO(void) { ((void(*)(void))0x80096C60)(); }
+static inline void SetUseSerialIO(void) { ((void(*)(void))0x80096C70)(); }
+static inline void __close_console(void) { ((void(*)(void))0x80096C7C)(); }
+static inline void __TRK_write_console(void) { ((void(*)(void))0x80096D00)(); }
+static inline void __read_console(void) { ((void(*)(void))0x80096DBC)(); }
+static inline void udp_cc_post_stop(void) { ((void(*)(void))0x80096E78)(); }
+static inline void udp_cc_pre_continue(void) { ((void(*)(void))0x80096E80)(); }
+static inline void udp_cc_peek(void) { ((void(*)(void))0x80096E88)(); }
+static inline void udp_cc_write(void) { ((void(*)(void))0x80096E90)(); }
+static inline void udp_cc_read(void) { ((void(*)(void))0x80096E98)(); }
+static inline void udp_cc_close(void) { ((void(*)(void))0x80096EA0)(); }
+static inline void udp_cc_open(void) { ((void(*)(void))0x80096EA8)(); }
+static inline void udp_cc_shutdown(void) { ((void(*)(void))0x80096EB0)(); }
+static inline void udp_cc_initialize(void) { ((void(*)(void))0x80096EB8)(); }
+static inline void ddh_cc_initinterrupts(void) { ((void(*)(void))0x80096EC0)(); }
+static inline void ddh_cc_peek(void) { ((void(*)(void))0x80096EE4)(); }
+static inline void ddh_cc_post_stop(void) { ((void(*)(void))0x80096F54)(); }
+static inline void ddh_cc_pre_continue(void) { ((void(*)(void))0x80096F78)(); }
+static inline void ddh_cc_write(void) { ((void(*)(void))0x80096F9C)(); }
+static inline void ddh_cc_read(void) { ((void(*)(void))0x8009705C)(); }
+static inline void ddh_cc_close(void) { ((void(*)(void))0x80097148)(); }
+static inline void ddh_cc_open(void) { ((void(*)(void))0x80097150)(); }
+static inline void ddh_cc_shutdown(void) { ((void(*)(void))0x80097174)(); }
+static inline void ddh_cc_initialize(void) { ((void(*)(void))0x8009717C)(); }
+static inline void CircleBufferReadBytes(void) { ((void(*)(void))0x80097204)(); }
+static inline void CircleBufferWriteBytes(void) { ((void(*)(void))0x8009730C)(); }
+static inline void CircleBufferInitialize(void) { ((void(*)(void))0x80097414)(); }
+static inline void CBGetBytesAvailableForRead(void) { ((void(*)(void))0x80097464)(); }
+static inline void gdev_cc_initinterrupts(void) { ((void(*)(void))0x8009746C)(); }
+static inline void gdev_cc_peek(void) { ((void(*)(void))0x80097490)(); }
+static inline void gdev_cc_post_stop(void) { ((void(*)(void))0x80097500)(); }
+static inline void gdev_cc_pre_continue(void) { ((void(*)(void))0x80097524)(); }
+static inline void gdev_cc_write(void) { ((void(*)(void))0x80097548)(); }
+static inline void gdev_cc_read(void) { ((void(*)(void))0x80097608)(); }
+static inline void gdev_cc_close(void) { ((void(*)(void))0x800976FC)(); }
+static inline void gdev_cc_open(void) { ((void(*)(void))0x80097704)(); }
+static inline void gdev_cc_shutdown(void) { ((void(*)(void))0x80097728)(); }
 static inline void gdev_cc_initalize(int inputPendingPtrRef, int monitorCallback) { ((void(*)(int, int))0x80097730)(inputPendingPtrRef, monitorCallback); }
 static inline void MWTRACE(void) { ((void(*)(void))0x800977B8)(); }
 static inline void MWExitCriticalSection(void) { ((void(*)(void))0x80097808)(); }
-static inline void MWEnterCriticalSection(undefined4 * param_1) { ((void(*)(undefined4 *))0x8009782C)(param_1); }
+static inline void MWEnterCriticalSection(void) { ((void(*)(void))0x8009782C)(); }
 static inline void MWInitializeCriticalSection(void) { ((void(*)(void))0x8009785C)(); }
-static inline int * __va_arg(char * param_1, int param_2) { return ((int *(*)(char *, int))0x80097860)(param_1, param_2); }
+static inline void __va_arg(void) { ((void(*)(void))0x80097860)(); }
 static inline void __destroy_global_chain(void) { ((void(*)(void))0x80097928)(); }
-static inline int __cvt_fp2unsigned(double param_1) { return ((int(*)(double))0x80097970)(param_1); }
+static inline void __cvt_fp2unsigned(void) { ((void(*)(void))0x80097970)(); }
 static inline void __save_fpr(void) { ((void(*)(void))0x800979CC)(); }
 static inline void __save_fpr_2(void) { ((void(*)(void))0x800979F8)(); }
 static inline void __restore_fpr(void) { ((void(*)(void))0x80097A18)(); }
@@ -39464,175 +39466,175 @@ static inline void _restgpr_24(void) { ((void(*)(void))0x80097AD8)(); }
 static inline void _restgpr_25(void) { ((void(*)(void))0x80097ADC)(); }
 static inline void _restgpr_26(void) { ((void(*)(void))0x80097AE0)(); }
 static inline void _restgpr_27(void) { ((void(*)(void))0x80097AE4)(); }
-static inline undefined8 __div2u(uint param_1, uint param_2, int param_3, uint param_4) { return ((undefined8(*)(uint, uint, int, uint))0x80097AFC)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __div2i(uint param_1, uint param_2, uint param_3, uint param_4) { return ((undefined8(*)(uint, uint, uint, uint))0x80097BE8)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __mod2u(uint param_1, uint param_2, int param_3, uint param_4) { return ((undefined8(*)(uint, uint, int, uint))0x80097D20)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __mod2i(uint param_1, uint param_2, int param_3, uint param_4) { return ((undefined8(*)(uint, uint, int, uint))0x80097E04)(param_1, param_2, param_3, param_4); }
-static inline undefined8 __shl2i(int param_1, uint param_2, int param_3) { return ((undefined8(*)(int, uint, int))0x80097F10)(param_1, param_2, param_3); }
-static inline undefined8 __shr2u(uint param_1, uint param_2, int param_3) { return ((undefined8(*)(uint, uint, int))0x80097F34)(param_1, param_2, param_3); }
-static inline undefined8 __shr2i(int param_1, uint param_2, uint param_3) { return ((undefined8(*)(int, uint, uint))0x80097F58)(param_1, param_2, param_3); }
-static inline undefined8 __cvt_dbl_usll(ulonglong param_1) { return ((undefined8(*)(ulonglong))0x80097F80)(param_1); }
-static inline short * GetR2(void) { return ((short *(*)(void))0x8009804C)(); }
+static inline void __div2u(void) { ((void(*)(void))0x80097AFC)(); }
+static inline void __div2i(void) { ((void(*)(void))0x80097BE8)(); }
+static inline void __mod2u(void) { ((void(*)(void))0x80097D20)(); }
+static inline void __mod2i(void) { ((void(*)(void))0x80097E04)(); }
+static inline void __shl2i(void) { ((void(*)(void))0x80097F10)(); }
+static inline void __shr2u(void) { ((void(*)(void))0x80097F34)(); }
+static inline void __shr2i(void) { ((void(*)(void))0x80097F58)(); }
+static inline void __cvt_dbl_usll(void) { ((void(*)(void))0x80097F80)(); }
+static inline void GetR2(void) { ((void(*)(void))0x8009804C)(); }
 static inline void __fini_cpp_exceptions(void) { ((void(*)(void))0x80098054)(); }
 static inline void __init_cpp_exceptions(void) { ((void(*)(void))0x80098088)(); }
-static inline void __unregister_fragment(int param_1) { ((void(*)(int))0x800980C8)(param_1); }
-static inline undefined4 __register_fragment(undefined * param_1, undefined * param_2) { return ((undefined4(*)(undefined *, undefined *))0x800980FC)(param_1, param_2); }
+static inline void __unregister_fragment(void) { ((void(*)(void))0x800980C8)(); }
+static inline void __register_fragment(void) { ((void(*)(void))0x800980FC)(); }
 static inline void __sys_free(int param_1) { ((void(*)(int))0x80098130)(param_1); }
 static inline void exit(int __status) { ((void(*)(int))0x800981E8)(__status); }
-#define free FUNCTION_ADDRESS(void, 0x800982D8, void * /*__ptr*/)
-static inline void __pool_free(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x80098348)(param_1, param_2); }
-static inline void deallocate_from_fixed_pools(int param_1, int * * param_2, uint param_3) { ((void(*)(int, int * *, uint))0x800983A0)(param_1, param_2, param_3); }
-static inline void deallocate_from_var_pools(int * * param_1, uint * * param_2) { ((void(*)(int * *, uint * *))0x800984F8)(param_1, param_2); }
-static inline undefined4 __flsuh_all(void) { return ((undefined4(*)(void))0x8009878C)(); }
+static inline void free(void * __ptr) { ((void(*)(void *))0x800982D8)(__ptr); }
+static inline void __pool_free(void) { ((void(*)(void))0x80098348)(); }
+static inline void deallocate_from_fixed_pools(void) { ((void(*)(void))0x800983A0)(); }
+static inline void deallocate_from_var_pools(void) { ((void(*)(void))0x800984F8)(); }
+static inline void __flsuh_all(void) { ((void(*)(void))0x8009878C)(); }
 static inline void __close_all(void) { ((void(*)(void))0x800987FC)(); }
-static inline void __num2dec(int param_1, int param_2) { ((void(*)(int, int))0x800988A4)(param_1, param_2); }
-static inline void __num2dec_internal(double param_1, char * param_2) { ((void(*)(double, char *))0x80098A48)(param_1, param_2); }
-static inline void __two_exp(int * param_1, uint param_2) { ((void(*)(int *, uint))0x80098DFC)(param_1, param_2); }
-static inline void __timesdec(undefined * param_1, int param_2, int param_3) { ((void(*)(undefined *, int, int))0x8009A580)(param_1, param_2, param_3); }
-static inline int __flush_buffer(undefined4 * param_1, undefined4 * param_2) { return ((int(*)(undefined4 *, undefined4 *))0x8009A7F8)(param_1, param_2); }
-static inline void __prep_buffer(int param_1) { ((void(*)(int))0x8009A8BC)(param_1); }
+static inline void __num2dec(void) { ((void(*)(void))0x800988A4)(); }
+static inline void __num2dec_internal(void) { ((void(*)(void))0x80098A48)(); }
+static inline void __two_exp(void) { ((void(*)(void))0x80098DFC)(); }
+static inline void __timesdec(void) { ((void(*)(void))0x8009A580)(); }
+static inline void __flush_buffer(void) { ((void(*)(void))0x8009A7F8)(); }
+static inline void __prep_buffer(void) { ((void(*)(void))0x8009A8BC)(); }
 static inline void __end_critical_region(void) { ((void(*)(void))0x8009A8F0)(); }
 static inline void __begin_critical_region(void) { ((void(*)(void))0x8009A8F4)(); }
 static inline void __kill_critical_regions(void) { ((void(*)(void))0x8009A8F8)(); }
 static inline int tolower(int __c) { return ((int(*)(int))0x8009A8FC)(__c); }
-static inline uint __fwrite(char * param_1, uint param_2, int param_3, __FILE * param_4) { return ((uint(*)(char *, uint, int, __FILE *))0x8009A920)(param_1, param_2, param_3, param_4); }
+static inline void __fwrite(void) { ((void(*)(void))0x8009A920)(); }
 static inline size_t fwrite(void * __ptr, size_t __size, size_t __n, FILE * __s) { return ((size_t(*)(void *, size_t, size_t, FILE *))0x8009AC2C)(__ptr, __size, __n, __s); }
 static inline int fflush(FILE * __stream) { return ((int(*)(FILE *))0x8009ACA8)(__stream); }
 static inline int fclose(FILE * __stream) { return ((int(*)(FILE *))0x8009ADE0)(__stream); }
 static inline int fseek(FILE * __stream, long __off, int __whence) { return ((int(*)(FILE *, long, int))0x8009AF9C)(__stream, __off, __whence); }
-static inline undefined4 _fseek(undefined4 * param_1, int param_2, int param_3) { return ((undefined4(*)(undefined4 *, int, int))0x8009B008)(param_1, param_2, param_3); }
+static inline void _fseek(void) { ((void(*)(void))0x8009B008)(); }
 static inline long ftell(FILE * __stream) { return ((long(*)(FILE *))0x8009B278)(__stream); }
 static inline size_t wcstombs(char * __s, wchar_t * __pwcs, size_t __n) { return ((size_t(*)(char *, wchar_t *, size_t))0x8009B35C)(__s, __pwcs, __n); }
-#define memcmp FUNCTION_ADDRESS(int, 0x8009B474, byte * /*array1*/, byte * /*array2*/, int /*byteCount*/)
-static inline char * __memrchr(int param_1, char param_2, int param_3) { return ((char *(*)(int, char, int))0x8009B4C0)(param_1, param_2, param_3); }
-#define memchr FUNCTION_ADDRESS(void *, 0x8009B4EC, void * /*__s*/, int /*__c*/, size_t /*__n*/)
-#define memmove FUNCTION_ADDRESS(void *, 0x8009B518, void * /*__dest*/, void * /*__src*/, size_t /*__n*/)
+static inline int memcmp(byte * array1, byte * array2, int byteCount) { return ((int(*)(byte *, byte *, int))0x8009B474)(array1, array2, byteCount); }
+static inline void __memrchr(void) { ((void(*)(void))0x8009B4C0)(); }
+static inline void * memchr(void * __s, int __c, size_t __n) { return ((void *(*)(void *, int, size_t))0x8009B4EC)(__s, __c, __n); }
+static inline void * memmove(void * __dest, void * __src, size_t __n) { return ((void *(*)(void *, void *, size_t))0x8009B518)(__dest, __src, __n); }
 static inline void __copy_longs_rev_unaligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B5E4)(param_1, param_2, param_3); }
 static inline void __copy_longs_unaligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B690)(param_1, param_2, param_3); }
 static inline void __copy_longs_rev_aligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B750)(param_1, param_2, param_3); }
 static inline void __copy_longs_aligned(long * param_1, long * param_2, uint param_3) { ((void(*)(long *, long *, uint))0x8009B7F8)(param_1, param_2, param_3); }
 static inline void __stdio_atexit(void) { ((void(*)(void))0x8009B8B4)(); }
-#define sprintf FUNCTION_ADDRESS(int, 0x8009B8C4, char * /*__s*/, char * /*__format*/, ...)
+#define sprintf FUNCTION_ADDRESS(int, 0x8009B8C4, char *, char *, ...)
 static inline int vprintf(char * __format, __gnuc_va_list __arg) { return ((int(*)(char *, __gnuc_va_list))0x8009B9A4)(__format, __arg); }
-static inline undefined4 __StringWrite(int * param_1, void * param_2, uint param_3) { return ((undefined4(*)(int *, void *, uint))0x8009BA3C)(param_1, param_2, param_3); }
-static inline FILE * __FileWrite(FILE * param_1, void * param_2, size_t param_3) { return ((FILE *(*)(FILE *, void *, size_t))0x8009BAA8)(param_1, param_2, param_3); }
+static inline void __StringWrite(void) { ((void(*)(void))0x8009BA3C)(); }
+static inline void __FileWrite(void) { ((void(*)(void))0x8009BAA8)(); }
 static inline int __pformatter(undefined * param_1, int param_2, char * param_3, int param_4) { return ((int(*)(undefined *, int, char *, int))0x8009BB00)(param_1, param_2, param_3, param_4); }
 static inline char * float2str(double param_1, int param_2, int param_3) { return ((char *(*)(double, int, int))0x8009C274)(param_1, param_2, param_3); }
-static inline void round_decimal(int param_1, int param_2) { ((void(*)(int, int))0x8009C990)(param_1, param_2); }
-static inline char * double2hex(ulonglong param_1, int param_2, int param_3) { return ((char *(*)(ulonglong, int, int))0x8009CABC)(param_1, param_2, param_3); }
-static inline char * longlong2str(uint param_1, uint param_2, int param_3, char * param_4) { return ((char *(*)(uint, uint, int, char *))0x8009CDF4)(param_1, param_2, param_3, param_4); }
-static inline char * long2str(uint param_1, int param_2, char * param_3) { return ((char *(*)(uint, int, char *))0x8009D108)(param_1, param_2, param_3); }
-static inline char * parse_format(int param_1, undefined4 param_2, int * param_3) { return ((char *(*)(int, undefined4, int *))0x8009D360)(param_1, param_2, param_3); }
+static inline void round_decimal(void) { ((void(*)(void))0x8009C990)(); }
+static inline void double2hex(void) { ((void(*)(void))0x8009CABC)(); }
+static inline void longlong2str(void) { ((void(*)(void))0x8009CDF4)(); }
+static inline void long2str(void) { ((void(*)(void))0x8009D108)(); }
+static inline void parse_format(void) { ((void(*)(void))0x8009D360)(); }
 static inline int rand(void) { return ((int(*)(void))0x8009D864)(); }
-#define strchr FUNCTION_ADDRESS(char *, 0x8009D884, char * /*__s*/, int /*__c*/)
-static inline int strcnmp(int param_1, int param_2, int param_3) { return ((int(*)(int, int, int))0x8009D8B4)(param_1, param_2, param_3); }
-#define strncpy FUNCTION_ADDRESS(char *, 0x8009D8F4, char * /*__dest*/, char * /*__src*/, size_t /*__n*/)
-#define strcpy FUNCTION_ADDRESS(char *, 0x8009D938, char * /*__dest*/, char * /*__src*/)
-#define strlen FUNCTION_ADDRESS(size_t, 0x8009D9F0, char * /*__s*/)
+static inline char * strchr(char * __s, int __c) { return ((char *(*)(char *, int))0x8009D884)(__s, __c); }
+static inline void strcnmp(void) { ((void(*)(void))0x8009D8B4)(); }
+static inline char * strncpy(char * __dest, char * __src, size_t __n) { return ((char *(*)(char *, char *, size_t))0x8009D8F4)(__dest, __src, __n); }
+static inline char * strcpy(char * __dest, char * __src) { return ((char *(*)(char *, char *))0x8009D938)(__dest, __src); }
+static inline size_t strlen(char * __s) { return ((size_t(*)(char *))0x8009D9F0)(__s); }
 static inline int fwide(__FILE * __fp, int __mode) { return ((int(*)(__FILE *, int))0x8009DA0C)(__fp, __mode); }
-static inline undefined4 __write_console(undefined4 param_1, undefined4 param_2, undefined4 * param_3, undefined4 param_4) { return ((undefined4(*)(undefined4, undefined4, undefined4 *, undefined4))0x8009DA94)(param_1, param_2, param_3, param_4); }
+static inline void __write_console(void) { ((void(*)(void))0x8009DA94)(); }
 static inline double __ieee754_acos(double param_1) { return ((double(*)(double))0x8009DB64)(param_1); }
-static inline double __ieee754_asin(double x) { return ((double(*)(double))0x8009DDA0)(x); }
-static inline double __ieee754_atan2(double y, double x) { return ((double(*)(double, double))0x8009DFD8)(y, x); }
-static inline double __ieee754_fmod(double param_1, double param_2) { return ((double(*)(double, double))0x8009E268)(param_1, param_2); }
-static inline double __ieee754_pow(double x, double y) { return ((double(*)(double, double))0x8009E5A4)(x, y); }
+static inline double __ieee754_asin(double x_) { return ((double(*)(double))0x8009DDA0)(x_); }
+static inline double __ieee754_atan2(double y_, double x_) { return ((double(*)(double, double))0x8009DFD8)(y_, x_); }
+static inline void __ieee754_fmod(void) { ((void(*)(void))0x8009E268)(); }
+static inline double __ieee754_pow(double x_, double y_) { return ((double(*)(double, double))0x8009E5A4)(x_, y_); }
 static inline double __ieee754_rem_pio2(double param_1, double * param_2) { return ((double(*)(double, double *))0x8009EDD4)(param_1, param_2); }
 static inline double __kernel_cos(double param_1, double param_2) { return ((double(*)(double, double))0x8009F174)(param_1, param_2); }
-static inline int __kernel_rem_pio2(double * x, double * y, int e0, int nx, int prec, int * ipio2) { return ((int(*)(double *, double *, int, int, int, int *))0x8009F268)(x, y, e0, nx, prec, ipio2); }
+static inline int __kernel_rem_pio2(double * x_, double * y_, int e0, int nx, int prec, int * ipio2) { return ((int(*)(double *, double *, int, int, int, int *))0x8009F268)(x_, y_, e0, nx, prec, ipio2); }
 static inline double __kernel_sin(double param_1, double param_2, int param_3) { return ((double(*)(double, double, int))0x800A00BC)(param_1, param_2, param_3); }
-static inline double __kernel_tan(double param_1, double param_2, uint param_3) { return ((double(*)(double, double, uint))0x800A015C)(param_1, param_2, param_3); }
+static inline void __kernel_tan(void) { ((void(*)(void))0x800A015C)(); }
 static inline double atan(double __x) { return ((double(*)(double))0x800A0370)(__x); }
 static inline double copysign(double __x, double __y) { return ((double(*)(double, double))0x800A0588)(__x, __y); }
-#define cos FUNCTION_ADDRESS(double, 0x800A05B0, double /*__x*/)
-#define floor FUNCTION_ADDRESS(double, 0x800A0684, double /*__x*/)
+static inline double cos(double __x) { return ((double(*)(double))0x800A05B0)(__x); }
+static inline double floor(double __x) { return ((double(*)(double))0x800A0684)(__x); }
 static inline double frexp(double __x, int * __exponent) { return ((double(*)(double, int *))0x800A07CC)(__x, __exponent); }
 static inline double ldexp(double __x, int __exponent) { return ((double(*)(double, int))0x800A0858)(__x, __exponent); }
 static inline double modf(double __x, double * __iptr) { return ((double(*)(double, double *))0x800A0A1C)(__x, __iptr); }
-#define sin FUNCTION_ADDRESS(double, 0x800A0B18, double /*__x*/)
-#define tan FUNCTION_ADDRESS(double, 0x800A0BF0, double /*__x*/)
+static inline double sin(double __x) { return ((double(*)(double))0x800A0B18)(__x); }
+static inline double tan(double __x) { return ((double(*)(double))0x800A0BF0)(__x); }
 static inline float acosf(float __x) { return ((float(*)(float))0x800A0C68)(__x); }
 static inline double asin(double __x) { return ((double(*)(double))0x800A0C88)(__x); }
-static inline double atan_800a0ca8(double y, double x) { return ((double(*)(double, double))0x800A0CA8)(y, x); }
+static inline double atan_800a0ca8(double y_, double x_) { return ((double(*)(double, double))0x800A0CA8)(y_, x_); }
 static inline double fmod(double __x, double __y) { return ((double(*)(double, double))0x800A0CC8)(__x, __y); }
-#define pow FUNCTION_ADDRESS(double, 0x800A0CE8, double /*__x*/, double /*__y*/)
+static inline double pow(double __x, double __y) { return ((double(*)(double, double))0x800A0CE8)(__x, __y); }
 static inline double __ieee754_sqrt(double param_1) { return ((double(*)(double))0x800A0D08)(param_1); }
 static inline float sinf(float __x) { return ((float(*)(float))0x800A0F2C)(__x); }
 static inline float cosf(float __x) { return ((float(*)(float))0x800A0F50)(__x); }
 static inline float acosf_800a0f74(float __x) { return ((float(*)(float))0x800A0F74)(__x); }
-#define sqrt FUNCTION_ADDRESS(double, 0x800A0F98, double /*__x*/)
+static inline double sqrt(double __x) { return ((double(*)(double))0x800A0F98)(__x); }
 static inline void EXI2_Init(void) { ((void(*)(void))0x800A0FB8)(); }
 static inline void EXI2_EnableInterrupts(void) { ((void(*)(void))0x800A0FBC)(); }
-static inline undefined4 EXI2_Poll(void) { return ((undefined4(*)(void))0x800A0FC0)(); }
-static inline undefined4 EXI2_ReadN(void) { return ((undefined4(*)(void))0x800A0FC8)(); }
-static inline undefined4 EXI2_WriteN(void) { return ((undefined4(*)(void))0x800A0FD0)(); }
+static inline void EXI2_Poll(void) { ((void(*)(void))0x800A0FC0)(); }
+static inline void EXI2_ReadN(void) { ((void(*)(void))0x800A0FC8)(); }
+static inline void EXI2_WriteN(void) { ((void(*)(void))0x800A0FD0)(); }
 static inline void EXI2_Reserve(void) { ((void(*)(void))0x800A0FD8)(); }
 static inline void EXI2_Unreserve(void) { ((void(*)(void))0x800A0FDC)(); }
-static inline undefined4 AMC_IsStub(void) { return ((undefined4(*)(void))0x800A0FE0)(); }
-static inline undefined4 Hu_IsStub(void) { return ((undefined4(*)(void))0x800A0FE8)(); }
-static inline undefined4 DBGEXIImm(byte * param_1, int param_2, int param_3) { return ((undefined4(*)(byte *, int, int))0x800A0FF0)(param_1, param_2, param_3); }
-static inline uint DBGReadMailbox(undefined4 param_1) { return ((uint(*)(undefined4))0x800A1288)(param_1); }
-static inline uint DBGRead(uint param_1, int * param_2, int param_3) { return ((uint(*)(uint, int *, int))0x800A1334)(param_1, param_2, param_3); }
-static inline uint DBGWrite(uint param_1, int * param_2, int param_3) { return ((uint(*)(uint, int *, int))0x800A1410)(param_1, param_2, param_3); }
-static inline uint DBGReadStatus(undefined4 param_1) { return ((uint(*)(undefined4))0x800A14EC)(param_1); }
+static inline void AMC_IsStub(void) { ((void(*)(void))0x800A0FE0)(); }
+static inline void Hu_IsStub(void) { ((void(*)(void))0x800A0FE8)(); }
+static inline void DBGEXIImm(void) { ((void(*)(void))0x800A0FF0)(); }
+static inline void DBGReadMailbox(void) { ((void(*)(void))0x800A1288)(); }
+static inline void DBGRead(void) { ((void(*)(void))0x800A1334)(); }
+static inline void DBGWrite(void) { ((void(*)(void))0x800A1410)(); }
+static inline void DBGReadStatus(void) { ((void(*)(void))0x800A14EC)(); }
 static inline void MWCallback(void) { ((void(*)(void))0x800A1598)(); }
-static inline void DBGHandler(short param_1) { ((void(*)(short))0x800A15D4)(param_1); }
-static inline void DBInitComm(byte * * param_1, int param_2) { ((void(*)(byte * *, int))0x800A1614)(param_1, param_2); }
+static inline void DBGHandler(void) { ((void(*)(void))0x800A15D4)(); }
+static inline void DBInitComm(void) { ((void(*)(void))0x800A1614)(); }
 static inline void DBInitInterrupts(void) { ((void(*)(void))0x800A168C)(); }
-static inline int DBQueryData(void) { return ((int(*)(void))0x800A16E0)(); }
-static inline undefined4 DBRead(undefined4 param_1, int param_2) { return ((undefined4(*)(undefined4, int))0x800A177C)(param_1, param_2); }
-static inline undefined4 DBWrite(undefined4 param_1, uint param_2) { return ((undefined4(*)(undefined4, uint))0x800A1808)(param_1, param_2); }
+static inline void DBQueryData(void) { ((void(*)(void))0x800A16E0)(); }
+static inline void DBRead(void) { ((void(*)(void))0x800A177C)(); }
+static inline void DBWrite(void) { ((void(*)(void))0x800A1808)(); }
 static inline void DBOpen(void) { ((void(*)(void))0x800A1A68)(); }
 static inline void DBClose(void) { ((void(*)(void))0x800A1A6C)(); }
-static inline void SetExiInterruptMask(int param_1, int * param_2) { ((void(*)(int, int *))0x800A2B5C)(param_1, param_2); }
-static inline undefined4 EXIImm(int param_1, byte * param_2, int param_3, int param_4, undefined4 param_5) { return ((undefined4(*)(int, byte *, int, int, undefined4))0x800A2C50)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 EXIImmEx(undefined4 param_1, int param_2, int param_3, undefined4 param_4) { return ((undefined4(*)(undefined4, int, int, undefined4))0x800A2EAC)(param_1, param_2, param_3, param_4); }
-static inline undefined4 EXIDma(int param_1, uint param_2, undefined4 param_3, int param_4, undefined4 param_5) { return ((undefined4(*)(int, uint, undefined4, int, undefined4))0x800A2F4C)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 EXISync(int param_1) { return ((undefined4(*)(int))0x800A3038)(param_1); }
-static inline uint EXIClearInterrupts(int param_1, int param_2, int param_3, int param_4) { return ((uint(*)(int, int, int, int))0x800A3284)(param_1, param_2, param_3, param_4); }
-static inline undefined4 EXISetExiCallback(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x800A32CC)(param_1, param_2); }
-static inline undefined4 __EXIProbe(int param_1) { return ((undefined4(*)(int))0x800A3348)(param_1); }
-static inline int EXIProbe(int param_1) { return ((int(*)(int))0x800A34BC)(param_1); }
-static inline undefined4 EXIProbeEx(int param_1) { return ((undefined4(*)(int))0x800A353C)(param_1); }
-static inline undefined4 EXIAttach(int param_1, undefined * param_2) { return ((undefined4(*)(int, undefined *))0x800A35F0)(param_1, param_2); }
-static inline undefined4 EXIDetach(int param_1) { return ((undefined4(*)(int))0x800A36FC)(param_1); }
-static inline undefined4 EXISelect(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x800A37B8)(param_1, param_2, param_3); }
-static inline undefined4 EXIDeselect(int param_1) { return ((undefined4(*)(int))0x800A38E4)(param_1); }
-static inline void EXIIntrruptHandler(short param_1, undefined4 param_2) { ((void(*)(short, undefined4))0x800A39F4)(param_1, param_2); }
-static inline void TCIIntrruptHandler(short param_1, undefined4 param_2) { ((void(*)(short, undefined4))0x800A3ABC)(param_1, param_2); }
-static inline void EXTIntrruptHandler(short param_1, undefined4 param_2) { ((void(*)(short, undefined4))0x800A3CD4)(param_1, param_2); }
+static inline void SetExiInterruptMask(void) { ((void(*)(void))0x800A2B5C)(); }
+static inline void EXIImm(void) { ((void(*)(void))0x800A2C50)(); }
+static inline void EXIImmEx(void) { ((void(*)(void))0x800A2EAC)(); }
+static inline void EXIDma(void) { ((void(*)(void))0x800A2F4C)(); }
+static inline void EXISync(void) { ((void(*)(void))0x800A3038)(); }
+static inline void EXIClearInterrupts(void) { ((void(*)(void))0x800A3284)(); }
+static inline void EXISetExiCallback(void) { ((void(*)(void))0x800A32CC)(); }
+static inline void __EXIProbe(void) { ((void(*)(void))0x800A3348)(); }
+static inline void EXIProbe(void) { ((void(*)(void))0x800A34BC)(); }
+static inline void EXIProbeEx(void) { ((void(*)(void))0x800A353C)(); }
+static inline void EXIAttach(void) { ((void(*)(void))0x800A35F0)(); }
+static inline void EXIDetach(void) { ((void(*)(void))0x800A36FC)(); }
+static inline void EXISelect(void) { ((void(*)(void))0x800A37B8)(); }
+static inline void EXIDeselect(void) { ((void(*)(void))0x800A38E4)(); }
+static inline void EXIIntrruptHandler(void) { ((void(*)(void))0x800A39F4)(); }
+static inline void TCIIntrruptHandler(void) { ((void(*)(void))0x800A3ABC)(); }
+static inline void EXTIntrruptHandler(void) { ((void(*)(void))0x800A3CD4)(); }
 static inline void EXIInit(void) { ((void(*)(void))0x800A3DA4)(); }
-static inline undefined4 EXILock(int param_1, int param_2, int param_3) { return ((undefined4(*)(int, int, int))0x800A3F78)(param_1, param_2, param_3); }
-static inline undefined4 EXIUnlock(int param_1) { return ((undefined4(*)(int))0x800A406C)(param_1); }
-static inline undefined4 EXIGetState(int param_1) { return ((undefined4(*)(int))0x800A4148)(param_1); }
-static inline void UnlockedHandler(undefined4 param_1) { ((void(*)(undefined4))0x800A4160)(param_1); }
-static inline int EXIGetID(int param_1, int param_2, int * param_3) { return ((int(*)(int, int, int *))0x800A4188)(param_1, param_2, param_3); }
-static inline undefined4 ProbeBarnacle(int param_1, int param_2, int * param_3) { return ((undefined4(*)(int, int, int *))0x800A4538)(param_1, param_2, param_3); }
-static inline void __OSEnableBarnacle(int param_1, int param_2) { ((void(*)(int, int))0x800A46C4)(param_1, param_2); }
-static inline undefined4 InitializeUART(void) { return ((undefined4(*)(void))0x800A4880)(); }
-static inline undefined4 WriteUARTN(char * param_1, uint param_2) { return ((undefined4(*)(char *, uint))0x800A48F0)(param_1, param_2); }
-static inline undefined4 SIBusy(void) { return ((undefined4(*)(void))0x800A4B0C)(); }
-static inline undefined4 SIIsChanBusy(int param_1) { return ((undefined4(*)(int))0x800A4B2C)(param_1); }
-static inline uint CompleteTransfer(void) { return ((uint(*)(void))0x800A4B68)(); }
-static inline void SIInterruptHandler(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800A4E64)(param_1, param_2); }
-static inline bool SIEnablePollingInterrupt(int param_1) { return ((bool(*)(int))0x800A51A8)(param_1); }
-static inline undefined4 SIRegisterPollingHandle(int param_1) { return ((undefined4(*)(int))0x800A5240)(param_1); }
-static inline undefined4 SIUnregisterPollingHandle(int param_1) { return ((undefined4(*)(int))0x800A530C)(param_1); }
+static inline void EXILock(void) { ((void(*)(void))0x800A3F78)(); }
+static inline void EXIUnlock(void) { ((void(*)(void))0x800A406C)(); }
+static inline void EXIGetState(void) { ((void(*)(void))0x800A4148)(); }
+static inline void UnlockedHandler(void) { ((void(*)(void))0x800A4160)(); }
+static inline void EXIGetID(void) { ((void(*)(void))0x800A4188)(); }
+static inline void ProbeBarnacle(void) { ((void(*)(void))0x800A4538)(); }
+static inline void __OSEnableBarnacle(void) { ((void(*)(void))0x800A46C4)(); }
+static inline void InitializeUART(void) { ((void(*)(void))0x800A4880)(); }
+static inline void WriteUARTN(void) { ((void(*)(void))0x800A48F0)(); }
+static inline void SIBusy(void) { ((void(*)(void))0x800A4B0C)(); }
+static inline void SIIsChanBusy(void) { ((void(*)(void))0x800A4B2C)(); }
+static inline void CompleteTransfer(void) { ((void(*)(void))0x800A4B68)(); }
+static inline void SIInterruptHandler(void) { ((void(*)(void))0x800A4E64)(); }
+static inline void SIEnablePollingInterrupt(void) { ((void(*)(void))0x800A51A8)(); }
+static inline void SIRegisterPollingHandle(void) { ((void(*)(void))0x800A5240)(); }
+static inline void SIUnregisterPollingHandle(void) { ((void(*)(void))0x800A530C)(); }
 static inline void SIInit(void) { ((void(*)(void))0x800A5400)(); }
-static inline undefined4 __SITransfer(uint param_1, undefined4 * param_2, int param_3, int param_4, int param_5, int param_6) { return ((undefined4(*)(uint, undefined4 *, int, int, int, int))0x800A54B4)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline uint SIGetStatus(int param_1) { return ((uint(*)(int))0x800A56C0)(param_1); }
-static inline void SISetCommand(int param_1, undefined4 param_2) { ((void(*)(int, undefined4))0x800A573C)(param_1, param_2); }
+static inline void __SITransfer(void) { ((void(*)(void))0x800A54B4)(); }
+static inline void SIGetStatus(void) { ((void(*)(void))0x800A56C0)(); }
+static inline void SISetCommand(void) { ((void(*)(void))0x800A573C)(); }
 static inline void SITransferCommands(void) { ((void(*)(void))0x800A5750)(); }
-static inline uint SISetXY(int param_1, int param_2) { return ((uint(*)(int, int))0x800A5760)(param_1, param_2); }
-static inline uint SIEnablePolling(uint param_1) { return ((uint(*)(uint))0x800A57CC)(param_1); }
-static inline uint SIDisablePolling(uint param_1) { return ((uint(*)(uint))0x800A5868)(param_1); }
-static inline bool SIGetResponseRaw(int param_1) { return ((bool(*)(int))0x800A58D4)(param_1); }
-static inline int SIGetResponse(int param_1, undefined4 * param_2) { return ((int(*)(int, undefined4 *))0x800A59A8)(param_1, param_2); }
-static inline void AlarmHandler_800a5a6c(int param_1) { ((void(*)(int))0x800A5A6C)(param_1); }
-static inline undefined4 SITransfer(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6, uint param_7, uint param_8) { return ((undefined4(*)(int, int, int, int, int, int, uint, uint))0x800A5AF8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void GetTypeCallback(int param_1, uint param_2) { ((void(*)(int, uint))0x800A5C64)(param_1, param_2); }
-static inline int SIGetType(uint param_1) { return ((int(*)(uint))0x800A5EFC)(param_1); }
-static inline undefined4 SIGetTypeAsync(int param_1, undefined * param_2) { return ((undefined4(*)(int, undefined *))0x800A60C0)(param_1, param_2); }
-static inline void SISetSamplingRate(uint param_1) { ((void(*)(uint))0x800A61FC)(param_1); }
+static inline void SISetXY(void) { ((void(*)(void))0x800A5760)(); }
+static inline void SIEnablePolling(void) { ((void(*)(void))0x800A57CC)(); }
+static inline void SIDisablePolling(void) { ((void(*)(void))0x800A5868)(); }
+static inline void SIGetResponseRaw(void) { ((void(*)(void))0x800A58D4)(); }
+static inline void SIGetResponse(void) { ((void(*)(void))0x800A59A8)(); }
+static inline void AlarmHandler_800a5a6c(void) { ((void(*)(void))0x800A5A6C)(); }
+static inline void SITransfer(void) { ((void(*)(void))0x800A5AF8)(); }
+static inline void GetTypeCallback(void) { ((void(*)(void))0x800A5C64)(); }
+static inline void SIGetType(void) { ((void(*)(void))0x800A5EFC)(); }
+static inline void SIGetTypeAsync(void) { ((void(*)(void))0x800A60C0)(); }
+static inline void SISetSamplingRate(void) { ((void(*)(void))0x800A61FC)(); }
 static inline void SIRefreshSamplingRate(void) { ((void(*)(void))0x800A62E0)(); }
 static inline void SetReadParameters(CompressedDiskRead * cdr, undefined * readBuffer, undefined * dst, int isSegmentedRead) { ((void(*)(CompressedDiskRead *, undefined *, undefined *, int))0x800A64E0)(cdr, readBuffer, dst, isSegmentedRead); }
 static inline void StartThreadForReadingFromDisk(void) { ((void(*)(void))0x800A65A0)(); }
@@ -39640,100 +39642,100 @@ static inline void ReadDataFromDisk(void) { ((void(*)(void))0x800A65F8)(); }
 static inline void DecompressDiskData(void) { ((void(*)(void))0x800A6654)(); }
 static inline void ReadBits(int bits) { ((void(*)(int))0x800A673C)(bits); }
 static inline void manageFileReadingProcess(void) { ((void(*)(void))0x800A6900)(); }
-static inline void ARAMTransfer(CompressedDiskRead * compressedStruct, undefined * readDestination, byte loadInfo, undefined * aramAddress) { ((void(*)(CompressedDiskRead *, undefined *, byte, undefined *))0x800A70DC)(compressedStruct, readDestination, loadInfo, aramAddress); }
+static inline void ARAMTransfer(CompressedDiskRead * compressedStruct, undefined * readDestination, byte loadInfo_, undefined * aramAddress) { ((void(*)(CompressedDiskRead *, undefined *, byte, undefined *))0x800A70DC)(compressedStruct, readDestination, loadInfo_, aramAddress); }
 static inline uint ConvertPathToEntryNum(char * * param_1) { return ((uint(*)(char * *))0x800A7544)(param_1); }
 static inline void handleDVDCancelAndARQRemoval(void) { ((void(*)(void))0x800A7568)(); }
 static inline void cancelReadCallback1(void) { ((void(*)(void))0x800A75EC)(); }
 static inline void cancelReadCallback2(void) { ((void(*)(void))0x800A7670)(); }
 static inline void initializeDVDSystem(void) { ((void(*)(void))0x800A76BC)(); }
 static inline void someGFXRenderingFn(void) { ((void(*)(void))0x800A7C08)(); }
-static inline void initRenderMode(undefined * param_1, int param_2, short param_3) { ((void(*)(undefined *, int, short))0x800A80E8)(param_1, param_2, param_3); }
+static inline void initRenderMode(void) { ((void(*)(void))0x800A80E8)(); }
 static inline void LoadFile(int fileName, int param_2, int param_3, int param_4, int param_5) { ((void(*)(int, int, int, int, int))0x800A8CBC)(fileName, param_2, param_3, param_4, param_5); }
 static inline void initInputDevices(void) { ((void(*)(void))0x800A983C)(); }
-static inline void memoryCardRelatedFunction(int param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(int, undefined4, undefined4, undefined4))0x800AAEE4)(param_1, param_2, param_3, param_4); }
+static inline void memoryCardRelatedFunction(void) { ((void(*)(void))0x800AAEE4)(); }
 static inline void processBannerImage(int param_1, astruct_9 * textureData, int texSize, int param_4, int param_5, int param_6, byte param_7, int param_8, int param_9, int maybeSize) { ((void(*)(int, astruct_9 *, int, int, int, int, byte, int, int, int))0x800AC508)(param_1, textureData, texSize, param_4, param_5, param_6, param_7, param_8, param_9, maybeSize); }
 static inline void unkLoadingCleanupRelated(int * param_1) { ((void(*)(int *))0x800ACF14)(param_1); }
 static inline void allocateAlignedMemoryBlock(int alignment, int size) { ((void(*)(int, int))0x800ACF34)(alignment, size); }
 static inline void * OSAllocFromHeap(OSHeapHandle heapHandle, int size) { return ((void *(*)(OSHeapHandle, int))0x800ACFD0)(heapHandle, size); }
 static inline void YUV2RGB(int src, byte * dst, int param_3, int param_4) { ((void(*)(int, byte *, int, int))0x800ADF60)(src, dst, param_3, param_4); }
 static inline void YUV2RGB_(int src, byte * dst, int param_3, int param_4) { ((void(*)(int, byte *, int, int))0x800AE298)(src, dst, param_3, param_4); }
-static inline undefined4 MovStreamThread(byte * param_1) { return ((undefined4(*)(byte *))0x800AEB18)(param_1); }
-static inline undefined4 MovDecodeThread(void) { return ((undefined4(*)(void))0x800AED34)(); }
-static inline void makeLookAtMatrix(Mtx * m, Vec3f * coordinate, Vec3f * up, Vec3f * target) { ((void(*)(Mtx *, Vec3f *, Vec3f *, Vec3f *))0x800B0724)(m, coordinate, up, target); }
+static inline void MovStreamThread(void) { ((void(*)(void))0x800AEB18)(); }
+static inline void MovDecodeThread(void) { ((void(*)(void))0x800AED34)(); }
+static inline void makeLookAtMatrix(Mtx * m, Vec3f * coordinate, Vec3f * up_, Vec3f * target) { ((void(*)(Mtx *, Vec3f *, Vec3f *, Vec3f *))0x800B0724)(m, coordinate, up_, target); }
 static inline void soundQuit(void) { ((void(*)(void))0x800B07FC)(); }
-static inline void initSound_800b0834(byte * param_1, undefined4 param_2, int param_3, int param_4) { ((void(*)(byte *, undefined4, int, int))0x800B0834)(param_1, param_2, param_3, param_4); }
-static inline void SndFree(int param_1) { ((void(*)(int))0x800B0938)(param_1); }
-static inline void SndAlloc(int param_1) { ((void(*)(int))0x800B099C)(param_1); }
+static inline void initSound_800b0834(void) { ((void(*)(void))0x800B0834)(); }
+static inline void SndFree(void) { ((void(*)(void))0x800B0938)(); }
+static inline void SndAlloc(void) { ((void(*)(void))0x800B099C)(); }
 static inline void removeCurrentDrawingItem(void) { ((void(*)(void))0x800B0A14)(); }
-#define insertGraphicDrawingFunction FUNCTION_ADDRESS(DrawingSceneStruct *, 0x800B0A5C, func * /*paramFuncPtr*/, short /*priority*/)
+static inline DrawingSceneStruct * insertGraphicDrawingFunction(void (*paramFuncPtr)(void *), short priority) { return ((DrawingSceneStruct *(*)(void (*)(void *), short))0x800B0A5C)(paramFuncPtr, priority); }
 static inline void resetAllDrawingStructs_tonop(void) { ((void(*)(void))0x800B0B2C)(); }
 static inline void resetAllDrawingStructs(void) { ((void(*)(void))0x800B0BE8)(); }
 static inline void nop_function(void) { ((void(*)(void))0x800B0CB4)(); }
 static inline void RunDrawScripts_with_stack_variables(void) { ((void(*)(void))0x800B0CB8)(); }
-static inline int AllocateSprite_(uint param_1, int param_2) { return ((int(*)(uint, int))0x800B0D68)(param_1, param_2); }
+static inline void AllocateSprite_(void) { ((void(*)(void))0x800B0D68)(); }
 static inline void DrawNullSprite(SpritePositionStruct * position, int count) { ((void(*)(SpritePositionStruct *, int))0x800B12A4)(position, count); }
 static inline void renderSprite(int param_1, int tex, int width, int height) { ((void(*)(int, int, int, int))0x800B1314)(param_1, tex, width, height); }
 static inline void DrawSprite_TexObj(SpritePositionStruct * param_1, TextureObj * tex) { ((void(*)(SpritePositionStruct *, TextureObj *))0x800B1350)(param_1, tex); }
-static inline void DrawSprite(int drawSpriteEnum, SpritePositionStruct * position, int positionStructCount, TextureObj * texture, int width, int height) { ((void(*)(int, SpritePositionStruct *, int, TextureObj *, int, int))0x800B1500)(drawSpriteEnum, position, positionStructCount, texture, width, height); }
-static inline void setTextRenderingMode_(byte param_1) { ((void(*)(byte))0x800B2160)(param_1); }
+static inline void DrawSprite(int drawSpriteEnum, SpritePositionStruct * position, int positionStructCount, TextureObj * texture_, int width, int height) { ((void(*)(int, SpritePositionStruct *, int, TextureObj *, int, int))0x800B1500)(drawSpriteEnum, position, positionStructCount, texture_, width, height); }
+static inline void setTextRenderingMode_(void) { ((void(*)(void))0x800B2160)(); }
 static inline void ProcessActorBonesForShadows(ACTActor * actor) { ((void(*)(ACTActor *))0x800B2AC8)(actor); }
 static inline void Set_FUN_800b2b6c(undefined * param_1, int param_2) { ((void(*)(undefined *, int))0x800B2B6C)(param_1, param_2); }
-static inline void callDSInsertListObject(int param_1, uint param_2) { ((void(*)(int, uint))0x800B2B74)(param_1, param_2); }
+static inline void callDSInsertListObject(void) { ((void(*)(void))0x800B2B74)(); }
 static inline void maybeTransformVectorByAnimationMatrix(int param_1, uint param_2, int vec) { ((void(*)(int, uint, int))0x800B2C44)(param_1, param_2, vec); }
 static inline void ACTSort(ACTActor * actor) { ((void(*)(ACTActor *))0x800B2CBC)(actor); }
 static inline void actorBoneRelated(ACTActor * param_1, int param_2, int param_3, int param_4) { ((void(*)(ACTActor *, int, int, int))0x800B34B4)(param_1, param_2, param_3, param_4); }
 static inline void BuildBoneSkinOrientationMatrix_800b37a4(ACTBone * actBone, int mtx) { ((void(*)(ACTBone *, int))0x800B37A4)(actBone, mtx); }
 static inline int maybeBallRelated(ACTActor * * actor, ActLayout * actLayout, short actorID) { return ((int(*)(ACTActor * *, ActLayout *, short))0x800B4048)(actor, actLayout, actorID); }
-static inline void InitBone_800b4084(undefined4 param_1, int * param_2, int param_3, ushort * param_4, int param_5) { ((void(*)(undefined4, int *, int, ushort *, int))0x800B4084)(param_1, param_2, param_3, param_4, param_5); }
-static inline void maybeProcessActLayout(ACTActor * act, ActLayout * layout) { ((void(*)(ACTActor *, ActLayout *))0x800B43A0)(act, layout); }
-static inline void renderingRelated(int param_1) { ((void(*)(int))0x800B472C)(param_1); }
+static inline void InitBone_800b4084(void) { ((void(*)(void))0x800B4084)(); }
+static inline void maybeProcessActLayout(ACTActor * act_, ActLayout * layout) { ((void(*)(ACTActor *, ActLayout *))0x800B43A0)(act_, layout); }
+static inline void renderingRelated(void) { ((void(*)(void))0x800B472C)(); }
 static inline void PointActorToGEOPalette(ACTActor * actor, GEOPalette * gPalette) { ((void(*)(ACTActor *, GEOPalette *))0x800B4908)(actor, gPalette); }
 static inline void LoadActorLayout(ActLayout * actLayout) { ((void(*)(ActLayout *))0x800B4910)(actLayout); }
 static inline void AdjustActorPointers(ACTActor * actor) { ((void(*)(ACTActor *))0x800B49E4)(actor); }
-static inline double calledByHazardLogic(int param_1) { return ((double(*)(int))0x800B4A94)(param_1); }
-static inline void updateBoneParam(ActLayout * act, byte param_2) { ((void(*)(ActLayout *, byte))0x800B4AFC)(act, param_2); }
+static inline void calledByHazardLogic(void) { ((void(*)(void))0x800B4A94)(); }
+static inline void updateBoneParam(ActLayout * act_, byte param_2) { ((void(*)(ActLayout *, byte))0x800B4AFC)(act_, param_2); }
 static inline void AnimateActorBones(ACTActor * actor) { ((void(*)(ACTActor *))0x800B4B38)(actor); }
-static inline void ACTSetAnimation(ACTActor * actor, AnimBank * animBank, char * sequenceName, short seqNum, float time) { ((void(*)(ACTActor *, AnimBank *, char *, short, float))0x800B4D64)(actor, animBank, sequenceName, seqNum, time); }
-static inline void ANIMGetKeyFrameFromTrack(ANIMTrack * animTrack, float time, ANIMKeyFrame * currentFrame, ANIMKeyFrame * nextFrame) { ((void(*)(ANIMTrack *, float, ANIMKeyFrame *, ANIMKeyFrame *))0x800B4E9C)(animTrack, time, currentFrame, nextFrame); }
+static inline void ACTSetAnimation(ACTActor * actor, AnimBank * animBank, char * sequenceName, short seqNum, float time_) { ((void(*)(ACTActor *, AnimBank *, char *, short, float))0x800B4D64)(actor, animBank, sequenceName, seqNum, time_); }
+static inline void ANIMGetKeyFrameFromTrack(ANIMTrack * animTrack, float time_, ANIMKeyFrame * currentFrame, ANIMKeyFrame * nextFrame) { ((void(*)(ANIMTrack *, float, ANIMKeyFrame *, ANIMKeyFrame *))0x800B4E9C)(animTrack, time_, currentFrame, nextFrame); }
 static inline void ANIMGetTrackFromSequence(AnimSequence * animSeq, short animTrackID) { ((void(*)(AnimSequence *, short))0x800B4F9C)(animSeq, animTrackID); }
 static inline AnimSequence * ANIMGetSequence(AnimBank * animBank, char * sequenceName, short seqNum) { return ((AnimSequence *(*)(AnimBank *, char *, short))0x800B4FEC)(animBank, sequenceName, seqNum); }
 static inline void ANIMGet(AnimBank * animBank, char * name) { ((void(*)(AnimBank *, char *))0x800B508C)(animBank, name); }
-static inline void Squad(double param_1, float * param_2, float * param_3, float * param_4, float * param_5, float * param_6) { ((void(*)(double, float *, float *, float *, float *, float *))0x800B516C)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void GetData(double param_1, byte param_2, int param_3, int param_4, byte param_5) { ((void(*)(double, byte, int, int, byte))0x800B560C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void DoTranslationAnimation(float * param_1, float * param_2, float * param_3) { ((void(*)(float *, float *, float *))0x800B5DA8)(param_1, param_2, param_3); }
+static inline void Squad(void) { ((void(*)(void))0x800B516C)(); }
+static inline void GetData(void) { ((void(*)(void))0x800B560C)(); }
+static inline void DoTranslationAnimation(void) { ((void(*)(void))0x800B5DA8)(); }
 static inline void DoScaleAnimation(ANIMPipe * animPipe, ANIMKeyFrame * startFrame, ANIMKeyFrame * endFrame) { ((void(*)(ANIMPipe *, ANIMKeyFrame *, ANIMKeyFrame *))0x800B63DC)(animPipe, startFrame, endFrame); }
-static inline void DoEulerAnimation(float * param_1, float * param_2, float * param_3) { ((void(*)(float *, float *, float *))0x800B6E0C)(param_1, param_2, param_3); }
-static inline void DoQuatAnimation(float * param_1, float * param_2, float * param_3) { ((void(*)(float *, float *, float *))0x800B71C0)(param_1, param_2, param_3); }
+static inline void DoEulerAnimation(void) { ((void(*)(void))0x800B6E0C)(); }
+static inline void DoQuatAnimation(void) { ((void(*)(void))0x800B71C0)(); }
 static inline void ANIMTick(ANIMPipe * animPipe) { ((void(*)(ANIMPipe *))0x800B7718)(animPipe); }
-static inline void ANIMBind(ANIMPipe * animPipe, CTRLControl * control, ANIMTrack * animTrack, float time) { ((void(*)(ANIMPipe *, CTRLControl *, ANIMTrack *, float))0x800B79A0)(animPipe, control, animTrack, time); }
-static inline void ACTSetBoneTrack(ACTBone * bone, ANIMTrack * track, float time) { ((void(*)(ACTBone *, ANIMTrack *, float))0x800B79D0)(bone, track, time); }
-static inline int checkObjectVisibility(int objIndex, Vec3f * SrcVec, Mtx * transformationMtx) { return ((int(*)(int, Vec3f *, Mtx *))0x800B7D3C)(objIndex, SrcVec, transformationMtx); }
+static inline void ANIMBind(ANIMPipe * animPipe, CTRLControl * control, ANIMTrack * animTrack, float time_) { ((void(*)(ANIMPipe *, CTRLControl *, ANIMTrack *, float))0x800B79A0)(animPipe, control, animTrack, time_); }
+static inline void ACTSetBoneTrack(ACTBone * bone, ANIMTrack * track, float time_) { ((void(*)(ACTBone *, ANIMTrack *, float))0x800B79D0)(bone, track, time_); }
+static inline int checkObjectVisibility(int objIndex_, Vec3f * SrcVec, Mtx * transformationMtx) { return ((int(*)(int, Vec3f *, Mtx *))0x800B7D3C)(objIndex_, SrcVec, transformationMtx); }
 static inline int checkPlaneIntersection(Vec3f * planePoints, Vec3f * testPoints) { return ((int(*)(Vec3f *, Vec3f *))0x800B81C0)(planePoints, testPoints); }
-static inline void CTRL_GetQuatUnk(int ctrl, float * x, float * y, float * z, float * w) { ((void(*)(int, float *, float *, float *, float *))0x800B845C)(ctrl, x, y, z, w); }
-static inline void CTRL_SetQuatUnk(undefined8 x, undefined8 y, undefined8 z, undefined8 w, byte * param_5) { ((void(*)(undefined8, undefined8, undefined8, undefined8, byte *))0x800B8480)(x, y, z, w, param_5); }
+static inline void CTRL_GetQuatUnk(int ctrl, float * x_, float * y_, float * z_, float * w) { ((void(*)(int, float *, float *, float *, float *))0x800B845C)(ctrl, x_, y_, z_, w); }
+static inline void CTRL_SetQuatUnk(undefined8 x_, undefined8 y_, undefined8 z_, undefined8 w, byte * param_5) { ((void(*)(undefined8, undefined8, undefined8, undefined8, byte *))0x800B8480)(x_, y_, z_, w, param_5); }
 static inline void CTRLBuildInverseMatrix(CTRLControl * src, int dst) { ((void(*)(CTRLControl *, int))0x800B87F4)(src, dst); }
 static inline void CTRLBuildMatrix_Flip(CTRLControl * src, int dst, EnumCTRLXYZ flip) { ((void(*)(CTRLControl *, int, EnumCTRLXYZ))0x800B8BF0)(src, dst, flip); }
 static inline void CTRLBuildMatrix_FlipX(CTRLControl * param_1, int param_2) { ((void(*)(CTRLControl *, int))0x800B8F20)(param_1, param_2); }
 static inline void CTRLBuildMatrix_FlipY(CTRLControl * param_1, int param_2) { ((void(*)(CTRLControl *, int))0x800B9214)(param_1, param_2); }
 static inline void CTRLBuildMatrix(CTRLControl * control, Mtx * m) { ((void(*)(CTRLControl *, Mtx *))0x800B9508)(control, m); }
-static inline void CTRLGetTranslation(CTRLControl * control, float * x, float * y, float * z) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B97D4)(control, x, y, z); }
-static inline void CTRLGetQuat(CTRLControl * control, float * x, float * y, float * z, float * w) { ((void(*)(CTRLControl *, float *, float *, float *, float *))0x800B97F0)(control, x, y, z, w); }
-static inline void CTRLGetRotation(CTRLControl * control, float * x, float * y, float * z) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9814)(control, x, y, z); }
-static inline void CTRLGetScale(CTRLControl * control, float * x, float * y, float * z) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9830)(control, x, y, z); }
+static inline void CTRLGetTranslation(CTRLControl * control, float * x_, float * y_, float * z_) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B97D4)(control, x_, y_, z_); }
+static inline void CTRLGetQuat(CTRLControl * control, float * x_, float * y_, float * z_, float * w) { ((void(*)(CTRLControl *, float *, float *, float *, float *))0x800B97F0)(control, x_, y_, z_, w); }
+static inline void CTRLGetRotation(CTRLControl * control, float * x_, float * y_, float * z_) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9814)(control, x_, y_, z_); }
+static inline void CTRLGetScale(CTRLControl * control, float * x_, float * y_, float * z_) { ((void(*)(CTRLControl *, float *, float *, float *))0x800B9830)(control, x_, y_, z_); }
 static inline void CTRLSetMatrix(CTRLControl * control, Mtx * m) { ((void(*)(CTRLControl *, Mtx *))0x800B984C)(control, m); }
-static inline void CTRLSetTranslation(CTRLControl * control, float x, float y, float z) { ((void(*)(CTRLControl *, float, float, float))0x800B9880)(control, x, y, z); }
-static inline void CTRLSetQuat(CTRLControl * control, float x, float y, float z, float w) { ((void(*)(CTRLControl *, float, float, float, float))0x800B98A8)(control, x, y, z, w); }
-static inline void CTRLSetRotation(CTRLControl * control, float x, float y, float z) { ((void(*)(CTRLControl *, float, float, float))0x800B98E0)(control, x, y, z); }
-static inline void CTRLSetScale(CTRLControl * control, float x, float y, float z) { ((void(*)(CTRLControl *, float, float, float))0x800B9914)(control, x, y, z); }
+static inline void CTRLSetTranslation(CTRLControl * control, float x_, float y_, float z_) { ((void(*)(CTRLControl *, float, float, float))0x800B9880)(control, x_, y_, z_); }
+static inline void CTRLSetQuat(CTRLControl * control, float x_, float y_, float z_, float w) { ((void(*)(CTRLControl *, float, float, float, float))0x800B98A8)(control, x_, y_, z_, w); }
+static inline void CTRLSetRotation(CTRLControl * control, float x_, float y_, float z_) { ((void(*)(CTRLControl *, float, float, float))0x800B98E0)(control, x_, y_, z_); }
+static inline void CTRLSetScale(CTRLControl * control, float x_, float y_, float z_) { ((void(*)(CTRLControl *, float, float, float))0x800B9914)(control, x_, y_, z_); }
 static inline void SetFogNone(void) { ((void(*)(void))0x800B9974)(); }
-static inline void SetFog(double param_1, double param_2, double param_3, double param_4, GXFogType param_5, int * param_6) { ((void(*)(double, double, double, double, GXFogType, int *))0x800B99C4)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline void SetFog(void) { ((void(*)(void))0x800B99C4)(); }
 static inline void SetFogNoneAgain(void) { ((void(*)(void))0x800B9A30)(); }
 static inline void setLITLightPtr(LITLightPtr * lit) { ((void(*)(LITLightPtr *))0x800B9AA8)(lit); }
-static inline void DODefaultUserTevMode(int param_1, int param_2, int param_3, int param_4, GXTexCoordID GXTexCoordID) { ((void(*)(int, int, int, int, GXTexCoordID))0x800BA44C)(param_1, param_2, param_3, param_4, GXTexCoordID); }
-static inline void CustomSetState(DODisplayObj * DODisplayObj, DODisplayState * state, int cameraMtx) { ((void(*)(DODisplayObj *, DODisplayState *, int))0x800BA848)(DODisplayObj, state, cameraMtx); }
-static inline void SetState(DODisplayState * state, DODisplayObj * dispObj, int camera) { ((void(*)(DODisplayState *, DODisplayObj *, int))0x800BBB2C)(state, dispObj, camera); }
+static inline void DODefaultUserTevMode(int param_1, int param_2, int param_3, int param_4, GXTexCoordID GXTexCoordID_) { ((void(*)(int, int, int, int, GXTexCoordID))0x800BA44C)(param_1, param_2, param_3, param_4, GXTexCoordID_); }
+static inline void CustomSetState(DODisplayObj * DODisplayObj_, DODisplayState * state, int cameraMtx) { ((void(*)(DODisplayObj *, DODisplayState *, int))0x800BA848)(DODisplayObj_, state, cameraMtx); }
+static inline void SetState(DODisplayState * state, DODisplayObj * dispObj, int camera_) { ((void(*)(DODisplayState *, DODisplayObj *, int))0x800BBB2C)(state, dispObj, camera_); }
 static inline void GetColorFromQuant(int src, byte srcCode, int r, int g, int b, int a) { ((void(*)(int, byte, int, int, int, int))0x800BBF5C)(src, srcCode, r, g, b, a); }
-static inline void DOVARender(DODisplayObj * displayObj, int camera, byte numLights, va_list * list) { ((void(*)(DODisplayObj *, int, byte, va_list *))0x800BC0C4)(displayObj, camera, numLights, list); }
+static inline void DOVARender(DODisplayObj * displayObj, int camera_, byte numLights, va_list * list) { ((void(*)(DODisplayObj *, int, byte, va_list *))0x800BC0C4)(displayObj, camera_, numLights, list); }
 static inline void DOVARenderSkin(int param_1, int param_2, Mtx * mtxArray, int invTransposeMtxArray, int param_5, int param_6) { ((void(*)(int, int, Mtx *, int, int, int))0x800BC7E8)(param_1, param_2, mtxArray, invTransposeMtxArray, param_5, param_6); }
 static inline void updateMemoryLocation(int memoryAddress, int value) { ((void(*)(int, int))0x800BC824)(memoryAddress, value); }
 static inline void DOSetWorldMatrix(DODisplayObj * dispObj, int m) { ((void(*)(DODisplayObj *, int))0x800BC834)(dispObj, m); }
@@ -39747,256 +39749,256 @@ static inline void UpdateTexturePalettePointers(GEOPalette * palette, int newPal
 static inline void __MTGQR5(void) { ((void(*)(void))0x800BD1F0)(); }
 static inline void __MTGQR6(void) { ((void(*)(void))0x800BD1F8)(); }
 static inline void __MTGQR7(void) { ((void(*)(void))0x800BD200)(); }
-static inline void GQRSetup7(int param_1, int param_2, int param_3, int param_4) { ((void(*)(int, int, int, int))0x800BD208)(param_1, param_2, param_3, param_4); }
-static inline void GQRSetup6(int param_1, int param_2, int param_3, int param_4) { ((void(*)(int, int, int, int))0x800BD240)(param_1, param_2, param_3, param_4); }
-static inline void GQRSetup5(int param_1, int param_2, int param_3, int param_4) { ((void(*)(int, int, int, int))0x800BD278)(param_1, param_2, param_3, param_4); }
-#define lightingRelated FUNCTION_ADDRESS(byte, 0x800BD2B0, byte_4_ *)
-#define adjustLightingParams FUNCTION_ADDRESS(void, 0x800BD2CC, byte, byte_4_ *)
-static inline void LITXForm(int param_1, Mtx * param_2) { ((void(*)(int, Mtx *))0x800BD300)(param_1, param_2); }
+static inline void GQRSetup7(void) { ((void(*)(void))0x800BD208)(); }
+static inline void GQRSetup6(void) { ((void(*)(void))0x800BD240)(); }
+static inline void GQRSetup5(void) { ((void(*)(void))0x800BD278)(); }
+static inline void lightingRelated(void) { ((void(*)(void))0x800BD2B0)(); }
+static inline void adjustLightingParams(void) { ((void(*)(void))0x800BD2CC)(); }
+static inline void LITXForm(void) { ((void(*)(void))0x800BD300)(); }
 static inline void LITInitColor(LITLightPtr * light, GXColor color) { ((void(*)(LITLightPtr *, GXColor))0x800BD3A0)(light, color); }
-static inline void LITInitDir(double param_1, double param_2, double param_3, int param_4) { ((void(*)(double, double, double, int))0x800BD3AC)(param_1, param_2, param_3, param_4); }
-static inline void LITInitPos(LITLightPtr * light, float x, float y, float z) { ((void(*)(LITLightPtr *, float, float, float))0x800BD3BC)(light, x, y, z); }
+static inline void LITInitDir(void) { ((void(*)(void))0x800BD3AC)(); }
+static inline void LITInitPos(LITLightPtr * light, float x_, float y_, float z_) { ((void(*)(LITLightPtr *, float, float, float))0x800BD3BC)(light, x_, y_, z_); }
 static inline void LITInitAttn(LITLightPtr * light, float a0, float a1, float a2, float k0, float k1, float k2) { ((void(*)(LITLightPtr *, float, float, float, float, float, float))0x800BD3CC)(light, a0, a1, a2, k0, k1, k2); }
 static inline void LITAlloc(LITLightPtr * light) { ((void(*)(LITLightPtr *))0x800BD3EC)(light); }
 static inline void sknRelated(ACTActor * param_1, int param_2) { ((void(*)(ACTActor *, int))0x800BDA94)(param_1, param_2); }
-static inline void animateBallRelated(int param_1, ushort param_2, undefined2 param_3, ActLayout * param_4, int param_5, undefined4 param_6) { ((void(*)(int, ushort, undefined2, ActLayout *, int, undefined4))0x800BDC88)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline void animateBallRelated(void) { ((void(*)(void))0x800BDC88)(); }
 static inline void ActorObjectInitTable(ushort functionArguments) { ((void(*)(ushort))0x800BDD74)(functionArguments); }
-static inline void setVectors(Vec3f * param_1) { ((void(*)(Vec3f *))0x800BEA04)(param_1); }
+static inline void setVectors(void) { ((void(*)(void))0x800BEA04)(); }
 static inline Mtx * returnMtxPtr(uint param_1) { return ((Mtx *(*)(uint))0x800BEB80)(param_1); }
 static inline void returnDrawShadows(void) { ((void(*)(void))0x800BEBA0)(); }
 static inline bool GetDrawShadows(void) { return ((bool(*)(void))0x800BEBB0)(); }
 static inline void DrawShadows(bool shadowsOn) { ((void(*)(bool))0x800BEBC0)(shadowsOn); }
 static inline void updateVectorInArray(int index, Vec3f * vector) { ((void(*)(int, Vec3f *))0x800BEBCC)(index, vector); }
 static inline void loadTlutRelated(void) { ((void(*)(void))0x800BF008)(); }
-static inline void maybeUpdateFunctionPointer(undefined * param_1) { ((void(*)(undefined *))0x800BF038)(param_1); }
-static inline bool * ShouldDrawShadows(void) { return ((bool *(*)(void))0x800BF068)(); }
+static inline void maybeUpdateFunctionPointer(void) { ((void(*)(void))0x800BF038)(); }
+static inline void ShouldDrawShadows(void) { ((void(*)(void))0x800BF068)(); }
 static inline void SKNLoadFile(SKHeader * skHeader) { ((void(*)(SKHeader *))0x800BF074)(skHeader); }
-static inline void SKNFlushByIndex(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x800BF1A4)(param_1, param_2, param_3); }
-static inline void SKNFlushByIndex_800bf1c0(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x800BF1C0)(param_1, param_2, param_3); }
-static inline int SKNBzero32B(int param_1, uint param_2) { return ((int(*)(int, uint))0x800BF1E8)(param_1, param_2); }
+static inline void SKNFlushByIndex(void) { ((void(*)(void))0x800BF1A4)(); }
+static inline void SKNFlushByIndex_800bf1c0(void) { ((void(*)(void))0x800BF1C0)(); }
+static inline void SKNBzero32B(void) { ((void(*)(void))0x800BF1E8)(); }
 static inline void SKNInit(void) { ((void(*)(void))0x800BF204)(); }
 static inline void processModelDataRelated(int param_1, int params, int param_3) { ((void(*)(int, int, int))0x800BF2A8)(param_1, params, param_3); }
 static inline void SKNIt(ACTBone * bones, SKHeader * param_2, int param_3) { ((void(*)(ACTBone *, SKHeader *, int))0x800BF89C)(bones, param_2, param_3); }
-static inline void SKN1Vecs16Norms16(int param_1, float * param_2, int param_3, int param_4) { ((void(*)(int, float *, int, int))0x800BFE90)(param_1, param_2, param_3, param_4); }
-static inline void SKN2Vecs16Norms16NoTouch(int param_1, int param_2, float * param_3, float * param_4, int param_5, int param_6) { ((void(*)(int, int, float *, float *, int, int))0x800C00A8)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline undefined8 SKNAccVecs16Norms16Iu16(int param_1, int param_2, float * param_3, int param_4, ushort * param_5, int param_6) { return ((undefined8(*)(int, int, float *, int, ushort *, int))0x800C04E8)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline undefined8 SKNAccVecs16Norms16Iu16_800c0630(int param_1, int param_2, float * param_3, int param_4, ushort * param_5, int param_6) { return ((undefined8(*)(int, int, float *, int, ushort *, int))0x800C0630)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline void SKN1Vecs16Norms16(void) { ((void(*)(void))0x800BFE90)(); }
+static inline void SKN2Vecs16Norms16NoTouch(void) { ((void(*)(void))0x800C00A8)(); }
+static inline void SKNAccVecs16Norms16Iu16(void) { ((void(*)(void))0x800C04E8)(); }
+static inline void SKNAccVecs16Norms16Iu16_800c0630(void) { ((void(*)(void))0x800C0630)(); }
 static inline void AdjustTextureHeaderPointers(TextureArchiveHeader * textureArchive) { ((void(*)(TextureArchiveHeader *))0x800C0770)(textureArchive); }
-static inline uint seqGetPrivateId(uint param_1) { return ((uint(*)(uint))0x800C0A8C)(param_1); }
-static inline void seqStartPlay(undefined4 param_1, undefined4 param_2, int param_3, int * param_4, uint * param_5, undefined param_6, undefined2 param_7) { ((void(*)(undefined4, undefined4, int, int *, uint *, undefined, undefined2))0x800C0AF4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
-static inline void StartPause(int * param_1) { ((void(*)(int *))0x800C15C0)(param_1); }
-static inline void seqPause(uint param_1) { ((void(*)(uint))0x800C1624)(param_1); }
-static inline void seqStop(uint param_1) { ((void(*)(uint))0x800C18A0)(param_1); }
+static inline void seqGetPrivateId(void) { ((void(*)(void))0x800C0A8C)(); }
+static inline void seqStartPlay(void) { ((void(*)(void))0x800C0AF4)(); }
+static inline void StartPause(void) { ((void(*)(void))0x800C15C0)(); }
+static inline void seqPause(void) { ((void(*)(void))0x800C1624)(); }
+static inline void seqStop(void) { ((void(*)(void))0x800C18A0)(); }
 static inline void seqKillAllInstances(void) { ((void(*)(void))0x800C1B50)(); }
-static inline void seqKillInstancesByGroupID(short param_1) { ((void(*)(short))0x800C1BAC)(param_1); }
-static inline void seqSpeed(uint param_1, short param_2) { ((void(*)(uint, short))0x800C1C3C)(param_1, param_2); }
-static inline void seqContinue(uint param_1) { ((void(*)(uint))0x800C1D20)(param_1); }
-static inline void seqMute(uint param_1, int param_2, int param_3) { ((void(*)(uint, int, int))0x800C1E28)(param_1, param_2, param_3); }
-static inline void seqVolume(undefined4 param_1, undefined4 param_2, uint param_3, uint param_4) { ((void(*)(undefined4, undefined4, uint, uint))0x800C1EE4)(param_1, param_2, param_3, param_4); }
-static inline void seqCrossFade(undefined4 param_1, undefined4 param_2, uint param_3) { ((void(*)(undefined4, undefined4, uint))0x800C20B0)(param_1, param_2, param_3); }
-static inline undefined * GenerateNextTrackEvent(byte param_1) { return ((undefined *(*)(byte))0x800C2C08)(param_1); }
-static inline void HandleEvent(undefined4 param_1, undefined4 param_2, uint * param_3, undefined4 param_4, uint param_5) { ((void(*)(undefined4, undefined4, uint *, undefined4, uint))0x800C2E20)(param_1, param_2, param_3, param_4, param_5); }
+static inline void seqKillInstancesByGroupID(void) { ((void(*)(void))0x800C1BAC)(); }
+static inline void seqSpeed(void) { ((void(*)(void))0x800C1C3C)(); }
+static inline void seqContinue(void) { ((void(*)(void))0x800C1D20)(); }
+static inline void seqMute(void) { ((void(*)(void))0x800C1E28)(); }
+static inline void seqVolume(void) { ((void(*)(void))0x800C1EE4)(); }
+static inline void seqCrossFade(void) { ((void(*)(void))0x800C20B0)(); }
+static inline void GenerateNextTrackEvent(void) { ((void(*)(void))0x800C2C08)(); }
+static inline void HandleEvent(void) { ((void(*)(void))0x800C2E20)(); }
 static inline void InitTrackEvents(void) { ((void(*)(void))0x800C38E0)(); }
 static inline void HandleTrackEvents(void) { ((void(*)(void))0x800C3A54)(); }
 static inline void seqHandle(void) { ((void(*)(void))0x800C3EF0)(); }
 static inline void seqInit(void) { ((void(*)(void))0x800C490C)(); }
-static inline void synthSetBpm(int param_1, byte param_2, uint param_3) { ((void(*)(int, byte, uint))0x800C4AB4)(param_1, param_2, param_3); }
-static inline undefined4 synthGetTicksPerSecond(int param_1) { return ((undefined4(*)(int))0x800C4AF8)(param_1); }
-static inline void synthInitPortamento(int param_1) { ((void(*)(int))0x800C4B2C)(param_1); }
-static inline void do_voice_portamento(undefined4 param_1, undefined4 param_2, uint param_3, undefined4 param_4, undefined4 * param_5) { ((void(*)(undefined4, undefined4, uint, undefined4, undefined4 *))0x800C4BA4)(param_1, param_2, param_3, param_4, param_5); }
+static inline void synthSetBpm(void) { ((void(*)(void))0x800C4AB4)(); }
+static inline void synthGetTicksPerSecond(void) { ((void(*)(void))0x800C4AF8)(); }
+static inline void synthInitPortamento(void) { ((void(*)(void))0x800C4B2C)(); }
+static inline void do_voice_portamento(void) { ((void(*)(void))0x800C4BA4)(); }
 static inline void StartLayer(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, int param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int))0x800C4E44)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
 static inline void StartKeymap(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, int param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, int, byte, byte, int))0x800C5204)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
 static inline enumSoundEffect_int synthStartSound(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, uint param_5, undefined4 param_6, uint param_7, undefined4 param_8, undefined param_9, undefined param_10, undefined2 param_11, undefined2 param_12, undefined param_13, short param_14, undefined param_15, undefined4 param_16) { return ((enumSoundEffect_int(*)(undefined4, undefined4, undefined4, undefined4, uint, undefined4, uint, undefined4, undefined, undefined, undefined2, undefined2, undefined, short, undefined, undefined4))0x800C5460)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
-static inline void LowPrecisionHandler(int param_1) { ((void(*)(int))0x800C58C0)(param_1); }
-static inline void ZeroOffsetHandler(int param_1) { ((void(*)(int))0x800C6004)(param_1); }
-static inline void synthAddJob(int * * param_1, int * * param_2, uint param_3, undefined4 param_4, int * * param_5) { ((void(*)(int * *, int * *, uint, undefined4, int * *))0x800C67B4)(param_1, param_2, param_3, param_4, param_5); }
-static inline void synthStartSynthJobHandling(int param_1) { ((void(*)(int))0x800C6904)(param_1); }
-static inline void synthForceLowPrecisionUpdate(undefined4 param_1) { ((void(*)(undefined4))0x800C6968)(param_1); }
-static inline void synthKeyStateUpdate(undefined4 param_1) { ((void(*)(undefined4))0x800C69AC)(param_1); }
+static inline void LowPrecisionHandler(void) { ((void(*)(void))0x800C58C0)(); }
+static inline void ZeroOffsetHandler(void) { ((void(*)(void))0x800C6004)(); }
+static inline void synthAddJob(void) { ((void(*)(void))0x800C67B4)(); }
+static inline void synthStartSynthJobHandling(void) { ((void(*)(void))0x800C6904)(); }
+static inline void synthForceLowPrecisionUpdate(void) { ((void(*)(void))0x800C6968)(); }
+static inline void synthKeyStateUpdate(void) { ((void(*)(void))0x800C69AC)(); }
 static inline void synthHandle(void) { ((void(*)(void))0x800C69D4)(); }
 static inline void synthFXGetMaxVoices(void) { ((void(*)(void))0x800C6EE4)(); }
 static inline enumSoundEffect_int synthFXStart(short fid, byte unk, byte vol, byte pan, byte studio, int itd) { return ((enumSoundEffect_int(*)(short, byte, byte, byte, byte, int))0x800C6F18)(fid, unk, vol, pan, studio, itd); }
-static inline uint synthCheckFXRealloc(uint param_1) { return ((uint(*)(uint))0x800C6FFC)(param_1); }
+static inline void synthCheckFXRealloc(void) { ((void(*)(void))0x800C6FFC)(); }
 static inline bool synthFXSetCtrl(enumSoundEffect_short vid, byte ctrl, byte value) { return ((bool(*)(enumSoundEffect_short, byte, byte))0x800C7078)(vid, ctrl, value); }
 static inline bool synthFXSetCtrl14(int vid, byte ctrl, short value) { return ((bool(*)(int, byte, short))0x800C715C)(vid, ctrl, value); }
-static inline void synthFXCloneMidiSetup(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800C7240)(param_1, param_2); }
-static inline undefined4 synthSendKeyOff(void) { return ((undefined4(*)(void))0x800C72C4)(); }
-static inline void synthVolume(uint param_1, uint param_2, uint param_3, byte param_4, int param_5) { ((void(*)(uint, uint, uint, byte, int))0x800C734C)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 synthIsFadeOutActive(uint param_1) { return ((undefined4(*)(uint))0x800C787C)(param_1); }
-static inline void synthSetMusicVolumeType(uint param_1, byte param_2) { ((void(*)(uint, byte))0x800C78D0)(param_1, param_2); }
-static inline undefined4 synthHWMessageHandler(int param_1, uint param_2) { return ((undefined4(*)(int, uint))0x800C78F8)(param_1, param_2); }
+static inline void synthFXCloneMidiSetup(void) { ((void(*)(void))0x800C7240)(); }
+static inline void synthSendKeyOff(void) { ((void(*)(void))0x800C72C4)(); }
+static inline void synthVolume(void) { ((void(*)(void))0x800C734C)(); }
+static inline void synthIsFadeOutActive(void) { ((void(*)(void))0x800C787C)(); }
+static inline void synthSetMusicVolumeType(void) { ((void(*)(void))0x800C78D0)(); }
+static inline void synthHWMessageHandler(void) { ((void(*)(void))0x800C78F8)(); }
 static inline void synthInit(void) { ((void(*)(void))0x800C79C8)(); }
 static inline void synthExit(void) { ((void(*)(void))0x800C7F3C)(); }
-static inline uint sndSeqGetValid(void) { return ((uint(*)(void))0x800C7F60)(); }
-static inline void sndSeqStop(undefined4 param_1) { ((void(*)(undefined4))0x800C7F90)(param_1); }
-static inline undefined4 sndSeqLoop(undefined4 param_1, undefined4 param_2) { return ((undefined4(*)(undefined4, undefined4))0x800C7FC8)(param_1, param_2); }
-static inline void sndSeqSpeed(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800C806C)(param_1, param_2); }
-static inline void sndSeqContinue(undefined4 param_1) { ((void(*)(undefined4))0x800C80B4)(param_1); }
-static inline void sndSeqMute(undefined4 param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(undefined4, undefined4, undefined4))0x800C80EC)(param_1, param_2, param_3); }
-static inline void sndSeqVolume(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x800C8144)(param_1, param_2, param_3, param_4); }
-static inline short seqGetMidiPriority(uint param_1, uint param_2) { return ((short(*)(uint, uint))0x800C81AC)(param_1, param_2); }
-static inline undefined4 seqGetInstancesForVoice(int param_1) { return ((undefined4(*)(int))0x800C81C8)(param_1); }
+static inline void sndSeqGetValid(void) { ((void(*)(void))0x800C7F60)(); }
+static inline void sndSeqStop(void) { ((void(*)(void))0x800C7F90)(); }
+static inline void sndSeqLoop(void) { ((void(*)(void))0x800C7FC8)(); }
+static inline void sndSeqSpeed(void) { ((void(*)(void))0x800C806C)(); }
+static inline void sndSeqContinue(void) { ((void(*)(void))0x800C80B4)(); }
+static inline void sndSeqMute(void) { ((void(*)(void))0x800C80EC)(); }
+static inline void sndSeqVolume(void) { ((void(*)(void))0x800C8144)(); }
+static inline void seqGetMidiPriority(void) { ((void(*)(void))0x800C81AC)(); }
+static inline void seqGetInstancesForVoice(void) { ((void(*)(void))0x800C81C8)(); }
 static inline bool sndFXCtrl(enumSoundEffect_short soundID, byte ctrl, byte value) { return ((bool(*)(enumSoundEffect_short, byte, byte))0x800C826C)(soundID, ctrl, value); }
 static inline bool sndFXCtrl14(SND_VOICEID vid, byte ctrl, short value) { return ((bool(*)(SND_VOICEID, byte, short))0x800C82CC)(vid, ctrl, value); }
 static inline int sndFXKeyOff(int param_1) { return ((int(*)(int))0x800C832C)(param_1); }
 static inline enumSoundEffect_int sndFXStartEx(enumSoundEffect_short sfx, int vol, int pan, int studio) { return ((enumSoundEffect_int(*)(enumSoundEffect_short, int, int, int))0x800C836C)(sfx, vol, pan, studio); }
-static inline undefined4 sndFXCheck(undefined4 param_1) { return ((undefined4(*)(undefined4))0x800C83F4)(param_1); }
+static inline void sndFXCheck(void) { ((void(*)(void))0x800C83F4)(); }
 static inline void sndSilence(void) { ((void(*)(void))0x800C8440)(); }
-static inline void sndVolume(uint volume, uint time, uint volGroup) { ((void(*)(uint, uint, uint))0x800C8474)(volume, time, volGroup); }
-static inline void sndMasterVolume(int volume, int time, byte music, byte fx) { ((void(*)(int, int, byte, byte))0x800C84D4)(volume, time, music, fx); }
-static inline void sndOutputMode(int param_1) { ((void(*)(int))0x800C8568)(param_1); }
-#define sndSetAuxProcessing FUNCTION_ADDRESS(void, 0x800C8654, byte /*studio*/, SND_AUX_CALLBACK /*auxA*/, void * /*userA*/, byte /*midiA*/, SND_SEQID /*seqIDA*/, SND_AUX_CALLBACK /*auxB*/, void * /*userB*/, byte /*midiB*/, SND_SEQID /*seqIDB*/)
+static inline void sndVolume(uint volume_, uint time_, uint volGroup) { ((void(*)(uint, uint, uint))0x800C8474)(volume_, time_, volGroup); }
+static inline void sndMasterVolume(int volume_, int time_, byte music, byte fx_) { ((void(*)(int, int, byte, byte))0x800C84D4)(volume_, time_, music, fx_); }
+static inline void sndOutputMode(void) { ((void(*)(void))0x800C8568)(); }
+static inline void sndSetAuxProcessing(byte studio, SND_AUX_CALLBACK auxA, void * userA, byte midiA, SND_SEQID seqIDA, SND_AUX_CALLBACK auxB, void * userB, byte midiB, SND_SEQID seqIDB) { ((void(*)(byte, SND_AUX_CALLBACK, void *, byte, SND_SEQID, SND_AUX_CALLBACK, void *, byte, SND_SEQID))0x800C8654)(studio, auxA, userA, midiA, seqIDA, auxB, userB, midiB, seqIDB); }
 static inline void streamInit(void) { ((void(*)(void))0x800C87AC)(); }
 static inline void streamHandle(void) { ((void(*)(void))0x800C8874)(); }
 static inline void streamCorrectLoops(void) { ((void(*)(void))0x800C9158)(); }
-static inline void streamKill(int param_1) { ((void(*)(int))0x800C915C)(param_1); }
+static inline void streamKill(void) { ((void(*)(void))0x800C915C)(); }
 static inline void streamOutputModeChanged(void) { ((void(*)(void))0x800C91F4)(); }
-static inline undefined4 dataInsertKeymap(ushort param_1, undefined * param_2) { return ((undefined4(*)(ushort, undefined *))0x800C9324)(param_1, param_2); }
-static inline undefined4 dataRemoveKeymap(short param_1) { return ((undefined4(*)(short))0x800C9514)(param_1); }
-static inline undefined4 dataInsertLayer(ushort param_1, undefined * param_2, short param_3) { return ((undefined4(*)(ushort, undefined *, short))0x800C9690)(param_1, param_2, param_3); }
-static inline undefined4 dataRemoveLayer(short param_1) { return ((undefined4(*)(short))0x800C98D8)(param_1); }
-static inline undefined4 dataInsertCurve(ushort param_1, undefined * param_2) { return ((undefined4(*)(ushort, undefined *))0x800C9A9C)(param_1, param_2); }
-static inline undefined4 dataRemoveCurve(short param_1) { return ((undefined4(*)(short))0x800C9CA0)(param_1); }
+static inline void dataInsertKeymap(void) { ((void(*)(void))0x800C9324)(); }
+static inline void dataRemoveKeymap(void) { ((void(*)(void))0x800C9514)(); }
+static inline void dataInsertLayer(void) { ((void(*)(void))0x800C9690)(); }
+static inline void dataRemoveLayer(void) { ((void(*)(void))0x800C98D8)(); }
+static inline void dataInsertCurve(void) { ((void(*)(void))0x800C9A9C)(); }
+static inline void dataRemoveCurve(void) { ((void(*)(void))0x800C9CA0)(); }
 static inline bool dataInsertSDir(SDIR_DATA * sdir, void * smp_data) { return ((bool(*)(SDIR_DATA *, void *))0x800C9E1C)(sdir, smp_data); }
-static inline undefined4 dataRemoveSDir(SDIR_DATA * param_1) { return ((undefined4(*)(SDIR_DATA *))0x800C9F84)(param_1); }
-static inline undefined4 dataAddSampleReference(u16 param_1, undefined4 param_2) { return ((undefined4(*)(u16, undefined4))0x800CA160)(param_1, param_2); }
-static inline undefined4 dataRemoveSampleReference(u16 param_1, undefined4 param_2) { return ((undefined4(*)(u16, undefined4))0x800CA238)(param_1, param_2); }
-static inline bool dataInsertFX(short gid, FX_TAB * fx, short fxNum) { return ((bool(*)(short, FX_TAB *, short))0x800CA2D4)(gid, fx, fxNum); }
-static inline undefined4 dataRemoveFX(u16 param_1) { return ((undefined4(*)(u16))0x800CA414)(param_1); }
-static inline undefined4 dataInsertMacro(uint param_1, undefined * param_2) { return ((undefined4(*)(uint, undefined *))0x800CA5E0)(param_1, param_2); }
-static inline undefined4 dataRemoveMacro(uint param_1) { return ((undefined4(*)(uint))0x800CA8CC)(param_1); }
-static inline undefined4 dataGetMacro(uint param_1) { return ((undefined4(*)(uint))0x800CAB60)(param_1); }
-static inline undefined4 dataGetSample(undefined2 param_1, undefined4 * param_2) { return ((undefined4(*)(undefined2, undefined4 *))0x800CABFC)(param_1, param_2); }
-static inline undefined4 dataGetCurve(short param_1) { return ((undefined4(*)(short))0x800CAD3C)(param_1); }
-static inline undefined4 dataGetKeymap(short param_1) { return ((undefined4(*)(short))0x800CAD98)(param_1); }
-static inline undefined4 dataGetLayer(undefined2 param_1, undefined2 * param_2) { return ((undefined4(*)(undefined2, undefined2 *))0x800CAE04)(param_1, param_2); }
-static inline int dataGetFX(undefined2 param_1) { return ((int(*)(undefined2))0x800CAE90)(param_1); }
+static inline void dataRemoveSDir(void) { ((void(*)(void))0x800C9F84)(); }
+static inline void dataAddSampleReference(void) { ((void(*)(void))0x800CA160)(); }
+static inline void dataRemoveSampleReference(void) { ((void(*)(void))0x800CA238)(); }
+static inline bool dataInsertFX(short gid_, FX_TAB * fx_, short fxNum) { return ((bool(*)(short, FX_TAB *, short))0x800CA2D4)(gid_, fx_, fxNum); }
+static inline void dataRemoveFX(void) { ((void(*)(void))0x800CA414)(); }
+static inline void dataInsertMacro(void) { ((void(*)(void))0x800CA5E0)(); }
+static inline void dataRemoveMacro(void) { ((void(*)(void))0x800CA8CC)(); }
+static inline void dataGetMacro(void) { ((void(*)(void))0x800CAB60)(); }
+static inline void dataGetSample(void) { ((void(*)(void))0x800CABFC)(); }
+static inline void dataGetCurve(void) { ((void(*)(void))0x800CAD3C)(); }
+static inline void dataGetKeymap(void) { ((void(*)(void))0x800CAD98)(); }
+static inline void dataGetLayer(void) { ((void(*)(void))0x800CAE04)(); }
+static inline void dataGetFX(void) { ((void(*)(void))0x800CAE90)(); }
 static inline void dataInit(void) { ((void(*)(void))0x800CAF2C)(); }
 static inline void dataExit(void) { ((void(*)(void))0x800CB010)(); }
-static inline undefined4 mcmdWait(int param_1, uint * param_2) { return ((undefined4(*)(int, uint *))0x800CB030)(param_1, param_2); }
-static inline undefined4 mcmdGosub(int param_1, uint * param_2) { return ((undefined4(*)(int, uint *))0x800CB320)(param_1, param_2); }
-static inline void mcmdLoop(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB3F0)(param_1, param_2); }
-static inline void mcmdPlayMacro(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB544)(param_1, param_2); }
-static inline void mcmdAddKey(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB6D0)(param_1, param_2); }
-static inline void mcmdStartSample(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB7A8)(param_1, param_2); }
-static inline void mcmdVibrato(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CB9A8)(param_1, param_2); }
-static inline void DoSetPitch(int param_1) { ((void(*)(int))0x800CBB24)(param_1); }
-static inline void mcmdSetADSR(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CBCC4)(param_1, param_2); }
-static inline void mcmdSetADSRFromCtrl(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CBF1C)(param_1, param_2); }
-static inline void mcmdSetPitchADSR(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC048)(param_1, param_2); }
-static inline void mcmdSetPanning(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC2C4)(param_1, param_2); }
-static inline void mcmdSetSurroundPanning(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC360)(param_1, param_2); }
-static inline void mcmdScaleVolume(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC3FC)(param_1, param_2); }
-static inline void mcmdEnvelope(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC530)(param_1, param_2); }
-static inline void mcmdFadeIn(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC660)(param_1, param_2); }
-static inline void mcmdRandomKey(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC79C)(param_1, param_2); }
-static inline void mcmdVolumeSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CC938)(param_1, param_2); }
-static inline void mcmdPanningSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCA3C)(param_1, param_2); }
-static inline void mcmdPitchWheelSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCB40)(param_1, param_2); }
-static inline void mcmdModWheelSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCC44)(param_1, param_2); }
-static inline void mcmdPedalSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCD48)(param_1, param_2); }
-static inline void mcmdPortamentoSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCE4C)(param_1, param_2); }
-static inline void mcmdReverbSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CCF50)(param_1, param_2); }
-static inline void mcmdPreAuxASelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD054)(param_1, param_2); }
-static inline void mcmdPreAuxBSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD158)(param_1, param_2); }
-static inline void mcmdPostAuxBSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD25C)(param_1, param_2); }
-static inline void mcmdSurroundPanningSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD360)(param_1, param_2); }
-static inline void mcmdDopplerSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD464)(param_1, param_2); }
-static inline void mcmdTremoloSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD568)(param_1, param_2); }
-static inline void mcmdFilterSwitchSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD66C)(param_1, param_2); }
-static inline void mcmdFilterParameterSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD770)(param_1, param_2); }
-static inline void mcmdAuxAFXSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD874)(param_1, param_2); }
-static inline void mcmdAuxBFXSelect(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CD9F0)(param_1, param_2); }
-static inline void mcmdPortamento(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CDB6C)(param_1, param_2); }
-static inline int varGet(int param_1, int param_2, uint param_3) { return ((int(*)(int, int, uint))0x800CDCD0)(param_1, param_2, param_3); }
-static inline void mcmdVarCalculation(int param_1, uint * param_2, byte param_3) { ((void(*)(int, uint *, byte))0x800CDD38)(param_1, param_2, param_3); }
-static inline void mcmdIfVarCompare(int param_1, uint * param_2, char param_3) { ((void(*)(int, uint *, char))0x800CDF58)(param_1, param_2, param_3); }
-static inline void mcmdSendMessage(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CE0A4)(param_1, param_2); }
-static inline void mcmdGetVID(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CE2E8)(param_1, param_2); }
-static inline void mcmdSetKeyGroup(int param_1, uint * param_2) { ((void(*)(int, uint *))0x800CE368)(param_1, param_2); }
+static inline void mcmdWait(void) { ((void(*)(void))0x800CB030)(); }
+static inline void mcmdGosub(void) { ((void(*)(void))0x800CB320)(); }
+static inline void mcmdLoop(void) { ((void(*)(void))0x800CB3F0)(); }
+static inline void mcmdPlayMacro(void) { ((void(*)(void))0x800CB544)(); }
+static inline void mcmdAddKey(void) { ((void(*)(void))0x800CB6D0)(); }
+static inline void mcmdStartSample(void) { ((void(*)(void))0x800CB7A8)(); }
+static inline void mcmdVibrato(void) { ((void(*)(void))0x800CB9A8)(); }
+static inline void DoSetPitch(void) { ((void(*)(void))0x800CBB24)(); }
+static inline void mcmdSetADSR(void) { ((void(*)(void))0x800CBCC4)(); }
+static inline void mcmdSetADSRFromCtrl(void) { ((void(*)(void))0x800CBF1C)(); }
+static inline void mcmdSetPitchADSR(void) { ((void(*)(void))0x800CC048)(); }
+static inline void mcmdSetPanning(void) { ((void(*)(void))0x800CC2C4)(); }
+static inline void mcmdSetSurroundPanning(void) { ((void(*)(void))0x800CC360)(); }
+static inline void mcmdScaleVolume(void) { ((void(*)(void))0x800CC3FC)(); }
+static inline void mcmdEnvelope(void) { ((void(*)(void))0x800CC530)(); }
+static inline void mcmdFadeIn(void) { ((void(*)(void))0x800CC660)(); }
+static inline void mcmdRandomKey(void) { ((void(*)(void))0x800CC79C)(); }
+static inline void mcmdVolumeSelect(void) { ((void(*)(void))0x800CC938)(); }
+static inline void mcmdPanningSelect(void) { ((void(*)(void))0x800CCA3C)(); }
+static inline void mcmdPitchWheelSelect(void) { ((void(*)(void))0x800CCB40)(); }
+static inline void mcmdModWheelSelect(void) { ((void(*)(void))0x800CCC44)(); }
+static inline void mcmdPedalSelect(void) { ((void(*)(void))0x800CCD48)(); }
+static inline void mcmdPortamentoSelect(void) { ((void(*)(void))0x800CCE4C)(); }
+static inline void mcmdReverbSelect(void) { ((void(*)(void))0x800CCF50)(); }
+static inline void mcmdPreAuxASelect(void) { ((void(*)(void))0x800CD054)(); }
+static inline void mcmdPreAuxBSelect(void) { ((void(*)(void))0x800CD158)(); }
+static inline void mcmdPostAuxBSelect(void) { ((void(*)(void))0x800CD25C)(); }
+static inline void mcmdSurroundPanningSelect(void) { ((void(*)(void))0x800CD360)(); }
+static inline void mcmdDopplerSelect(void) { ((void(*)(void))0x800CD464)(); }
+static inline void mcmdTremoloSelect(void) { ((void(*)(void))0x800CD568)(); }
+static inline void mcmdFilterSwitchSelect(void) { ((void(*)(void))0x800CD66C)(); }
+static inline void mcmdFilterParameterSelect(void) { ((void(*)(void))0x800CD770)(); }
+static inline void mcmdAuxAFXSelect(void) { ((void(*)(void))0x800CD874)(); }
+static inline void mcmdAuxBFXSelect(void) { ((void(*)(void))0x800CD9F0)(); }
+static inline void mcmdPortamento(void) { ((void(*)(void))0x800CDB6C)(); }
+static inline void varGet(void) { ((void(*)(void))0x800CDCD0)(); }
+static inline void mcmdVarCalculation(void) { ((void(*)(void))0x800CDD38)(); }
+static inline void mcmdIfVarCompare(void) { ((void(*)(void))0x800CDF58)(); }
+static inline void mcmdSendMessage(void) { ((void(*)(void))0x800CE0A4)(); }
+static inline void mcmdGetVID(void) { ((void(*)(void))0x800CE2E8)(); }
+static inline void mcmdSetKeyGroup(void) { ((void(*)(void))0x800CE368)(); }
 static inline void macHandleActive(void) { ((void(*)(void))0x800CE444)(); }
-static inline void macHandle(uint param_1) { ((void(*)(uint))0x800CF3D8)(param_1); }
-static inline void macSampleEndNotify(int param_1) { ((void(*)(int))0x800CF52C)(param_1); }
-static inline void macSetExternalKeyoff(int param_1) { ((void(*)(int))0x800CF5D8)(param_1); }
-static inline void maxSetPedalState(int param_1, int param_2) { ((void(*)(int, int))0x800CF6C8)(param_1, param_2); }
-static inline void TimeQueueAdd(int param_1) { ((void(*)(int))0x800CF7D0)(param_1); }
-static inline void macMakeActive(int param_1) { ((void(*)(int))0x800CF874)(param_1); }
-static inline void macMakeInactive(int param_1, int param_2) { ((void(*)(int, int))0x800CF97C)(param_1, param_2); }
+static inline void macHandle(void) { ((void(*)(void))0x800CF3D8)(); }
+static inline void macSampleEndNotify(void) { ((void(*)(void))0x800CF52C)(); }
+static inline void macSetExternalKeyoff(void) { ((void(*)(void))0x800CF5D8)(); }
+static inline void maxSetPedalState(void) { ((void(*)(void))0x800CF6C8)(); }
+static inline void TimeQueueAdd(void) { ((void(*)(void))0x800CF7D0)(); }
+static inline void macMakeActive(void) { ((void(*)(void))0x800CF874)(); }
+static inline void macMakeInactive(void) { ((void(*)(void))0x800CF97C)(); }
 static inline void macStart(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, byte param_9, byte param_10, short param_11, short param_12, byte param_13, byte param_14, byte param_15, int param_16) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, short, short, byte, byte, byte, int))0x800CFA78)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16); }
 static inline void macInit(void) { ((void(*)(void))0x800CFEB0)(); }
 static inline void vidInit(void) { ((void(*)(void))0x800CFF18)(); }
-static inline void vidRemoveVoiceReferences(int param_1) { ((void(*)(int))0x800CFFF8)(param_1); }
-static inline undefined4 vidMakeRoot(int param_1) { return ((undefined4(*)(int))0x800D0360)(param_1); }
-static inline uint vidMakeNew(int param_1, int param_2) { return ((uint(*)(int, int))0x800D0374)(param_1, param_2); }
+static inline void vidRemoveVoiceReferences(void) { ((void(*)(void))0x800CFFF8)(); }
+static inline void vidMakeRoot(void) { ((void(*)(void))0x800D0360)(); }
+static inline void vidMakeNew(void) { ((void(*)(void))0x800D0374)(); }
 static inline void vidGetInternalId(int vid) { ((void(*)(int))0x800D0488)(vid); }
-static inline undefined4 vidGetPublicId(uint param_1) { return ((undefined4(*)(uint))0x800D04D8)(param_1); }
-static inline void voiceSetPrioriety(int param_1, byte param_2) { ((void(*)(int, byte))0x800D052C)(param_1, param_2); }
-static inline void voiceAllocateFind(undefined4 param_1, undefined4 param_2, u32 param_3, uint param_4) { ((void(*)(undefined4, undefined4, u32, uint))0x800D0778)(param_1, param_2, param_3, param_4); }
+static inline void vidGetPublicId(void) { ((void(*)(void))0x800D04D8)(); }
+static inline void voiceSetPrioriety(void) { ((void(*)(void))0x800D052C)(); }
+static inline void voiceAllocateFind(void) { ((void(*)(void))0x800D0778)(); }
 static inline void voiceAllocate(void) { ((void(*)(void))0x800D0B00)(); }
-static inline undefined4 voiceAllocatePeek(void) { return ((undefined4(*)(void))0x800D0C10)(); }
-static inline void voiceFree(int param_1) { ((void(*)(int))0x800D0C88)(param_1); }
+static inline void voiceAllocatePeek(void) { ((void(*)(void))0x800D0C10)(); }
+static inline void voiceFree(void) { ((void(*)(void))0x800D0C88)(); }
 static inline void synthInitAllocationAids(void) { ((void(*)(void))0x800D0E4C)(); }
-static inline void voiceUnblock(u32 param_1) { ((void(*)(u32))0x800D10EC)(param_1); }
-static inline void voiceKill(int param_1) { ((void(*)(int))0x800D1304)(param_1); }
-static inline undefined4 voiceKillSound(uint param_1) { return ((undefined4(*)(uint))0x800D1538)(param_1); }
-static inline void synthKillAllVoices(char param_1) { ((void(*)(char))0x800D15FC)(param_1); }
-static inline void synthKillVoicesByMacroReferences(ushort * param_1) { ((void(*)(ushort *))0x800D16A4)(param_1); }
-static inline void synthKillVoicesBySampleReferences(ushort * param_1) { ((void(*)(ushort *))0x800D1800)(param_1); }
-static inline undefined4 voiceIsLastStarted(int param_1) { return ((undefined4(*)(int))0x800D195C)(param_1); }
-static inline void voiceSetLastStarted(int param_1) { ((void(*)(int))0x800D19D0)(param_1); }
-static inline void voiceResetLastStarted(int param_1) { ((void(*)(int))0x800D1A24)(param_1); }
+static inline void voiceUnblock(void) { ((void(*)(void))0x800D10EC)(); }
+static inline void voiceKill(void) { ((void(*)(void))0x800D1304)(); }
+static inline void voiceKillSound(void) { ((void(*)(void))0x800D1538)(); }
+static inline void synthKillAllVoices(void) { ((void(*)(void))0x800D15FC)(); }
+static inline void synthKillVoicesByMacroReferences(void) { ((void(*)(void))0x800D16A4)(); }
+static inline void synthKillVoicesBySampleReferences(void) { ((void(*)(void))0x800D1800)(); }
+static inline void voiceIsLastStarted(void) { ((void(*)(void))0x800D195C)(); }
+static inline void voiceSetLastStarted(void) { ((void(*)(void))0x800D19D0)(); }
+static inline void voiceResetLastStarted(void) { ((void(*)(void))0x800D1A24)(); }
 static inline void voiceInitLastStarted(void) { ((void(*)(void))0x800D1A98)(); }
-static inline int sndPitchUpOne(uint param_1) { return ((int(*)(uint))0x800D1BDC)(param_1); }
-static inline void sndGetPitch(uint param_1, uint param_2) { ((void(*)(uint, uint))0x800D1C18)(param_1, param_2); }
-static inline void adsrConvertTimeCents(uint param_1) { ((void(*)(uint))0x800D1CFC)(param_1); }
-static inline undefined4 salChangeADSRState(char * param_1) { return ((undefined4(*)(char *))0x800D1D54)(param_1); }
-static inline void adsrSetup(int param_1) { ((void(*)(int))0x800D1FC0)(param_1); }
-static inline undefined4 adsrStartRelease(char * param_1, uint param_2) { return ((undefined4(*)(char *, uint))0x800D1FE8)(param_1, param_2); }
-static inline undefined4 adsrRelease(byte * param_1) { return ((undefined4(*)(byte *))0x800D2138)(param_1); }
-static inline undefined4 adsrHandle(char * param_1, undefined2 * param_2, short * param_3) { return ((undefined4(*)(char *, undefined2 *, short *))0x800D22A0)(param_1, param_2, param_3); }
-static inline undefined4 adsrHandleLowPrecision(undefined4 param_1, undefined4 param_2, undefined4 param_3) { return ((undefined4(*)(undefined4, undefined4, undefined4))0x800D2438)(param_1, param_2, param_3); }
+static inline void sndPitchUpOne(void) { ((void(*)(void))0x800D1BDC)(); }
+static inline void sndGetPitch(void) { ((void(*)(void))0x800D1C18)(); }
+static inline void adsrConvertTimeCents(void) { ((void(*)(void))0x800D1CFC)(); }
+static inline void salChangeADSRState(void) { ((void(*)(void))0x800D1D54)(); }
+static inline void adsrSetup(void) { ((void(*)(void))0x800D1FC0)(); }
+static inline void adsrStartRelease(void) { ((void(*)(void))0x800D1FE8)(); }
+static inline void adsrRelease(void) { ((void(*)(void))0x800D2138)(); }
+static inline void adsrHandle(void) { ((void(*)(void))0x800D22A0)(); }
+static inline void adsrHandleLowPrecision(void) { ((void(*)(void))0x800D2438)(); }
 static inline void vsInit(void) { ((void(*)(void))0x800D24BC)(); }
-static inline uint vsSampleStartNotify(uint param_1) { return ((uint(*)(uint))0x800D2578)(param_1); }
-static inline void vsSampleEndNotify(uint param_1) { ((void(*)(uint))0x800D2844)(param_1); }
-static inline void vsUpdateBuffer(int param_1, uint param_2) { ((void(*)(int, uint))0x800D28EC)(param_1, param_2); }
+static inline void vsSampleStartNotify(void) { ((void(*)(void))0x800D2578)(); }
+static inline void vsSampleEndNotify(void) { ((void(*)(void))0x800D2844)(); }
+static inline void vsUpdateBuffer(void) { ((void(*)(void))0x800D28EC)(); }
 static inline void vsSampleUpdates(void) { ((void(*)(void))0x800D2C44)(); }
-static inline void dataInitStack(int param_1, int param_2) { ((void(*)(int, int))0x800D2E54)(param_1, param_2); }
-static inline void InsertData(int id, void * data, byte dataType, int remove) { ((void(*)(int, void *, byte, int))0x800D2E94)(id, data, dataType, remove); }
-static inline int sndPushGroup(void * prj_data, int gid, void * samples, void * sdir, void * pool) { return ((int(*)(void *, int, void *, void *, void *))0x800D3120)(prj_data, gid, samples, sdir, pool); }
-static inline undefined4 sndPopGroup(void) { return ((undefined4(*)(void))0x800D346C)(); }
-static inline void seqPlaySong(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, uint param_5, undefined4 param_6) { ((void(*)(undefined4, undefined4, undefined4, undefined4, uint, undefined4))0x800D37BC)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void sndSeqPlayEx(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5) { ((void(*)(undefined4, undefined4, undefined4, undefined4, undefined4))0x800D3910)(param_1, param_2, param_3, param_4, param_5); }
-static inline undefined4 salInitDspCtrl(byte param_1, byte param_2, uint param_3) { return ((undefined4(*)(byte, byte, uint))0x800D3A34)(param_1, param_2, param_3); }
+static inline void dataInitStack(void) { ((void(*)(void))0x800D2E54)(); }
+static inline void InsertData(int id, void * data_, byte dataType, int remove) { ((void(*)(int, void *, byte, int))0x800D2E94)(id, data_, dataType, remove); }
+static inline int sndPushGroup(void * prj_data, int gid_, void * samples, void * sdir, void * pool) { return ((int(*)(void *, int, void *, void *, void *))0x800D3120)(prj_data, gid_, samples, sdir, pool); }
+static inline void sndPopGroup(void) { ((void(*)(void))0x800D346C)(); }
+static inline void seqPlaySong(void) { ((void(*)(void))0x800D37BC)(); }
+static inline void sndSeqPlayEx(void) { ((void(*)(void))0x800D3910)(); }
+static inline void salInitDspCtrl(void) { ((void(*)(void))0x800D3A34)(); }
 static inline void salInitHRTFBuffer(void) { ((void(*)(void))0x800D3DE8)(); }
-static inline undefined4 salExitDspCtrl(void) { return ((undefined4(*)(void))0x800D3E20)(); }
-static inline void salActivateStudio(uint param_1, byte param_2, int param_3) { ((void(*)(uint, byte, int))0x800D3F00)(param_1, param_2, param_3); }
-static inline undefined4 salCheckVolErrorAndResetDelta(undefined2 * param_1, undefined2 * param_2, short * param_3, short param_4, int param_5, ushort param_6) { return ((undefined4(*)(undefined2 *, undefined2 *, short *, short, int, ushort))0x800D4050)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void sal_setup_dspvol(short * param_1, short * param_2, short param_3) { ((void(*)(short *, short *, short))0x800D4144)(param_1, param_2, param_3); }
-static inline void sal_update_hostplayinfo(int * param_1) { ((void(*)(int *))0x800D418C)(param_1); }
-static inline void DoDepopFade(int * param_1, short * param_2, int * param_3) { ((void(*)(int *, short *, int *))0x800D4200)(param_1, param_2, param_3); }
-static inline void HandleDepopVoice(int param_1, int * param_2) { ((void(*)(int, int *))0x800D42AC)(param_1, param_2); }
-static inline void SortVoices(int param_1, int param_2, int param_3) { ((void(*)(int, int, int))0x800D45B8)(param_1, param_2, param_3); }
+static inline void salExitDspCtrl(void) { ((void(*)(void))0x800D3E20)(); }
+static inline void salActivateStudio(void) { ((void(*)(void))0x800D3F00)(); }
+static inline void salCheckVolErrorAndResetDelta(void) { ((void(*)(void))0x800D4050)(); }
+static inline void sal_setup_dspvol(void) { ((void(*)(void))0x800D4144)(); }
+static inline void sal_update_hostplayinfo(void) { ((void(*)(void))0x800D418C)(); }
+static inline void DoDepopFade(void) { ((void(*)(void))0x800D4200)(); }
+static inline void HandleDepopVoice(void) { ((void(*)(void))0x800D42AC)(); }
+static inline void SortVoices(void) { ((void(*)(void))0x800D45B8)(); }
 static inline void salBuildCommandList(void) { ((void(*)(void))0x800D4810)(); }
-static inline undefined4 salSynthSendMessage(int param_1, undefined4 param_2) { return ((undefined4(*)(int, undefined4))0x800D6E08)(param_1, param_2); }
-static inline void salActivateVoice(undefined * param_1, byte param_2) { ((void(*)(undefined *, byte))0x800D6E4C)(param_1, param_2); }
-static inline void salDeactivateVoice(int param_1) { ((void(*)(int))0x800D6EEC)(param_1); }
+static inline void salSynthSendMessage(void) { ((void(*)(void))0x800D6E08)(); }
+static inline void salActivateVoice(void) { ((void(*)(void))0x800D6E4C)(); }
+static inline void salDeactivateVoice(void) { ((void(*)(void))0x800D6EEC)(); }
 static inline void salHandleAuxProcessing(void) { ((void(*)(void))0x800D6F4C)(); }
-static inline void salCalcVolume(undefined8 param_1, double param_2, double param_3, undefined4 param_4, undefined4 param_5, undefined * param_6, undefined * param_7, int param_8, int param_9) { ((void(*)(undefined8, double, double, undefined4, undefined4, undefined *, undefined *, int, int))0x800D70A4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9); }
-static inline void CalcEmitter(undefined4 param_1, undefined4 param_2, float * param_3, float * param_4, float * param_5, float * param_6, float * param_7) { ((void(*)(undefined4, undefined4, float *, float *, float *, float *, float *))0x800D7794)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
+static inline void salCalcVolume(void) { ((void(*)(void))0x800D70A4)(); }
+static inline void CalcEmitter(void) { ((void(*)(void))0x800D7794)(); }
 static inline bool sndUpdateEmitter(SND_EMITTER * em, SND_FVECTOR * pos, SND_FVECTOR * dir, byte maxVol, SND_ROOM * room) { return ((bool(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, byte, SND_ROOM *))0x800D7E10)(em, pos, dir, maxVol, room); }
 static inline bool sndCheckEmitter(SND_EMITTER * em) { return ((bool(*)(SND_EMITTER *))0x800D7EE8)(em); }
 static inline SND_VOICEID AddEmitter(SND_EMITTER * em_buffer, SND_FVECTOR * pos, SND_FVECTOR * dir, float maxDis, float comp, int flags, short fxid, int groupid, byte maxVol, byte minVol, SND_ROOM * room, SND_PARAMETER_INFO * para, byte studio) { return ((SND_VOICEID(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, float, float, int, short, int, byte, byte, SND_ROOM *, SND_PARAMETER_INFO *, byte))0x800D7F08)(em_buffer, pos, dir, maxDis, comp, flags, fxid, groupid, maxVol, minVol, room, para, studio); }
 static inline int sndAddEmitter(SND_EMITTER * em_buffer, SND_FVECTOR * pos, SND_FVECTOR * dir, float maxDis, float comp, int flags, ushort fxid, byte maxVol, byte minVol, SND_ROOM * room) { return ((int(*)(SND_EMITTER *, SND_FVECTOR *, SND_FVECTOR *, float, float, int, ushort, byte, byte, SND_ROOM *))0x800D83B0)(em_buffer, pos, dir, maxDis, comp, flags, fxid, maxVol, minVol, room); }
-static inline undefined4 sndRemoveEmitter(SND_EMITTER * * param_1) { return ((undefined4(*)(SND_EMITTER * *))0x800D8408)(param_1); }
+static inline void sndRemoveEmitter(void) { ((void(*)(void))0x800D8408)(); }
 static inline void s3dKillAllEmitter(void) { ((void(*)(void))0x800D84B0)(); }
-static inline void s3dKillEmitterByFXID(short * param_1, int param_2) { ((void(*)(short *, int))0x800D8568)(param_1, param_2); }
-static inline bool sndUpdateListener(int param_1, undefined4 * param_2, undefined4 * param_3, undefined4 * param_4, undefined4 * param_5, uint param_6) { return ((bool(*)(int, undefined4 *, undefined4 *, undefined4 *, undefined4 *, uint))0x800D8664)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void sndAddListener(undefined8 param_1, double param_2, double param_3, undefined4 param_4, undefined4 param_5, int * param_6, float * param_7, float * param_8, int param_9, uint param_10, float * param_11) { ((void(*)(undefined8, double, double, undefined4, undefined4, int *, float *, float *, int, uint, float *))0x800D87D8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11); }
-static inline undefined4 sndRemoveListener(sndEmitterRelated * * param_1) { return ((undefined4(*)(sndEmitterRelated * *))0x800D89E8)(param_1); }
-static inline undefined4 AddStartingEmitter(double param_1, double param_2, double param_3, double param_4, double param_5, double param_6, undefined * param_7) { return ((undefined4(*)(double, double, double, double, double, double, undefined *))0x800D8A64)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
+static inline void s3dKillEmitterByFXID(void) { ((void(*)(void))0x800D8568)(); }
+static inline void sndUpdateListener(void) { ((void(*)(void))0x800D8664)(); }
+static inline void sndAddListener(void) { ((void(*)(void))0x800D87D8)(); }
+static inline void sndRemoveListener(void) { ((void(*)(void))0x800D89E8)(); }
+static inline void AddStartingEmitter(void) { ((void(*)(void))0x800D8A64)(); }
 static inline void StartContinousEmitters(void) { ((void(*)(void))0x800D8BB8)(); }
 static inline void s3dHandle(void) { ((void(*)(void))0x800D94AC)(); }
-static inline void s3dInit(uint param_1) { ((void(*)(uint))0x800D9BD4)(param_1); }
+static inline void s3dInit(void) { ((void(*)(void))0x800D9BD4)(); }
 static inline void s3dExit(void) { ((void(*)(void))0x800D9C0C)(); }
 static inline int sndInit(byte voices, byte music, byte sfx, byte studios, int flags, int aramSize) { return ((int(*)(byte, byte, byte, byte, int, int))0x800D9C10)(voices, music, sfx, studios, flags, aramSize); }
 static inline void sndQuit(void) { ((void(*)(void))0x800D9D48)(); }
@@ -40004,116 +40006,116 @@ static inline void salApplyMatrix(Mtx * param_1, Vec3f * param_2, Vec3f * param_
 static inline void salNormalizeVector(Vec3f * param_1) { ((void(*)(Vec3f *))0x800D9E28)(param_1); }
 static inline void salCrossProduct(Vec3f * param_1, Vec3f * param_2, Vec3f * param_3) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x800D9EDC)(param_1, param_2, param_3); }
 static inline void salInvertMatrix(Mtx * param_1, Mtx * param_2) { ((void(*)(Mtx *, Mtx *))0x800D9F40)(param_1, param_2); }
-static inline void inpSetGlobalMIDIDirtyFlag(uint param_1, uint param_2, uint param_3) { ((void(*)(uint, uint, uint))0x800DA13C)(param_1, param_2, param_3); }
-static inline void inpSetRPNHi(byte param_1, byte param_2, byte param_3) { ((void(*)(byte, byte, byte))0x800DA160)(param_1, param_2, param_3); }
-static inline void inpSetRPNDec(byte param_1, byte param_2) { ((void(*)(byte, byte))0x800DA340)(param_1, param_2); }
-static inline void inpSetRPNInc(byte param_1, byte param_2) { ((void(*)(byte, byte))0x800DA564)(param_1, param_2); }
+static inline void inpSetGlobalMIDIDirtyFlag(void) { ((void(*)(void))0x800DA13C)(); }
+static inline void inpSetRPNHi(void) { ((void(*)(void))0x800DA160)(); }
+static inline void inpSetRPNDec(void) { ((void(*)(void))0x800DA340)(); }
+static inline void inpSetRPNInc(void) { ((void(*)(void))0x800DA564)(); }
 static inline void inpSetMidiCtrl(byte ctrl, byte channel, byte set, byte value) { ((void(*)(byte, byte, byte, byte))0x800DA788)(ctrl, channel, set, value); }
 static inline void inpSetMidiCtrl14(byte ctrl, byte channel, byte set, ushort value) { ((void(*)(byte, byte, byte, ushort))0x800DACA4)(ctrl, channel, set, value); }
-static inline void inpResetMidiCtrl(uint param_1, uint param_2, int param_3) { ((void(*)(uint, uint, int))0x800DADC8)(param_1, param_2, param_3); }
-static inline uint inpGetMidiCtrl(uint param_1, uint param_2, uint param_3) { return ((uint(*)(uint, uint, uint))0x800DAEB8)(param_1, param_2, param_3); }
-static inline byte * inpGetChannelDefaults(uint param_1, uint param_2) { return ((byte *(*)(uint, uint))0x800DB17C)(param_1, param_2); }
-static inline void inpResetChannelDefaults(uint param_1, uint param_2) { ((void(*)(uint, uint))0x800DB1C0)(param_1, param_2); }
-static inline void inpAddCtrl(int param_1, undefined4 param_2, undefined4 param_3, byte param_4, int param_5) { ((void(*)(int, undefined4, undefined4, byte, int))0x800DB21C)(param_1, param_2, param_3, param_4, param_5); }
-static inline void inpFXCopyCtrl(uint param_1, int param_2, int param_3) { ((void(*)(uint, int, int))0x800DB2B4)(param_1, param_2, param_3); }
-static inline void inpSetMidiLastNote(uint param_1, byte param_2, char param_3) { ((void(*)(uint, byte, char))0x800DB3C8)(param_1, param_2, param_3); }
-static inline char inpGetMidiLastNote(uint param_1, byte param_2) { return ((char(*)(uint, byte))0x800DB404)(param_1, param_2); }
-static inline void _GetInputValue(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x800DB440)(param_1, param_2, param_3, param_4); }
-static inline uint inpGetVolume(int param_1) { return ((uint(*)(int))0x800DB8E0)(param_1); }
-static inline uint inpGetPanning(int param_1) { return ((uint(*)(int))0x800DB928)(param_1); }
-static inline uint inpGetSurPanning(int param_1) { return ((uint(*)(int))0x800DB970)(param_1); }
-static inline uint inpGetPitchBend(int param_1) { return ((uint(*)(int))0x800DB9B8)(param_1); }
-static inline uint inpGetDoppler(int param_1) { return ((uint(*)(int))0x800DBA00)(param_1); }
-static inline uint inpGetModulation(int param_1) { return ((uint(*)(int))0x800DBA48)(param_1); }
-static inline uint inpGetPedal(int param_1) { return ((uint(*)(int))0x800DBA90)(param_1); }
-static inline uint inpGetPreAuxA(int param_1) { return ((uint(*)(int))0x800DBAD8)(param_1); }
-static inline uint inpGetReverb(int param_1) { return ((uint(*)(int))0x800DBB20)(param_1); }
-static inline uint inpGetPreAuxB(int param_1) { return ((uint(*)(int))0x800DBB68)(param_1); }
-static inline uint inpGetPostAuxB(int param_1) { return ((uint(*)(int))0x800DBBB0)(param_1); }
-static inline uint inpGetTremolo(int param_1) { return ((uint(*)(int))0x800DBBF8)(param_1); }
-static inline uint inpGetFilterSwitch(int param_1) { return ((uint(*)(int))0x800DBC40)(param_1); }
-static inline uint inpGetFilterParameter(int param_1) { return ((uint(*)(int))0x800DBC88)(param_1); }
-static inline uint inpGetAuxA(uint param_1, uint param_2, uint param_3, uint param_4) { return ((uint(*)(uint, uint, uint, uint))0x800DBCD0)(param_1, param_2, param_3, param_4); }
-static inline uint inpGetAuxB(uint param_1, uint param_2, uint param_3, uint param_4) { return ((uint(*)(uint, uint, uint, uint))0x800DBD84)(param_1, param_2, param_3, param_4); }
-static inline void inpInit(int param_1) { ((void(*)(int))0x800DBE38)(param_1); }
-static inline uint inpTranslateExCtrl(uint param_1) { return ((uint(*)(uint))0x800DC0FC)(param_1); }
-static inline short inpGetExCtrl(int param_1, uint param_2) { return ((short(*)(int, uint))0x800DC16C)(param_1, param_2); }
-static inline void inpSetExCtrl(int param_1, byte param_2, short param_3) { ((void(*)(int, byte, short))0x800DC268)(param_1, param_2, param_3); }
-static inline uint sndRand(void) { return ((uint(*)(void))0x800DC44C)(); }
-static inline int sndSin(uint param_1) { return ((int(*)(uint))0x800DC468)(param_1); }
-static inline void sndBSearch(undefined4 param_1, undefined4 param_2, int param_3, int param_4, undefined * param_5) { ((void(*)(undefined4, undefined4, int, int, undefined *))0x800DC4F4)(param_1, param_2, param_3, param_4, param_5); }
-static inline double sndSqrt(double param_1) { return ((double(*)(double))0x800DC598)(param_1); }
-static inline double sndCos(undefined8 param_1) { return ((double(*)(undefined8))0x800DC5EC)(param_1); }
-static inline void sndConvertMs(int * param_1) { ((void(*)(int *))0x800DC6C0)(param_1); }
-static inline void sndConvertTicks(uint * param_1, undefined4 param_2) { ((void(*)(uint *, undefined4))0x800DC6D0)(param_1, param_2); }
-static inline uint sndConvert2Ms(uint param_1) { return ((uint(*)(uint))0x800DC718)(param_1); }
+static inline void inpResetMidiCtrl(void) { ((void(*)(void))0x800DADC8)(); }
+static inline void inpGetMidiCtrl(void) { ((void(*)(void))0x800DAEB8)(); }
+static inline void inpGetChannelDefaults(void) { ((void(*)(void))0x800DB17C)(); }
+static inline void inpResetChannelDefaults(void) { ((void(*)(void))0x800DB1C0)(); }
+static inline void inpAddCtrl(void) { ((void(*)(void))0x800DB21C)(); }
+static inline void inpFXCopyCtrl(void) { ((void(*)(void))0x800DB2B4)(); }
+static inline void inpSetMidiLastNote(void) { ((void(*)(void))0x800DB3C8)(); }
+static inline void inpGetMidiLastNote(void) { ((void(*)(void))0x800DB404)(); }
+static inline void _GetInputValue(void) { ((void(*)(void))0x800DB440)(); }
+static inline void inpGetVolume(void) { ((void(*)(void))0x800DB8E0)(); }
+static inline void inpGetPanning(void) { ((void(*)(void))0x800DB928)(); }
+static inline void inpGetSurPanning(void) { ((void(*)(void))0x800DB970)(); }
+static inline void inpGetPitchBend(void) { ((void(*)(void))0x800DB9B8)(); }
+static inline void inpGetDoppler(void) { ((void(*)(void))0x800DBA00)(); }
+static inline void inpGetModulation(void) { ((void(*)(void))0x800DBA48)(); }
+static inline void inpGetPedal(void) { ((void(*)(void))0x800DBA90)(); }
+static inline void inpGetPreAuxA(void) { ((void(*)(void))0x800DBAD8)(); }
+static inline void inpGetReverb(void) { ((void(*)(void))0x800DBB20)(); }
+static inline void inpGetPreAuxB(void) { ((void(*)(void))0x800DBB68)(); }
+static inline void inpGetPostAuxB(void) { ((void(*)(void))0x800DBBB0)(); }
+static inline void inpGetTremolo(void) { ((void(*)(void))0x800DBBF8)(); }
+static inline void inpGetFilterSwitch(void) { ((void(*)(void))0x800DBC40)(); }
+static inline void inpGetFilterParameter(void) { ((void(*)(void))0x800DBC88)(); }
+static inline void inpGetAuxA(void) { ((void(*)(void))0x800DBCD0)(); }
+static inline void inpGetAuxB(void) { ((void(*)(void))0x800DBD84)(); }
+static inline void inpInit(void) { ((void(*)(void))0x800DBE38)(); }
+static inline void inpTranslateExCtrl(void) { ((void(*)(void))0x800DC0FC)(); }
+static inline void inpGetExCtrl(void) { ((void(*)(void))0x800DC16C)(); }
+static inline void inpSetExCtrl(void) { ((void(*)(void))0x800DC268)(); }
+static inline void sndRand(void) { ((void(*)(void))0x800DC44C)(); }
+static inline void sndSin(void) { ((void(*)(void))0x800DC468)(); }
+static inline void sndBSearch(void) { ((void(*)(void))0x800DC4F4)(); }
+static inline void sndSqrt(void) { ((void(*)(void))0x800DC598)(); }
+static inline void sndCos(void) { ((void(*)(void))0x800DC5EC)(); }
+static inline void sndConvertMs(void) { ((void(*)(void))0x800DC6C0)(); }
+static inline void sndConvertTicks(void) { ((void(*)(void))0x800DC6D0)(); }
+static inline void sndConvert2Ms(void) { ((void(*)(void))0x800DC718)(); }
 static inline void snd_handle_irq(void) { ((void(*)(void))0x800DC720)(); }
-static inline undefined4 hwInit(undefined4 param_1, undefined param_2, undefined param_3, uint param_4) { return ((undefined4(*)(undefined4, undefined, undefined, uint))0x800DC874)(param_1, param_2, param_3, param_4); }
+static inline void hwInit(void) { ((void(*)(void))0x800DC874)(); }
 static inline void hwExit(void) { ((void(*)(void))0x800DC938)(); }
-static inline void hwSetTimeOffset(byte param_1) { ((void(*)(byte))0x800DC96C)(param_1); }
-static inline byte hwGetTimeOffset(void) { return ((byte(*)(void))0x800DC974)(); }
-static inline uint hwIsActive(int param_1) { return ((uint(*)(int))0x800DC97C)(param_1); }
-static inline void hwSetMesgCallback(undefined * param_1) { ((void(*)(undefined *))0x800DC99C)(param_1); }
-static inline void hwSetPriority(int param_1, undefined4 param_2) { ((void(*)(int, undefined4))0x800DC9A4)(param_1, param_2); }
-static inline void hwInitSamplePlayback(int param_1, undefined2 param_2, undefined4 * param_3, int param_4, undefined4 param_5, undefined4 param_6, int param_7, undefined4 param_8) { ((void(*)(int, undefined2, undefined4 *, int, undefined4, undefined4, int, undefined4))0x800DC9B8)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8); }
-static inline void hwBreak(int param_1) { ((void(*)(int))0x800DCB6C)(param_1); }
-static inline void hwSetADSR(int param_1, uint * param_2, byte param_3) { ((void(*)(int, uint *, byte))0x800DCBBC)(param_1, param_2, param_3); }
-static inline void hwSetVirtualSampleLoopBuffer(int param_1, undefined4 param_2, undefined4 param_3) { ((void(*)(int, undefined4, undefined4))0x800DCD68)(param_1, param_2, param_3); }
-static inline void hwGetVirtualSampleState(int param_1) { ((void(*)(int))0x800DCD88)(param_1); }
-static inline void hwGetSampleType(int param_1) { ((void(*)(int))0x800DCD9C)(param_1); }
-static inline undefined2 hwGetSampleID(int param_1) { return ((undefined2(*)(int))0x800DCDB0)(param_1); }
-static inline undefined4 hwGetSampleExtraData(int param_1) { return ((undefined4(*)(int))0x800DCDC4)(param_1); }
-static inline void hwSetStreamLoopPS(int param_1, undefined param_2) { ((void(*)(int, undefined))0x800DCDD8)(param_1, param_2); }
-static inline void hwStart(int param_1) { ((void(*)(int))0x800DCDEC)(param_1); }
-static inline void hwKeyOff(int param_1) { ((void(*)(int))0x800DCE28)(param_1); }
-static inline void hwSetPitch(int param_1, ushort param_2) { ((void(*)(int, ushort))0x800DCE50)(param_1, param_2); }
-static inline void hwSetSRCType(int param_1, uint param_2) { ((void(*)(int, uint))0x800DCEC8)(param_1, param_2); }
-static inline void hwSetPolyPhaseFilter(int param_1, uint param_2) { ((void(*)(int, uint))0x800DCEF4)(param_1, param_2); }
-static inline void hwLowPassFrqToCoef(undefined4 param_1, undefined2 * param_2, undefined2 * param_3) { ((void(*)(undefined4, undefined2 *, undefined2 *))0x800DCF20)(param_1, param_2, param_3); }
-static inline void hwSetFilter(int param_1, char param_2, undefined2 param_3, undefined2 param_4) { ((void(*)(int, char, undefined2, undefined2))0x800DD018)(param_1, param_2, param_3, param_4); }
-static inline void hwSetITDMode(int param_1, char param_2) { ((void(*)(int, char))0x800DD098)(param_1, param_2); }
-static inline void hwSetVolume(double param_1, double param_2, double param_3, int param_4, undefined4 param_5, uint param_6, undefined4 param_7) { ((void(*)(double, double, double, int, undefined4, uint, undefined4))0x800DD0F4)(param_1, param_2, param_3, param_4, param_5, param_6, param_7); }
-#define hwSetAuxProcessingCallbacks FUNCTION_ADDRESS(void, 0x800DD3B4, byte /*studio*/, SND_AUX_CALLBACK /*auxA*/, SND_AUX_CALLBACK /*auxB*/, void * /*userB*/)
-static inline int hwGetPos(int param_1) { return ((int(*)(int))0x800DD3DC)(param_1); }
-static inline void hwFlushStream(undefined4 param_1, undefined4 param_2, int param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6) { ((void(*)(undefined4, undefined4, int, undefined4, undefined4, undefined4))0x800DD488)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void hwGetStreamPlayBuffer(undefined4 param_1) { ((void(*)(undefined4))0x800DD518)(param_1); }
+static inline void hwSetTimeOffset(void) { ((void(*)(void))0x800DC96C)(); }
+static inline void hwGetTimeOffset(void) { ((void(*)(void))0x800DC974)(); }
+static inline void hwIsActive(void) { ((void(*)(void))0x800DC97C)(); }
+static inline void hwSetMesgCallback(void) { ((void(*)(void))0x800DC99C)(); }
+static inline void hwSetPriority(void) { ((void(*)(void))0x800DC9A4)(); }
+static inline void hwInitSamplePlayback(void) { ((void(*)(void))0x800DC9B8)(); }
+static inline void hwBreak(void) { ((void(*)(void))0x800DCB6C)(); }
+static inline void hwSetADSR(void) { ((void(*)(void))0x800DCBBC)(); }
+static inline void hwSetVirtualSampleLoopBuffer(void) { ((void(*)(void))0x800DCD68)(); }
+static inline void hwGetVirtualSampleState(void) { ((void(*)(void))0x800DCD88)(); }
+static inline void hwGetSampleType(void) { ((void(*)(void))0x800DCD9C)(); }
+static inline void hwGetSampleID(void) { ((void(*)(void))0x800DCDB0)(); }
+static inline void hwGetSampleExtraData(void) { ((void(*)(void))0x800DCDC4)(); }
+static inline void hwSetStreamLoopPS(void) { ((void(*)(void))0x800DCDD8)(); }
+static inline void hwStart(void) { ((void(*)(void))0x800DCDEC)(); }
+static inline void hwKeyOff(void) { ((void(*)(void))0x800DCE28)(); }
+static inline void hwSetPitch(void) { ((void(*)(void))0x800DCE50)(); }
+static inline void hwSetSRCType(void) { ((void(*)(void))0x800DCEC8)(); }
+static inline void hwSetPolyPhaseFilter(void) { ((void(*)(void))0x800DCEF4)(); }
+static inline void hwLowPassFrqToCoef(void) { ((void(*)(void))0x800DCF20)(); }
+static inline void hwSetFilter(void) { ((void(*)(void))0x800DD018)(); }
+static inline void hwSetITDMode(void) { ((void(*)(void))0x800DD098)(); }
+static inline void hwSetVolume(void) { ((void(*)(void))0x800DD0F4)(); }
+static inline void hwSetAuxProcessingCallbacks(byte studio, SND_AUX_CALLBACK auxA, SND_AUX_CALLBACK auxB, void * userB) { ((void(*)(byte, SND_AUX_CALLBACK, SND_AUX_CALLBACK, void *))0x800DD3B4)(studio, auxA, auxB, userB); }
+static inline void hwGetPos(void) { ((void(*)(void))0x800DD3DC)(); }
+static inline void hwFlushStream(void) { ((void(*)(void))0x800DD488)(); }
+static inline void hwGetStreamPlayBuffer(void) { ((void(*)(void))0x800DD518)(); }
 static inline void * hwTransAddr(void * samples) { return ((void *(*)(void *))0x800DD53C)(samples); }
-static inline void hwFrqPitch(undefined4 param_1) { ((void(*)(undefined4))0x800DD540)(param_1); }
-static inline void hwInitSampleMem(undefined4 param_1, undefined4 param_2) { ((void(*)(undefined4, undefined4))0x800DD59C)(param_1, param_2); }
+static inline void hwFrqPitch(void) { ((void(*)(void))0x800DD540)(); }
+static inline void hwInitSampleMem(void) { ((void(*)(void))0x800DD59C)(); }
 static inline void hwExitSampleMem(void) { ((void(*)(void))0x800DD5C0)(); }
-static inline void hwSaveSample(int * param_1, undefined4 * param_2) { ((void(*)(int *, undefined4 *))0x800DD5E0)(param_1, param_2); }
-static inline void hwRemoveSample(int param_1, undefined4 param_2) { ((void(*)(int, undefined4))0x800DD678)(param_1, param_2); }
+static inline void hwSaveSample(void) { ((void(*)(void))0x800DD5E0)(); }
+static inline void hwRemoveSample(void) { ((void(*)(void))0x800DD678)(); }
 static inline void hwSyncSampleMem(void) { ((void(*)(void))0x800DD700)(); }
 static inline void hwFrameDone(void) { ((void(*)(void))0x800DD720)(); }
-static inline void sndSetHooks(undefined4 * param_1) { ((void(*)(undefined4 *))0x800DD724)(param_1); }
+static inline void sndSetHooks(void) { ((void(*)(void))0x800DD724)(); }
 static inline void hwDisableHRTF(void) { ((void(*)(void))0x800DD740)(); }
 static inline void hwEnableCompressor(void) { ((void(*)(void))0x800DD74C)(); }
-static inline undefined4 hwGetVirtualSampleID(int param_1) { return ((undefined4(*)(int))0x800DD758)(param_1); }
-static inline uint hwVoiceInStartup(int param_1) { return ((uint(*)(int))0x800DD780)(param_1); }
+static inline void hwGetVirtualSampleID(void) { ((void(*)(void))0x800DD758)(); }
+static inline void hwVoiceInStartup(void) { ((void(*)(void))0x800DD780)(); }
 static inline ulong aramQueueCallback(void) { return ((ulong(*)(void))0x800DD7A0)(); }
-static inline void aramUploadData(undefined4 param_1, undefined4 param_2, undefined * param_3, uint param_4, undefined * param_5, undefined * param_6) { ((void(*)(undefined4, undefined4, undefined *, uint, undefined *, undefined *))0x800DD840)(param_1, param_2, param_3, param_4, param_5, param_6); }
+static inline void aramUploadData(void) { ((void(*)(void))0x800DD840)(); }
 static inline void aramSyncTransferQueue(void) { ((void(*)(void))0x800DDA1C)(); }
-static inline void aramInit(int param_1) { ((void(*)(int))0x800DDA34)(param_1); }
+static inline void aramInit(void) { ((void(*)(void))0x800DDA34)(); }
 static inline void aramExit(void) { ((void(*)(void))0x800DDD18)(); }
 static inline void aramGetZeroBuffer(void) { ((void(*)(void))0x800DDD1C)(); }
-static inline int aramGetFirstUserAddress(void) { return ((int(*)(void))0x800DDD3C)(); }
-static inline int aramGetUserBytes(int param_1) { return ((int(*)(int))0x800DDD60)(param_1); }
-static inline void aramStoreData(undefined4 param_1, undefined4 param_2, int * param_3) { ((void(*)(undefined4, undefined4, int *))0x800DDD68)(param_1, param_2, param_3); }
-static inline void aramRemoveData(undefined4 param_1, int param_2, int param_3) { ((void(*)(undefined4, int, int))0x800DE18C)(param_1, param_2, param_3); }
+static inline void aramGetFirstUserAddress(void) { ((void(*)(void))0x800DDD3C)(); }
+static inline void aramGetUserBytes(void) { ((void(*)(void))0x800DDD60)(); }
+static inline void aramStoreData(void) { ((void(*)(void))0x800DDD68)(); }
+static inline void aramRemoveData(void) { ((void(*)(void))0x800DE18C)(); }
 static inline void InitStreamBuffers(void) { ((void(*)(void))0x800DE1A4)(); }
-static inline int aramGetStreamBufferAddress(uint param_1, undefined4 * param_2) { return ((int(*)(uint, undefined4 *))0x800DE268)(param_1, param_2); }
+static inline void aramGetStreamBufferAddress(void) { ((void(*)(void))0x800DE268)(); }
 static inline void salCallback(void) { ((void(*)(void))0x800DE2A0)(); }
 static inline void dspInitCallback(void) { ((void(*)(void))0x800DE348)(); }
 static inline void dspResumeCallback(void) { ((void(*)(void))0x800DE358)(); }
 static inline void dspDoneCallback(void) { ((void(*)(void))0x800DE3BC)(); }
-static inline bool salInitAi(undefined * param_1, undefined4 param_2, undefined4 * param_3) { return ((bool(*)(undefined *, undefined4, undefined4 *))0x800DE3E0)(param_1, param_2, param_3); }
+static inline void salInitAi(void) { ((void(*)(void))0x800DE3E0)(); }
 static inline void salStartAi(void) { ((void(*)(void))0x800DE4A8)(); }
-static inline undefined4 salExitAi(void) { return ((undefined4(*)(void))0x800DE4C8)(); }
-static inline undefined * salAIGetDest(void) { return ((undefined *(*)(void))0x800DE4FC)(); }
-static inline undefined4 salInitDsp(void) { return ((undefined4(*)(void))0x800DE52C)(); }
-static inline undefined4 salExitDsp(void) { return ((undefined4(*)(void))0x800DE600)(); }
-static inline void salCtrlDsp(undefined4 param_1) { ((void(*)(undefined4))0x800DE650)(param_1); }
-static inline uint salGetStartDelay(void) { return ((uint(*)(void))0x800DE6C4)(); }
+static inline void salExitAi(void) { ((void(*)(void))0x800DE4C8)(); }
+static inline void salAIGetDest(void) { ((void(*)(void))0x800DE4FC)(); }
+static inline void salInitDsp(void) { ((void(*)(void))0x800DE52C)(); }
+static inline void salExitDsp(void) { ((void(*)(void))0x800DE600)(); }
+static inline void salCtrlDsp(void) { ((void(*)(void))0x800DE650)(); }
+static inline void salGetStartDelay(void) { ((void(*)(void))0x800DE6C4)(); }
 static inline void hwInitIrq(void) { ((void(*)(void))0x800DE710)(); }
 static inline void hwExitIeq(void) { ((void(*)(void))0x800DE73C)(); }
 static inline void hwEnableIrq(void) { ((void(*)(void))0x800DE740)(); }
@@ -40123,22 +40125,22 @@ static inline void hwIRQLeaveCritical(void) { ((void(*)(void))0x800DE7D0)(); }
 static inline void salMalloc(void) { ((void(*)(void))0x800DE7F0)(); }
 static inline void salMallocPhysical(void) { ((void(*)(void))0x800DE81C)(); }
 static inline void salFree(void) { ((void(*)(void))0x800DE84C)(); }
-static inline void sndAuxCallbackReverbHI(char param_1, undefined4 * param_2, int param_3) { ((void(*)(char, undefined4 *, int))0x800DE87C)(param_1, param_2, param_3); }
-static inline void sndAuxCallbackPrepareReverbHI(int param_1) { ((void(*)(int))0x800DE8D8)(param_1); }
-static inline void ReverbHICreate(undefined8 param_1, double param_2, double param_3, double param_4, double param_5, double param_6) { ((void(*)(undefined8, double, double, double, double, double))0x800DE918)(param_1, param_2, param_3, param_4, param_5, param_6); }
-static inline void DoCrossTalk(undefined8 param_1, undefined8 param_2, uint * param_3, uint * param_4) { ((void(*)(undefined8, undefined8, uint *, uint *))0x800DEE24)(param_1, param_2, param_3, param_4); }
-static inline void HandleReverb(uint * param_1, int param_2, int param_3) { ((void(*)(uint *, int, int))0x800DEFA8)(param_1, param_2, param_3); }
-static inline void ReverbHICallback(undefined4 param_1, undefined4 param_2, undefined4 param_3, int param_4) { ((void(*)(undefined4, undefined4, undefined4, int))0x800DF4B4)(param_1, param_2, param_3, param_4); }
-static inline void do_src1(int * * param_1) { ((void(*)(int * *))0x800DF594)(param_1); }
-static inline void do_src2(int * * param_1) { ((void(*)(int * *))0x800DF72C)(param_1); }
-static inline void sndAuxCallbackChorus(char param_1, undefined4 * param_2, undefined4 * param_3) { ((void(*)(char, undefined4 *, undefined4 *))0x800DF918)(param_1, param_2, param_3); }
-static inline undefined4 sndAuxCallbackPrepareChorus(int * param_1) { return ((undefined4(*)(int *))0x800DFBD4)(param_1); }
+static inline void sndAuxCallbackReverbHI(void) { ((void(*)(void))0x800DE87C)(); }
+static inline void sndAuxCallbackPrepareReverbHI(void) { ((void(*)(void))0x800DE8D8)(); }
+static inline void ReverbHICreate(void) { ((void(*)(void))0x800DE918)(); }
+static inline void DoCrossTalk(void) { ((void(*)(void))0x800DEE24)(); }
+static inline void HandleReverb(void) { ((void(*)(void))0x800DEFA8)(); }
+static inline void ReverbHICallback(void) { ((void(*)(void))0x800DF4B4)(); }
+static inline void do_src1(void) { ((void(*)(void))0x800DF594)(); }
+static inline void do_src2(void) { ((void(*)(void))0x800DF72C)(); }
+static inline void sndAuxCallbackChorus(void) { ((void(*)(void))0x800DF918)(); }
+static inline void sndAuxCallbackPrepareChorus(void) { ((void(*)(void))0x800DFBD4)(); }
 static inline void maybeProcessTeamData(void) { ((void(*)(void))0x8063F094)(); }
 static inline void unreferenced(void) { ((void(*)(void))0x8063F2EC)(); }
 static inline void manageStadiumLoading(void) { ((void(*)(void))0x8063F588)(); }
 static inline void manageLoadingState(void) { ((void(*)(void))0x8063F6F0)(); }
 static inline TriangleCollisionTypes checkCollision(VecSrcDst * inVec, OutCollisionStruct * outCollisionStruct, int collisionCheckType, BOOL useBallCoords) { return ((TriangleCollisionTypes(*)(VecSrcDst *, OutCollisionStruct *, int, BOOL))0x8063F9A8)(inVec, outCollisionStruct, collisionCheckType, useBallCoords); }
-static inline TriangleCollisionTypes checkStadiumHazardCollisions(VecSrcDst * in, VecSrcDst * out, stadiumObjectCollision * mstadiumObj) { return ((TriangleCollisionTypes(*)(VecSrcDst *, VecSrcDst *, stadiumObjectCollision *))0x8063FB00)(in, out, mstadiumObj); }
+static inline TriangleCollisionTypes checkStadiumHazardCollisions(VecSrcDst * in, VecSrcDst * out_, stadiumObjectCollision * mstadiumObj) { return ((TriangleCollisionTypes(*)(VecSrcDst *, VecSrcDst *, stadiumObjectCollision *))0x8063FB00)(in, out_, mstadiumObj); }
 static inline TriangleCollisionTypes DidCollideWithBoundingBoxes(VecSrcDst * inCoord, OutCollisionStruct * outVecs, CollisionBox * inBoxes, short inCount) { return ((TriangleCollisionTypes(*)(VecSrcDst *, OutCollisionStruct *, CollisionBox *, short))0x8063FE84)(inCoord, outVecs, inBoxes, inCount); }
 static inline BOOL checkTriangleCollisions(TriangleCollisionStruct * collisionData, TriangleGroup * triangleGroup) { return ((BOOL(*)(TriangleCollisionStruct *, TriangleGroup *))0x80640174)(collisionData, triangleGroup); }
 static inline void running_rouondBasePosition_(undefined8 param_1, int someXCoord, int param_3, int param_4) { ((void(*)(undefined8, int, int, int))0x80641674)(param_1, someXCoord, param_3, param_4); }
@@ -40146,7 +40148,7 @@ static inline void setFanObjPtr(int ptr) { ((void(*)(int))0x80642678)(ptr); }
 static inline void CTRLBuildMatrixRelated(TextureArchiveHeader * param_1) { ((void(*)(TextureArchiveHeader *))0x806426CC)(param_1); }
 static inline void inningScoreDisplayRelated_(EnumStadiumIDs4 stadiumId) { ((void(*)(EnumStadiumIDs4))0x80643ACC)(stadiumId); }
 static inline void drawStadiumObjects_(int * param_1) { ((void(*)(int *))0x80644710)(param_1); }
-static inline void drawStadium_(int * param_1) { ((void(*)(int *))0x80644C40)(param_1); }
+static inline void drawStadium_(void) { ((void(*)(void))0x80644C40)(); }
 static inline void updateStadiumFileHeaders(StadiumFileHeader * stadiumHeader) { ((void(*)(StadiumFileHeader *))0x80644F54)(stadiumHeader); }
 static inline void chompCollision_processStarHitVariables(void) { ((void(*)(void))0x806455C4)(); }
 static inline void plantPhysics(void) { ((void(*)(void))0x806456B4)(); }
@@ -40157,7 +40159,7 @@ static inline void handleBallHitDeadBallOutcome(void) { ((void(*)(void))0x806480
 static inline void fairOrFoulBall(TriangleCollisionTypes_word collType) { ((void(*)(TriangleCollisionTypes_word))0x806482F4)(collType); }
 static inline void processLandedBallBouncing(void) { ((void(*)(void))0x8064859C)(); }
 static inline void processBallInAir__Landed(void) { ((void(*)(void))0x8064889C)(); }
-static inline double ballDistCalculator(double param_1, double param_2) { return ((double(*)(double, double))0x80648D74)(param_1, param_2); }
+static inline void ballDistCalculator(void) { ((void(*)(void))0x80648D74)(); }
 static inline void relatedToGroundRuleDouble(void) { ((void(*)(void))0x80648F18)(); }
 static inline void foulBall_80649184(void) { ((void(*)(void))0x80649184)(); }
 static inline void warioWaluStarHit(void) { ((void(*)(void))0x8064922C)(); }
@@ -40169,9 +40171,9 @@ static inline void futureFrameForClosestBall(undefined8 playerX, undefined8 play
 static inline void setHitClassification3(void) { ((void(*)(void))0x8064AE0C)(); }
 static inline void classifyHitTrajectoryOrHitAnimRelated(void) { ((void(*)(void))0x8064B0C8)(); }
 static inline void updateFrameCountersAndBallPastCoordinatesWhenFielderHoldingBall(void) { ((void(*)(void))0x8064BA88)(); }
-static inline void estimateAndSetFutureCoords(int param_1) { ((void(*)(int))0x8064BEBC)(param_1); }
+static inline void estimateAndSetFutureCoords(void) { ((void(*)(void))0x8064BEBC)(); }
 static inline void adjustVeloByAirResistance(void) { ((void(*)(void))0x8064CC64)(); }
-static inline void estimateWhereBallWillHitWall(int param_1) { ((void(*)(int))0x8064CCDC)(param_1); }
+static inline void estimateWhereBallWillHitWall(void) { ((void(*)(void))0x8064CCDC)(); }
 static inline void calculateImplicationsOfTheHitTrajectory(void) { ((void(*)(void))0x8064D368)(); }
 static inline void setLiveBallVariablesAfterContact(void) { ((void(*)(void))0x8064DEE0)(); }
 static inline void setDefaultInMemBall(void) { ((void(*)(void))0x8064E270)(); }
@@ -40215,17 +40217,17 @@ static inline void camera_match_setMovement(void) { ((void(*)(void))0x8065A404)(
 static inline void matchCamera_setPastAndCurrentTarget(void) { ((void(*)(void))0x8065AAAC)(); }
 static inline void camera_matchLiveBall(void) { ((void(*)(void))0x8065B244)(); }
 static inline void cameraControl(void) { ((void(*)(void))0x8065BF24)(); }
-static inline undefined4 staminaRelated(void) { return ((undefined4(*)(void))0x8065C900)(); }
+static inline void staminaRelated(void) { ((void(*)(void))0x8065C900)(); }
 static inline void versusStarChanceSetPointers_(void) { ((void(*)(void))0x8065CCC4)(); }
 static inline void trackLastPitchInfo(void) { ((void(*)(void))0x8065CDDC)(); }
 static inline void setDefaultAIValues(void) { ((void(*)(void))0x8065CF4C)(); }
 static inline void betweenABSetPitcherBatter(void) { ((void(*)(void))0x8065D1E8)(); }
 static inline void someRosterMemoryManagement(void) { ((void(*)(void))0x8065D20C)(); }
 static inline void initializeAIConstants(void) { ((void(*)(void))0x8065D3BC)(); }
-static inline uint unreferenced_8065d7b8(void) { return ((uint(*)(void))0x8065D7B8)(); }
-static inline uint batterAIBallLocRelated(void) { return ((uint(*)(void))0x8065D888)(); }
+static inline void unreferenced_8065d7b8(void) { ((void(*)(void))0x8065D7B8)(); }
+static inline void batterAIBallLocRelated(void) { ((void(*)(void))0x8065D888)(); }
 static inline void batterAIFrameToSwingAndStickInput(void) { ((void(*)(void))0x8065DB3C)(); }
-static inline int batterAISwingInd(void) { return ((int(*)(void))0x8065E078)(); }
+static inline void batterAISwingInd(void) { ((void(*)(void))0x8065E078)(); }
 static inline void batterTrackBallInBox(void) { ((void(*)(void))0x8065E50C)(); }
 static inline void batterAIMoveBatter(void) { ((void(*)(void))0x8065EA2C)(); }
 static inline void batterAIControlled(void) { ((void(*)(void))0x8065EE20)(); }
@@ -40234,7 +40236,7 @@ static inline void batterAISwingEarlyOrLate(void) { ((void(*)(void))0x8065F0F8)(
 static inline void batterAIRNGValueSetting(void) { ((void(*)(void))0x8065F2B8)(); }
 static inline void resetBatterPreAB_(void) { ((void(*)(void))0x8065FAF4)(); }
 static inline void resetLastPitchData(void) { ((void(*)(void))0x8065FB44)(); }
-static inline undefined4 aIPickoff(void) { return ((undefined4(*)(void))0x8065FBC4)(); }
+static inline void aIPickoff(void) { ((void(*)(void))0x8065FBC4)(); }
 static inline void aiPitchCurveDirection(undefined8 curvePerFrame) { ((void(*)(undefined8))0x8065FD80)(curvePerFrame); }
 static inline void movePitcherOnMound(void) { ((void(*)(void))0x8065FEE4)(); }
 static inline void unused_8065ff80(void) { ((void(*)(void))0x8065FF80)(); }
@@ -40243,7 +40245,7 @@ static inline void pitcherAISelectPitch(void) { ((void(*)(void))0x80660334)(); }
 static inline void pitcherAI_prePitchSetConstants(void) { ((void(*)(void))0x80660640)(); }
 static inline void pitcherAINewBatter(void) { ((void(*)(void))0x806607FC)(); }
 static inline void resetPitcherPreAB_(void) { ((void(*)(void))0x80660A34)(); }
-static inline int maybeSetVsIndOrScoutFlagChance_(void) { return ((int(*)(void))0x80660FA8)(); }
+static inline void maybeSetVsIndOrScoutFlagChance_(void) { ((void(*)(void))0x80660FA8)(); }
 static inline void resetSomethingRelatedToVersus(void) { ((void(*)(void))0x806618E4)(); }
 static inline void versusScreen_seemsToDoNothing(void) { ((void(*)(void))0x80661CA4)(); }
 static inline void championshipScreen(void) { ((void(*)(void))0x80661CB4)(); }
@@ -40260,24 +40262,24 @@ static inline void unused_8066496c(int fielderInd) { ((void(*)(int))0x8066496C)(
 static inline void runningCatch_updatePositionAndVelocity(int fielderIndex) { ((void(*)(int))0x80664AFC)(fielderIndex); }
 static inline void mag_BirdoSlidingCatchSetCoordinates(int fielderIndex) { ((void(*)(int))0x80664CD4)(fielderIndex); }
 static inline void fielderMovement_VelocityDuringCatchAnimations(int fielderIndex) { ((void(*)(int))0x8066527C)(fielderIndex); }
-static inline void calculateBobble(int fielder) { ((void(*)(int))0x806656F8)(fielder); }
+static inline void calculateBobble(int fielder_) { ((void(*)(int))0x806656F8)(fielder_); }
 static inline void updateVariablesPostCatch(int fielderIndex) { ((void(*)(int))0x80665B08)(fielderIndex); }
 static inline void processFielderAutoCatch(void) { ((void(*)(void))0x806666DC)(); }
 static inline void catchAnimationProgression(int fielderIndex) { ((void(*)(int))0x806668F4)(fielderIndex); }
 static inline void clamberCheckCatch(int fielderInd) { ((void(*)(int))0x80666DFC)(fielderInd); }
-static inline undefined4 wallJumpSOmething3_(int param_1) { return ((undefined4(*)(int))0x80667088)(param_1); }
+static inline void wallJumpSOmething3_(void) { ((void(*)(void))0x80667088)(); }
 static inline int wallJumpInitialization(int fielderIndex) { return ((int(*)(int))0x806672B8)(fielderIndex); }
 static inline int divingCatch_80667d3c(int fielderIndex) { return ((int(*)(int))0x80667D3C)(fielderIndex); }
 static inline bool uncalledattemptJumpingCatch(int fielderIndex) { return ((bool(*)(int))0x806691F8)(fielderIndex); }
 static inline BOOL checkForAndSetFielderWallActionsOrDives(int fielderIndex) { return ((BOOL(*)(int))0x8066931C)(fielderIndex); }
-static inline void ballThrownToEmptyBaseCatchAttempt(int fielder) { ((void(*)(int))0x80669730)(fielder); }
-static inline undefined4 unused_80669d6c(int param_1, int param_2) { return ((undefined4(*)(int, int))0x80669D6C)(param_1, param_2); }
+static inline void ballThrownToEmptyBaseCatchAttempt(int fielder_) { ((void(*)(int))0x80669730)(fielder_); }
+static inline void unused_80669d6c(void) { ((void(*)(void))0x80669D6C)(); }
 static inline void catchThrownBallFun(int fielderInd) { ((void(*)(int))0x80669DFC)(fielderInd); }
 static inline BOOL checkIfRunningCatchOccurs(int fielderInd) { return ((BOOL(*)(int))0x8066A728)(fielderInd); }
 static inline BOOL checkIfCatchOccurs(int fielderInd) { return ((BOOL(*)(int))0x8066AB98)(fielderInd); }
 static inline void evaluateFlyBallCatch(int fielderIndex) { ((void(*)(int))0x8066B384)(fielderIndex); }
 static inline void checkForCatchBallAction(int fielderIndex) { ((void(*)(int))0x8066B72C)(fielderIndex); }
-static inline undefined4 minigameDashUpdateFieldingVals(int param_1) { return ((undefined4(*)(int))0x8066BC74)(param_1); }
+static inline void minigameDashUpdateFieldingVals(void) { ((void(*)(void))0x8066BC74)(); }
 static inline void unused_FUN_8066bf88(int fielderIndex) { ((void(*)(int))0x8066BF88)(fielderIndex); }
 static inline void determineBestFrameForFielder(int fielderIndex) { ((void(*)(int))0x8066C114)(fielderIndex); }
 static inline void updateFielderPositionBasedOnBallState(int fielderIndex) { ((void(*)(int))0x8066C510)(fielderIndex); }
@@ -40288,15 +40290,15 @@ static inline void autoMovement26_minigameRelated1(int fielderIndex) { ((void(*)
 static inline void minigameRelated_FUN_8066d4b0(void) { ((void(*)(void))0x8066D4B0)(); }
 static inline void toyfieldRelated_(void) { ((void(*)(void))0x8066D910)(); }
 static inline void miniGameFielding_(void) { ((void(*)(void))0x8066DAB8)(); }
-static inline void minigameDashUpdateFieldingVariables(uint param_1) { ((void(*)(uint))0x8066DF58)(param_1); }
+static inline void minigameDashUpdateFieldingVariables(void) { ((void(*)(void))0x8066DF58)(); }
 static inline void miniGameDash(void) { ((void(*)(void))0x8066E518)(); }
 static inline void jumpSetPosAndVelo(int fielderIndex) { ((void(*)(int))0x8066E608)(fielderIndex); }
-static inline void unused_8066e868(int param_1) { ((void(*)(int))0x8066E868)(param_1); }
+static inline void unused_8066e868(void) { ((void(*)(void))0x8066E868)(); }
 static inline void wallSplat_setPosAndVelo(int fielderIndex) { ((void(*)(int))0x8066E9B8)(fielderIndex); }
 static inline void setClamberPos(int fielderIndex) { ((void(*)(int))0x8066EC30)(fielderIndex); }
 static inline void clamberJumpOffWall(int fielderIndex) { ((void(*)(int))0x8066EFC0)(fielderIndex); }
-static inline void unused_8066f14c(int param_1) { ((void(*)(int))0x8066F14C)(param_1); }
-static inline int clamberInitialization(int param_1) { return ((int(*)(int))0x8066F2A8)(param_1); }
+static inline void unused_8066f14c(void) { ((void(*)(void))0x8066F14C)(); }
+static inline void clamberInitialization(void) { ((void(*)(void))0x8066F2A8)(); }
 static inline void walljump_calculateJumpedOffWallPositionAndVelocity(int fIndex) { ((void(*)(int))0x8066F5F8)(fIndex); }
 static inline void unused_8066f6b0(void) { ((void(*)(void))0x8066F6B0)(); }
 static inline void unReferenced(void) { ((void(*)(void))0x8066FAEC)(); }
@@ -40349,12 +40351,12 @@ static inline void autoMovement12_stopBetweenInstructions(enumFielder fIndex) { 
 static inline void setFielderLocToBeNearBase(int fIndex) { ((void(*)(int))0x8067C868)(fIndex); }
 static inline void autoMovement14_infieldSupport(int fielderIndex) { ((void(*)(int))0x8067CC0C)(fielderIndex); }
 static inline void autoMovement20_pitcherLinedriveRelated(int fielderIndex) { ((void(*)(int))0x8067D3E0)(fielderIndex); }
-static inline void knockoutRelated_Grounder_Liner(int param_1) { ((void(*)(int))0x8067D724)(param_1); }
-static inline void knockoutRelated_FlyBall(int param_1) { ((void(*)(int))0x8067DC00)(param_1); }
+static inline void knockoutRelated_Grounder_Liner(void) { ((void(*)(void))0x8067D724)(); }
+static inline void knockoutRelated_FlyBall(void) { ((void(*)(void))0x8067DC00)(); }
 static inline void knockoutRelated(void) { ((void(*)(void))0x8067E0C8)(); }
 static inline void uncalled(void) { ((void(*)(void))0x8067E1B8)(); }
 static inline void aITeamFieldingFirstFrameAfterHit(void) { ((void(*)(void))0x80680240)(); }
-static inline void fielderAIAssignmentRelated(int param_1) { ((void(*)(int))0x80680A10)(param_1); }
+static inline void fielderAIAssignmentRelated(void) { ((void(*)(void))0x80680A10)(); }
 static inline void fielderAISomething(void) { ((void(*)(void))0x80680E0C)(); }
 static inline void decideWhenToLeaveFunction2_16_18(int feilderIndex) { ((void(*)(int))0x80681110)(feilderIndex); }
 static inline void updateFielderPosition(int fielderIndex) { ((void(*)(int))0x80681D70)(fielderIndex); }
@@ -40395,14 +40397,14 @@ static inline void fielderMovement_adjustPlaceToStandForBallBouncingOffWall(int 
 static inline void updateSprintPointers(void) { ((void(*)(void))0x806902B4)(); }
 static inline uint adjustPlayerPosOutsideFoulLine(int fielderIndex, Vec3f * outPosVec) { return ((uint(*)(int, Vec3f *))0x806906E0)(fielderIndex, outPosVec); }
 static inline int updateFielderPosition_checkFielderCollision_(int fielderIndex, Vec3f * outNewPos, int param_3) { return ((int(*)(int, Vec3f *, int))0x8069082C)(fielderIndex, outNewPos, param_3); }
-static inline undefined4 setZoneAwayFromHome(double param_1, double param_2) { return ((undefined4(*)(double, double))0x80690E84)(param_1, param_2); }
+static inline void setZoneAwayFromHome(void) { ((void(*)(void))0x80690E84)(); }
 static inline void calculateMinDiveDistAndEndingCoords(double xDist, double zDist, int fielderIndex, int frameAhead, float * postDiveX, float * postDiveZ, float * minimumDiveDistance) { ((void(*)(double, double, int, int, float *, float *, float *))0x80691374)(xDist, zDist, fielderIndex, frameAhead, postDiveX, postDiveZ, minimumDiveDistance); }
 static inline void fRunningTimeToDestinationPlus7(undefined8 someX, undefined8 someZ, int fielderIndex) { ((void(*)(undefined8, undefined8, int))0x806915F4)(someX, someZ, fielderIndex); }
 static inline void setFielderVelocity(int fielderIndex, int param_2, int distFromRunner) { ((void(*)(int, int, int))0x80691770)(fielderIndex, param_2, distFromRunner); }
 static inline void setFielderAutoCoords(undefined8 targetX, undefined8 targetZ, int param_3) { ((void(*)(undefined8, undefined8, int))0x80691FE0)(targetX, targetZ, param_3); }
 static inline void updateFielderPositionAndVelocityForSpecialActions(int fielderIndex) { ((void(*)(int))0x806921C4)(fielderIndex); }
 static inline void setStandingOnBaseVariables(int fielderIndex) { ((void(*)(int))0x806927C0)(fielderIndex); }
-static inline void fielderMovementRelated(int param_1) { ((void(*)(int))0x80692F7C)(param_1); }
+static inline void fielderMovementRelated(void) { ((void(*)(void))0x80692F7C)(); }
 static inline void minigameFieldingRelated_collisions_(void) { ((void(*)(void))0x80692FDC)(); }
 static inline void fielding_handleCollisionsAndSpecialActions(void) { ((void(*)(void))0x8069354C)(); }
 static inline void updateFielderDirectionFacing(int fielderIndex) { ((void(*)(int))0x80693BEC)(fielderIndex); }
@@ -40436,7 +40438,7 @@ static inline void gameInitRelated(void) { ((void(*)(void))0x80699910)(); }
 static inline void simulate1FrameOfTheGame(void) { ((void(*)(void))0x80699D34)(); }
 static inline void transferSomeValuesOnMatchLoad(void) { ((void(*)(void))0x80699F30)(); }
 static inline void gameSimulationFunction(void) { ((void(*)(void))0x8069A158)(); }
-static inline undefined4 exitMenu_main(EnumControllerInput param_1) { return ((undefined4(*)(EnumControllerInput))0x8069A414)(param_1); }
+static inline void exitMenu_main(void) { ((void(*)(void))0x8069A414)(); }
 static inline void startChallengeModeMatch_(void) { ((void(*)(void))0x8069A634)(); }
 static inline void endOfGame_menuControl(void) { ((void(*)(void))0x8069AAC0)(); }
 static inline void matchEndGameScreenFunction(void) { ((void(*)(void))0x8069ADD4)(); }
@@ -40448,9 +40450,9 @@ static inline void endOfMatch(void) { ((void(*)(void))0x8069BE48)(); }
 static inline void unreferenced_8069c064(void) { ((void(*)(void))0x8069C064)(); }
 static inline void endOfGameCheck(int isRBI) { ((void(*)(int))0x8069C128)(isRBI); }
 static inline void inningImportanceAI(void) { ((void(*)(void))0x8069C490)(); }
-static inline void inningChange(int param_1) { ((void(*)(int))0x8069C67C)(param_1); }
+static inline void inningChange(void) { ((void(*)(void))0x8069C67C)(); }
 static inline void settingGameStatus(void) { ((void(*)(void))0x8069CB30)(); }
-static inline int handleABEndEvent(void) { return ((int(*)(void))0x8069CD74)(); }
+static inline void handleABEndEvent(void) { ((void(*)(void))0x8069CD74)(); }
 static inline void handleDeadBall(void) { ((void(*)(void))0x8069CDC4)(); }
 static inline void playOverTransitionStuff(void) { ((void(*)(void))0x8069CFE8)(); }
 static inline void checkIfPlayOver(void) { ((void(*)(void))0x8069D358)(); }
@@ -40462,7 +40464,7 @@ static inline void newPitch(void) { ((void(*)(void))0x8069E1E8)(); }
 static inline void matchTransitionPrepareNextAB(void) { ((void(*)(void))0x8069E490)(); }
 static inline void practiceNewBatter_(void) { ((void(*)(void))0x8069E7B4)(); }
 static inline void initNewInning_(void) { ((void(*)(void))0x8069E83C)(); }
-static inline void exhibitionGameTransitionCalculations(int param_1) { ((void(*)(int))0x8069E9C4)(param_1); }
+static inline void exhibitionGameTransitionCalculations(void) { ((void(*)(void))0x8069E9C4)(); }
 static inline void initializeGame_(void) { ((void(*)(void))0x8069EFA4)(); }
 static inline void baseballMatchSimulation(void) { ((void(*)(void))0x8069F1B0)(); }
 static inline int updateFielderState(int fielderIndex, int updateType) { return ((int(*)(int, int))0x8069F898)(fielderIndex, updateType); }
@@ -40473,7 +40475,7 @@ static inline void fielderAnimations_setAnimation(int fielderIndex) { ((void(*)(
 static inline void handleRunnerActionsAndTagging(void) { ((void(*)(void))0x806A1998)(); }
 static inline void fielderAnimations(void) { ((void(*)(void))0x806A1F04)(); }
 static inline void runnerAnimation_general(int runnerIndex) { ((void(*)(int))0x806A2240)(runnerIndex); }
-static inline void runnerAnimation_detailed(int param_1) { ((void(*)(int))0x806A2908)(param_1); }
+static inline void runnerAnimation_detailed(void) { ((void(*)(void))0x806A2908)(); }
 static inline void batterAnimations_(void) { ((void(*)(void))0x806A2B8C)(); }
 static inline void pitcherAnimation_(void) { ((void(*)(void))0x806A3C70)(); }
 static inline void minigameAnimations(void) { ((void(*)(void))0x806A51D4)(); }
@@ -40487,7 +40489,7 @@ static inline void ballSpinSetting(void) { ((void(*)(void))0x806A7C48)(); }
 static inline void clearAnimationRelatedPointers(void) { ((void(*)(void))0x806A8190)(); }
 static inline void ballAnimationSubFun3(void) { ((void(*)(void))0x806A8218)(); }
 static inline void ballAnimationSubFun2(void) { ((void(*)(void))0x806A8374)(); }
-static inline void ballAnimationSubFun1(int param_1) { ((void(*)(int))0x806A868C)(param_1); }
+static inline void ballAnimationSubFun1(void) { ((void(*)(void))0x806A868C)(); }
 static inline void ballAnimations(void) { ((void(*)(void))0x806A8860)(); }
 static inline void AnimBlr(void) { ((void(*)(void))0x806A92E4)(); }
 static inline void resetAnimationRelatedPointers(void) { ((void(*)(void))0x806A92F0)(); }
@@ -40496,10 +40498,10 @@ static inline void animateChargeSprites(void) { ((void(*)(void))0x806A9BEC)(); }
 static inline void resetAnimationFlags(void) { ((void(*)(void))0x806A9F74)(); }
 static inline void computeAdjustedFielderOrientation(int fielderIndex) { ((void(*)(int))0x806AA030)(fielderIndex); }
 static inline void animateDefence_(void) { ((void(*)(void))0x806AA1D8)(); }
-static inline undefined4 loadMVPMaybe_(void) { return ((undefined4(*)(void))0x806AA66C)(); }
+static inline void loadMVPMaybe_(void) { ((void(*)(void))0x806AA66C)(); }
 static inline void animateShadows_nonBall_(void) { ((void(*)(void))0x806AA708)(); }
 static inline void matchTransitionFunction2(void) { ((void(*)(void))0x806AA904)(); }
-static inline undefined4 loadRunnerActors_(void) { return ((undefined4(*)(void))0x806AAAF8)(); }
+static inline void loadRunnerActors_(void) { ((void(*)(void))0x806AAAF8)(); }
 static inline void setDefaultPlayTrackingVariables2(void) { ((void(*)(void))0x806AB174)(); }
 static inline void initializeSomethingDuringTransition2(void) { ((void(*)(void))0x806AB19C)(); }
 static inline void setInningEndingKIndTo0(void) { ((void(*)(void))0x806AB1D0)(); }
@@ -40510,21 +40512,21 @@ static inline void resetAnimationFlags2(void) { ((void(*)(void))0x806AB4E8)(); }
 static inline void animateOffence(void) { ((void(*)(void))0x806AB564)(); }
 static inline void setCharacterAnimations_(int battingTeam, int param_2) { ((void(*)(int, int))0x806AB8E8)(battingTeam, param_2); }
 static inline void checkForButtonPressToSkip_(undefined4 param_1, undefined2 inputsToCheckFor) { ((void(*)(undefined4, undefined2))0x806AB9CC)(param_1, inputsToCheckFor); }
-static inline void InterpretControllerInputsIntoMagnitude(int param_1) { ((void(*)(int))0x806ABE1C)(param_1); }
+static inline void InterpretControllerInputsIntoMagnitude(void) { ((void(*)(void))0x806ABE1C)(); }
 static inline void UpdateControllerInputs(void) { ((void(*)(void))0x806AC398)(); }
 static inline void resetInputTrackers(void) { ((void(*)(void))0x806AC534)(); }
 static inline void getAdjustedPitcherStamina(int team, int rosterID, int stamAdj) { ((void(*)(int, int, int))0x806AC5F8)(team, rosterID, stamAdj); }
 static inline int CheckFieldingStat(int team, int rosterID, EnumFieldingAbilityBitLocation bit) { return ((int(*)(int, int, EnumFieldingAbilityBitLocation))0x806AC698)(team, rosterID, bit); }
 static inline void calculateChemistry(int teamFielding, int character, int secondCharacter) { ((void(*)(int, int, int))0x806AC6EC)(teamFielding, character, secondCharacter); }
-static inline void unreferenced_806ac768(int param_1) { ((void(*)(int))0x806AC768)(param_1); }
+static inline void unreferenced_806ac768(void) { ((void(*)(void))0x806AC768)(); }
 static inline void initializeInMemRunner(int rosterID, int runnerInd) { ((void(*)(int, int))0x806AC9F8)(rosterID, runnerInd); }
 static inline void setInMemBatterConstants(int rosterID) { ((void(*)(int))0x806ACEF4)(rosterID); }
 static inline void getThrowSpeedBasedOnArmStrengthStat(undefined4 armStrength) { ((void(*)(undefined4))0x806AD268)(armStrength); }
-static inline void setFielderValues(int rosterID, int fielder) { ((void(*)(int, int))0x806AD2E0)(rosterID, fielder); }
-static inline void setPitcherStatsToInMemPitcher(int param_1) { ((void(*)(int))0x806ADC48)(param_1); }
+static inline void setFielderValues(int rosterID, int fielder_) { ((void(*)(int, int))0x806AD2E0)(rosterID, fielder_); }
+static inline void setPitcherStatsToInMemPitcher(void) { ((void(*)(void))0x806ADC48)(); }
 static inline void initRosterForMatch(void) { ((void(*)(void))0x806ADFB0)(); }
 static inline int runnerStealing_TransitionToLiveViewIndicator(void) { return ((int(*)(void))0x806AE57C)(); }
-static inline undefined4 waitingForPitch_checkForPickoffs(void) { return ((undefined4(*)(void))0x806AE7DC)(); }
+static inline void waitingForPitch_checkForPickoffs(void) { ((void(*)(void))0x806AE7DC)(); }
 static inline void unused_806aeabc(void) { ((void(*)(void))0x806AEABC)(); }
 static inline void unused_806aec2c(void) { ((void(*)(void))0x806AEC2C)(); }
 static inline void pitchCall(void) { ((void(*)(void))0x806AF480)(); }
@@ -40547,10 +40549,10 @@ static inline void unused_806b3040(void) { ((void(*)(void))0x806B3040)(); }
 static inline void pitchingWindUpFunction(void) { ((void(*)(void))0x806B31BC)(); }
 static inline void pitcherMovementOnMound(void) { ((void(*)(void))0x806B3B58)(); }
 static inline void waitingForPitch(void) { ((void(*)(void))0x806B3DA0)(); }
-static inline void pitcherAITransitionFromPrePitchToWindup(pitchStatus param_1) { ((void(*)(pitchStatus))0x806B4158)(param_1); }
-static inline int loadPitcherActor(void) { return ((int(*)(void))0x806B4170)(); }
+static inline void pitcherAITransitionFromPrePitchToWindup(void) { ((void(*)(void))0x806B4158)(); }
+static inline void loadPitcherActor(void) { ((void(*)(void))0x806B4170)(); }
 static inline void setDefaultInMemPitcher(void) { ((void(*)(void))0x806B4248)(); }
-static inline void resetPitcherValuesBetweenBatters_(int param_1) { ((void(*)(int))0x806B447C)(param_1); }
+static inline void resetPitcherValuesBetweenBatters_(void) { ((void(*)(void))0x806B447C)(); }
 static inline void resetInMemPitcher(void) { ((void(*)(void))0x806B44C8)(); }
 static inline void setPitchingConstants_(void) { ((void(*)(void))0x806B454C)(); }
 static inline void atBat_Pitcher(void) { ((void(*)(void))0x806B45F4)(); }
@@ -40559,7 +40561,7 @@ static inline void MVPCalculation(void) { ((void(*)(void))0x806B4A50)(); }
 static inline void winningPitcher_(void) { ((void(*)(void))0x806B5208)(); }
 static inline void endOfGameStats_MVP(void) { ((void(*)(void))0x806B55EC)(); }
 static inline void steal_pickoff_incrementSteal_runsStats(void) { ((void(*)(void))0x806B5B30)(); }
-static inline void updateStatsBasedOnABResult(int batterIndex, EnumAtBatResult_word atBatResult, int fIndexWhoCausedOut_, int rbisOnPlay) { ((void(*)(int, EnumAtBatResult_word, int, int))0x806B5D9C)(batterIndex, atBatResult, fIndexWhoCausedOut_, rbisOnPlay); }
+static inline void updateStatsBasedOnABResult(int batterIndex, EnumAtBatResult_word atBatResult_, int fIndexWhoCausedOut_, int rbisOnPlay) { ((void(*)(int, EnumAtBatResult_word, int, int))0x806B5D9C)(batterIndex, atBatResult_, fIndexWhoCausedOut_, rbisOnPlay); }
 static inline void postPlayTrackStats(void) { ((void(*)(void))0x806B69A8)(); }
 static inline void pickoff_infieldThrow_related(undefined2 throwingFielder) { ((void(*)(undefined2))0x806B7608)(throwingFielder); }
 static inline void monitorForErrors(void) { ((void(*)(void))0x806B77C4)(); }
@@ -40581,7 +40583,7 @@ static inline void determineIfReplayShouldPlay(void) { ((void(*)(void))0x806BACB
 static inline void replaceGameStructs_postReplay(undefined4 param_1_always1) { ((void(*)(undefined4))0x806BB290)(param_1_always1); }
 static inline void useReplayInputs(void) { ((void(*)(void))0x806BB578)(); }
 static inline void structCopying(void) { ((void(*)(void))0x806BB840)(); }
-static inline void CopyMoreStructs(int param_1) { ((void(*)(int))0x806BBA6C)(param_1); }
+static inline void CopyMoreStructs(void) { ((void(*)(void))0x806BBA6C)(); }
 static inline void lastPlayStats(void) { ((void(*)(void))0x806BBF24)(); }
 static inline void initializeReplayState(void) { ((void(*)(void))0x806BC01C)(); }
 static inline void ReplayRelatedCopying_storeDataBeforePlay(void) { ((void(*)(void))0x806BC4EC)(); }
@@ -40591,31 +40593,31 @@ static inline void cCSRunningFun(void) { ((void(*)(void))0x806BCE00)(); }
 static inline void running_LiveBall_Human(void) { ((void(*)(void))0x806BD350)(); }
 static inline void running_sendOutRunnerToDugout(int runnerIndex) { ((void(*)(int))0x806BDC68)(runnerIndex); }
 static inline void running_roundBaseDecision(int runnerIndex) { ((void(*)(int))0x806BDD90)(runnerIndex); }
-static inline undefined4 running_overrun1stIndicator(void) { return ((undefined4(*)(void))0x806BE36C)(); }
+static inline void running_overrun1stIndicator(void) { ((void(*)(void))0x806BE36C)(); }
 static inline void running_triggerSlideOrBodyCheck(int runnerNum) { ((void(*)(int))0x806BE528)(runnerNum); }
-static inline void unused_(int param_1) { ((void(*)(int))0x806BEA58)(param_1); }
+static inline void unused_(void) { ((void(*)(void))0x806BEA58)(); }
 static inline runnerMovementType running_DirectionOverrides(int runnerNum) { return ((runnerMovementType(*)(int))0x806BEB0C)(runnerNum); }
-static inline void unused__806bee24(int param_1) { ((void(*)(int))0x806BEE24)(param_1); }
+static inline void unused__806bee24(void) { ((void(*)(void))0x806BEE24)(); }
 static inline void running_updatePosition(int runnerIndex) { ((void(*)(int))0x806BF0BC)(runnerIndex); }
 static inline void running_updatePositionTracking_storeRBIs_stopAtNextBase_displaySafe(int runnerIndex) { ((void(*)(int))0x806C0224)(runnerIndex); }
-static inline void unReferenced_806c0b4c(int param_1) { ((void(*)(int))0x806C0B4C)(param_1); }
+static inline void unReferenced_806c0b4c(void) { ((void(*)(void))0x806C0B4C)(); }
 static inline void running_overrunBaseControl(undefined4 rIndex) { ((void(*)(undefined4))0x806C0C5C)(rIndex); }
 static inline void runnerOverrun1BRelated(undefined4 rIndex) { ((void(*)(undefined4))0x806C0F40)(rIndex); }
 static inline void running_ActionControlAndVelocity(undefined4 rIndex) { ((void(*)(undefined4))0x806C1448)(rIndex); }
 static inline void running_CalculateSpeedVariables(int rIndex) { ((void(*)(int))0x806C1704)(rIndex); }
 static inline void updateRunnerFramesToClosestBases(int runnerNum, int framesPrevBase, int framesNextBase) { ((void(*)(int, int, int))0x806C2014)(runnerNum, framesPrevBase, framesNextBase); }
 static inline void running_updateDistAndFramesToClosestBases(int runnerNum) { ((void(*)(int))0x806C2110)(runnerNum); }
-static inline void unused__806c2480(int param_1) { ((void(*)(int))0x806C2480)(param_1); }
+static inline void unused__806c2480(void) { ((void(*)(void))0x806C2480)(); }
 static inline void running_LiveBall_AI(void) { ((void(*)(void))0x806C27A8)(); }
-static inline undefined4 possibleRunnerAIRelated(int param_1, int param_2) { return ((undefined4(*)(int, int))0x806C3254)(param_1, param_2); }
+static inline void possibleRunnerAIRelated(void) { ((void(*)(void))0x806C3254)(); }
 static inline void runnerAILiveBall_(int runnerIndex) { ((void(*)(int))0x806C3378)(runnerIndex); }
-static inline int runnerAI_2(int param_1) { return ((int(*)(int))0x806C375C)(param_1); }
+static inline void runnerAI_2(void) { ((void(*)(void))0x806C375C)(); }
 static inline void runnerAISubfunction4(int runnerIndex, int someFrames) { ((void(*)(int, int))0x806C3B64)(runnerIndex, someFrames); }
-static inline undefined4 runnerAISubfunction3(int param_1, int param_2) { return ((undefined4(*)(int, int))0x806C4108)(param_1, param_2); }
+static inline void runnerAISubfunction3(void) { ((void(*)(void))0x806C4108)(); }
 static inline void runnerAISubfunction2(int runnerIndex, int param_2, int param_3) { ((void(*)(int, int, int))0x806C48D4)(runnerIndex, param_2, param_3); }
 static inline void running_AIStartSteals(void) { ((void(*)(void))0x806C4D44)(); }
 static inline void runnerAISetRunningDirection(int runnerNum, int actionCode) { ((void(*)(int, int))0x806C4F88)(runnerNum, actionCode); }
-static inline int runnerAISubfunction(void) { return ((int(*)(void))0x806C51AC)(); }
+static inline void runnerAISubfunction(void) { ((void(*)(void))0x806C51AC)(); }
 static inline void running_setRestrictedMovements(void) { ((void(*)(void))0x806C5830)(); }
 static inline void running_beginSteal_CheckForPerfect(void) { ((void(*)(void))0x806C5F8C)(); }
 static inline void unreferenced_806c6140(void) { ((void(*)(void))0x806C6140)(); }
@@ -40642,25 +40644,25 @@ static inline void initializeInMemRunner_806c9638(void) { ((void(*)(void))0x806C
 static inline void unreferenced_806c96ac(void) { ((void(*)(void))0x806C96AC)(); }
 static inline void _unused_(void) { ((void(*)(void))0x806C9848)(); }
 static inline void running_MainFunction(void) { ((void(*)(void))0x806C99EC)(); }
-static inline undefined4 addToCircularBuffer(undefined param_1, undefined param_2, undefined param_3) { return ((undefined4(*)(undefined, undefined, undefined))0x806CA2EC)(param_1, param_2, param_3); }
+static inline void addToCircularBuffer(void) { ((void(*)(void))0x806CA2EC)(); }
 static inline void stadiumMusic_(EnumStadiumIDs4 stadium) { ((void(*)(EnumStadiumIDs4))0x806CA3AC)(stadium); }
 static inline void updateAndRemoveStadiumEmitter(int emitterIndex) { ((void(*)(int))0x806CA924)(emitterIndex); }
 static inline SND_EMITTER * updateOrRemoveEmitter(int emitterID, SND_FVECTOR * newPos, SND_FVECTOR * newDir) { return ((SND_EMITTER *(*)(int, SND_FVECTOR *, SND_FVECTOR *))0x806CAAF4)(emitterID, newPos, newDir); }
 static inline int initializeStadiumObjectEmitter(int soundID, SND_FVECTOR * position, SND_FVECTOR * direction, int paramIndex) { return ((int(*)(int, SND_FVECTOR *, SND_FVECTOR *, int))0x806CAC58)(soundID, position, direction, paramIndex); }
 static inline void initializeCamera_(void) { ((void(*)(void))0x806CAF20)(); }
 static inline void transitionToReplay_(void) { ((void(*)(void))0x806CB110)(); }
-static inline InMemBall * makeSoundOfBallBouncing(void) { return ((InMemBall *(*)(void))0x806CB65C)(); }
+static inline void makeSoundOfBallBouncing(void) { ((void(*)(void))0x806CB65C)(); }
 static inline void handleGameSound(void) { ((void(*)(void))0x806CBE08)(); }
-static inline unkSoundStruct * soundControl_(void) { return ((unkSoundStruct *(*)(void))0x806CCB14)(); }
-static inline GameControlsStruct * soundFxRelated(void) { return ((GameControlsStruct *(*)(void))0x806CE2B0)(); }
+static inline void soundControl_(void) { ((void(*)(void))0x806CCB14)(); }
+static inline void soundFxRelated(void) { ((void(*)(void))0x806CE2B0)(); }
 static inline void newAtBatPlaySound(void) { ((void(*)(void))0x806CECA0)(); }
-static inline uint adjustBallSoundEffectBasedOnHeight(void) { return ((uint(*)(void))0x806CED14)(); }
+static inline void adjustBallSoundEffectBasedOnHeight(void) { ((void(*)(void))0x806CED14)(); }
 static inline void initializeSounds_(void) { ((void(*)(void))0x806CEFAC)(); }
-static inline int animateThrownBall_(float x, float y, float z, enumSoundEffect_short soundCode) { return ((int(*)(float, float, float, enumSoundEffect_short))0x806CEFF0)(x, y, z, soundCode); }
+static inline int animateThrownBall_(float x_, float y_, float z_, enumSoundEffect_short soundCode) { return ((int(*)(float, float, float, enumSoundEffect_short))0x806CEFF0)(x_, y_, z_, soundCode); }
 static inline void callSfx(enumSoundEffect_short sfxID) { ((void(*)(enumSoundEffect_short))0x806CF0F8)(sfxID); }
 static inline void playCharacterSound(int charID, enumCharacterSounds soundCode) { ((void(*)(int, enumCharacterSounds))0x806CF2B4)(charID, soundCode); }
 static inline void PlaySoundEffect(enumSoundEffect_short soundNumber) { ((void(*)(enumSoundEffect_short))0x806CF328)(soundNumber); }
-static inline void playOverSounds(uint param_1) { ((void(*)(uint))0x806CF3BC)(param_1); }
+static inline void playOverSounds(void) { ((void(*)(void))0x806CF3BC)(); }
 static inline void cleanupCharacters(void) { ((void(*)(void))0x806CFD44)(); }
 static inline void hud_ScoreUpdate_ToyFieldOffScreenPlayers(void) { ((void(*)(void))0x806D04D0)(); }
 static inline void animateScreenRelated(void) { ((void(*)(void))0x806D0C30)(); }
@@ -40693,23 +40695,23 @@ static inline void runScored(void) { ((void(*)(void))0x806DB828)(); }
 static inline void categorizeBallTrajectory(void) { ((void(*)(void))0x806DBB84)(); }
 static inline void atBatBuntResult(void) { ((void(*)(void))0x806DBF0C)(); }
 static inline void atBatResultsForOuts(void) { ((void(*)(void))0x806DC1D4)(); }
-static inline undefined4 noForceOutInd_atBatResultsAfterForcedRunnersAllAdvance(void) { return ((undefined4(*)(void))0x806DC408)(); }
+static inline void noForceOutInd_atBatResultsAfterForcedRunnersAllAdvance(void) { ((void(*)(void))0x806DC408)(); }
 static inline void setAtBatResult(void) { ((void(*)(void))0x806DC738)(); }
 static inline void setDefaultPlayTrackingVariables1(void) { ((void(*)(void))0x806DCBF0)(); }
 static inline void initializeInningTrackers(void) { ((void(*)(void))0x806DCC78)(); }
-static inline int bobOmbDerbyBatterAI2_(int * param_1, int param_2) { return ((int(*)(int *, int))0x806DD3FC)(param_1, param_2); }
+static inline void bobOmbDerbyBatterAI2_(void) { ((void(*)(void))0x806DD3FC)(); }
 static inline int WeightedRandomIndex(byte * weights, int param_counter) { return ((int(*)(byte *, int))0x806DD634)(weights, param_counter); }
 static inline void iterateBatter(int teamBatting) { ((void(*)(int))0x806DD868)(teamBatting); }
-static inline double randomInRange_(double param_1, double param_2) { return ((double(*)(double, double))0x806DDC60)(param_1, param_2); }
-static inline int randBetween(int param_1, int param_2) { return ((int(*)(int, int))0x806DDDB0)(param_1, param_2); }
-static inline int RandomInt(uint param_1) { return ((int(*)(uint))0x806DDEB8)(param_1); }
+static inline void randomInRange_(void) { ((void(*)(void))0x806DDC60)(); }
+static inline void randBetween(void) { ((void(*)(void))0x806DDDB0)(); }
+static inline void RandomInt(void) { ((void(*)(void))0x806DDEB8)(); }
 static inline int RandomInt_Game(int MaxNum) { return ((int(*)(int))0x806DDF4C)(MaxNum); }
 static inline void calculateBallInterceptDistance_(InMemBall * inmemBall, int zero_, int ballFutureX_, int auStack_) { ((void(*)(InMemBall *, int, int, int))0x806DE064)(inmemBall, zero_, ballFutureX_, auStack_); }
 static inline void fieldersRunningToDugoutCalculateOffsets(undefined8 stadiumRelated, undefined8 fielderRelatedX, undefined8 fielderRelatedZ, int xOffset, int zOffset) { ((void(*)(undefined8, undefined8, undefined8, int, int))0x806DE830)(stadiumRelated, fielderRelatedX, fielderRelatedZ, xOffset, zOffset); }
-static inline void sinAndCosOfAngle(undefined8 angle, int cos, int sin) { ((void(*)(undefined8, int, int))0x806DE9F8)(angle, cos, sin); }
+static inline void sinAndCosOfAngle(undefined8 angle, int cos_, int sin_) { ((void(*)(undefined8, int, int))0x806DE9F8)(angle, cos_, sin_); }
 static inline void getAngleComponents(short angle, int xComponent, int zComponent) { ((void(*)(short, int, int))0x806DEA5C)(angle, xComponent, zComponent); }
-static inline void radianAngleToPoint(undefined8 x, undefined8 y) { ((void(*)(undefined8, undefined8))0x806DEBD4)(x, y); }
-static inline int calculateAngleFromCoordinates(double param_1, double param_2) { return ((int(*)(double, double))0x806DEC20)(param_1, param_2); }
+static inline void radianAngleToPoint(undefined8 x_, undefined8 y_) { ((void(*)(undefined8, undefined8))0x806DEBD4)(x_, y_); }
+static inline void calculateAngleFromCoordinates(void) { ((void(*)(void))0x806DEC20)(); }
 static inline void calculateDiffInAngles_(undefined8 angle1, undefined8 angle2) { ((void(*)(undefined8, undefined8))0x806DECB0)(angle1, angle2); }
 static inline void angleDifferenceNormalized(short angle1, short angle2) { ((void(*)(short, short))0x806DED38)(angle1, angle2); }
 static inline void getDifferenceInAngle(int angle1, int angle2) { ((void(*)(int, int))0x806DED8C)(angle1, angle2); }
@@ -40717,15 +40719,15 @@ static inline void normalizeAnglebetween_2048And2047(short anglePlus180) { ((voi
 static inline short normalizeAngle(short BallAngle) { return ((short(*)(short))0x806DEF00)(BallAngle); }
 static inline double radianAngleReduction(double angle) { return ((double(*)(double))0x806DEF3C)(angle); }
 static inline void normalizeAngleToRange(undefined8 angleRadians) { ((void(*)(undefined8))0x806DEF98)(angleRadians); }
-static inline int convertRadiansToBase4096(double param_1) { return ((int(*)(double))0x806DEFF4)(param_1); }
-static inline double normalizeAngle_806df040(short param_1) { return ((double(*)(short))0x806DF040)(param_1); }
-static inline double someAngleFun(short param_1) { return ((double(*)(short))0x806DF0AC)(param_1); }
+static inline void convertRadiansToBase4096(void) { ((void(*)(void))0x806DEFF4)(); }
+static inline void normalizeAngle_806df040(void) { ((void(*)(void))0x806DF040)(); }
+static inline void someAngleFun(void) { ((void(*)(void))0x806DF0AC)(); }
 static inline void fielderAIDecideWhatRunnerToTarget(int fielderIndex) { ((void(*)(int))0x806DF130)(fielderIndex); }
-static inline int fielderAIWeirdSituation(void) { return ((int(*)(void))0x806E10DC)(); }
-static inline undefined4 canThrowOutRunnerWhoNeedsToTagUp(void) { return ((undefined4(*)(void))0x806E12C0)(); }
-static inline undefined4 throwOutRunnerTaggingUpInd(void) { return ((undefined4(*)(void))0x806E1498)(); }
-static inline int genericPlayOnRunnerOffBase(void) { return ((int(*)(void))0x806E1658)(); }
-static inline undefined4 fielderAIOutfieldPlayAttemptInd(void) { return ((undefined4(*)(void))0x806E2408)(); }
+static inline void fielderAIWeirdSituation(void) { ((void(*)(void))0x806E10DC)(); }
+static inline void canThrowOutRunnerWhoNeedsToTagUp(void) { ((void(*)(void))0x806E12C0)(); }
+static inline void throwOutRunnerTaggingUpInd(void) { ((void(*)(void))0x806E1498)(); }
+static inline void genericPlayOnRunnerOffBase(void) { ((void(*)(void))0x806E1658)(); }
+static inline void fielderAIOutfieldPlayAttemptInd(void) { ((void(*)(void))0x806E2408)(); }
 static inline void fielderAIChaseRunner_(void) { ((void(*)(void))0x806E2D54)(); }
 static inline void fielderAIMakePlay(int targetRunner) { ((void(*)(int))0x806E3734)(targetRunner); }
 static inline void fieldingAIPlayStrategy(void) { ((void(*)(void))0x806E3AA4)(); }
@@ -40733,27 +40735,27 @@ static inline void throwTimeToBase_(int baseCounter) { ((void(*)(int))0x806E3FE4
 static inline void runnerTimeToCoverBase(int runnerIndex) { ((void(*)(int))0x806E4798)(runnerIndex); }
 static inline void fieldingAIThrowOrChase(int runnerNum) { ((void(*)(int))0x806E4BE0)(runnerNum); }
 static inline void howManyFramesTheRunnerIsOutOfReach(int runnerNum, int forwardsInd, int throwRunStrat, int runningOutStrat) { ((void(*)(int, int, int, int))0x806E5478)(runnerNum, forwardsInd, throwRunStrat, runningOutStrat); }
-static inline void estimatedThrowFramesBetweenTwoPoints_(undefined8 x1, undefined8 y1, undefined8 x2, undefined8 y2) { ((void(*)(undefined8, undefined8, undefined8, undefined8))0x806E58A4)(x1, y1, x2, y2); }
+static inline void estimatedThrowFramesBetweenTwoPoints_(undefined8 x1_, undefined8 y1, undefined8 x2, undefined8 y2) { ((void(*)(undefined8, undefined8, undefined8, undefined8))0x806E58A4)(x1_, y1, x2, y2); }
 static inline void tagRelated(void) { ((void(*)(void))0x806E5F2C)(); }
 static inline void tagOutValues(undefined8 distToBase, int fielderIndex) { ((void(*)(undefined8, int))0x806E60D4)(distToBase, fielderIndex); }
 static inline void fielderHasBall(void) { ((void(*)(void))0x806E6748)(); }
 static inline void checkForBufferedThrow(void) { ((void(*)(void))0x806E6D1C)(); }
 static inline void fielderControl_classifyControlStickDirection(void) { ((void(*)(void))0x806E6F8C)(); }
 static inline void setRunnerChasingAfter_(int fielderIndex) { ((void(*)(int))0x806E7108)(fielderIndex); }
-static inline void fielderChasingAI_(int param_1) { ((void(*)(int))0x806E73CC)(param_1); }
-static inline undefined4 runnerTagUpOrBatterTo1B(int * param_1, int * param_2) { return ((undefined4(*)(int *, int *))0x806E750C)(param_1, param_2); }
-static inline void maybeUnused_SetThrowSpeedType2(double param_1) { ((void(*)(double))0x806E765C)(param_1); }
+static inline void fielderChasingAI_(void) { ((void(*)(void))0x806E73CC)(); }
+static inline void runnerTagUpOrBatterTo1B(void) { ((void(*)(void))0x806E750C)(); }
+static inline void maybeUnused_SetThrowSpeedType2(void) { ((void(*)(void))0x806E765C)(); }
 static inline void knockBallLoose(int fielderIndex, int knockOutCause) { ((void(*)(int, int))0x806E83E8)(fielderIndex, knockOutCause); }
 static inline void fielderBodyCheck_setStatus_Pos_Velo(int fielderIndex) { ((void(*)(int))0x806E8790)(fielderIndex); }
 static inline void fielderKnockback(int fielderIndex) { ((void(*)(int))0x806E8A18)(fielderIndex); }
-static inline void setFielder215(int param_1) { ((void(*)(int))0x806E8D08)(param_1); }
+static inline void setFielder215(void) { ((void(*)(void))0x806E8D08)(); }
 static inline void autoMovement10_HasBall(int fielderIndex) { ((void(*)(int))0x806E8DB4)(fielderIndex); }
 static inline void setCutoffThrowTargetLocation(undefined4 throwTargetX, undefined4 throwTargetZ) { ((void(*)(undefined4, undefined4))0x806EA084)(throwTargetX, throwTargetZ); }
 static inline void initializeThrowAngle_Speed_Length(int framesForFielderToGetToLoc, float * throwAngle, float * throwSpeed) { ((void(*)(int, float *, float *))0x806EA644)(framesForFielderToGetToLoc, throwAngle, throwSpeed); }
 static inline void makeThrowVariables(int throwingFielder) { ((void(*)(int))0x806EAE64)(throwingFielder); }
 static inline void howToPlayScreen_(void) { ((void(*)(void))0x806EBB8C)(); }
 static inline void controlOptionsMenu(void) { ((void(*)(void))0x806EBDCC)(); }
-static inline void pauseMenuControl(int param_1) { ((void(*)(int))0x806EC1F8)(param_1); }
+static inline void pauseMenuControl(void) { ((void(*)(void))0x806EC1F8)(); }
 static inline void positionSwapScreenInputs(void) { ((void(*)(void))0x806EC450)(); }
 static inline void positionSwap(void) { ((void(*)(void))0x806EC960)(); }
 static inline void loadPauseMenu_(void) { ((void(*)(void))0x806EE1A0)(); }
@@ -40766,37 +40768,37 @@ static inline void guidedPracticeRelated(void) { ((void(*)(void))0x806EF0D0)(); 
 static inline void unused__806ef274(void) { ((void(*)(void))0x806EF274)(); }
 static inline void someBattingPitchingCallFuns(void) { ((void(*)(void))0x806EF2F0)(); }
 static inline void battingPracticeRelated(void) { ((void(*)(void))0x806EF33C)(); }
-static inline undefined4 unused__806ef4f8(void) { return ((undefined4(*)(void))0x806EF4F8)(); }
+static inline void unused__806ef4f8(void) { ((void(*)(void))0x806EF4F8)(); }
 static inline void battingPracticeSomething(void) { ((void(*)(void))0x806EF600)(); }
 static inline void battingPracticeSwitcher(void) { ((void(*)(void))0x806EF908)(); }
 static inline void battingPracticeControl(void) { ((void(*)(void))0x806EFB40)(); }
 static inline void fieldingPractice_setHitVariables(void) { ((void(*)(void))0x806EFBF0)(); }
-static inline uint batterAI_buntForPractice(void) { return ((uint(*)(void))0x806EFD88)(); }
+static inline void batterAI_buntForPractice(void) { ((void(*)(void))0x806EFD88)(); }
 static inline void fieldingPracticeAISwingDecision(void) { ((void(*)(void))0x806EFDC0)(); }
 static inline void practice_fieldingRelated(void) { ((void(*)(void))0x806EFE94)(); }
 static inline void unused_806f0264(void) { ((void(*)(void))0x806F0264)(); }
 static inline void unused_806f038c(void) { ((void(*)(void))0x806F038C)(); }
-static inline undefined4 practiceRelatedUnused_(void) { return ((undefined4(*)(void))0x806F0504)(); }
+static inline void practiceRelatedUnused_(void) { ((void(*)(void))0x806F0504)(); }
 static inline void fieldingPracticeInitialization_(void) { ((void(*)(void))0x806F060C)(); }
 static inline void fieldingPracticeRelated(void) { ((void(*)(void))0x806F0AC4)(); }
 static inline void fieldingPracticeControl(void) { ((void(*)(void))0x806F0CA8)(); }
-static inline undefined4 loadGuidedPractice(void) { return ((undefined4(*)(void))0x806F0D44)(); }
+static inline void loadGuidedPractice(void) { ((void(*)(void))0x806F0D44)(); }
 static inline void playPracticeCPUInputs(void) { ((void(*)(void))0x806F0E64)(); }
-static inline undefined4 setUpPlayerTryingSkill(void) { return ((undefined4(*)(void))0x806F15E0)(); }
+static inline void setUpPlayerTryingSkill(void) { ((void(*)(void))0x806F15E0)(); }
 static inline void practice_giveAndDemonstrateInstructions(void) { ((void(*)(void))0x806F16C4)(); }
 static inline void practiceRelatedInit(void) { ((void(*)(void))0x806F1838)(); }
 static inline void practice_pause_unloadPauseMenu_(void) { ((void(*)(void))0x806F193C)(); }
 static inline void practicePauseRelated(void) { ((void(*)(void))0x806F1EB4)(); }
-static inline undefined4 practice_checkForPause(void) { return ((undefined4(*)(void))0x806F234C)(); }
+static inline void practice_checkForPause(void) { ((void(*)(void))0x806F234C)(); }
 static inline void practiceMenuLogic(void) { ((void(*)(void))0x806F24DC)(); }
 static inline void practiceLogicRelatedPause(void) { ((void(*)(void))0x806F26B4)(); }
 static inline void transitionToPlayerControl_806f2ae0(void) { ((void(*)(void))0x806F2AE0)(); }
 static inline void practiceRelatedReset(void) { ((void(*)(void))0x806F2C04)(); }
 static inline void baserunningPracticeRelated(void) { ((void(*)(void))0x806F2C64)(); }
-static inline void setTutorialState(enumTutorialState param_1) { ((void(*)(enumTutorialState))0x806F2D0C)(param_1); }
+static inline void setTutorialState(void) { ((void(*)(void))0x806F2D0C)(); }
 static inline void updatePracticeTransitionState(byte state) { ((void(*)(byte))0x806F2D28)(state); }
-static inline void switchSecondaryGameMode(EnumSecondaryGameModes param_1) { ((void(*)(EnumSecondaryGameModes))0x806F2D40)(param_1); }
-static inline undefined4 practice_relatedToSettingCharacters(void) { return ((undefined4(*)(void))0x806F2D68)(); }
+static inline void switchSecondaryGameMode(void) { ((void(*)(void))0x806F2D40)(); }
+static inline void practice_relatedToSettingCharacters(void) { ((void(*)(void))0x806F2D68)(); }
 static inline void practiceLoadingRelatedMaybe(void) { ((void(*)(void))0x806F307C)(); }
 static inline void practice_loadCharacter(undefined4 teamIndex, undefined4 rosterIndex, undefined4 characterID, undefined4 editHandedness) { ((void(*)(undefined4, undefined4, undefined4, undefined4))0x806F31B8)(teamIndex, rosterIndex, characterID, editHandedness); }
 static inline void practice_loadCharacterData(void) { ((void(*)(void))0x806F333C)(); }
@@ -40811,7 +40813,7 @@ static inline void unused_MaybePractice(void) { ((void(*)(void))0x806F4D48)(); }
 static inline void practiceMenu(void) { ((void(*)(void))0x806F4E0C)(); }
 static inline void unused_806f5184(void) { ((void(*)(void))0x806F5184)(); }
 static inline void unused_806f5254(void) { ((void(*)(void))0x806F5254)(); }
-static inline undefined4 practiceRelUnuse_(void) { return ((undefined4(*)(void))0x806F53B4)(); }
+static inline void practiceRelUnuse_(void) { ((void(*)(void))0x806F53B4)(); }
 static inline void pitchingPractice_BaseballControl(void) { ((void(*)(void))0x806F54D4)(); }
 static inline void pitchingPracticeRelated(void) { ((void(*)(void))0x806F5A28)(); }
 static inline void pitchingPracticeControl(void) { ((void(*)(void))0x806F5C38)(); }
@@ -40823,12 +40825,12 @@ static inline void practiceRel(void) { ((void(*)(void))0x806F66B4)(); }
 static inline void baseRunningPracticeControl(void) { ((void(*)(void))0x806F6870)(); }
 static inline bool checkFielderCollision(float * inParamFielder, float * futureCoordinate) { return ((bool(*)(float *, float *))0x806F6CC0)(inParamFielder, futureCoordinate); }
 static inline void isCoordinateUncatchableTerrain(float xCoordParam, float zCoordParam) { ((void(*)(float, float))0x806F6D70)(xCoordParam, zCoordParam); }
-static inline bool foul_isBallWithin3mFair_(double x, double y) { return ((bool(*)(double, double))0x806F6E00)(x, y); }
+static inline bool foul_isBallWithin3mFair_(double x_, double y_) { return ((bool(*)(double, double))0x806F6E00)(x_, y_); }
 static inline void foul_ifBallConsideredPastTheBases(undefined8 ballX, undefined8 ballZ) { ((void(*)(undefined8, undefined8))0x806F6E6C)(ballX, ballZ); }
-static inline int foul_checkIfFoul(double x, double z) { return ((int(*)(double, double))0x806F6EA4)(x, z); }
+static inline int foul_checkIfFoul(double x_, double z_) { return ((int(*)(double, double))0x806F6EA4)(x_, z_); }
 static inline double DistanceSquared(Vec3f * velo1, Vec3f * velo2) { return ((double(*)(Vec3f *, Vec3f *))0x806F6F84)(velo1, velo2); }
-static inline void CrossProduct(Vec3f * out, Vec3f * a, Vec3f * b) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x806F6FAC)(out, a, b); }
-static inline int rng(short param_1) { return ((int(*)(short))0x806F7004)(param_1); }
+static inline void CrossProduct(Vec3f * out_, Vec3f * a, Vec3f * b) { ((void(*)(Vec3f *, Vec3f *, Vec3f *))0x806F6FAC)(out_, a, b); }
+static inline void rng(void) { ((void(*)(void))0x806F7004)(); }
 static inline void randomizeAndLoadSoundEffect(int soundID, int param_2) { ((void(*)(int, int))0x806F705C)(soundID, param_2); }
 static inline void maybeYoshiParkGXRelated(void) { ((void(*)(void))0x806F7164)(); }
 static inline void storeBoundingBoxCoordinates(int minCoordsDest, int maxCoordsDest) { ((void(*)(int, int))0x806F74A8)(minCoordsDest, maxCoordsDest); }
@@ -40844,7 +40846,7 @@ static inline TriangleGroup * getStadiumHazardTriangles(EnumStadiumIDs4 stadium,
 static inline void updateGameStatusFlag(void) { ((void(*)(void))0x806F8430)(); }
 static inline void hazardSimulationRelated(void) { ((void(*)(void))0x806F8460)(); }
 static inline void cleanupMinigameResources(void) { ((void(*)(void))0x806F8680)(); }
-static inline void actOrAnimRelated(ACTActor * act, AnimBank * act2) { ((void(*)(ACTActor *, AnimBank *))0x806F8870)(act, act2); }
+static inline void actOrAnimRelated(ACTActor * act_, AnimBank * act2_) { ((void(*)(ACTActor *, AnimBank *))0x806F8870)(act_, act2_); }
 static inline void calledWhileMatchIsLoading_(void) { ((void(*)(void))0x806F8A78)(); }
 static inline int loadStadiumObjects(EnumStadiumIDs4 stadiumID) { return ((int(*)(EnumStadiumIDs4))0x806F8C48)(stadiumID); }
 static inline void processStadiumFileObjects(enumObjTypeInFile_ * objTypeArray, int numObjects, int baseAddr, int outputArray) { ((void(*)(enumObjTypeInFile_ *, int, int, int))0x806F8DFC)(objTypeArray, numObjects, baseAddr, outputArray); }
@@ -40853,26 +40855,26 @@ static inline void spriteAnimations_(void) { ((void(*)(void))0x806FB028)(); }
 static inline void animateDustCloudsBehindFielder_Runner(void) { ((void(*)(void))0x806FB370)(); }
 static inline void maybeFireworks_(int param_1, int param_2, int maybeShape_, int param_4) { ((void(*)(int, int, int, int))0x806FB76C)(param_1, param_2, maybeShape_, param_4); }
 static inline void drawSun(void) { ((void(*)(void))0x806FBAB4)(); }
-static inline void sunRelated(Mtx * param_1) { ((void(*)(Mtx *))0x806FC26C)(param_1); }
+static inline void sunRelated(void) { ((void(*)(void))0x806FC26C)(); }
 static inline void setSunLocation(int stadiumID, int miniGameStadInd) { ((void(*)(int, int))0x806FC4C8)(stadiumID, miniGameStadInd); }
-static inline void animationRelated_806fc598(double param_1, double param_2, double param_3, int param_4) { ((void(*)(double, double, double, int))0x806FC598)(param_1, param_2, param_3, param_4); }
-static inline void setContactWordSprite(double param_1, double param_2, double param_3, int param_4) { ((void(*)(double, double, double, int))0x806FD208)(param_1, param_2, param_3, param_4); }
+static inline void animationRelated_806fc598(void) { ((void(*)(void))0x806FC598)(); }
+static inline void setContactWordSprite(void) { ((void(*)(void))0x806FD208)(); }
 static inline void pauseStateOnStadiums_(void) { ((void(*)(void))0x806FE1EC)(); }
 static inline void pauseAnimations_(void) { ((void(*)(void))0x806FE240)(); }
 static inline void maybeHudRelated(void) { ((void(*)(void))0x806FE754)(); }
-static inline bool maybeLoadHUDObjectFromMemory(void) { return ((bool(*)(void))0x806FE90C)(); }
+static inline void maybeLoadHUDObjectFromMemory(void) { ((void(*)(void))0x806FE90C)(); }
 static inline void chargeAnimRelated(void) { ((void(*)(void))0x806FF834)(); }
 static inline void applyChargeAnimationEffect(double param_1, double param_2, int animIndex, int param_4) { ((void(*)(double, double, int, int))0x807003D8)(param_1, param_2, animIndex, param_4); }
 static inline void maybeConfigureChargeEffectGraphics(int animIndex) { ((void(*)(int))0x80700804)(animIndex); }
 static inline void bowserCastleSomething(void) { ((void(*)(void))0x80702A5C)(); }
-static inline void thwomp_screenShake(int param_1) { ((void(*)(int))0x80702ACC)(param_1); }
-static inline void bowserCastleStarPadsContaactFn(int param_1) { ((void(*)(int))0x807031E0)(param_1); }
-static inline void stadiumObjCollision_Castle__(int * param_1, int * param_2) { ((void(*)(int *, int *))0x80703338)(param_1, param_2); }
-static inline undefined4 castleFireballMaybe(int param_1) { return ((undefined4(*)(int))0x80704D74)(param_1); }
+static inline void thwomp_screenShake(void) { ((void(*)(void))0x80702ACC)(); }
+static inline void bowserCastleStarPadsContaactFn(void) { ((void(*)(void))0x807031E0)(); }
+static inline void stadiumObjCollision_Castle__(void) { ((void(*)(void))0x80703338)(); }
+static inline void castleFireballMaybe(void) { ((void(*)(void))0x80704D74)(); }
 static inline void bowserCastleRelated(void) { ((void(*)(void))0x80704E70)(); }
 static inline void flameControl(castleFireObject * currFire) { ((void(*)(castleFireObject *))0x80705464)(currFire); }
 static inline void stadiumObjRelated_Castle__(int currentVertexIndex, int currentObjectIndex) { ((void(*)(int, int))0x80706260)(currentVertexIndex, currentObjectIndex); }
-static inline bool thwomp_bounceOffSoundAndVisualFx_(void) { return ((bool(*)(void))0x80706530)(); }
+static inline void thwomp_bounceOffSoundAndVisualFx_(void) { ((void(*)(void))0x80706530)(); }
 static inline ulong thwomp_smokeRelated(void) { return ((ulong(*)(void))0x8070664C)(); }
 static inline void thwomp_slamControl(castleThwompObj * thwompObj) { ((void(*)(castleThwompObj *))0x80706AA0)(thwompObj); }
 static inline void loadBowserCastle(int baseAddr) { ((void(*)(int))0x807076E4)(baseAddr); }
@@ -40887,24 +40889,24 @@ static inline void stadiumStarAwarded(float param_1, float param_2, float param_
 static inline void palaceStadiumObjTransformationAndPhysics(castleThwompObj * stadiumObj) { ((void(*)(castleThwompObj *))0x8070B014)(stadiumObj); }
 static inline void mPalaceObjHandling(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x8070B658)(obj); }
 static inline void maybeChainChompSprintCTRLRelated(void) { ((void(*)(void))0x8070B8B0)(); }
-static inline void palaceMinigameObjectLoading(int param_1, int param_2) { ((void(*)(int, int))0x8070BCB8)(param_1, param_2); }
-static inline void palaceHazeTextureMaybe(int param_1, byte param_2) { ((void(*)(int, byte))0x8070D600)(param_1, param_2); }
+static inline void palaceMinigameObjectLoading(void) { ((void(*)(void))0x8070BCB8)(); }
+static inline void palaceHazeTextureMaybe(void) { ((void(*)(void))0x8070D600)(); }
 static inline void warioPalaceSomething(void) { ((void(*)(void))0x8070D978)(); }
-static inline uint starHitAnimation_(int param_1) { return ((uint(*)(int))0x8070E7C0)(param_1); }
+static inline void starHitAnimation_(void) { ((void(*)(void))0x8070E7C0)(); }
 static inline void warioPalaceSandStarRelated(undefined4 sandStar) { ((void(*)(undefined4))0x8070E9C4)(sandStar); }
 static inline void palaceNadoLogic_(castleThwompObj * param_1) { ((void(*)(castleThwompObj *))0x8070F9AC)(param_1); }
 static inline void maybePalaceCTRLRelated(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80710314)(obj); }
-static inline void applyTransformationToPalaceObjs(int param_1) { ((void(*)(int))0x807107D0)(param_1); }
+static inline void applyTransformationToPalaceObjs(void) { ((void(*)(void))0x807107D0)(); }
 static inline void chomp_attackBall(palaceChompObj * chomp) { ((void(*)(palaceChompObj *))0x80711AA0)(chomp); }
-static inline void chompState3(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x80712164)(param_1); }
-static inline void chompState1(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x80712914)(param_1); }
+static inline void chompState3(void) { ((void(*)(void))0x80712164)(); }
+static inline void chompState1(void) { ((void(*)(void))0x80712914)(); }
 static inline void chompState0(palaceChompObj * chompObj) { ((void(*)(palaceChompObj *))0x80712D70)(chompObj); }
 static inline void palaceChainChompControl(palaceChompObj * chomp) { ((void(*)(palaceChompObj *))0x80712FE8)(chomp); }
 static inline void someCTRLButNotCalled(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80713D38)(obj); }
 static inline void someCTRLButNotCalled2(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80713E94)(obj); }
-static inline void processPalaceObjectCollisions(Mtx * param_1, float * param_2) { ((void(*)(Mtx *, float *))0x80714680)(param_1, param_2); }
-static inline void stadiumObjCollisionRelated_Palace__(int * param_1) { ((void(*)(int *))0x80714F14)(param_1); }
-static inline void loadWarioPalace_(int * param_1) { ((void(*)(int *))0x80715860)(param_1); }
+static inline void processPalaceObjectCollisions(void) { ((void(*)(void))0x80714680)(); }
+static inline void stadiumObjCollisionRelated_Palace__(void) { ((void(*)(void))0x80714F14)(); }
+static inline void loadWarioPalace_(void) { ((void(*)(void))0x80715860)(); }
 static inline void toyFieldRelated(void) { ((void(*)(void))0x80718AC4)(); }
 static inline void toyFieldPoints_(void) { ((void(*)(void))0x807198C8)(); }
 static inline void processToyFieldBallState(void) { ((void(*)(void))0x8071B414)(); }
@@ -40922,19 +40924,19 @@ static inline void initializeMinigameData(void) { ((void(*)(void))0x8071E968)();
 static inline void toyfieldSimulation(void) { ((void(*)(void))0x8071EC40)(); }
 static inline void updateMinigameFielderAnimations(void) { ((void(*)(void))0x8072050C)(); }
 static inline void graphicsFunction_minigames_(void) { ((void(*)(void))0x80720A7C)(); }
-static inline void parkPlantMaybe(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x80721700)(param_1); }
+static inline void parkPlantMaybe(void) { ((void(*)(void))0x80721700)(); }
 static inline int managePlantBallInteraction(castleThwompObj * obj) { return ((int(*)(castleThwompObj *))0x80721C04)(obj); }
 static inline void updateStadiumObjStateAndTransform(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80721F0C)(obj); }
-static inline void yoshiParkPlantRelated(int param_1) { ((void(*)(int))0x80721FE0)(param_1); }
+static inline void yoshiParkPlantRelated(void) { ((void(*)(void))0x80721FE0)(); }
 static inline void nadoRelated_(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807220D8)(obj); }
 static inline void handleYoshiParkPlantInteraction(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80722318)(obj); }
 static inline void loadYoshiPark2SubFun(int obj) { ((void(*)(int))0x807226FC)(obj); }
 static inline void maybe_YoshiParkPlantsPopUp(castleThwompObj * stadObj) { ((void(*)(castleThwompObj *))0x807227F8)(stadObj); }
 static inline void controlYoshiParkPlants(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x80722C1C)(obj); }
 static inline void processYoshiParkPlantBoundingBoxes(int currentVertexIndex, int currentObjectIndex) { ((void(*)(int, int))0x80723D44)(currentVertexIndex, currentObjectIndex); }
-static inline void loadYoshiPark(int param_1) { ((void(*)(int))0x80724058)(param_1); }
-static inline void processToyFieldObjectCollisions(undefined4 param_1, int param_2) { ((void(*)(undefined4, int))0x8072641C)(param_1, param_2); }
-static inline void loadToyField_(int param_1) { ((void(*)(int))0x80727BB8)(param_1); }
+static inline void loadYoshiPark(void) { ((void(*)(void))0x80724058)(); }
+static inline void processToyFieldObjectCollisions(void) { ((void(*)(void))0x8072641C)(); }
+static inline void loadToyField_(void) { ((void(*)(void))0x80727BB8)(); }
 static inline void toyfield_offScreenCharacterImage(void) { ((void(*)(void))0x80728DC4)(); }
 static inline void toyfield_offScreenCharacterImage_loadFn(void) { ((void(*)(void))0x807293D4)(); }
 static inline void toyField_draw_theCoinsBesideThe_CoinsX2_Graphic(void) { ((void(*)(void))0x8072C524)(); }
@@ -40950,28 +40952,28 @@ static inline void jungleCTRLRelated(castleThwompObj * obj) { ((void(*)(castleTh
 static inline void klaptrapCTRLSetup(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807304DC)(obj); }
 static inline void maybeGharialCTRLRel(castleThwompObj * obj) { ((void(*)(castleThwompObj *))0x807305AC)(obj); }
 static inline void handleDKJungleBarrels(void * param_1) { ((void(*)(void *))0x807309D0)(param_1); }
-static inline void dkBarrelCollision_(int param_1) { ((void(*)(int))0x80730EC0)(param_1); }
+static inline void dkBarrelCollision_(void) { ((void(*)(void))0x80730EC0)(); }
 static inline void dkBarrel_collisionWithFielder(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x807314DC)(param_1); }
-static inline void dkBarrelCollisionRElated_(CTRLControl * param_1) { ((void(*)(CTRLControl *))0x807319CC)(param_1); }
-static inline void unreferenced_80732090(double param_1, double param_2, int param_3) { ((void(*)(double, double, int))0x80732090)(param_1, param_2, param_3); }
+static inline void dkBarrelCollisionRElated_(void) { ((void(*)(void))0x807319CC)(); }
+static inline void unreferenced_80732090(void) { ((void(*)(void))0x80732090)(); }
 static inline void setBarrelTrajectory(undefined8 targetX, undefined8 targetZ, jungleBarrelObj * obj) { ((void(*)(undefined8, undefined8, jungleBarrelObj *))0x80732274)(targetX, targetZ, obj); }
-static inline float dkJungleRelated(CTRLControl * param_1) { return ((float(*)(CTRLControl *))0x80733734)(param_1); }
-static inline void unreferenced_80733ce0(int param_1) { ((void(*)(int))0x80733CE0)(param_1); }
-static inline void handleBarrelFiring(jungleBarrelObj * stadiumObject) { ((void(*)(jungleBarrelObj *))0x80734050)(stadiumObject); }
+static inline void dkJungleRelated(void) { ((void(*)(void))0x80733734)(); }
+static inline void unreferenced_80733ce0(void) { ((void(*)(void))0x80733CE0)(); }
+static inline void handleBarrelFiring(jungleBarrelObj * stadiumObject_) { ((void(*)(jungleBarrelObj *))0x80734050)(stadiumObject_); }
 static inline void dkJungleHazardsLogic(jungleBarrelObj * obj) { ((void(*)(jungleBarrelObj *))0x80734760)(obj); }
-static inline void processJungleObjectCollisions(castleThwompObj * param_1, float * param_2) { ((void(*)(castleThwompObj *, float *))0x80735118)(param_1, param_2); }
-static inline void updateDKJungleObjBoundingBoxes(int objIndex) { ((void(*)(int))0x8073575C)(objIndex); }
-static inline void maybeBarrelCTRLRel(int * param_1) { ((void(*)(int *))0x807359CC)(param_1); }
+static inline void processJungleObjectCollisions(void) { ((void(*)(void))0x80735118)(); }
+static inline void updateDKJungleObjBoundingBoxes(int objIndex_) { ((void(*)(int))0x8073575C)(objIndex_); }
+static inline void maybeBarrelCTRLRel(void) { ((void(*)(void))0x807359CC)(); }
 static inline void updateDKJungleControl(void) { ((void(*)(void))0x80735CF4)(); }
-static inline void loadDKJungle_(int * param_1) { ((void(*)(int *))0x80736070)(param_1); }
+static inline void loadDKJungle_(void) { ((void(*)(void))0x80736070)(); }
 static inline void peachGardenSomething(void) { ((void(*)(void))0x80737B50)(); }
-static inline void loadPeachGarden_(int * param_1) { ((void(*)(int *))0x80739620)(param_1); }
+static inline void loadPeachGarden_(void) { ((void(*)(void))0x80739620)(); }
 static inline void camera_switchScene(cameraScene sceneID) { ((void(*)(cameraScene))0x8073AE40)(sceneID); }
 static inline void camera_replay_(void) { ((void(*)(void))0x8073AEB8)(); }
 static inline void manageDrawingItemState(void) { ((void(*)(void))0x8073CAB0)(); }
-static inline undefined4 unkPauseSimulationCheck(void) { return ((undefined4(*)(void))0x8073F110)(); }
+static inline void unkPauseSimulationCheck(void) { ((void(*)(void))0x8073F110)(); }
 static inline void someAllocFunction(void) { ((void(*)(void))0x80745E90)(); }
-static inline bool loadSomeDataFile(void) { return ((bool(*)(void))0x80745EE4)(); }
+static inline void loadSomeDataFile(void) { ((void(*)(void))0x80745EE4)(); }
 static inline void unreferenced_80745f68(void) { ((void(*)(void))0x80745F68)(); }
 static inline void minigames_0x27(void) { ((void(*)(void))0x80746138)(); }
 static inline void minigames_0x26(void) { ((void(*)(void))0x807462C0)(); }
@@ -40979,12 +40981,12 @@ static inline void minigames_0x28(void) { ((void(*)(void))0x80746818)(); }
 static inline void AI_getPort(undefined1 portNum) { ((void(*)(undefined1))0x80746E48)(portNum); }
 static inline void minigame_checkIfAIInputIs_Algorithmic_Or_ControllerBased(byte rosterID) { ((void(*)(byte))0x80746ED0)(rosterID); }
 static inline void minigamePause(void) { ((void(*)(void))0x80747548)(); }
-static inline undefined4 checkForPauses_(void) { return ((undefined4(*)(void))0x807478E8)(); }
+static inline void checkForPauses_(void) { ((void(*)(void))0x807478E8)(); }
 static inline void postMinigame(void) { ((void(*)(void))0x80747CE8)(); }
 static inline void minigameEndSwitcher(void) { ((void(*)(void))0x80749134)(); }
 static inline void minigameStartSwitcher(void) { ((void(*)(void))0x80749F84)(); }
 static inline void minigames_pickOpponentsAndLoadStats_(void) { ((void(*)(void))0x8074AF10)(); }
-static inline void unused_8074b4e4(int param_1, int param_2) { ((void(*)(int, int))0x8074B4E4)(param_1, param_2); }
+static inline void unused_8074b4e4(void) { ((void(*)(void))0x8074B4E4)(); }
 static inline void unused_8074b620(void) { ((void(*)(void))0x8074B620)(); }
 static inline void toyFieldCharSelectSwitcher(void) { ((void(*)(void))0x8074D6A0)(); }
 static inline void minigameSelectSwitcher(void) { ((void(*)(void))0x8074E268)(); }
@@ -41007,13 +41009,13 @@ static inline void wallBallCalc_WallsBroken(void) { ((void(*)(void))0x80752ADC)(
 static inline void wallBallSomething2(void) { ((void(*)(void))0x80752FA8)(); }
 static inline void wallBallDropInNewWalls(void) { ((void(*)(void))0x80753298)(); }
 static inline void wallBallCalculateNewWalls(void) { ((void(*)(void))0x80753418)(); }
-static inline void wallBallRotatePitchers(int param_1) { ((void(*)(int))0x80753B1C)(param_1); }
+static inline void wallBallRotatePitchers(void) { ((void(*)(void))0x80753B1C)(); }
 static inline void wallBallCalculatePointsAndEndTurn(void) { ((void(*)(void))0x8075419C)(); }
 static inline void unreferenced_807545d4(void) { ((void(*)(void))0x807545D4)(); }
 static inline void unreferenced_80754a0c(void) { ((void(*)(void))0x80754A0C)(); }
 static inline void wallBallInitializeValues(void) { ((void(*)(void))0x80754CB8)(); }
 static inline void wallBallSituationSwitcher(void) { ((void(*)(void))0x80755150)(); }
-static inline void nonPracticePitchingMachineLogic_(int param_1, int param_2) { ((void(*)(int, int))0x807599C0)(param_1, param_2); }
+static inline void nonPracticePitchingMachineLogic_(void) { ((void(*)(void))0x807599C0)(); }
 static inline void loadPitchingMachineModel(void) { ((void(*)(void))0x80759BC0)(); }
 static inline void minigameStateLogic(void) { ((void(*)(void))0x80763438)(); }
 static inline void minigameGraphics(void) { ((void(*)(void))0x8076C288)(); }
@@ -41031,7 +41033,7 @@ static inline void barrelBatterTransitionToMainFunction(void) { ((void(*)(void))
 static inline void bB_LoadGame(void) { ((void(*)(void))0x80771150)(); }
 static inline void barrelBatterSwitcher(void) { ((void(*)(void))0x8077157C)(); }
 static inline void unused_80774af8(void) { ((void(*)(void))0x80774AF8)(); }
-static inline void minigame_transferPoints(int param_1, int param_2) { ((void(*)(int, int))0x807790DC)(param_1, param_2); }
+static inline void minigame_transferPoints(void) { ((void(*)(void))0x807790DC)(); }
 static inline void starDashRelated(void) { ((void(*)(void))0x80779140)(); }
 static inline void starDashRelated_80779b0c(void) { ((void(*)(void))0x80779B0C)(); }
 static inline void starDashLiveBall(void) { ((void(*)(void))0x8077A318)(); }
@@ -41042,13 +41044,13 @@ static inline void chainChompSpringMainFun(void) { ((void(*)(void))0x8077FD74)()
 static inline void mVPRelated(void) { ((void(*)(void))0x80780184)(); }
 static inline void chainChompSprintRelated(void) { ((void(*)(void))0x80780540)(); }
 static inline void chainChompSprintSwitcher(void) { ((void(*)(void))0x80780AC4)(); }
-static inline void pP_relatedToCalculatingHeldBallLoc(int param_1) { ((void(*)(int))0x807837B0)(param_1); }
+static inline void pP_relatedToCalculatingHeldBallLoc(void) { ((void(*)(void))0x807837B0)(); }
 static inline void piranhaPanicPoints_(int param_1) { ((void(*)(int))0x80784450)(param_1); }
 static inline void ppRelated(void) { ((void(*)(void))0x80784C2C)(); }
 static inline void piranhaPanicLiveBall(void) { ((void(*)(void))0x8078549C)(); }
 static inline void piranhaPanicRelated(void) { ((void(*)(void))0x80785B24)(); }
 static inline void piranhaPanicSwitcher(void) { ((void(*)(void))0x80786258)(); }
-static inline void barrelBatterRel(int * param_1) { ((void(*)(int *))0x807899A0)(param_1); }
+static inline void barrelBatterRel(void) { ((void(*)(void))0x807899A0)(); }
 static inline void wallBall_updateSomePointers(void) { ((void(*)(void))0x8078F15C)(); }
 static inline void bobOmbDerbyPitching(void) { ((void(*)(void))0x8079431C)(); }
 static inline void bODPitchAnimation(void) { ((void(*)(void))0x807952AC)(); }
@@ -41066,10 +41068,10 @@ static inline void _unused_matchSimulationRelated(void) { ((void(*)(void))0x8079
 static inline void fieldingPractice_resetMem(void) { ((void(*)(void))0x8079A16C)(); }
 static inline void fieldingPracticeRelated_8079a528(void) { ((void(*)(void))0x8079A528)(); }
 static inline void freeFieldingPracticeControl(void) { ((void(*)(void))0x8079A6A4)(); }
-static inline void animationRelated_8079a830(int param_1) { ((void(*)(int))0x8079A830)(param_1); }
+static inline void animationRelated_8079a830(void) { ((void(*)(void))0x8079A830)(); }
 static inline void peachDaisyStarSwingRelated2(void) { ((void(*)(void))0x8079B094)(); }
-static inline int peachDaisyStarSwingRelated(void) { return ((int(*)(void))0x8079B0A8)(); }
-static inline void compilingStats_(int param_1) { ((void(*)(int))0x8079C26C)(param_1); }
+static inline void peachDaisyStarSwingRelated(void) { ((void(*)(void))0x8079B0A8)(); }
+static inline void compilingStats_(void) { ((void(*)(void))0x8079C26C)(); }
 static inline void animateMVP_GameEnd(void) { ((void(*)(void))0x8079E4A4)(); }
 static inline void starMissionsMinigamesSpecialAction(int missionCode, int pointsEarned, int specialActionCount) { ((void(*)(int, int, int))0x8079F984)(missionCode, pointsEarned, specialActionCount); }
 static inline void starMissionsMinigamesTotalPoints(void) { ((void(*)(void))0x807A010C)(); }
@@ -41081,16 +41083,16 @@ static inline void recruitWholeTeamAfterMercy_(void) { ((void(*)(void))0x807A288
 static inline void challengeModeRelated_checkScoutMissionSuccess_(void) { ((void(*)(void))0x807A3B08)(); }
 static inline void setScoutMissionRelatedToZero(void) { ((void(*)(void))0x807A4A20)(); }
 static inline void shouldScoutMissionBeEnabled_(int potentialMissionID) { ((void(*)(int))0x807A4A34)(potentialMissionID); }
-static inline int decideScoutFlagMission(void) { return ((int(*)(void))0x807A4DB8)(); }
+static inline void decideScoutFlagMission(void) { ((void(*)(void))0x807A4DB8)(); }
 static inline void practiceAnimationRelated_807a5440(void) { ((void(*)(void))0x807A5440)(); }
 static inline void magikoopaAnimationRelated(void) { ((void(*)(void))0x807A5A00)(); }
 static inline void applyStarRelatedTransformations(void) { ((void(*)(void))0x807A5A30)(); }
 static inline void fieldingRelatedAnimations(int param_1, byte switch_) { ((void(*)(int, byte))0x807A7340)(param_1, switch_); }
 static inline void mUpdateActorTransformAndAnimation(int mActorID) { ((void(*)(int))0x807A7B00)(mActorID); }
 static inline void displayChem_antiChemGraphics(undefined4 param_1, undefined4 _0chem_1antiChem) { ((void(*)(undefined4, undefined4))0x807A8034)(param_1, _0chem_1antiChem); }
-static inline uint gardenSFXRelated(char param_1) { return ((uint(*)(char))0x807AB4A4)(param_1); }
+static inline void gardenSFXRelated(void) { ((void(*)(void))0x807AB4A4)(); }
 static inline void checkFielderCollisionPotential(double ballHeight, byte fielderIndex) { ((void(*)(double, byte))0x807AC56C)(ballHeight, fielderIndex); }
 static inline void processBallFielderCollision(int interactionType) { ((void(*)(int))0x807AC678)(interactionType); }
 static inline void animateScoreBoard_(void) { ((void(*)(void))0x807AD280)(); }
-static inline void animateScoreBoardCheck_(int TextureData, int objOrTextureCount) { ((void(*)(int, int))0x807AD3CC)(TextureData, objOrTextureCount); }
+static inline void animateScoreBoardCheck_(int TextureData_, int objOrTextureCount_) { ((void(*)(int, int))0x807AD3CC)(TextureData_, objOrTextureCount_); }
 

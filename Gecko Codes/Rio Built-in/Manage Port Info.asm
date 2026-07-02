@@ -86,7 +86,7 @@ END:
 ###########################################################
 
 # Address: 0x8063F14C
-# *Clear port info after game ends
+# Clears port info after game ends
 
 START:
   li r3, 0x0                    # Clear r3
