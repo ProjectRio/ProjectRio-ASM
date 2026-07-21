@@ -33097,7 +33097,7 @@ static inline void sceneDrawingLogic(void) { ((void(*)(void))0x8003C00C)(); }
 static inline void capApplicationFunction_(void) { ((void(*)(void))0x8004207C)(); }
 static inline void lineupOrderChangeRelated(void) { ((void(*)(void))0x80042598)(); }
 static inline void adjustStatsForSuperstar(int playerNumber) { ((void(*)(int))0x800426DC)(playerNumber); }
-static inline void randRange_FUN_80042bf0(int high_, int low_) { ((void(*)(int, int))0x80042BF0)(high_, low_); }
+static inline int randRangeInclusive(int high_, int low_) { return ((int(*)(int, int))0x80042BF0)(high_, low_); }
 static inline void sndFXRelated(void) { ((void(*)(void))0x80042C44)(); }
 static inline bool maybeCheckAndResetGraphicsElement(maybeGraphicsManager * maybeGFXIndex, undefined4 offset_, undefined4 targetVal) { return ((bool(*)(maybeGraphicsManager *, undefined4, undefined4))0x80042DA8)(maybeGFXIndex, offset_, targetVal); }
 static inline void challengeStarMenu(void) { ((void(*)(void))0x80042DE8)(); }
@@ -33181,6 +33181,7 @@ static inline void teamClassTypeLogos(void) { ((void(*)(void))0x80067264)(); }
 static inline void teamCompositionLogos(int team, int CaptainCharacterID) { ((void(*)(int, int))0x800675C4)(team, CaptainCharacterID); }
 static inline void teamLogoDetermination(int team) { ((void(*)(int))0x800678CC)(team); }
 static inline void addRemoveCharVariantRelated(void) { ((void(*)(void))0x80067B40)(); }
+static inline void DraftRandomTeamDemo(undefined4 team) { ((void(*)(undefined4))0x80067F70)(team); }
 static inline void unknownSettingTeamValues_80068838(void) { ((void(*)(void))0x80068838)(); }
 static inline void unknownSettingTeamValues(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, byte param_11, byte param_12, byte param_13, byte param_14, byte param_15, byte param_16, byte param_17, int param_18, int param_19, int param_20) { ((void(*)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, byte, byte, byte, byte, byte, byte, byte, int, int, int))0x8006885C)(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12, param_13, param_14, param_15, param_16, param_17, param_18, param_19, param_20); }
 static inline void setCaptainLocInRoster_(void) { ((void(*)(void))0x80069854)(); }
