@@ -1,3 +1,25 @@
 *.txt
 config.json
 .DS_Store
+
+# Generated from the decomp by SyncFromDecomp.py -- keep in sync with
+# GENERATED_ENTRIES in that script. (Include/Rio/ and Include/Local/ are
+# hand-written and never touched by the sync.)
+Include/game/
+Include/static/
+Include/menus/
+Include/unused_rel/
+Include/Symbols/
+Include/Dolphin/
+Include/musyx/
+Include/C3/
+Include/charPipeline/
+Include/PowerPC_EABI_Support/
+Include/stl/
+Include/Unknown/
+Include/mssbTypes.h
+Include/types.h
+Include/BuildSettings.h
+Include/header_rep_data.h
+Include/executor.h
+Include/_sync_report.txt

@@ -1,3 +1,7 @@
 [submodule "CGecko"]
 	path = CGecko
 	url = https://github.com/LittleCoaks/CGecko.git
+[submodule "Decomp"]
+	path = Decomp
+	url = https://github.com/LittleCoaks/mssb-dtk.git
+	branch = main
