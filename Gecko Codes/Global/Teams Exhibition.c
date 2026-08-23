@@ -1,8 +1,7 @@
 /*###########################################################
-# Teams Mode
+# Teams Exhibition
 ###########################################################*/
 // Author: LittleCoaks
-// State: Game
 
 // *Allows 1v2, 2v2, and 1v3 team matches in exhibition mode
 // *Batting:  swaps every plate appearance
@@ -13,13 +12,17 @@
 // *  Port 3 -> 2v2 (P1/P2 vs P3/P4)
 // *  Port 4 -> 1v3 (P1 vs P2/P3/P4)
 
-#include "Game Data/GameData.h"
+#include "Include/game/UnknownHomes_Game.h"
 
-#define autogolf_ports ARRAY_1D_ADDRESS(byte, 2, 0x802EBF94) // [0] = fielder, [1] = batter
+#include "Include/Local/Legacy.h"
+#include "Include/Local/LegacyGame.h"
+#define autogolf_ports ARRAY_1D_ADDRESS(u8, 2, 0x802EBF94) // [0] = fielder, [1] = batter
 
-void TeamsMode()
+// no .address -> once per frame, while the game rel is resident
+CGECKO(TeamsExhibition, .state = MSSB_GAME);
+void TeamsExhibition()
 {
-    int second_drafter = PlayerPorts[1];
+    int second_drafter = g_d_GameSettings.PlayerPorts[1];
 
     // 1v2 (1), 2v2 (2), and 1v3 (3) are supported; leave vs-CPU / anything else alone
     if (second_drafter < 1 || second_drafter > 3)
@@ -34,8 +37,8 @@ void TeamsMode()
     team_base[1] = team_size[0];
     team_size[1] = (second_drafter == 3) ? 3 : 2;   // 1v3 -> team 1 has three; else two
 
-    int field_team = gameControls.fieldingTeam_P1_P2_;
-    int bat_team   = gameControls.battingTeam_P1_P2_;
+    int field_team = g_GameLogic.teamFielding;
+    int bat_team   = g_GameLogic.teamBatting;
 
     int field_base = team_base[field_team];
     int field_size = team_size[field_team];
@@ -51,7 +54,7 @@ void TeamsMode()
         number_PAs += BatterStats_P1_P2_[bat_team][i].plateAppearances;
     }
 
-    bool is_at_bat = (gameControls.sceneID == enumSceneID_atBat) || (gameControls.sceneID == enumSceneID_replay_atBat);
+    bool is_at_bat = (g_GameLogic.sceneID == SCENE_ID_AT_BAT) || (g_GameLogic.sceneID == SCENE_ID_REPLAY_AT_BAT);
 
     // fielding
     int fielder_port;
@@ -63,7 +66,7 @@ void TeamsMode()
     else if (field_size == 2)
     {
         // two defenders split pitcher/fielder and trade roles each inning
-        bool is_odd_inning = GameState.Inning % 2 == 1;
+        bool is_odd_inning = g_Scores.Inning % 2 == 1;
         bool use_fielder_a = (is_odd_inning == is_at_bat);
         fielder_port = use_fielder_a ? field_base : field_base + 1;
     }
@@ -76,12 +79,12 @@ void TeamsMode()
         int fielder2_port = field_base + (r + 1) % 3;
         fielder_port = is_at_bat ? pitcher_port : fielder2_port;
     }
-    gameControls.teamPorts_P1P2[field_team] = fielder_port;
+    g_GameLogic.teams[field_team] = fielder_port;
     autogolf_ports[0] = fielder_port + 1;
 
     // batting -- round-robin through the batting team's players each plate appearance
     // (size 1 -> always the one player; size 2 -> A/B toggle; size 3 -> P2/P3/P4)
     int batter_port = bat_base + (number_PAs % bat_size);
-    gameControls.teamPorts_P1P2[bat_team] = batter_port;
+    g_GameLogic.teams[bat_team] = batter_port;
     autogolf_ports[1] = batter_port + 1;
 }

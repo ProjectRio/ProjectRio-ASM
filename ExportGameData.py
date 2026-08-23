@@ -4,7 +4,7 @@
 # program into ONE C header usable by CGecko-compiled C code.
 #
 # Output filename depends on which program is open (see PROGRAM_OUTPUT_NAMES):
-#   in_game             -> GameData.h
+#   in_game             -> MatchData.h
 #   AtGameSettingsScreen-> MenuData.h
 #   (anything else)     -> Data.h
 #
@@ -38,15 +38,50 @@ from ghidra.program.model.symbol import SymbolType, SourceType
 
 # Output filename per program name (extension is stripped before matching).
 PROGRAM_OUTPUT_NAMES = {
-    "in_game": "GameData.h",
+    "in_game": "MatchData.h",
     "AtGameSettingsScreen": "MenuData.h",
 }
 DEFAULT_OUTPUT_FILENAME = "Data.h"
 
+# --- Shared-DOL split -------------------------------------------------------
+# MSSB loads RELs at runtime above the DOL. Symbols BELOW SHARED_CUTOFF live in
+# the DOL (shared, constant at runtime) and are factored into GLOBAL_HEADER;
+# symbols AT/ABOVE it are REL-specific and go to the per-program context header
+# (MatchData.h / MenuData.h). Each context header #includes GLOBAL_HEADER.
+SHARED_CUTOFF = 0x803CD310
+GLOBAL_HEADER = "GlobalData.h"
+
+# The shared (below-cutoff) region is MERGED from both programs: an address
+# labeled in only one program is exported from that program; when both label
+# the same address, the richer entry wins (function > data > label; then
+# user-defined name/signature source; then parameter count), and a genuine tie
+# goes to the canonical program. GlobalData.h also carries the other program's
+# "top-up" types (types canonical lacks) so merged symbols can reference them.
+# Run the export from the canonical program; it opens the other via a picker.
+CANONICAL_PROGRAM = "in_game"
+# Program name of the other REL context (used to label the picker + reports).
+OTHER_PROGRAM_NAME = "AtGameSettingsScreen"
+# Reconciliation report for the shared region (written next to the headers).
+DIFF_REPORT_NAME = "SharedRegion_report.txt"
+# Set False to export just the current program the old way (single header, no
+# split) -- useful for debugging one program in isolation.
+ENABLE_SHARED_SPLIT = True
+
+
 # Hard-coded output directory. When non-blank, the file is written here with no
 # prompt. Leave as "" to fall back to the script argument (if any), then to an
 # interactive folder picker.
-OUTPUT_DIR = r"D:\15165\Documents\Rio Modding Project\Project Rio\ProjectRio-ASM\Game Data"
+OUTPUT_DIR = r"D:\15165\Documents\Rio Modding Project\Project Rio\Modding\ProjectRio-ASM\Include"
+
+# Subfolder (under the output directory) each header is written into. #include
+# lines reference them as "Include/<subfolder>/<name>" (CGecko adds the repo
+# root to the include path). Files with no entry here (e.g. the diff report,
+# the Data.h fallback) land directly in the output directory.
+HEADER_SUBDIRS = {
+    GLOBAL_HEADER: "Global",
+    "MatchData.h": "Match",
+    "MenuData.h": "Menu",
+}
 
 # Prepend #include "<COMMON_H_PATH>" (CGecko adds the repo root to the include
 # path, so this resolves there). Common.h provides VAR_ADDRESS, byte, word, etc.
@@ -80,6 +115,19 @@ GHIDRA_TYPE_RENAMES = {"word": "ghidra_word"}
 AUTO_NAME_PREFIXES = (
     "FUN_", "DAT_", "LAB_", "SUB_", "UNK_", "PTR_", "ARRAY_",
     "s_", "u_", "switchD_", "caseD_", "joined_r",
+)
+
+# Names already taken by Common.h / the primitive block. A #define with one of
+# these names would poison every later use of that identifier, so the macro
+# registry is seeded with them (a colliding symbol gets an address suffix).
+RESERVED_IDENTIFIERS = (
+    "bool", "false", "true", "byte", "halfword", "word", "ghidra_word",
+    "VAR_ADDRESS", "ARRAY_1D_ADDRESS", "ARRAY_2D_ADDRESS", "ARRAY_3D_ADDRESS",
+    "ARRAY_4D_ADDRESS", "ARRAY_5D_ADDRESS", "FUNCTION_ADDRESS",
+    "READ_GAME_REG", "WRITE_GAME_REG", "READ_REG",
+    "LEN", "SQUARE", "OFFSET_OF", "LOAD_FLOAT", "FP", "COMMON_H",
+    "undefined", "undefined1", "undefined2", "undefined4", "undefined8",
+    "uchar", "ushort", "uint", "ulong", "longlong", "ulonglong",
 )
 
 # ==============================================================================
@@ -223,7 +271,7 @@ def _split_field(inner):
     return (' '.join(type_toks), stars, core, arrays, bitfield)
 
 
-def _san_fnptr_name(declarator, seen_fields):
+def _san_fnptr_name(declarator, seen_fields, name_sink=None):
     """Sanitize the field name inside a function-pointer declarator, e.g.
     '(*functionPtr2(sounds))(void *)' -> '(*functionPtr2_sounds_)(void *)',
     preserving any [N] array suffix. Returns the declarator unchanged if it
@@ -235,10 +283,12 @@ def _san_fnptr_name(declarator, seen_fields):
         return declarator
     pre, nm, arr, rest = m.groups()
     san = _uniquify(sanitize_ident(nm, avoid_keywords=True), seen_fields)
+    if name_sink is not None:
+        name_sink.add(san)
     return pre + san + arr + rest
 
 
-def _process_field_line(indent, body, seen_fields):
+def _process_field_line(indent, body, seen_fields, name_sink=None):
     inner = body[:-1].rstrip()
     parsed = _split_field(inner)
     if parsed is None:
@@ -251,13 +301,15 @@ def _process_field_line(indent, body, seen_fields):
         if re.search(r'\(\s*\*', inner):
             paren = inner.find('(')
             type_part = inner[:paren].rstrip()
-            declarator = _san_fnptr_name(inner[paren:], seen_fields)
+            declarator = _san_fnptr_name(inner[paren:], seen_fields, name_sink)
             if type_part:
                 return indent + sanitize_type_str(type_part) + ' ' + declarator + ';'
             return indent + declarator + ';'
         return indent + body
     type_str, stars, name_core, arrays, bitfield = parsed
     san_name = _uniquify(sanitize_ident(name_core, avoid_keywords=True), seen_fields)
+    if name_sink is not None:
+        name_sink.add(san_name)
     typ2 = sanitize_type_str(type_str)
     return indent + typ2 + ' ' + stars + san_name + arrays + bitfield + ';'
 
@@ -276,7 +328,7 @@ def _split_enum_const(body):
     return name, rest
 
 
-def _process_enum_const(indent, body, enum_name, prefix_set, seen_consts):
+def _process_enum_const(indent, body, enum_name, prefix_set, seen_consts, name_sink=None):
     name, rest = _split_enum_const(body)
     if not name:
         return indent + body
@@ -284,6 +336,8 @@ def _process_enum_const(indent, body, enum_name, prefix_set, seen_consts):
     if enum_name is not None:
         san = sanitize_ident(enum_name) + '_' + san
     san = _uniquify(san, seen_consts)
+    if name_sink is not None:
+        name_sink.add(san)
     return indent + san + rest
 
 
@@ -399,10 +453,13 @@ def scan_header_names(text):
     return prefix_set, type_names, const_names
 
 
-def rewrite_header(text, prefix_set, enum_meta, renames, pack_structs=True, stub_names=None):
+def rewrite_header(text, prefix_set, enum_meta, renames, pack_structs=True, stub_names=None,
+                   name_sink=None):
     """Second pass. enum_meta = {sanitized_enum_name: (length, signed)}.
     renames = {ghidra_name: replacement}. Comment-aware: trailing /*...*/ and
-    // comments are preserved but never confuse field/brace parsing."""
+    // comments are preserved but never confuse field/brace parsing.
+    name_sink (a set, optional) collects every emitted struct-field and enum-
+    constant name so #define macros can be kept disjoint from all of them."""
     global _RENAMES, _ENUM_TYPEDEF_NAMES
     _RENAMES = dict(renames or {})
     _ENUM_TYPEDEF_NAMES = set(enum_meta.keys())
@@ -527,7 +584,7 @@ def rewrite_header(text, prefix_set, enum_meta, renames, pack_structs=True, stub
                     out.append(indent + code + csp)
                 state = 'top'
             elif code.endswith(';') and not code.startswith('}') and '{' not in code:
-                out.append(_process_field_line(indent, code, seen_fields) + csp)
+                out.append(_process_field_line(indent, code, seen_fields, name_sink) + csp)
             else:
                 out.append(raw)
 
@@ -549,7 +606,8 @@ def rewrite_header(text, prefix_set, enum_meta, renames, pack_structs=True, stub
                 cur_enum_name = None
                 cur_enum_san = None
             else:
-                out.append(_process_enum_const(indent, code, cur_enum_name, prefix_set, seen_consts) + csp)
+                out.append(_process_enum_const(indent, code, cur_enum_name, prefix_set,
+                                               seen_consts, name_sink) + csp)
 
         elif state == 'skip_enum':
             if code.startswith('}'):
@@ -614,7 +672,7 @@ ADDRESS_MACRO_BLOCK = """\
 """
 
 
-def build_prelude(program_name):
+def build_prelude(program_name, include_global=False):
     head = (
         "// =============================================================================\n"
         "//  AUTO-GENERATED by ExportGameData.py. DO NOT HAND-EDIT.\n"
@@ -622,6 +680,11 @@ def build_prelude(program_name):
         "// =============================================================================\n"
         "#pragma once\n" % program_name
     )
+    if include_global:
+        # Context header: GlobalData.h transitively provides Common.h, the
+        # primitive typedefs, the address macros, and every shared type.
+        head += '#include "%s"\n' % header_include_path(GLOBAL_HEADER)
+        return head
     if INCLUDE_COMMON_H:
         head += '#include "%s"\n' % COMMON_H_PATH
     head += "\n" + GHIDRA_WORD_BLOCK + "\n"
@@ -643,6 +706,15 @@ def resolve_output_filename(program_name):
             base = base[:-len(ext)]
             break
     return PROGRAM_OUTPUT_NAMES.get(base, DEFAULT_OUTPUT_FILENAME)
+
+
+def header_include_path(filename):
+    """Repo-root-relative #include path for a generated header (CGecko adds the
+    repo root to the include path)."""
+    sub = HEADER_SUBDIRS.get(filename)
+    if sub:
+        return "Include/%s/%s" % (sub, filename)
+    return "Include/%s" % filename
 
 
 def is_exportable_name(name):
@@ -721,12 +793,16 @@ def build_types_raw(dtm):
     return sw.toString()
 
 
+STUB_BANNER = "// --- Stubs for zero-length Ghidra types (give them a real layout to fix) ---"
+
+
 def build_zero_length_stubs(dtm):
     """Ghidra zero-length composites become forward-only (incomplete) in C, so
     they can't be used as array elements or by value. Emit a 1-byte stub for
     each, BEFORE the main types, so those uses compile. (These are placeholders;
-    give them a real layout in Ghidra to fix the size.)"""
-    lines = []
+    give them a real layout in Ghidra to fix the size.)
+    Returns ([(name, stub_line)], set_of_names)."""
+    pairs = []
     seen = set()
     it = dtm.getAllDataTypes()
     while it.hasNext():
@@ -737,11 +813,9 @@ def build_zero_length_stubs(dtm):
                 continue
             seen.add(nm)
             kw = "union" if isinstance(dt, Union) else "struct"
-            lines.append("%s %s { unsigned char _opaque_stub; } __attribute__((packed));"
-                         % (kw, nm))
-    if lines:
-        lines.insert(0, "// --- Stubs for zero-length Ghidra types (give them a real layout to fix) ---")
-    return lines, seen
+            pairs.append((nm, "%s %s { unsigned char _opaque_stub; } __attribute__((packed));"
+                          % (kw, nm)))
+    return pairs, seen
 
 
 def build_size_guards(dtm):
@@ -767,14 +841,15 @@ def build_size_guards(dtm):
 # MACRO SECTIONS
 # ==============================================================================
 
-def build_data_symbols_section(names):
-    """Labeled, defined data -> address macros matching Common.h:
-    scalars use VAR_ADDRESS(type, addr); N-dimensional arrays use the named
-    per-arity macros ARRAY_1D_ADDRESS(type, n, addr) through
-    ARRAY_5D_ADDRESS(type, a, b, c, d, e, addr), always against the base
-    element type. 6D+ flattens to a 1D total with a warning."""
-    lines = []
-    listing = currentProgram.getListing()
+def collect_data_symbols(program, names, addr_filter=None):
+    """Labeled, defined data -> (offset, "#define ... ") tuples. Scalars use
+    VAR_ADDRESS(type, addr); N-D arrays use ARRAY_1D_ADDRESS..ARRAY_5D_ADDRESS
+    against the base element type (6D+ flattens to 1D with a warning). The offset
+    lets the caller route each symbol to GlobalData.h (below the shared cutoff)
+    or the context header (at/above it). addr_filter(offset)->bool, when given,
+    limits which symbols are exported (skipped ones claim no names)."""
+    out = []
+    listing = program.getListing()
     items = []
     di = listing.getDefinedData(True)
     while di.hasNext():
@@ -782,16 +857,13 @@ def build_data_symbols_section(names):
         sym = data.getPrimarySymbol()
         if sym is None or not is_exportable_name(sym.getName()):
             continue
+        if addr_filter is not None and not addr_filter(data.getMinAddress().getOffset()):
+            continue
         items.append((data.getMinAddress(), sym.getName(), data.getDataType()))
     items.sort(key=lambda t: t[0])
     for addr, name, dt in items:
         name = names.claim(sanitize_ident(name), addr)
         if isinstance(dt, Array):
-            # Peel every dimension so multi-dimensional arrays resolve to the
-            # *base* element type plus each count, e.g. StatisticsBatter[2][9]
-            # -> ARRAY_2D_ADDRESS(StatisticsBatter, 2, 9, addr). Reading
-            # dt.getDataType() once (the old behavior) named the inner array
-            # "StatisticsBatter_9_", a type that is referenced but never declared.
             dims = []
             cur = dt
             while isinstance(cur, Array):
@@ -799,8 +871,6 @@ def build_data_symbols_section(names):
                 cur = cur.getDataType()
             elem = sanitize_type_str(cur.getDisplayName())
             if len(dims) > 5:
-                # Common.h tops out at ARRAY_5D_ADDRESS; flatten anything deeper
-                # to the total element count so the macro still names a real type.
                 total = 1
                 for d in dims:
                     total *= d
@@ -808,20 +878,20 @@ def build_data_symbols_section(names):
                       % (name, len(dims), total))
                 dims = [total]
             dims_str = ", ".join(str(d) for d in dims)
-            lines.append("#define %s ARRAY_%dD_ADDRESS(%s, %s, %s)"
-                         % (name, len(dims), elem, dims_str, addr_hex(addr)))
+            line = ("#define %s ARRAY_%dD_ADDRESS(%s, %s, %s)"
+                    % (name, len(dims), elem, dims_str, addr_hex(addr)))
         else:
             elem = sanitize_type_str(dt.getDisplayName())
-            lines.append("#define %s VAR_ADDRESS(%s, %s)"
-                         % (name, elem, addr_hex(addr)))
-    return "\n".join(lines)
+            line = "#define %s VAR_ADDRESS(%s, %s)" % (name, elem, addr_hex(addr))
+        out.append((addr.getOffset(), name, line))
+    return out
 
 
-def build_plain_labels_section(names):
-    """Labels with no defined data -> bare address macros."""
-    lines = []
-    st = currentProgram.getSymbolTable()
-    listing = currentProgram.getListing()
+def collect_plain_labels(program, names, addr_filter=None):
+    """Labels with no defined data -> (offset, "#define NAME_ADDR 0x..") tuples."""
+    out = []
+    st = program.getSymbolTable()
+    listing = program.getListing()
     items = []
     it = st.getSymbolIterator()
     while it.hasNext():
@@ -835,12 +905,14 @@ def build_plain_labels_section(names):
             continue
         if not is_exportable_name(sym.getName()):
             continue
+        if addr_filter is not None and not addr_filter(addr.getOffset()):
+            continue
         items.append((addr, sym.getName()))
     items.sort(key=lambda t: t[0])
     for addr, name in items:
         name = names.claim(sanitize_ident(name) + "_ADDR", addr)
-        lines.append("#define %s %s" % (name, addr_hex(addr)))
-    return "\n".join(lines)
+        out.append((addr.getOffset(), name, "#define %s %s" % (name, addr_hex(addr))))
+    return out
 
 
 def _param_c_parts(dt, pname):
@@ -893,24 +965,21 @@ def _param_c_parts(dt, pname):
     return "%s %s" % (t, pname), t
 
 
-def build_functions_section(names):
-    """Named functions -> static inline wrappers that call the real address
-    through a typed function pointer, e.g.
-        static inline void PlaySound(int soundID, int volume_, int pan, int flags) {
-            ((void(*)(int, int, int, int))0x800C836C)(soundID, volume_, pan, flags);
-        }
-    Each parameter name is de-conflicted against the macro namespace (data
-    symbols, labels, other functions, type/enum names already in the registry)
-    so a parameter sharing a name with a #define can't be macro-expanded inside
-    the signature. True varargs functions can't forward '...' from a wrapper
-    body, so they fall back to the FUNCTION_ADDRESS macro."""
-    lines = []
-    fm = currentProgram.getFunctionManager()
+def collect_functions(program, names, addr_filter=None):
+    """Named functions -> (offset, wrapper-or-macro line) tuples. Emits a static
+    inline wrapper per function (parameter names de-conflicted against the macro
+    namespace); true varargs functions fall back to the FUNCTION_ADDRESS macro
+    since a wrapper body can't forward '...'. The offset routes each function to
+    GlobalData.h or the context header."""
+    out = []
+    fm = program.getFunctionManager()
     items = []
     for fn in fm.getFunctions(True):
         if fn.isThunk() or fn.isExternal():
             continue
         if not is_exportable_name(fn.getName()):
+            continue
+        if addr_filter is not None and not addr_filter(fn.getEntryPoint().getOffset()):
             continue
         items.append(fn)
     items.sort(key=lambda f: f.getEntryPoint())
@@ -947,8 +1016,9 @@ def build_functions_section(names):
             cast_list.append(ct)
         # Varargs: a wrapper body cannot forward '...', so emit the macro form.
         if sig.hasVarArgs():
-            lines.append("#define %s FUNCTION_ADDRESS(%s, %s, %s)"
-                         % (name, ret, addr_hex(addr), ", ".join(cast_list + ["..."])))
+            line = ("#define %s FUNCTION_ADDRESS(%s, %s, %s)"
+                    % (name, ret, addr_hex(addr), ", ".join(cast_list + ["..."])))
+            out.append((addr.getOffset(), name, line))
             continue
         cast_types = ", ".join(cast_list) if cast_list else "void"
         if sig_decls:
@@ -959,19 +1029,400 @@ def build_functions_section(names):
             call = ""
         inner = "((%s(*)(%s))%s)(%s);" % (ret, cast_types, addr_hex(addr), call)
         body = inner if ret == "void" else ("return " + inner)
-        lines.append("static inline %s %s(%s) { %s }"
-                     % (ret, name, sig_str, body))
-    return "\n".join(lines)
+        out.append((addr.getOffset(), name,
+                    "static inline %s %s(%s) { %s }" % (ret, name, sig_str, body)))
+    return out
 
 
 # ==============================================================================
 # MAIN
 # ==============================================================================
 
-def main():
-    program_name = currentProgram.getDomainFile().getName()
-    out_name = resolve_output_filename(program_name)
+# ==============================================================================
+# SHARED-DOL SPLIT  (GlobalData.h + per-REL context headers + reconciliation)
+# ==============================================================================
 
+def split_type_blocks(text):
+    """Rewritten type text -> list of (name, block_text) for each top-level item.
+    name is the defined type name, or None for #defines / comments / blank / other
+    lines. Anonymous `enum {}` blocks are paired with the following
+    `typedef <int> NAME;` so the enum takes that NAME."""
+    lines = text.split('\n')
+    n = len(lines)
+    blocks = []
+    i = 0
+    while i < n:
+        line = lines[i]
+        s = line.strip()
+        if s == '' or s.startswith('//') or s.startswith('/*'):
+            blocks.append((None, line)); i += 1; continue
+        opener = re.match(r'^(?:typedef\s+)?(struct|union|enum)\b[^{;]*\{', line)
+        if opener:
+            kind = opener.group(1)
+            depth = line.count('{') - line.count('}')
+            buf = [line]; i += 1
+            while i < n and depth > 0:
+                buf.append(lines[i])
+                depth += lines[i].count('{') - lines[i].count('}')
+                i += 1
+            block_text = '\n'.join(buf)
+            nm = re.match(r'^(?:typedef\s+)?(?:struct|union|enum)\s+(\w+)', line)
+            name = nm.group(1) if nm else None
+            if kind == 'enum' and name is None:
+                j = i
+                while j < n and lines[j].strip() == '':
+                    j += 1
+                if j < n:
+                    tm = re.match(r'^typedef\s+.*\b(\w+)\s*;\s*$', lines[j])
+                    if tm:
+                        name = tm.group(1)
+                        block_text = block_text + '\n' + '\n'.join(lines[i:j + 1])
+                        i = j + 1
+            blocks.append((name, block_text)); continue
+        fwd = re.match(r'^typedef\s+(?:struct|union|enum)\s+(\w+)\b', s)
+        if fwd and '{' not in line:
+            blocks.append((fwd.group(1), line)); i += 1; continue
+        plain = re.match(r'^typedef\s+.*\b(\w+)\s*;\s*$', s)
+        if plain:
+            blocks.append((plain.group(1), line)); i += 1; continue
+        blocks.append((None, line)); i += 1; continue
+    return blocks
+
+
+def keep_only_type_blocks(text, keep_names):
+    """Keep only the type blocks whose defined name is in keep_names; drop
+    everything else (shared types, #defines, primitives, comments). Used to emit
+    the OTHER program's type "top-up": types it has that GlobalData.h lacks."""
+    out = []
+    for name, block in split_type_blocks(text):
+        if name is not None and name in keep_names:
+            out.append(block)
+    return '\n'.join(out)
+
+
+def _norm_block(text):
+    """Collapse whitespace so trivial formatting differences don't read as drift."""
+    return re.sub(r'\s+', ' ', text).strip()
+
+
+def collect_shared_index(program, cutoff):
+    """Below-cutoff symbols of `program` as {offset: (name, kind, type_str)} for
+    the reconciliation report. Covers defined data (kind 'data', type = Ghidra
+    display name), functions ('func', type = prototype), and labels ('label').
+    Raw Ghidra names (not sanitized), so the report points at what's in the tool."""
+    idx = {}
+    listing = program.getListing()
+    di = listing.getDefinedData(True)
+    while di.hasNext():
+        data = di.next()
+        addr = data.getMinAddress()
+        if addr.getOffset() >= cutoff:
+            continue
+        sym = data.getPrimarySymbol()
+        if sym is None or not is_exportable_name(sym.getName()):
+            continue
+        idx[addr.getOffset()] = (sym.getName(), 'data',
+                                 data.getDataType().getDisplayName())
+    fm = program.getFunctionManager()
+    for fn in fm.getFunctions(True):
+        if fn.isThunk() or fn.isExternal() or not is_exportable_name(fn.getName()):
+            continue
+        off = fn.getEntryPoint().getOffset()
+        if off >= cutoff:
+            continue
+        idx[off] = (fn.getName(), 'func', fn.getSignature().getPrototypeString())
+    st = program.getSymbolTable()
+    it = st.getSymbolIterator()
+    while it.hasNext():
+        sym = it.next()
+        if sym.getSymbolType() != SymbolType.LABEL or not sym.isPrimary():
+            continue
+        addr = sym.getAddress()
+        if not addr.isMemoryAddress() or addr.getOffset() >= cutoff:
+            continue
+        if listing.getDefinedDataAt(addr) is not None:
+            continue
+        if not is_exportable_name(sym.getName()):
+            continue
+        off = addr.getOffset()
+        if off not in idx:
+            idx[off] = (sym.getName(), 'label', '')
+    return idx
+
+
+# ---- shared-region merge -----------------------------------------------------
+# The DOL (below-cutoff) region is the same memory in both projects, but labels
+# were added independently. Auto names (FUN_/DAT_/...) are already filtered out,
+# so every indexed entry is a "real" label; the merge decides which program's
+# version of each address is exported into GlobalData.h.
+
+KIND_RANK = {'label': 0, 'data': 1, 'func': 2}
+
+
+def _src_rank(source):
+    """How deliberate a symbol/signature is: user > imported > analysis > default."""
+    if source == SourceType.USER_DEFINED:
+        return 3
+    if source == SourceType.IMPORTED:
+        return 2
+    if source == SourceType.ANALYSIS:
+        return 1
+    return 0
+
+
+def build_merge_index(program, cutoff):
+    """Below-cutoff exportable symbols -> {offset: (kind, name, score)}.
+    score is a per-kind quality tuple used to pick a winner when both programs
+    label the same address:
+      func : (name source, signature source, parameter count)
+      data : (name source, 1 if the data has a real type / 0 if undefinedN)
+      label: (name source,)
+    If one address holds several symbol kinds, the richest kind wins the slot
+    (func > data > label)."""
+    idx = {}
+    listing = program.getListing()
+    st = program.getSymbolTable()
+    it = st.getSymbolIterator()
+    while it.hasNext():
+        sym = it.next()
+        if sym.getSymbolType() != SymbolType.LABEL or not sym.isPrimary():
+            continue
+        addr = sym.getAddress()
+        if not addr.isMemoryAddress() or addr.getOffset() >= cutoff:
+            continue
+        if listing.getDefinedDataAt(addr) is not None:
+            continue
+        if not is_exportable_name(sym.getName()):
+            continue
+        idx[addr.getOffset()] = ('label', sym.getName(), (_src_rank(sym.getSource()),))
+    di = listing.getDefinedData(True)
+    while di.hasNext():
+        data = di.next()
+        addr = data.getMinAddress()
+        if addr.getOffset() >= cutoff:
+            continue
+        sym = data.getPrimarySymbol()
+        if sym is None or not is_exportable_name(sym.getName()):
+            continue
+        typed = 0 if data.getDataType().getDisplayName().startswith('undefined') else 1
+        idx[addr.getOffset()] = ('data', sym.getName(), (_src_rank(sym.getSource()), typed))
+    fm = program.getFunctionManager()
+    for fn in fm.getFunctions(True):
+        if fn.isThunk() or fn.isExternal() or not is_exportable_name(fn.getName()):
+            continue
+        off = fn.getEntryPoint().getOffset()
+        if off >= cutoff:
+            continue
+        try:
+            sig_rank = _src_rank(fn.getSignatureSource())
+        except Exception:
+            sig_rank = 0
+        idx[off] = ('func', fn.getName(),
+                    (_src_rank(fn.getSymbol().getSource()), sig_rank,
+                     fn.getParameterCount()))
+    return idx
+
+
+def resolve_shared_winners(canon_idx, other_idx):
+    """Offsets whose shared-region entry is taken from the OTHER program.
+    An address labeled only in the other program always wins; when both label
+    it, the richer entry wins (kind rank, then the per-kind score); a genuine
+    tie goes to canonical."""
+    wins = set()
+    for off, (ok, _on, oscore) in other_idx.items():
+        entry = canon_idx.get(off)
+        if entry is None:
+            wins.add(off)
+            continue
+        ck, _cn, cscore = entry
+        if KIND_RANK[ok] != KIND_RANK[ck]:
+            if KIND_RANK[ok] > KIND_RANK[ck]:
+                wins.add(off)
+        elif oscore > cscore:
+            wins.add(off)
+    return wins
+
+
+def open_second_program(name):
+    """Open the OTHER REL program for its context header + the diff. Uses
+    askProgram (a project program picker) so it works regardless of how the
+    project is laid out; GhidraScript releases the program at script exit.
+    Returns the Program, or None if unavailable / cancelled."""
+    try:
+        prog = askProgram("Select the '%s' program (for %s + shared-region diff)"
+                          % (name, resolve_output_filename(name)))
+    except Exception as e:
+        println("[WARN] Program picker cancelled/unavailable: %s" % e)
+        return None
+    if prog is None:
+        println("[WARN] No second program selected.")
+    return prog
+
+
+def build_diff_report(canon_name, canon_idx, other_name, other_idx,
+                      canon_type_blocks, other_type_blocks, topup_names,
+                      other_wins=None):
+    """Compare the two programs' shared (below-cutoff) regions and their shared
+    type definitions. Reports disagreements; the export already resolved
+    symbol-level ones (see other_wins), so this tells you what to re-sync in
+    Ghidra so both projects agree."""
+    other_wins = other_wins or set()
+    L = []
+    L.append("Shared-region reconciliation")
+    L.append("  canonical : %s   (owns GlobalData.h; wins ties)" % canon_name)
+    L.append("  other     : %s" % other_name)
+    L.append("  cutoff    : below 0x%08X" % SHARED_CUTOFF)
+    L.append("=" * 74)
+
+    co = set(canon_idx.keys())
+    oo = set(other_idx.keys())
+    only_other = sorted(oo - co)
+    name_mismatch = []
+    type_mismatch = []
+    for off in sorted(co & oo):
+        cn, ck, ct = canon_idx[off]
+        on, ok, ot = other_idx[off]
+        if cn != on:
+            name_mismatch.append((off, cn, on))
+        elif ck == 'data' and ok == 'data' and ct != ot:
+            type_mismatch.append((off, cn, ct, ot))
+
+    def section(title, rows):
+        L.append("")
+        L.append(title)
+        if rows:
+            L.extend(rows)
+        else:
+            L.append("  (none)")
+
+    def winner(off):
+        return other_name if off in other_wins else canon_name
+
+    section("[TYPE MISMATCH]  same address + name, different type  (DANGEROUS -- wrong layout):",
+            sum(([ "  0x%08X  %s   (exported: %s)" % (off, nm, winner(off)),
+                   "      %-10s %s" % (canon_name + ":", ct),
+                   "      %-10s %s" % (other_name + ":", ot) ]
+                 for off, nm, ct, ot in type_mismatch), []))
+    section("[NAME MISMATCH]  same address, different name  (richer label was exported):",
+            ["  0x%08X  %s=%s   %s=%s   (exported: %s)"
+             % (off, canon_name, cn, other_name, on, winner(off))
+             for off, cn, on in name_mismatch])
+    section("[MERGED OVERRIDES]  labeled in both; %s's richer entry was exported:" % other_name,
+            ["  0x%08X  %s (%s)" % (off, other_idx[off][0], other_idx[off][1])
+             for off in sorted(other_wins & co & oo)])
+    section("[%s-ONLY SYMBOLS]  labeled below cutoff only in %s  (merged into %s):"
+            % (other_name, other_name, GLOBAL_HEADER),
+            ["  0x%08X  %s (%s)" % (off, other_idx[off][0], other_idx[off][1])
+             for off in only_other])
+
+    canon_tb = dict((nm, b) for nm, b in canon_type_blocks if nm is not None)
+    other_tb = dict((nm, b) for nm, b in other_type_blocks if nm is not None)
+    drift = [nm for nm in sorted(set(canon_tb) & set(other_tb))
+             if _norm_block(canon_tb[nm]) != _norm_block(other_tb[nm])]
+    section("[TYPE DRIFT]  defined in both programs but with different definitions (canonical wins):",
+            ["  %s" % nm for nm in drift])
+    section("[%s-ONLY TYPES]  in %s, not canonical  (emitted as top-up in %s):"
+            % (other_name, other_name, GLOBAL_HEADER),
+            ["  %s" % nm for nm in sorted(topup_names)])
+
+    L.append("")
+    L.append("=" * 74)
+    L.append("Counts: type-mismatch=%d  name-mismatch=%d  merged-overrides=%d  %s-only=%d  type-drift=%d  top-up-types=%d"
+             % (len(type_mismatch), len(name_mismatch), len(other_wins & co & oo),
+                other_name, len(only_other), len(drift), len(topup_names)))
+    if type_mismatch or drift:
+        L.append("ACTION: resolve TYPE MISMATCH / TYPE DRIFT by syncing the two Ghidra projects.")
+    return "\n".join(L)
+
+
+# ---- assembly / IO helpers ---------------------------------------------------
+
+def _split_items(items):
+    """Split [(offset, name, line)] at the shared cutoff. Returns (below, above),
+    both still as (offset, name, line) tuples so merged sections can be
+    re-sorted by address."""
+    below = [t for t in items if t[0] < SHARED_CUTOFF]
+    above = [t for t in items if t[0] >= SHARED_CUTOFF]
+    return below, above
+
+
+def _lines(items):
+    return "\n".join(ln for _off, _nm, ln in items)
+
+
+def _section_banner(title):
+    bar = "// " + "=" * 77
+    return "%s\n//  %s\n%s" % (bar, title, bar)
+
+
+def _assemble(header_lines, sections):
+    """sections = list of (title, body_text); skip empty bodies."""
+    parts = list(header_lines)
+    for title, body in sections:
+        if body and body.strip():
+            parts.append(_section_banner(title))
+            parts.append(body)
+    parts.append("")
+    return "\n\n".join(parts)
+
+
+def _write_file(out_dir, filename, text):
+    sub = HEADER_SUBDIRS.get(filename)
+    if sub:
+        out_dir = os.path.join(out_dir, sub)
+        if not os.path.isdir(out_dir):
+            os.makedirs(out_dir)
+    path = os.path.join(out_dir, filename)
+    fd, tmp = tempfile.mkstemp(suffix=".tmp", dir=out_dir)
+    try:
+        f = os.fdopen(fd, "w")
+        f.write(text)
+        f.close()
+        if os.path.exists(path):
+            os.remove(path)
+        os.rename(tmp, path)
+    finally:
+        if os.path.exists(tmp):
+            os.remove(tmp)
+    return path
+
+
+def _process_types(program):
+    """Set the sanitize context to `program` and return its sanitized type text
+    plus the metadata the callers need. MUST be called before collecting that
+    program's symbols (the collectors sanitize types against this context);
+    when two programs are exported, re-set the context via set_sanitize_context
+    with this dict's 'enum_meta' before collecting each one's symbols."""
+    dtm = program.getDataTypeManager()
+    enum_meta = collect_enum_meta(dtm)
+    set_sanitize_context(enum_meta, GHIDRA_TYPE_RENAMES)
+    raw = build_types_raw(dtm)
+    # DataTypeWriter can emit \r\n (and lone \r on Jython/Windows); normalize so
+    # the generated headers have uniform line endings and GCC line numbers match.
+    raw = raw.replace('\r\n', '\n').replace('\r', '\n')
+    prefix_set, type_names, const_names = scan_header_names(raw)
+    stub_pairs, stub_names = build_zero_length_stubs(dtm)
+    decl_names = set()
+    clean, dropped = rewrite_header(raw, prefix_set, enum_meta, GHIDRA_TYPE_RENAMES,
+                                    PACK_STRUCTS, stub_names=stub_names,
+                                    name_sink=decl_names)
+    types_text = ""
+    if stub_pairs:
+        types_text += STUB_BANNER + "\n" + "\n".join(ln for _nm, ln in stub_pairs) + "\n\n"
+    types_text += clean
+    if EMIT_SIZE_GUARDS:
+        types_text += "\n" + "\n".join(build_size_guards(dtm)) + "\n"
+    return {
+        'type_names': set(type_names) | set(stub_names),
+        'const_names': set(const_names),
+        'decl_names': decl_names,          # struct fields + enum constants emitted
+        'enum_meta': enum_meta,
+        'stub_pairs': stub_pairs,
+        'types_text': types_text, 'clean': clean, 'dropped': dropped,
+    }
+
+
+def _resolve_out_dir(out_name):
     out_dir = OUTPUT_DIR
     if not out_dir:
         args = getScriptArgs()
@@ -982,88 +1433,227 @@ def main():
                                    "Select").getAbsolutePath()
     if not os.path.isdir(out_dir):
         raise IOError("Output directory does not exist: %s" % out_dir)
+    return out_dir
 
-    dtm = currentProgram.getDataTypeManager()
 
-    println("[INFO] Program '%s' -> %s" % (program_name, out_name))
-    println("[INFO] Collecting enum sizes...")
-    enum_meta = collect_enum_meta(dtm)
-    set_sanitize_context(enum_meta, GHIDRA_TYPE_RENAMES)
+def _seed_registry(names, *type_infos):
+    """Seed a NameRegistry with every identifier a #define must never collide
+    with: Common.h/primitive names plus each program's type names, enum
+    constants, and struct-field names (an object-like macro would otherwise
+    mangle any later use of that identifier, e.g. a field declaration)."""
+    names.seed(RESERVED_IDENTIFIERS)
+    for ti in type_infos:
+        if ti is None:
+            continue
+        names.seed(ti['type_names'])
+        names.seed(ti['const_names'])
+        names.seed(ti['decl_names'])
 
-    println("[INFO] Exporting + sanitizing data types...")
-    raw_types = build_types_raw(dtm)
-    prefix_set, type_names, const_names = scan_header_names(raw_types)
 
+def run_single(program, program_name, out_dir):
+    """Legacy single-header export (no split), for debugging one program."""
+    out_name = resolve_output_filename(program_name)
+    ti = _process_types(program)
     names = NameRegistry()
-    names.seed(type_names)
-    names.seed(const_names)
+    _seed_registry(names, ti)
+    data_lines = [ln for _o, _n, ln in collect_data_symbols(program, names)]
+    label_lines = [ln for _o, _n, ln in collect_plain_labels(program, names)]
+    func_lines = [ln for _o, _n, ln in collect_functions(program, names)]
+    text = _assemble(
+        [build_prelude(program_name)],
+        [("DATA TYPES (structs / enums / typedefs)", ti['types_text']),
+         ("DATA SYMBOLS (labeled globals)", "\n".join(data_lines)),
+         ("PLAIN LABELS (no defined data; raw addresses)", "\n".join(label_lines)),
+         ("FUNCTIONS (static inline wrappers / varargs macros)", "\n".join(func_lines))])
+    path = _write_file(out_dir, out_name, text)
+    println("[INFO] Wrote %s (single-header mode)" % path)
 
-    println("[INFO] Exporting data symbols...")
-    data_text = build_data_symbols_section(names)
-    println("[INFO] Exporting plain labels...")
-    labels_text = build_plain_labels_section(names)
-    println("[INFO] Exporting functions...")
-    funcs_text = build_functions_section(names)
 
-    stub_lines, stub_names = build_zero_length_stubs(dtm)
+def run_shared_split(canonical, canon_name, out_dir):
+    """Full split: GlobalData.h (types from both programs + the MERGED shared
+    region), the canonical context header, the other program's context header,
+    and the reconciliation report."""
+    # ---- 0. Open the other program up front: its labels participate in the
+    # shared-region merge, and its type/field/constant names must be known
+    # before any #define name is claimed (an object-like macro poisons every
+    # later use of that identifier, including struct fields in either header).
+    other = open_second_program(OTHER_PROGRAM_NAME)
+    other_name = None
+    ot = None
+    other_merge_idx = {}
+    if other is not None:
+        other_name = other.getDomainFile().getName()
+        if other_name == canon_name:
+            println("[WARN] You selected the canonical program ('%s') again -- continuing"
+                    % canon_name)
+            println("       without a second program (no merge, no %s, no report)."
+                    % resolve_output_filename(OTHER_PROGRAM_NAME))
+            other = None
+    if other is not None:
+        try:
+            println("[INFO] Other program: %s" % other_name)
+            ot = _process_types(other)                    # context: OTHER
+            other_merge_idx = build_merge_index(other, SHARED_CUTOFF)
+        except Exception as e:
+            println("[ERROR] Failed reading '%s' (%s) -- exporting canonical only."
+                    % (other_name, e))
+            other = None
+            ot = None
+            other_merge_idx = {}
 
-    clean_types, dropped = rewrite_header(
-        raw_types, prefix_set, enum_meta, GHIDRA_TYPE_RENAMES, PACK_STRUCTS,
-        stub_names=stub_names)
+    # ---- 1. Canonical types + merge decision ----------------------------------
+    println("[INFO] Canonical program: %s" % canon_name)
+    ct = _process_types(canonical)                        # context: CANONICAL
+    canon_merge_idx = build_merge_index(canonical, SHARED_CUTOFF)
+    other_wins = resolve_shared_winners(canon_merge_idx, other_merge_idx)
+    if other_wins:
+        println("[INFO] Shared-region merge: %d symbols taken from %s (%d of them override a canonical label)"
+                % (len(other_wins), other_name,
+                   len([o for o in other_wins if o in canon_merge_idx])))
 
-    types_block = ""
-    if stub_lines:
-        types_block += "\n".join(stub_lines) + "\n\n"
-    types_block += clean_types
-    if EMIT_SIZE_GUARDS:
-        types_block += "\n" + "\n".join(build_size_guards(dtm)) + "\n"
+    # One registry for everything visible from GlobalData.h / MatchData.h, seeded
+    # so no #define can collide with any identifier in either program's types.
+    namesA = NameRegistry()
+    _seed_registry(namesA, ct, ot)
 
-    parts = [
-        build_prelude(program_name),
-        "// =============================================================================",
-        "//  DATA TYPES (structs / enums / typedefs)",
-        "// =============================================================================",
-        types_block,
-        "// =============================================================================",
-        "//  DATA SYMBOLS (labeled globals)",
-        "// =============================================================================",
-        data_text,
-        "// =============================================================================",
-        "//  PLAIN LABELS (no defined data; raw addresses)",
-        "// =============================================================================",
-        labels_text,
-        "// =============================================================================",
-        "//  FUNCTIONS (typed function-pointer macros -- call directly from C)",
-        "// =============================================================================",
-        funcs_text,
-        "",
-    ]
-    output = "\n\n".join(parts)
+    # Canonical symbols, minus the shared addresses the other program wins.
+    keep_canon = lambda off: off not in other_wins
+    c_data = collect_data_symbols(canonical, namesA, keep_canon)
+    c_lbl = collect_plain_labels(canonical, namesA, keep_canon)
 
-    final_path = os.path.join(out_dir, out_name)
-    fd, tmp_path = tempfile.mkstemp(suffix=".h.tmp", dir=out_dir)
+    # The other program's winning shared symbols (claim names BEFORE any
+    # function wrappers so no later #define can mangle a wrapper's parameter).
+    take_other = lambda off: off in other_wins
+    m_data, m_lbl, m_fn = [], [], []
+    if other is not None and ot is not None:
+        set_sanitize_context(ot['enum_meta'], GHIDRA_TYPE_RENAMES)
+        m_data = collect_data_symbols(other, namesA, take_other)
+        m_lbl = collect_plain_labels(other, namesA, take_other)
+        set_sanitize_context(ct['enum_meta'], GHIDRA_TYPE_RENAMES)
+    c_fn = collect_functions(canonical, namesA, keep_canon)
+    if other is not None and ot is not None:
+        set_sanitize_context(ot['enum_meta'], GHIDRA_TYPE_RENAMES)
+        m_fn = collect_functions(other, namesA, take_other)
+        set_sanitize_context(ct['enum_meta'], GHIDRA_TYPE_RENAMES)
+
+    d_below, d_above = _split_items(c_data)
+    l_below, l_above = _split_items(c_lbl)
+    f_below, f_above = _split_items(c_fn)
+    d_below = sorted(d_below + m_data)
+    l_below = sorted(l_below + m_lbl)
+    f_below = sorted(f_below + m_fn)
+
+    # ---- 2. GlobalData.h: both programs' types + the merged shared region -----
+    # The top-up types live HERE (not in the other context header) because a
+    # merged shared symbol from the other program may reference them.
+    topup_names = set()
+    topup_text = ""
+    if ot is not None:
+        topup_names = set(ot['type_names']) - set(ct['type_names'])
+        topup_text = keep_only_type_blocks(ot['clean'], topup_names)
+        topup_stubs = [ln for nm, ln in ot['stub_pairs'] if nm not in ct['type_names']]
+        if topup_stubs:
+            topup_text = STUB_BANNER + "\n" + "\n".join(topup_stubs) + "\n\n" + topup_text
+
+    global_sections = [
+        ("SHARED TYPES (structs / enums / typedefs -- from canonical '%s')" % canon_name,
+         ct['types_text'])]
+    if topup_text.strip():
+        global_sections.append(
+            ("%s-ONLY TYPES (top-up: types only that program defines)" % other_name,
+             topup_text))
+    global_sections += [
+        ("SHARED DATA SYMBOLS (DOL, below 0x%08X; merged from both programs)" % SHARED_CUTOFF,
+         _lines(d_below)),
+        ("SHARED PLAIN LABELS (DOL; merged)", _lines(l_below)),
+        ("SHARED FUNCTIONS (DOL; merged)", _lines(f_below))]
+    global_text = _assemble([build_prelude(canon_name)], global_sections)
+    _write_file(out_dir, GLOBAL_HEADER, global_text)
+    println("[INFO] Wrote %s  (shared: %d data / %d labels / %d funcs; top-up types: %d)"
+            % (GLOBAL_HEADER, len(d_below), len(l_below), len(f_below), len(topup_names)))
+
+    # ---- 3. Canonical context header ------------------------------------------
+    canon_ctx = resolve_output_filename(canon_name)
+    ctx_text = _assemble(
+        [build_prelude(canon_name, include_global=True)],
+        [("%s-SPECIFIC DATA SYMBOLS (REL, at/above 0x%08X)" % (canon_name, SHARED_CUTOFF),
+          _lines(d_above)),
+         ("%s-SPECIFIC PLAIN LABELS (REL)" % canon_name, _lines(l_above)),
+         ("%s-SPECIFIC FUNCTIONS (REL)" % canon_name, _lines(f_above))])
+    _write_file(out_dir, canon_ctx, ctx_text)
+    println("[INFO] Wrote %s  (above-cutoff: %d data / %d labels / %d funcs)"
+            % (canon_ctx, len(d_above), len(l_above), len(f_above)))
+
+    if other is None or ot is None:
+        println("[WARN] Second program unavailable -- wrote %s + %s only (no %s, no report)."
+                % (GLOBAL_HEADER, canon_ctx, resolve_output_filename(OTHER_PROGRAM_NAME)))
+        return
+
+    # ---- 4. Other program's context header -------------------------------------
+    # GlobalData.h + the canonical context header are already on disk. Isolate the
+    # remaining work so any surprise here still leaves those two intact.
     try:
-        f = os.fdopen(fd, "w")
-        f.write(output)
-        f.close()
-        if os.path.exists(final_path):
-            os.remove(final_path)
-        os.rename(tmp_path, final_path)
-    finally:
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
+        # Its macros must avoid every name visible through GlobalData.h. namesA
+        # already holds all of those (plus MatchData.h's, which is harmlessly
+        # stricter), so seed from it wholesale.
+        namesB = NameRegistry()
+        namesB.seed(namesA.seen)
+        set_sanitize_context(ot['enum_meta'], GHIDRA_TYPE_RENAMES)
+        take_above = lambda off: off >= SHARED_CUTOFF
+        od_above = collect_data_symbols(other, namesB, take_above)
+        ol_above = collect_plain_labels(other, namesB, take_above)
+        of_above = collect_functions(other, namesB, take_above)
 
-    println("[INFO] Wrote %s" % final_path)
-    println("[INFO]   data symbols      : %d" % len(data_text.splitlines()))
-    println("[INFO]   plain labels      : %d" % len(labels_text.splitlines()))
-    println("[INFO]   functions         : %d" % len(funcs_text.splitlines()))
-    println("[INFO]   enums sized       : %d" % len(enum_meta))
-    println("[INFO]   zero-length stubs : %d" % (len(stub_lines) - 1 if stub_lines else 0))
-    println("[INFO]   enum-const clashes prefixed : %d" % len(prefix_set))
-    println("[INFO]   duplicate defs dropped      : %d struct(s), %d enum(s), %d fwd"
-            % (dropped['struct'], dropped['enum'], dropped['fwd']))
-    if not EMIT_SIZE_GUARDS:
-        println("[INFO] Size guards OFF. Set EMIT_SIZE_GUARDS=True to verify sizes vs Ghidra.")
+        other_ctx = resolve_output_filename(other_name)
+        other_text = _assemble(
+            [build_prelude(other_name, include_global=True)],
+            [("%s-SPECIFIC DATA SYMBOLS (REL, at/above 0x%08X)" % (other_name, SHARED_CUTOFF),
+              _lines(od_above)),
+             ("%s-SPECIFIC PLAIN LABELS (REL)" % other_name, _lines(ol_above)),
+             ("%s-SPECIFIC FUNCTIONS (REL)" % other_name, _lines(of_above))])
+        _write_file(out_dir, other_ctx, other_text)
+        println("[INFO] Wrote %s  (above-cutoff: %d data / %d labels / %d funcs)"
+                % (other_ctx, len(od_above), len(ol_above), len(of_above)))
+    except Exception as e:
+        println("[ERROR] Second-program export failed after writing %s + %s: %s"
+                % (GLOBAL_HEADER, canon_ctx, e))
+        println("[ERROR] Those two headers are valid; only %s + the report are missing."
+                % resolve_output_filename(OTHER_PROGRAM_NAME))
+        return
+
+    # Reconciliation report is auxiliary -- never let it lose a written header.
+    try:
+        canon_shared_idx = collect_shared_index(canonical, SHARED_CUTOFF)
+        other_shared_idx = collect_shared_index(other, SHARED_CUTOFF)
+        canon_type_blocks = split_type_blocks(ct['clean'])
+        other_type_blocks = split_type_blocks(ot['clean'])
+        report = build_diff_report(canon_name, canon_shared_idx, other_name, other_shared_idx,
+                                   canon_type_blocks, other_type_blocks, topup_names,
+                                   other_wins)
+        _write_file(out_dir, DIFF_REPORT_NAME, report)
+        println("[INFO] Wrote %s" % DIFF_REPORT_NAME)
+    except Exception as e:
+        println("[WARN] Diff report failed (headers are fine): %s" % e)
+
+
+def main():
+    program_name = currentProgram.getDomainFile().getName()
+
+    if not ENABLE_SHARED_SPLIT:
+        out_dir = _resolve_out_dir(resolve_output_filename(program_name))
+        run_single(currentProgram, program_name, out_dir)
+        return
+
+    if program_name != CANONICAL_PROGRAM:
+        println("[ERROR] The shared-DOL split must be run from the canonical program")
+        println("        '%s', but the current program is '%s'." % (CANONICAL_PROGRAM, program_name))
+        println("        Open '%s' in the code browser and run again, or set" % CANONICAL_PROGRAM)
+        println("        ENABLE_SHARED_SPLIT = False to export just this program.")
+        return
+
+    out_dir = _resolve_out_dir(GLOBAL_HEADER)
+    run_shared_split(currentProgram, program_name, out_dir)
+    println("[INFO] Done.")
 
 
 main()

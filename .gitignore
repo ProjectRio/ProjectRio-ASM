@@ -1,6 +1,7 @@
 *.txt
 config.json
 .DS_Store
+__pycache__/
 
 # Generated from the decomp by SyncFromDecomp.py -- keep in sync with
 # GENERATED_ENTRIES in that script. (Include/Rio/ and Include/Local/ are

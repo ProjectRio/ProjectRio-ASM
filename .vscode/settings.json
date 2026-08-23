@@ -1,6 +1,8 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "gamedata.h": "c"
+        "gamedata.h": "c",
+        "dictionaryreroute.h": "c",
+        "globaldata.h": "c"
     }
 }

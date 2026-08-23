@@ -8,23 +8,24 @@
 // every frame). Engine internals are documented in
 // "Gecko Codes/Match/Write Text To Screen.c".
 //
-// Usage -- from any hook that runs once per frame in game state:
+// Usage -- from any code that runs once per frame in game state:
 //
-//     #include "Gecko Codes/Include/ScreenText.h"
+//     #include "Include/Rio/ScreenText.h"
 //
 //     ScreenTextTick();   // once, at the top of the hook
 //     WriteText(320, 36, "Hello World!");             // white, large, centered
-//     WriteText(320, 60, "Inning %d", GameState.Inning);
+//     WriteText(320, 60, "Inning %d", g_Scores.Inning);
 //     WriteTextEx(16, 400, TEXT_YELLOW, TEXT_SMALL, TEXT_LEFT,
 //                 "P%d is batting", port + 1);        // custom color/size/anchor
 //
 // WriteText draws with defaults (TEXT_WHITE, TEXT_LARGE, TEXT_CENTER);
 // use WriteTextEx to choose color, size, and justification. The best
-// hook is a C0 (code before any // Address: comment) -- the gecko
-// codehandler runs it every frame in any scene, whereas a hook inside
-// a HUD draw function stops running whenever that HUD element hides.
+// home is a per-frame code -- a CGECKO() declared with no .address --
+// because the gecko codehandler runs it every frame in any scene,
+// whereas a hook inside a HUD draw function stops running whenever
+// that HUD element hides.
 //
-// For a paragraph that word-wraps (the game's own descriptive menu text,
+// For a paragraph that u32-wraps (the game's own descriptive menu text,
 // e.g. the character bios on the Records screen -- small, left-justified,
 // multi-line), use:
 //     WriteMenuText(60, 150, 30, "The younger Mario bro. He's a better "
@@ -33,6 +34,22 @@
 // maxChars is the max glyphs per line; it breaks at spaces. The menu uses
 // the SAME text engine as everything else -- there is no separate menu
 // text function; it just points a block at a pre-wrapped small string.
+//
+// For the game's own multi-color "popup bubble" look (e.g. Challenge Mode
+// item shop flavor text -- small font, a dark base color, with keywords
+// recolored mid-string), wrap words in {tagname} markup:
+//     WriteTextEx(70, 35, 0x323232FF, TEXT_SMALL, TEXT_LEFT,
+//         "A mysterious power makes it\n"
+//         "{red}easier{reset} for everyone {red}to get hits{reset}.\n"
+//         "{blue}(Only good next game.){reset}");
+// This reproduces the actual in-game item shop popup verbatim (live-
+// verified against Dolphin RAM). {reset} restores the block's BASE color
+// (the `color` argument here, 0x323232FF) -- it is not a fixed color of
+// its own, so always close a {tagname} span with {reset}. Available tags:
+// reset, pink, gold, red, green, blue, maroon, teal, purple, black (see
+// the TEXT_PALETTE_* constants below for their approximate RGB, and
+// ScreenText_MatchTag for the reverse-engineered opcode table). Unknown
+// {...} text that isn't one of these tag names is emitted literally.
 //
 // - A text lives for one frame; call WriteText every frame you want
 //   it shown. Conditional text "just works": stop calling and it
@@ -58,9 +75,10 @@
 //   (overflow is silently dropped).
 // - The library claims the TOP blocks of the pool (the game's own
 //   allocator hands out the lowest free block first). If two
-//   separate gecko codes both use this header, give each its own
+//   separate SOURCE FILES both use this header, give each its own
 //   range by defining TEXT_SLOTS / TEXT_FIRST_BLOCK before including
-//   it -- each compiled code has its own private copy of the state
+//   it -- each compiled file has its own private copy of the state
+//   (codes declared in one file share that file's copy)
 //   below, so the block ranges must not overlap.
 
 #ifndef SCREENTEXT_H
@@ -72,7 +90,8 @@
  * gecko code draw text in the menu or in a match. Your .c still includes
  * whichever state header (MatchData.h / MenuData.h) it needs for its own
  * game logic; both include-guard against this one. */
-#include "Include/Global/GlobalData.h"
+#include "Include/game/UnknownHomes_Game.h"
+#include "Include/Local/Legacy.h"   // ScreenText, TextCharacter, screenTextArray, FrameCountWhileNotAtMainMenu
 
 /* justify (alighment_left_center_right): where x anchors the text */
 #define TEXT_LEFT   0
@@ -83,8 +102,8 @@
 #define TEXT_LARGE  0   /* 22px */
 #define TEXT_SMALL  1   /* 18px */
 
-/* colors are 0xRRGGBBAA -- low byte is alpha (DrawText fades RGB but
- * preserves the low byte). AA below FF gives translucent text. */
+/* colors are 0xRRGGBBAA -- low u8 is alpha (DrawText fades RGB but
+ * preserves the low u8). AA below FF gives translucent text. */
 #define TEXT_WHITE  0xFFFFFFFF
 #define TEXT_BLACK  0x000000FF
 #define TEXT_RED    0xFF2020FF
@@ -93,6 +112,26 @@
 #define TEXT_YELLOW 0xFFFF20FF
 #define TEXT_ORANGE 0xFF9020FF
 #define TEXT_GRAY   0x808080FF
+
+/* The game's own mid-string recolor palette (control codes 0x4005-0x400E,
+ * dispatch table at 0x800E98E0 in main.dol) -- these are the ONLY colors
+ * {tagname} markup can switch to inside a string; they're read live from
+ * a running game (Dolphin RAM, dolphin-emu.<pid> mapping) while idling on
+ * the Challenge Mode item shop, 2026-07-29. The engine ORs the table's RGB
+ * with the block's own alpha u8, so these are listed here at full alpha
+ * for reference/for picking a matching WriteTextEx base `color`; the tag
+ * itself (see ScreenText_MatchTag) only ever emits the opcode, never a
+ * literal RGB. {reset} (opcode 5) is special: it restores the block's base
+ * color rather than picking a palette entry, so it has no RGB of its own. */
+#define TEXT_PALETTE_PINK   0xFF15B1FF   /* opcode 6 */
+#define TEXT_PALETTE_GOLD   0xB89000FF   /* opcode 7 */
+#define TEXT_PALETTE_RED    0xFF0000FF   /* opcode 8 -- item shop "easier"/"to get hits" */
+#define TEXT_PALETTE_GREEN  0x009900FF   /* opcode 9 */
+#define TEXT_PALETTE_BLUE   0x0000FFFF   /* opcode 10 -- item shop "(Only good next game.)" */
+#define TEXT_PALETTE_MAROON 0x800000FF   /* opcode 11 */
+#define TEXT_PALETTE_TEAL   0x339966FF   /* opcode 12 */
+#define TEXT_PALETTE_PURPLE 0x333399FF   /* opcode 13 */
+#define TEXT_PALETTE_BLACK  0x000000FF   /* opcode 14 */
 
 #ifndef TEXT_SLOTS
 #define TEXT_SLOTS  8
@@ -109,7 +148,7 @@
  * CAUTION: it pauses while ON the main menu screen itself; a menu
  * code can #define its own always-ticking counter before the include. */
 #ifndef ScreenText_FrameNow
-#define ScreenText_FrameNow FrameCountWhileNotAtMainMenu
+#define ScreenText_FrameNow g_d_GameSettings.FrameCountWhileNotAtMainMenu
 #endif
 
 /* Compile the implementation for size -- it's cold per-frame glue and
@@ -223,6 +262,41 @@ static int ScreenText_Float(u16* buf, double v)
     return len;
 }
 
+/* Matches a {tagname} at p[-1]=='{' (i.e. p points just past the '{').
+ * Returns the tag name's length and writes its control-code opcode to
+ * *outOpcode on a match (caller emits 0x4000 | opcode); returns 0 on no
+ * match (caller then falls back to treating '{' as a literal glyph). */
+static int ScreenText_MatchTag(const char* p, int* outOpcode)
+{
+    static const struct { const char* name; int opcode; } tags[] = {
+        { "reset",  5 }, { "pink",  6 }, { "gold",   7 }, { "red",    8 },
+        { "green",  9 }, { "blue", 10 }, { "maroon", 11 }, { "teal",  12 },
+        { "purple", 13 }, { "black", 14 },
+    };
+    for (int t = 0; t < 10; t++)
+    {
+        const char* name = tags[t].name;
+        int len = 0;
+        while (name[len] != 0)
+            len++;
+        bool match = true;
+        for (int k = 0; k < len; k++)
+        {
+            if (p[k] != name[k])
+            {
+                match = false;
+                break;
+            }
+        }
+        if (match && p[len] == '}')
+        {
+            *outOpcode = tags[t].opcode;
+            return len;
+        }
+    }
+    return 0;
+}
+
 /* On the first call of each frame: free our blocks, restart the slot
  * count. Call once at the top of the hook so texts expire even on
  * frames that draw nothing; every WriteText also calls it. */
@@ -237,7 +311,7 @@ static void ScreenTextTick(void)
         screenTextArray[TEXT_FIRST_BLOCK + i].field17_0x2a = 0;
 }
 
-/* maxChars > 0 word-wraps into lines of at most that many glyphs, breaking
+/* maxChars > 0 u32-wraps into lines of at most that many glyphs, breaking
  * at spaces (the "records/bio paragraph" look). 0 disables wrapping. */
 static void WriteTextV(int x, int y, u32 color, int style, int justify,
                        int maxChars, const char* fmt, __builtin_va_list args)
@@ -252,6 +326,19 @@ static void WriteTextV(int x, int y, u32 color, int style, int justify,
     int  n   = 0;
     for (const char* p = fmt; *p != 0 && n < TEXT_MAXLEN; p++)
     {
+        if (*p == '{')
+        {
+            int opcode;
+            int taglen = ScreenText_MatchTag(p + 1, &opcode);
+            if (taglen > 0)
+            {
+                out[n++] = (u16)(0x4000 | opcode);
+                p += taglen + 1;   /* now at '}'; the for-loop's p++ clears it */
+                continue;
+            }
+            /* not a recognized tag: fall through, emit '{' literally */
+        }
+
         if (*p != '%')
         {
             out[n++] = ScreenText_Encode(*p);
@@ -281,8 +368,11 @@ static void WriteTextV(int x, int y, u32 color, int style, int justify,
             len = ScreenText_Number(num, __builtin_va_arg(args, u32), 10, false);
         else if (*p == 'x')
             len = ScreenText_Number(num, __builtin_va_arg(args, u32), 16, false);
+#ifndef SCREENTEXT_NO_FLOAT
         else if (*p == 'f')
             len = ScreenText_Float(num, __builtin_va_arg(args, double));
+#endif
+
         else if (*p == 's')
         {
             for (const char* s = __builtin_va_arg(args, const char*);
@@ -313,8 +403,8 @@ static void WriteTextV(int x, int y, u32 color, int style, int justify,
         }
     }
 
-    /* word-wrap: break lines at spaces so no line exceeds maxChars glyphs.
-     * Works in glyph space (a number/word counts its glyphs); a single word
+    /* u32-wrap: break lines at spaces so no line exceeds maxChars glyphs.
+     * Works in glyph space (a number/u32 counts its glyphs); a single u32
      * longer than maxChars just overflows rather than being split. */
     if (maxChars > 0)
     {
@@ -362,13 +452,13 @@ static void WriteTextV(int x, int y, u32 color, int style, int justify,
         raw[i] = 0;
     t->currentCharPtr_             = (TextCharacter*)out;
     t->color                       = (s32)color;             /* RGBA */
-    t->xPos                        = (ushort)x;              /* screen is 640x448, center (320,224) */
-    t->yPos                        = (ushort)y;
+    t->xPos                        = (u16)x;              /* screen is 640x448, center (320,224) */
+    t->yPos                        = (u16)y;
     t->currLetterBeingDrawn        = -1;                     /* max letters; -1 = show all */
     t->field18_0x2b                = 5;                      /* draw group; 1-8 drawn every frame */
-    t->textStyle_                  = (byte)style;
+    t->textStyle_                  = (u8)style;
     t->lineSpacing_                = 2;
-    t->alighment_left_center_right = (byte)justify;
+    t->alighment_left_center_right = (u8)justify;
     t->field17_0x2a                = 2;                      /* state: active -- set last */
 }
 
@@ -391,7 +481,7 @@ static void WriteText(int x, int y, const char* fmt, ...)
     __builtin_va_end(args);
 }
 
-/* Draw a word-wrapped paragraph: the text breaks at spaces into lines of at
+/* Draw a u32-wrapped paragraph: the text breaks at spaces into lines of at
  * most maxChars glyphs each. Full control over color / size / justification.
  * This is how the game shows its own descriptive menu text (e.g. the
  * character bios on the Records screen -- small, left-justified, multi-line). */
@@ -405,7 +495,7 @@ static void WriteTextWrapped(int x, int y, u32 color, int style, int justify,
 }
 
 /* Convenience for the Records/menu look: small, white, left-justified,
- * word-wrapped at maxChars. (The game's own bio blocks use a dark base color
+ * u32-wrapped at maxChars. (The game's own bio blocks use a dark base color
  * and recolor with inline control codes; we just set the color directly.) */
 static void WriteMenuText(int x, int y, int maxChars, const char* fmt, ...)
 {

@@ -2,24 +2,34 @@
 # CPU vs CPU
 ###########################################################*/
 // Author: LittleCoaks
-// State: Game
 
+// Known bug: CPU never charge swings?
 
-#include "Game Data/GameData.h"
-#define controllerPorts_ADDR VAR_ADDRESS(int, 2, 0x80892A78)
+#include "Include/game/UnknownHomes_Game.h"
 
+#include "Include/Local/Legacy.h"
+#include "Include/Local/LegacyGame.h"
+// no .address -> runs once per frame, while the game rel is resident
+CGECKO(CPUvsCPU, .state = MSSB_GAME);
 void CPUvsCPU()
 {
-    gameControls.AIDifficulty0Special3Weak[0] = 0;
-    gameControls.AIDifficulty0Special3Weak[1] = 0;
-    gameControls.runnerAIInd_[0] = 1;
-    gameControls.runnerAIInd_[1] = 1;
-    gameControls.teamIsCPU[0] = 1;
-    gameControls.teamIsCPU[1] = 1;
-    gameControls.teamAIInd[0] = 1;
-    gameControls.teamAIInd[1] = 1;
-    gameControls.autoFielding[0] = 1;
-    gameControls.autoFielding[1] = 1;
-    inMemPitcher.AIInd_ = 1;
-    inMemBatter.aIControlledInd = 1;
+    g_GameLogic.AIDifficulty0Special3Weak[0] = 0;
+    g_GameLogic.AIDifficulty0Special3Weak[1] = 0;
+    
+    g_GameLogic.teamAIInd[0] = 1;
+    g_GameLogic.teamAIInd[1] = 1;
+    g_GameLogic.runnerAIInd[0] = 1;
+    g_GameLogic.runnerAIInd[1] = 1;
+    g_GameLogic.battingAIInd[0] = 1;
+    g_GameLogic.battingAIInd[1] = 1;
+    
+    GameLogic_teamIsCPU[0] = 1;
+    GameLogic_teamIsCPU[1] = 1;
+    g_GameLogic.autoFielding[0] = 1;
+    g_GameLogic.autoFielding[1] = 1;
+    
+    g_Pitcher.AIInd = 1;
+    g_Pitcher.aiLevel = 0;
+    g_Batter.aiControlledInd = 1;
+    g_Batter.aiLevel= 0;
 }
