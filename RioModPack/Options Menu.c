@@ -5,7 +5,7 @@
 
 // *A custom mod-options menu: a scrollable list of toggles, navigated with
 // *the D-pad and flipped with A. Each row owns one BYTE of memory
-// *(Include/Rio/ModOptions.h) -- A writes it, the row's ON/OFF text reads it
+// *(RioModPack/ModOptions.h) -- A writes it, the row's ON/OFF text reads it
 // *back, and any other gecko code can read the same byte to gate itself.
 // *Opened with the main menu's own Options button. No memory-card save yet.
 //
@@ -78,7 +78,7 @@
 
 #include "Include/Rio/ScreenList.h"
 
-#include "Include/Rio/ModOptions.h"
+#include "RioModPack/ModOptions.h"
 #include "Include/Local/Legacy.h"
 // changeScreenVariables by raw address instead of Include/Local/LegacyMenus.h.
 // That header binds the file to MENU context (Include/Symbols/menus.h sets

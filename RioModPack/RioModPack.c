@@ -17,13 +17,14 @@
 // It is the only way to switch off a REPLACE hook (.instruction = "blr"), and
 // it works for raw ASM() codes, which have no C body to return from.
 //
-// ADDING A MOD: give it an id in Include/Rio/ModOptions.h, add a row to
+// ADDING A MOD: give it an id in RioModPack/ModOptions.h, add a row to
 // s_options in Options Menu.c, and add three lines below. Nothing else.
 #include "Include/game/UnknownHomes_Game.h"
-#include "Include/Rio/ModOptions.h"
+#include "RioModPack/ModOptions.h"
 
 // ---- the options UI itself, never gated -- it is how you reach the toggles --
-#include "Gecko Codes/Menu/Options Menu.c"
+#include "RioModPack/Options Menu.c"
+#include "Gecko Codes/Global/Boot To Main Menu.c"
 
 // ---- toggleable mods -------------------------------------------------------
 #undef  CGECKO_GATE_ADDR

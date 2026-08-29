@@ -4,10 +4,10 @@
 // Author: LittleCoaks
 //
 // One byte per user-toggleable mod option, in a fixed block of claimed
-// free memory. "Gecko Codes/Menu/Options Menu.c" is the UI that flips
+// free memory. "RioModPack/Options Menu.c" is the UI that flips
 // them; any other code can read one with:
 //
-//     #include "Include/Rio/ModOptions.h"
+//     #include "RioModPack/ModOptions.h"
 //
 //     if (ModOptionOn(MODOPT_CPU_SPRINT))
 //         ...                       // the mod's body, gated on the toggle

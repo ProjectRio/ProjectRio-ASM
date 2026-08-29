@@ -50,7 +50,7 @@ import shutil
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(HERE, "ISO"))
+sys.path.insert(0, os.path.join(HERE, "RioModPack"))
 sys.path.insert(0, os.path.join(HERE, "CGecko"))
 from dolfile import Dol, branch          # noqa: E402
 import cgecko_iso                         # noqa: E402
@@ -136,7 +136,7 @@ def build():
               % (h["name"], h["site"], h["wrapper"]))
 
     dol.save(DOL)
-    with open(os.path.join(HERE, "ISO", "last_build.json"), "w") as f:
+    with open(os.path.join(HERE, "RioModPack", "last_build.json"), "w") as f:
         json.dump({"load_addr": LOAD_ADDR, "size": len(blob),
                    "frame": frame, "hooks": hooks}, f, indent=2)
 
