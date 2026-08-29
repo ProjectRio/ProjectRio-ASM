@@ -1,0 +1,32 @@
+{
+  "load_addr": 2147489808,
+  "size": 3864,
+  "frame": {
+    "name": "_cgecko_iso_frame",
+    "kind": "frame",
+    "site": 2147521540,
+    "site_branch": "b",
+    "wrapper": 2147493624,
+    "instruction": "mr r3, r25",
+    "calls": [
+      "CPUAlwaysSprints",
+      "OptionsMenuRestore"
+    ]
+  },
+  "hooks": [
+    {
+      "name": "OptionsMenu",
+      "kind": "c2",
+      "site": 2154139032,
+      "site_branch": "b",
+      "wrapper": 2147493576,
+      "gated_via": "_iso_shim_OptionsMenu",
+      "state": 2,
+      "gate_addr": 0,
+      "gate_value": 1,
+      "instruction": "blr",
+      "rel": true,
+      "branch_word": 1268422960
+    }
+  ]
+}
