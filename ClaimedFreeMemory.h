@@ -5,6 +5,13 @@
 #include "CGecko/Common.h"
 
 {
+    "0x802EB000" : "(4 bytes) -- Options Menu: g_savedDrawEnd, the UI element-loop end bound (0x803CB814) saved while the scene blanks the background; 0xFFFFFFFF = nothing saved",
+    "0x802EB004" : "(4 bytes) -- Options Menu: g_bgMagic, one-shot init sentinel for the pair above (initialised by the MSSB_ALWAYS restore watchdog, which runs from boot)",
+    "0x802EB010" : "(64 bytes, through 0x802EB04F) -- Mod option flags (MODOPT_BASE, Include/Rio/ModOptions.h): 16 WORDS, one per toggle. Words not bytes so a gecko conditional can test one directly (202EB0xx 00000001) with no mask arithmetic -- that is what cgecko's CGECKO_GATE_ADDR emits.",
+    // The head of lbl_802EAF80 was previously unclaimed. 0x802EAF90-0x802EB83F (2224 bytes) was
+    // verified live 2026-08-28 as all-zero and unchanging while the game ran, so it is claimable;
+    // 0x802EB840-0x802EBF8B is NOT zero and was left alone.
+
     "0x802EBF8C" : "(w) -- GameID",
     "0x802EBF91" : "(b) -- Initialize stored port info for P1",
     "0x802EBF92" : "(b) -- initialize stored port info for PX",
@@ -59,7 +66,13 @@
 
     "0x802EC308" : "(4 bytes) -- Options Menu: g_magic one-shot init sentinel",
     "0x802EC30C" : "(16 bytes, through 0x802EC31B) -- Options Menu: s_list (ScreenList struct)",
-    "0x802EC31C" : "(488 bytes, through 0x802EC503) -- Options Menu: ScreenText.h state + glyph buffers (TEXT_BUFFER_ADDR, TEXT_SLOTS 5)",
+    "0x802EC32C" : "(448 bytes, through 0x802EC4EB) -- Options Menu: ScreenText.h state + glyph buffers (TEXT_BUFFER_ADDR, TEXT_SLOTS 11, TEXT_MAXLEN 19)",
+    "0x802EC4EC" : "(4 bytes) -- Options Menu: g_frame, the scene's own per-frame counter (ScreenText_FrameNow override). REQUIRED in menu context: the stock FrameCountWhileNotAtMainMenu never advances there, so ScreenText never frees its slots and the screen freezes on frame 1",
+    "0x802EC504" : "(952 bytes, through 0x802EC8BB) -- Load Challenge REL: glyph buffers for the debug-suite text overlays (TEXT_BUF_ADDR, TEXT_SLOTS 17, TEXT_MAXLEN 27)",
+    "0x802EC8BC" : "(w) -- Load Challenge REL: captured argument of the debug menu's compiled-out renderer (fn_80048BEC), consumed and cleared each frame",
+    // NOTE: the free block lbl_802EAF80 (0x802EAF80-0x802ECFC0) is NOT free all the way through --
+    // the game keeps a live list node at 0x802EC8F0-0x802EC90C (verified by dumping the region on an
+    // unmodded boot). Do not claim past 0x802EC8E0.
 
     // Superstar character indicators - stored in the first unused byte within InMemRoster for each character
     "0x80353BE5" : "(b) -- indicator to superstar character P1 character 0",
