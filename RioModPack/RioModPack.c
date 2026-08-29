@@ -26,6 +26,12 @@
 #include "RioModPack/Options Menu.c"
 #include "Gecko Codes/Global/Boot To Main Menu.c"
 
+// Duplicate Characters gates ITSELF rather than being wrapped in
+// CGECKO_GATE_ADDR: it patches game code, so it has to keep running while the
+// option is OFF in order to put the original instructions back. A code that is
+// gated away entirely can never undo itself.
+#include "Gecko Codes/Menu/Duplicate Characters.c"
+
 // ---- toggleable mods -------------------------------------------------------
 #undef  CGECKO_GATE_ADDR
 #define CGECKO_GATE_ADDR MODOPT_ADDR(MODOPT_CPU_SPRINT)

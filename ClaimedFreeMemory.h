@@ -8,6 +8,7 @@
     "0x802EB000" : "(4 bytes) -- Options Menu: g_savedDrawEnd, the UI element-loop end bound (0x803CB814) saved while the scene blanks the background; 0xFFFFFFFF = nothing saved",
     "0x802EB004" : "(4 bytes) -- Options Menu: g_bgMagic, one-shot init sentinel for the pair above (initialised by the MSSB_ALWAYS restore watchdog, which runs from boot)",
     "0x802EB010" : "(64 bytes, through 0x802EB04F) -- Mod option flags (MODOPT_BASE, Include/Rio/ModOptions.h): 16 WORDS, one per toggle. Words not bytes so a gecko conditional can test one directly (202EB0xx 00000001) with no mask arithmetic -- that is what cgecko's CGECKO_GATE_ADDR emits.",
+    "0x802EB060" : "(48 bytes, through 0x802EB08F) -- Duplicate Characters: 12 saved original instruction words, one per patched site, captured at runtime so the toggle can put the game back. 0 = not captured yet (no real instruction is 0)",
     // The head of lbl_802EAF80 was previously unclaimed. 0x802EAF90-0x802EB83F (2224 bytes) was
     // verified live 2026-08-28 as all-zero and unchanging while the game ran, so it is claimable;
     // 0x802EB840-0x802EBF8B is NOT zero and was left alone.
