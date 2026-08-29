@@ -18,11 +18,8 @@
 //
 // WHY THIS IS A PER-FRAME CODE AND NOT A PILE OF 04 WRITES. The original is a
 // static patch list, which is fine for a code you enable in an ini and forget.
-// This one is a TOGGLE, so it has to be able to put the game back: it captures
-// each site's original word the first time it sees an unpatched value and
-// restores it when the option is switched off. Capturing at runtime also means
-// the menus.rel sites need no build-time knowledge of the REL's contents, and
-// it re-arms by itself every time menus.rel reloads.
+// This one is a TOGGLE, so it has to be able to put the game back -- and a REL
+// patch has to be re-applied every time menus.rel reloads anyway.
 //
 // Original gecko code, for reference:
 //     003530f7 00350000   zero 54 bytes at 0x803530F7   (0x35+1, the count is
@@ -48,61 +45,34 @@
 #define NOP           0x60000000
 #define CMPWI_R0_FF   0x2C0000FF    // cmpwi r0, 0xFF   (0xFF = "empty slot")
 
-#define DCFlushRange      ((void (*)(u32, u32))0x8006E894)
-#define ICInvalidateRange ((void (*)(u32, u32))0x8006E94C)
+// (site, original, patched). Patching is Common.h's PatchInstruction_Conditional,
+// which only writes when the expected word is there -- so ON and OFF are the same
+// call with the last two arguments swapped, and both are idempotent. It also
+// re-arms itself for free: after a menus.rel reload the original is back, the
+// site matches again, and the next frame re-applies. No saved-state RAM needed.
+//
+// The REL originals are NOT the same instructions as their DOL counterparts
+// (stwx vs sth, cmpw r3,r0 vs cmpw r0,r7) -- read out of live RAM with menus.rel
+// resident, not assumed.
+typedef struct { u32 addr; u32 orig; u32 patched; } CodePatch;
 
-// (site, patched word) pairs. The DOL sites are always valid; the menus.rel
-// ones are only touched while rel == 4, since menus.rel and game.rel share one
-// arena slot and writing the wrong one corrupts the other module.
-typedef struct { u32 addr; u32 patched; } CodePatch;
-
-static const CodePatch DOL_PATCHES[] = {
-    { 0x80067BAC, NOP },            // stb r5, 0x4757(r3)  x5
-    { 0x80067BC8, NOP },
-    { 0x80067BE4, NOP },
-    { 0x80067C00, NOP },
-    { 0x80067C1C, NOP },
-    { 0x8004E548, NOP },            // sth r0, 0x18(r8)
-    { 0x8004E6B0, CMPWI_R0_FF },    // cmpw r0, r7  ->  cmpwi r0, 0xFF
+static const CodePatch PATCHES[] = {
+    /* --- main.dol: addRemoveCharVariantRelated, five stb sites -------- */
+    { 0x80067BAC, 0x98A34757, NOP },          /* stb r5, 0x4757(r3) */
+    { 0x80067BC8, 0x98A34757, NOP },
+    { 0x80067BE4, 0x98A34757, NOP },
+    { 0x80067C00, 0x98A34757, NOP },
+    { 0x80067C1C, 0x98A34757, NOP },
+    { 0x8004E548, 0xB0080018, NOP },          /* sth r0, 0x18(r8) */
+    { 0x8004E6B0, 0x7C003800, CMPWI_R0_FF },  /* cmpw r0, r7 */
+    /* --- menus.rel: the same edits on the menu side ------------------- */
+    { 0x8064EC28, 0x98E44757, NOP },          /* stb r7, 0x4757(r4) */
+    { 0x8064EC38, 0x98E54757, NOP },          /* stb r7, 0x4757(r5) */
+    { 0x8064ECE8, 0x98A34757, NOP },          /* stb r5, 0x4757(r3) */
+    { 0x806553F8, 0x7C1EF92E, NOP },          /* stwx r0, r30, r31 */
+    { 0x806553D4, 0x7C030000, CMPWI_R0_FF },  /* cmpw r3, r0 */
 };
-static const CodePatch REL_PATCHES[] = {
-    { 0x8064EC28, NOP },
-    { 0x8064EC38, NOP },
-    { 0x8064ECE8, NOP },
-    { 0x806553F8, NOP },
-    { 0x806553D4, CMPWI_R0_FF },
-};
-#define N_DOL ((int)(sizeof(DOL_PATCHES) / sizeof(DOL_PATCHES[0])))
-#define N_REL ((int)(sizeof(REL_PATCHES) / sizeof(REL_PATCHES[0])))
-
-// Saved originals, in claimed RAM -- see ClaimedFreeMemory.h. 0 = not captured
-// yet. No payload statics: this is a per-frame code and the helpers below touch
-// them, which is exactly the case that faulted through r31 in earlier mods.
-#define g_saved(i) VAR_ADDRESS(u32, 0x802EB060 + (i) * 4)
-
-/* Apply or undo one site, capturing its original the first time we see an
- * unpatched value. Writing instruction memory needs the dcache flushed and the
- * icache line invalidated, or the CPU keeps running the stale instruction. */
-static void PatchSite(int slot, u32 addr, u32 patched, bool on)
-{
-    u32 cur = VAR_ADDRESS(u32, addr);
-
-    if (on)
-    {
-        if (cur == patched)
-            return;                      /* already applied */
-        g_saved(slot) = cur;             /* capture, then patch */
-        VAR_ADDRESS(u32, addr) = patched;
-    }
-    else
-    {
-        if (cur != patched || g_saved(slot) == 0)
-            return;                      /* not ours, or nothing captured */
-        VAR_ADDRESS(u32, addr) = g_saved(slot);
-    }
-    DCFlushRange(addr & ~31, 64);
-    ICInvalidateRange(addr & ~31, 64);
-}
+#define N_PATCHES ((int)(sizeof(PATCHES) / sizeof(PATCHES[0])))
 
 CGECKO(DuplicateCharacters, .state = MSSB_MENU);
 void DuplicateCharacters()
@@ -110,10 +80,15 @@ void DuplicateCharacters()
     bool on = ModOptionOn(MODOPT_DUPLICATES);
     int i;
 
-    for (i = 0; i < N_DOL; i++)
-        PatchSite(i, DOL_PATCHES[i].addr, DOL_PATCHES[i].patched, on);
-    for (i = 0; i < N_REL; i++)
-        PatchSite(N_DOL + i, REL_PATCHES[i].addr, REL_PATCHES[i].patched, on);
+    for (i = 0; i < N_PATCHES; i++)
+    {
+        if (on)
+            PatchInstruction_Conditional(PATCHES[i].addr, PATCHES[i].orig,
+                                         PATCHES[i].patched);
+        else
+            PatchInstruction_Conditional(PATCHES[i].addr, PATCHES[i].patched,
+                                         PATCHES[i].orig);
+    }
 
     if (!on)
         return;
