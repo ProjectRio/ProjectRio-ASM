@@ -2,7 +2,7 @@
 # Boot Directly To Game
 ###########################################################*/
 // Author: LittleCoaks
-// *Boots directly to a random 3-inning match. P1 vs P2. Duplicates enabled.
+// *Boots directly to a random 5-inning match. P1 vs P2. Duplicates enabled.
 // *Randomizes home/away, all-or-nothing superstars, and star skills.
 #include "Include/Local/Legacy.h"
 
@@ -120,7 +120,7 @@ void InstantRandoms()
     // ---- match settings ----------------------------------------------------
     // Always a 3-inning game. inningSetting (0x800E8754) holds the actual inning
     // COUNT, not a menu cursor index -- Boot To Match.c writes it the same way.
-    inningSetting.inningCount = 3;
+    inningSetting.inningCount = 5;
 
     // Randomize which of P1/P2 bats first (i.e. who is home vs away).
     // 0 = P1 away / P2 home, 1 = the reverse.
