@@ -10,7 +10,10 @@
 #include "Include/Local/Legacy.h"
 #include "Include/Local/LegacyGame.h"
 // no .address -> runs once per frame, while the game rel is resident
-CGECKO(CPUAlwaysSprints, .state = MSSB_GAME);
+CGECKO(CPUAlwaysSprints, .state = MSSB_GAME,
+       .notes = "CPU runners and the selected CPU fielder\n"
+                "always sprint. Human players are\n"
+                "unaffected.");
 void CPUAlwaysSprints()
 {
     // Part 1: Force all active CPU runners and baserunners to sprint

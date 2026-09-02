@@ -102,7 +102,12 @@
  Section 1: never-cull patches (no .address -> once per frame)
 -----------------------------------------------------------*/
 
-CGECKO(WidescreenNeverCull);
+// .notes goes on the first of this file's four hooks; they all share one option
+// so the notes table takes the first that declares any, and repeating the blurb
+// on the other three would only be four places to keep in sync.
+CGECKO(WidescreenNeverCull,
+       .notes = "Render the whole game in 16:9. Set Aspect ratio to Auto/16:9 and "
+                "turn Widescreen Hack OFF.");
 void WidescreenNeverCull()
 {
     // never cull characters
