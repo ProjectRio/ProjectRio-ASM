@@ -100,6 +100,11 @@ class Dol:
         self._set_u32(off, new)
         return cur
 
+    def set_entry(self, addr):
+        """Repoint the DOL entry point. BS2/the apploader jumps here instead of
+        the game's __start, which is how a loader stub gets to run first."""
+        self._set_u32(OFF_ENTRY, addr)
+
     def add_section(self, addr, data, kind="text", align=32):
         """Append `data` to the file and point a free section slot at it.
         Returns the slot index. Nothing existing moves -- DOL sections are
@@ -155,3 +160,4 @@ def bl(frm, to):
 def mr(rD, rS):
     """mr rD, rS  ==  or rD, rS, rS"""
     return (31 << 26) | (rS << 21) | (rD << 16) | (rS << 11) | (444 << 1)
+
