@@ -71,7 +71,7 @@ ENABLE_SHARED_SPLIT = True
 # Hard-coded output directory. When non-blank, the file is written here with no
 # prompt. Leave as "" to fall back to the script argument (if any), then to an
 # interactive folder picker.
-OUTPUT_DIR = r"D:\15165\Documents\Rio Modding Project\Project Rio\Modding\ProjectRio-ASM\Include"
+OUTPUT_DIR = r"E:\Project Rio\ProjectRio-ASM\Include"
 
 # Subfolder (under the output directory) each header is written into. #include
 # lines reference them as "Include/<subfolder>/<name>" (CGecko adds the repo
