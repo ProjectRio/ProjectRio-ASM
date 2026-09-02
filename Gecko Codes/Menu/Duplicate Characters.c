@@ -33,7 +33,6 @@
 //     c264f394 ...       re-mark the two captains
 #include "Include/game/UnknownHomes_Game.h"
 #include "Include/Local/Legacy.h"
-#include "RioModPack/ModOptions.h"
 
 #define TAKEN_TABLE   0x803530F7    // Static_Stats_Tables + 0x4757, 54 bytes
 #define TAKEN_COUNT   54            // 0x35 + 1, one byte per character id
@@ -41,6 +40,13 @@
 #define CHARSEL_COUNT 36            // 0x23 + 1
 #define CAPTAIN_A     0x803C6726    // cursorPositions + 0x02
 #define CAPTAIN_B     0x803C672F    // cursorPositions + 0x0B
+
+// menuCtrl->screenCode, and the two screens this code has to tell apart.
+// screenFuncTable: 9 = captainSelect (0x8065201C), 10 = teamSelect
+// (0x80650144), the character draft.
+#define MENU_SCREEN   (*(u16*)(*(u32*)0x803CBBCC + 2))
+#define SCREEN_CAPTAIN_SELECT 9
+#define SCREEN_TEAM_SELECT    10
 
 #define NOP           0x60000000
 #define CMPWI_R0_FF   0x2C0000FF    // cmpwi r0, 0xFF   (0xFF = "empty slot")
@@ -74,11 +80,16 @@ static const CodePatch PATCHES[] = {
 };
 #define N_PATCHES ((int)(sizeof(PATCHES) / sizeof(PATCHES[0])))
 
-CGECKO(DuplicateCharacters, .state = MSSB_MENU);
+CGECKO(DuplicateCharacters, .state = MSSB_MENU,
+       .notes = "Allows you to draft any character as many times as you want.");
 void DuplicateCharacters()
 {
-    bool on = ModOptionOn(MODOPT_DUPLICATES);
+    // CGECKO_ACTIVE is 1 on its own; a pack that wants to toggle this mod
+    // defines it to a runtime condition before including the file. This file
+    // never knows where that condition lives.
+    bool on = CGECKO_ACTIVE;
     int i;
+    u8  cap;
 
     for (i = 0; i < N_PATCHES; i++)
     {
@@ -103,6 +114,30 @@ void DuplicateCharacters()
     for (i = 0; i < CHARSEL_COUNT; i++)
         VAR_ADDRESS(u8, CHARSEL_SLOTS + i) = 0xFF;
 
-    VAR_ADDRESS(u8, TAKEN_TABLE + VAR_ADDRESS(u8, CAPTAIN_A)) = 1;
-    VAR_ADDRESS(u8, TAKEN_TABLE + VAR_ADDRESS(u8, CAPTAIN_B)) = 1;
+    // Re-mark the two captains ONLY while the draft is on screen.
+    //
+    // THE BUG THIS FIXES. cursorPositions is not cleared between visits, so on
+    // the CAPTAIN-select screen it still holds the captains chosen last time
+    // round. Marking those two here greys out exactly the characters the user
+    // came back to pick again -- reported as "I cannot select my previous
+    // captains when I reenter the captain select screen". The marks were ours,
+    // not the game's: with this code off, the same trip works.
+    //
+    // The wipes above stay unconditional. Clearing the taken table on any other
+    // menu screen is harmless and correct -- with duplicates on, nobody is
+    // taken until the draft says so -- and it is what makes the captain screen
+    // behave again. It is only the re-marking that is draft-specific.
+    if (MENU_SCREEN != SCREEN_TEAM_SELECT)
+        return;
+
+    // A cursor slot reads 0xFF until a captain has been picked, and
+    // TAKEN_TABLE + 0xFF is 200 bytes past the end of a 54-byte table -- a
+    // stray write into Static_Stats_Tables. Only ever mark a real character id.
+    cap = VAR_ADDRESS(u8, CAPTAIN_A);
+    if (cap < TAKEN_COUNT)
+        VAR_ADDRESS(u8, TAKEN_TABLE + cap) = 1;
+
+    cap = VAR_ADDRESS(u8, CAPTAIN_B);
+    if (cap < TAKEN_COUNT)
+        VAR_ADDRESS(u8, TAKEN_TABLE + cap) = 1;
 }

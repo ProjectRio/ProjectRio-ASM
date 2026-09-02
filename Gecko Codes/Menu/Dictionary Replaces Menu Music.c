@@ -52,6 +52,7 @@
 #define DMM_OWNER            0x802EC290           // fake owner node for the task
 #define g_dmmLoadDone VAR_ADDRESS(u16, 0x802EC2A0)  // = DMM_OWNER + 0x10
 #define g_dmmSavedVol VAR_ADDRESS(u32, 0x802EC2A8)  // 0 = nothing saved, else 0x100 | original
+#define g_dmmGone   VAR_ADDRESS(u32, 0x802EC2AC)  // consecutive frames fx 0 has been missing
 
 // ---- game ------------------------------------------------------------------
 #define insertTask  ((void* (*)(void*, u32))0x800B0A5C)
@@ -72,6 +73,61 @@
 #define g_menuMusicVol    VAR_ADDRESS(u8,  0x803CB888)  // volume the routine starts at
 
 #define DMM_LOAD_TIMEOUT 900                     // ~15s; give up rather than hang silent
+
+// The audio-file table slot the loader writes its buffer into: state 0 stores
+// it at 0x800EF808 + fileIndex*4 + 4, so file 4 lands at 0x800EF81C -- which
+// is exactly the word PUSH_DICT_GROUP_FN re-reads when it finally pushes.
+#define g_dmmDesc VAR_ADDRESS(u32, 0x800EF81C)
+#define pushDictGroup ((void (*)(void))PUSH_DICT_GROUP_FN)
+
+// A loaded audio file is a 0x20-byte header of four { u32 off; u32 size; }
+// section records -- prj, sdir, pool, samples -- followed by the sections, so
+// the first one always begins 0x20 past the header.
+#define DMM_DESC_HDR 0x20
+
+// How long fx 0 has to stay missing before we believe it is gone. See
+// dmmGroupReallyGone.
+#define DMM_SETTLE_FRAMES 30
+
+// What file 4's descriptor slot currently holds.
+enum {
+    DMM_DESC_NONE = 0,   // nothing loaded into this slot yet
+    DMM_DESC_RAW,        // loaded, not yet relocated -- a task is mid-flight
+    DMM_DESC_READY,      // loaded and relocated exactly once: safe to push
+    DMM_DESC_BAD         // relocated more than once: pushing it would fault
+};
+
+// Whether this code should be doing anything right now is CGecko's
+// CGECKO_ACTIVE (Common.h): 1 on its own, which is the whole point of the code.
+// Inside RioModPack it is one selectable track among many, so the pack defines
+// CGECKO_ACTIVE to "the menu music slot is set to Dictionary" before including
+// the file, and the mod switches itself off when it is not.
+//
+// It has to SELF-gate rather than be wrapped in CGECKO_GATE_ADDR: it edits game
+// state (fx 484's layer id, and the menu music volume u8), so it must keep
+// running while off in order to put those back. A gate-wrapped code is simply
+// not executed, and could never undo itself -- the same reason Duplicate
+// Characters self-gates.
+
+// Which menu screens this does its work on. screenCode 5 is the main menu, and
+// on its own that is the only screen that matters -- the swap is for the main
+// menu theme and nothing else changes it.
+//
+// A pack that lets the user CHOOSE this track has to add the screen that choice
+// is made on, or the swap does not happen until they back out to the main menu.
+// Every other track in RioModPack's music config is a stream and swaps the
+// instant it is selected, so a Dictionary that waits reads as broken rather
+// than as delayed -- which is exactly how it was reported.
+//
+// Widening this is safe because the work is idempotent: once fx 484 holds the
+// Dictionary layer, a pass only re-finds the entry and re-pins the volume, and
+// the restart is guarded on the layer having actually changed. Not widened to
+// every menu screen, though: an inactive screen would also start an audio-file
+// LOAD there, and pushing group 0 on a screen with its own audio set is not
+// something any of this has been tested against.
+#ifndef DMM_SCREENS
+#define DMM_SCREENS(sc) ((sc) == 5)
+#endif
 
 // The loaded-group array is rebuilt (and the sound data relocated) on every
 // scene change, so the entry has to be located fresh each time it's touched.
@@ -97,6 +153,70 @@ static u8* dmmFindFxEntry(u16 fxId)
         }
     }
     return 0;
+}
+
+// Classify the descriptor sitting in file 4's slot.
+//
+// WHY THIS EXISTS -- the crash it fixes. The loader task's state 1 relocates
+// the descriptor IN PLACE and UNCONDITIONALLY:
+//
+//     d = *(0x800EF81C);
+//     *(d+0x00) += d;  *(d+0x08) += d;  *(d+0x10) += d;  *(d+0x18) += d;
+//
+// turning the four section OFFSETS into absolute pointers. Nothing marks the
+// descriptor as done, so running the task a second time for a file that never
+// left RAM adds the base again and every section pointer becomes 2*d + off.
+// State 2's push callback then RE-READS 0x800EF81C -- it does not reuse what
+// state 1 saw -- and hands that to sndPushGroup, whose first act is
+//
+//     while (g->nextOff != 0xFFFFFFFF)      // g = prj_data
+//
+// a read straight through the wild pointer. Measured live from the crash
+// savestate: d = 0x8110F1A0, prj went 0x20 -> 0x8110F1C0 (correct) ->
+// 0x0221E360 (= 2*d + 0x20), and the game died with "Invalid read from
+// 0x0221e360, PC = 0x800d3440" -- 0x800d3440 being inside sndPushGroup
+// (0x800D3120 + 0x320). The other three sections were biased identically.
+//
+// The three interesting values of *(d+0) are all distinguishable:
+//     0x20        -> loaded, relocation still to come
+//     d + 0x20    -> relocated exactly once, which is what we want
+//     2*d + 0x20  -> relocated twice, already ruined
+static int dmmDescriptorState(void)
+{
+    u32 d = g_dmmDesc;
+    u32 prj;
+
+    if (d < 0x80000000 || d >= 0x81800000)
+        return DMM_DESC_NONE;           // never loaded this session
+
+    prj = *(u32*)d;
+    if (prj == DMM_DESC_HDR)
+        return DMM_DESC_RAW;
+    if (prj == d + DMM_DESC_HDR)
+        return DMM_DESC_READY;
+    return DMM_DESC_BAD;
+}
+
+// Has group 0 really gone, or is the loaded-group array just mid-rebuild?
+//
+// dmmFindFxEntry walks live game state that a screen change tears down and
+// puts back, so one missing frame means nothing. Acting on one is what queued
+// a redundant load for an already-resident file and produced the crash above.
+// Require the entry to stay missing for DMM_SETTLE_FRAMES; any sighting
+// resets the count.
+static int dmmGroupReallyGone(void)
+{
+    if (dmmFindFxEntry(DICT_MUSIC_FX) != 0)
+    {
+        g_dmmGone = 0;
+        return 0;
+    }
+    if (g_dmmGone < DMM_SETTLE_FRAMES)
+    {
+        g_dmmGone++;
+        return 0;
+    }
+    return 1;
 }
 
 // Stop the current track and let 0x80062A94 start it again next frame. It
@@ -132,6 +252,33 @@ static void dmmPinVolume(u8* fx)
     g_menuMusicVol = *(fx + 6);                  // +6 = the entry's authored volume
 }
 
+// Put everything back: fx 484 pointed at the stock layer again and the menu
+// music volume handed back. Used when CGECKO_ACTIVE goes false, and safe to call
+// when nothing was ever changed -- both halves check first.
+//
+// The loaded sound group is deliberately NOT unloaded. It arrived through the
+// game's own loader task and costs only pool space; dropping it would mean
+// undoing a push the game normally owns, and re-selecting the track would then
+// have to wait through the whole DVD load again.
+static void dmmStandDown(void)
+{
+    u8* fx = dmmFindFxEntry(MENU_MUSIC_FX);
+
+    if (fx != 0 && *(u16*)(fx + 2) == DICT_MUSIC_LAYER)
+    {
+        *(u16*)(fx + 2) = STOCK_MENU_LAYER;
+        if (g_menuMusicHandle != 0 && g_menuMusicHandle != 0xFFFFFFFF)
+            dmmRestartMusic();                  // swap back audibly, not on next scene
+    }
+    if (g_dmmSavedVol != 0)
+    {
+        g_menuMusicVol = (u8)(g_dmmSavedVol & 0xFF);
+        g_dmmSavedVol  = 0;
+    }
+    g_dmmLoading = 0;
+    g_dmmGone    = 0;
+}
+
 // Per-frame code (no .address), menu state only -- every address it touches is
 // menu-side sound state.
 CGECKO(DictionaryReplacesMenuMusic, .state = MSSB_MENU);
@@ -141,11 +288,18 @@ void DictionaryReplacesMenuMusic()
     u8* fx;
     u32 handle;
 
-    // Off the main menu, leave everything alone -- including our own state. The
-    // stock menu music survives a trip into a submenu untouched, so anything we
-    // redo on the way back in would restart the track for no reason. The one
-    // exception is handing the music volume back, which is just a u8 write.
-    if (sc != 5)
+    if (!(CGECKO_ACTIVE))
+    {
+        dmmStandDown();
+        return;
+    }
+
+    // Off the screens this runs on, leave everything alone -- including our own
+    // state. The stock menu music survives a trip into a submenu untouched, so
+    // anything we redo on the way back in would restart the track for no
+    // reason. The one exception is handing the music volume back, which is just
+    // a u8 write.
+    if (!DMM_SCREENS(sc))
     {
         if (g_dmmSavedVol != 0)
         {
@@ -157,14 +311,45 @@ void DictionaryReplacesMenuMusic()
 
     // Is the Dictionary's sound group still pushed? Its fx 0 is the marker.
     // Driving off what is actually loaded (rather than a linear state machine)
-    // means a submenu round trip is a no-op when nothing has changed.
-    if (dmmFindFxEntry(DICT_MUSIC_FX) == 0)
+    // means a submenu round trip is a no-op when nothing has changed -- but the
+    // probe has to be debounced, because the array it reads is rebuilt on a
+    // screen change and reads empty for a few frames either side of one.
+    if (dmmGroupReallyGone())
     {
+        int desc = dmmDescriptorState();
+
         // Not loaded. Never leave fx 484 pointing at a layer that cannot
         // resolve, or the next start returns -1 and the menu goes silent.
         fx = dmmFindFxEntry(MENU_MUSIC_FX);
         if (fx != 0 && *(u16*)(fx + 2) == DICT_MUSIC_LAYER)
             *(u16*)(fx + 2) = STOCK_MENU_LAYER;
+
+        // The file is still resident with its pointers already relocated --
+        // the group was popped, but nothing needs re-reading from the disc.
+        // Push it straight back. Handing this to the loader task instead is
+        // what relocates the descriptor a second time and crashes the game;
+        // see dmmDescriptorState.
+        if (desc == DMM_DESC_READY)
+        {
+            pushDictGroup();
+            g_dmmLoading = 0;
+            g_dmmGone    = 0;
+            return;
+        }
+
+        // A load is already in flight and has not reached its relocate step;
+        // let it finish rather than stacking a second one on top.
+        if (desc == DMM_DESC_RAW)
+            return;
+
+        // Already double-relocated by something else. Pushing it would fault,
+        // and re-loading would not repair it (state 0 hands back the same
+        // resident buffer). Stay off it and leave the stock theme playing.
+        if (desc == DMM_DESC_BAD)
+        {
+            g_dmmLoading = 0;
+            return;
+        }
 
         if (g_dmmLoading == 0)
         {
@@ -193,6 +378,17 @@ void DictionaryReplacesMenuMusic()
         return;
     }
 
+    // Still inside the settle window: fx 0 was not found this frame, we just
+    // do not believe it yet. Do nothing at all until it resolves one way or
+    // the other -- pointing fx 484 at the Dictionary layer below while the
+    // group really is absent makes the next sndFXStartEx return -1 and the
+    // menu goes silent for the rest of the window.
+    if (g_dmmGone != 0)
+        return;
+
+    // NB: do NOT clear g_dmmGone here. dmmGroupReallyGone already zeroes it on
+    // a sighting, and clearing it again would also hit the settle frames it had
+    // just incremented, holding the counter at zero so the debounce never fires.
     g_dmmLoading = 0;                           // loaded; the task has finished
 
     fx = dmmFindFxEntry(MENU_MUSIC_FX);
