@@ -41,18 +41,33 @@
 // this code is enabled.
 #include "Include/game/UnknownHomes_Game.h"
 
-// TEXT SLOT BUDGET -- 11 blocks, the worst case for one frame:
-//   1 title + 1 footer hint + 1 cursor glyph
-//   + OPT_VISIBLE_ROWS * 2 (each row is a label block AND a value block)
+// TEXT SLOT BUDGET -- 22 blocks, the worst case for one frame. Both screens
+// land near it by different routes:
+//   options  1 title + 1 footer + 1 cursor + OPT_VISIBLE_ROWS*2 + NOTES_MAX_LINES
+//            = 3 + 10 + 9 = 22
+//   music    1 title + 1 footer + 1 cursor + MUSIC_VISIBLE_ROWS*2
+//            = 3 + 18 = 21
 // The label and the value are separate blocks, at fixed x, because the font is
 // proportional -- padding one string out with spaces would leave the ON/OFF
-// column ragged. Two blocks at two fixed x's line up exactly. TEXT_MAXLEN is
-// trimmed to 19 (the longest string below is 18 glyphs) so the whole claim
-// still fits under the Debug Mode block at 0x802EC504.
+// column ragged. Two blocks at two fixed x's line up exactly.
+//
+// TEXT_MAXLEN 27 is the longest string drawn: the notes panel is 24 glyphs
+// wide, and every label, the title and the footer are shorter. The buffer is
+// 8 + TEXT_SLOTS*(TEXT_MAXLEN+1)*2 = 1240 bytes.
+//
+// WHAT CAPS THIS. Two things, and the buffer is nearly at both:
+//   * RAM. Everything the pack's UI and Custom Music claim shares one verified-
+//     free run, 0x802EAF90-0x802EB83F (2032 bytes usable from 0x802EB050).
+//     1240 buffer + 4 g_frame + 4 g_page + 16 s_music + 64 music config +
+//     4 magic + 120 saved descriptors + 480 path buffers = 1932. To grow much
+//     further the 480 bytes of path buffers would have to move out -- the old
+//     0x802EC32C block is free again and nearly big enough.
+//   * The game only has 30 text blocks. TEXT_FIRST_BLOCK is 30 - TEXT_SLOTS, so
+//     22 already leaves the game only 8.
 #define SCREENTEXT_NO_FLOAT
-#define TEXT_SLOTS 11
-#define TEXT_MAXLEN 19
-#define TEXT_BUFFER_ADDR 0x802EC32C   // 448 bytes, see ClaimedFreeMemory.h
+#define TEXT_SLOTS 22
+#define TEXT_MAXLEN 27
+#define TEXT_BUFFER_ADDR 0x802EB050   // 1240 bytes, see ClaimedFreeMemory.h
 
 // OUR OWN FRAME COUNTER -- REQUIRED IN MENU CONTEXT, and the single reason the
 // first two versions of this menu looked broken.
@@ -73,12 +88,13 @@
 // clock. It has to be an ABSOLUTE claimed-RAM address, not a payload static:
 // ScreenTextTick() is a helper, and cgecko reaches payload statics through r31,
 // which read NULL from inside a helper while prototyping Custom Menu Scene.c.
-#define g_frame VAR_ADDRESS(u32, 0x802EC4EC)
+#define g_frame VAR_ADDRESS(u32, 0x802EB528)   // right after the text buffer
 #define ScreenText_FrameNow g_frame
 
 #include "Include/Rio/ScreenList.h"
 
 #include "RioModPack/ModOptions.h"
+#include "RioModPack/MusicConfig.h"
 #include "Include/Local/Legacy.h"
 // changeScreenVariables by raw address instead of Include/Local/LegacyMenus.h.
 // That header binds the file to MENU context (Include/Symbols/menus.h sets
@@ -98,6 +114,17 @@
 // formed in the entry and passed to helpers as arguments.
 #define g_magic VAR_ADDRESS(u32, 0x802EC308)
 #define s_list  ((ScreenList*)0x802EC30C)          // 16 bytes
+
+// ---- the music sub-screen -------------------------------------------------
+// One option needs more than an on/off byte: the soundtrack has eight
+// independent settings (menu + seven stadiums), so its row opens a screen of
+// its own instead of toggling. g_page says which screen this frame draws; both
+// live in the same scene function, because the menu dispatcher only calls us
+// once and a second scene would need a second screenCode to be reachable.
+#define PAGE_OPTIONS 0
+#define PAGE_MUSIC   1
+#define g_page   VAR_ADDRESS(u32, 0x802EB52C)
+#define s_music  ((ScreenList*)0x802EB530)          // 16 bytes
 
 // ---- BACKGROUND -----------------------------------------------------------
 // The main menu's Options button is literally
@@ -181,13 +208,65 @@ static void RestoreBackground(void)
 // separate latch that would have to detect leaving as well.
 #define menuProcess VAR_ADDRESS(u16, VAR_ADDRESS(u32, menuControlVariables_ADDR) + 4)
 
-// ---- layout (640x480) ----------------------------------------------------
-#define OPT_VISIBLE_ROWS 4      // 5 options in 4 rows, so the list scrolls
-#define OPT_CURSOR_X   170
-#define OPT_LABEL_X    190
-#define OPT_VALUE_X    440
-#define OPT_TOP_Y      178
-#define OPT_ROW_H       30
+// ---- layout (the full 4:3 frame) ------------------------------------------
+// Deliberately NOT centred as a block: the screen is treated as a page that
+// fills the frame, anchored top-left, because the content only grows -- more
+// mods on the left, longer descriptions on the right. Centring a growing list
+// means every addition shifts everything that was already there.
+//
+// The x's are set by measuring the widest string in each column against the
+// font, which is proportional and runs about 12 px per glyph at TEXT_SMALL:
+//   label  "Duplicate Chars" from 52 ends near 235, so the value column starts
+//          at 250 -- at 230 the two collided on screen;
+//   value  "OFF" from 250 ends near 287, clear of the notes at 310;
+//   notes  NOTES_MAX_CHARS glyphs from 310 ends near 610, inside the frame.
+// Widen a column and the next one has to move; the numbers are not arbitrary.
+//
+// The y's run from the title just under the top of the frame to the footer just
+// above the bottom. 640x448 is the XFB, so nothing may reach either edge -- a
+// TV overscans -- but there is far more room than the old block in the middle
+// used, and it is all given to rows and description lines.
+#define OPT_VISIBLE_ROWS 5
+#define OPT_CURSOR_X    32
+#define OPT_LABEL_X     52
+#define OPT_VALUE_X    250
+#define OPT_TOP_Y      108
+#define OPT_ROW_H       34
+
+#define OPT_TITLE_X     32
+#define OPT_TITLE_Y     52
+#define OPT_FOOTER_Y   396
+
+// The notes panel.
+//   NOTES_MAX_LINES caps what one mod can push onto the screen: past it the
+//   text would run into the footer, and every line costs a text slot out of
+//   the budget above.
+//   NOTES_MAX_CHARS is the panel's own width, and DrawNotes word-WRAPS to it:
+//   a mod can write its .notes as ordinary prose and it fills the panel. An
+//   explicit newline in the .notes is still honoured as a hard break, so a mod
+//   that wants its own layout keeps it. Wrapping at the panel width rather
+//   than relying on TEXT_MAXLEN is what keeps the text inside the frame.
+//
+//   NOT ScreenText's own WriteTextWrapped(): that packs a whole paragraph into
+//   ONE text block, so TEXT_MAXLEN would have to cover the entire note -- at
+//   ~160 glyphs the buffer becomes 8 + 17*161*2 = 5482 bytes, far more claimed
+//   RAM than the region has left. One block per line keeps TEXT_MAXLEN at 27.
+//
+//   A note longer than NOTES_MAX_LINES * NOTES_MAX_CHARS is trimmed and ends
+//   in "...". Nine lines of 24 is about 200 glyphs, which is the practical
+//   ceiling: another line costs another text slot, and the budget above is
+//   already close to both of its limits.
+//
+//   AVOID '_' IN A NOTE. The font has no underscore: ScreenText_Encode() maps
+//   0x21-0x5B, ']', '^', '{}~' and lowercase, and everything else -- 0x5F
+//   included -- falls through to glyph 30, which is '?'. A filename written
+//   with underscores comes out as "custom?01?h.adp" on screen. The ini
+//   description has no such limit, so spell them out there instead.
+#define NOTES_X        310
+#define NOTES_TOP_Y    108
+#define NOTES_LINE_H    26
+#define NOTES_MAX_LINES  9
+#define NOTES_MAX_CHARS 24
 
 // ---- the rows ------------------------------------------------------------
 // One row = one label and one BYTE. addr is a plain address, so a row can
@@ -197,22 +276,131 @@ static void RestoreBackground(void)
 //
 // A writes onValue when the byte is 0, and 0 when it is anything else, so a
 // byte whose "on" state is not 1 still toggles correctly.
+//
+// A row whose `page` is not PAGE_OPTIONS does not toggle at all: A opens that
+// screen instead. Its `addr` is still the mod's option word, because that is
+// the key the notes panel looks up -- the row needs it even when nothing about
+// it is on or off.
 typedef struct
 {
     const char* label;      /* <= 18 glyphs, see TEXT_MAXLEN above */
-    u32         addr;       /* the word this row toggles */
+    u32         addr;       /* the word this row toggles, or just its notes key */
     u32         onValue;    /* what ON writes; OFF always writes 0 */
+    u32         page;       /* PAGE_OPTIONS = a toggle; else the screen A opens */
 } ModOptionRow;
 
+// Only the mods RioModPack actually ships get a row. A row for a mod that is
+// not in the pack is a switch wired to nothing: it flips its byte and the
+// screen says ON, but no code reads it. The ids in ModOptions.h are still
+// reserved for the rest -- an id IS its offset, so they must not be renumbered
+// -- they just have no row until their mod is included.
 static const ModOptionRow s_options[] =
 {
-    { "Widescreen",         MODOPT_ADDR(MODOPT_WIDESCREEN),  1 },
-    { "CPU Always Sprints", MODOPT_ADDR(MODOPT_CPU_SPRINT),  1 },
-    { "Instant Randoms",    MODOPT_ADDR(MODOPT_INSTANT_RNG), 1 },
-    { "Duplicate Chars",    MODOPT_ADDR(MODOPT_DUPLICATES),  1 },
-    { "Superstar Mode",     MODOPT_ADDR(MODOPT_SUPERSTARS),  1 },
+    { "Widescreen",      MODOPT_ADDR(MODOPT_WIDESCREEN), 1, PAGE_OPTIONS },
+    { "Duplicate Chars", MODOPT_ADDR(MODOPT_DUPLICATES), 1, PAGE_OPTIONS },
+    { "Custom Music",    MODOPT_ADDR(MODOPT_MUSIC),      1, PAGE_MUSIC   },
+    { "Gecko Codes",     MODOPT_ADDR(MODOPT_GECKO),      1, PAGE_OPTIONS },
+    { "Night Stadium",   MODOPT_ADDR(MODOPT_NIGHT_MARIO), 1, PAGE_OPTIONS },
 };
 #define OPT_COUNT ((int)(sizeof(s_options) / sizeof(s_options[0])))
+
+// ---- the music screen -----------------------------------------------------
+// Nine of the sixteen slots at a time; ScreenList scrolls the rest. Nine is
+// what the text budget allows: title + footer + cursor + 9*2 = 21, just under
+// TEXT_SLOTS. Showing all sixteen would need 35, more than the game has text
+// blocks in total.
+//
+// Tighter rows than the options screen, because this list has no notes panel
+// beside it and can use the height for rows instead.
+#define MUSIC_VISIBLE_ROWS 9
+#define MUSIC_TRACK_X    250
+#define MUSIC_TOP_Y      108
+#define MUSIC_ROW_H       30
+#define MUSIC_FOOTER_Y   396
+
+// ---- the notes panel ------------------------------------------------------
+// The selected mod's description, drawn down the right half of the screen.
+//
+// The text is not stored here. It comes from the .notes the mod itself
+// declares on its CGECKO() line, which cgecko collects into a table keyed by
+// the option word -- the same word the row already toggles, so the row needs
+// nothing new to find it. See CGecko_NotesForOption in CGecko/Common.h.
+//
+// A gecko build has no such table (each hook links separately, so one mod
+// cannot see another's) and the stub there returns 0; this menu then simply
+// draws no notes rather than failing to build. In the DOL-baked pack, where
+// every mod is one translation unit, the real table is there.
+//
+// Long text is word-wrapped to the panel width; a '\n' the mod wrote is still
+// a hard break, so prose and hand-laid-out notes both work. `buf` is a LOCAL --
+// the "no payload statics" rule at the top of this file is about MUTABLE
+// state reached through r31 from a helper; stack is fine, and this runs in
+// the hook's own frame.
+static void DrawNotes(u32 optionAddr)
+{
+    const char* note = CGecko_NotesForOption(optionAddr);
+    int line;
+
+    if (note == 0)
+        return;                      // mod declared no .notes, or gecko build
+
+    for (line = 0; line < NOTES_MAX_LINES; line++)
+    {
+        char buf[NOTES_MAX_CHARS + 1];
+        int  take, lastSpace, i;
+
+        while (*note == ' ')                 // the space we broke at
+            note++;
+        if (*note == '\n')                   // a break the author asked for
+            note++;
+        while (*note == ' ')
+            note++;
+        if (*note == 0)
+            break;
+
+        // How much of the rest fits on this line, remembering the last space
+        // we passed so a word that straddles the edge can move down whole.
+        take = 0;
+        lastSpace = -1;
+        while (note[take] != 0 && note[take] != '\n' && take < NOTES_MAX_CHARS)
+        {
+            if (note[take] == ' ')
+                lastSpace = take;
+            take++;
+        }
+        if (take == NOTES_MAX_CHARS && note[take] != 0 && note[take] != '\n' &&
+            note[take] != ' ' && lastSpace > 0)
+            take = lastSpace;                // we stopped mid-word: back up
+
+        for (i = 0; i < take; i++)
+            buf[i] = note[i];
+        buf[take] = 0;
+        note += take;
+
+        // Out of lines with text still to come: end in "..." rather than
+        // stopping mid-sentence, so a note that is too long reads as trimmed
+        // instead of as a mod that garbled its own description.
+        if (line == NOTES_MAX_LINES - 1)
+        {
+            const char* rest = note;
+
+            while (*rest == ' ' || *rest == '\n')
+                rest++;
+            if (*rest != 0)
+            {
+                int at = (take <= NOTES_MAX_CHARS - 3) ? take : NOTES_MAX_CHARS - 3;
+
+                buf[at]     = '.';
+                buf[at + 1] = '.';
+                buf[at + 2] = '.';
+                buf[at + 3] = 0;
+            }
+        }
+
+        WriteTextEx(NOTES_X, NOTES_TOP_Y + line * NOTES_LINE_H,
+                    TEXT_WHITE, TEXT_SMALL, TEXT_LEFT, "%s", buf);
+    }
+}
 
 // ---------------------------------------------------------------------------
 // Our scene control function -- called once per frame while screenCode == 6,
@@ -238,6 +426,7 @@ void OptionsMenu()
         menuProcess = 1;
         BlankBackground();
         ScreenList_Init(s_list, OPT_COUNT, OPT_VISIBLE_ROWS);
+        g_page = PAGE_OPTIONS;          // always open on the options list
     }
 
     // Start the frame: advance our clock and let ScreenText free last frame's
@@ -254,6 +443,70 @@ void OptionsMenu()
     in = (controllerInputStruct*)controllerInputs__ADDR;
     pressed = in[0].newInput;
 
+    // ---- the music screen -------------------------------------------------
+    // B goes back to the options list rather than out of the scene, so the two
+    // screens nest the way the rest of the game's menus do.
+    if (g_page == PAGE_MUSIC)
+    {
+        char scratch[MUSIC_PATHBUF_SIZE];   // MusicTrackStep builds paths here
+        int  slot;
+
+        if (pressed & INPUT_BUTTON_B)
+        {
+            g_page = PAGE_OPTIONS;
+            return;                      // draw nothing on the frame we leave
+        }
+        if (pressed & INPUT_BUTTON_DOWN)
+            ScreenList_MoveDown(s_music);
+        if (pressed & INPUT_BUTTON_UP)
+            ScreenList_MoveUp(s_music);
+
+        // Left/Right walk the track list for the highlighted slot. MusicTrackStep
+        // skips any track whose file is not on this disc, so a custom slot with
+        // nothing behind it is never offered -- which is also why there is no
+        // "missing" state to draw.
+        slot = s_music->selected;
+        if (pressed & INPUT_BUTTON_RIGHT)
+            MusicSlot(slot) = MusicTrackStep(slot, MusicSlotTrack(slot), +1, scratch);
+        if (pressed & INPUT_BUTTON_LEFT)
+            MusicSlot(slot) = MusicTrackStep(slot, MusicSlotTrack(slot), -1, scratch);
+
+        WriteTextEx(OPT_TITLE_X, OPT_TITLE_Y, TEXT_WHITE, TEXT_LARGE, TEXT_LEFT,
+                    "MUSIC");
+
+        first = s_music->scrollTop;
+        last  = first + s_music->visibleRows;
+        if (last > MUSIC_SLOT_COUNT)
+            last = MUSIC_SLOT_COUNT;
+
+        for (i = first; i < last; i++)
+        {
+            int  y   = MUSIC_TOP_Y + (i - first) * MUSIC_ROW_H;
+            bool sel = (i == s_music->selected);
+            u32  trk = MusicSlotTrack(i);
+
+            // Red means "configured, but that file is not on this disc, so the
+            // mod is ignoring it and the stock music plays". Left/Right can
+            // never put a slot into that state -- MusicTrackStep skips absent
+            // files -- but the config is plain RAM, so an ini code or a word
+            // left over from another build can, and saying so beats drawing it
+            // the same green as a track that really is playing.
+            u32 live = (trk == MUSIC_DEFAULT) || MusicTrackAvailable(i, trk, scratch);
+
+            if (sel)
+                WriteTextEx(OPT_CURSOR_X, y, TEXT_YELLOW, TEXT_SMALL, TEXT_LEFT, ">");
+            WriteTextEx(OPT_LABEL_X, y, sel ? TEXT_YELLOW : TEXT_WHITE,
+                        TEXT_SMALL, TEXT_LEFT, "%s", s_musicSlotLabel[i]);
+            WriteTextEx(MUSIC_TRACK_X, y,
+                        !live ? TEXT_RED : (trk == MUSIC_DEFAULT) ? TEXT_GRAY : TEXT_GREEN,
+                        TEXT_SMALL, TEXT_LEFT, "%s", s_musicTrackLabel[trk]);
+        }
+
+        WriteTextEx(OPT_TITLE_X, MUSIC_FOOTER_Y, TEXT_GRAY, TEXT_SMALL, TEXT_LEFT,
+                    "L/R: TRACK  B: BACK");
+        return;
+    }
+
     if (pressed & INPUT_BUTTON_B)
     {
         RestoreBackground();            // give the framework its screen back
@@ -267,8 +520,17 @@ void OptionsMenu()
     if (pressed & INPUT_BUTTON_A)
     {
         const ModOptionRow* row = &s_options[s_list->selected];
-        u32* flag = (u32*)row->addr;
-        *flag = *flag ? 0 : row->onValue;
+
+        if (row->page != PAGE_OPTIONS)
+        {
+            g_page = row->page;
+            ScreenList_Init(s_music, MUSIC_SLOT_COUNT, MUSIC_VISIBLE_ROWS);
+            return;                      // the new screen draws from next frame
+        }
+        {
+            u32* flag = (u32*)row->addr;
+            *flag = *flag ? 0 : row->onValue;
+        }
     }
 
     // ---- draw ------------------------------------------------------------
@@ -292,7 +554,8 @@ void OptionsMenu()
     // its Draw half specialised. Selected row = yellow with a ">" beside it,
     // the same read as the debug menu's own lists. (ScreenTextTick already ran
     // at the top of the frame, above.)
-    WriteTextEx(320, 110, TEXT_WHITE, TEXT_LARGE, TEXT_CENTER, "MOD OPTIONS");
+    WriteTextEx(OPT_TITLE_X, OPT_TITLE_Y, TEXT_WHITE, TEXT_LARGE, TEXT_LEFT,
+                "MOD OPTIONS");
 
     first = s_list->scrollTop;
     last  = first + s_list->visibleRows;
@@ -309,11 +572,19 @@ void OptionsMenu()
             WriteTextEx(OPT_CURSOR_X, y, TEXT_YELLOW, TEXT_SMALL, TEXT_LEFT, ">");
         WriteTextEx(OPT_LABEL_X, y, sel ? TEXT_YELLOW : TEXT_WHITE,
                     TEXT_SMALL, TEXT_LEFT, "%s", s_options[i].label);
-        WriteTextEx(OPT_VALUE_X, y, on ? TEXT_GREEN : TEXT_GRAY,
-                    TEXT_SMALL, TEXT_LEFT, on ? "ON" : "OFF");
+        // A row that opens a screen has no on/off state to show; "SET" says
+        // that A does something other than flip it.
+        if (s_options[i].page != PAGE_OPTIONS)
+            WriteTextEx(OPT_VALUE_X, y, TEXT_GRAY, TEXT_SMALL, TEXT_LEFT, "SET");
+        else
+            WriteTextEx(OPT_VALUE_X, y, on ? TEXT_GREEN : TEXT_GRAY,
+                        TEXT_SMALL, TEXT_LEFT, on ? "ON" : "OFF");
     }
 
-    WriteTextEx(320, 330, TEXT_GRAY, TEXT_SMALL, TEXT_CENTER, "A: TOGGLE  B: BACK");
+    DrawNotes(s_options[s_list->selected].addr);
+
+    WriteTextEx(OPT_TITLE_X, OPT_FOOTER_Y, TEXT_GRAY, TEXT_SMALL, TEXT_LEFT,
+                "A: SELECT  B: BACK");
 }
 
 // ---------------------------------------------------------------------------
