@@ -455,9 +455,57 @@ def collect_declared_functions(sources, inc):
     return {n for n, c in counts.items() if c > 1}
 
 
+# ---- layout guards ----------------------------------------------------------
+# The decomp annotates struct members with their offset (`/*0x0C*/ u8 x;`) and
+# the closing typedef with the size (`} Name; // size: 0x58`). Those numbers are
+# what the decomp was matched against, and CodeWarrior and powerpc-eabi-gcc do
+# not always agree on layout. Emitting them as _Static_asserts turns a silent
+# wrong-offset read into a build error in the mod that includes the header.
+LAYOUT_ASSERTS = True
+# Structs whose decomp offset/size comments are known not to match what any C
+# compiler produces (e.g. a `size: 0x22` on a struct holding f32s). They are
+# listed in the sync report instead of asserted, until the decomp settles them.
+LAYOUT_ASSERT_SKIP = {
+    "UnkStarDashFloatStruct",   # eight f32 + s16: C pads to 0x24, comment says 0x22
+    "MiniGameStruct",           # embeds SomeStarDashStruct (holds an f32) at 2-aligned offsets
+    "SomeStarDashStruct",       # same cluster; its offsets only make sense unaligned
+    "StatTable",                # 0x3B bytes in the game; holds a u32, so C makes it 0x3C
+    "CharacterStats",           # therefore chemistry sits at 0x3C in C but 0x3B in the game
+}
+STRUCT_OPEN_RE = re.compile(r"^\s*(?:typedef\s+)?struct(?:\s+\w+)?\s*\{\s*$")
+MEMBER_RE = re.compile(r"^\s*/\*\s*0x([0-9A-Fa-f]+)\s*\*/\s*(?P<decl>[^;]+);")
+STRUCT_CLOSE_RE = re.compile(r"^\s*\}\s*(?P<name>\w*)\s*;(?:.*?size:?\s*0x(?P<size>[0-9A-Fa-f]+))?")
+MEMBER_NAME_RE = re.compile(r"(\w+)\s*(?:\[[^\]]*\]\s*)*$")
+
+
+def member_name(decl):
+    """`E(u8, STADIUM_ID) StadiumID` / `s16 _20[4][2]` / `struct Foo *p` -> name.
+    None for anything this cannot read safely (function pointers, bitfields)."""
+    d = decl.split("//")[0].strip()
+    if ":" in d or "(*" in d:
+        return None
+    d = re.sub(r"E\([^)]*\)", "", d)          # drop the enum-annotation macro
+    m = MEMBER_NAME_RE.search(d)
+    if not m or m.group(1) in TYPE_KEYWORDS:
+        return None
+    return m.group(1)
+
+
+def layout_asserts(name, members, size):
+    lines = []
+    for off, mem in members:
+        lines.append("_Static_assert(offsetof(%s, %s) == 0x%X, \"%s.%s is not at 0x%X\");"
+                     % (name, mem, off, name, mem, off))
+    if size is not None:
+        lines.append("_Static_assert(sizeof(%s) == 0x%X, \"sizeof(%s) is not 0x%X\");"
+                     % (name, size, name, size))
+    return lines
+
+
 def rewrite_header(text, syms, stats, unresolved, relpath, dupes=frozenset()):
     out = []
     depth = 0
+    struct_members, struct_name, want_asserts = [], None, False
     for line in text.splitlines():
         # Only file-scope declarations are rewritten. Inside a struct body a
         # line like `artificial_padding(0x15, 0x18, u8);` looks exactly like a
@@ -467,8 +515,30 @@ def rewrite_header(text, syms, stats, unresolved, relpath, dupes=frozenset()):
             continue
         if depth > 0:
             out.append(line)
-            depth = max(0, depth + line.count("{") - line.count("}"))
+            new_depth = max(0, depth + line.count("{") - line.count("}"))
+            if want_asserts and depth == 1:
+                mm = MEMBER_RE.match(line)
+                if mm and new_depth == 1:
+                    nm = member_name(mm.group("decl"))
+                    if nm:
+                        struct_members.append((int(mm.group(1), 16), nm))
+                if new_depth == 0:
+                    mc = STRUCT_CLOSE_RE.match(line)
+                    name = (mc.group("name") if mc else "") or struct_name
+                    size = int(mc.group("size"), 16) if mc and mc.group("size") else None
+                    if name in LAYOUT_ASSERT_SKIP:
+                        out.append("// [layout asserts skipped: decomp comments known inconsistent] " + name)
+                        unresolved.append((relpath, "layout", name))
+                    elif name and (struct_members or size is not None):
+                        out.extend(layout_asserts(name, struct_members, size))
+                        stats["layout_asserts"] += len(struct_members) + (size is not None)
+                    struct_members, struct_name, want_asserts = [], None, False
+            depth = new_depth
             continue
+        if LAYOUT_ASSERTS and STRUCT_OPEN_RE.match(line):
+            tag = re.search(r"struct\s+(\w+)\s*\{", line)
+            struct_name = ("struct " + tag.group(1)) if tag else None
+            struct_members, want_asserts = [], True
         md = MACRO_DEF_RE.match(line)
         if md and md.group(1) in CGECKO_OWNED_MACROS:
             out.append("// [CGecko owns this macro] " + line.strip())
@@ -544,7 +614,11 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--decomp", default=str(HERE / "Decomp"))
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--no-layout-asserts", action="store_true",
+                    help="do not emit _Static_assert layout guards from the decomp's offset/size comments")
     args = ap.parse_args()
+    global LAYOUT_ASSERTS
+    LAYOUT_ASSERTS = not args.no_layout_asserts
 
     decomp = Path(args.decomp).expanduser().resolve()
     if not (decomp / "include").is_dir():
@@ -594,7 +668,7 @@ def main():
 
     dupes = collect_declared_functions(sources, inc)
     stats = dict(data_bound=0, data_unresolved=0, func_bound=0,
-                 func_unresolved=0, macros_suppressed=0)
+                 func_unresolved=0, macros_suppressed=0, layout_asserts=0)
     unresolved = []
     generated_text = []
 
@@ -613,6 +687,7 @@ def main():
     print("headers written : %d -> %s" % (len(sources), OUT_ROOT))
     print("data   bound %5d   unresolved %5d" % (stats["data_bound"], stats["data_unresolved"]))
     print("funcs  bound %5d   unresolved %5d" % (stats["func_bound"], stats["func_unresolved"]))
+    print("layout asserts emitted: %d (offset/size guards from the decomp's comments)" % stats["layout_asserts"])
     print("macros suppressed (CGecko owns): %d" % stats["macros_suppressed"])
 
     # Everything the decomp names but never declares, emitted as a raw address
