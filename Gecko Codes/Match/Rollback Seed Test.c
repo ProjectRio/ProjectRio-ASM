@@ -31,7 +31,8 @@
 
 #include "Include/game/UnknownHomes_Game.h"
 
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/text/text_channel.h"
 #define SCRATCH   0x815B4000   // verified-free high MEM1 (2 MB zero run); NOT a game buffer
 #define N_SEED    21
 #define HASH_LO   0x8088A7E4
@@ -83,7 +84,7 @@ void RollbackSeedTest()
     if (g_GameLogic.sceneID != SCENE_ID_LIVE_BALL) { RT_MODE = 0; return; }
 
     if (RT_MODE == 0) {
-        if ((InputBuffer[0].button & INPUT_TRIGGER_Z) == INPUT_TRIGGER_Z)
+        if ((g_InputBuffer.pads[0].button & INPUT_TRIGGER_Z) == INPUT_TRIGGER_Z)
             RT_MODE = 1;
     } else if (RT_MODE == 1) {
         seed_copy(1);

@@ -7,8 +7,6 @@
 
 #include "Include/game/UnknownHomes_Game.h"
 
-#include "Include/Local/Legacy.h"
-#include "Include/Local/LegacyGame.h"
 // no .address -> runs once per frame, while the game rel is resident
 CGECKO(CPUAlwaysSprints, .state = MSSB_GAME,
        .notes = "CPU runners and the selected CPU fielder\n"
@@ -30,9 +28,9 @@ void CPUAlwaysSprints()
     }
 
     // Part 2: Force the currently selected CPU fielder to dash
-    enumFielderShort selFielder = g_FieldingLogicLegacy.fielderControl.selectedFielder;
+    s16 selFielder = g_FieldingLogic.selectedFielder;
     if (g_Fielders[selFielder].AI_Ind) {
         int fieldingPort = g_GameLogic.teamFielding;
-        g_FieldingLogicLegacy.fielderControl.fielderDashByPort[fieldingPort].sprintingState = DASH_STATE_SPRINTING;
+        g_FieldingLogic.fielderDashByPort[fieldingPort][FIELDER_DASH_SPRINTING_STATE] = DASH_STATE_SPRINTING;
     }
 }

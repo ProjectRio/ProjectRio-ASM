@@ -4,10 +4,19 @@
 // Author: LittleCoaks
 // *Boots directly to a random 5-inning match. P1 vs P2. Duplicates enabled.
 // *Randomizes home/away, all-or-nothing superstars, and star skills.
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/Unknown/File_0x80065dec.h"
+#include "Include/Unknown/File_0x80042bf0.h"
+#include "Include/Unknown/File_0x800671fc.h"
+#include "Include/Unknown/File_0x80069854.h"
+#include "Include/Unknown/File_0x80064754.h"
+#include "Include/Unknown/File_0x800678cc.h"
+#include "Include/Unknown/File_0x800426dc.h"
+#include "Include/Unknown/File_0x80064a04.h"
+#include "Include/menus/text_0323C.h"
+#include "Include/musyx/musyx.h"
 
 
-#include "Include/Local/LegacyMenus.h"
 // TODO(decomp-migration): Menu data came from the Ghidra-exported MenuData.h.
 // Replace with the decomp headers under Include/game/ and remap the
 // symbol names -- see Include/_sync_report.txt and the decomp's
@@ -24,7 +33,6 @@
 // menu-side "second human exists" copy, set by checkForNewPlayer on P2 join
 // (GlobalData.h gives only the address label; the game-rel copy is
 // Static_Stats_Tables.player2Ind_)
-#define player2Ind2_ VAR_ADDRESS(u8, player2Ind2__ADDR)
 
 #define N_CAPTAINS 12   // mapCaptainCursorPositionToCharID is the capSS grid
 
@@ -36,12 +44,12 @@ static void DraftRandomTeamWithDupes(int team)
     // Roster_Player1 is the structCharSelect at 0x803C6726 that
     // copyInfoToInMemRoster reads: rosterCharID[team][slot], slot 0 = captain.
     // randRange_FUN_80042bf0(high, low) is the header's signature.
-    Roster_Player1.rosterCharID[team][0]        = (u8)Static_Stats_Tables.captainSelectedID[team];
-    Roster_Player1.rosterSpotFilledInd[team][0] = 1;
+    cursorPositions.roster.rosterCharID[team][0]        = (u8)Static_Stats_Tables.captainSelectedID[team];
+    cursorPositions.roster.rosterSpotFilledInd[team][0] = 1;
     for (int slot = 1; slot < 9; slot++)
     {
-        Roster_Player1.rosterCharID[team][slot]        = (u8)randRange_FUN_80042bf0(N_DRAFTABLE - 1, 0);
-        Roster_Player1.rosterSpotFilledInd[team][slot] = 1;
+        cursorPositions.roster.rosterCharID[team][slot]        = (u8)randRange_FUN_80042bf0(N_DRAFTABLE - 1, 0);
+        cursorPositions.roster.rosterSpotFilledInd[team][slot] = 1;
     }
 }
 
@@ -71,8 +79,8 @@ void InstantRandoms()
     Static_Stats_Tables.portsActiveInMatch[1] = 0;
     Static_Stats_Tables.portsActiveInMatch[2] = 0xFF;
     Static_Stats_Tables.portsActiveInMatch[3] = 0xFF;
-    Static_Stats_Tables.player2Ind_ = 1;
-    player2Ind2_                    = 1;
+    Static_Stats_Tables.player2Ind = 1;
+    g_MatchInfo.player2Ind2                    = 1;
 
     // captains + character grid bookkeeping (loadDemoMatch does the same).
     // Two random captains, drawn with the game's RNG over its own captain-select
@@ -148,10 +156,10 @@ void InstantRandoms()
         {
             for (int slot = 1; slot <= 9; slot++)
             {
-                teamManagement_cursorPos[team] = (u8)slot;
+                aiPosSwapInputs.teamManagement_cursorPos[team] = (u8)slot;
                 transferStatsToInMemRoster(team);
             }
-            teamManagement_cursorPos[team] = 0; // park the cursor, as the menu does
+            aiPosSwapInputs.teamManagement_cursorPos[team] = 0; // park the cursor, as the menu does
         }
     }
 

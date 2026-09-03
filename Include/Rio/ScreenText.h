@@ -91,7 +91,8 @@
  * whichever state header (MatchData.h / MenuData.h) it needs for its own
  * game logic; both include-guard against this one. */
 #include "Include/game/UnknownHomes_Game.h"
-#include "Include/Local/Legacy.h"   // ScreenText, TextCharacter, screenTextArray, FrameCountWhileNotAtMainMenu
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/text/text_channel.h"
 
 /* justify (alighment_left_center_right): where x anchors the text */
 #define TEXT_LEFT   0
@@ -308,7 +309,7 @@ static void ScreenTextTick(void)
     s_screenText.lastFrame = frame;
     s_screenText.nextSlot  = 0;
     for (int i = 0; i < TEXT_SLOTS; i++)
-        screenTextArray[TEXT_FIRST_BLOCK + i].field17_0x2a = 0;
+        screenTextArray.blocks[TEXT_FIRST_BLOCK + i].state = 0;
 }
 
 /* maxChars > 0 u32-wraps into lines of at most that many glyphs, breaking
@@ -442,7 +443,7 @@ static void WriteTextV(int x, int y, u32 color, int style, int justify,
     /* fill the block; field names from MatchData.h's ScreenText.
      * Semantics were reverse-engineered in Write Text To Screen.c.
      * Zero everything first (most fields are 0), then set the rest. */
-    ScreenText* t = &screenTextArray[TEXT_FIRST_BLOCK + slot];
+    ScreenText* t = &screenTextArray.blocks[TEXT_FIRST_BLOCK + slot];
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
     /* blocks are 4-aligned in RAM despite the packed struct decl */
@@ -450,16 +451,16 @@ static void WriteTextV(int x, int y, u32 color, int style, int justify,
 #pragma GCC diagnostic pop
     for (int i = 0; i < 14; i++)                             /* 14 words = 56 bytes */
         raw[i] = 0;
-    t->currentCharPtr_             = (TextCharacter*)out;
+    t->bankText             = (u16*)out;
     t->color                       = (s32)color;             /* RGBA */
-    t->xPos                        = (u16)x;              /* screen is 640x448, center (320,224) */
-    t->yPos                        = (u16)y;
-    t->currLetterBeingDrawn        = -1;                     /* max letters; -1 = show all */
-    t->field18_0x2b                = 5;                      /* draw group; 1-8 drawn every frame */
-    t->textStyle_                  = (u8)style;
-    t->lineSpacing_                = 2;
-    t->alighment_left_center_right = (u8)justify;
-    t->field17_0x2a                = 2;                      /* state: active -- set last */
+    t->x                        = (u16)x;              /* screen is 640x448, center (320,224) */
+    t->y                        = (u16)y;
+    t->maxLettersToDraw        = -1;                     /* max letters; -1 = show all */
+    t->drawGroup                = 5;                      /* draw group; 1-8 drawn every frame */
+    t->style                  = (u8)style;
+    t->lineSpacing                = 2;
+    t->justify = (u8)justify;
+    t->state                = 2;                      /* state: active -- set last */
 }
 
 /* Draw text with full control over color (RGBA), font size, and justification. */

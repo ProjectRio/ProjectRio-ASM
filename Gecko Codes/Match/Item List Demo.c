@@ -17,7 +17,8 @@
 #define TEXT_SLOTS 5
 #include "Include/Rio/ScreenList.h"
 
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/text/text_channel.h"
 // 5 items, 4 rows visible at once -- the 5th only reachable by scrolling.
 static ScreenList s_demoList = { 5, 0, 0, 4 };
 static u16 s_prevButtons = 0;
@@ -29,7 +30,7 @@ void ItemListDemo()
 
     // Edge-detect: only move the selection on the frame a direction is
     // newly pressed, not every frame it's held.
-    u16 held    = (u16)InputBuffer[0].button;
+    u16 held    = (u16)g_InputBuffer.pads[0].button;
     u16 pressed = held & (u16)~s_prevButtons;
     s_prevButtons = held;
 

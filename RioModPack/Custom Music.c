@@ -79,7 +79,8 @@
 // rather than stopping the stock theme and then starting nothing.
 #include "Include/game/UnknownHomes_Game.h"
 
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/musyx/musyx.h"
 #include "RioModPack/MusicConfig.h"
 
 // ---- claimed RAM (see ClaimedFreeMemory.h) --------------------------------

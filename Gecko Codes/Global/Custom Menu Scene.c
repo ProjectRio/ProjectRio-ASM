@@ -62,8 +62,9 @@
 #define TEXT_BUFFER_ADDR 0x802EC0E8   // 392 bytes, see ClaimedFreeMemory.h
 #include "Include/Rio/ScreenText.h"
 
-#include "Include/Local/Legacy.h"
-#include "Include/Local/LegacyMenus.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/menus/yd_step.h"
+#include "Include/text/text_channel.h"
 // Scene state in claimed RAM (absolute, no PIC). g_magic one-shot-inits the
 // counter, since claimed RAM holds whatever was there at power-on.
 #define g_magic  VAR_ADDRESS(u32, 0x802EC270)
@@ -85,7 +86,7 @@ void CustomMenuScene()
 
     // P1 input. newInput is already edge-detected by the menu's input
     // gather (a bit is set only on the frame the button is first pressed).
-    controllerInputStruct* in = (controllerInputStruct*)controllerInputs__ADDR;
+    controllerInputStruct* in = Static_Stats_Tables.controllerInputs;
     u16 pressed = in[0].newInput;
 
     if (pressed & INPUT_BUTTON_A)

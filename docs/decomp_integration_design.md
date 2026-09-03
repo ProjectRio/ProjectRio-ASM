@@ -147,14 +147,20 @@ already defined. Given §1.4 this is not pedantry.
 
 ### 2.4 What stays hand-written
 
-`Include/Local/` — never generated, never overwritten:
+Only `Include/Rio/` -- headers for things Project Rio invented (ScreenText,
+ScreenList, the Dictionary reroute). Everything that describes the game comes
+from the decomp:
 
-- mid-function hook addresses (§1.2), which are properly mod-side constants
-- Project Rio's own added variables
-- anything the decomp has not labelled yet
+- mid-function hook addresses (§1.2) are mod-side constants and live in the mod
+- a game object or function the decomp has not labelled yet gets its type,
+  extern or prototype added to the decomp first, then synced -- never a local
+  copy here
 
-The sync report should list what it could not resolve, so this file shrinks
-visibly as the decomp improves.
+`Include/Local/` (the recovered Ghidra-era types) was retired on 2026-09-02
+once its last contents had been upstreamed: `Static_MSSB_Data`, `ScreenText`
+(now the decomp's own `ScreenTextPool`), `cursorPositions`, `g_MatchInfo`,
+`g_InputBuffer`, `aiPosSwapInputs`, the menu/fielding members and the eight
+draft-flow prototypes.
 
 ---
 

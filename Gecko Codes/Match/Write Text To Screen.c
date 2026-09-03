@@ -21,7 +21,7 @@
 #define TEXT_MAXLEN 96
 #include "Include/Rio/ScreenText.h"
 
-#include "Include/Local/Legacy.h"
+#include "Include/text/text_channel.h"
 /*-----------------------------------------------------------
  The game's text engine (main.dol, 0x8000F988-0x80010FA0)
  -- reference notes; the ScreenText.h helper wraps all of this

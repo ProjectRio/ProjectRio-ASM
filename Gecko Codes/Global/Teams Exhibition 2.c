@@ -14,8 +14,7 @@
 
 #include "Include/game/UnknownHomes_Game.h"
 
-#include "Include/Local/Legacy.h"
-#include "Include/Local/LegacyGame.h"
+#include "Include/static/UnknownHomes_Static.h"
 // TEMPORARY: consumed by current Rio client versions for autogolf mode.
 // Remove once the client no longer reads 0x802EBF94/5.
 #define autogolf_ports ARRAY_1D_ADDRESS(u8, 2, 0x802EBF94)
@@ -50,7 +49,7 @@ bool GetActivePorts(int* fielder_port_out, int* batter_port_out)
     int number_PAs = 0;
     for (int i = 0; i <= 8; i++)
     {
-        number_PAs += BatterStats_P1_P2_[bat_team][i].plateAppearances;
+        number_PAs += Static_Stats_Tables.batterStats[bat_team][i].plateAppearances;
     }
 
     // replay_atBat counts as at-bat for the pitcher/fielder role: TeamsExhibition

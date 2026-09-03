@@ -156,7 +156,8 @@
 // writer below is the same block-filling recipe with the formatter
 // dropped: plain literal strings, one block per line.
 
-#include "Include/Local/Legacy.h"
+#include "Include/text/text_channel.h"
+#include "Include/musyx/musyx.h"
 
 // ---- claimed RAM (see ClaimedFreeMemory.h) --------------------------------
 #define TEXT_SLOTS      17            // the suite's rowsPerPage is 0x10, so 16
@@ -257,7 +258,7 @@ static void DebugRow(int slot, int x, int y, u32 color, const char* s,
                      const s32* valPtr, s32 fixedPoint)
 {
     u16* out = (u16*)(TEXT_BUF_ADDR + slot * ((TEXT_MAXLEN + 1) * 2));
-    ScreenText* t = &screenTextArray[TEXT_FIRST + slot];
+    ScreenText* t = &screenTextArray.blocks[TEXT_FIRST + slot];
     u32* raw = (u32*)t;
     int n = 0;
     int i;
@@ -306,16 +307,16 @@ static void DebugRow(int slot, int x, int y, u32 color, const char* s,
 
     for (i = 0; i < 14; i++)         /* 14 words = the whole block */
         raw[i] = 0;
-    t->currentCharPtr_             = (TextCharacter*)out;
+    t->bankText             = (u16*)out;
     t->color                       = (s32)color;
-    t->xPos                        = (u16)x;
-    t->yPos                        = (u16)y;
-    t->currLetterBeingDrawn        = -1;   /* -1 = draw the whole string */
-    t->field18_0x2b                = 5;    /* draw group; 1-8 render every frame */
-    t->textStyle_                  = 1;    /* small font */
-    t->lineSpacing_                = 2;
-    t->alighment_left_center_right = 0;    /* left */
-    t->field17_0x2a                = 2;    /* state: active -- set last */
+    t->x                        = (u16)x;
+    t->y                        = (u16)y;
+    t->maxLettersToDraw        = -1;   /* -1 = draw the whole string */
+    t->drawGroup                = 5;    /* draw group; 1-8 render every frame */
+    t->style                  = 1;    /* small font */
+    t->lineSpacing                = 2;
+    t->justify = 0;    /* left */
+    t->state                = 2;    /* state: active -- set last */
 }
 
 static void DebugLine(int slot, int x, int y, u32 color, const char* s)
@@ -420,7 +421,7 @@ void debug_menu_text(void)
     node = DRAW_BANK_0 + (u32)g_currentBankIndex * 0x80;
 
     for (i = 0; i < TEXT_SLOTS; i++)          // release last frame's lines
-        screenTextArray[TEXT_FIRST + i].field17_0x2a = 0;
+        screenTextArray.blocks[TEXT_FIRST + i].state = 0;
 
     if (VAR_ADDRESS(u32, node) == DEBUG_SELECTOR_FN)
     {

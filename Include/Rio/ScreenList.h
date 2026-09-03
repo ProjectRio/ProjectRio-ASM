@@ -67,6 +67,7 @@
 #define SCREENLIST_H
 
 #include "Include/Rio/ScreenText.h"
+#include "Include/text/text_channel.h"
 
 /* Reserve this many pixels at the left of each row for the cursor glyph,
  * so item labels start at the same x whether or not their row is

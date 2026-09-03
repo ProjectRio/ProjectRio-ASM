@@ -32,7 +32,7 @@
 //     0404e6b0 2C0000FF  046553d4 2C0000FF
 //     c264f394 ...       re-mark the two captains
 #include "Include/game/UnknownHomes_Game.h"
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
 
 #define TAKEN_TABLE   0x803530F7    // Static_Stats_Tables + 0x4757, 54 bytes
 #define TAKEN_COUNT   54            // 0x35 + 1, one byte per character id

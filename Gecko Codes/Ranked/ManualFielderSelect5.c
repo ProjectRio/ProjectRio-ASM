@@ -25,8 +25,6 @@ Author: PeacockSlayer, LittleCoaks
 
 #include "ManualFielderSelect5.h"
 
-#include "Include/Local/Legacy.h"
-#include "Include/Local/LegacyGame.h"
 CGECKO(Manual_Fielder_Select_5, .address = 0x80678F8C, .state = MSSB_GAME,
                                .instruction = "lbz r0, 0x1BD1(r6)");
 void Manual_Fielder_Select_5()

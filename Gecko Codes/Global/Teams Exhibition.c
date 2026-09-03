@@ -14,8 +14,7 @@
 
 #include "Include/game/UnknownHomes_Game.h"
 
-#include "Include/Local/Legacy.h"
-#include "Include/Local/LegacyGame.h"
+#include "Include/static/UnknownHomes_Static.h"
 #define autogolf_ports ARRAY_1D_ADDRESS(u8, 2, 0x802EBF94) // [0] = fielder, [1] = batter
 
 // no .address -> once per frame, while the game rel is resident
@@ -51,7 +50,7 @@ void TeamsExhibition()
     int number_PAs = 0;
     for (int i = 0; i <= 8; i++)
     {
-        number_PAs += BatterStats_P1_P2_[bat_team][i].plateAppearances;
+        number_PAs += Static_Stats_Tables.batterStats[bat_team][i].plateAppearances;
     }
 
     bool is_at_bat = (g_GameLogic.sceneID == SCENE_ID_AT_BAT) || (g_GameLogic.sceneID == SCENE_ID_REPLAY_AT_BAT);

@@ -1,5 +1,10 @@
 # Gecko code build status
 
+> **2026-09-02:** `Include/Local/` is gone. Every type and binding it held has
+> been moved into the decomp and is now emitted by `SyncFromDecomp.py`; the
+> sections below that mention `Legacy*.h` describe the transition and are kept
+> as history.
+
 **All 54 codes build: 30 `.asm`, 6 `.ini`, 18 `.c`.** (`python CGecko/build_all.py`)
 
 Point `ini_path` in `config.json` at a scratch file before a bulk rebuild -- cgecko

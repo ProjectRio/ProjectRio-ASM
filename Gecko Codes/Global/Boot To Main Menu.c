@@ -21,7 +21,7 @@
 //                  actually present (so a missing card never opens a prompt or
 //                  hangs), then hide the wizard's dialog and auto-confirm its
 //                  prompts for the load window.
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
 
 // TODO(decomp-migration): Menu data came from the Ghidra-exported MenuData.h.
 // Replace with the decomp headers under Include/game/ and remap the

@@ -23,6 +23,8 @@
 #ifndef DICTIONARY_REROUTE_H
 #define DICTIONARY_REROUTE_H
 #include "Include/game/UnknownHomes_Game.h"
+#include "Include/menus/yd_step.h"
+#include "Include/musyx/musyx.h"
 
 // Claimed RAM: last frame's screenCode (edge detection) + a "resuming" latch.
 #define g_dictPrevScreen VAR_ADDRESS(u16, 0x802EC280)

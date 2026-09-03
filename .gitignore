@@ -4,8 +4,8 @@ config.json
 __pycache__/
 
 # Generated from the decomp by SyncFromDecomp.py -- keep in sync with
-# GENERATED_ENTRIES in that script. (Include/Rio/ and Include/Local/ are
-# hand-written and never touched by the sync.)
+# GENERATED_ENTRIES in that script. (Include/Rio/ is hand-written and never
+# touched by the sync.)
 Include/game/
 Include/static/
 Include/menus/
@@ -18,6 +18,7 @@ Include/charPipeline/
 Include/PowerPC_EABI_Support/
 Include/stl/
 Include/Unknown/
+Include/text/
 Include/mssbTypes.h
 Include/types.h
 Include/BuildSettings.h

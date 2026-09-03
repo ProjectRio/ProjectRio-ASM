@@ -95,7 +95,10 @@
 
 #include "RioModPack/ModOptions.h"
 #include "RioModPack/MusicConfig.h"
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/menus/yd_step.h"
+#include "Include/text/text_channel.h"
+#include "Include/Symbols/dol.h"          // menuControlVariables_ADDR
 // changeScreenVariables by raw address instead of Include/Local/LegacyMenus.h.
 // That header binds the file to MENU context (Include/Symbols/menus.h sets
 // MSSB_CONTEXT_MENUS, and game.h then #errors with "the game and menus RELs
@@ -440,7 +443,7 @@ void OptionsMenu()
     // it back from an external tool shows 0, because the gather clears it again
     // the same frame; it is live exactly where we read it. Nothing is consumed
     // or blanked here -- no stock widget is running to fight with.
-    in = (controllerInputStruct*)controllerInputs__ADDR;
+    in = Static_Stats_Tables.controllerInputs;
     pressed = in[0].newInput;
 
     // ---- the music screen -------------------------------------------------

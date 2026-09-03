@@ -7,8 +7,6 @@
 
 #include "Include/game/UnknownHomes_Game.h"
 
-#include "Include/Local/Legacy.h"
-#include "Include/Local/LegacyGame.h"
 // no .address -> runs once per frame, while the game rel is resident
 CGECKO(CPUvsCPU, .state = MSSB_GAME);
 void CPUvsCPU()
@@ -23,8 +21,8 @@ void CPUvsCPU()
     g_GameLogic.battingAIInd[0] = 1;
     g_GameLogic.battingAIInd[1] = 1;
     
-    GameLogic_teamIsCPU[0] = 1;
-    GameLogic_teamIsCPU[1] = 1;
+    g_GameLogic.teamIsCPU[0] = 1;
+    g_GameLogic.teamIsCPU[1] = 1;
     g_GameLogic.autoFielding[0] = 1;
     g_GameLogic.autoFielding[1] = 1;
     

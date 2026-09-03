@@ -10,8 +10,16 @@
 // docs/ghidra_name_conflicts.md.
 #include "Include/game/UnknownHomes_Game.h"
 
-#include "Include/Local/Legacy.h"
-#include "Include/Local/LegacyMenus.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/Unknown/File_0x80065dec.h"
+#include "Include/Unknown/File_0x800671fc.h"
+#include "Include/Unknown/File_0x80069854.h"
+#include "Include/Unknown/File_0x80064754.h"
+#include "Include/Unknown/File_0x800678cc.h"
+#include "Include/Unknown/File_0x80064a04.h"
+#include "Include/menus/yd_step.h"
+#include "Include/menus/text_0323C.h"
+#include "Include/musyx/musyx.h"
 
 /* This code runs across the menu -> match handoff, so it touches an object in
    the match REL while bound to the menu REL's symbols. Include/Symbols refuses
@@ -226,7 +234,6 @@ static const BootMatchPayload boot_payload =
 #define trigger_rel_change VAR_ADDRESS(short, 0x80111310)
 // menu-side "second human exists" copy (game-rel copy is
 // Static_Stats_Tables.player2Ind_; the headers only label the address)
-#define player2Ind2_ VAR_ADDRESS(u8, player2Ind2__ADDR)
 // claimed free memory: post-start outs-burst frame counter (see phase 2).
 // Shares Boot Directly To Game's u8 -- fine, the two never run together.
 #define tbm_outsCounter VAR_ADDRESS(u8, 0x802EC01A)
@@ -276,8 +283,8 @@ static inline void TestBoot_StageMatch(const BootMatchSpec* s, const BootStateCo
         Static_Stats_Tables.portsActiveInMatch[1] = 0xFF;
         Static_Stats_Tables.portsActiveInMatch[2] = 0xFF;
         Static_Stats_Tables.portsActiveInMatch[3] = 0xFF;
-        Static_Stats_Tables.player2Ind_ = 0;
-        player2Ind2_                    = 0;
+        Static_Stats_Tables.player2Ind = 0;
+        g_MatchInfo.player2Ind2                    = 0;
     }
     else
     {
@@ -289,8 +296,8 @@ static inline void TestBoot_StageMatch(const BootMatchSpec* s, const BootStateCo
         Static_Stats_Tables.portsActiveInMatch[1] = 0;
         Static_Stats_Tables.portsActiveInMatch[2] = 0xFF;
         Static_Stats_Tables.portsActiveInMatch[3] = 0xFF;
-        Static_Stats_Tables.player2Ind_ = 1;
-        player2Ind2_                    = 1;
+        Static_Stats_Tables.player2Ind = 1;
+        g_MatchInfo.player2Ind2                    = 1;
     }
 
     // Captains (Instant Randoms rolls these; here they are fixed).
@@ -318,9 +325,9 @@ static inline void TestBoot_StageMatch(const BootMatchSpec* s, const BootStateCo
     {
         for (int slot = 0; slot < 9; slot++)
         {
-            Roster_Player1.rosterCharID[team][slot]        = s->roster[team][slot];
-            Roster_Player1.positionSwapMapping[team][slot] = c->positionSwap[team][slot];
-            Roster_Player1.rosterSpotFilledInd[team][slot] = 1;
+            cursorPositions.roster.rosterCharID[team][slot]        = s->roster[team][slot];
+            cursorPositions.roster.positionSwapMapping[team][slot] = c->positionSwap[team][slot];
+            cursorPositions.roster.rosterSpotFilledInd[team][slot] = 1;
         }
     }
 
@@ -338,7 +345,7 @@ static inline void TestBoot_StageMatch(const BootMatchSpec* s, const BootStateCo
     // Fixed stadium instead of selectRandomStadium(): map the spec's cursor
     // index through the game's own cursor->stadium table. StadiumID (0x800E8705)
     // is what selectRandomStadium writes, so we write the same field directly.
-    g_d_GameSettings.StadiumID = (EnumStadiumIDs)cursorToStadIDMapping[s->stadiumCursor];
+    g_d_GameSettings.StadiumID = (u8)cursorToStadIDMapping[s->stadiumCursor];
 
     // Match settings the spec carries. These are the settled option globals in
     // the 0x800E87xx block right next to batsFirstSetting (which Instant Randoms
@@ -356,10 +363,10 @@ static inline void TestBoot_StageMatch(const BootMatchSpec* s, const BootStateCo
     // TestBoot_ApplyGameState (rel 5), after the char hook has reordered the
     // in-memory roster -- doing it here in position order would land them on
     // the wrong players once the roster is in batting order.
-    Static_Stats_Tables.capLocationInOrder_P1_P2_[0] = s->captainOrderLoc[0];
-    Static_Stats_Tables.capLocationInOrder_P1_P2_[1] = s->captainOrderLoc[1];
-    Static_Stats_Tables.teamName_P1_P2_[0]           = s->logo[0];
-    Static_Stats_Tables.teamName_P1_P2_[1]           = s->logo[1];
+    Static_Stats_Tables.capLocationInOrder[0] = s->captainOrderLoc[0];
+    Static_Stats_Tables.capLocationInOrder[1] = s->captainOrderLoc[1];
+    Static_Stats_Tables.teamName[0]           = s->logo[0];
+    Static_Stats_Tables.teamName[1]           = s->logo[1];
 
     // Reset the post-start outs counter for this boot (phase 2 below).
     tbm_outsCounter = 0;
@@ -482,7 +489,7 @@ static inline void TestBoot_ApplyGameState(const BootStateConfig* c)
 
     // The delay lands this on a live match, so never overwrite the outs once a
     // pitch is actually in flight.
-    if (AtBat_PitchThrown != 0)
+    if (g_Stats.atBatPitchThrown != 0)
     {
         tbm_outsCounter = TBM_OUTS_DELAY_FRAMES + TBM_OUTS_BURST_FRAMES;  // give up
         return;

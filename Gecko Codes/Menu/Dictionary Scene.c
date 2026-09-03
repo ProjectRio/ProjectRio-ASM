@@ -32,7 +32,8 @@
 #define TEXT_BUFFER_ADDR 0x802EC0E8   // glyph scratch, see ClaimedFreeMemory.h
 #include "Include/Rio/ScreenText.h"
 
-#include "Include/Local/Legacy.h"
+#include "Include/static/UnknownHomes_Static.h"
+#include "Include/text/text_channel.h"
 #define g_magic  VAR_ADDRESS(u32, 0x802EC270)   // one-shot init sentinel
 #define g_toggle VAR_ADDRESS(u32, 0x802EC274)   // our toggle "button" state
 
@@ -59,7 +60,7 @@ void DictionaryScene()
     // Spare button: the stock scene uses A/B/dpad, so Y is free for our toggle.
     // newInput is edge-detected by the menu (set only on the press frame),
     // exactly like Y-to-superstar on the batting-order screen.
-    controllerInputStruct* in = (controllerInputStruct*)controllerInputs__ADDR;
+    controllerInputStruct* in = Static_Stats_Tables.controllerInputs;
     if (in[0].newInput & INPUT_BUTTON_Y)
         g_toggle = !g_toggle;
 

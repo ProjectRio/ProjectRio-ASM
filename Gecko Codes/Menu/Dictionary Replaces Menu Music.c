@@ -45,6 +45,7 @@
 //     the "already playing" guard at 0x803C6718 instead.
 
 #include "Include/game/UnknownHomes_Game.h"
+#include "Include/musyx/musyx.h"
 
 // ---- claimed RAM (see ClaimedFreeMemory.h) --------------------------------
 #define g_dmmLoading VAR_ADDRESS(u32, 0x802EC288) // a loader task is in flight

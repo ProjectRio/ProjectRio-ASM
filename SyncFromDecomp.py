@@ -44,7 +44,7 @@ REPORT = OUT_ROOT / "_sync_report.txt"
 # Everything under Include/ that this script owns and will overwrite. Hand-written
 # headers live in Include/Rio/ and are never touched.
 GENERATED_ENTRIES = ("game", "static", "menus", "unused_rel", "Symbols", "Dolphin", "musyx",
-                     "C3", "charPipeline", "PowerPC_EABI_Support", "stl",
+                     "C3", "charPipeline", "PowerPC_EABI_Support", "stl", "text",
                      "Unknown", "mssbTypes.h", "types.h", "BuildSettings.h",
                      "header_rep_data.h", "executor.h", "_sync_report.txt")
 
@@ -53,7 +53,7 @@ GENERATED_ENTRIES = ("game", "static", "menus", "unused_rel", "Symbols", "Dolphi
 # CARDProbeEx, GXSetProjection, PSMTXTrans, sndFXStartEx, ...) -- without them
 # those symbols have no address and the mod cannot be ported off the Ghidra
 # export.
-ROOT_DIRS = ("game", "static", "menus", "unused_rel",
+ROOT_DIRS = ("game", "static", "menus", "unused_rel", "text", "Unknown",
              "Dolphin", "musyx", "C3", "charPipeline", "PowerPC_EABI_Support")
 ROOT_FILES = ("mssbTypes.h", "types.h")
 
@@ -350,6 +350,13 @@ def parse_param(p, idx):
     if p == "...":
         return ("...", "...", None)
 
+    # function-pointer parameter: `void (*func)(void)` -- the name sits inside
+    # the declarator, so neither the last-token nor the array rule finds it
+    m = re.match(r"^(?P<ret>.+?)\(\s*\*\s*(?P<name>\w*)\s*\)\s*(?P<args>\(.*\))$", p)
+    if m:
+        ret, name, args = m.group("ret").strip(), m.group("name") or "a%d" % idx, m.group("args")
+        return ("%s (*%s)%s" % (ret, name, args), "%s (*)%s" % (ret, args), name)
+
     # array parameter: `int foo[4]` -- decays to a pointer in the cast
     m = re.match(r"^(?P<pre>.*?)(?P<name>\w+)\s*(?P<dims>(?:\[[^\]]*\])+)$", p)
     if m and m.group("pre").strip():
@@ -622,7 +629,7 @@ def main():
     if not args.dry_run:
         lines = ["Unresolved declarations -- no address found by name in the decomp's",
                  "config/GYQE01/**/symbols.txt. These stay commented out in the output;",
-                 "put anything you actually need into Include/Local/ by hand.", ""]
+                 "add the declaration to the decomp (a typed extern or a prototype) and re-sync.", ""]
         for relpath, kind, name in sorted(unresolved):
             lines.append("%-40s %-5s %s" % (relpath, kind, name))
         REPORT.parent.mkdir(parents=True, exist_ok=True)
