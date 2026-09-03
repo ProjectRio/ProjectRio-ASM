@@ -42,9 +42,11 @@ branching into Rio's code list, and an 04 write landing at 0x8063F964).
     reservation patches.
   * Rio lowers ArenaHi to fit its code list (0x817FDEF8-0x817FFDC0 for a 7.8 KB
     list, so ArenaHi 0x817FDEF0). The pool cap here is ABSOLUTE, so it assumes
-    ArenaHi stays above PAYLOAD_ADDR. That holds with ~32x margin today, but a
-    code list bigger than the reserved region would push ArenaHi below the cap
-    and the pool would then run over Rio's own list.
+    ArenaHi stays above PAYLOAD_ADDR. That holds with ~32x margin today. If a
+    code list ever pushes ArenaHi below the end of the payload, the loader stub
+    notices at boot, puts every DOL patch back and boots the stock game (see
+    build_stub -- it stamps GUARD_MARK_ADDR so the refusal is visible). Build
+    with --test-arena-guard to exercise that path.
 
 ALWAYS PATCHES FROM A PRISTINE COPY. The first run saves sys/main.dol.pristine
 and every run rebuilds from it, so patches never stack. Every patch asserts the
@@ -173,6 +175,7 @@ DEFAULT_TARGET = "dolphin"
 # Set by select_target() before anything touches the disc. They start on the
 # default so that importing this module, or calling build() directly, behaves
 # the way running it with no arguments does.
+TEST_ARENA_GUARD = False         # --test-arena-guard: build a DOL that always refuses (see build_stub)
 TARGET = DEFAULT_TARGET
 GAME_ROOT = TARGETS[TARGET]["root"]
 DOL = os.path.join(GAME_ROOT, TARGETS[TARGET]["dol"])
@@ -238,16 +241,39 @@ def assemble_block(asm_text):
         return f.read()
 
 
-def build_stub(src_addr, dst_addr, nbytes, entry):
-    """Copy nbytes from src to dst, make the copy executable, jump to entry.
+# Where the stub records that it refused to install the pack, and what it
+# writes there. Read it from a memory viewer when a Rio build boots stock.
+GUARD_MARK_ADDR = 0x800030FC     # in the low gap that survives boot (see the docstring)
+GUARD_MARK_WORD = 0x41524E41     # 'ARNA': the arena was too small
+
+
+def build_stub(src_addr, dst_addr, nbytes, entry, restore, table_addr, limit):
+    """Copy nbytes from src to dst, make the copy executable, jump to entry --
+    unless the arena is already too small for the payload, in which case put
+    every DOL patch back and boot the stock game instead.
+
+    THE GUARD. Project Rio lowers ArenaHi (0x80000034) to make room for its
+    gecko code list at the top of memory, and the pool cap this build installs
+    is absolute (PAYLOAD_ADDR). A code list big enough to push ArenaHi below the
+    end of the payload would have Rio's list and this payload overwriting each
+    other. So before anything is copied the stub compares ArenaHi with `limit`
+    (the payload's end address); if ArenaHi is lower it walks `restore` -- the
+    (address, original word) table for every DOL site this build patched --
+    writes the stock words back, flushes them, stamps GUARD_MARK_WORD at
+    GUARD_MARK_ADDR so the refusal is visible, and jumps to __start. Nothing of
+    the pack runs; the REL hooks never get applied because the per-frame
+    re-applier lives in the payload that was never copied.
 
     Runs as the DOL entry point, i.e. before __start's `bl __init_registers`,
-    so there is no stack and no r2/r13 -- it touches only r0/r3/r4/r5 and CTR.
-    LR is untouched; __start clobbers it immediately anyway.
+    so there is no stack and no r2/r13 -- it touches only r0/r3/r4/r5, CTR and
+    CR0. LR is untouched; __start clobbers it immediately anyway.
 
     The word count is exact and the cache-line count is rounded up, so the
     flush may cover a few bytes past the image. That is harmless: those bytes
-    are ours too (the reserved region runs to 0x817FFDA0)."""
+    are ours too (the reserved region runs to 0x817FFDA0).
+
+    Returns (bytes, code_length): the restore table follows the code, so the
+    caller can compute its address from STAGE_ADDR + code_length."""
     words = (nbytes + 3) // 4
     lines = (nbytes + 31) // 32
 
@@ -257,8 +283,39 @@ def build_stub(src_addr, dst_addr, nbytes, entry):
     def lo(v):
         return v & 0xFFFF
 
-    return assemble_block("""
-        lis     3, {shi}
+    code = assemble_block("""
+        lis     3, 0x8000
+        lwz     3, 0x34(3)
+        lis     4, {limhi}
+        ori     4, 4, {limlo}
+        cmplw   3, 4
+        bge     0f
+
+        lis     3, {thi}
+        ori     3, 3, {tlo}
+        li      5, {nres}
+        mtctr   5
+    4:  lwz     4, 0(3)
+        lwz     0, 4(3)
+        stw     0, 0(4)
+        dcbst   0, 4
+        sync
+        icbi    0, 4
+        addi    3, 3, 8
+        bdnz    4b
+        sync
+        isync
+        lis     4, {mhi}
+        ori     4, 4, {mlo}
+        lis     0, {vhi}
+        ori     0, 0, {vlo}
+        stw     0, 0(4)
+        lis     5, {ehi}
+        ori     5, 5, {elo}
+        mtctr   5
+        bctr
+
+    0:  lis     3, {shi}
         ori     3, 3, {slo}
         lis     4, {dhi}
         ori     4, 4, {dlo}
@@ -300,7 +357,13 @@ def build_stub(src_addr, dst_addr, nbytes, entry):
                dhi=hi(dst_addr), dlo=lo(dst_addr),
                whi=hi(words), wlo=lo(words),
                lhi=hi(lines), llo=lo(lines),
-               ehi=hi(entry), elo=lo(entry)))
+               ehi=hi(entry), elo=lo(entry),
+               limhi=hi(limit), limlo=lo(limit),
+               thi=hi(table_addr), tlo=lo(table_addr), nres=len(restore),
+               mhi=hi(GUARD_MARK_ADDR), mlo=lo(GUARD_MARK_ADDR),
+               vhi=hi(GUARD_MARK_WORD), vlo=lo(GUARD_MARK_WORD)))
+    table = b"".join(struct.pack(">II", a, w) for a, w in restore)
+    return code + table, len(code)
 
 
 def load_pristine():
@@ -332,6 +395,10 @@ def show(dol, label):
 
 
 def build():
+    check = subprocess.run([sys.executable, os.path.join(HERE, "CheckClaimedMemory.py"), "--quiet"])
+    if check.returncode:
+        sys.exit("[ERROR] ClaimedFreeMemory.h has findings (above); fix the ledger before building")
+
     print("[1/5] building %s" % os.path.relpath(PACK, HERE))
     blob, hooks, frame = cgecko_iso.build(PACK, PAYLOAD_ADDR, FRAME_SITE, FRAME_INSTR)
     end = PAYLOAD_ADDR + len(blob)
@@ -344,19 +411,32 @@ def build():
     print("      %d of %d bytes of the reserved region used (%.1f%%)"
           % (len(blob), room, 100.0 * len(blob) / room))
 
+    dol = load_pristine()
+
     print("[2/5] building the loader stub")
-    stub = build_stub(0, 0, len(blob), ENTRY_ORIG)          # sized pass
+    # Every DOL word this build changes, with its stock value, so the stub can
+    # put the game back if the arena turns out to be too small (see build_stub).
+    restore = [(WIPE_SITE, MR_R30_R3), (ARENA_SITE, MR_R30_R3), (FRAME_SITE, FRAME_ORIG)]
+    restore += [(h["site"], dol.read_word(h["site"])) for h in hooks if not h["rel"]]
+    stub, code_len = build_stub(0, 0, len(blob), ENTRY_ORIG, restore, 0, 0)   # sized pass
+    table_addr = STAGE_ADDR + code_len
     image_addr = (STAGE_ADDR + len(stub) + 31) & ~31
-    stub = build_stub(image_addr, PAYLOAD_ADDR, len(blob), ENTRY_ORIG)
-    assert image_addr == (STAGE_ADDR + len(stub) + 31) & ~31, "stub changed size"
+    guard_limit = 0x81800000 if TEST_ARENA_GUARD else end   # above any ArenaHi: always refuses
+    stub, code_len2 = build_stub(image_addr, PAYLOAD_ADDR, len(blob), ENTRY_ORIG,
+                                 restore, table_addr, guard_limit)
+    assert code_len2 == code_len and image_addr == (STAGE_ADDR + len(stub) + 31) & ~31, \
+        "stub changed size"
     stage_end = image_addr + len(blob)
     print("      %d bytes at 0x%08X; image staged at 0x%08X-0x%08X"
           % (len(stub), STAGE_ADDR, image_addr, stage_end))
+    print("      arena guard: boots stock (and stamps 0x%08X) if ArenaHi < 0x%08X; "
+          "%d DOL words in the restore table"
+          % (GUARD_MARK_ADDR, guard_limit, len(restore)))
+    if TEST_ARENA_GUARD:
+        print("      *** --test-arena-guard: this DOL will ALWAYS take the refusal path ***")
     if stage_end > STAGE_LIMIT:
         sys.exit("[ERROR] staging ends at 0x%08X, past the apploader's 0x%08X production "
                  "line.\n        Lower STAGE_ADDR." % (stage_end, STAGE_LIMIT))
-
-    dol = load_pristine()
 
     print("[3/5] reserving memory")
     lis_r30 = (15 << 26) | (30 << 21) | ((PAYLOAD_ADDR >> 16) & 0xFFFF)
@@ -405,7 +485,8 @@ def build():
     with open(os.path.join(HERE, "RioModPack", "last_build.json"), "w") as f:
         json.dump({"load_addr": PAYLOAD_ADDR, "size": len(blob),
                    "stage_addr": STAGE_ADDR, "image_addr": image_addr,
-                   "stub_size": len(stub), "frame": frame, "hooks": hooks}, f, indent=2)
+                   "stub_size": len(stub), "restore_table": len(restore),
+                   "guard_mark": GUARD_MARK_ADDR, "frame": frame, "hooks": hooks}, f, indent=2)
 
     print("\n[OK] wrote %s (%d bytes)" % (DOL, len(dol.raw)))
     if deferred:
@@ -436,7 +517,12 @@ def main():
                     help="operate on the GameCube Rebuilder folder instead of the "
                          "Dolphin one. Release builds only -- Dolphin cannot boot "
                          "that layout.")
+    ap.add_argument("--test-arena-guard", action="store_true",
+                    help="build a DOL whose loader stub always takes the refusal path, "
+                         "to test it; never ship this")
     a = ap.parse_args()
+    global TEST_ARENA_GUARD
+    TEST_ARENA_GUARD = a.test_arena_guard
 
     select_target("gcr" if a.gcr else DEFAULT_TARGET)
     print("[INFO] target: %s -- %s" % (TARGET, DOL))

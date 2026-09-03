@@ -41,6 +41,7 @@
     "0x802EBFB0" : "(w) -- batter previous Y position",
     "0x802EBFB4" : "(w) -- pitched ball curve accumulation",
     "0x802EBFB8" : "(w) -- desync checksum",
+    "0x802EBFC0" : "(24 bytes, through 0x802EBFD7) -- Rollback Seed Test: six result words the harness leaves for a memory viewer (see the file's header)",
 
     "0x802EC000" : "(w) -- Manual Select Hand Lock ASM",
 
