@@ -9,6 +9,8 @@
 # *Press L + Z to restart the current at-bat. Only works once the ball is in play
 # *Uses the game's replay system to work. Does not work while pitching is going on
 
+# 0x80892aaa (byte) is the address of the game state. 0x7 is "Load Replay"
+
 ###########################################################
 ###########################################################
 

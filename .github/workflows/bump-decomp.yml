@@ -1,0 +1,71 @@
+name: Bump decomp submodule
+
+# Pulls in new decomp matching progress: advances the Decomp submodule to
+# the latest commit on its tracked branch, verifies the sync script and a
+# full build still succeed against it, and opens a PR with the bumped
+# pointer for review. If the build breaks, the job just fails -- no PR is
+# opened -- so a decomp regression is visible in the Actions tab instead of
+# silently landing.
+#
+# Runs weekly and on demand. Trigger a run manually from the Actions tab
+# any time you want to pull in decomp progress sooner.
+
+on:
+  schedule:
+    - cron: "0 13 * * 1" # Monday 13:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitppc:latest
+
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Python
+        run: apt-get update -qq && apt-get install -y --no-install-recommends python3
+
+      - name: Update Decomp submodule to latest tracked branch
+        run: git submodule update --remote Decomp
+
+      - name: Check whether the submodule pointer moved
+        id: diff
+        run: |
+          if git diff --quiet -- Decomp; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Regenerate headers from bumped decomp
+        if: steps.diff.outputs.changed == 'true'
+        run: python3 SyncFromDecomp.py
+
+      - name: Build every gecko code against bumped decomp
+        if: steps.diff.outputs.changed == 'true'
+        run: python3 CGecko/build_all.py
+
+      - name: Open PR bumping the Decomp submodule
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "Bump Decomp submodule"
+          title: "Bump Decomp submodule to latest main"
+          body: |
+            Automated bump of the `Decomp` submodule to the latest commit on
+            `main` in [mssb-dtk](https://github.com/LittleCoaks/mssb-dtk).
+
+            `SyncFromDecomp.py` and `CGecko/build_all.py` both ran clean
+            against this commit before this PR was opened.
+          branch: bump-decomp-submodule
+          delete-branch: true
+          add-paths: Decomp

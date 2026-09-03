@@ -1,0 +1,39 @@
+name: Build check
+
+# Validates that every gecko code still builds against the pinned Decomp
+# submodule commit. Runs SyncFromDecomp.py to regenerate Include/ exactly
+# like a developer would after pulling, then builds every code with
+# CGecko/build_all.py -- so a decomp change that breaks a mod (renamed
+# symbol, changed struct layout, etc.) fails here instead of surprising
+# someone locally.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitppc:latest
+
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Python
+        run: apt-get update -qq && apt-get install -y --no-install-recommends python3
+
+      - name: Check the claimed-memory ledger
+        run: python3 CheckClaimedMemory.py
+
+      - name: Regenerate headers from decomp
+        run: python3 SyncFromDecomp.py
+
+      - name: Build every gecko code
+        run: python3 CGecko/build_all.py
